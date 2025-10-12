@@ -7,7 +7,7 @@ import (
 
 	"github.com/99designs/gqlgen/graphql"
 	"github.com/vektah/gqlparser/v2/ast"
-	"metar.gg/graph/model"
+	"metar.live/graph/model"
 )
 
 // region    ************************** generated!.gotpl **************************
@@ -40,53 +40,53 @@ import (
 
 // region    ***************************** type.gotpl *****************************
 
-func (ec *executionContext) unmarshalNLengthUnit2metarᚗggᚋgraphᚋmodelᚐLengthUnit(ctx context.Context, v any) (model.LengthUnit, error) {
+func (ec *executionContext) unmarshalNLengthUnit2metarᚗliveᚋgraphᚋmodelᚐLengthUnit(ctx context.Context, v any) (model.LengthUnit, error) {
 	var res model.LengthUnit
 	err := res.UnmarshalGQL(v)
 	return res, graphql.ErrorOnPath(ctx, err)
 }
 
-func (ec *executionContext) marshalNLengthUnit2metarᚗggᚋgraphᚋmodelᚐLengthUnit(ctx context.Context, sel ast.SelectionSet, v model.LengthUnit) graphql.Marshaler {
+func (ec *executionContext) marshalNLengthUnit2metarᚗliveᚋgraphᚋmodelᚐLengthUnit(ctx context.Context, sel ast.SelectionSet, v model.LengthUnit) graphql.Marshaler {
 	return v
 }
 
-func (ec *executionContext) unmarshalNPressureUnit2metarᚗggᚋgraphᚋmodelᚐPressureUnit(ctx context.Context, v any) (model.PressureUnit, error) {
+func (ec *executionContext) unmarshalNPressureUnit2metarᚗliveᚋgraphᚋmodelᚐPressureUnit(ctx context.Context, v any) (model.PressureUnit, error) {
 	var res model.PressureUnit
 	err := res.UnmarshalGQL(v)
 	return res, graphql.ErrorOnPath(ctx, err)
 }
 
-func (ec *executionContext) marshalNPressureUnit2metarᚗggᚋgraphᚋmodelᚐPressureUnit(ctx context.Context, sel ast.SelectionSet, v model.PressureUnit) graphql.Marshaler {
+func (ec *executionContext) marshalNPressureUnit2metarᚗliveᚋgraphᚋmodelᚐPressureUnit(ctx context.Context, sel ast.SelectionSet, v model.PressureUnit) graphql.Marshaler {
 	return v
 }
 
-func (ec *executionContext) unmarshalNSmallLengthUnit2metarᚗggᚋgraphᚋmodelᚐSmallLengthUnit(ctx context.Context, v any) (model.SmallLengthUnit, error) {
+func (ec *executionContext) unmarshalNSmallLengthUnit2metarᚗliveᚋgraphᚋmodelᚐSmallLengthUnit(ctx context.Context, v any) (model.SmallLengthUnit, error) {
 	var res model.SmallLengthUnit
 	err := res.UnmarshalGQL(v)
 	return res, graphql.ErrorOnPath(ctx, err)
 }
 
-func (ec *executionContext) marshalNSmallLengthUnit2metarᚗggᚋgraphᚋmodelᚐSmallLengthUnit(ctx context.Context, sel ast.SelectionSet, v model.SmallLengthUnit) graphql.Marshaler {
+func (ec *executionContext) marshalNSmallLengthUnit2metarᚗliveᚋgraphᚋmodelᚐSmallLengthUnit(ctx context.Context, sel ast.SelectionSet, v model.SmallLengthUnit) graphql.Marshaler {
 	return v
 }
 
-func (ec *executionContext) unmarshalNSpeedUnit2metarᚗggᚋgraphᚋmodelᚐSpeedUnit(ctx context.Context, v any) (model.SpeedUnit, error) {
+func (ec *executionContext) unmarshalNSpeedUnit2metarᚗliveᚋgraphᚋmodelᚐSpeedUnit(ctx context.Context, v any) (model.SpeedUnit, error) {
 	var res model.SpeedUnit
 	err := res.UnmarshalGQL(v)
 	return res, graphql.ErrorOnPath(ctx, err)
 }
 
-func (ec *executionContext) marshalNSpeedUnit2metarᚗggᚋgraphᚋmodelᚐSpeedUnit(ctx context.Context, sel ast.SelectionSet, v model.SpeedUnit) graphql.Marshaler {
+func (ec *executionContext) marshalNSpeedUnit2metarᚗliveᚋgraphᚋmodelᚐSpeedUnit(ctx context.Context, sel ast.SelectionSet, v model.SpeedUnit) graphql.Marshaler {
 	return v
 }
 
-func (ec *executionContext) unmarshalNTemperatureUnit2metarᚗggᚋgraphᚋmodelᚐTemperatureUnit(ctx context.Context, v any) (model.TemperatureUnit, error) {
+func (ec *executionContext) unmarshalNTemperatureUnit2metarᚗliveᚋgraphᚋmodelᚐTemperatureUnit(ctx context.Context, v any) (model.TemperatureUnit, error) {
 	var res model.TemperatureUnit
 	err := res.UnmarshalGQL(v)
 	return res, graphql.ErrorOnPath(ctx, err)
 }
 
-func (ec *executionContext) marshalNTemperatureUnit2metarᚗggᚋgraphᚋmodelᚐTemperatureUnit(ctx context.Context, sel ast.SelectionSet, v model.TemperatureUnit) graphql.Marshaler {
+func (ec *executionContext) marshalNTemperatureUnit2metarᚗliveᚋgraphᚋmodelᚐTemperatureUnit(ctx context.Context, sel ast.SelectionSet, v model.TemperatureUnit) graphql.Marshaler {
 	return v
 }
 

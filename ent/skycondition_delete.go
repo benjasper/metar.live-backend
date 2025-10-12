@@ -8,8 +8,8 @@ import (
 	"entgo.io/ent/dialect/sql"
 	"entgo.io/ent/dialect/sql/sqlgraph"
 	"entgo.io/ent/schema/field"
-	"metar.gg/ent/predicate"
-	"metar.gg/ent/skycondition"
+	"metar.live/ent/predicate"
+	"metar.live/ent/skycondition"
 )
 
 // SkyConditionDelete is the builder for deleting a SkyCondition entity.

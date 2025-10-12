@@ -11,8 +11,8 @@ import (
 	"entgo.io/ent/dialect/sql/sqlgraph"
 	"entgo.io/ent/schema/field"
 	"github.com/google/uuid"
-	"metar.gg/ent/predicate"
-	"metar.gg/ent/skycondition"
+	"metar.live/ent/predicate"
+	"metar.live/ent/skycondition"
 )
 
 // SkyConditionQuery is the builder for querying SkyCondition entities.

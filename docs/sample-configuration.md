@@ -15,7 +15,7 @@ MAX_CONCURRENT_IMPORTS=4
 PORT=80
 WEATHER_DATA_RETENTION_DAYS=1
 
-MARIADB_DATABASE=metargg
+MARIADB_DATABASE=metarlive
 MARIADB_PORT=3306
 MARIADB_ROOT_PASSWORD=SuperSecretDBPassword!
 
@@ -34,9 +34,9 @@ CRON_SITEMAP_GENERATION="0 22 * * *"
 Let's create a `docker-compose.yml` file. We'll use `${ENV_VALUE}` notation so the values from the `.env` file get populated in our Docker Compose file. Make it look like this:
 ```
 services:
-  metar-gg-backend:
-    container_name: metar-gg-backend
-    image: ghcr.io/benjasper/metar.gg:latest
+  metar.live-backend:
+    container_name: metar.live-backend
+    image: ghcr.io/benjasper/metar.live:latest
     depends_on:
       - db
     environment:

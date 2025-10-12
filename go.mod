@@ -1,4 +1,4 @@
-module metar.gg
+module metar.live
 
 go 1.25.1
 

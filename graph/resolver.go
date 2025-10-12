@@ -2,8 +2,8 @@ package graph
 
 import (
 	"github.com/99designs/gqlgen/graphql"
-	"metar.gg/ent"
-	"metar.gg/graph/generated"
+	"metar.live/ent"
+	"metar.live/graph/generated"
 )
 
 // This file will not be regenerated automatically.

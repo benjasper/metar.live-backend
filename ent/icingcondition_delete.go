@@ -8,8 +8,8 @@ import (
 	"entgo.io/ent/dialect/sql"
 	"entgo.io/ent/dialect/sql/sqlgraph"
 	"entgo.io/ent/schema/field"
-	"metar.gg/ent/icingcondition"
-	"metar.gg/ent/predicate"
+	"metar.live/ent/icingcondition"
+	"metar.live/ent/predicate"
 )
 
 // IcingConditionDelete is the builder for deleting a IcingCondition entity.

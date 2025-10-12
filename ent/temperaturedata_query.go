@@ -11,8 +11,8 @@ import (
 	"entgo.io/ent/dialect/sql/sqlgraph"
 	"entgo.io/ent/schema/field"
 	"github.com/google/uuid"
-	"metar.gg/ent/predicate"
-	"metar.gg/ent/temperaturedata"
+	"metar.live/ent/predicate"
+	"metar.live/ent/temperaturedata"
 )
 
 // TemperatureDataQuery is the builder for querying TemperatureData entities.

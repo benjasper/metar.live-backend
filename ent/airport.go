@@ -11,10 +11,10 @@ import (
 	"entgo.io/ent"
 	"entgo.io/ent/dialect/sql"
 	"github.com/google/uuid"
-	"metar.gg/ent/airport"
-	"metar.gg/ent/country"
-	"metar.gg/ent/region"
-	"metar.gg/ent/weatherstation"
+	"metar.live/ent/airport"
+	"metar.live/ent/country"
+	"metar.live/ent/region"
+	"metar.live/ent/weatherstation"
 )
 
 // Airport is the model entity for the Airport schema.

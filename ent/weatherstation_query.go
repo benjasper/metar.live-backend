@@ -12,11 +12,11 @@ import (
 	"entgo.io/ent/dialect/sql/sqlgraph"
 	"entgo.io/ent/schema/field"
 	"github.com/google/uuid"
-	"metar.gg/ent/airport"
-	"metar.gg/ent/metar"
-	"metar.gg/ent/predicate"
-	"metar.gg/ent/taf"
-	"metar.gg/ent/weatherstation"
+	"metar.live/ent/airport"
+	"metar.live/ent/metar"
+	"metar.live/ent/predicate"
+	"metar.live/ent/taf"
+	"metar.live/ent/weatherstation"
 )
 
 // WeatherStationQuery is the builder for querying WeatherStation entities.

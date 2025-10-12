@@ -8,7 +8,7 @@ import (
 	"io"
 	"strconv"
 
-	"metar.gg/ent"
+	"metar.live/ent"
 )
 
 type StationWithDistance struct {

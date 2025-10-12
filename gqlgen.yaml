@@ -23,21 +23,21 @@ model:
 # autobind tells gqlgen to search for any type names in the GraphQL schema in the
 # provided Go package. If they match it will use them, otherwise it will generate new ones.
 autobind:
-  - metar.gg/ent
+  - metar.live/ent
 
 # This section declares type mapping between the GraphQL and Go type systems.
 models:
   # Defines the ID field as Go 'int'.
   ID:
     model:
-      - metar.gg/graph/model.UUID
+      - metar.live/graph/model.UUID
   Time:
     model:
       - github.com/99designs/gqlgen/graphql.Time
   # Map the Status type that was defined in the schema
   Runway:
     model:
-      - metar.gg/ent.Runway
+      - metar.live/ent.Runway
   Airport:
     model:
-      - metar.gg/ent.Airport
+      - metar.live/ent.Airport

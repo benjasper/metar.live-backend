@@ -11,16 +11,16 @@ import (
 
 	"github.com/segmentio/fasthash/fnv1a"
 	"golang.org/x/sync/errgroup"
-	"metar.gg/ent"
-	"metar.gg/ent/airport"
-	"metar.gg/ent/forecast"
-	"metar.gg/ent/metar"
-	"metar.gg/ent/skycondition"
-	"metar.gg/ent/taf"
-	"metar.gg/ent/weatherstation"
-	"metar.gg/environment"
-	"metar.gg/logging"
-	"metar.gg/utils"
+	"metar.live/ent"
+	"metar.live/ent/airport"
+	"metar.live/ent/forecast"
+	"metar.live/ent/metar"
+	"metar.live/ent/skycondition"
+	"metar.live/ent/taf"
+	"metar.live/ent/weatherstation"
+	"metar.live/environment"
+	"metar.live/logging"
+	"metar.live/utils"
 )
 
 type NoaaWeatherImporter struct {

@@ -14,11 +14,11 @@ import (
 	"entgo.io/contrib/entgql"
 	"entgo.io/ent/dialect/sql"
 	"github.com/google/uuid"
-	"metar.gg/ent"
-	"metar.gg/ent/airport"
-	"metar.gg/ent/predicate"
-	"metar.gg/ent/weatherstation"
-	"metar.gg/graph/generated"
+	"metar.live/ent"
+	"metar.live/ent/airport"
+	"metar.live/ent/predicate"
+	"metar.live/ent/weatherstation"
+	"metar.live/graph/generated"
 )
 
 // GetAirports is the resolver for the getAirports field.

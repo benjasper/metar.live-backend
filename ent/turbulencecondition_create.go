@@ -12,7 +12,7 @@ import (
 	"entgo.io/ent/dialect/sql/sqlgraph"
 	"entgo.io/ent/schema/field"
 	"github.com/google/uuid"
-	"metar.gg/ent/turbulencecondition"
+	"metar.live/ent/turbulencecondition"
 )
 
 // TurbulenceConditionCreate is the builder for creating a TurbulenceCondition entity.

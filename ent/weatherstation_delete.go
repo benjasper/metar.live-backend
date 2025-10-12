@@ -8,8 +8,8 @@ import (
 	"entgo.io/ent/dialect/sql"
 	"entgo.io/ent/dialect/sql/sqlgraph"
 	"entgo.io/ent/schema/field"
-	"metar.gg/ent/predicate"
-	"metar.gg/ent/weatherstation"
+	"metar.live/ent/predicate"
+	"metar.live/ent/weatherstation"
 )
 
 // WeatherStationDelete is the builder for deleting a WeatherStation entity.

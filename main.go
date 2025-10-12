@@ -4,11 +4,11 @@ import (
 	"context"
 	_ "github.com/go-sql-driver/mysql"
 	"golang.org/x/sync/errgroup"
-	"metar.gg/ent"
-	"metar.gg/ent/migrate"
-	"metar.gg/environment"
-	"metar.gg/logging"
-	"metar.gg/server"
+	"metar.live/ent"
+	"metar.live/ent/migrate"
+	"metar.live/environment"
+	"metar.live/logging"
+	"metar.live/server"
 )
 
 func main() {

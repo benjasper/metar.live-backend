@@ -2,7 +2,7 @@ package importer
 
 import (
 	"fmt"
-	"metar.gg/logging"
+	"metar.live/logging"
 	"sync"
 	"time"
 )

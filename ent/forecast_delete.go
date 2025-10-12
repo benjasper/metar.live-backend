@@ -8,8 +8,8 @@ import (
 	"entgo.io/ent/dialect/sql"
 	"entgo.io/ent/dialect/sql/sqlgraph"
 	"entgo.io/ent/schema/field"
-	"metar.gg/ent/forecast"
-	"metar.gg/ent/predicate"
+	"metar.live/ent/forecast"
+	"metar.live/ent/predicate"
 )
 
 // ForecastDelete is the builder for deleting a Forecast entity.

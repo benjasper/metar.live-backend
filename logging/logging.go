@@ -9,7 +9,7 @@ import (
 
 	"github.com/axiomhq/axiom-go/axiom"
 	"github.com/cenkalti/backoff/v4"
-	"metar.gg/environment"
+	"metar.live/environment"
 )
 
 type Logger struct {

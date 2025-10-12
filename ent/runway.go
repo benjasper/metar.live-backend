@@ -10,8 +10,8 @@ import (
 	"entgo.io/ent"
 	"entgo.io/ent/dialect/sql"
 	"github.com/google/uuid"
-	"metar.gg/ent/airport"
-	"metar.gg/ent/runway"
+	"metar.live/ent/airport"
+	"metar.live/ent/runway"
 )
 
 // Runway is the model entity for the Runway schema.

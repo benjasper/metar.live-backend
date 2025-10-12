@@ -10,8 +10,8 @@ import (
 	"entgo.io/ent"
 	"entgo.io/ent/dialect/sql"
 	"github.com/google/uuid"
-	"metar.gg/ent/taf"
-	"metar.gg/ent/weatherstation"
+	"metar.live/ent/taf"
+	"metar.live/ent/weatherstation"
 )
 
 // Taf is the model entity for the Taf schema.

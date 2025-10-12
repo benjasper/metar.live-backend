@@ -6,7 +6,7 @@ import (
 	"context"
 	"fmt"
 
-	"metar.gg/ent"
+	"metar.live/ent"
 )
 
 // The AirportFunc type is an adapter to allow the use of ordinary

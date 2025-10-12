@@ -1,7 +1,7 @@
 package graph
 
 import (
-	"metar.gg/graph/model"
+	"metar.live/graph/model"
 )
 
 func TemperatureFromCelsiusToUnit(value float64, unit model.TemperatureUnit) float64 {

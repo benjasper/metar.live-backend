@@ -10,8 +10,8 @@ import (
 	"entgo.io/ent"
 	"entgo.io/ent/dialect/sql"
 	"github.com/google/uuid"
-	"metar.gg/ent/metar"
-	"metar.gg/ent/weatherstation"
+	"metar.live/ent/metar"
+	"metar.live/ent/weatherstation"
 )
 
 // Metar is the model entity for the Metar schema.

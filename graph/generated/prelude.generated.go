@@ -14,7 +14,7 @@ import (
 	"github.com/99designs/gqlgen/graphql/introspection"
 	"github.com/google/uuid"
 	"github.com/vektah/gqlparser/v2/ast"
-	"metar.gg/graph/model"
+	"metar.live/graph/model"
 )
 
 // region    ************************** generated!.gotpl **************************

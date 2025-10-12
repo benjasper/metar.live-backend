@@ -12,10 +12,10 @@ import (
 	"entgo.io/ent/dialect/sql/sqlgraph"
 	"entgo.io/ent/schema/field"
 	"github.com/google/uuid"
-	"metar.gg/ent/metar"
-	"metar.gg/ent/predicate"
-	"metar.gg/ent/skycondition"
-	"metar.gg/ent/weatherstation"
+	"metar.live/ent/metar"
+	"metar.live/ent/predicate"
+	"metar.live/ent/skycondition"
+	"metar.live/ent/weatherstation"
 )
 
 // MetarUpdate is the builder for updating Metar entities.

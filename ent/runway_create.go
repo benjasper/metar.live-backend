@@ -13,8 +13,8 @@ import (
 	"entgo.io/ent/dialect/sql/sqlgraph"
 	"entgo.io/ent/schema/field"
 	"github.com/google/uuid"
-	"metar.gg/ent/airport"
-	"metar.gg/ent/runway"
+	"metar.live/ent/airport"
+	"metar.live/ent/runway"
 )
 
 // RunwayCreate is the builder for creating a Runway entity.

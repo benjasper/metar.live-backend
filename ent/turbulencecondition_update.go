@@ -10,8 +10,8 @@ import (
 	"entgo.io/ent/dialect/sql"
 	"entgo.io/ent/dialect/sql/sqlgraph"
 	"entgo.io/ent/schema/field"
-	"metar.gg/ent/predicate"
-	"metar.gg/ent/turbulencecondition"
+	"metar.live/ent/predicate"
+	"metar.live/ent/turbulencecondition"
 )
 
 // TurbulenceConditionUpdate is the builder for updating TurbulenceCondition entities.

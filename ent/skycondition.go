@@ -9,7 +9,7 @@ import (
 	"entgo.io/ent"
 	"entgo.io/ent/dialect/sql"
 	"github.com/google/uuid"
-	"metar.gg/ent/skycondition"
+	"metar.live/ent/skycondition"
 )
 
 // SkyCondition is the model entity for the SkyCondition schema.

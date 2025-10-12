@@ -9,7 +9,7 @@ import (
 	"entgo.io/ent"
 	"entgo.io/ent/dialect/sql"
 	"github.com/google/uuid"
-	"metar.gg/ent/icingcondition"
+	"metar.live/ent/icingcondition"
 )
 
 // IcingCondition is the model entity for the IcingCondition schema.

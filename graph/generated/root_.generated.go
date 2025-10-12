@@ -14,9 +14,9 @@ import (
 	"github.com/google/uuid"
 	gqlparser "github.com/vektah/gqlparser/v2"
 	"github.com/vektah/gqlparser/v2/ast"
-	"metar.gg/ent"
-	"metar.gg/ent/airport"
-	"metar.gg/graph/model"
+	"metar.live/ent"
+	"metar.live/ent/airport"
+	"metar.live/graph/model"
 )
 
 // NewExecutableSchema creates an ExecutableSchema from the ResolverRoot interface.
@@ -2104,7 +2104,7 @@ enum AirportOrderField {
 """
 AirportType is enum for the field type
 """
-enum AirportType @goModel(model: "metar.gg/ent/airport.Type") {
+enum AirportType @goModel(model: "metar.live/ent/airport.Type") {
   large_airport
   medium_airport
   small_airport
@@ -2149,7 +2149,7 @@ type Country {
 """
 CountryContinent is enum for the field continent
 """
-enum CountryContinent @goModel(model: "metar.gg/ent/country.Continent") {
+enum CountryContinent @goModel(model: "metar.live/ent/country.Continent") {
   AF
   AN
   AS
@@ -2227,7 +2227,7 @@ type Forecast {
 """
 ForecastChangeIndicator is enum for the field change_indicator
 """
-enum ForecastChangeIndicator @goModel(model: "metar.gg/ent/forecast.ChangeIndicator") {
+enum ForecastChangeIndicator @goModel(model: "metar.live/ent/forecast.ChangeIndicator") {
   BECMG
   FM
   TEMPO
@@ -2384,7 +2384,7 @@ type Metar {
 """
 MetarFlightCategory is enum for the field flight_category
 """
-enum MetarFlightCategory @goModel(model: "metar.gg/ent/metar.FlightCategory") {
+enum MetarFlightCategory @goModel(model: "metar.live/ent/metar.FlightCategory") {
   VFR
   MVFR
   IFR
@@ -2393,7 +2393,7 @@ enum MetarFlightCategory @goModel(model: "metar.gg/ent/metar.FlightCategory") {
 """
 MetarMetarType is enum for the field metar_type
 """
-enum MetarMetarType @goModel(model: "metar.gg/ent/metar.MetarType") {
+enum MetarMetarType @goModel(model: "metar.live/ent/metar.MetarType") {
   METAR
   SPECI
 }
@@ -2549,7 +2549,7 @@ type SkyCondition {
 """
 SkyConditionCloudType is enum for the field cloud_type
 """
-enum SkyConditionCloudType @goModel(model: "metar.gg/ent/skycondition.CloudType") {
+enum SkyConditionCloudType @goModel(model: "metar.live/ent/skycondition.CloudType") {
   CB
   CU
   TCU
@@ -2557,7 +2557,7 @@ enum SkyConditionCloudType @goModel(model: "metar.gg/ent/skycondition.CloudType"
 """
 SkyConditionSkyCover is enum for the field sky_cover
 """
-enum SkyConditionSkyCover @goModel(model: "metar.gg/ent/skycondition.SkyCover") {
+enum SkyConditionSkyCover @goModel(model: "metar.live/ent/skycondition.SkyCover") {
   SKC
   FEW
   SCT
@@ -2800,7 +2800,7 @@ type Query {
         """Filter whether the airport provides METARs and has recent ones."""
         hasWeather: Boolean
 
-        """Filter on the importance of the airport. This is a greater than filter.
+        """Filter on the importance of the airport. This is a greater than equals filter.
             The mapping is as follows:
             0: Closed
             1: Seaplane base
@@ -2854,7 +2854,8 @@ extend type WeatherStation {
 
     """Returns the latest TAFs for this station sorted by their issued time."""
     tafs(after: Cursor, first: Int, before: Cursor, last: Int): TafConnection!
-}`, BuiltIn: false},
+}
+`, BuiltIn: false},
 	{Name: "../schema.units.graphql", Input: `enum LengthUnit {
     KILOMETER
     METER

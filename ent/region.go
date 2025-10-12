@@ -11,7 +11,7 @@ import (
 	"entgo.io/ent"
 	"entgo.io/ent/dialect/sql"
 	"github.com/google/uuid"
-	"metar.gg/ent/region"
+	"metar.live/ent/region"
 )
 
 // Region is the model entity for the Region schema.

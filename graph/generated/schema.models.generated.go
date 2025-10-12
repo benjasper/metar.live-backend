@@ -12,7 +12,7 @@ import (
 
 	"github.com/99designs/gqlgen/graphql"
 	"github.com/vektah/gqlparser/v2/ast"
-	"metar.gg/graph/model"
+	"metar.live/graph/model"
 )
 
 // region    ************************** generated!.gotpl **************************
@@ -68,7 +68,7 @@ func (ec *executionContext) _StationWithDistance_station(ctx context.Context, fi
 			return obj.Station, nil
 		},
 		nil,
-		ec.marshalNWeatherStation2ᚖmetarᚗggᚋentᚐWeatherStation,
+		ec.marshalNWeatherStation2ᚖmetarᚗliveᚋentᚐWeatherStation,
 		true,
 		true,
 	)
@@ -165,7 +165,7 @@ func (ec *executionContext) _StationWithDistance(ctx context.Context, sel ast.Se
 
 // region    ***************************** type.gotpl *****************************
 
-func (ec *executionContext) marshalNStationWithDistance2ᚕᚖmetarᚗggᚋgraphᚋmodelᚐStationWithDistanceᚄ(ctx context.Context, sel ast.SelectionSet, v []*model.StationWithDistance) graphql.Marshaler {
+func (ec *executionContext) marshalNStationWithDistance2ᚕᚖmetarᚗliveᚋgraphᚋmodelᚐStationWithDistanceᚄ(ctx context.Context, sel ast.SelectionSet, v []*model.StationWithDistance) graphql.Marshaler {
 	ret := make(graphql.Array, len(v))
 	var wg sync.WaitGroup
 	isLen1 := len(v) == 1
@@ -189,7 +189,7 @@ func (ec *executionContext) marshalNStationWithDistance2ᚕᚖmetarᚗggᚋgraph
 			if !isLen1 {
 				defer wg.Done()
 			}
-			ret[i] = ec.marshalNStationWithDistance2ᚖmetarᚗggᚋgraphᚋmodelᚐStationWithDistance(ctx, sel, v[i])
+			ret[i] = ec.marshalNStationWithDistance2ᚖmetarᚗliveᚋgraphᚋmodelᚐStationWithDistance(ctx, sel, v[i])
 		}
 		if isLen1 {
 			f(i)
@@ -209,7 +209,7 @@ func (ec *executionContext) marshalNStationWithDistance2ᚕᚖmetarᚗggᚋgraph
 	return ret
 }
 
-func (ec *executionContext) marshalNStationWithDistance2ᚖmetarᚗggᚋgraphᚋmodelᚐStationWithDistance(ctx context.Context, sel ast.SelectionSet, v *model.StationWithDistance) graphql.Marshaler {
+func (ec *executionContext) marshalNStationWithDistance2ᚖmetarᚗliveᚋgraphᚋmodelᚐStationWithDistance(ctx context.Context, sel ast.SelectionSet, v *model.StationWithDistance) graphql.Marshaler {
 	if v == nil {
 		if !graphql.HasFieldError(ctx, graphql.GetFieldContext(ctx)) {
 			ec.Errorf(ctx, "the requested element is null which the schema does not allow")

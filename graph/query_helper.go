@@ -3,7 +3,7 @@ package graph
 import (
 	"fmt"
 	"math"
-	"metar.gg/utils"
+	"metar.live/utils"
 )
 
 const R = 6371.0 // Radius of the earth in kilometers.

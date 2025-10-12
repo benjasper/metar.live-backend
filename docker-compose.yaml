@@ -8,6 +8,6 @@ services:
       - db_data:/var/lib/mysql
     environment:
         MARIADB_ROOT_PASSWORD: 123
-        MARIADB_DATABASE: metargg
+        MARIADB_DATABASE: metarlive
 volumes:
   db_data: {}

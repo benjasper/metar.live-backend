@@ -11,7 +11,7 @@ import (
 	"entgo.io/ent"
 	"entgo.io/ent/dialect/sql"
 	"github.com/google/uuid"
-	"metar.gg/ent/country"
+	"metar.live/ent/country"
 )
 
 // Country is the model entity for the Country schema.

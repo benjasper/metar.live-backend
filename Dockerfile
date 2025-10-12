@@ -8,13 +8,13 @@ COPY go.mod go.sum ./
 RUN go mod download && go mod verify
 
 COPY . .
-RUN CGO_ENABLED=0 GOOS=linux go build -v -o metargg .
+RUN CGO_ENABLED=0 GOOS=linux go build -v -o metarlive .
 
 # Run stage
 FROM alpine:latest
 
 WORKDIR /root/
 
-COPY --from=build-stage /app/metargg .
+COPY --from=build-stage /app/metarlive .
 
-CMD ["./metargg"]
+CMD ["./metarlive"]

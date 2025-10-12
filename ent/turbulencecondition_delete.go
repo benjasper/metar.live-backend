@@ -8,8 +8,8 @@ import (
 	"entgo.io/ent/dialect/sql"
 	"entgo.io/ent/dialect/sql/sqlgraph"
 	"entgo.io/ent/schema/field"
-	"metar.gg/ent/predicate"
-	"metar.gg/ent/turbulencecondition"
+	"metar.live/ent/predicate"
+	"metar.live/ent/turbulencecondition"
 )
 
 // TurbulenceConditionDelete is the builder for deleting a TurbulenceCondition entity.

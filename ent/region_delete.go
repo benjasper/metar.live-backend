@@ -8,8 +8,8 @@ import (
 	"entgo.io/ent/dialect/sql"
 	"entgo.io/ent/dialect/sql/sqlgraph"
 	"entgo.io/ent/schema/field"
-	"metar.gg/ent/predicate"
-	"metar.gg/ent/region"
+	"metar.live/ent/predicate"
+	"metar.live/ent/region"
 )
 
 // RegionDelete is the builder for deleting a Region entity.

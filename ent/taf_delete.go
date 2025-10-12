@@ -8,8 +8,8 @@ import (
 	"entgo.io/ent/dialect/sql"
 	"entgo.io/ent/dialect/sql/sqlgraph"
 	"entgo.io/ent/schema/field"
-	"metar.gg/ent/predicate"
-	"metar.gg/ent/taf"
+	"metar.live/ent/predicate"
+	"metar.live/ent/taf"
 )
 
 // TafDelete is the builder for deleting a Taf entity.

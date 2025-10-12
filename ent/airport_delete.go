@@ -8,8 +8,8 @@ import (
 	"entgo.io/ent/dialect/sql"
 	"entgo.io/ent/dialect/sql/sqlgraph"
 	"entgo.io/ent/schema/field"
-	"metar.gg/ent/airport"
-	"metar.gg/ent/predicate"
+	"metar.live/ent/airport"
+	"metar.live/ent/predicate"
 )
 
 // AirportDelete is the builder for deleting a Airport entity.

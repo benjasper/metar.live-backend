@@ -7,8 +7,8 @@ package graph
 import (
 	"context"
 
-	"metar.gg/ent"
-	"metar.gg/graph/model"
+	"metar.live/ent"
+	"metar.live/graph/model"
 )
 
 // Altimeter is the resolver for the altimeter field.

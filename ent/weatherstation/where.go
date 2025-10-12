@@ -6,7 +6,7 @@ import (
 	"entgo.io/ent/dialect/sql"
 	"entgo.io/ent/dialect/sql/sqlgraph"
 	"github.com/google/uuid"
-	"metar.gg/ent/predicate"
+	"metar.live/ent/predicate"
 )
 
 // ID filters vertices based on their ID field.

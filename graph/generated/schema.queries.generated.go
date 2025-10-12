@@ -15,8 +15,8 @@ import (
 	"github.com/99designs/gqlgen/graphql"
 	"github.com/google/uuid"
 	"github.com/vektah/gqlparser/v2/ast"
-	"metar.gg/ent"
-	"metar.gg/ent/airport"
+	"metar.live/ent"
+	"metar.live/ent/airport"
 )
 
 // region    ************************** generated!.gotpl **************************
@@ -107,7 +107,7 @@ func (ec *executionContext) field_Query_getAirports_args(ctx context.Context, ra
 		return nil, err
 	}
 	args["iata"] = arg6
-	arg7, err := graphql.ProcessArgField(ctx, rawArgs, "type", ec.unmarshalOAirportType2ᚖmetarᚗggᚋentᚋairportᚐType)
+	arg7, err := graphql.ProcessArgField(ctx, rawArgs, "type", ec.unmarshalOAirportType2ᚖmetarᚗliveᚋentᚋairportᚐType)
 	if err != nil {
 		return nil, err
 	}
@@ -127,7 +127,7 @@ func (ec *executionContext) field_Query_getAirports_args(ctx context.Context, ra
 		return nil, err
 	}
 	args["importance"] = arg10
-	arg11, err := graphql.ProcessArgField(ctx, rawArgs, "order", ec.unmarshalOAirportOrder2ᚕᚖmetarᚗggᚋentᚐAirportOrderᚄ)
+	arg11, err := graphql.ProcessArgField(ctx, rawArgs, "order", ec.unmarshalOAirportOrder2ᚕᚖmetarᚗliveᚋentᚐAirportOrderᚄ)
 	if err != nil {
 		return nil, err
 	}
@@ -268,7 +268,7 @@ func (ec *executionContext) _AirportConnection_edges(ctx context.Context, field 
 			return obj.Edges, nil
 		},
 		nil,
-		ec.marshalNAirportEdge2ᚕᚖmetarᚗggᚋentᚐAirportEdgeᚄ,
+		ec.marshalNAirportEdge2ᚕᚖmetarᚗliveᚋentᚐAirportEdgeᚄ,
 		true,
 		true,
 	)
@@ -303,7 +303,7 @@ func (ec *executionContext) _AirportEdge_node(ctx context.Context, field graphql
 			return obj.Node, nil
 		},
 		nil,
-		ec.marshalNAirport2ᚖmetarᚗggᚋentᚐAirport,
+		ec.marshalNAirport2ᚖmetarᚗliveᚋentᚐAirport,
 		true,
 		true,
 	)
@@ -483,7 +483,7 @@ func (ec *executionContext) _MetarConnection_edges(ctx context.Context, field gr
 			return obj.Edges, nil
 		},
 		nil,
-		ec.marshalNMetarEdge2ᚕᚖmetarᚗggᚋentᚐMetarEdgeᚄ,
+		ec.marshalNMetarEdge2ᚕᚖmetarᚗliveᚋentᚐMetarEdgeᚄ,
 		true,
 		true,
 	)
@@ -518,7 +518,7 @@ func (ec *executionContext) _MetarEdge_node(ctx context.Context, field graphql.C
 			return obj.Node, nil
 		},
 		nil,
-		ec.marshalNMetar2ᚖmetarᚗggᚋentᚐMetar,
+		ec.marshalNMetar2ᚖmetarᚗliveᚋentᚐMetar,
 		true,
 		true,
 	)
@@ -771,7 +771,7 @@ func (ec *executionContext) _Query_getAirports(ctx context.Context, field graphq
 			return ec.resolvers.Query().GetAirports(ctx, fc.Args["first"].(*int), fc.Args["after"].(*entgql.Cursor[uuid.UUID]), fc.Args["before"].(*entgql.Cursor[uuid.UUID]), fc.Args["last"].(*int), fc.Args["identifier"].(*string), fc.Args["icao"].(*string), fc.Args["iata"].(*string), fc.Args["type"].(*airport.Type), fc.Args["search"].(*string), fc.Args["hasWeather"].(*bool), fc.Args["importance"].(*int), fc.Args["order"].([]*ent.AirportOrder))
 		},
 		nil,
-		ec.marshalNAirportConnection2ᚖmetarᚗggᚋentᚐAirportConnection,
+		ec.marshalNAirportConnection2ᚖmetarᚗliveᚋentᚐAirportConnection,
 		true,
 		true,
 	)
@@ -820,7 +820,7 @@ func (ec *executionContext) _Query_getAirport(ctx context.Context, field graphql
 			return ec.resolvers.Query().GetAirport(ctx, fc.Args["id"].(*string), fc.Args["identifier"].(*string), fc.Args["icao"].(*string), fc.Args["iata"].(*string))
 		},
 		nil,
-		ec.marshalOAirport2ᚖmetarᚗggᚋentᚐAirport,
+		ec.marshalOAirport2ᚖmetarᚗliveᚋentᚐAirport,
 		true,
 		false,
 	)
@@ -915,7 +915,7 @@ func (ec *executionContext) _Query_getStations(ctx context.Context, field graphq
 			return ec.resolvers.Query().GetStations(ctx, fc.Args["first"].(*int), fc.Args["after"].(*entgql.Cursor[uuid.UUID]), fc.Args["before"].(*entgql.Cursor[uuid.UUID]), fc.Args["last"].(*int), fc.Args["identifier"].(*string))
 		},
 		nil,
-		ec.marshalNWeatherStationConnection2ᚖmetarᚗggᚋentᚐWeatherStationConnection,
+		ec.marshalNWeatherStationConnection2ᚖmetarᚗliveᚋentᚐWeatherStationConnection,
 		true,
 		true,
 	)
@@ -964,7 +964,7 @@ func (ec *executionContext) _Query_getStation(ctx context.Context, field graphql
 			return ec.resolvers.Query().GetStation(ctx, fc.Args["id"].(*string), fc.Args["identifier"].(*string))
 		},
 		nil,
-		ec.marshalOWeatherStation2ᚖmetarᚗggᚋentᚐWeatherStation,
+		ec.marshalOWeatherStation2ᚖmetarᚗliveᚋentᚐWeatherStation,
 		true,
 		false,
 	)
@@ -1198,7 +1198,7 @@ func (ec *executionContext) _TafConnection_edges(ctx context.Context, field grap
 			return obj.Edges, nil
 		},
 		nil,
-		ec.marshalNTafEdge2ᚕᚖmetarᚗggᚋentᚐTafEdgeᚄ,
+		ec.marshalNTafEdge2ᚕᚖmetarᚗliveᚋentᚐTafEdgeᚄ,
 		true,
 		true,
 	)
@@ -1233,7 +1233,7 @@ func (ec *executionContext) _TafEdge_node(ctx context.Context, field graphql.Col
 			return obj.Node, nil
 		},
 		nil,
-		ec.marshalNTaf2ᚖmetarᚗggᚋentᚐTaf,
+		ec.marshalNTaf2ᚖmetarᚗliveᚋentᚐTaf,
 		true,
 		true,
 	)
@@ -1381,7 +1381,7 @@ func (ec *executionContext) _WeatherStationConnection_edges(ctx context.Context,
 			return obj.Edges, nil
 		},
 		nil,
-		ec.marshalNWeatherStationEdge2ᚕᚖmetarᚗggᚋentᚐWeatherStationEdgeᚄ,
+		ec.marshalNWeatherStationEdge2ᚕᚖmetarᚗliveᚋentᚐWeatherStationEdgeᚄ,
 		true,
 		true,
 	)
@@ -1416,7 +1416,7 @@ func (ec *executionContext) _WeatherStationEdge_node(ctx context.Context, field 
 			return obj.Node, nil
 		},
 		nil,
-		ec.marshalNWeatherStation2ᚖmetarᚗggᚋentᚐWeatherStation,
+		ec.marshalNWeatherStation2ᚖmetarᚗliveᚋentᚐWeatherStation,
 		true,
 		true,
 	)
@@ -2050,11 +2050,11 @@ func (ec *executionContext) _WeatherStationEdge(ctx context.Context, sel ast.Sel
 
 // region    ***************************** type.gotpl *****************************
 
-func (ec *executionContext) marshalNAirportConnection2metarᚗggᚋentᚐAirportConnection(ctx context.Context, sel ast.SelectionSet, v ent.AirportConnection) graphql.Marshaler {
+func (ec *executionContext) marshalNAirportConnection2metarᚗliveᚋentᚐAirportConnection(ctx context.Context, sel ast.SelectionSet, v ent.AirportConnection) graphql.Marshaler {
 	return ec._AirportConnection(ctx, sel, &v)
 }
 
-func (ec *executionContext) marshalNAirportConnection2ᚖmetarᚗggᚋentᚐAirportConnection(ctx context.Context, sel ast.SelectionSet, v *ent.AirportConnection) graphql.Marshaler {
+func (ec *executionContext) marshalNAirportConnection2ᚖmetarᚗliveᚋentᚐAirportConnection(ctx context.Context, sel ast.SelectionSet, v *ent.AirportConnection) graphql.Marshaler {
 	if v == nil {
 		if !graphql.HasFieldError(ctx, graphql.GetFieldContext(ctx)) {
 			ec.Errorf(ctx, "the requested element is null which the schema does not allow")
@@ -2064,7 +2064,7 @@ func (ec *executionContext) marshalNAirportConnection2ᚖmetarᚗggᚋentᚐAirp
 	return ec._AirportConnection(ctx, sel, v)
 }
 
-func (ec *executionContext) marshalNAirportEdge2ᚕᚖmetarᚗggᚋentᚐAirportEdgeᚄ(ctx context.Context, sel ast.SelectionSet, v []*ent.AirportEdge) graphql.Marshaler {
+func (ec *executionContext) marshalNAirportEdge2ᚕᚖmetarᚗliveᚋentᚐAirportEdgeᚄ(ctx context.Context, sel ast.SelectionSet, v []*ent.AirportEdge) graphql.Marshaler {
 	ret := make(graphql.Array, len(v))
 	var wg sync.WaitGroup
 	isLen1 := len(v) == 1
@@ -2088,7 +2088,7 @@ func (ec *executionContext) marshalNAirportEdge2ᚕᚖmetarᚗggᚋentᚐAirport
 			if !isLen1 {
 				defer wg.Done()
 			}
-			ret[i] = ec.marshalNAirportEdge2ᚖmetarᚗggᚋentᚐAirportEdge(ctx, sel, v[i])
+			ret[i] = ec.marshalNAirportEdge2ᚖmetarᚗliveᚋentᚐAirportEdge(ctx, sel, v[i])
 		}
 		if isLen1 {
 			f(i)
@@ -2108,7 +2108,7 @@ func (ec *executionContext) marshalNAirportEdge2ᚕᚖmetarᚗggᚋentᚐAirport
 	return ret
 }
 
-func (ec *executionContext) marshalNAirportEdge2ᚖmetarᚗggᚋentᚐAirportEdge(ctx context.Context, sel ast.SelectionSet, v *ent.AirportEdge) graphql.Marshaler {
+func (ec *executionContext) marshalNAirportEdge2ᚖmetarᚗliveᚋentᚐAirportEdge(ctx context.Context, sel ast.SelectionSet, v *ent.AirportEdge) graphql.Marshaler {
 	if v == nil {
 		if !graphql.HasFieldError(ctx, graphql.GetFieldContext(ctx)) {
 			ec.Errorf(ctx, "the requested element is null which the schema does not allow")
@@ -2128,11 +2128,11 @@ func (ec *executionContext) marshalNCursor2entgoᚗioᚋcontribᚋentgqlᚐCurso
 	return v
 }
 
-func (ec *executionContext) marshalNMetarConnection2metarᚗggᚋentᚐMetarConnection(ctx context.Context, sel ast.SelectionSet, v ent.MetarConnection) graphql.Marshaler {
+func (ec *executionContext) marshalNMetarConnection2metarᚗliveᚋentᚐMetarConnection(ctx context.Context, sel ast.SelectionSet, v ent.MetarConnection) graphql.Marshaler {
 	return ec._MetarConnection(ctx, sel, &v)
 }
 
-func (ec *executionContext) marshalNMetarConnection2ᚖmetarᚗggᚋentᚐMetarConnection(ctx context.Context, sel ast.SelectionSet, v *ent.MetarConnection) graphql.Marshaler {
+func (ec *executionContext) marshalNMetarConnection2ᚖmetarᚗliveᚋentᚐMetarConnection(ctx context.Context, sel ast.SelectionSet, v *ent.MetarConnection) graphql.Marshaler {
 	if v == nil {
 		if !graphql.HasFieldError(ctx, graphql.GetFieldContext(ctx)) {
 			ec.Errorf(ctx, "the requested element is null which the schema does not allow")
@@ -2142,7 +2142,7 @@ func (ec *executionContext) marshalNMetarConnection2ᚖmetarᚗggᚋentᚐMetarC
 	return ec._MetarConnection(ctx, sel, v)
 }
 
-func (ec *executionContext) marshalNMetarEdge2ᚕᚖmetarᚗggᚋentᚐMetarEdgeᚄ(ctx context.Context, sel ast.SelectionSet, v []*ent.MetarEdge) graphql.Marshaler {
+func (ec *executionContext) marshalNMetarEdge2ᚕᚖmetarᚗliveᚋentᚐMetarEdgeᚄ(ctx context.Context, sel ast.SelectionSet, v []*ent.MetarEdge) graphql.Marshaler {
 	ret := make(graphql.Array, len(v))
 	var wg sync.WaitGroup
 	isLen1 := len(v) == 1
@@ -2166,7 +2166,7 @@ func (ec *executionContext) marshalNMetarEdge2ᚕᚖmetarᚗggᚋentᚐMetarEdge
 			if !isLen1 {
 				defer wg.Done()
 			}
-			ret[i] = ec.marshalNMetarEdge2ᚖmetarᚗggᚋentᚐMetarEdge(ctx, sel, v[i])
+			ret[i] = ec.marshalNMetarEdge2ᚖmetarᚗliveᚋentᚐMetarEdge(ctx, sel, v[i])
 		}
 		if isLen1 {
 			f(i)
@@ -2186,7 +2186,7 @@ func (ec *executionContext) marshalNMetarEdge2ᚕᚖmetarᚗggᚋentᚐMetarEdge
 	return ret
 }
 
-func (ec *executionContext) marshalNMetarEdge2ᚖmetarᚗggᚋentᚐMetarEdge(ctx context.Context, sel ast.SelectionSet, v *ent.MetarEdge) graphql.Marshaler {
+func (ec *executionContext) marshalNMetarEdge2ᚖmetarᚗliveᚋentᚐMetarEdge(ctx context.Context, sel ast.SelectionSet, v *ent.MetarEdge) graphql.Marshaler {
 	if v == nil {
 		if !graphql.HasFieldError(ctx, graphql.GetFieldContext(ctx)) {
 			ec.Errorf(ctx, "the requested element is null which the schema does not allow")
@@ -2200,11 +2200,11 @@ func (ec *executionContext) marshalNPageInfo2entgoᚗioᚋcontribᚋentgqlᚐPag
 	return ec._PageInfo(ctx, sel, &v)
 }
 
-func (ec *executionContext) marshalNTafConnection2metarᚗggᚋentᚐTafConnection(ctx context.Context, sel ast.SelectionSet, v ent.TafConnection) graphql.Marshaler {
+func (ec *executionContext) marshalNTafConnection2metarᚗliveᚋentᚐTafConnection(ctx context.Context, sel ast.SelectionSet, v ent.TafConnection) graphql.Marshaler {
 	return ec._TafConnection(ctx, sel, &v)
 }
 
-func (ec *executionContext) marshalNTafConnection2ᚖmetarᚗggᚋentᚐTafConnection(ctx context.Context, sel ast.SelectionSet, v *ent.TafConnection) graphql.Marshaler {
+func (ec *executionContext) marshalNTafConnection2ᚖmetarᚗliveᚋentᚐTafConnection(ctx context.Context, sel ast.SelectionSet, v *ent.TafConnection) graphql.Marshaler {
 	if v == nil {
 		if !graphql.HasFieldError(ctx, graphql.GetFieldContext(ctx)) {
 			ec.Errorf(ctx, "the requested element is null which the schema does not allow")
@@ -2214,7 +2214,7 @@ func (ec *executionContext) marshalNTafConnection2ᚖmetarᚗggᚋentᚐTafConne
 	return ec._TafConnection(ctx, sel, v)
 }
 
-func (ec *executionContext) marshalNTafEdge2ᚕᚖmetarᚗggᚋentᚐTafEdgeᚄ(ctx context.Context, sel ast.SelectionSet, v []*ent.TafEdge) graphql.Marshaler {
+func (ec *executionContext) marshalNTafEdge2ᚕᚖmetarᚗliveᚋentᚐTafEdgeᚄ(ctx context.Context, sel ast.SelectionSet, v []*ent.TafEdge) graphql.Marshaler {
 	ret := make(graphql.Array, len(v))
 	var wg sync.WaitGroup
 	isLen1 := len(v) == 1
@@ -2238,7 +2238,7 @@ func (ec *executionContext) marshalNTafEdge2ᚕᚖmetarᚗggᚋentᚐTafEdgeᚄ(
 			if !isLen1 {
 				defer wg.Done()
 			}
-			ret[i] = ec.marshalNTafEdge2ᚖmetarᚗggᚋentᚐTafEdge(ctx, sel, v[i])
+			ret[i] = ec.marshalNTafEdge2ᚖmetarᚗliveᚋentᚐTafEdge(ctx, sel, v[i])
 		}
 		if isLen1 {
 			f(i)
@@ -2258,7 +2258,7 @@ func (ec *executionContext) marshalNTafEdge2ᚕᚖmetarᚗggᚋentᚐTafEdgeᚄ(
 	return ret
 }
 
-func (ec *executionContext) marshalNTafEdge2ᚖmetarᚗggᚋentᚐTafEdge(ctx context.Context, sel ast.SelectionSet, v *ent.TafEdge) graphql.Marshaler {
+func (ec *executionContext) marshalNTafEdge2ᚖmetarᚗliveᚋentᚐTafEdge(ctx context.Context, sel ast.SelectionSet, v *ent.TafEdge) graphql.Marshaler {
 	if v == nil {
 		if !graphql.HasFieldError(ctx, graphql.GetFieldContext(ctx)) {
 			ec.Errorf(ctx, "the requested element is null which the schema does not allow")
@@ -2284,11 +2284,11 @@ func (ec *executionContext) marshalNTime2timeᚐTime(ctx context.Context, sel as
 	return res
 }
 
-func (ec *executionContext) marshalNWeatherStationConnection2metarᚗggᚋentᚐWeatherStationConnection(ctx context.Context, sel ast.SelectionSet, v ent.WeatherStationConnection) graphql.Marshaler {
+func (ec *executionContext) marshalNWeatherStationConnection2metarᚗliveᚋentᚐWeatherStationConnection(ctx context.Context, sel ast.SelectionSet, v ent.WeatherStationConnection) graphql.Marshaler {
 	return ec._WeatherStationConnection(ctx, sel, &v)
 }
 
-func (ec *executionContext) marshalNWeatherStationConnection2ᚖmetarᚗggᚋentᚐWeatherStationConnection(ctx context.Context, sel ast.SelectionSet, v *ent.WeatherStationConnection) graphql.Marshaler {
+func (ec *executionContext) marshalNWeatherStationConnection2ᚖmetarᚗliveᚋentᚐWeatherStationConnection(ctx context.Context, sel ast.SelectionSet, v *ent.WeatherStationConnection) graphql.Marshaler {
 	if v == nil {
 		if !graphql.HasFieldError(ctx, graphql.GetFieldContext(ctx)) {
 			ec.Errorf(ctx, "the requested element is null which the schema does not allow")
@@ -2298,7 +2298,7 @@ func (ec *executionContext) marshalNWeatherStationConnection2ᚖmetarᚗggᚋent
 	return ec._WeatherStationConnection(ctx, sel, v)
 }
 
-func (ec *executionContext) marshalNWeatherStationEdge2ᚕᚖmetarᚗggᚋentᚐWeatherStationEdgeᚄ(ctx context.Context, sel ast.SelectionSet, v []*ent.WeatherStationEdge) graphql.Marshaler {
+func (ec *executionContext) marshalNWeatherStationEdge2ᚕᚖmetarᚗliveᚋentᚐWeatherStationEdgeᚄ(ctx context.Context, sel ast.SelectionSet, v []*ent.WeatherStationEdge) graphql.Marshaler {
 	ret := make(graphql.Array, len(v))
 	var wg sync.WaitGroup
 	isLen1 := len(v) == 1
@@ -2322,7 +2322,7 @@ func (ec *executionContext) marshalNWeatherStationEdge2ᚕᚖmetarᚗggᚋentᚐ
 			if !isLen1 {
 				defer wg.Done()
 			}
-			ret[i] = ec.marshalNWeatherStationEdge2ᚖmetarᚗggᚋentᚐWeatherStationEdge(ctx, sel, v[i])
+			ret[i] = ec.marshalNWeatherStationEdge2ᚖmetarᚗliveᚋentᚐWeatherStationEdge(ctx, sel, v[i])
 		}
 		if isLen1 {
 			f(i)
@@ -2342,7 +2342,7 @@ func (ec *executionContext) marshalNWeatherStationEdge2ᚕᚖmetarᚗggᚋentᚐ
 	return ret
 }
 
-func (ec *executionContext) marshalNWeatherStationEdge2ᚖmetarᚗggᚋentᚐWeatherStationEdge(ctx context.Context, sel ast.SelectionSet, v *ent.WeatherStationEdge) graphql.Marshaler {
+func (ec *executionContext) marshalNWeatherStationEdge2ᚖmetarᚗliveᚋentᚐWeatherStationEdge(ctx context.Context, sel ast.SelectionSet, v *ent.WeatherStationEdge) graphql.Marshaler {
 	if v == nil {
 		if !graphql.HasFieldError(ctx, graphql.GetFieldContext(ctx)) {
 			ec.Errorf(ctx, "the requested element is null which the schema does not allow")

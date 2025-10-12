@@ -13,9 +13,9 @@ import (
 	"entgo.io/ent/dialect/sql/sqlgraph"
 	"entgo.io/ent/schema/field"
 	"github.com/google/uuid"
-	"metar.gg/ent/forecast"
-	"metar.gg/ent/taf"
-	"metar.gg/ent/weatherstation"
+	"metar.live/ent/forecast"
+	"metar.live/ent/taf"
+	"metar.live/ent/weatherstation"
 )
 
 // TafCreate is the builder for creating a Taf entity.

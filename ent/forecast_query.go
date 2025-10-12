@@ -12,12 +12,12 @@ import (
 	"entgo.io/ent/dialect/sql/sqlgraph"
 	"entgo.io/ent/schema/field"
 	"github.com/google/uuid"
-	"metar.gg/ent/forecast"
-	"metar.gg/ent/icingcondition"
-	"metar.gg/ent/predicate"
-	"metar.gg/ent/skycondition"
-	"metar.gg/ent/temperaturedata"
-	"metar.gg/ent/turbulencecondition"
+	"metar.live/ent/forecast"
+	"metar.live/ent/icingcondition"
+	"metar.live/ent/predicate"
+	"metar.live/ent/skycondition"
+	"metar.live/ent/temperaturedata"
+	"metar.live/ent/turbulencecondition"
 )
 
 // ForecastQuery is the builder for querying Forecast entities.

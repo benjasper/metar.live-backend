@@ -12,9 +12,9 @@ import (
 	"entgo.io/ent/dialect/sql/sqlgraph"
 	"entgo.io/ent/schema/field"
 	"github.com/google/uuid"
-	"metar.gg/ent/airport"
-	"metar.gg/ent/predicate"
-	"metar.gg/ent/runway"
+	"metar.live/ent/airport"
+	"metar.live/ent/predicate"
+	"metar.live/ent/runway"
 )
 
 // RunwayUpdate is the builder for updating Runway entities.

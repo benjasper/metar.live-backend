@@ -13,7 +13,7 @@ import (
 	"entgo.io/ent/dialect/sql/sqlgraph"
 	"entgo.io/ent/schema/field"
 	"github.com/google/uuid"
-	"metar.gg/ent/temperaturedata"
+	"metar.live/ent/temperaturedata"
 )
 
 // TemperatureDataCreate is the builder for creating a TemperatureData entity.

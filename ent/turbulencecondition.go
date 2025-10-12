@@ -9,7 +9,7 @@ import (
 	"entgo.io/ent"
 	"entgo.io/ent/dialect/sql"
 	"github.com/google/uuid"
-	"metar.gg/ent/turbulencecondition"
+	"metar.live/ent/turbulencecondition"
 )
 
 // TurbulenceCondition is the model entity for the TurbulenceCondition schema.

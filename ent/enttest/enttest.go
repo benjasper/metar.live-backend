@@ -5,12 +5,12 @@ package enttest
 import (
 	"context"
 
-	"metar.gg/ent"
+	"metar.live/ent"
 	// required by schema hooks.
-	_ "metar.gg/ent/runtime"
+	_ "metar.live/ent/runtime"
 
 	"entgo.io/ent/dialect/sql/schema"
-	"metar.gg/ent/migrate"
+	"metar.live/ent/migrate"
 )
 
 type (

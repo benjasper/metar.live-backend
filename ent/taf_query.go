@@ -12,10 +12,10 @@ import (
 	"entgo.io/ent/dialect/sql/sqlgraph"
 	"entgo.io/ent/schema/field"
 	"github.com/google/uuid"
-	"metar.gg/ent/forecast"
-	"metar.gg/ent/predicate"
-	"metar.gg/ent/taf"
-	"metar.gg/ent/weatherstation"
+	"metar.live/ent/forecast"
+	"metar.live/ent/predicate"
+	"metar.live/ent/taf"
+	"metar.live/ent/weatherstation"
 )
 
 // TafQuery is the builder for querying Taf entities.

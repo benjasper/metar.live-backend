@@ -3,9 +3,9 @@ package importer
 import (
 	"context"
 	"fmt"
-	"metar.gg/ent"
-	"metar.gg/ent/metar"
-	"metar.gg/ent/weatherstation"
+	"metar.live/ent"
+	"metar.live/ent/metar"
+	"metar.live/ent/weatherstation"
 	"time"
 )
 

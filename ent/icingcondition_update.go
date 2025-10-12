@@ -10,8 +10,8 @@ import (
 	"entgo.io/ent/dialect/sql"
 	"entgo.io/ent/dialect/sql/sqlgraph"
 	"entgo.io/ent/schema/field"
-	"metar.gg/ent/icingcondition"
-	"metar.gg/ent/predicate"
+	"metar.live/ent/icingcondition"
+	"metar.live/ent/predicate"
 )
 
 // IcingConditionUpdate is the builder for updating IcingCondition entities.

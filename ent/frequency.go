@@ -10,8 +10,8 @@ import (
 	"entgo.io/ent"
 	"entgo.io/ent/dialect/sql"
 	"github.com/google/uuid"
-	"metar.gg/ent/airport"
-	"metar.gg/ent/frequency"
+	"metar.live/ent/airport"
+	"metar.live/ent/frequency"
 )
 
 // Frequency is the model entity for the Frequency schema.

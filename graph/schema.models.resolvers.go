@@ -11,12 +11,12 @@ import (
 	"entgo.io/contrib/entgql"
 	"entgo.io/ent/dialect/sql"
 	"github.com/google/uuid"
-	"metar.gg/ent"
-	"metar.gg/ent/airport"
-	"metar.gg/ent/predicate"
-	"metar.gg/ent/runway"
-	"metar.gg/ent/weatherstation"
-	"metar.gg/graph/model"
+	"metar.live/ent"
+	"metar.live/ent/airport"
+	"metar.live/ent/predicate"
+	"metar.live/ent/runway"
+	"metar.live/ent/weatherstation"
+	"metar.live/graph/model"
 )
 
 // Runways is the resolver for the runways field.

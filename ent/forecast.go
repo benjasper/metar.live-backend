@@ -10,7 +10,7 @@ import (
 	"entgo.io/ent"
 	"entgo.io/ent/dialect/sql"
 	"github.com/google/uuid"
-	"metar.gg/ent/forecast"
+	"metar.live/ent/forecast"
 )
 
 // Forecast is the model entity for the Forecast schema.

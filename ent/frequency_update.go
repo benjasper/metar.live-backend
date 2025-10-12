@@ -12,9 +12,9 @@ import (
 	"entgo.io/ent/dialect/sql/sqlgraph"
 	"entgo.io/ent/schema/field"
 	"github.com/google/uuid"
-	"metar.gg/ent/airport"
-	"metar.gg/ent/frequency"
-	"metar.gg/ent/predicate"
+	"metar.live/ent/airport"
+	"metar.live/ent/frequency"
+	"metar.live/ent/predicate"
 )
 
 // FrequencyUpdate is the builder for updating Frequency entities.

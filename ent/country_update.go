@@ -13,9 +13,9 @@ import (
 	"entgo.io/ent/dialect/sql/sqljson"
 	"entgo.io/ent/schema/field"
 	"github.com/google/uuid"
-	"metar.gg/ent/airport"
-	"metar.gg/ent/country"
-	"metar.gg/ent/predicate"
+	"metar.live/ent/airport"
+	"metar.live/ent/country"
+	"metar.live/ent/predicate"
 )
 
 // CountryUpdate is the builder for updating Country entities.

@@ -11,8 +11,8 @@ import (
 	"entgo.io/ent/dialect/sql/sqlgraph"
 	"entgo.io/ent/schema/field"
 	"github.com/google/uuid"
-	"metar.gg/ent/icingcondition"
-	"metar.gg/ent/predicate"
+	"metar.live/ent/icingcondition"
+	"metar.live/ent/predicate"
 )
 
 // IcingConditionQuery is the builder for querying IcingCondition entities.

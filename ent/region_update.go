@@ -13,9 +13,9 @@ import (
 	"entgo.io/ent/dialect/sql/sqljson"
 	"entgo.io/ent/schema/field"
 	"github.com/google/uuid"
-	"metar.gg/ent/airport"
-	"metar.gg/ent/predicate"
-	"metar.gg/ent/region"
+	"metar.live/ent/airport"
+	"metar.live/ent/predicate"
+	"metar.live/ent/region"
 )
 
 // RegionUpdate is the builder for updating Region entities.

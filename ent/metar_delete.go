@@ -8,8 +8,8 @@ import (
 	"entgo.io/ent/dialect/sql"
 	"entgo.io/ent/dialect/sql/sqlgraph"
 	"entgo.io/ent/schema/field"
-	"metar.gg/ent/metar"
-	"metar.gg/ent/predicate"
+	"metar.live/ent/metar"
+	"metar.live/ent/predicate"
 )
 
 // MetarDelete is the builder for deleting a Metar entity.

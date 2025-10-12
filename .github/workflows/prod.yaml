@@ -32,6 +32,6 @@ jobs:
           context: .
           platforms: linux/amd64,linux/arm64
           push: true
-          tags: ghcr.io/benjasper/metar.gg:latest,ghcr.io/benjasper/metar.gg:${{ env.RELEASE_VERSION }}
+          tags: ghcr.io/benjasper/metar.gg:latest,ghcr.io/benjasper/metar.gg:${{ env.RELEASE_VERSION }},ghcr.io/benjasper/metar.live:latest,ghcr.io/benjasper/metar.live:${{ env.RELEASE_VERSION }}
           cache-from: type=gha
           cache-to: type=gha,mode=max

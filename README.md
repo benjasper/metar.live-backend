@@ -1,10 +1,10 @@
-<h1 align="center">metar.gg</h1>
+<h1 align="center">metar.live</h1>
 <p align="center">🛫☀️🌦</p>
 <p align="center">Latest worldwide aviation weather and airport data, delivered via GraphQL</p>
 
 ## What is this?
 
-metar.gg is a server written in Go that provides a GraphQL API, for querying the latest METARs, TAFs, airports and runways.
+metar.live (previously metar.gg) is a server written in Go that provides a GraphQL API, for querying the latest METARs, TAFs, airports and runways.
 It imports airport data from [OurAirports.com](https://github.com/davidmegginson/ourairports-data) and METAR and TAF data from [NOAA](https://www.aviationweather.gov).
 
 You can either host it yourself or use the hosted version of this API available at [rapidapi.com](https://rapidapi.com/benjasper/api/aviation-weather-and-airport-data).
@@ -34,7 +34,7 @@ The hosted version imports airport data every 7 days and weather data every 5 mi
 - Optional: [Axiom](https://www.axiom.co/) for logging data ingestion
 
 ## How to run ▶️
-The easiest way to run the server is by using the [Docker image](https://github.com/benjasper/metar.gg-backend/pkgs/container/metar.gg).
+The easiest way to run the server is by using the [Docker image](https://github.com/benjasper/metar.live-backend/pkgs/container/metar.live).
 You only need to provide it with a MySQL database and off you go! 🛫
 
 See the [sample configuration](./docs/sample-configuration.md) for an example of how to get the app running via containers!

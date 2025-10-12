@@ -12,9 +12,9 @@ import (
 	"entgo.io/ent/dialect/sql/sqlgraph"
 	"entgo.io/ent/schema/field"
 	"github.com/google/uuid"
-	"metar.gg/ent/airport"
-	"metar.gg/ent/country"
-	"metar.gg/ent/predicate"
+	"metar.live/ent/airport"
+	"metar.live/ent/country"
+	"metar.live/ent/predicate"
 )
 
 // CountryQuery is the builder for querying Country entities.

@@ -14,13 +14,13 @@ import (
 	"github.com/99designs/gqlgen/graphql"
 	"github.com/google/uuid"
 	"github.com/vektah/gqlparser/v2/ast"
-	"metar.gg/ent"
-	"metar.gg/ent/airport"
-	"metar.gg/ent/country"
-	"metar.gg/ent/forecast"
-	"metar.gg/ent/metar"
-	"metar.gg/ent/skycondition"
-	"metar.gg/graph/model"
+	"metar.live/ent"
+	"metar.live/ent/airport"
+	"metar.live/ent/country"
+	"metar.live/ent/forecast"
+	"metar.live/ent/metar"
+	"metar.live/ent/skycondition"
+	"metar.live/graph/model"
 )
 
 // region    ************************** generated!.gotpl **************************
@@ -109,7 +109,7 @@ func (ec *executionContext) field_Airport_stationsVicinity_args(ctx context.Cont
 func (ec *executionContext) field_Forecast_altimeter_args(ctx context.Context, rawArgs map[string]any) (map[string]any, error) {
 	var err error
 	args := map[string]any{}
-	arg0, err := graphql.ProcessArgField(ctx, rawArgs, "unit", ec.unmarshalNPressureUnit2metarᚗggᚋgraphᚋmodelᚐPressureUnit)
+	arg0, err := graphql.ProcessArgField(ctx, rawArgs, "unit", ec.unmarshalNPressureUnit2metarᚗliveᚋgraphᚋmodelᚐPressureUnit)
 	if err != nil {
 		return nil, err
 	}
@@ -120,7 +120,7 @@ func (ec *executionContext) field_Forecast_altimeter_args(ctx context.Context, r
 func (ec *executionContext) field_Forecast_visibilityHorizontal_args(ctx context.Context, rawArgs map[string]any) (map[string]any, error) {
 	var err error
 	args := map[string]any{}
-	arg0, err := graphql.ProcessArgField(ctx, rawArgs, "unit", ec.unmarshalNLengthUnit2metarᚗggᚋgraphᚋmodelᚐLengthUnit)
+	arg0, err := graphql.ProcessArgField(ctx, rawArgs, "unit", ec.unmarshalNLengthUnit2metarᚗliveᚋgraphᚋmodelᚐLengthUnit)
 	if err != nil {
 		return nil, err
 	}
@@ -131,7 +131,7 @@ func (ec *executionContext) field_Forecast_visibilityHorizontal_args(ctx context
 func (ec *executionContext) field_Forecast_visibilityVertical_args(ctx context.Context, rawArgs map[string]any) (map[string]any, error) {
 	var err error
 	args := map[string]any{}
-	arg0, err := graphql.ProcessArgField(ctx, rawArgs, "unit", ec.unmarshalNLengthUnit2metarᚗggᚋgraphᚋmodelᚐLengthUnit)
+	arg0, err := graphql.ProcessArgField(ctx, rawArgs, "unit", ec.unmarshalNLengthUnit2metarᚗliveᚋgraphᚋmodelᚐLengthUnit)
 	if err != nil {
 		return nil, err
 	}
@@ -142,7 +142,7 @@ func (ec *executionContext) field_Forecast_visibilityVertical_args(ctx context.C
 func (ec *executionContext) field_Forecast_windGust_args(ctx context.Context, rawArgs map[string]any) (map[string]any, error) {
 	var err error
 	args := map[string]any{}
-	arg0, err := graphql.ProcessArgField(ctx, rawArgs, "unit", ec.unmarshalNSpeedUnit2metarᚗggᚋgraphᚋmodelᚐSpeedUnit)
+	arg0, err := graphql.ProcessArgField(ctx, rawArgs, "unit", ec.unmarshalNSpeedUnit2metarᚗliveᚋgraphᚋmodelᚐSpeedUnit)
 	if err != nil {
 		return nil, err
 	}
@@ -153,7 +153,7 @@ func (ec *executionContext) field_Forecast_windGust_args(ctx context.Context, ra
 func (ec *executionContext) field_Forecast_windShearHeight_args(ctx context.Context, rawArgs map[string]any) (map[string]any, error) {
 	var err error
 	args := map[string]any{}
-	arg0, err := graphql.ProcessArgField(ctx, rawArgs, "unit", ec.unmarshalNLengthUnit2metarᚗggᚋgraphᚋmodelᚐLengthUnit)
+	arg0, err := graphql.ProcessArgField(ctx, rawArgs, "unit", ec.unmarshalNLengthUnit2metarᚗliveᚋgraphᚋmodelᚐLengthUnit)
 	if err != nil {
 		return nil, err
 	}
@@ -164,7 +164,7 @@ func (ec *executionContext) field_Forecast_windShearHeight_args(ctx context.Cont
 func (ec *executionContext) field_Forecast_windShearSpeed_args(ctx context.Context, rawArgs map[string]any) (map[string]any, error) {
 	var err error
 	args := map[string]any{}
-	arg0, err := graphql.ProcessArgField(ctx, rawArgs, "unit", ec.unmarshalNSpeedUnit2metarᚗggᚋgraphᚋmodelᚐSpeedUnit)
+	arg0, err := graphql.ProcessArgField(ctx, rawArgs, "unit", ec.unmarshalNSpeedUnit2metarᚗliveᚋgraphᚋmodelᚐSpeedUnit)
 	if err != nil {
 		return nil, err
 	}
@@ -175,7 +175,7 @@ func (ec *executionContext) field_Forecast_windShearSpeed_args(ctx context.Conte
 func (ec *executionContext) field_Forecast_windSpeed_args(ctx context.Context, rawArgs map[string]any) (map[string]any, error) {
 	var err error
 	args := map[string]any{}
-	arg0, err := graphql.ProcessArgField(ctx, rawArgs, "unit", ec.unmarshalNSpeedUnit2metarᚗggᚋgraphᚋmodelᚐSpeedUnit)
+	arg0, err := graphql.ProcessArgField(ctx, rawArgs, "unit", ec.unmarshalNSpeedUnit2metarᚗliveᚋgraphᚋmodelᚐSpeedUnit)
 	if err != nil {
 		return nil, err
 	}
@@ -186,7 +186,7 @@ func (ec *executionContext) field_Forecast_windSpeed_args(ctx context.Context, r
 func (ec *executionContext) field_IcingCondition_maxAltitude_args(ctx context.Context, rawArgs map[string]any) (map[string]any, error) {
 	var err error
 	args := map[string]any{}
-	arg0, err := graphql.ProcessArgField(ctx, rawArgs, "unit", ec.unmarshalNLengthUnit2metarᚗggᚋgraphᚋmodelᚐLengthUnit)
+	arg0, err := graphql.ProcessArgField(ctx, rawArgs, "unit", ec.unmarshalNLengthUnit2metarᚗliveᚋgraphᚋmodelᚐLengthUnit)
 	if err != nil {
 		return nil, err
 	}
@@ -197,7 +197,7 @@ func (ec *executionContext) field_IcingCondition_maxAltitude_args(ctx context.Co
 func (ec *executionContext) field_IcingCondition_minAltitude_args(ctx context.Context, rawArgs map[string]any) (map[string]any, error) {
 	var err error
 	args := map[string]any{}
-	arg0, err := graphql.ProcessArgField(ctx, rawArgs, "unit", ec.unmarshalNLengthUnit2metarᚗggᚋgraphᚋmodelᚐLengthUnit)
+	arg0, err := graphql.ProcessArgField(ctx, rawArgs, "unit", ec.unmarshalNLengthUnit2metarᚗliveᚋgraphᚋmodelᚐLengthUnit)
 	if err != nil {
 		return nil, err
 	}
@@ -208,7 +208,7 @@ func (ec *executionContext) field_IcingCondition_minAltitude_args(ctx context.Co
 func (ec *executionContext) field_Metar_altimeter_args(ctx context.Context, rawArgs map[string]any) (map[string]any, error) {
 	var err error
 	args := map[string]any{}
-	arg0, err := graphql.ProcessArgField(ctx, rawArgs, "unit", ec.unmarshalNPressureUnit2metarᚗggᚋgraphᚋmodelᚐPressureUnit)
+	arg0, err := graphql.ProcessArgField(ctx, rawArgs, "unit", ec.unmarshalNPressureUnit2metarᚗliveᚋgraphᚋmodelᚐPressureUnit)
 	if err != nil {
 		return nil, err
 	}
@@ -219,7 +219,7 @@ func (ec *executionContext) field_Metar_altimeter_args(ctx context.Context, rawA
 func (ec *executionContext) field_Metar_dewpoint_args(ctx context.Context, rawArgs map[string]any) (map[string]any, error) {
 	var err error
 	args := map[string]any{}
-	arg0, err := graphql.ProcessArgField(ctx, rawArgs, "unit", ec.unmarshalNTemperatureUnit2metarᚗggᚋgraphᚋmodelᚐTemperatureUnit)
+	arg0, err := graphql.ProcessArgField(ctx, rawArgs, "unit", ec.unmarshalNTemperatureUnit2metarᚗliveᚋgraphᚋmodelᚐTemperatureUnit)
 	if err != nil {
 		return nil, err
 	}
@@ -230,7 +230,7 @@ func (ec *executionContext) field_Metar_dewpoint_args(ctx context.Context, rawAr
 func (ec *executionContext) field_Metar_pressureTendency_args(ctx context.Context, rawArgs map[string]any) (map[string]any, error) {
 	var err error
 	args := map[string]any{}
-	arg0, err := graphql.ProcessArgField(ctx, rawArgs, "unit", ec.unmarshalNPressureUnit2metarᚗggᚋgraphᚋmodelᚐPressureUnit)
+	arg0, err := graphql.ProcessArgField(ctx, rawArgs, "unit", ec.unmarshalNPressureUnit2metarᚗliveᚋgraphᚋmodelᚐPressureUnit)
 	if err != nil {
 		return nil, err
 	}
@@ -241,7 +241,7 @@ func (ec *executionContext) field_Metar_pressureTendency_args(ctx context.Contex
 func (ec *executionContext) field_Metar_seaLevelPressure_args(ctx context.Context, rawArgs map[string]any) (map[string]any, error) {
 	var err error
 	args := map[string]any{}
-	arg0, err := graphql.ProcessArgField(ctx, rawArgs, "unit", ec.unmarshalNPressureUnit2metarᚗggᚋgraphᚋmodelᚐPressureUnit)
+	arg0, err := graphql.ProcessArgField(ctx, rawArgs, "unit", ec.unmarshalNPressureUnit2metarᚗliveᚋgraphᚋmodelᚐPressureUnit)
 	if err != nil {
 		return nil, err
 	}
@@ -252,7 +252,7 @@ func (ec *executionContext) field_Metar_seaLevelPressure_args(ctx context.Contex
 func (ec *executionContext) field_Metar_snowDepth_args(ctx context.Context, rawArgs map[string]any) (map[string]any, error) {
 	var err error
 	args := map[string]any{}
-	arg0, err := graphql.ProcessArgField(ctx, rawArgs, "unit", ec.unmarshalNSmallLengthUnit2metarᚗggᚋgraphᚋmodelᚐSmallLengthUnit)
+	arg0, err := graphql.ProcessArgField(ctx, rawArgs, "unit", ec.unmarshalNSmallLengthUnit2metarᚗliveᚋgraphᚋmodelᚐSmallLengthUnit)
 	if err != nil {
 		return nil, err
 	}
@@ -263,7 +263,7 @@ func (ec *executionContext) field_Metar_snowDepth_args(ctx context.Context, rawA
 func (ec *executionContext) field_Metar_temperature_args(ctx context.Context, rawArgs map[string]any) (map[string]any, error) {
 	var err error
 	args := map[string]any{}
-	arg0, err := graphql.ProcessArgField(ctx, rawArgs, "unit", ec.unmarshalNTemperatureUnit2metarᚗggᚋgraphᚋmodelᚐTemperatureUnit)
+	arg0, err := graphql.ProcessArgField(ctx, rawArgs, "unit", ec.unmarshalNTemperatureUnit2metarᚗliveᚋgraphᚋmodelᚐTemperatureUnit)
 	if err != nil {
 		return nil, err
 	}
@@ -274,7 +274,7 @@ func (ec *executionContext) field_Metar_temperature_args(ctx context.Context, ra
 func (ec *executionContext) field_Metar_verticalVisibility_args(ctx context.Context, rawArgs map[string]any) (map[string]any, error) {
 	var err error
 	args := map[string]any{}
-	arg0, err := graphql.ProcessArgField(ctx, rawArgs, "unit", ec.unmarshalNLengthUnit2metarᚗggᚋgraphᚋmodelᚐLengthUnit)
+	arg0, err := graphql.ProcessArgField(ctx, rawArgs, "unit", ec.unmarshalNLengthUnit2metarᚗliveᚋgraphᚋmodelᚐLengthUnit)
 	if err != nil {
 		return nil, err
 	}
@@ -285,7 +285,7 @@ func (ec *executionContext) field_Metar_verticalVisibility_args(ctx context.Cont
 func (ec *executionContext) field_Metar_visibility_args(ctx context.Context, rawArgs map[string]any) (map[string]any, error) {
 	var err error
 	args := map[string]any{}
-	arg0, err := graphql.ProcessArgField(ctx, rawArgs, "unit", ec.unmarshalNLengthUnit2metarᚗggᚋgraphᚋmodelᚐLengthUnit)
+	arg0, err := graphql.ProcessArgField(ctx, rawArgs, "unit", ec.unmarshalNLengthUnit2metarᚗliveᚋgraphᚋmodelᚐLengthUnit)
 	if err != nil {
 		return nil, err
 	}
@@ -296,7 +296,7 @@ func (ec *executionContext) field_Metar_visibility_args(ctx context.Context, raw
 func (ec *executionContext) field_Metar_windGust_args(ctx context.Context, rawArgs map[string]any) (map[string]any, error) {
 	var err error
 	args := map[string]any{}
-	arg0, err := graphql.ProcessArgField(ctx, rawArgs, "unit", ec.unmarshalNSpeedUnit2metarᚗggᚋgraphᚋmodelᚐSpeedUnit)
+	arg0, err := graphql.ProcessArgField(ctx, rawArgs, "unit", ec.unmarshalNSpeedUnit2metarᚗliveᚋgraphᚋmodelᚐSpeedUnit)
 	if err != nil {
 		return nil, err
 	}
@@ -307,7 +307,7 @@ func (ec *executionContext) field_Metar_windGust_args(ctx context.Context, rawAr
 func (ec *executionContext) field_Metar_windSpeed_args(ctx context.Context, rawArgs map[string]any) (map[string]any, error) {
 	var err error
 	args := map[string]any{}
-	arg0, err := graphql.ProcessArgField(ctx, rawArgs, "unit", ec.unmarshalNSpeedUnit2metarᚗggᚋgraphᚋmodelᚐSpeedUnit)
+	arg0, err := graphql.ProcessArgField(ctx, rawArgs, "unit", ec.unmarshalNSpeedUnit2metarᚗliveᚋgraphᚋmodelᚐSpeedUnit)
 	if err != nil {
 		return nil, err
 	}
@@ -318,7 +318,7 @@ func (ec *executionContext) field_Metar_windSpeed_args(ctx context.Context, rawA
 func (ec *executionContext) field_Runway_length_args(ctx context.Context, rawArgs map[string]any) (map[string]any, error) {
 	var err error
 	args := map[string]any{}
-	arg0, err := graphql.ProcessArgField(ctx, rawArgs, "unit", ec.unmarshalNLengthUnit2metarᚗggᚋgraphᚋmodelᚐLengthUnit)
+	arg0, err := graphql.ProcessArgField(ctx, rawArgs, "unit", ec.unmarshalNLengthUnit2metarᚗliveᚋgraphᚋmodelᚐLengthUnit)
 	if err != nil {
 		return nil, err
 	}
@@ -329,7 +329,7 @@ func (ec *executionContext) field_Runway_length_args(ctx context.Context, rawArg
 func (ec *executionContext) field_Runway_width_args(ctx context.Context, rawArgs map[string]any) (map[string]any, error) {
 	var err error
 	args := map[string]any{}
-	arg0, err := graphql.ProcessArgField(ctx, rawArgs, "unit", ec.unmarshalNLengthUnit2metarᚗggᚋgraphᚋmodelᚐLengthUnit)
+	arg0, err := graphql.ProcessArgField(ctx, rawArgs, "unit", ec.unmarshalNLengthUnit2metarᚗliveᚋgraphᚋmodelᚐLengthUnit)
 	if err != nil {
 		return nil, err
 	}
@@ -340,7 +340,7 @@ func (ec *executionContext) field_Runway_width_args(ctx context.Context, rawArgs
 func (ec *executionContext) field_SkyCondition_cloudBase_args(ctx context.Context, rawArgs map[string]any) (map[string]any, error) {
 	var err error
 	args := map[string]any{}
-	arg0, err := graphql.ProcessArgField(ctx, rawArgs, "unit", ec.unmarshalNLengthUnit2metarᚗggᚋgraphᚋmodelᚐLengthUnit)
+	arg0, err := graphql.ProcessArgField(ctx, rawArgs, "unit", ec.unmarshalNLengthUnit2metarᚗliveᚋgraphᚋmodelᚐLengthUnit)
 	if err != nil {
 		return nil, err
 	}
@@ -351,7 +351,7 @@ func (ec *executionContext) field_SkyCondition_cloudBase_args(ctx context.Contex
 func (ec *executionContext) field_TemperatureData_maxTemperature_args(ctx context.Context, rawArgs map[string]any) (map[string]any, error) {
 	var err error
 	args := map[string]any{}
-	arg0, err := graphql.ProcessArgField(ctx, rawArgs, "unit", ec.unmarshalNTemperatureUnit2metarᚗggᚋgraphᚋmodelᚐTemperatureUnit)
+	arg0, err := graphql.ProcessArgField(ctx, rawArgs, "unit", ec.unmarshalNTemperatureUnit2metarᚗliveᚋgraphᚋmodelᚐTemperatureUnit)
 	if err != nil {
 		return nil, err
 	}
@@ -362,7 +362,7 @@ func (ec *executionContext) field_TemperatureData_maxTemperature_args(ctx contex
 func (ec *executionContext) field_TemperatureData_minTemperature_args(ctx context.Context, rawArgs map[string]any) (map[string]any, error) {
 	var err error
 	args := map[string]any{}
-	arg0, err := graphql.ProcessArgField(ctx, rawArgs, "unit", ec.unmarshalNTemperatureUnit2metarᚗggᚋgraphᚋmodelᚐTemperatureUnit)
+	arg0, err := graphql.ProcessArgField(ctx, rawArgs, "unit", ec.unmarshalNTemperatureUnit2metarᚗliveᚋgraphᚋmodelᚐTemperatureUnit)
 	if err != nil {
 		return nil, err
 	}
@@ -373,7 +373,7 @@ func (ec *executionContext) field_TemperatureData_minTemperature_args(ctx contex
 func (ec *executionContext) field_TemperatureData_temperature_args(ctx context.Context, rawArgs map[string]any) (map[string]any, error) {
 	var err error
 	args := map[string]any{}
-	arg0, err := graphql.ProcessArgField(ctx, rawArgs, "unit", ec.unmarshalNTemperatureUnit2metarᚗggᚋgraphᚋmodelᚐTemperatureUnit)
+	arg0, err := graphql.ProcessArgField(ctx, rawArgs, "unit", ec.unmarshalNTemperatureUnit2metarᚗliveᚋgraphᚋmodelᚐTemperatureUnit)
 	if err != nil {
 		return nil, err
 	}
@@ -384,7 +384,7 @@ func (ec *executionContext) field_TemperatureData_temperature_args(ctx context.C
 func (ec *executionContext) field_TurbulenceCondition_maxAltitude_args(ctx context.Context, rawArgs map[string]any) (map[string]any, error) {
 	var err error
 	args := map[string]any{}
-	arg0, err := graphql.ProcessArgField(ctx, rawArgs, "unit", ec.unmarshalNLengthUnit2metarᚗggᚋgraphᚋmodelᚐLengthUnit)
+	arg0, err := graphql.ProcessArgField(ctx, rawArgs, "unit", ec.unmarshalNLengthUnit2metarᚗliveᚋgraphᚋmodelᚐLengthUnit)
 	if err != nil {
 		return nil, err
 	}
@@ -395,7 +395,7 @@ func (ec *executionContext) field_TurbulenceCondition_maxAltitude_args(ctx conte
 func (ec *executionContext) field_TurbulenceCondition_minAltitude_args(ctx context.Context, rawArgs map[string]any) (map[string]any, error) {
 	var err error
 	args := map[string]any{}
-	arg0, err := graphql.ProcessArgField(ctx, rawArgs, "unit", ec.unmarshalNLengthUnit2metarᚗggᚋgraphᚋmodelᚐLengthUnit)
+	arg0, err := graphql.ProcessArgField(ctx, rawArgs, "unit", ec.unmarshalNLengthUnit2metarᚗliveᚋgraphᚋmodelᚐLengthUnit)
 	if err != nil {
 		return nil, err
 	}
@@ -647,7 +647,7 @@ func (ec *executionContext) _Airport_type(ctx context.Context, field graphql.Col
 			return obj.Type, nil
 		},
 		nil,
-		ec.marshalNAirportType2metarᚗggᚋentᚋairportᚐType,
+		ec.marshalNAirportType2metarᚗliveᚋentᚋairportᚐType,
 		true,
 		true,
 	)
@@ -1053,7 +1053,7 @@ func (ec *executionContext) _Airport_region(ctx context.Context, field graphql.C
 			return obj.Region(ctx)
 		},
 		nil,
-		ec.marshalORegion2ᚖmetarᚗggᚋentᚐRegion,
+		ec.marshalORegion2ᚖmetarᚗliveᚋentᚐRegion,
 		true,
 		false,
 	)
@@ -1100,7 +1100,7 @@ func (ec *executionContext) _Airport_country(ctx context.Context, field graphql.
 			return obj.Country(ctx)
 		},
 		nil,
-		ec.marshalOCountry2ᚖmetarᚗggᚋentᚐCountry,
+		ec.marshalOCountry2ᚖmetarᚗliveᚋentᚐCountry,
 		true,
 		false,
 	)
@@ -1147,7 +1147,7 @@ func (ec *executionContext) _Airport_frequencies(ctx context.Context, field grap
 			return obj.Frequencies(ctx)
 		},
 		nil,
-		ec.marshalOFrequency2ᚕᚖmetarᚗggᚋentᚐFrequencyᚄ,
+		ec.marshalOFrequency2ᚕᚖmetarᚗliveᚋentᚐFrequencyᚄ,
 		true,
 		false,
 	)
@@ -1192,7 +1192,7 @@ func (ec *executionContext) _Airport_station(ctx context.Context, field graphql.
 			return obj.Station(ctx)
 		},
 		nil,
-		ec.marshalOWeatherStation2ᚖmetarᚗggᚋentᚐWeatherStation,
+		ec.marshalOWeatherStation2ᚖmetarᚗliveᚋentᚐWeatherStation,
 		true,
 		false,
 	)
@@ -1240,7 +1240,7 @@ func (ec *executionContext) _Airport_runways(ctx context.Context, field graphql.
 			return ec.resolvers.Airport().Runways(ctx, obj, fc.Args["closed"].(*bool))
 		},
 		nil,
-		ec.marshalNRunway2ᚕᚖmetarᚗggᚋentᚐRunwayᚄ,
+		ec.marshalNRunway2ᚕᚖmetarᚗliveᚋentᚐRunwayᚄ,
 		true,
 		true,
 	)
@@ -1325,7 +1325,7 @@ func (ec *executionContext) _Airport_stationsVicinity(ctx context.Context, field
 			return ec.resolvers.Airport().StationsVicinity(ctx, obj, fc.Args["first"].(*int), fc.Args["radius"].(*float64))
 		},
 		nil,
-		ec.marshalNStationWithDistance2ᚕᚖmetarᚗggᚋgraphᚋmodelᚐStationWithDistanceᚄ,
+		ec.marshalNStationWithDistance2ᚕᚖmetarᚗliveᚋgraphᚋmodelᚐStationWithDistanceᚄ,
 		true,
 		true,
 	)
@@ -1516,7 +1516,7 @@ func (ec *executionContext) _Country_continent(ctx context.Context, field graphq
 			return obj.Continent, nil
 		},
 		nil,
-		ec.marshalNCountryContinent2metarᚗggᚋentᚋcountryᚐContinent,
+		ec.marshalNCountryContinent2metarᚗliveᚋentᚋcountryᚐContinent,
 		true,
 		true,
 	)
@@ -1690,7 +1690,7 @@ func (ec *executionContext) _Forecast_changeIndicator(ctx context.Context, field
 			return obj.ChangeIndicator, nil
 		},
 		nil,
-		ec.marshalOForecastChangeIndicator2ᚖmetarᚗggᚋentᚋforecastᚐChangeIndicator,
+		ec.marshalOForecastChangeIndicator2ᚖmetarᚗliveᚋentᚋforecastᚐChangeIndicator,
 		true,
 		false,
 	)
@@ -1951,7 +1951,7 @@ func (ec *executionContext) _Forecast_skyConditions(ctx context.Context, field g
 			return obj.SkyConditions(ctx)
 		},
 		nil,
-		ec.marshalOSkyCondition2ᚕᚖmetarᚗggᚋentᚐSkyConditionᚄ,
+		ec.marshalOSkyCondition2ᚕᚖmetarᚗliveᚋentᚐSkyConditionᚄ,
 		true,
 		false,
 	)
@@ -1990,7 +1990,7 @@ func (ec *executionContext) _Forecast_turbulenceConditions(ctx context.Context, 
 			return obj.TurbulenceConditions(ctx)
 		},
 		nil,
-		ec.marshalOTurbulenceCondition2ᚕᚖmetarᚗggᚋentᚐTurbulenceConditionᚄ,
+		ec.marshalOTurbulenceCondition2ᚕᚖmetarᚗliveᚋentᚐTurbulenceConditionᚄ,
 		true,
 		false,
 	)
@@ -2029,7 +2029,7 @@ func (ec *executionContext) _Forecast_icingConditions(ctx context.Context, field
 			return obj.IcingConditions(ctx)
 		},
 		nil,
-		ec.marshalOIcingCondition2ᚕᚖmetarᚗggᚋentᚐIcingConditionᚄ,
+		ec.marshalOIcingCondition2ᚕᚖmetarᚗliveᚋentᚐIcingConditionᚄ,
 		true,
 		false,
 	)
@@ -2068,7 +2068,7 @@ func (ec *executionContext) _Forecast_temperatureData(ctx context.Context, field
 			return obj.TemperatureData(ctx)
 		},
 		nil,
-		ec.marshalOTemperatureData2ᚕᚖmetarᚗggᚋentᚐTemperatureDataᚄ,
+		ec.marshalOTemperatureData2ᚕᚖmetarᚗliveᚋentᚐTemperatureDataᚄ,
 		true,
 		false,
 	)
@@ -2570,7 +2570,7 @@ func (ec *executionContext) _Frequency_airport(ctx context.Context, field graphq
 			return obj.Airport(ctx)
 		},
 		nil,
-		ec.marshalOAirport2ᚖmetarᚗggᚋentᚐAirport,
+		ec.marshalOAirport2ᚖmetarᚗliveᚋentᚐAirport,
 		true,
 		false,
 	)
@@ -3054,7 +3054,7 @@ func (ec *executionContext) _Metar_flightCategory(ctx context.Context, field gra
 			return obj.FlightCategory, nil
 		},
 		nil,
-		ec.marshalOMetarFlightCategory2ᚖmetarᚗggᚋentᚋmetarᚐFlightCategory,
+		ec.marshalOMetarFlightCategory2ᚖmetarᚗliveᚋentᚋmetarᚐFlightCategory,
 		true,
 		false,
 	)
@@ -3518,7 +3518,7 @@ func (ec *executionContext) _Metar_metarType(ctx context.Context, field graphql.
 			return obj.MetarType, nil
 		},
 		nil,
-		ec.marshalNMetarMetarType2metarᚗggᚋentᚋmetarᚐMetarType,
+		ec.marshalNMetarMetarType2metarᚗliveᚋentᚋmetarᚐMetarType,
 		true,
 		true,
 	)
@@ -3547,7 +3547,7 @@ func (ec *executionContext) _Metar_station(ctx context.Context, field graphql.Co
 			return obj.Station(ctx)
 		},
 		nil,
-		ec.marshalNWeatherStation2ᚖmetarᚗggᚋentᚐWeatherStation,
+		ec.marshalNWeatherStation2ᚖmetarᚗliveᚋentᚐWeatherStation,
 		true,
 		true,
 	)
@@ -3594,7 +3594,7 @@ func (ec *executionContext) _Metar_skyConditions(ctx context.Context, field grap
 			return obj.SkyConditions(ctx)
 		},
 		nil,
-		ec.marshalOSkyCondition2ᚕᚖmetarᚗggᚋentᚐSkyConditionᚄ,
+		ec.marshalOSkyCondition2ᚕᚖmetarᚗliveᚋentᚐSkyConditionᚄ,
 		true,
 		false,
 	)
@@ -4797,7 +4797,7 @@ func (ec *executionContext) _Runway_airport(ctx context.Context, field graphql.C
 			return obj.Airport(ctx)
 		},
 		nil,
-		ec.marshalOAirport2ᚖmetarᚗggᚋentᚐAirport,
+		ec.marshalOAirport2ᚖmetarᚗliveᚋentᚐAirport,
 		true,
 		false,
 	)
@@ -4991,7 +4991,7 @@ func (ec *executionContext) _SkyCondition_skyCover(ctx context.Context, field gr
 			return obj.SkyCover, nil
 		},
 		nil,
-		ec.marshalNSkyConditionSkyCover2metarᚗggᚋentᚋskyconditionᚐSkyCover,
+		ec.marshalNSkyConditionSkyCover2metarᚗliveᚋentᚋskyconditionᚐSkyCover,
 		true,
 		true,
 	)
@@ -5020,7 +5020,7 @@ func (ec *executionContext) _SkyCondition_cloudType(ctx context.Context, field g
 			return obj.CloudType, nil
 		},
 		nil,
-		ec.marshalOSkyConditionCloudType2ᚖmetarᚗggᚋentᚋskyconditionᚐCloudType,
+		ec.marshalOSkyConditionCloudType2ᚖmetarᚗliveᚋentᚋskyconditionᚐCloudType,
 		true,
 		false,
 	)
@@ -5322,7 +5322,7 @@ func (ec *executionContext) _Taf_station(ctx context.Context, field graphql.Coll
 			return obj.Station(ctx)
 		},
 		nil,
-		ec.marshalNWeatherStation2ᚖmetarᚗggᚋentᚐWeatherStation,
+		ec.marshalNWeatherStation2ᚖmetarᚗliveᚋentᚐWeatherStation,
 		true,
 		true,
 	)
@@ -5369,7 +5369,7 @@ func (ec *executionContext) _Taf_forecast(ctx context.Context, field graphql.Col
 			return obj.Forecast(ctx)
 		},
 		nil,
-		ec.marshalOForecast2ᚕᚖmetarᚗggᚋentᚐForecastᚄ,
+		ec.marshalOForecast2ᚕᚖmetarᚗliveᚋentᚐForecastᚄ,
 		true,
 		false,
 	)
@@ -5912,7 +5912,7 @@ func (ec *executionContext) _WeatherStation_airport(ctx context.Context, field g
 			return obj.Airport(ctx)
 		},
 		nil,
-		ec.marshalOAirport2ᚖmetarᚗggᚋentᚐAirport,
+		ec.marshalOAirport2ᚖmetarᚗliveᚋentᚐAirport,
 		true,
 		false,
 	)
@@ -5996,7 +5996,7 @@ func (ec *executionContext) _WeatherStation_metars(ctx context.Context, field gr
 			return ec.resolvers.WeatherStation().Metars(ctx, obj, fc.Args["after"].(*entgql.Cursor[uuid.UUID]), fc.Args["first"].(*int), fc.Args["before"].(*entgql.Cursor[uuid.UUID]), fc.Args["last"].(*int))
 		},
 		nil,
-		ec.marshalNMetarConnection2ᚖmetarᚗggᚋentᚐMetarConnection,
+		ec.marshalNMetarConnection2ᚖmetarᚗliveᚋentᚐMetarConnection,
 		true,
 		true,
 	)
@@ -6045,7 +6045,7 @@ func (ec *executionContext) _WeatherStation_tafs(ctx context.Context, field grap
 			return ec.resolvers.WeatherStation().Tafs(ctx, obj, fc.Args["after"].(*entgql.Cursor[uuid.UUID]), fc.Args["first"].(*int), fc.Args["before"].(*entgql.Cursor[uuid.UUID]), fc.Args["last"].(*int))
 		},
 		nil,
-		ec.marshalNTafConnection2ᚖmetarᚗggᚋentᚐTafConnection,
+		ec.marshalNTafConnection2ᚖmetarᚗliveᚋentᚐTafConnection,
 		true,
 		true,
 	)
@@ -6114,7 +6114,7 @@ func (ec *executionContext) unmarshalInputAirportOrder(ctx context.Context, obj 
 			it.Direction = data
 		case "field":
 			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("field"))
-			data, err := ec.unmarshalNAirportOrderField2ᚖmetarᚗggᚋentᚐAirportOrderField(ctx, v)
+			data, err := ec.unmarshalNAirportOrderField2ᚖmetarᚗliveᚋentᚐAirportOrderField(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -6152,7 +6152,7 @@ func (ec *executionContext) unmarshalInputMetarOrder(ctx context.Context, obj an
 			it.Direction = data
 		case "field":
 			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("field"))
-			data, err := ec.unmarshalNMetarOrderField2ᚖmetarᚗggᚋentᚐMetarOrderField(ctx, v)
+			data, err := ec.unmarshalNMetarOrderField2ᚖmetarᚗliveᚋentᚐMetarOrderField(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -6190,7 +6190,7 @@ func (ec *executionContext) unmarshalInputTafOrder(ctx context.Context, obj any)
 			it.Direction = data
 		case "field":
 			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("field"))
-			data, err := ec.unmarshalNTafOrderField2ᚖmetarᚗggᚋentᚐTafOrderField(ctx, v)
+			data, err := ec.unmarshalNTafOrderField2ᚖmetarᚗliveᚋentᚐTafOrderField(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -8662,7 +8662,7 @@ func (ec *executionContext) _WeatherStation(ctx context.Context, sel ast.Selecti
 
 // region    ***************************** type.gotpl *****************************
 
-func (ec *executionContext) marshalNAirport2ᚖmetarᚗggᚋentᚐAirport(ctx context.Context, sel ast.SelectionSet, v *ent.Airport) graphql.Marshaler {
+func (ec *executionContext) marshalNAirport2ᚖmetarᚗliveᚋentᚐAirport(ctx context.Context, sel ast.SelectionSet, v *ent.Airport) graphql.Marshaler {
 	if v == nil {
 		if !graphql.HasFieldError(ctx, graphql.GetFieldContext(ctx)) {
 			ec.Errorf(ctx, "the requested element is null which the schema does not allow")
@@ -8672,18 +8672,18 @@ func (ec *executionContext) marshalNAirport2ᚖmetarᚗggᚋentᚐAirport(ctx co
 	return ec._Airport(ctx, sel, v)
 }
 
-func (ec *executionContext) unmarshalNAirportOrder2ᚖmetarᚗggᚋentᚐAirportOrder(ctx context.Context, v any) (*ent.AirportOrder, error) {
+func (ec *executionContext) unmarshalNAirportOrder2ᚖmetarᚗliveᚋentᚐAirportOrder(ctx context.Context, v any) (*ent.AirportOrder, error) {
 	res, err := ec.unmarshalInputAirportOrder(ctx, v)
 	return &res, graphql.ErrorOnPath(ctx, err)
 }
 
-func (ec *executionContext) unmarshalNAirportOrderField2ᚖmetarᚗggᚋentᚐAirportOrderField(ctx context.Context, v any) (*ent.AirportOrderField, error) {
+func (ec *executionContext) unmarshalNAirportOrderField2ᚖmetarᚗliveᚋentᚐAirportOrderField(ctx context.Context, v any) (*ent.AirportOrderField, error) {
 	var res = new(ent.AirportOrderField)
 	err := res.UnmarshalGQL(v)
 	return res, graphql.ErrorOnPath(ctx, err)
 }
 
-func (ec *executionContext) marshalNAirportOrderField2ᚖmetarᚗggᚋentᚐAirportOrderField(ctx context.Context, sel ast.SelectionSet, v *ent.AirportOrderField) graphql.Marshaler {
+func (ec *executionContext) marshalNAirportOrderField2ᚖmetarᚗliveᚋentᚐAirportOrderField(ctx context.Context, sel ast.SelectionSet, v *ent.AirportOrderField) graphql.Marshaler {
 	if v == nil {
 		if !graphql.HasFieldError(ctx, graphql.GetFieldContext(ctx)) {
 			ec.Errorf(ctx, "the requested element is null which the schema does not allow")
@@ -8693,27 +8693,27 @@ func (ec *executionContext) marshalNAirportOrderField2ᚖmetarᚗggᚋentᚐAirp
 	return v
 }
 
-func (ec *executionContext) unmarshalNAirportType2metarᚗggᚋentᚋairportᚐType(ctx context.Context, v any) (airport.Type, error) {
+func (ec *executionContext) unmarshalNAirportType2metarᚗliveᚋentᚋairportᚐType(ctx context.Context, v any) (airport.Type, error) {
 	var res airport.Type
 	err := res.UnmarshalGQL(v)
 	return res, graphql.ErrorOnPath(ctx, err)
 }
 
-func (ec *executionContext) marshalNAirportType2metarᚗggᚋentᚋairportᚐType(ctx context.Context, sel ast.SelectionSet, v airport.Type) graphql.Marshaler {
+func (ec *executionContext) marshalNAirportType2metarᚗliveᚋentᚋairportᚐType(ctx context.Context, sel ast.SelectionSet, v airport.Type) graphql.Marshaler {
 	return v
 }
 
-func (ec *executionContext) unmarshalNCountryContinent2metarᚗggᚋentᚋcountryᚐContinent(ctx context.Context, v any) (country.Continent, error) {
+func (ec *executionContext) unmarshalNCountryContinent2metarᚗliveᚋentᚋcountryᚐContinent(ctx context.Context, v any) (country.Continent, error) {
 	var res country.Continent
 	err := res.UnmarshalGQL(v)
 	return res, graphql.ErrorOnPath(ctx, err)
 }
 
-func (ec *executionContext) marshalNCountryContinent2metarᚗggᚋentᚋcountryᚐContinent(ctx context.Context, sel ast.SelectionSet, v country.Continent) graphql.Marshaler {
+func (ec *executionContext) marshalNCountryContinent2metarᚗliveᚋentᚋcountryᚐContinent(ctx context.Context, sel ast.SelectionSet, v country.Continent) graphql.Marshaler {
 	return v
 }
 
-func (ec *executionContext) marshalNForecast2ᚖmetarᚗggᚋentᚐForecast(ctx context.Context, sel ast.SelectionSet, v *ent.Forecast) graphql.Marshaler {
+func (ec *executionContext) marshalNForecast2ᚖmetarᚗliveᚋentᚐForecast(ctx context.Context, sel ast.SelectionSet, v *ent.Forecast) graphql.Marshaler {
 	if v == nil {
 		if !graphql.HasFieldError(ctx, graphql.GetFieldContext(ctx)) {
 			ec.Errorf(ctx, "the requested element is null which the schema does not allow")
@@ -8723,7 +8723,7 @@ func (ec *executionContext) marshalNForecast2ᚖmetarᚗggᚋentᚐForecast(ctx 
 	return ec._Forecast(ctx, sel, v)
 }
 
-func (ec *executionContext) marshalNFrequency2ᚖmetarᚗggᚋentᚐFrequency(ctx context.Context, sel ast.SelectionSet, v *ent.Frequency) graphql.Marshaler {
+func (ec *executionContext) marshalNFrequency2ᚖmetarᚗliveᚋentᚐFrequency(ctx context.Context, sel ast.SelectionSet, v *ent.Frequency) graphql.Marshaler {
 	if v == nil {
 		if !graphql.HasFieldError(ctx, graphql.GetFieldContext(ctx)) {
 			ec.Errorf(ctx, "the requested element is null which the schema does not allow")
@@ -8733,7 +8733,7 @@ func (ec *executionContext) marshalNFrequency2ᚖmetarᚗggᚋentᚐFrequency(ct
 	return ec._Frequency(ctx, sel, v)
 }
 
-func (ec *executionContext) marshalNIcingCondition2ᚖmetarᚗggᚋentᚐIcingCondition(ctx context.Context, sel ast.SelectionSet, v *ent.IcingCondition) graphql.Marshaler {
+func (ec *executionContext) marshalNIcingCondition2ᚖmetarᚗliveᚋentᚐIcingCondition(ctx context.Context, sel ast.SelectionSet, v *ent.IcingCondition) graphql.Marshaler {
 	if v == nil {
 		if !graphql.HasFieldError(ctx, graphql.GetFieldContext(ctx)) {
 			ec.Errorf(ctx, "the requested element is null which the schema does not allow")
@@ -8743,7 +8743,7 @@ func (ec *executionContext) marshalNIcingCondition2ᚖmetarᚗggᚋentᚐIcingCo
 	return ec._IcingCondition(ctx, sel, v)
 }
 
-func (ec *executionContext) marshalNMetar2ᚖmetarᚗggᚋentᚐMetar(ctx context.Context, sel ast.SelectionSet, v *ent.Metar) graphql.Marshaler {
+func (ec *executionContext) marshalNMetar2ᚖmetarᚗliveᚋentᚐMetar(ctx context.Context, sel ast.SelectionSet, v *ent.Metar) graphql.Marshaler {
 	if v == nil {
 		if !graphql.HasFieldError(ctx, graphql.GetFieldContext(ctx)) {
 			ec.Errorf(ctx, "the requested element is null which the schema does not allow")
@@ -8753,23 +8753,23 @@ func (ec *executionContext) marshalNMetar2ᚖmetarᚗggᚋentᚐMetar(ctx contex
 	return ec._Metar(ctx, sel, v)
 }
 
-func (ec *executionContext) unmarshalNMetarMetarType2metarᚗggᚋentᚋmetarᚐMetarType(ctx context.Context, v any) (metar.MetarType, error) {
+func (ec *executionContext) unmarshalNMetarMetarType2metarᚗliveᚋentᚋmetarᚐMetarType(ctx context.Context, v any) (metar.MetarType, error) {
 	var res metar.MetarType
 	err := res.UnmarshalGQL(v)
 	return res, graphql.ErrorOnPath(ctx, err)
 }
 
-func (ec *executionContext) marshalNMetarMetarType2metarᚗggᚋentᚋmetarᚐMetarType(ctx context.Context, sel ast.SelectionSet, v metar.MetarType) graphql.Marshaler {
+func (ec *executionContext) marshalNMetarMetarType2metarᚗliveᚋentᚋmetarᚐMetarType(ctx context.Context, sel ast.SelectionSet, v metar.MetarType) graphql.Marshaler {
 	return v
 }
 
-func (ec *executionContext) unmarshalNMetarOrderField2ᚖmetarᚗggᚋentᚐMetarOrderField(ctx context.Context, v any) (*ent.MetarOrderField, error) {
+func (ec *executionContext) unmarshalNMetarOrderField2ᚖmetarᚗliveᚋentᚐMetarOrderField(ctx context.Context, v any) (*ent.MetarOrderField, error) {
 	var res = new(ent.MetarOrderField)
 	err := res.UnmarshalGQL(v)
 	return res, graphql.ErrorOnPath(ctx, err)
 }
 
-func (ec *executionContext) marshalNMetarOrderField2ᚖmetarᚗggᚋentᚐMetarOrderField(ctx context.Context, sel ast.SelectionSet, v *ent.MetarOrderField) graphql.Marshaler {
+func (ec *executionContext) marshalNMetarOrderField2ᚖmetarᚗliveᚋentᚐMetarOrderField(ctx context.Context, sel ast.SelectionSet, v *ent.MetarOrderField) graphql.Marshaler {
 	if v == nil {
 		if !graphql.HasFieldError(ctx, graphql.GetFieldContext(ctx)) {
 			ec.Errorf(ctx, "the requested element is null which the schema does not allow")
@@ -8789,7 +8789,7 @@ func (ec *executionContext) marshalNOrderDirection2entgoᚗioᚋcontribᚋentgql
 	return v
 }
 
-func (ec *executionContext) marshalNRunway2ᚕᚖmetarᚗggᚋentᚐRunwayᚄ(ctx context.Context, sel ast.SelectionSet, v []*ent.Runway) graphql.Marshaler {
+func (ec *executionContext) marshalNRunway2ᚕᚖmetarᚗliveᚋentᚐRunwayᚄ(ctx context.Context, sel ast.SelectionSet, v []*ent.Runway) graphql.Marshaler {
 	ret := make(graphql.Array, len(v))
 	var wg sync.WaitGroup
 	isLen1 := len(v) == 1
@@ -8813,7 +8813,7 @@ func (ec *executionContext) marshalNRunway2ᚕᚖmetarᚗggᚋentᚐRunwayᚄ(ct
 			if !isLen1 {
 				defer wg.Done()
 			}
-			ret[i] = ec.marshalNRunway2ᚖmetarᚗggᚋentᚐRunway(ctx, sel, v[i])
+			ret[i] = ec.marshalNRunway2ᚖmetarᚗliveᚋentᚐRunway(ctx, sel, v[i])
 		}
 		if isLen1 {
 			f(i)
@@ -8833,7 +8833,7 @@ func (ec *executionContext) marshalNRunway2ᚕᚖmetarᚗggᚋentᚐRunwayᚄ(ct
 	return ret
 }
 
-func (ec *executionContext) marshalNRunway2ᚖmetarᚗggᚋentᚐRunway(ctx context.Context, sel ast.SelectionSet, v *ent.Runway) graphql.Marshaler {
+func (ec *executionContext) marshalNRunway2ᚖmetarᚗliveᚋentᚐRunway(ctx context.Context, sel ast.SelectionSet, v *ent.Runway) graphql.Marshaler {
 	if v == nil {
 		if !graphql.HasFieldError(ctx, graphql.GetFieldContext(ctx)) {
 			ec.Errorf(ctx, "the requested element is null which the schema does not allow")
@@ -8843,7 +8843,7 @@ func (ec *executionContext) marshalNRunway2ᚖmetarᚗggᚋentᚐRunway(ctx cont
 	return ec._Runway(ctx, sel, v)
 }
 
-func (ec *executionContext) marshalNSkyCondition2ᚖmetarᚗggᚋentᚐSkyCondition(ctx context.Context, sel ast.SelectionSet, v *ent.SkyCondition) graphql.Marshaler {
+func (ec *executionContext) marshalNSkyCondition2ᚖmetarᚗliveᚋentᚐSkyCondition(ctx context.Context, sel ast.SelectionSet, v *ent.SkyCondition) graphql.Marshaler {
 	if v == nil {
 		if !graphql.HasFieldError(ctx, graphql.GetFieldContext(ctx)) {
 			ec.Errorf(ctx, "the requested element is null which the schema does not allow")
@@ -8853,17 +8853,17 @@ func (ec *executionContext) marshalNSkyCondition2ᚖmetarᚗggᚋentᚐSkyCondit
 	return ec._SkyCondition(ctx, sel, v)
 }
 
-func (ec *executionContext) unmarshalNSkyConditionSkyCover2metarᚗggᚋentᚋskyconditionᚐSkyCover(ctx context.Context, v any) (skycondition.SkyCover, error) {
+func (ec *executionContext) unmarshalNSkyConditionSkyCover2metarᚗliveᚋentᚋskyconditionᚐSkyCover(ctx context.Context, v any) (skycondition.SkyCover, error) {
 	var res skycondition.SkyCover
 	err := res.UnmarshalGQL(v)
 	return res, graphql.ErrorOnPath(ctx, err)
 }
 
-func (ec *executionContext) marshalNSkyConditionSkyCover2metarᚗggᚋentᚋskyconditionᚐSkyCover(ctx context.Context, sel ast.SelectionSet, v skycondition.SkyCover) graphql.Marshaler {
+func (ec *executionContext) marshalNSkyConditionSkyCover2metarᚗliveᚋentᚋskyconditionᚐSkyCover(ctx context.Context, sel ast.SelectionSet, v skycondition.SkyCover) graphql.Marshaler {
 	return v
 }
 
-func (ec *executionContext) marshalNTaf2ᚖmetarᚗggᚋentᚐTaf(ctx context.Context, sel ast.SelectionSet, v *ent.Taf) graphql.Marshaler {
+func (ec *executionContext) marshalNTaf2ᚖmetarᚗliveᚋentᚐTaf(ctx context.Context, sel ast.SelectionSet, v *ent.Taf) graphql.Marshaler {
 	if v == nil {
 		if !graphql.HasFieldError(ctx, graphql.GetFieldContext(ctx)) {
 			ec.Errorf(ctx, "the requested element is null which the schema does not allow")
@@ -8873,13 +8873,13 @@ func (ec *executionContext) marshalNTaf2ᚖmetarᚗggᚋentᚐTaf(ctx context.Co
 	return ec._Taf(ctx, sel, v)
 }
 
-func (ec *executionContext) unmarshalNTafOrderField2ᚖmetarᚗggᚋentᚐTafOrderField(ctx context.Context, v any) (*ent.TafOrderField, error) {
+func (ec *executionContext) unmarshalNTafOrderField2ᚖmetarᚗliveᚋentᚐTafOrderField(ctx context.Context, v any) (*ent.TafOrderField, error) {
 	var res = new(ent.TafOrderField)
 	err := res.UnmarshalGQL(v)
 	return res, graphql.ErrorOnPath(ctx, err)
 }
 
-func (ec *executionContext) marshalNTafOrderField2ᚖmetarᚗggᚋentᚐTafOrderField(ctx context.Context, sel ast.SelectionSet, v *ent.TafOrderField) graphql.Marshaler {
+func (ec *executionContext) marshalNTafOrderField2ᚖmetarᚗliveᚋentᚐTafOrderField(ctx context.Context, sel ast.SelectionSet, v *ent.TafOrderField) graphql.Marshaler {
 	if v == nil {
 		if !graphql.HasFieldError(ctx, graphql.GetFieldContext(ctx)) {
 			ec.Errorf(ctx, "the requested element is null which the schema does not allow")
@@ -8889,7 +8889,7 @@ func (ec *executionContext) marshalNTafOrderField2ᚖmetarᚗggᚋentᚐTafOrder
 	return v
 }
 
-func (ec *executionContext) marshalNTemperatureData2ᚖmetarᚗggᚋentᚐTemperatureData(ctx context.Context, sel ast.SelectionSet, v *ent.TemperatureData) graphql.Marshaler {
+func (ec *executionContext) marshalNTemperatureData2ᚖmetarᚗliveᚋentᚐTemperatureData(ctx context.Context, sel ast.SelectionSet, v *ent.TemperatureData) graphql.Marshaler {
 	if v == nil {
 		if !graphql.HasFieldError(ctx, graphql.GetFieldContext(ctx)) {
 			ec.Errorf(ctx, "the requested element is null which the schema does not allow")
@@ -8899,7 +8899,7 @@ func (ec *executionContext) marshalNTemperatureData2ᚖmetarᚗggᚋentᚐTemper
 	return ec._TemperatureData(ctx, sel, v)
 }
 
-func (ec *executionContext) marshalNTurbulenceCondition2ᚖmetarᚗggᚋentᚐTurbulenceCondition(ctx context.Context, sel ast.SelectionSet, v *ent.TurbulenceCondition) graphql.Marshaler {
+func (ec *executionContext) marshalNTurbulenceCondition2ᚖmetarᚗliveᚋentᚐTurbulenceCondition(ctx context.Context, sel ast.SelectionSet, v *ent.TurbulenceCondition) graphql.Marshaler {
 	if v == nil {
 		if !graphql.HasFieldError(ctx, graphql.GetFieldContext(ctx)) {
 			ec.Errorf(ctx, "the requested element is null which the schema does not allow")
@@ -8909,7 +8909,7 @@ func (ec *executionContext) marshalNTurbulenceCondition2ᚖmetarᚗggᚋentᚐTu
 	return ec._TurbulenceCondition(ctx, sel, v)
 }
 
-func (ec *executionContext) marshalNWeatherStation2ᚖmetarᚗggᚋentᚐWeatherStation(ctx context.Context, sel ast.SelectionSet, v *ent.WeatherStation) graphql.Marshaler {
+func (ec *executionContext) marshalNWeatherStation2ᚖmetarᚗliveᚋentᚐWeatherStation(ctx context.Context, sel ast.SelectionSet, v *ent.WeatherStation) graphql.Marshaler {
 	if v == nil {
 		if !graphql.HasFieldError(ctx, graphql.GetFieldContext(ctx)) {
 			ec.Errorf(ctx, "the requested element is null which the schema does not allow")
@@ -8919,14 +8919,14 @@ func (ec *executionContext) marshalNWeatherStation2ᚖmetarᚗggᚋentᚐWeather
 	return ec._WeatherStation(ctx, sel, v)
 }
 
-func (ec *executionContext) marshalOAirport2ᚖmetarᚗggᚋentᚐAirport(ctx context.Context, sel ast.SelectionSet, v *ent.Airport) graphql.Marshaler {
+func (ec *executionContext) marshalOAirport2ᚖmetarᚗliveᚋentᚐAirport(ctx context.Context, sel ast.SelectionSet, v *ent.Airport) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
 	return ec._Airport(ctx, sel, v)
 }
 
-func (ec *executionContext) unmarshalOAirportOrder2ᚕᚖmetarᚗggᚋentᚐAirportOrderᚄ(ctx context.Context, v any) ([]*ent.AirportOrder, error) {
+func (ec *executionContext) unmarshalOAirportOrder2ᚕᚖmetarᚗliveᚋentᚐAirportOrderᚄ(ctx context.Context, v any) ([]*ent.AirportOrder, error) {
 	if v == nil {
 		return nil, nil
 	}
@@ -8936,7 +8936,7 @@ func (ec *executionContext) unmarshalOAirportOrder2ᚕᚖmetarᚗggᚋentᚐAirp
 	res := make([]*ent.AirportOrder, len(vSlice))
 	for i := range vSlice {
 		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithIndex(i))
-		res[i], err = ec.unmarshalNAirportOrder2ᚖmetarᚗggᚋentᚐAirportOrder(ctx, vSlice[i])
+		res[i], err = ec.unmarshalNAirportOrder2ᚖmetarᚗliveᚋentᚐAirportOrder(ctx, vSlice[i])
 		if err != nil {
 			return nil, err
 		}
@@ -8944,7 +8944,7 @@ func (ec *executionContext) unmarshalOAirportOrder2ᚕᚖmetarᚗggᚋentᚐAirp
 	return res, nil
 }
 
-func (ec *executionContext) unmarshalOAirportType2ᚖmetarᚗggᚋentᚋairportᚐType(ctx context.Context, v any) (*airport.Type, error) {
+func (ec *executionContext) unmarshalOAirportType2ᚖmetarᚗliveᚋentᚋairportᚐType(ctx context.Context, v any) (*airport.Type, error) {
 	if v == nil {
 		return nil, nil
 	}
@@ -8953,21 +8953,21 @@ func (ec *executionContext) unmarshalOAirportType2ᚖmetarᚗggᚋentᚋairport�
 	return res, graphql.ErrorOnPath(ctx, err)
 }
 
-func (ec *executionContext) marshalOAirportType2ᚖmetarᚗggᚋentᚋairportᚐType(ctx context.Context, sel ast.SelectionSet, v *airport.Type) graphql.Marshaler {
+func (ec *executionContext) marshalOAirportType2ᚖmetarᚗliveᚋentᚋairportᚐType(ctx context.Context, sel ast.SelectionSet, v *airport.Type) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
 	return v
 }
 
-func (ec *executionContext) marshalOCountry2ᚖmetarᚗggᚋentᚐCountry(ctx context.Context, sel ast.SelectionSet, v *ent.Country) graphql.Marshaler {
+func (ec *executionContext) marshalOCountry2ᚖmetarᚗliveᚋentᚐCountry(ctx context.Context, sel ast.SelectionSet, v *ent.Country) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
 	return ec._Country(ctx, sel, v)
 }
 
-func (ec *executionContext) marshalOForecast2ᚕᚖmetarᚗggᚋentᚐForecastᚄ(ctx context.Context, sel ast.SelectionSet, v []*ent.Forecast) graphql.Marshaler {
+func (ec *executionContext) marshalOForecast2ᚕᚖmetarᚗliveᚋentᚐForecastᚄ(ctx context.Context, sel ast.SelectionSet, v []*ent.Forecast) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
@@ -8994,7 +8994,7 @@ func (ec *executionContext) marshalOForecast2ᚕᚖmetarᚗggᚋentᚐForecast�
 			if !isLen1 {
 				defer wg.Done()
 			}
-			ret[i] = ec.marshalNForecast2ᚖmetarᚗggᚋentᚐForecast(ctx, sel, v[i])
+			ret[i] = ec.marshalNForecast2ᚖmetarᚗliveᚋentᚐForecast(ctx, sel, v[i])
 		}
 		if isLen1 {
 			f(i)
@@ -9014,7 +9014,7 @@ func (ec *executionContext) marshalOForecast2ᚕᚖmetarᚗggᚋentᚐForecast�
 	return ret
 }
 
-func (ec *executionContext) unmarshalOForecastChangeIndicator2ᚖmetarᚗggᚋentᚋforecastᚐChangeIndicator(ctx context.Context, v any) (*forecast.ChangeIndicator, error) {
+func (ec *executionContext) unmarshalOForecastChangeIndicator2ᚖmetarᚗliveᚋentᚋforecastᚐChangeIndicator(ctx context.Context, v any) (*forecast.ChangeIndicator, error) {
 	if v == nil {
 		return nil, nil
 	}
@@ -9023,14 +9023,14 @@ func (ec *executionContext) unmarshalOForecastChangeIndicator2ᚖmetarᚗggᚋen
 	return res, graphql.ErrorOnPath(ctx, err)
 }
 
-func (ec *executionContext) marshalOForecastChangeIndicator2ᚖmetarᚗggᚋentᚋforecastᚐChangeIndicator(ctx context.Context, sel ast.SelectionSet, v *forecast.ChangeIndicator) graphql.Marshaler {
+func (ec *executionContext) marshalOForecastChangeIndicator2ᚖmetarᚗliveᚋentᚋforecastᚐChangeIndicator(ctx context.Context, sel ast.SelectionSet, v *forecast.ChangeIndicator) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
 	return v
 }
 
-func (ec *executionContext) marshalOFrequency2ᚕᚖmetarᚗggᚋentᚐFrequencyᚄ(ctx context.Context, sel ast.SelectionSet, v []*ent.Frequency) graphql.Marshaler {
+func (ec *executionContext) marshalOFrequency2ᚕᚖmetarᚗliveᚋentᚐFrequencyᚄ(ctx context.Context, sel ast.SelectionSet, v []*ent.Frequency) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
@@ -9057,7 +9057,7 @@ func (ec *executionContext) marshalOFrequency2ᚕᚖmetarᚗggᚋentᚐFrequency
 			if !isLen1 {
 				defer wg.Done()
 			}
-			ret[i] = ec.marshalNFrequency2ᚖmetarᚗggᚋentᚐFrequency(ctx, sel, v[i])
+			ret[i] = ec.marshalNFrequency2ᚖmetarᚗliveᚋentᚐFrequency(ctx, sel, v[i])
 		}
 		if isLen1 {
 			f(i)
@@ -9077,7 +9077,7 @@ func (ec *executionContext) marshalOFrequency2ᚕᚖmetarᚗggᚋentᚐFrequency
 	return ret
 }
 
-func (ec *executionContext) marshalOIcingCondition2ᚕᚖmetarᚗggᚋentᚐIcingConditionᚄ(ctx context.Context, sel ast.SelectionSet, v []*ent.IcingCondition) graphql.Marshaler {
+func (ec *executionContext) marshalOIcingCondition2ᚕᚖmetarᚗliveᚋentᚐIcingConditionᚄ(ctx context.Context, sel ast.SelectionSet, v []*ent.IcingCondition) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
@@ -9104,7 +9104,7 @@ func (ec *executionContext) marshalOIcingCondition2ᚕᚖmetarᚗggᚋentᚐIcin
 			if !isLen1 {
 				defer wg.Done()
 			}
-			ret[i] = ec.marshalNIcingCondition2ᚖmetarᚗggᚋentᚐIcingCondition(ctx, sel, v[i])
+			ret[i] = ec.marshalNIcingCondition2ᚖmetarᚗliveᚋentᚐIcingCondition(ctx, sel, v[i])
 		}
 		if isLen1 {
 			f(i)
@@ -9124,7 +9124,7 @@ func (ec *executionContext) marshalOIcingCondition2ᚕᚖmetarᚗggᚋentᚐIcin
 	return ret
 }
 
-func (ec *executionContext) unmarshalOMetarFlightCategory2ᚖmetarᚗggᚋentᚋmetarᚐFlightCategory(ctx context.Context, v any) (*metar.FlightCategory, error) {
+func (ec *executionContext) unmarshalOMetarFlightCategory2ᚖmetarᚗliveᚋentᚋmetarᚐFlightCategory(ctx context.Context, v any) (*metar.FlightCategory, error) {
 	if v == nil {
 		return nil, nil
 	}
@@ -9133,21 +9133,21 @@ func (ec *executionContext) unmarshalOMetarFlightCategory2ᚖmetarᚗggᚋentᚋ
 	return res, graphql.ErrorOnPath(ctx, err)
 }
 
-func (ec *executionContext) marshalOMetarFlightCategory2ᚖmetarᚗggᚋentᚋmetarᚐFlightCategory(ctx context.Context, sel ast.SelectionSet, v *metar.FlightCategory) graphql.Marshaler {
+func (ec *executionContext) marshalOMetarFlightCategory2ᚖmetarᚗliveᚋentᚋmetarᚐFlightCategory(ctx context.Context, sel ast.SelectionSet, v *metar.FlightCategory) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
 	return v
 }
 
-func (ec *executionContext) marshalORegion2ᚖmetarᚗggᚋentᚐRegion(ctx context.Context, sel ast.SelectionSet, v *ent.Region) graphql.Marshaler {
+func (ec *executionContext) marshalORegion2ᚖmetarᚗliveᚋentᚐRegion(ctx context.Context, sel ast.SelectionSet, v *ent.Region) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
 	return ec._Region(ctx, sel, v)
 }
 
-func (ec *executionContext) marshalOSkyCondition2ᚕᚖmetarᚗggᚋentᚐSkyConditionᚄ(ctx context.Context, sel ast.SelectionSet, v []*ent.SkyCondition) graphql.Marshaler {
+func (ec *executionContext) marshalOSkyCondition2ᚕᚖmetarᚗliveᚋentᚐSkyConditionᚄ(ctx context.Context, sel ast.SelectionSet, v []*ent.SkyCondition) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
@@ -9174,7 +9174,7 @@ func (ec *executionContext) marshalOSkyCondition2ᚕᚖmetarᚗggᚋentᚐSkyCon
 			if !isLen1 {
 				defer wg.Done()
 			}
-			ret[i] = ec.marshalNSkyCondition2ᚖmetarᚗggᚋentᚐSkyCondition(ctx, sel, v[i])
+			ret[i] = ec.marshalNSkyCondition2ᚖmetarᚗliveᚋentᚐSkyCondition(ctx, sel, v[i])
 		}
 		if isLen1 {
 			f(i)
@@ -9194,7 +9194,7 @@ func (ec *executionContext) marshalOSkyCondition2ᚕᚖmetarᚗggᚋentᚐSkyCon
 	return ret
 }
 
-func (ec *executionContext) unmarshalOSkyConditionCloudType2ᚖmetarᚗggᚋentᚋskyconditionᚐCloudType(ctx context.Context, v any) (*skycondition.CloudType, error) {
+func (ec *executionContext) unmarshalOSkyConditionCloudType2ᚖmetarᚗliveᚋentᚋskyconditionᚐCloudType(ctx context.Context, v any) (*skycondition.CloudType, error) {
 	if v == nil {
 		return nil, nil
 	}
@@ -9203,14 +9203,14 @@ func (ec *executionContext) unmarshalOSkyConditionCloudType2ᚖmetarᚗggᚋent�
 	return res, graphql.ErrorOnPath(ctx, err)
 }
 
-func (ec *executionContext) marshalOSkyConditionCloudType2ᚖmetarᚗggᚋentᚋskyconditionᚐCloudType(ctx context.Context, sel ast.SelectionSet, v *skycondition.CloudType) graphql.Marshaler {
+func (ec *executionContext) marshalOSkyConditionCloudType2ᚖmetarᚗliveᚋentᚋskyconditionᚐCloudType(ctx context.Context, sel ast.SelectionSet, v *skycondition.CloudType) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
 	return v
 }
 
-func (ec *executionContext) marshalOTemperatureData2ᚕᚖmetarᚗggᚋentᚐTemperatureDataᚄ(ctx context.Context, sel ast.SelectionSet, v []*ent.TemperatureData) graphql.Marshaler {
+func (ec *executionContext) marshalOTemperatureData2ᚕᚖmetarᚗliveᚋentᚐTemperatureDataᚄ(ctx context.Context, sel ast.SelectionSet, v []*ent.TemperatureData) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
@@ -9237,7 +9237,7 @@ func (ec *executionContext) marshalOTemperatureData2ᚕᚖmetarᚗggᚋentᚐTem
 			if !isLen1 {
 				defer wg.Done()
 			}
-			ret[i] = ec.marshalNTemperatureData2ᚖmetarᚗggᚋentᚐTemperatureData(ctx, sel, v[i])
+			ret[i] = ec.marshalNTemperatureData2ᚖmetarᚗliveᚋentᚐTemperatureData(ctx, sel, v[i])
 		}
 		if isLen1 {
 			f(i)
@@ -9257,7 +9257,7 @@ func (ec *executionContext) marshalOTemperatureData2ᚕᚖmetarᚗggᚋentᚐTem
 	return ret
 }
 
-func (ec *executionContext) marshalOTurbulenceCondition2ᚕᚖmetarᚗggᚋentᚐTurbulenceConditionᚄ(ctx context.Context, sel ast.SelectionSet, v []*ent.TurbulenceCondition) graphql.Marshaler {
+func (ec *executionContext) marshalOTurbulenceCondition2ᚕᚖmetarᚗliveᚋentᚐTurbulenceConditionᚄ(ctx context.Context, sel ast.SelectionSet, v []*ent.TurbulenceCondition) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
@@ -9284,7 +9284,7 @@ func (ec *executionContext) marshalOTurbulenceCondition2ᚕᚖmetarᚗggᚋent�
 			if !isLen1 {
 				defer wg.Done()
 			}
-			ret[i] = ec.marshalNTurbulenceCondition2ᚖmetarᚗggᚋentᚐTurbulenceCondition(ctx, sel, v[i])
+			ret[i] = ec.marshalNTurbulenceCondition2ᚖmetarᚗliveᚋentᚐTurbulenceCondition(ctx, sel, v[i])
 		}
 		if isLen1 {
 			f(i)
@@ -9304,7 +9304,7 @@ func (ec *executionContext) marshalOTurbulenceCondition2ᚕᚖmetarᚗggᚋent�
 	return ret
 }
 
-func (ec *executionContext) marshalOWeatherStation2ᚖmetarᚗggᚋentᚐWeatherStation(ctx context.Context, sel ast.SelectionSet, v *ent.WeatherStation) graphql.Marshaler {
+func (ec *executionContext) marshalOWeatherStation2ᚖmetarᚗliveᚋentᚐWeatherStation(ctx context.Context, sel ast.SelectionSet, v *ent.WeatherStation) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}

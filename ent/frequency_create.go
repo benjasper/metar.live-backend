@@ -13,8 +13,8 @@ import (
 	"entgo.io/ent/dialect/sql/sqlgraph"
 	"entgo.io/ent/schema/field"
 	"github.com/google/uuid"
-	"metar.gg/ent/airport"
-	"metar.gg/ent/frequency"
+	"metar.live/ent/airport"
+	"metar.live/ent/frequency"
 )
 
 // FrequencyCreate is the builder for creating a Frequency entity.

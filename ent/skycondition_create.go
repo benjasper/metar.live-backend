@@ -12,7 +12,7 @@ import (
 	"entgo.io/ent/dialect/sql/sqlgraph"
 	"entgo.io/ent/schema/field"
 	"github.com/google/uuid"
-	"metar.gg/ent/skycondition"
+	"metar.live/ent/skycondition"
 )
 
 // SkyConditionCreate is the builder for creating a SkyCondition entity.

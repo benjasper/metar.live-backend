@@ -10,7 +10,7 @@ import (
 	"entgo.io/ent"
 	"entgo.io/ent/dialect/sql"
 	"github.com/google/uuid"
-	"metar.gg/ent/temperaturedata"
+	"metar.live/ent/temperaturedata"
 )
 
 // TemperatureData is the model entity for the TemperatureData schema.

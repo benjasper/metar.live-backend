@@ -13,12 +13,12 @@ import (
 	"entgo.io/ent/dialect/sql/sqlgraph"
 	"entgo.io/ent/schema/field"
 	"github.com/google/uuid"
-	"metar.gg/ent/airport"
-	"metar.gg/ent/country"
-	"metar.gg/ent/frequency"
-	"metar.gg/ent/region"
-	"metar.gg/ent/runway"
-	"metar.gg/ent/weatherstation"
+	"metar.live/ent/airport"
+	"metar.live/ent/country"
+	"metar.live/ent/frequency"
+	"metar.live/ent/region"
+	"metar.live/ent/runway"
+	"metar.live/ent/weatherstation"
 )
 
 // AirportCreate is the builder for creating a Airport entity.
