@@ -3,6 +3,7 @@
 package model
 
 import (
+	"bytes"
 	"fmt"
 	"io"
 	"strconv"
@@ -47,7 +48,7 @@ func (e LengthUnit) String() string {
 	return string(e)
 }
 
-func (e *LengthUnit) UnmarshalGQL(v interface{}) error {
+func (e *LengthUnit) UnmarshalGQL(v any) error {
 	str, ok := v.(string)
 	if !ok {
 		return fmt.Errorf("enums must be strings")
@@ -62,6 +63,20 @@ func (e *LengthUnit) UnmarshalGQL(v interface{}) error {
 
 func (e LengthUnit) MarshalGQL(w io.Writer) {
 	fmt.Fprint(w, strconv.Quote(e.String()))
+}
+
+func (e *LengthUnit) UnmarshalJSON(b []byte) error {
+	s, err := strconv.Unquote(string(b))
+	if err != nil {
+		return err
+	}
+	return e.UnmarshalGQL(s)
+}
+
+func (e LengthUnit) MarshalJSON() ([]byte, error) {
+	var buf bytes.Buffer
+	e.MarshalGQL(&buf)
+	return buf.Bytes(), nil
 }
 
 type PressureUnit string
@@ -88,7 +103,7 @@ func (e PressureUnit) String() string {
 	return string(e)
 }
 
-func (e *PressureUnit) UnmarshalGQL(v interface{}) error {
+func (e *PressureUnit) UnmarshalGQL(v any) error {
 	str, ok := v.(string)
 	if !ok {
 		return fmt.Errorf("enums must be strings")
@@ -103,6 +118,20 @@ func (e *PressureUnit) UnmarshalGQL(v interface{}) error {
 
 func (e PressureUnit) MarshalGQL(w io.Writer) {
 	fmt.Fprint(w, strconv.Quote(e.String()))
+}
+
+func (e *PressureUnit) UnmarshalJSON(b []byte) error {
+	s, err := strconv.Unquote(string(b))
+	if err != nil {
+		return err
+	}
+	return e.UnmarshalGQL(s)
+}
+
+func (e PressureUnit) MarshalJSON() ([]byte, error) {
+	var buf bytes.Buffer
+	e.MarshalGQL(&buf)
+	return buf.Bytes(), nil
 }
 
 type SmallLengthUnit string
@@ -129,7 +158,7 @@ func (e SmallLengthUnit) String() string {
 	return string(e)
 }
 
-func (e *SmallLengthUnit) UnmarshalGQL(v interface{}) error {
+func (e *SmallLengthUnit) UnmarshalGQL(v any) error {
 	str, ok := v.(string)
 	if !ok {
 		return fmt.Errorf("enums must be strings")
@@ -144,6 +173,20 @@ func (e *SmallLengthUnit) UnmarshalGQL(v interface{}) error {
 
 func (e SmallLengthUnit) MarshalGQL(w io.Writer) {
 	fmt.Fprint(w, strconv.Quote(e.String()))
+}
+
+func (e *SmallLengthUnit) UnmarshalJSON(b []byte) error {
+	s, err := strconv.Unquote(string(b))
+	if err != nil {
+		return err
+	}
+	return e.UnmarshalGQL(s)
+}
+
+func (e SmallLengthUnit) MarshalJSON() ([]byte, error) {
+	var buf bytes.Buffer
+	e.MarshalGQL(&buf)
+	return buf.Bytes(), nil
 }
 
 type SpeedUnit string
@@ -170,7 +213,7 @@ func (e SpeedUnit) String() string {
 	return string(e)
 }
 
-func (e *SpeedUnit) UnmarshalGQL(v interface{}) error {
+func (e *SpeedUnit) UnmarshalGQL(v any) error {
 	str, ok := v.(string)
 	if !ok {
 		return fmt.Errorf("enums must be strings")
@@ -185,6 +228,20 @@ func (e *SpeedUnit) UnmarshalGQL(v interface{}) error {
 
 func (e SpeedUnit) MarshalGQL(w io.Writer) {
 	fmt.Fprint(w, strconv.Quote(e.String()))
+}
+
+func (e *SpeedUnit) UnmarshalJSON(b []byte) error {
+	s, err := strconv.Unquote(string(b))
+	if err != nil {
+		return err
+	}
+	return e.UnmarshalGQL(s)
+}
+
+func (e SpeedUnit) MarshalJSON() ([]byte, error) {
+	var buf bytes.Buffer
+	e.MarshalGQL(&buf)
+	return buf.Bytes(), nil
 }
 
 type TemperatureUnit string
@@ -211,7 +268,7 @@ func (e TemperatureUnit) String() string {
 	return string(e)
 }
 
-func (e *TemperatureUnit) UnmarshalGQL(v interface{}) error {
+func (e *TemperatureUnit) UnmarshalGQL(v any) error {
 	str, ok := v.(string)
 	if !ok {
 		return fmt.Errorf("enums must be strings")
@@ -226,4 +283,18 @@ func (e *TemperatureUnit) UnmarshalGQL(v interface{}) error {
 
 func (e TemperatureUnit) MarshalGQL(w io.Writer) {
 	fmt.Fprint(w, strconv.Quote(e.String()))
+}
+
+func (e *TemperatureUnit) UnmarshalJSON(b []byte) error {
+	s, err := strconv.Unquote(string(b))
+	if err != nil {
+		return err
+	}
+	return e.UnmarshalGQL(s)
+}
+
+func (e TemperatureUnit) MarshalJSON() ([]byte, error) {
+	var buf bytes.Buffer
+	e.MarshalGQL(&buf)
+	return buf.Bytes(), nil
 }

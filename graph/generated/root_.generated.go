@@ -22,6 +22,7 @@ import (
 // NewExecutableSchema creates an ExecutableSchema from the ResolverRoot interface.
 func NewExecutableSchema(cfg Config) graphql.ExecutableSchema {
 	return &executableSchema{
+		schema:     cfg.Schema,
 		resolvers:  cfg.Resolvers,
 		directives: cfg.Directives,
 		complexity: cfg.Complexity,
@@ -29,6 +30,7 @@ func NewExecutableSchema(cfg Config) graphql.ExecutableSchema {
 }
 
 type Config struct {
+	Schema     *ast.Schema
 	Resolvers  ResolverRoot
 	Directives DirectiveRoot
 	Complexity ComplexityRoot
@@ -206,7 +208,7 @@ type ComplexityRoot struct {
 
 	Query struct {
 		GetAirport  func(childComplexity int, id *string, identifier *string, icao *string, iata *string) int
-		GetAirports func(childComplexity int, first *int, after *entgql.Cursor[uuid.UUID], before *entgql.Cursor[uuid.UUID], last *int, identifier *string, icao *string, iata *string, typeArg *airport.Type, search *string, hasWeather *bool, order []*ent.AirportOrder) int
+		GetAirports func(childComplexity int, first *int, after *entgql.Cursor[uuid.UUID], before *entgql.Cursor[uuid.UUID], last *int, identifier *string, icao *string, iata *string, typeArg *airport.Type, search *string, hasWeather *bool, importance *int, order []*ent.AirportOrder) int
 		GetStation  func(childComplexity int, id *string, identifier *string) int
 		GetStations func(childComplexity int, first *int, after *entgql.Cursor[uuid.UUID], before *entgql.Cursor[uuid.UUID], last *int, identifier *string) int
 	}
@@ -321,16 +323,20 @@ type ComplexityRoot struct {
 }
 
 type executableSchema struct {
+	schema     *ast.Schema
 	resolvers  ResolverRoot
 	directives DirectiveRoot
 	complexity ComplexityRoot
 }
 
 func (e *executableSchema) Schema() *ast.Schema {
+	if e.schema != nil {
+		return e.schema
+	}
 	return parsedSchema
 }
 
-func (e *executableSchema) Complexity(typeName, field string, childComplexity int, rawArgs map[string]interface{}) (int, bool) {
+func (e *executableSchema) Complexity(ctx context.Context, typeName, field string, childComplexity int, rawArgs map[string]any) (int, bool) {
 	ec := executionContext{nil, e, 0, 0, nil}
 	_ = ec
 	switch typeName + "." + field {
@@ -466,7 +472,7 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 			break
 		}
 
-		args, err := ec.field_Airport_runways_args(context.TODO(), rawArgs)
+		args, err := ec.field_Airport_runways_args(ctx, rawArgs)
 		if err != nil {
 			return 0, false
 		}
@@ -492,7 +498,7 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 			break
 		}
 
-		args, err := ec.field_Airport_stationsVicinity_args(context.TODO(), rawArgs)
+		args, err := ec.field_Airport_stationsVicinity_args(ctx, rawArgs)
 		if err != nil {
 			return 0, false
 		}
@@ -623,7 +629,7 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 			break
 		}
 
-		args, err := ec.field_Forecast_altimeter_args(context.TODO(), rawArgs)
+		args, err := ec.field_Forecast_altimeter_args(ctx, rawArgs)
 		if err != nil {
 			return 0, false
 		}
@@ -712,7 +718,7 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 			break
 		}
 
-		args, err := ec.field_Forecast_visibilityHorizontal_args(context.TODO(), rawArgs)
+		args, err := ec.field_Forecast_visibilityHorizontal_args(ctx, rawArgs)
 		if err != nil {
 			return 0, false
 		}
@@ -731,7 +737,7 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 			break
 		}
 
-		args, err := ec.field_Forecast_visibilityVertical_args(context.TODO(), rawArgs)
+		args, err := ec.field_Forecast_visibilityVertical_args(ctx, rawArgs)
 		if err != nil {
 			return 0, false
 		}
@@ -764,7 +770,7 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 			break
 		}
 
-		args, err := ec.field_Forecast_windGust_args(context.TODO(), rawArgs)
+		args, err := ec.field_Forecast_windGust_args(ctx, rawArgs)
 		if err != nil {
 			return 0, false
 		}
@@ -783,7 +789,7 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 			break
 		}
 
-		args, err := ec.field_Forecast_windShearHeight_args(context.TODO(), rawArgs)
+		args, err := ec.field_Forecast_windShearHeight_args(ctx, rawArgs)
 		if err != nil {
 			return 0, false
 		}
@@ -795,7 +801,7 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 			break
 		}
 
-		args, err := ec.field_Forecast_windShearSpeed_args(context.TODO(), rawArgs)
+		args, err := ec.field_Forecast_windShearSpeed_args(ctx, rawArgs)
 		if err != nil {
 			return 0, false
 		}
@@ -807,7 +813,7 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 			break
 		}
 
-		args, err := ec.field_Forecast_windSpeed_args(context.TODO(), rawArgs)
+		args, err := ec.field_Forecast_windSpeed_args(ctx, rawArgs)
 		if err != nil {
 			return 0, false
 		}
@@ -882,7 +888,7 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 			break
 		}
 
-		args, err := ec.field_IcingCondition_maxAltitude_args(context.TODO(), rawArgs)
+		args, err := ec.field_IcingCondition_maxAltitude_args(ctx, rawArgs)
 		if err != nil {
 			return 0, false
 		}
@@ -894,7 +900,7 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 			break
 		}
 
-		args, err := ec.field_IcingCondition_minAltitude_args(context.TODO(), rawArgs)
+		args, err := ec.field_IcingCondition_minAltitude_args(ctx, rawArgs)
 		if err != nil {
 			return 0, false
 		}
@@ -906,7 +912,7 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 			break
 		}
 
-		args, err := ec.field_Metar_altimeter_args(context.TODO(), rawArgs)
+		args, err := ec.field_Metar_altimeter_args(ctx, rawArgs)
 		if err != nil {
 			return 0, false
 		}
@@ -918,7 +924,7 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 			break
 		}
 
-		args, err := ec.field_Metar_dewpoint_args(context.TODO(), rawArgs)
+		args, err := ec.field_Metar_dewpoint_args(ctx, rawArgs)
 		if err != nil {
 			return 0, false
 		}
@@ -1035,7 +1041,7 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 			break
 		}
 
-		args, err := ec.field_Metar_pressureTendency_args(context.TODO(), rawArgs)
+		args, err := ec.field_Metar_pressureTendency_args(ctx, rawArgs)
 		if err != nil {
 			return 0, false
 		}
@@ -1103,7 +1109,7 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 			break
 		}
 
-		args, err := ec.field_Metar_seaLevelPressure_args(context.TODO(), rawArgs)
+		args, err := ec.field_Metar_seaLevelPressure_args(ctx, rawArgs)
 		if err != nil {
 			return 0, false
 		}
@@ -1122,7 +1128,7 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 			break
 		}
 
-		args, err := ec.field_Metar_snowDepth_args(context.TODO(), rawArgs)
+		args, err := ec.field_Metar_snowDepth_args(ctx, rawArgs)
 		if err != nil {
 			return 0, false
 		}
@@ -1141,7 +1147,7 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 			break
 		}
 
-		args, err := ec.field_Metar_temperature_args(context.TODO(), rawArgs)
+		args, err := ec.field_Metar_temperature_args(ctx, rawArgs)
 		if err != nil {
 			return 0, false
 		}
@@ -1153,7 +1159,7 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 			break
 		}
 
-		args, err := ec.field_Metar_verticalVisibility_args(context.TODO(), rawArgs)
+		args, err := ec.field_Metar_verticalVisibility_args(ctx, rawArgs)
 		if err != nil {
 			return 0, false
 		}
@@ -1165,7 +1171,7 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 			break
 		}
 
-		args, err := ec.field_Metar_visibility_args(context.TODO(), rawArgs)
+		args, err := ec.field_Metar_visibility_args(ctx, rawArgs)
 		if err != nil {
 			return 0, false
 		}
@@ -1198,7 +1204,7 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 			break
 		}
 
-		args, err := ec.field_Metar_windGust_args(context.TODO(), rawArgs)
+		args, err := ec.field_Metar_windGust_args(ctx, rawArgs)
 		if err != nil {
 			return 0, false
 		}
@@ -1210,7 +1216,7 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 			break
 		}
 
-		args, err := ec.field_Metar_windSpeed_args(context.TODO(), rawArgs)
+		args, err := ec.field_Metar_windSpeed_args(ctx, rawArgs)
 		if err != nil {
 			return 0, false
 		}
@@ -1285,7 +1291,7 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 			break
 		}
 
-		args, err := ec.field_Query_getAirport_args(context.TODO(), rawArgs)
+		args, err := ec.field_Query_getAirport_args(ctx, rawArgs)
 		if err != nil {
 			return 0, false
 		}
@@ -1297,19 +1303,19 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 			break
 		}
 
-		args, err := ec.field_Query_getAirports_args(context.TODO(), rawArgs)
+		args, err := ec.field_Query_getAirports_args(ctx, rawArgs)
 		if err != nil {
 			return 0, false
 		}
 
-		return e.complexity.Query.GetAirports(childComplexity, args["first"].(*int), args["after"].(*entgql.Cursor[uuid.UUID]), args["before"].(*entgql.Cursor[uuid.UUID]), args["last"].(*int), args["identifier"].(*string), args["icao"].(*string), args["iata"].(*string), args["type"].(*airport.Type), args["search"].(*string), args["hasWeather"].(*bool), args["order"].([]*ent.AirportOrder)), true
+		return e.complexity.Query.GetAirports(childComplexity, args["first"].(*int), args["after"].(*entgql.Cursor[uuid.UUID]), args["before"].(*entgql.Cursor[uuid.UUID]), args["last"].(*int), args["identifier"].(*string), args["icao"].(*string), args["iata"].(*string), args["type"].(*airport.Type), args["search"].(*string), args["hasWeather"].(*bool), args["importance"].(*int), args["order"].([]*ent.AirportOrder)), true
 
 	case "Query.getStation":
 		if e.complexity.Query.GetStation == nil {
 			break
 		}
 
-		args, err := ec.field_Query_getStation_args(context.TODO(), rawArgs)
+		args, err := ec.field_Query_getStation_args(ctx, rawArgs)
 		if err != nil {
 			return 0, false
 		}
@@ -1321,7 +1327,7 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 			break
 		}
 
-		args, err := ec.field_Query_getStations_args(context.TODO(), rawArgs)
+		args, err := ec.field_Query_getStations_args(ctx, rawArgs)
 		if err != nil {
 			return 0, false
 		}
@@ -1466,7 +1472,7 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 			break
 		}
 
-		args, err := ec.field_Runway_length_args(context.TODO(), rawArgs)
+		args, err := ec.field_Runway_length_args(ctx, rawArgs)
 		if err != nil {
 			return 0, false
 		}
@@ -1534,7 +1540,7 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 			break
 		}
 
-		args, err := ec.field_Runway_width_args(context.TODO(), rawArgs)
+		args, err := ec.field_Runway_width_args(ctx, rawArgs)
 		if err != nil {
 			return 0, false
 		}
@@ -1546,7 +1552,7 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 			break
 		}
 
-		args, err := ec.field_SkyCondition_cloudBase_args(context.TODO(), rawArgs)
+		args, err := ec.field_SkyCondition_cloudBase_args(ctx, rawArgs)
 		if err != nil {
 			return 0, false
 		}
@@ -1705,7 +1711,7 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 			break
 		}
 
-		args, err := ec.field_TemperatureData_maxTemperature_args(context.TODO(), rawArgs)
+		args, err := ec.field_TemperatureData_maxTemperature_args(ctx, rawArgs)
 		if err != nil {
 			return 0, false
 		}
@@ -1717,7 +1723,7 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 			break
 		}
 
-		args, err := ec.field_TemperatureData_minTemperature_args(context.TODO(), rawArgs)
+		args, err := ec.field_TemperatureData_minTemperature_args(ctx, rawArgs)
 		if err != nil {
 			return 0, false
 		}
@@ -1729,7 +1735,7 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 			break
 		}
 
-		args, err := ec.field_TemperatureData_temperature_args(context.TODO(), rawArgs)
+		args, err := ec.field_TemperatureData_temperature_args(ctx, rawArgs)
 		if err != nil {
 			return 0, false
 		}
@@ -1762,7 +1768,7 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 			break
 		}
 
-		args, err := ec.field_TurbulenceCondition_maxAltitude_args(context.TODO(), rawArgs)
+		args, err := ec.field_TurbulenceCondition_maxAltitude_args(ctx, rawArgs)
 		if err != nil {
 			return 0, false
 		}
@@ -1774,7 +1780,7 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 			break
 		}
 
-		args, err := ec.field_TurbulenceCondition_minAltitude_args(context.TODO(), rawArgs)
+		args, err := ec.field_TurbulenceCondition_minAltitude_args(ctx, rawArgs)
 		if err != nil {
 			return 0, false
 		}
@@ -1821,7 +1827,7 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 			break
 		}
 
-		args, err := ec.field_WeatherStation_metars_args(context.TODO(), rawArgs)
+		args, err := ec.field_WeatherStation_metars_args(ctx, rawArgs)
 		if err != nil {
 			return 0, false
 		}
@@ -1840,7 +1846,7 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 			break
 		}
 
-		args, err := ec.field_WeatherStation_tafs_args(context.TODO(), rawArgs)
+		args, err := ec.field_WeatherStation_tafs_args(ctx, rawArgs)
 		if err != nil {
 			return 0, false
 		}
@@ -1887,8 +1893,8 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 }
 
 func (e *executableSchema) Exec(ctx context.Context) graphql.ResponseHandler {
-	rc := graphql.GetOperationContext(ctx)
-	ec := executionContext{rc, e, 0, 0, make(chan graphql.DeferredResult)}
+	opCtx := graphql.GetOperationContext(ctx)
+	ec := executionContext{opCtx, e, 0, 0, make(chan graphql.DeferredResult)}
 	inputUnmarshalMap := graphql.BuildUnmarshalerMap(
 		ec.unmarshalInputAirportOrder,
 		ec.unmarshalInputMetarOrder,
@@ -1896,7 +1902,7 @@ func (e *executableSchema) Exec(ctx context.Context) graphql.ResponseHandler {
 	)
 	first := true
 
-	switch rc.Operation.Operation {
+	switch opCtx.Operation.Operation {
 	case ast.Query:
 		return func(ctx context.Context) *graphql.Response {
 			var response graphql.Response
@@ -1904,7 +1910,7 @@ func (e *executableSchema) Exec(ctx context.Context) graphql.ResponseHandler {
 			if first {
 				first = false
 				ctx = graphql.WithUnmarshalerMap(ctx, inputUnmarshalMap)
-				data = ec._Query(ctx, rc.Operation.SelectionSet)
+				data = ec._Query(ctx, opCtx.Operation.SelectionSet)
 			} else {
 				if atomic.LoadInt32(&ec.pendingDeferred) > 0 {
 					result := <-ec.deferredResults
@@ -1964,82 +1970,140 @@ func (ec *executionContext) introspectSchema() (*introspection.Schema, error) {
 	if ec.DisableIntrospection {
 		return nil, errors.New("introspection disabled")
 	}
-	return introspection.WrapSchema(parsedSchema), nil
+	return introspection.WrapSchema(ec.Schema()), nil
 }
 
 func (ec *executionContext) introspectType(name string) (*introspection.Type, error) {
 	if ec.DisableIntrospection {
 		return nil, errors.New("introspection disabled")
 	}
-	return introspection.WrapTypeFromDef(parsedSchema, parsedSchema.Types[name]), nil
+	return introspection.WrapTypeFromDef(ec.Schema(), ec.Schema().Types[name]), nil
 }
 
 var sources = []*ast.Source{
 	{Name: "../../ent.graphql", Input: `directive @goField(forceResolver: Boolean, name: String) on FIELD_DEFINITION | INPUT_FIELD_DEFINITION
 directive @goModel(model: String, models: [String!]) on OBJECT | INPUT_OBJECT | SCALAR | ENUM | INTERFACE | UNION
 type Airport {
-  """The unique identifier of the record."""
+  """
+  The unique identifier of the record.
+  """
   id: ID!
-  """The unique identifier of the import."""
+  """
+  The unique identifier of the import.
+  """
   importID: Int!
-  """The last time the record was updated/created."""
+  """
+  The last time the record was updated/created.
+  """
   lastUpdated: Time!
-  """The four-letter ICAO code of the airport."""
+  """
+  The four-letter ICAO code of the airport.
+  """
   icaoCode: String
-  """The three-letter IATA code for the airport."""
+  """
+  The three-letter IATA code for the airport.
+  """
   iataCode: String
-  """This will be the ICAO code if available. Otherwise, it will be a local airport code (if no conflict), or if nothing else is available, an internally-generated code starting with the ISO2 country code, followed by a dash and a four-digit number."""
+  """
+  This will be the ICAO code if available. Otherwise, it will be a local airport code (if no conflict), or if nothing else is available, an internally-generated code starting with the ISO2 country code, followed by a dash and a four-digit number.
+  """
   identifier: String!
-  """Type of airport."""
+  """
+  Type of airport.
+  """
   type: AirportType!
-  """Importance of the airport."""
+  """
+  Importance of the airport.
+  """
   importance: Int!
-  """The official airport name, including "Airport", "Airstrip", etc."""
+  """
+  The official airport name, including "Airport", "Airstrip", etc.
+  """
   name: String!
-  """Latitude of the airport in decimal degrees (positive is north)."""
+  """
+  Latitude of the airport in decimal degrees (positive is north).
+  """
   latitude: Float!
-  """Longitude of the airport in decimal degrees (positive is east)."""
+  """
+  Longitude of the airport in decimal degrees (positive is east).
+  """
   longitude: Float!
-  """The timezone of the airport."""
+  """
+  The timezone of the airport.
+  """
   timezone: String
-  """Elevation of the airport, in feet."""
+  """
+  Elevation of the airport, in feet.
+  """
   elevation: Int
-  """The primary municipality that the airport serves (when available). Note that this is not necessarily the municipality where the airport is physically located."""
+  """
+  The primary municipality that the airport serves (when available). Note that this is not necessarily the municipality where the airport is physically located.
+  """
   municipality: String
-  """Whether the airport has scheduled airline service."""
+  """
+  Whether the airport has scheduled airline service.
+  """
   scheduledService: Boolean!
-  """The code that an aviation GPS database (such as Jeppesen's or Garmin's) would normally use for the airport. This will always be the ICAO code if one exists. Note that, unlike the ident column, this is not guaranteed to be globally unique."""
+  """
+  The code that an aviation GPS database (such as Jeppesen's or Garmin's) would normally use for the airport. This will always be the ICAO code if one exists. Note that, unlike the ident column, this is not guaranteed to be globally unique.
+  """
   gpsCode: String
-  """The local country code for the airport, if different from the gps_code and iata_code fields (used mainly for US airports)."""
+  """
+  The local country code for the airport, if different from the gps_code and iata_code fields (used mainly for US airports).
+  """
   localCode: String
-  """The URL of the airport's website."""
+  """
+  The URL of the airport's website.
+  """
   website: String
-  """The URL of the airport's Wikipedia page."""
+  """
+  The URL of the airport's Wikipedia page.
+  """
   wikipedia: String
-  """Extra keywords/phrases to assist with search. May include former names for the airport, alternate codes, names in other languages, nearby tourist destinations, etc."""
+  """
+  Extra keywords/phrases to assist with search. May include former names for the airport, alternate codes, names in other languages, nearby tourist destinations, etc.
+  """
   keywords: [String!]!
-  """The region that the airport is located in."""
+  """
+  The region that the airport is located in.
+  """
   region: Region
-  """The country that the airport is located in."""
+  """
+  The country that the airport is located in.
+  """
   country: Country
-  """Frequencies at the airport."""
+  """
+  Frequencies at the airport.
+  """
   frequencies: [Frequency!]
-  """Weather station at the airport."""
+  """
+  Weather station at the airport.
+  """
   station: WeatherStation
 }
-"""Ordering options for Airport connections"""
+"""
+Ordering options for Airport connections
+"""
 input AirportOrder {
-  """The ordering direction."""
+  """
+  The ordering direction.
+  """
   direction: OrderDirection! = ASC
-  """The field by which to order Airports."""
+  """
+  The field by which to order Airports.
+  """
   field: AirportOrderField!
 }
-"""Properties by which Airport connections can be ordered."""
+"""
+Properties by which Airport connections can be ordered.
+"""
 enum AirportOrderField {
   ICAO_CODE
   IMPORTANCE
 }
-"""AirportType is enum for the field type"""
+"""
+AirportType is enum for the field type
+"""
 enum AirportType @goModel(model: "metar.gg/ent/airport.Type") {
   large_airport
   medium_airport
@@ -2049,24 +2113,42 @@ enum AirportType @goModel(model: "metar.gg/ent/airport.Type") {
   seaplane_base
 }
 type Country {
-  """The unique identifier of the record."""
+  """
+  The unique identifier of the record.
+  """
   id: ID!
-  """The unique identifier of the import."""
+  """
+  The unique identifier of the import.
+  """
   importID: Int!
-  """The last time the record was updated/created."""
+  """
+  The last time the record was updated/created.
+  """
   lastUpdated: Time!
-  """The ISO 3166-1 alpha-2 code of the country. A handful of unofficial, non-ISO codes are also in use, such as "XK" for Kosovo."""
+  """
+  The ISO 3166-1 alpha-2 code of the country. A handful of unofficial, non-ISO codes are also in use, such as "XK" for Kosovo.
+  """
   code: String!
-  """The name of the country."""
+  """
+  The name of the country.
+  """
   name: String!
-  """Where the airport is (primarily) located."""
+  """
+  Where the airport is (primarily) located.
+  """
   continent: CountryContinent!
-  """The wikipedia link of the country."""
+  """
+  The wikipedia link of the country.
+  """
   wikipediaLink: String!
-  """Keywords that can be used to search for the country."""
+  """
+  Keywords that can be used to search for the country.
+  """
   keywords: [String!]!
 }
-"""CountryContinent is enum for the field continent"""
+"""
+CountryContinent is enum for the field continent
+"""
 enum CountryContinent @goModel(model: "metar.gg/ent/country.Continent") {
   AF
   AN
@@ -2077,40 +2159,74 @@ enum CountryContinent @goModel(model: "metar.gg/ent/country.Continent") {
   OC
 }
 type Forecast {
-  """The unique identifier of the record."""
+  """
+  The unique identifier of the record.
+  """
   id: ID!
-  """The start time of the forecast period."""
+  """
+  The start time of the forecast period.
+  """
   fromTime: Time!
-  """The end time of the forecast period."""
+  """
+  The end time of the forecast period.
+  """
   toTime: Time!
-  """The change indicator."""
+  """
+  The change indicator.
+  """
   changeIndicator: ForecastChangeIndicator
-  """The time of the change."""
+  """
+  The time of the change.
+  """
   changeTime: Time
-  """The probability of the change."""
+  """
+  The probability of the change.
+  """
   changeProbability: Int
-  """The wind direction in degrees."""
+  """
+  The wind direction in degrees.
+  """
   windDirection: Int
-  """Whether the wind direction is variable (VRB)"""
+  """
+  Whether the wind direction is variable (VRB)
+  """
   windDirectionVariable: Boolean!
-  """The wind shear direction in degrees."""
+  """
+  The wind shear direction in degrees.
+  """
   windShearDirection: Int
-  """Whether the visibility is more than it's assigned value (+)"""
+  """
+  Whether the visibility is more than it's assigned value (+)
+  """
   visibilityHorizontalIsMoreThan: Boolean!
-  """The weather string."""
+  """
+  The weather string.
+  """
   weather: String
-  """The not decoded string."""
+  """
+  The not decoded string.
+  """
   notDecoded: String
-  """The sky conditions."""
+  """
+  The sky conditions.
+  """
   skyConditions: [SkyCondition!]
-  """The turbulence conditions."""
+  """
+  The turbulence conditions.
+  """
   turbulenceConditions: [TurbulenceCondition!]
-  """The icing conditions."""
+  """
+  The icing conditions.
+  """
   icingConditions: [IcingCondition!]
-  """The temperature data."""
+  """
+  The temperature data.
+  """
   temperatureData: [TemperatureData!]
 }
-"""ForecastChangeIndicator is enum for the field change_indicator"""
+"""
+ForecastChangeIndicator is enum for the field change_indicator
+"""
 enum ForecastChangeIndicator @goModel(model: "metar.gg/ent/forecast.ChangeIndicator") {
   BECMG
   FM
@@ -2118,183 +2234,329 @@ enum ForecastChangeIndicator @goModel(model: "metar.gg/ent/forecast.ChangeIndica
   PROB
 }
 type Frequency {
-  """The unique identifier of the record."""
+  """
+  The unique identifier of the record.
+  """
   id: ID!
-  """The unique identifier of the import."""
+  """
+  The unique identifier of the import.
+  """
   importID: Int!
-  """The last time the record was updated/created."""
+  """
+  The last time the record was updated/created.
+  """
   lastUpdated: Time!
-  """A code for the frequency type. Some common values are "TWR" (tower), "ATF" or "CTAF" (common traffic frequency), "GND" (ground control), "RMP" (ramp control), "ATIS" (automated weather), "RCO" (remote radio outlet), "ARR" (arrivals), "DEP" (departures), "UNICOM" (monitored ground station), and "RDO" (a flight-service station)."""
+  """
+  A code for the frequency type. Some common values are "TWR" (tower), "ATF" or "CTAF" (common traffic frequency), "GND" (ground control), "RMP" (ramp control), "ATIS" (automated weather), "RCO" (remote radio outlet), "ARR" (arrivals), "DEP" (departures), "UNICOM" (monitored ground station), and "RDO" (a flight-service station).
+  """
   type: String!
-  """A description of the frequency."""
+  """
+  A description of the frequency.
+  """
   description: String!
-  """Radio frequency in megahertz. Note that the same frequency may appear multiple times for an airport, serving different functions"""
+  """
+  Radio frequency in megahertz. Note that the same frequency may appear multiple times for an airport, serving different functions
+  """
   frequency: Float!
   airport: Airport
 }
 type IcingCondition {
-  """The unique identifier of the record."""
+  """
+  The unique identifier of the record.
+  """
   id: ID!
-  """The intensity of the icing."""
+  """
+  The intensity of the icing.
+  """
   intensity: String!
 }
 type Metar {
-  """The unique identifier of the record."""
+  """
+  The unique identifier of the record.
+  """
   id: ID!
-  """The raw METAR text."""
+  """
+  The raw METAR text.
+  """
   rawText: String!
-  """The time the METAR was observed."""
+  """
+  The time the METAR was observed.
+  """
   observationTime: Time!
-  """The time the METAR was imported."""
+  """
+  The time the METAR was imported.
+  """
   importTime: Time!
-  """The time the METAR is expected to be imported/available next."""
+  """
+  The time the METAR is expected to be imported/available next.
+  """
   nextImportTimePrediction: Time
-  """The wind direction in degrees, or 0 if calm."""
+  """
+  The wind direction in degrees, or 0 if calm.
+  """
   windDirection: Int
-  """Whether the wind direction is variable (VRB)"""
+  """
+  Whether the wind direction is variable (VRB)
+  """
   windDirectionVariable: Boolean!
-  """Whether the visibility is more than it's assigned value (+)"""
+  """
+  Whether the visibility is more than it's assigned value (+)
+  """
   visibilityIsMoreThan: Boolean!
-  """The present weather string."""
+  """
+  The present weather string.
+  """
   presentWeather: String
   flightCategory: MetarFlightCategory
-  """Quality control corrected."""
+  """
+  Quality control corrected.
+  """
   qualityControlCorrected: Boolean
-  """Whether it's an automated station, of one of the following types A01|A01A|A02|A02A|AOA|AWOS."""
+  """
+  Whether it's an automated station, of one of the following types A01|A01A|A02|A02A|AOA|AWOS.
+  """
   qualityControlAutoStation: Boolean!
-  """Maintenance check indicator - maintenance is needed."""
+  """
+  Maintenance check indicator - maintenance is needed.
+  """
   qualityControlMaintenanceIndicatorOn: Boolean!
-  """No signal."""
+  """
+  No signal.
+  """
   qualityControlNoSignal: Boolean!
-  """Whether Lightning sensor is off."""
+  """
+  Whether Lightning sensor is off.
+  """
   qualityControlLightningSensorOff: Boolean!
-  """Whether Freezing rain sensor is off."""
+  """
+  Whether Freezing rain sensor is off.
+  """
   qualityControlFreezingRainSensorOff: Boolean!
-  """Whether Present weather sensor is off."""
+  """
+  Whether Present weather sensor is off.
+  """
   qualityControlPresentWeatherSensorOff: Boolean!
-  """The maximum air temperature in Celsius from the past 6 hours."""
+  """
+  The maximum air temperature in Celsius from the past 6 hours.
+  """
   maxTemp6: Float
-  """The minimum air temperature in Celsius from the past 6 hours."""
+  """
+  The minimum air temperature in Celsius from the past 6 hours.
+  """
   minTemp6: Float
-  """The maximum air temperature in Celsius from the past 24 hours."""
+  """
+  The maximum air temperature in Celsius from the past 24 hours.
+  """
   maxTemp24: Float
-  """The minimum air temperature in Celsius from the past 24 hours."""
+  """
+  The minimum air temperature in Celsius from the past 24 hours.
+  """
   minTemp24: Float
-  """The precipitation in inches from since the last observation. 0.0005 in = trace precipitation."""
+  """
+  The precipitation in inches from since the last observation. 0.0005 in = trace precipitation.
+  """
   precipitation: Float
-  """The precipitation in inches from the past 3 hours. 0.0005 in = trace precipitation."""
+  """
+  The precipitation in inches from the past 3 hours. 0.0005 in = trace precipitation.
+  """
   precipitation3: Float
-  """The precipitation in inches from the past 6 hours. 0.0005 in = trace precipitation."""
+  """
+  The precipitation in inches from the past 6 hours. 0.0005 in = trace precipitation.
+  """
   precipitation6: Float
-  """The precipitation in inches from the past 24 hours. 0.0005 in = trace precipitation."""
+  """
+  The precipitation in inches from the past 24 hours. 0.0005 in = trace precipitation.
+  """
   precipitation24: Float
-  """The type of METAR."""
+  """
+  The type of METAR.
+  """
   metarType: MetarMetarType!
-  """The station that provided the METAR."""
+  """
+  The station that provided the METAR.
+  """
   station: WeatherStation!
-  """The sky conditions."""
+  """
+  The sky conditions.
+  """
   skyConditions: [SkyCondition!]
 }
-"""MetarFlightCategory is enum for the field flight_category"""
+"""
+MetarFlightCategory is enum for the field flight_category
+"""
 enum MetarFlightCategory @goModel(model: "metar.gg/ent/metar.FlightCategory") {
   VFR
   MVFR
   IFR
   LIFR
 }
-"""MetarMetarType is enum for the field metar_type"""
+"""
+MetarMetarType is enum for the field metar_type
+"""
 enum MetarMetarType @goModel(model: "metar.gg/ent/metar.MetarType") {
   METAR
   SPECI
 }
-"""Ordering options for Metar connections"""
+"""
+Ordering options for Metar connections
+"""
 input MetarOrder {
-  """The ordering direction."""
+  """
+  The ordering direction.
+  """
   direction: OrderDirection! = ASC
-  """The field by which to order Metars."""
+  """
+  The field by which to order Metars.
+  """
   field: MetarOrderField!
 }
-"""Properties by which Metar connections can be ordered."""
+"""
+Properties by which Metar connections can be ordered.
+"""
 enum MetarOrderField {
   OBSERVATION_TIME
 }
-"""Possible directions in which to order a list of items when provided an ` + "`" + `orderBy` + "`" + ` argument."""
+"""
+Possible directions in which to order a list of items when provided an ` + "`" + `orderBy` + "`" + ` argument.
+"""
 enum OrderDirection {
-  """Specifies an ascending order for a given ` + "`" + `orderBy` + "`" + ` argument."""
+  """
+  Specifies an ascending order for a given ` + "`" + `orderBy` + "`" + ` argument.
+  """
   ASC
-  """Specifies a descending order for a given ` + "`" + `orderBy` + "`" + ` argument."""
+  """
+  Specifies a descending order for a given ` + "`" + `orderBy` + "`" + ` argument.
+  """
   DESC
 }
 type Region {
-  """The unique identifier of the record."""
+  """
+  The unique identifier of the record.
+  """
   id: ID!
-  """The unique identifier of the import."""
+  """
+  The unique identifier of the import.
+  """
   importID: Int!
-  """The last time the record was updated/created."""
+  """
+  The last time the record was updated/created.
+  """
   lastUpdated: Time!
-  """local_code prefixed with the country code to make a globally-unique identifier."""
+  """
+  local_code prefixed with the country code to make a globally-unique identifier.
+  """
   code: String!
-  """The local code for the administrative subdivision. Whenever possible, these are official ISO 3166:2, at the highest level available, but in some cases OurAirports has to use unofficial codes. There is also a pseudo code "U-A" for each country, which means that the airport has not yet been assigned to a region (or perhaps can't be, as in the case of a deep-sea oil platform)."""
+  """
+  The local code for the administrative subdivision. Whenever possible, these are official ISO 3166:2, at the highest level available, but in some cases OurAirports has to use unofficial codes. There is also a pseudo code "U-A" for each country, which means that the airport has not yet been assigned to a region (or perhaps can't be, as in the case of a deep-sea oil platform).
+  """
   localCode: String!
   name: String!
-  """The wikipedia link of the region."""
+  """
+  The wikipedia link of the region.
+  """
   wikipediaLink: String!
-  """Keywords that can be used to search for the region."""
+  """
+  Keywords that can be used to search for the region.
+  """
   keywords: [String!]!
 }
 type Runway {
-  """The unique identifier of the record."""
+  """
+  The unique identifier of the record.
+  """
   id: ID!
-  """The unique identifier of the import."""
+  """
+  The unique identifier of the import.
+  """
   importID: Int!
-  """The last time the record was updated/created."""
+  """
+  The last time the record was updated/created.
+  """
   lastUpdated: Time!
-  """Code for the runway surface type. This is not yet a controlled vocabulary, but probably will be soon. Some common values include "ASP" (asphalt), "TURF" (turf), "CON" (concrete), "GRS" (grass), "GRE" (gravel), "WATER" (water), and "UNK" (unknown)."""
+  """
+  Code for the runway surface type. This is not yet a controlled vocabulary, but probably will be soon. Some common values include "ASP" (asphalt), "TURF" (turf), "CON" (concrete), "GRS" (grass), "GRE" (gravel), "WATER" (water), and "UNK" (unknown).
+  """
   surface: String
-  """Whether the runway is lighted at night or not."""
+  """
+  Whether the runway is lighted at night or not.
+  """
   lighted: Boolean!
-  """Whether the runway is currently closed or not."""
+  """
+  Whether the runway is currently closed or not.
+  """
   closed: Boolean!
-  """Low numbered runway identifier, like 18R."""
+  """
+  Low numbered runway identifier, like 18R.
+  """
   lowRunwayIdentifier: String!
-  """Latitude of the low numbered runway end, in decimal degrees (positive is north)."""
+  """
+  Latitude of the low numbered runway end, in decimal degrees (positive is north).
+  """
   lowRunwayLatitude: Float
-  """Longitude of the low numbered runway end, in decimal degrees (positive is east)."""
+  """
+  Longitude of the low numbered runway end, in decimal degrees (positive is east).
+  """
   lowRunwayLongitude: Float
-  """Elevation of the low numbered runway end, in feet."""
+  """
+  Elevation of the low numbered runway end, in feet.
+  """
   lowRunwayElevation: Int
-  """True (not magnetic) heading of the lower numbered runway."""
+  """
+  True (not magnetic) heading of the lower numbered runway.
+  """
   lowRunwayHeading: Float
-  """Displaced threshold length of the lower numbered runway end, in feet."""
+  """
+  Displaced threshold length of the lower numbered runway end, in feet.
+  """
   lowRunwayDisplacedThreshold: Int
-  """High numbered runway identifier, like 01L."""
+  """
+  High numbered runway identifier, like 01L.
+  """
   highRunwayIdentifier: String!
-  """Latitude of the high numbered runway end, in decimal degrees (positive is north)."""
+  """
+  Latitude of the high numbered runway end, in decimal degrees (positive is north).
+  """
   highRunwayLatitude: Float
-  """Longitude of the high numbered runway end, in decimal degrees (positive is east)."""
+  """
+  Longitude of the high numbered runway end, in decimal degrees (positive is east).
+  """
   highRunwayLongitude: Float
-  """Elevation of the high numbered runway end, in feet."""
+  """
+  Elevation of the high numbered runway end, in feet.
+  """
   highRunwayElevation: Int
-  """True (not magnetic) heading of the higher numbered runway."""
+  """
+  True (not magnetic) heading of the higher numbered runway.
+  """
   highRunwayHeading: Float
-  """Displaced threshold length of the higher numbered runway end, in feet."""
+  """
+  Displaced threshold length of the higher numbered runway end, in feet.
+  """
   highRunwayDisplacedThreshold: Int
   airport: Airport
 }
 type SkyCondition {
-  """The unique identifier of the record."""
+  """
+  The unique identifier of the record.
+  """
   id: ID!
   skyCover: SkyConditionSkyCover!
-  """Cloud type. Only present in TAFs."""
+  """
+  Cloud type. Only present in TAFs.
+  """
   cloudType: SkyConditionCloudType
 }
-"""SkyConditionCloudType is enum for the field cloud_type"""
+"""
+SkyConditionCloudType is enum for the field cloud_type
+"""
 enum SkyConditionCloudType @goModel(model: "metar.gg/ent/skycondition.CloudType") {
   CB
   CU
   TCU
 }
-"""SkyConditionSkyCover is enum for the field sky_cover"""
+"""
+SkyConditionSkyCover is enum for the field sky_cover
+"""
 enum SkyConditionSkyCover @goModel(model: "metar.gg/ent/skycondition.SkyCover") {
   SKC
   FEW
@@ -2308,63 +2570,111 @@ enum SkyConditionSkyCover @goModel(model: "metar.gg/ent/skycondition.SkyCover") 
   CAVOK
 }
 type Taf {
-  """The unique identifier of the record."""
+  """
+  The unique identifier of the record.
+  """
   id: ID!
-  """The raw TAF text."""
+  """
+  The raw TAF text.
+  """
   rawText: String!
-  """The time the TAF was issued."""
+  """
+  The time the TAF was issued.
+  """
   issueTime: Time!
-  """The time the TAF was imported."""
+  """
+  The time the TAF was imported.
+  """
   importTime: Time!
-  """TAF bulletin time."""
+  """
+  TAF bulletin time.
+  """
   bulletinTime: Time!
-  """The start time of the TAF validity period."""
+  """
+  The start time of the TAF validity period.
+  """
   validFromTime: Time!
-  """The end time of the TAF validity period."""
+  """
+  The end time of the TAF validity period.
+  """
   validToTime: Time!
-  """Remarks."""
+  """
+  Remarks.
+  """
   remarks: String!
-  """The station that issued this taf."""
+  """
+  The station that issued this taf.
+  """
   station: WeatherStation!
-  """The forecasts"""
+  """
+  The forecasts
+  """
   forecast: [Forecast!]
 }
-"""Ordering options for Taf connections"""
+"""
+Ordering options for Taf connections
+"""
 input TafOrder {
-  """The ordering direction."""
+  """
+  The ordering direction.
+  """
   direction: OrderDirection! = ASC
-  """The field by which to order Tafs."""
+  """
+  The field by which to order Tafs.
+  """
   field: TafOrderField!
 }
-"""Properties by which Taf connections can be ordered."""
+"""
+Properties by which Taf connections can be ordered.
+"""
 enum TafOrderField {
   ISSUE_TIME
   valid_from_time
 }
 type TemperatureData {
-  """The unique identifier of the record."""
+  """
+  The unique identifier of the record.
+  """
   id: ID!
-  """The time the temperature data is valid."""
+  """
+  The time the temperature data is valid.
+  """
   validTime: Time!
 }
 type TurbulenceCondition {
-  """The unique identifier of the record."""
+  """
+  The unique identifier of the record.
+  """
   id: ID!
-  """The intensity of the turbulence."""
+  """
+  The intensity of the turbulence.
+  """
   intensity: String!
 }
 type WeatherStation {
-  """The unique identifier of the record."""
+  """
+  The unique identifier of the record.
+  """
   id: ID!
-  """The ICAO identifier of the station that provided the weather data or identifier of the weather station."""
+  """
+  The ICAO identifier of the station that provided the weather data or identifier of the weather station.
+  """
   stationID: String!
-  """The latitude in decimal degrees of the station."""
+  """
+  The latitude in decimal degrees of the station.
+  """
   latitude: Float
-  """The longitude in decimal degrees of the station."""
+  """
+  The longitude in decimal degrees of the station.
+  """
   longitude: Float
-  """The elevation in meters of the station."""
+  """
+  The elevation in meters of the station.
+  """
   elevation: Float
-  """The airport that hosts this station. This can also be empty if the metar is from a weather station outside an airport."""
+  """
+  The airport that hosts this station. This can also be empty if the metar is from a weather station outside an airport.
+  """
   airport: Airport
 }
 `, BuiltIn: false},
@@ -2490,6 +2800,17 @@ type Query {
         """Filter whether the airport provides METARs and has recent ones."""
         hasWeather: Boolean
 
+        """Filter on the importance of the airport. This is a greater than filter.
+            The mapping is as follows:
+            0: Closed
+            1: Seaplane base
+            2: Heliport
+            3: Small airport
+            4: Medium airport
+            5: Large airport
+        """
+        importance: Int
+
         order: [AirportOrder!]
     ): AirportConnection!
 
@@ -2509,7 +2830,8 @@ type Query {
 
     """Get a single weather station by it's id or identifier."""
     getStation(id: String, identifier: String): WeatherStation
-}`, BuiltIn: false},
+}
+`, BuiltIn: false},
 	{Name: "../schema.models.graphql", Input: `type StationWithDistance {
     """The distance in meters from the given location to the airport."""
     distance: Float!

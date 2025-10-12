@@ -9,7 +9,6 @@ import (
 	"strconv"
 	"sync"
 	"sync/atomic"
-	"time"
 
 	"entgo.io/contrib/entgql"
 	"github.com/99designs/gqlgen/graphql"
@@ -80,529 +79,377 @@ type WeatherStationResolver interface {
 
 // region    ***************************** args.gotpl *****************************
 
-func (ec *executionContext) field_Airport_runways_args(ctx context.Context, rawArgs map[string]interface{}) (map[string]interface{}, error) {
+func (ec *executionContext) field_Airport_runways_args(ctx context.Context, rawArgs map[string]any) (map[string]any, error) {
 	var err error
-	args := map[string]interface{}{}
-	var arg0 *bool
-	if tmp, ok := rawArgs["closed"]; ok {
-		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("closed"))
-		arg0, err = ec.unmarshalOBoolean2ᚖbool(ctx, tmp)
-		if err != nil {
-			return nil, err
-		}
+	args := map[string]any{}
+	arg0, err := graphql.ProcessArgField(ctx, rawArgs, "closed", ec.unmarshalOBoolean2ᚖbool)
+	if err != nil {
+		return nil, err
 	}
 	args["closed"] = arg0
 	return args, nil
 }
 
-func (ec *executionContext) field_Airport_stationsVicinity_args(ctx context.Context, rawArgs map[string]interface{}) (map[string]interface{}, error) {
+func (ec *executionContext) field_Airport_stationsVicinity_args(ctx context.Context, rawArgs map[string]any) (map[string]any, error) {
 	var err error
-	args := map[string]interface{}{}
-	var arg0 *int
-	if tmp, ok := rawArgs["first"]; ok {
-		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("first"))
-		arg0, err = ec.unmarshalOInt2ᚖint(ctx, tmp)
-		if err != nil {
-			return nil, err
-		}
+	args := map[string]any{}
+	arg0, err := graphql.ProcessArgField(ctx, rawArgs, "first", ec.unmarshalOInt2ᚖint)
+	if err != nil {
+		return nil, err
 	}
 	args["first"] = arg0
-	var arg1 *float64
-	if tmp, ok := rawArgs["radius"]; ok {
-		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("radius"))
-		arg1, err = ec.unmarshalOFloat2ᚖfloat64(ctx, tmp)
-		if err != nil {
-			return nil, err
-		}
+	arg1, err := graphql.ProcessArgField(ctx, rawArgs, "radius", ec.unmarshalOFloat2ᚖfloat64)
+	if err != nil {
+		return nil, err
 	}
 	args["radius"] = arg1
 	return args, nil
 }
 
-func (ec *executionContext) field_Forecast_altimeter_args(ctx context.Context, rawArgs map[string]interface{}) (map[string]interface{}, error) {
+func (ec *executionContext) field_Forecast_altimeter_args(ctx context.Context, rawArgs map[string]any) (map[string]any, error) {
 	var err error
-	args := map[string]interface{}{}
-	var arg0 model.PressureUnit
-	if tmp, ok := rawArgs["unit"]; ok {
-		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("unit"))
-		arg0, err = ec.unmarshalNPressureUnit2metarᚗggᚋgraphᚋmodelᚐPressureUnit(ctx, tmp)
-		if err != nil {
-			return nil, err
-		}
+	args := map[string]any{}
+	arg0, err := graphql.ProcessArgField(ctx, rawArgs, "unit", ec.unmarshalNPressureUnit2metarᚗggᚋgraphᚋmodelᚐPressureUnit)
+	if err != nil {
+		return nil, err
 	}
 	args["unit"] = arg0
 	return args, nil
 }
 
-func (ec *executionContext) field_Forecast_visibilityHorizontal_args(ctx context.Context, rawArgs map[string]interface{}) (map[string]interface{}, error) {
+func (ec *executionContext) field_Forecast_visibilityHorizontal_args(ctx context.Context, rawArgs map[string]any) (map[string]any, error) {
 	var err error
-	args := map[string]interface{}{}
-	var arg0 model.LengthUnit
-	if tmp, ok := rawArgs["unit"]; ok {
-		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("unit"))
-		arg0, err = ec.unmarshalNLengthUnit2metarᚗggᚋgraphᚋmodelᚐLengthUnit(ctx, tmp)
-		if err != nil {
-			return nil, err
-		}
+	args := map[string]any{}
+	arg0, err := graphql.ProcessArgField(ctx, rawArgs, "unit", ec.unmarshalNLengthUnit2metarᚗggᚋgraphᚋmodelᚐLengthUnit)
+	if err != nil {
+		return nil, err
 	}
 	args["unit"] = arg0
 	return args, nil
 }
 
-func (ec *executionContext) field_Forecast_visibilityVertical_args(ctx context.Context, rawArgs map[string]interface{}) (map[string]interface{}, error) {
+func (ec *executionContext) field_Forecast_visibilityVertical_args(ctx context.Context, rawArgs map[string]any) (map[string]any, error) {
 	var err error
-	args := map[string]interface{}{}
-	var arg0 model.LengthUnit
-	if tmp, ok := rawArgs["unit"]; ok {
-		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("unit"))
-		arg0, err = ec.unmarshalNLengthUnit2metarᚗggᚋgraphᚋmodelᚐLengthUnit(ctx, tmp)
-		if err != nil {
-			return nil, err
-		}
+	args := map[string]any{}
+	arg0, err := graphql.ProcessArgField(ctx, rawArgs, "unit", ec.unmarshalNLengthUnit2metarᚗggᚋgraphᚋmodelᚐLengthUnit)
+	if err != nil {
+		return nil, err
 	}
 	args["unit"] = arg0
 	return args, nil
 }
 
-func (ec *executionContext) field_Forecast_windGust_args(ctx context.Context, rawArgs map[string]interface{}) (map[string]interface{}, error) {
+func (ec *executionContext) field_Forecast_windGust_args(ctx context.Context, rawArgs map[string]any) (map[string]any, error) {
 	var err error
-	args := map[string]interface{}{}
-	var arg0 model.SpeedUnit
-	if tmp, ok := rawArgs["unit"]; ok {
-		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("unit"))
-		arg0, err = ec.unmarshalNSpeedUnit2metarᚗggᚋgraphᚋmodelᚐSpeedUnit(ctx, tmp)
-		if err != nil {
-			return nil, err
-		}
+	args := map[string]any{}
+	arg0, err := graphql.ProcessArgField(ctx, rawArgs, "unit", ec.unmarshalNSpeedUnit2metarᚗggᚋgraphᚋmodelᚐSpeedUnit)
+	if err != nil {
+		return nil, err
 	}
 	args["unit"] = arg0
 	return args, nil
 }
 
-func (ec *executionContext) field_Forecast_windShearHeight_args(ctx context.Context, rawArgs map[string]interface{}) (map[string]interface{}, error) {
+func (ec *executionContext) field_Forecast_windShearHeight_args(ctx context.Context, rawArgs map[string]any) (map[string]any, error) {
 	var err error
-	args := map[string]interface{}{}
-	var arg0 model.LengthUnit
-	if tmp, ok := rawArgs["unit"]; ok {
-		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("unit"))
-		arg0, err = ec.unmarshalNLengthUnit2metarᚗggᚋgraphᚋmodelᚐLengthUnit(ctx, tmp)
-		if err != nil {
-			return nil, err
-		}
+	args := map[string]any{}
+	arg0, err := graphql.ProcessArgField(ctx, rawArgs, "unit", ec.unmarshalNLengthUnit2metarᚗggᚋgraphᚋmodelᚐLengthUnit)
+	if err != nil {
+		return nil, err
 	}
 	args["unit"] = arg0
 	return args, nil
 }
 
-func (ec *executionContext) field_Forecast_windShearSpeed_args(ctx context.Context, rawArgs map[string]interface{}) (map[string]interface{}, error) {
+func (ec *executionContext) field_Forecast_windShearSpeed_args(ctx context.Context, rawArgs map[string]any) (map[string]any, error) {
 	var err error
-	args := map[string]interface{}{}
-	var arg0 model.SpeedUnit
-	if tmp, ok := rawArgs["unit"]; ok {
-		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("unit"))
-		arg0, err = ec.unmarshalNSpeedUnit2metarᚗggᚋgraphᚋmodelᚐSpeedUnit(ctx, tmp)
-		if err != nil {
-			return nil, err
-		}
+	args := map[string]any{}
+	arg0, err := graphql.ProcessArgField(ctx, rawArgs, "unit", ec.unmarshalNSpeedUnit2metarᚗggᚋgraphᚋmodelᚐSpeedUnit)
+	if err != nil {
+		return nil, err
 	}
 	args["unit"] = arg0
 	return args, nil
 }
 
-func (ec *executionContext) field_Forecast_windSpeed_args(ctx context.Context, rawArgs map[string]interface{}) (map[string]interface{}, error) {
+func (ec *executionContext) field_Forecast_windSpeed_args(ctx context.Context, rawArgs map[string]any) (map[string]any, error) {
 	var err error
-	args := map[string]interface{}{}
-	var arg0 model.SpeedUnit
-	if tmp, ok := rawArgs["unit"]; ok {
-		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("unit"))
-		arg0, err = ec.unmarshalNSpeedUnit2metarᚗggᚋgraphᚋmodelᚐSpeedUnit(ctx, tmp)
-		if err != nil {
-			return nil, err
-		}
+	args := map[string]any{}
+	arg0, err := graphql.ProcessArgField(ctx, rawArgs, "unit", ec.unmarshalNSpeedUnit2metarᚗggᚋgraphᚋmodelᚐSpeedUnit)
+	if err != nil {
+		return nil, err
 	}
 	args["unit"] = arg0
 	return args, nil
 }
 
-func (ec *executionContext) field_IcingCondition_maxAltitude_args(ctx context.Context, rawArgs map[string]interface{}) (map[string]interface{}, error) {
+func (ec *executionContext) field_IcingCondition_maxAltitude_args(ctx context.Context, rawArgs map[string]any) (map[string]any, error) {
 	var err error
-	args := map[string]interface{}{}
-	var arg0 model.LengthUnit
-	if tmp, ok := rawArgs["unit"]; ok {
-		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("unit"))
-		arg0, err = ec.unmarshalNLengthUnit2metarᚗggᚋgraphᚋmodelᚐLengthUnit(ctx, tmp)
-		if err != nil {
-			return nil, err
-		}
+	args := map[string]any{}
+	arg0, err := graphql.ProcessArgField(ctx, rawArgs, "unit", ec.unmarshalNLengthUnit2metarᚗggᚋgraphᚋmodelᚐLengthUnit)
+	if err != nil {
+		return nil, err
 	}
 	args["unit"] = arg0
 	return args, nil
 }
 
-func (ec *executionContext) field_IcingCondition_minAltitude_args(ctx context.Context, rawArgs map[string]interface{}) (map[string]interface{}, error) {
+func (ec *executionContext) field_IcingCondition_minAltitude_args(ctx context.Context, rawArgs map[string]any) (map[string]any, error) {
 	var err error
-	args := map[string]interface{}{}
-	var arg0 model.LengthUnit
-	if tmp, ok := rawArgs["unit"]; ok {
-		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("unit"))
-		arg0, err = ec.unmarshalNLengthUnit2metarᚗggᚋgraphᚋmodelᚐLengthUnit(ctx, tmp)
-		if err != nil {
-			return nil, err
-		}
+	args := map[string]any{}
+	arg0, err := graphql.ProcessArgField(ctx, rawArgs, "unit", ec.unmarshalNLengthUnit2metarᚗggᚋgraphᚋmodelᚐLengthUnit)
+	if err != nil {
+		return nil, err
 	}
 	args["unit"] = arg0
 	return args, nil
 }
 
-func (ec *executionContext) field_Metar_altimeter_args(ctx context.Context, rawArgs map[string]interface{}) (map[string]interface{}, error) {
+func (ec *executionContext) field_Metar_altimeter_args(ctx context.Context, rawArgs map[string]any) (map[string]any, error) {
 	var err error
-	args := map[string]interface{}{}
-	var arg0 model.PressureUnit
-	if tmp, ok := rawArgs["unit"]; ok {
-		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("unit"))
-		arg0, err = ec.unmarshalNPressureUnit2metarᚗggᚋgraphᚋmodelᚐPressureUnit(ctx, tmp)
-		if err != nil {
-			return nil, err
-		}
+	args := map[string]any{}
+	arg0, err := graphql.ProcessArgField(ctx, rawArgs, "unit", ec.unmarshalNPressureUnit2metarᚗggᚋgraphᚋmodelᚐPressureUnit)
+	if err != nil {
+		return nil, err
 	}
 	args["unit"] = arg0
 	return args, nil
 }
 
-func (ec *executionContext) field_Metar_dewpoint_args(ctx context.Context, rawArgs map[string]interface{}) (map[string]interface{}, error) {
+func (ec *executionContext) field_Metar_dewpoint_args(ctx context.Context, rawArgs map[string]any) (map[string]any, error) {
 	var err error
-	args := map[string]interface{}{}
-	var arg0 model.TemperatureUnit
-	if tmp, ok := rawArgs["unit"]; ok {
-		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("unit"))
-		arg0, err = ec.unmarshalNTemperatureUnit2metarᚗggᚋgraphᚋmodelᚐTemperatureUnit(ctx, tmp)
-		if err != nil {
-			return nil, err
-		}
+	args := map[string]any{}
+	arg0, err := graphql.ProcessArgField(ctx, rawArgs, "unit", ec.unmarshalNTemperatureUnit2metarᚗggᚋgraphᚋmodelᚐTemperatureUnit)
+	if err != nil {
+		return nil, err
 	}
 	args["unit"] = arg0
 	return args, nil
 }
 
-func (ec *executionContext) field_Metar_pressureTendency_args(ctx context.Context, rawArgs map[string]interface{}) (map[string]interface{}, error) {
+func (ec *executionContext) field_Metar_pressureTendency_args(ctx context.Context, rawArgs map[string]any) (map[string]any, error) {
 	var err error
-	args := map[string]interface{}{}
-	var arg0 model.PressureUnit
-	if tmp, ok := rawArgs["unit"]; ok {
-		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("unit"))
-		arg0, err = ec.unmarshalNPressureUnit2metarᚗggᚋgraphᚋmodelᚐPressureUnit(ctx, tmp)
-		if err != nil {
-			return nil, err
-		}
+	args := map[string]any{}
+	arg0, err := graphql.ProcessArgField(ctx, rawArgs, "unit", ec.unmarshalNPressureUnit2metarᚗggᚋgraphᚋmodelᚐPressureUnit)
+	if err != nil {
+		return nil, err
 	}
 	args["unit"] = arg0
 	return args, nil
 }
 
-func (ec *executionContext) field_Metar_seaLevelPressure_args(ctx context.Context, rawArgs map[string]interface{}) (map[string]interface{}, error) {
+func (ec *executionContext) field_Metar_seaLevelPressure_args(ctx context.Context, rawArgs map[string]any) (map[string]any, error) {
 	var err error
-	args := map[string]interface{}{}
-	var arg0 model.PressureUnit
-	if tmp, ok := rawArgs["unit"]; ok {
-		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("unit"))
-		arg0, err = ec.unmarshalNPressureUnit2metarᚗggᚋgraphᚋmodelᚐPressureUnit(ctx, tmp)
-		if err != nil {
-			return nil, err
-		}
+	args := map[string]any{}
+	arg0, err := graphql.ProcessArgField(ctx, rawArgs, "unit", ec.unmarshalNPressureUnit2metarᚗggᚋgraphᚋmodelᚐPressureUnit)
+	if err != nil {
+		return nil, err
 	}
 	args["unit"] = arg0
 	return args, nil
 }
 
-func (ec *executionContext) field_Metar_snowDepth_args(ctx context.Context, rawArgs map[string]interface{}) (map[string]interface{}, error) {
+func (ec *executionContext) field_Metar_snowDepth_args(ctx context.Context, rawArgs map[string]any) (map[string]any, error) {
 	var err error
-	args := map[string]interface{}{}
-	var arg0 model.SmallLengthUnit
-	if tmp, ok := rawArgs["unit"]; ok {
-		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("unit"))
-		arg0, err = ec.unmarshalNSmallLengthUnit2metarᚗggᚋgraphᚋmodelᚐSmallLengthUnit(ctx, tmp)
-		if err != nil {
-			return nil, err
-		}
+	args := map[string]any{}
+	arg0, err := graphql.ProcessArgField(ctx, rawArgs, "unit", ec.unmarshalNSmallLengthUnit2metarᚗggᚋgraphᚋmodelᚐSmallLengthUnit)
+	if err != nil {
+		return nil, err
 	}
 	args["unit"] = arg0
 	return args, nil
 }
 
-func (ec *executionContext) field_Metar_temperature_args(ctx context.Context, rawArgs map[string]interface{}) (map[string]interface{}, error) {
+func (ec *executionContext) field_Metar_temperature_args(ctx context.Context, rawArgs map[string]any) (map[string]any, error) {
 	var err error
-	args := map[string]interface{}{}
-	var arg0 model.TemperatureUnit
-	if tmp, ok := rawArgs["unit"]; ok {
-		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("unit"))
-		arg0, err = ec.unmarshalNTemperatureUnit2metarᚗggᚋgraphᚋmodelᚐTemperatureUnit(ctx, tmp)
-		if err != nil {
-			return nil, err
-		}
+	args := map[string]any{}
+	arg0, err := graphql.ProcessArgField(ctx, rawArgs, "unit", ec.unmarshalNTemperatureUnit2metarᚗggᚋgraphᚋmodelᚐTemperatureUnit)
+	if err != nil {
+		return nil, err
 	}
 	args["unit"] = arg0
 	return args, nil
 }
 
-func (ec *executionContext) field_Metar_verticalVisibility_args(ctx context.Context, rawArgs map[string]interface{}) (map[string]interface{}, error) {
+func (ec *executionContext) field_Metar_verticalVisibility_args(ctx context.Context, rawArgs map[string]any) (map[string]any, error) {
 	var err error
-	args := map[string]interface{}{}
-	var arg0 model.LengthUnit
-	if tmp, ok := rawArgs["unit"]; ok {
-		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("unit"))
-		arg0, err = ec.unmarshalNLengthUnit2metarᚗggᚋgraphᚋmodelᚐLengthUnit(ctx, tmp)
-		if err != nil {
-			return nil, err
-		}
+	args := map[string]any{}
+	arg0, err := graphql.ProcessArgField(ctx, rawArgs, "unit", ec.unmarshalNLengthUnit2metarᚗggᚋgraphᚋmodelᚐLengthUnit)
+	if err != nil {
+		return nil, err
 	}
 	args["unit"] = arg0
 	return args, nil
 }
 
-func (ec *executionContext) field_Metar_visibility_args(ctx context.Context, rawArgs map[string]interface{}) (map[string]interface{}, error) {
+func (ec *executionContext) field_Metar_visibility_args(ctx context.Context, rawArgs map[string]any) (map[string]any, error) {
 	var err error
-	args := map[string]interface{}{}
-	var arg0 model.LengthUnit
-	if tmp, ok := rawArgs["unit"]; ok {
-		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("unit"))
-		arg0, err = ec.unmarshalNLengthUnit2metarᚗggᚋgraphᚋmodelᚐLengthUnit(ctx, tmp)
-		if err != nil {
-			return nil, err
-		}
+	args := map[string]any{}
+	arg0, err := graphql.ProcessArgField(ctx, rawArgs, "unit", ec.unmarshalNLengthUnit2metarᚗggᚋgraphᚋmodelᚐLengthUnit)
+	if err != nil {
+		return nil, err
 	}
 	args["unit"] = arg0
 	return args, nil
 }
 
-func (ec *executionContext) field_Metar_windGust_args(ctx context.Context, rawArgs map[string]interface{}) (map[string]interface{}, error) {
+func (ec *executionContext) field_Metar_windGust_args(ctx context.Context, rawArgs map[string]any) (map[string]any, error) {
 	var err error
-	args := map[string]interface{}{}
-	var arg0 model.SpeedUnit
-	if tmp, ok := rawArgs["unit"]; ok {
-		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("unit"))
-		arg0, err = ec.unmarshalNSpeedUnit2metarᚗggᚋgraphᚋmodelᚐSpeedUnit(ctx, tmp)
-		if err != nil {
-			return nil, err
-		}
+	args := map[string]any{}
+	arg0, err := graphql.ProcessArgField(ctx, rawArgs, "unit", ec.unmarshalNSpeedUnit2metarᚗggᚋgraphᚋmodelᚐSpeedUnit)
+	if err != nil {
+		return nil, err
 	}
 	args["unit"] = arg0
 	return args, nil
 }
 
-func (ec *executionContext) field_Metar_windSpeed_args(ctx context.Context, rawArgs map[string]interface{}) (map[string]interface{}, error) {
+func (ec *executionContext) field_Metar_windSpeed_args(ctx context.Context, rawArgs map[string]any) (map[string]any, error) {
 	var err error
-	args := map[string]interface{}{}
-	var arg0 model.SpeedUnit
-	if tmp, ok := rawArgs["unit"]; ok {
-		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("unit"))
-		arg0, err = ec.unmarshalNSpeedUnit2metarᚗggᚋgraphᚋmodelᚐSpeedUnit(ctx, tmp)
-		if err != nil {
-			return nil, err
-		}
+	args := map[string]any{}
+	arg0, err := graphql.ProcessArgField(ctx, rawArgs, "unit", ec.unmarshalNSpeedUnit2metarᚗggᚋgraphᚋmodelᚐSpeedUnit)
+	if err != nil {
+		return nil, err
 	}
 	args["unit"] = arg0
 	return args, nil
 }
 
-func (ec *executionContext) field_Runway_length_args(ctx context.Context, rawArgs map[string]interface{}) (map[string]interface{}, error) {
+func (ec *executionContext) field_Runway_length_args(ctx context.Context, rawArgs map[string]any) (map[string]any, error) {
 	var err error
-	args := map[string]interface{}{}
-	var arg0 model.LengthUnit
-	if tmp, ok := rawArgs["unit"]; ok {
-		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("unit"))
-		arg0, err = ec.unmarshalNLengthUnit2metarᚗggᚋgraphᚋmodelᚐLengthUnit(ctx, tmp)
-		if err != nil {
-			return nil, err
-		}
+	args := map[string]any{}
+	arg0, err := graphql.ProcessArgField(ctx, rawArgs, "unit", ec.unmarshalNLengthUnit2metarᚗggᚋgraphᚋmodelᚐLengthUnit)
+	if err != nil {
+		return nil, err
 	}
 	args["unit"] = arg0
 	return args, nil
 }
 
-func (ec *executionContext) field_Runway_width_args(ctx context.Context, rawArgs map[string]interface{}) (map[string]interface{}, error) {
+func (ec *executionContext) field_Runway_width_args(ctx context.Context, rawArgs map[string]any) (map[string]any, error) {
 	var err error
-	args := map[string]interface{}{}
-	var arg0 model.LengthUnit
-	if tmp, ok := rawArgs["unit"]; ok {
-		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("unit"))
-		arg0, err = ec.unmarshalNLengthUnit2metarᚗggᚋgraphᚋmodelᚐLengthUnit(ctx, tmp)
-		if err != nil {
-			return nil, err
-		}
+	args := map[string]any{}
+	arg0, err := graphql.ProcessArgField(ctx, rawArgs, "unit", ec.unmarshalNLengthUnit2metarᚗggᚋgraphᚋmodelᚐLengthUnit)
+	if err != nil {
+		return nil, err
 	}
 	args["unit"] = arg0
 	return args, nil
 }
 
-func (ec *executionContext) field_SkyCondition_cloudBase_args(ctx context.Context, rawArgs map[string]interface{}) (map[string]interface{}, error) {
+func (ec *executionContext) field_SkyCondition_cloudBase_args(ctx context.Context, rawArgs map[string]any) (map[string]any, error) {
 	var err error
-	args := map[string]interface{}{}
-	var arg0 model.LengthUnit
-	if tmp, ok := rawArgs["unit"]; ok {
-		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("unit"))
-		arg0, err = ec.unmarshalNLengthUnit2metarᚗggᚋgraphᚋmodelᚐLengthUnit(ctx, tmp)
-		if err != nil {
-			return nil, err
-		}
+	args := map[string]any{}
+	arg0, err := graphql.ProcessArgField(ctx, rawArgs, "unit", ec.unmarshalNLengthUnit2metarᚗggᚋgraphᚋmodelᚐLengthUnit)
+	if err != nil {
+		return nil, err
 	}
 	args["unit"] = arg0
 	return args, nil
 }
 
-func (ec *executionContext) field_TemperatureData_maxTemperature_args(ctx context.Context, rawArgs map[string]interface{}) (map[string]interface{}, error) {
+func (ec *executionContext) field_TemperatureData_maxTemperature_args(ctx context.Context, rawArgs map[string]any) (map[string]any, error) {
 	var err error
-	args := map[string]interface{}{}
-	var arg0 model.TemperatureUnit
-	if tmp, ok := rawArgs["unit"]; ok {
-		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("unit"))
-		arg0, err = ec.unmarshalNTemperatureUnit2metarᚗggᚋgraphᚋmodelᚐTemperatureUnit(ctx, tmp)
-		if err != nil {
-			return nil, err
-		}
+	args := map[string]any{}
+	arg0, err := graphql.ProcessArgField(ctx, rawArgs, "unit", ec.unmarshalNTemperatureUnit2metarᚗggᚋgraphᚋmodelᚐTemperatureUnit)
+	if err != nil {
+		return nil, err
 	}
 	args["unit"] = arg0
 	return args, nil
 }
 
-func (ec *executionContext) field_TemperatureData_minTemperature_args(ctx context.Context, rawArgs map[string]interface{}) (map[string]interface{}, error) {
+func (ec *executionContext) field_TemperatureData_minTemperature_args(ctx context.Context, rawArgs map[string]any) (map[string]any, error) {
 	var err error
-	args := map[string]interface{}{}
-	var arg0 model.TemperatureUnit
-	if tmp, ok := rawArgs["unit"]; ok {
-		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("unit"))
-		arg0, err = ec.unmarshalNTemperatureUnit2metarᚗggᚋgraphᚋmodelᚐTemperatureUnit(ctx, tmp)
-		if err != nil {
-			return nil, err
-		}
+	args := map[string]any{}
+	arg0, err := graphql.ProcessArgField(ctx, rawArgs, "unit", ec.unmarshalNTemperatureUnit2metarᚗggᚋgraphᚋmodelᚐTemperatureUnit)
+	if err != nil {
+		return nil, err
 	}
 	args["unit"] = arg0
 	return args, nil
 }
 
-func (ec *executionContext) field_TemperatureData_temperature_args(ctx context.Context, rawArgs map[string]interface{}) (map[string]interface{}, error) {
+func (ec *executionContext) field_TemperatureData_temperature_args(ctx context.Context, rawArgs map[string]any) (map[string]any, error) {
 	var err error
-	args := map[string]interface{}{}
-	var arg0 model.TemperatureUnit
-	if tmp, ok := rawArgs["unit"]; ok {
-		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("unit"))
-		arg0, err = ec.unmarshalNTemperatureUnit2metarᚗggᚋgraphᚋmodelᚐTemperatureUnit(ctx, tmp)
-		if err != nil {
-			return nil, err
-		}
+	args := map[string]any{}
+	arg0, err := graphql.ProcessArgField(ctx, rawArgs, "unit", ec.unmarshalNTemperatureUnit2metarᚗggᚋgraphᚋmodelᚐTemperatureUnit)
+	if err != nil {
+		return nil, err
 	}
 	args["unit"] = arg0
 	return args, nil
 }
 
-func (ec *executionContext) field_TurbulenceCondition_maxAltitude_args(ctx context.Context, rawArgs map[string]interface{}) (map[string]interface{}, error) {
+func (ec *executionContext) field_TurbulenceCondition_maxAltitude_args(ctx context.Context, rawArgs map[string]any) (map[string]any, error) {
 	var err error
-	args := map[string]interface{}{}
-	var arg0 model.LengthUnit
-	if tmp, ok := rawArgs["unit"]; ok {
-		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("unit"))
-		arg0, err = ec.unmarshalNLengthUnit2metarᚗggᚋgraphᚋmodelᚐLengthUnit(ctx, tmp)
-		if err != nil {
-			return nil, err
-		}
+	args := map[string]any{}
+	arg0, err := graphql.ProcessArgField(ctx, rawArgs, "unit", ec.unmarshalNLengthUnit2metarᚗggᚋgraphᚋmodelᚐLengthUnit)
+	if err != nil {
+		return nil, err
 	}
 	args["unit"] = arg0
 	return args, nil
 }
 
-func (ec *executionContext) field_TurbulenceCondition_minAltitude_args(ctx context.Context, rawArgs map[string]interface{}) (map[string]interface{}, error) {
+func (ec *executionContext) field_TurbulenceCondition_minAltitude_args(ctx context.Context, rawArgs map[string]any) (map[string]any, error) {
 	var err error
-	args := map[string]interface{}{}
-	var arg0 model.LengthUnit
-	if tmp, ok := rawArgs["unit"]; ok {
-		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("unit"))
-		arg0, err = ec.unmarshalNLengthUnit2metarᚗggᚋgraphᚋmodelᚐLengthUnit(ctx, tmp)
-		if err != nil {
-			return nil, err
-		}
+	args := map[string]any{}
+	arg0, err := graphql.ProcessArgField(ctx, rawArgs, "unit", ec.unmarshalNLengthUnit2metarᚗggᚋgraphᚋmodelᚐLengthUnit)
+	if err != nil {
+		return nil, err
 	}
 	args["unit"] = arg0
 	return args, nil
 }
 
-func (ec *executionContext) field_WeatherStation_metars_args(ctx context.Context, rawArgs map[string]interface{}) (map[string]interface{}, error) {
+func (ec *executionContext) field_WeatherStation_metars_args(ctx context.Context, rawArgs map[string]any) (map[string]any, error) {
 	var err error
-	args := map[string]interface{}{}
-	var arg0 *entgql.Cursor[uuid.UUID]
-	if tmp, ok := rawArgs["after"]; ok {
-		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("after"))
-		arg0, err = ec.unmarshalOCursor2ᚖentgoᚗioᚋcontribᚋentgqlᚐCursor(ctx, tmp)
-		if err != nil {
-			return nil, err
-		}
+	args := map[string]any{}
+	arg0, err := graphql.ProcessArgField(ctx, rawArgs, "after", ec.unmarshalOCursor2ᚖentgoᚗioᚋcontribᚋentgqlᚐCursor)
+	if err != nil {
+		return nil, err
 	}
 	args["after"] = arg0
-	var arg1 *int
-	if tmp, ok := rawArgs["first"]; ok {
-		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("first"))
-		arg1, err = ec.unmarshalOInt2ᚖint(ctx, tmp)
-		if err != nil {
-			return nil, err
-		}
+	arg1, err := graphql.ProcessArgField(ctx, rawArgs, "first", ec.unmarshalOInt2ᚖint)
+	if err != nil {
+		return nil, err
 	}
 	args["first"] = arg1
-	var arg2 *entgql.Cursor[uuid.UUID]
-	if tmp, ok := rawArgs["before"]; ok {
-		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("before"))
-		arg2, err = ec.unmarshalOCursor2ᚖentgoᚗioᚋcontribᚋentgqlᚐCursor(ctx, tmp)
-		if err != nil {
-			return nil, err
-		}
+	arg2, err := graphql.ProcessArgField(ctx, rawArgs, "before", ec.unmarshalOCursor2ᚖentgoᚗioᚋcontribᚋentgqlᚐCursor)
+	if err != nil {
+		return nil, err
 	}
 	args["before"] = arg2
-	var arg3 *int
-	if tmp, ok := rawArgs["last"]; ok {
-		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("last"))
-		arg3, err = ec.unmarshalOInt2ᚖint(ctx, tmp)
-		if err != nil {
-			return nil, err
-		}
+	arg3, err := graphql.ProcessArgField(ctx, rawArgs, "last", ec.unmarshalOInt2ᚖint)
+	if err != nil {
+		return nil, err
 	}
 	args["last"] = arg3
 	return args, nil
 }
 
-func (ec *executionContext) field_WeatherStation_tafs_args(ctx context.Context, rawArgs map[string]interface{}) (map[string]interface{}, error) {
+func (ec *executionContext) field_WeatherStation_tafs_args(ctx context.Context, rawArgs map[string]any) (map[string]any, error) {
 	var err error
-	args := map[string]interface{}{}
-	var arg0 *entgql.Cursor[uuid.UUID]
-	if tmp, ok := rawArgs["after"]; ok {
-		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("after"))
-		arg0, err = ec.unmarshalOCursor2ᚖentgoᚗioᚋcontribᚋentgqlᚐCursor(ctx, tmp)
-		if err != nil {
-			return nil, err
-		}
+	args := map[string]any{}
+	arg0, err := graphql.ProcessArgField(ctx, rawArgs, "after", ec.unmarshalOCursor2ᚖentgoᚗioᚋcontribᚋentgqlᚐCursor)
+	if err != nil {
+		return nil, err
 	}
 	args["after"] = arg0
-	var arg1 *int
-	if tmp, ok := rawArgs["first"]; ok {
-		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("first"))
-		arg1, err = ec.unmarshalOInt2ᚖint(ctx, tmp)
-		if err != nil {
-			return nil, err
-		}
+	arg1, err := graphql.ProcessArgField(ctx, rawArgs, "first", ec.unmarshalOInt2ᚖint)
+	if err != nil {
+		return nil, err
 	}
 	args["first"] = arg1
-	var arg2 *entgql.Cursor[uuid.UUID]
-	if tmp, ok := rawArgs["before"]; ok {
-		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("before"))
-		arg2, err = ec.unmarshalOCursor2ᚖentgoᚗioᚋcontribᚋentgqlᚐCursor(ctx, tmp)
-		if err != nil {
-			return nil, err
-		}
+	arg2, err := graphql.ProcessArgField(ctx, rawArgs, "before", ec.unmarshalOCursor2ᚖentgoᚗioᚋcontribᚋentgqlᚐCursor)
+	if err != nil {
+		return nil, err
 	}
 	args["before"] = arg2
-	var arg3 *int
-	if tmp, ok := rawArgs["last"]; ok {
-		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("last"))
-		arg3, err = ec.unmarshalOInt2ᚖint(ctx, tmp)
-		if err != nil {
-			return nil, err
-		}
+	arg3, err := graphql.ProcessArgField(ctx, rawArgs, "last", ec.unmarshalOInt2ᚖint)
+	if err != nil {
+		return nil, err
 	}
 	args["last"] = arg3
 	return args, nil
@@ -617,37 +464,22 @@ func (ec *executionContext) field_WeatherStation_tafs_args(ctx context.Context, 
 // region    **************************** field.gotpl *****************************
 
 func (ec *executionContext) _Airport_id(ctx context.Context, field graphql.CollectedField, obj *ent.Airport) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Airport_id(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.ID, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		if !graphql.HasFieldError(ctx, fc) {
-			ec.Errorf(ctx, "must not be null")
-		}
-		return graphql.Null
-	}
-	res := resTmp.(uuid.UUID)
-	fc.Result = res
-	return ec.marshalNID2githubᚗcomᚋgoogleᚋuuidᚐUUID(ctx, field.Selections, res)
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		ec.fieldContext_Airport_id,
+		func(ctx context.Context) (any, error) {
+			return obj.ID, nil
+		},
+		nil,
+		ec.marshalNID2githubᚗcomᚋgoogleᚋuuidᚐUUID,
+		true,
+		true,
+	)
 }
 
-func (ec *executionContext) fieldContext_Airport_id(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_Airport_id(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "Airport",
 		Field:      field,
@@ -661,37 +493,22 @@ func (ec *executionContext) fieldContext_Airport_id(ctx context.Context, field g
 }
 
 func (ec *executionContext) _Airport_importID(ctx context.Context, field graphql.CollectedField, obj *ent.Airport) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Airport_importID(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.ImportID, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		if !graphql.HasFieldError(ctx, fc) {
-			ec.Errorf(ctx, "must not be null")
-		}
-		return graphql.Null
-	}
-	res := resTmp.(int)
-	fc.Result = res
-	return ec.marshalNInt2int(ctx, field.Selections, res)
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		ec.fieldContext_Airport_importID,
+		func(ctx context.Context) (any, error) {
+			return obj.ImportID, nil
+		},
+		nil,
+		ec.marshalNInt2int,
+		true,
+		true,
+	)
 }
 
-func (ec *executionContext) fieldContext_Airport_importID(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_Airport_importID(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "Airport",
 		Field:      field,
@@ -705,37 +522,22 @@ func (ec *executionContext) fieldContext_Airport_importID(ctx context.Context, f
 }
 
 func (ec *executionContext) _Airport_lastUpdated(ctx context.Context, field graphql.CollectedField, obj *ent.Airport) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Airport_lastUpdated(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.LastUpdated, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		if !graphql.HasFieldError(ctx, fc) {
-			ec.Errorf(ctx, "must not be null")
-		}
-		return graphql.Null
-	}
-	res := resTmp.(time.Time)
-	fc.Result = res
-	return ec.marshalNTime2timeᚐTime(ctx, field.Selections, res)
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		ec.fieldContext_Airport_lastUpdated,
+		func(ctx context.Context) (any, error) {
+			return obj.LastUpdated, nil
+		},
+		nil,
+		ec.marshalNTime2timeᚐTime,
+		true,
+		true,
+	)
 }
 
-func (ec *executionContext) fieldContext_Airport_lastUpdated(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_Airport_lastUpdated(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "Airport",
 		Field:      field,
@@ -749,34 +551,22 @@ func (ec *executionContext) fieldContext_Airport_lastUpdated(ctx context.Context
 }
 
 func (ec *executionContext) _Airport_icaoCode(ctx context.Context, field graphql.CollectedField, obj *ent.Airport) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Airport_icaoCode(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.IcaoCode, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		return graphql.Null
-	}
-	res := resTmp.(string)
-	fc.Result = res
-	return ec.marshalOString2string(ctx, field.Selections, res)
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		ec.fieldContext_Airport_icaoCode,
+		func(ctx context.Context) (any, error) {
+			return obj.IcaoCode, nil
+		},
+		nil,
+		ec.marshalOString2string,
+		true,
+		false,
+	)
 }
 
-func (ec *executionContext) fieldContext_Airport_icaoCode(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_Airport_icaoCode(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "Airport",
 		Field:      field,
@@ -790,34 +580,22 @@ func (ec *executionContext) fieldContext_Airport_icaoCode(ctx context.Context, f
 }
 
 func (ec *executionContext) _Airport_iataCode(ctx context.Context, field graphql.CollectedField, obj *ent.Airport) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Airport_iataCode(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.IataCode, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		return graphql.Null
-	}
-	res := resTmp.(*string)
-	fc.Result = res
-	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		ec.fieldContext_Airport_iataCode,
+		func(ctx context.Context) (any, error) {
+			return obj.IataCode, nil
+		},
+		nil,
+		ec.marshalOString2ᚖstring,
+		true,
+		false,
+	)
 }
 
-func (ec *executionContext) fieldContext_Airport_iataCode(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_Airport_iataCode(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "Airport",
 		Field:      field,
@@ -831,37 +609,22 @@ func (ec *executionContext) fieldContext_Airport_iataCode(ctx context.Context, f
 }
 
 func (ec *executionContext) _Airport_identifier(ctx context.Context, field graphql.CollectedField, obj *ent.Airport) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Airport_identifier(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.Identifier, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		if !graphql.HasFieldError(ctx, fc) {
-			ec.Errorf(ctx, "must not be null")
-		}
-		return graphql.Null
-	}
-	res := resTmp.(string)
-	fc.Result = res
-	return ec.marshalNString2string(ctx, field.Selections, res)
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		ec.fieldContext_Airport_identifier,
+		func(ctx context.Context) (any, error) {
+			return obj.Identifier, nil
+		},
+		nil,
+		ec.marshalNString2string,
+		true,
+		true,
+	)
 }
 
-func (ec *executionContext) fieldContext_Airport_identifier(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_Airport_identifier(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "Airport",
 		Field:      field,
@@ -875,37 +638,22 @@ func (ec *executionContext) fieldContext_Airport_identifier(ctx context.Context,
 }
 
 func (ec *executionContext) _Airport_type(ctx context.Context, field graphql.CollectedField, obj *ent.Airport) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Airport_type(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.Type, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		if !graphql.HasFieldError(ctx, fc) {
-			ec.Errorf(ctx, "must not be null")
-		}
-		return graphql.Null
-	}
-	res := resTmp.(airport.Type)
-	fc.Result = res
-	return ec.marshalNAirportType2metarᚗggᚋentᚋairportᚐType(ctx, field.Selections, res)
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		ec.fieldContext_Airport_type,
+		func(ctx context.Context) (any, error) {
+			return obj.Type, nil
+		},
+		nil,
+		ec.marshalNAirportType2metarᚗggᚋentᚋairportᚐType,
+		true,
+		true,
+	)
 }
 
-func (ec *executionContext) fieldContext_Airport_type(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_Airport_type(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "Airport",
 		Field:      field,
@@ -919,37 +667,22 @@ func (ec *executionContext) fieldContext_Airport_type(ctx context.Context, field
 }
 
 func (ec *executionContext) _Airport_importance(ctx context.Context, field graphql.CollectedField, obj *ent.Airport) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Airport_importance(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.Importance, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		if !graphql.HasFieldError(ctx, fc) {
-			ec.Errorf(ctx, "must not be null")
-		}
-		return graphql.Null
-	}
-	res := resTmp.(int)
-	fc.Result = res
-	return ec.marshalNInt2int(ctx, field.Selections, res)
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		ec.fieldContext_Airport_importance,
+		func(ctx context.Context) (any, error) {
+			return obj.Importance, nil
+		},
+		nil,
+		ec.marshalNInt2int,
+		true,
+		true,
+	)
 }
 
-func (ec *executionContext) fieldContext_Airport_importance(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_Airport_importance(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "Airport",
 		Field:      field,
@@ -963,37 +696,22 @@ func (ec *executionContext) fieldContext_Airport_importance(ctx context.Context,
 }
 
 func (ec *executionContext) _Airport_name(ctx context.Context, field graphql.CollectedField, obj *ent.Airport) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Airport_name(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.Name, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		if !graphql.HasFieldError(ctx, fc) {
-			ec.Errorf(ctx, "must not be null")
-		}
-		return graphql.Null
-	}
-	res := resTmp.(string)
-	fc.Result = res
-	return ec.marshalNString2string(ctx, field.Selections, res)
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		ec.fieldContext_Airport_name,
+		func(ctx context.Context) (any, error) {
+			return obj.Name, nil
+		},
+		nil,
+		ec.marshalNString2string,
+		true,
+		true,
+	)
 }
 
-func (ec *executionContext) fieldContext_Airport_name(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_Airport_name(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "Airport",
 		Field:      field,
@@ -1007,37 +725,22 @@ func (ec *executionContext) fieldContext_Airport_name(ctx context.Context, field
 }
 
 func (ec *executionContext) _Airport_latitude(ctx context.Context, field graphql.CollectedField, obj *ent.Airport) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Airport_latitude(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.Latitude, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		if !graphql.HasFieldError(ctx, fc) {
-			ec.Errorf(ctx, "must not be null")
-		}
-		return graphql.Null
-	}
-	res := resTmp.(float64)
-	fc.Result = res
-	return ec.marshalNFloat2float64(ctx, field.Selections, res)
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		ec.fieldContext_Airport_latitude,
+		func(ctx context.Context) (any, error) {
+			return obj.Latitude, nil
+		},
+		nil,
+		ec.marshalNFloat2float64,
+		true,
+		true,
+	)
 }
 
-func (ec *executionContext) fieldContext_Airport_latitude(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_Airport_latitude(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "Airport",
 		Field:      field,
@@ -1051,37 +754,22 @@ func (ec *executionContext) fieldContext_Airport_latitude(ctx context.Context, f
 }
 
 func (ec *executionContext) _Airport_longitude(ctx context.Context, field graphql.CollectedField, obj *ent.Airport) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Airport_longitude(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.Longitude, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		if !graphql.HasFieldError(ctx, fc) {
-			ec.Errorf(ctx, "must not be null")
-		}
-		return graphql.Null
-	}
-	res := resTmp.(float64)
-	fc.Result = res
-	return ec.marshalNFloat2float64(ctx, field.Selections, res)
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		ec.fieldContext_Airport_longitude,
+		func(ctx context.Context) (any, error) {
+			return obj.Longitude, nil
+		},
+		nil,
+		ec.marshalNFloat2float64,
+		true,
+		true,
+	)
 }
 
-func (ec *executionContext) fieldContext_Airport_longitude(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_Airport_longitude(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "Airport",
 		Field:      field,
@@ -1095,34 +783,22 @@ func (ec *executionContext) fieldContext_Airport_longitude(ctx context.Context, 
 }
 
 func (ec *executionContext) _Airport_timezone(ctx context.Context, field graphql.CollectedField, obj *ent.Airport) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Airport_timezone(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.Timezone, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		return graphql.Null
-	}
-	res := resTmp.(*string)
-	fc.Result = res
-	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		ec.fieldContext_Airport_timezone,
+		func(ctx context.Context) (any, error) {
+			return obj.Timezone, nil
+		},
+		nil,
+		ec.marshalOString2ᚖstring,
+		true,
+		false,
+	)
 }
 
-func (ec *executionContext) fieldContext_Airport_timezone(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_Airport_timezone(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "Airport",
 		Field:      field,
@@ -1136,34 +812,22 @@ func (ec *executionContext) fieldContext_Airport_timezone(ctx context.Context, f
 }
 
 func (ec *executionContext) _Airport_elevation(ctx context.Context, field graphql.CollectedField, obj *ent.Airport) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Airport_elevation(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.Elevation, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		return graphql.Null
-	}
-	res := resTmp.(*int)
-	fc.Result = res
-	return ec.marshalOInt2ᚖint(ctx, field.Selections, res)
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		ec.fieldContext_Airport_elevation,
+		func(ctx context.Context) (any, error) {
+			return obj.Elevation, nil
+		},
+		nil,
+		ec.marshalOInt2ᚖint,
+		true,
+		false,
+	)
 }
 
-func (ec *executionContext) fieldContext_Airport_elevation(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_Airport_elevation(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "Airport",
 		Field:      field,
@@ -1177,34 +841,22 @@ func (ec *executionContext) fieldContext_Airport_elevation(ctx context.Context, 
 }
 
 func (ec *executionContext) _Airport_municipality(ctx context.Context, field graphql.CollectedField, obj *ent.Airport) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Airport_municipality(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.Municipality, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		return graphql.Null
-	}
-	res := resTmp.(*string)
-	fc.Result = res
-	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		ec.fieldContext_Airport_municipality,
+		func(ctx context.Context) (any, error) {
+			return obj.Municipality, nil
+		},
+		nil,
+		ec.marshalOString2ᚖstring,
+		true,
+		false,
+	)
 }
 
-func (ec *executionContext) fieldContext_Airport_municipality(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_Airport_municipality(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "Airport",
 		Field:      field,
@@ -1218,37 +870,22 @@ func (ec *executionContext) fieldContext_Airport_municipality(ctx context.Contex
 }
 
 func (ec *executionContext) _Airport_scheduledService(ctx context.Context, field graphql.CollectedField, obj *ent.Airport) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Airport_scheduledService(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.ScheduledService, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		if !graphql.HasFieldError(ctx, fc) {
-			ec.Errorf(ctx, "must not be null")
-		}
-		return graphql.Null
-	}
-	res := resTmp.(bool)
-	fc.Result = res
-	return ec.marshalNBoolean2bool(ctx, field.Selections, res)
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		ec.fieldContext_Airport_scheduledService,
+		func(ctx context.Context) (any, error) {
+			return obj.ScheduledService, nil
+		},
+		nil,
+		ec.marshalNBoolean2bool,
+		true,
+		true,
+	)
 }
 
-func (ec *executionContext) fieldContext_Airport_scheduledService(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_Airport_scheduledService(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "Airport",
 		Field:      field,
@@ -1262,34 +899,22 @@ func (ec *executionContext) fieldContext_Airport_scheduledService(ctx context.Co
 }
 
 func (ec *executionContext) _Airport_gpsCode(ctx context.Context, field graphql.CollectedField, obj *ent.Airport) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Airport_gpsCode(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.GpsCode, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		return graphql.Null
-	}
-	res := resTmp.(*string)
-	fc.Result = res
-	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		ec.fieldContext_Airport_gpsCode,
+		func(ctx context.Context) (any, error) {
+			return obj.GpsCode, nil
+		},
+		nil,
+		ec.marshalOString2ᚖstring,
+		true,
+		false,
+	)
 }
 
-func (ec *executionContext) fieldContext_Airport_gpsCode(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_Airport_gpsCode(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "Airport",
 		Field:      field,
@@ -1303,34 +928,22 @@ func (ec *executionContext) fieldContext_Airport_gpsCode(ctx context.Context, fi
 }
 
 func (ec *executionContext) _Airport_localCode(ctx context.Context, field graphql.CollectedField, obj *ent.Airport) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Airport_localCode(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.LocalCode, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		return graphql.Null
-	}
-	res := resTmp.(*string)
-	fc.Result = res
-	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		ec.fieldContext_Airport_localCode,
+		func(ctx context.Context) (any, error) {
+			return obj.LocalCode, nil
+		},
+		nil,
+		ec.marshalOString2ᚖstring,
+		true,
+		false,
+	)
 }
 
-func (ec *executionContext) fieldContext_Airport_localCode(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_Airport_localCode(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "Airport",
 		Field:      field,
@@ -1344,34 +957,22 @@ func (ec *executionContext) fieldContext_Airport_localCode(ctx context.Context, 
 }
 
 func (ec *executionContext) _Airport_website(ctx context.Context, field graphql.CollectedField, obj *ent.Airport) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Airport_website(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.Website, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		return graphql.Null
-	}
-	res := resTmp.(*string)
-	fc.Result = res
-	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		ec.fieldContext_Airport_website,
+		func(ctx context.Context) (any, error) {
+			return obj.Website, nil
+		},
+		nil,
+		ec.marshalOString2ᚖstring,
+		true,
+		false,
+	)
 }
 
-func (ec *executionContext) fieldContext_Airport_website(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_Airport_website(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "Airport",
 		Field:      field,
@@ -1385,34 +986,22 @@ func (ec *executionContext) fieldContext_Airport_website(ctx context.Context, fi
 }
 
 func (ec *executionContext) _Airport_wikipedia(ctx context.Context, field graphql.CollectedField, obj *ent.Airport) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Airport_wikipedia(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.Wikipedia, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		return graphql.Null
-	}
-	res := resTmp.(*string)
-	fc.Result = res
-	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		ec.fieldContext_Airport_wikipedia,
+		func(ctx context.Context) (any, error) {
+			return obj.Wikipedia, nil
+		},
+		nil,
+		ec.marshalOString2ᚖstring,
+		true,
+		false,
+	)
 }
 
-func (ec *executionContext) fieldContext_Airport_wikipedia(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_Airport_wikipedia(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "Airport",
 		Field:      field,
@@ -1426,37 +1015,22 @@ func (ec *executionContext) fieldContext_Airport_wikipedia(ctx context.Context, 
 }
 
 func (ec *executionContext) _Airport_keywords(ctx context.Context, field graphql.CollectedField, obj *ent.Airport) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Airport_keywords(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.Keywords, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		if !graphql.HasFieldError(ctx, fc) {
-			ec.Errorf(ctx, "must not be null")
-		}
-		return graphql.Null
-	}
-	res := resTmp.([]string)
-	fc.Result = res
-	return ec.marshalNString2ᚕstringᚄ(ctx, field.Selections, res)
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		ec.fieldContext_Airport_keywords,
+		func(ctx context.Context) (any, error) {
+			return obj.Keywords, nil
+		},
+		nil,
+		ec.marshalNString2ᚕstringᚄ,
+		true,
+		true,
+	)
 }
 
-func (ec *executionContext) fieldContext_Airport_keywords(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_Airport_keywords(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "Airport",
 		Field:      field,
@@ -1470,34 +1044,22 @@ func (ec *executionContext) fieldContext_Airport_keywords(ctx context.Context, f
 }
 
 func (ec *executionContext) _Airport_region(ctx context.Context, field graphql.CollectedField, obj *ent.Airport) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Airport_region(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.Region(ctx)
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		return graphql.Null
-	}
-	res := resTmp.(*ent.Region)
-	fc.Result = res
-	return ec.marshalORegion2ᚖmetarᚗggᚋentᚐRegion(ctx, field.Selections, res)
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		ec.fieldContext_Airport_region,
+		func(ctx context.Context) (any, error) {
+			return obj.Region(ctx)
+		},
+		nil,
+		ec.marshalORegion2ᚖmetarᚗggᚋentᚐRegion,
+		true,
+		false,
+	)
 }
 
-func (ec *executionContext) fieldContext_Airport_region(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_Airport_region(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "Airport",
 		Field:      field,
@@ -1529,34 +1091,22 @@ func (ec *executionContext) fieldContext_Airport_region(ctx context.Context, fie
 }
 
 func (ec *executionContext) _Airport_country(ctx context.Context, field graphql.CollectedField, obj *ent.Airport) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Airport_country(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.Country(ctx)
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		return graphql.Null
-	}
-	res := resTmp.(*ent.Country)
-	fc.Result = res
-	return ec.marshalOCountry2ᚖmetarᚗggᚋentᚐCountry(ctx, field.Selections, res)
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		ec.fieldContext_Airport_country,
+		func(ctx context.Context) (any, error) {
+			return obj.Country(ctx)
+		},
+		nil,
+		ec.marshalOCountry2ᚖmetarᚗggᚋentᚐCountry,
+		true,
+		false,
+	)
 }
 
-func (ec *executionContext) fieldContext_Airport_country(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_Airport_country(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "Airport",
 		Field:      field,
@@ -1588,34 +1138,22 @@ func (ec *executionContext) fieldContext_Airport_country(ctx context.Context, fi
 }
 
 func (ec *executionContext) _Airport_frequencies(ctx context.Context, field graphql.CollectedField, obj *ent.Airport) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Airport_frequencies(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.Frequencies(ctx)
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		return graphql.Null
-	}
-	res := resTmp.([]*ent.Frequency)
-	fc.Result = res
-	return ec.marshalOFrequency2ᚕᚖmetarᚗggᚋentᚐFrequencyᚄ(ctx, field.Selections, res)
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		ec.fieldContext_Airport_frequencies,
+		func(ctx context.Context) (any, error) {
+			return obj.Frequencies(ctx)
+		},
+		nil,
+		ec.marshalOFrequency2ᚕᚖmetarᚗggᚋentᚐFrequencyᚄ,
+		true,
+		false,
+	)
 }
 
-func (ec *executionContext) fieldContext_Airport_frequencies(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_Airport_frequencies(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "Airport",
 		Field:      field,
@@ -1645,34 +1183,22 @@ func (ec *executionContext) fieldContext_Airport_frequencies(ctx context.Context
 }
 
 func (ec *executionContext) _Airport_station(ctx context.Context, field graphql.CollectedField, obj *ent.Airport) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Airport_station(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.Station(ctx)
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		return graphql.Null
-	}
-	res := resTmp.(*ent.WeatherStation)
-	fc.Result = res
-	return ec.marshalOWeatherStation2ᚖmetarᚗggᚋentᚐWeatherStation(ctx, field.Selections, res)
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		ec.fieldContext_Airport_station,
+		func(ctx context.Context) (any, error) {
+			return obj.Station(ctx)
+		},
+		nil,
+		ec.marshalOWeatherStation2ᚖmetarᚗggᚋentᚐWeatherStation,
+		true,
+		false,
+	)
 }
 
-func (ec *executionContext) fieldContext_Airport_station(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_Airport_station(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "Airport",
 		Field:      field,
@@ -1704,34 +1230,20 @@ func (ec *executionContext) fieldContext_Airport_station(ctx context.Context, fi
 }
 
 func (ec *executionContext) _Airport_runways(ctx context.Context, field graphql.CollectedField, obj *ent.Airport) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Airport_runways(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return ec.resolvers.Airport().Runways(rctx, obj, fc.Args["closed"].(*bool))
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		if !graphql.HasFieldError(ctx, fc) {
-			ec.Errorf(ctx, "must not be null")
-		}
-		return graphql.Null
-	}
-	res := resTmp.([]*ent.Runway)
-	fc.Result = res
-	return ec.marshalNRunway2ᚕᚖmetarᚗggᚋentᚐRunwayᚄ(ctx, field.Selections, res)
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		ec.fieldContext_Airport_runways,
+		func(ctx context.Context) (any, error) {
+			fc := graphql.GetFieldContext(ctx)
+			return ec.resolvers.Airport().Runways(ctx, obj, fc.Args["closed"].(*bool))
+		},
+		nil,
+		ec.marshalNRunway2ᚕᚖmetarᚗggᚋentᚐRunwayᚄ,
+		true,
+		true,
+	)
 }
 
 func (ec *executionContext) fieldContext_Airport_runways(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -1803,34 +1315,20 @@ func (ec *executionContext) fieldContext_Airport_runways(ctx context.Context, fi
 }
 
 func (ec *executionContext) _Airport_stationsVicinity(ctx context.Context, field graphql.CollectedField, obj *ent.Airport) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Airport_stationsVicinity(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return ec.resolvers.Airport().StationsVicinity(rctx, obj, fc.Args["first"].(*int), fc.Args["radius"].(*float64))
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		if !graphql.HasFieldError(ctx, fc) {
-			ec.Errorf(ctx, "must not be null")
-		}
-		return graphql.Null
-	}
-	res := resTmp.([]*model.StationWithDistance)
-	fc.Result = res
-	return ec.marshalNStationWithDistance2ᚕᚖmetarᚗggᚋgraphᚋmodelᚐStationWithDistanceᚄ(ctx, field.Selections, res)
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		ec.fieldContext_Airport_stationsVicinity,
+		func(ctx context.Context) (any, error) {
+			fc := graphql.GetFieldContext(ctx)
+			return ec.resolvers.Airport().StationsVicinity(ctx, obj, fc.Args["first"].(*int), fc.Args["radius"].(*float64))
+		},
+		nil,
+		ec.marshalNStationWithDistance2ᚕᚖmetarᚗggᚋgraphᚋmodelᚐStationWithDistanceᚄ,
+		true,
+		true,
+	)
 }
 
 func (ec *executionContext) fieldContext_Airport_stationsVicinity(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -1864,37 +1362,22 @@ func (ec *executionContext) fieldContext_Airport_stationsVicinity(ctx context.Co
 }
 
 func (ec *executionContext) _Country_id(ctx context.Context, field graphql.CollectedField, obj *ent.Country) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Country_id(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.ID, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		if !graphql.HasFieldError(ctx, fc) {
-			ec.Errorf(ctx, "must not be null")
-		}
-		return graphql.Null
-	}
-	res := resTmp.(uuid.UUID)
-	fc.Result = res
-	return ec.marshalNID2githubᚗcomᚋgoogleᚋuuidᚐUUID(ctx, field.Selections, res)
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		ec.fieldContext_Country_id,
+		func(ctx context.Context) (any, error) {
+			return obj.ID, nil
+		},
+		nil,
+		ec.marshalNID2githubᚗcomᚋgoogleᚋuuidᚐUUID,
+		true,
+		true,
+	)
 }
 
-func (ec *executionContext) fieldContext_Country_id(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_Country_id(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "Country",
 		Field:      field,
@@ -1908,37 +1391,22 @@ func (ec *executionContext) fieldContext_Country_id(ctx context.Context, field g
 }
 
 func (ec *executionContext) _Country_importID(ctx context.Context, field graphql.CollectedField, obj *ent.Country) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Country_importID(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.ImportID, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		if !graphql.HasFieldError(ctx, fc) {
-			ec.Errorf(ctx, "must not be null")
-		}
-		return graphql.Null
-	}
-	res := resTmp.(int)
-	fc.Result = res
-	return ec.marshalNInt2int(ctx, field.Selections, res)
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		ec.fieldContext_Country_importID,
+		func(ctx context.Context) (any, error) {
+			return obj.ImportID, nil
+		},
+		nil,
+		ec.marshalNInt2int,
+		true,
+		true,
+	)
 }
 
-func (ec *executionContext) fieldContext_Country_importID(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_Country_importID(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "Country",
 		Field:      field,
@@ -1952,37 +1420,22 @@ func (ec *executionContext) fieldContext_Country_importID(ctx context.Context, f
 }
 
 func (ec *executionContext) _Country_lastUpdated(ctx context.Context, field graphql.CollectedField, obj *ent.Country) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Country_lastUpdated(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.LastUpdated, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		if !graphql.HasFieldError(ctx, fc) {
-			ec.Errorf(ctx, "must not be null")
-		}
-		return graphql.Null
-	}
-	res := resTmp.(time.Time)
-	fc.Result = res
-	return ec.marshalNTime2timeᚐTime(ctx, field.Selections, res)
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		ec.fieldContext_Country_lastUpdated,
+		func(ctx context.Context) (any, error) {
+			return obj.LastUpdated, nil
+		},
+		nil,
+		ec.marshalNTime2timeᚐTime,
+		true,
+		true,
+	)
 }
 
-func (ec *executionContext) fieldContext_Country_lastUpdated(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_Country_lastUpdated(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "Country",
 		Field:      field,
@@ -1996,37 +1449,22 @@ func (ec *executionContext) fieldContext_Country_lastUpdated(ctx context.Context
 }
 
 func (ec *executionContext) _Country_code(ctx context.Context, field graphql.CollectedField, obj *ent.Country) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Country_code(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.Code, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		if !graphql.HasFieldError(ctx, fc) {
-			ec.Errorf(ctx, "must not be null")
-		}
-		return graphql.Null
-	}
-	res := resTmp.(string)
-	fc.Result = res
-	return ec.marshalNString2string(ctx, field.Selections, res)
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		ec.fieldContext_Country_code,
+		func(ctx context.Context) (any, error) {
+			return obj.Code, nil
+		},
+		nil,
+		ec.marshalNString2string,
+		true,
+		true,
+	)
 }
 
-func (ec *executionContext) fieldContext_Country_code(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_Country_code(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "Country",
 		Field:      field,
@@ -2040,37 +1478,22 @@ func (ec *executionContext) fieldContext_Country_code(ctx context.Context, field
 }
 
 func (ec *executionContext) _Country_name(ctx context.Context, field graphql.CollectedField, obj *ent.Country) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Country_name(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.Name, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		if !graphql.HasFieldError(ctx, fc) {
-			ec.Errorf(ctx, "must not be null")
-		}
-		return graphql.Null
-	}
-	res := resTmp.(string)
-	fc.Result = res
-	return ec.marshalNString2string(ctx, field.Selections, res)
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		ec.fieldContext_Country_name,
+		func(ctx context.Context) (any, error) {
+			return obj.Name, nil
+		},
+		nil,
+		ec.marshalNString2string,
+		true,
+		true,
+	)
 }
 
-func (ec *executionContext) fieldContext_Country_name(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_Country_name(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "Country",
 		Field:      field,
@@ -2084,37 +1507,22 @@ func (ec *executionContext) fieldContext_Country_name(ctx context.Context, field
 }
 
 func (ec *executionContext) _Country_continent(ctx context.Context, field graphql.CollectedField, obj *ent.Country) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Country_continent(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.Continent, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		if !graphql.HasFieldError(ctx, fc) {
-			ec.Errorf(ctx, "must not be null")
-		}
-		return graphql.Null
-	}
-	res := resTmp.(country.Continent)
-	fc.Result = res
-	return ec.marshalNCountryContinent2metarᚗggᚋentᚋcountryᚐContinent(ctx, field.Selections, res)
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		ec.fieldContext_Country_continent,
+		func(ctx context.Context) (any, error) {
+			return obj.Continent, nil
+		},
+		nil,
+		ec.marshalNCountryContinent2metarᚗggᚋentᚋcountryᚐContinent,
+		true,
+		true,
+	)
 }
 
-func (ec *executionContext) fieldContext_Country_continent(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_Country_continent(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "Country",
 		Field:      field,
@@ -2128,37 +1536,22 @@ func (ec *executionContext) fieldContext_Country_continent(ctx context.Context, 
 }
 
 func (ec *executionContext) _Country_wikipediaLink(ctx context.Context, field graphql.CollectedField, obj *ent.Country) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Country_wikipediaLink(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.WikipediaLink, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		if !graphql.HasFieldError(ctx, fc) {
-			ec.Errorf(ctx, "must not be null")
-		}
-		return graphql.Null
-	}
-	res := resTmp.(string)
-	fc.Result = res
-	return ec.marshalNString2string(ctx, field.Selections, res)
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		ec.fieldContext_Country_wikipediaLink,
+		func(ctx context.Context) (any, error) {
+			return obj.WikipediaLink, nil
+		},
+		nil,
+		ec.marshalNString2string,
+		true,
+		true,
+	)
 }
 
-func (ec *executionContext) fieldContext_Country_wikipediaLink(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_Country_wikipediaLink(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "Country",
 		Field:      field,
@@ -2172,37 +1565,22 @@ func (ec *executionContext) fieldContext_Country_wikipediaLink(ctx context.Conte
 }
 
 func (ec *executionContext) _Country_keywords(ctx context.Context, field graphql.CollectedField, obj *ent.Country) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Country_keywords(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.Keywords, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		if !graphql.HasFieldError(ctx, fc) {
-			ec.Errorf(ctx, "must not be null")
-		}
-		return graphql.Null
-	}
-	res := resTmp.([]string)
-	fc.Result = res
-	return ec.marshalNString2ᚕstringᚄ(ctx, field.Selections, res)
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		ec.fieldContext_Country_keywords,
+		func(ctx context.Context) (any, error) {
+			return obj.Keywords, nil
+		},
+		nil,
+		ec.marshalNString2ᚕstringᚄ,
+		true,
+		true,
+	)
 }
 
-func (ec *executionContext) fieldContext_Country_keywords(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_Country_keywords(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "Country",
 		Field:      field,
@@ -2216,37 +1594,22 @@ func (ec *executionContext) fieldContext_Country_keywords(ctx context.Context, f
 }
 
 func (ec *executionContext) _Forecast_id(ctx context.Context, field graphql.CollectedField, obj *ent.Forecast) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Forecast_id(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.ID, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		if !graphql.HasFieldError(ctx, fc) {
-			ec.Errorf(ctx, "must not be null")
-		}
-		return graphql.Null
-	}
-	res := resTmp.(uuid.UUID)
-	fc.Result = res
-	return ec.marshalNID2githubᚗcomᚋgoogleᚋuuidᚐUUID(ctx, field.Selections, res)
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		ec.fieldContext_Forecast_id,
+		func(ctx context.Context) (any, error) {
+			return obj.ID, nil
+		},
+		nil,
+		ec.marshalNID2githubᚗcomᚋgoogleᚋuuidᚐUUID,
+		true,
+		true,
+	)
 }
 
-func (ec *executionContext) fieldContext_Forecast_id(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_Forecast_id(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "Forecast",
 		Field:      field,
@@ -2260,37 +1623,22 @@ func (ec *executionContext) fieldContext_Forecast_id(ctx context.Context, field 
 }
 
 func (ec *executionContext) _Forecast_fromTime(ctx context.Context, field graphql.CollectedField, obj *ent.Forecast) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Forecast_fromTime(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.FromTime, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		if !graphql.HasFieldError(ctx, fc) {
-			ec.Errorf(ctx, "must not be null")
-		}
-		return graphql.Null
-	}
-	res := resTmp.(time.Time)
-	fc.Result = res
-	return ec.marshalNTime2timeᚐTime(ctx, field.Selections, res)
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		ec.fieldContext_Forecast_fromTime,
+		func(ctx context.Context) (any, error) {
+			return obj.FromTime, nil
+		},
+		nil,
+		ec.marshalNTime2timeᚐTime,
+		true,
+		true,
+	)
 }
 
-func (ec *executionContext) fieldContext_Forecast_fromTime(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_Forecast_fromTime(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "Forecast",
 		Field:      field,
@@ -2304,37 +1652,22 @@ func (ec *executionContext) fieldContext_Forecast_fromTime(ctx context.Context, 
 }
 
 func (ec *executionContext) _Forecast_toTime(ctx context.Context, field graphql.CollectedField, obj *ent.Forecast) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Forecast_toTime(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.ToTime, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		if !graphql.HasFieldError(ctx, fc) {
-			ec.Errorf(ctx, "must not be null")
-		}
-		return graphql.Null
-	}
-	res := resTmp.(time.Time)
-	fc.Result = res
-	return ec.marshalNTime2timeᚐTime(ctx, field.Selections, res)
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		ec.fieldContext_Forecast_toTime,
+		func(ctx context.Context) (any, error) {
+			return obj.ToTime, nil
+		},
+		nil,
+		ec.marshalNTime2timeᚐTime,
+		true,
+		true,
+	)
 }
 
-func (ec *executionContext) fieldContext_Forecast_toTime(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_Forecast_toTime(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "Forecast",
 		Field:      field,
@@ -2348,34 +1681,22 @@ func (ec *executionContext) fieldContext_Forecast_toTime(ctx context.Context, fi
 }
 
 func (ec *executionContext) _Forecast_changeIndicator(ctx context.Context, field graphql.CollectedField, obj *ent.Forecast) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Forecast_changeIndicator(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.ChangeIndicator, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		return graphql.Null
-	}
-	res := resTmp.(*forecast.ChangeIndicator)
-	fc.Result = res
-	return ec.marshalOForecastChangeIndicator2ᚖmetarᚗggᚋentᚋforecastᚐChangeIndicator(ctx, field.Selections, res)
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		ec.fieldContext_Forecast_changeIndicator,
+		func(ctx context.Context) (any, error) {
+			return obj.ChangeIndicator, nil
+		},
+		nil,
+		ec.marshalOForecastChangeIndicator2ᚖmetarᚗggᚋentᚋforecastᚐChangeIndicator,
+		true,
+		false,
+	)
 }
 
-func (ec *executionContext) fieldContext_Forecast_changeIndicator(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_Forecast_changeIndicator(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "Forecast",
 		Field:      field,
@@ -2389,34 +1710,22 @@ func (ec *executionContext) fieldContext_Forecast_changeIndicator(ctx context.Co
 }
 
 func (ec *executionContext) _Forecast_changeTime(ctx context.Context, field graphql.CollectedField, obj *ent.Forecast) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Forecast_changeTime(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.ChangeTime, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		return graphql.Null
-	}
-	res := resTmp.(*time.Time)
-	fc.Result = res
-	return ec.marshalOTime2ᚖtimeᚐTime(ctx, field.Selections, res)
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		ec.fieldContext_Forecast_changeTime,
+		func(ctx context.Context) (any, error) {
+			return obj.ChangeTime, nil
+		},
+		nil,
+		ec.marshalOTime2ᚖtimeᚐTime,
+		true,
+		false,
+	)
 }
 
-func (ec *executionContext) fieldContext_Forecast_changeTime(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_Forecast_changeTime(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "Forecast",
 		Field:      field,
@@ -2430,34 +1739,22 @@ func (ec *executionContext) fieldContext_Forecast_changeTime(ctx context.Context
 }
 
 func (ec *executionContext) _Forecast_changeProbability(ctx context.Context, field graphql.CollectedField, obj *ent.Forecast) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Forecast_changeProbability(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.ChangeProbability, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		return graphql.Null
-	}
-	res := resTmp.(*int)
-	fc.Result = res
-	return ec.marshalOInt2ᚖint(ctx, field.Selections, res)
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		ec.fieldContext_Forecast_changeProbability,
+		func(ctx context.Context) (any, error) {
+			return obj.ChangeProbability, nil
+		},
+		nil,
+		ec.marshalOInt2ᚖint,
+		true,
+		false,
+	)
 }
 
-func (ec *executionContext) fieldContext_Forecast_changeProbability(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_Forecast_changeProbability(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "Forecast",
 		Field:      field,
@@ -2471,34 +1768,22 @@ func (ec *executionContext) fieldContext_Forecast_changeProbability(ctx context.
 }
 
 func (ec *executionContext) _Forecast_windDirection(ctx context.Context, field graphql.CollectedField, obj *ent.Forecast) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Forecast_windDirection(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.WindDirection, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		return graphql.Null
-	}
-	res := resTmp.(*int)
-	fc.Result = res
-	return ec.marshalOInt2ᚖint(ctx, field.Selections, res)
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		ec.fieldContext_Forecast_windDirection,
+		func(ctx context.Context) (any, error) {
+			return obj.WindDirection, nil
+		},
+		nil,
+		ec.marshalOInt2ᚖint,
+		true,
+		false,
+	)
 }
 
-func (ec *executionContext) fieldContext_Forecast_windDirection(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_Forecast_windDirection(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "Forecast",
 		Field:      field,
@@ -2512,37 +1797,22 @@ func (ec *executionContext) fieldContext_Forecast_windDirection(ctx context.Cont
 }
 
 func (ec *executionContext) _Forecast_windDirectionVariable(ctx context.Context, field graphql.CollectedField, obj *ent.Forecast) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Forecast_windDirectionVariable(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.WindDirectionVariable, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		if !graphql.HasFieldError(ctx, fc) {
-			ec.Errorf(ctx, "must not be null")
-		}
-		return graphql.Null
-	}
-	res := resTmp.(bool)
-	fc.Result = res
-	return ec.marshalNBoolean2bool(ctx, field.Selections, res)
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		ec.fieldContext_Forecast_windDirectionVariable,
+		func(ctx context.Context) (any, error) {
+			return obj.WindDirectionVariable, nil
+		},
+		nil,
+		ec.marshalNBoolean2bool,
+		true,
+		true,
+	)
 }
 
-func (ec *executionContext) fieldContext_Forecast_windDirectionVariable(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_Forecast_windDirectionVariable(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "Forecast",
 		Field:      field,
@@ -2556,34 +1826,22 @@ func (ec *executionContext) fieldContext_Forecast_windDirectionVariable(ctx cont
 }
 
 func (ec *executionContext) _Forecast_windShearDirection(ctx context.Context, field graphql.CollectedField, obj *ent.Forecast) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Forecast_windShearDirection(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.WindShearDirection, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		return graphql.Null
-	}
-	res := resTmp.(*int)
-	fc.Result = res
-	return ec.marshalOInt2ᚖint(ctx, field.Selections, res)
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		ec.fieldContext_Forecast_windShearDirection,
+		func(ctx context.Context) (any, error) {
+			return obj.WindShearDirection, nil
+		},
+		nil,
+		ec.marshalOInt2ᚖint,
+		true,
+		false,
+	)
 }
 
-func (ec *executionContext) fieldContext_Forecast_windShearDirection(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_Forecast_windShearDirection(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "Forecast",
 		Field:      field,
@@ -2597,37 +1855,22 @@ func (ec *executionContext) fieldContext_Forecast_windShearDirection(ctx context
 }
 
 func (ec *executionContext) _Forecast_visibilityHorizontalIsMoreThan(ctx context.Context, field graphql.CollectedField, obj *ent.Forecast) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Forecast_visibilityHorizontalIsMoreThan(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.VisibilityHorizontalIsMoreThan, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		if !graphql.HasFieldError(ctx, fc) {
-			ec.Errorf(ctx, "must not be null")
-		}
-		return graphql.Null
-	}
-	res := resTmp.(bool)
-	fc.Result = res
-	return ec.marshalNBoolean2bool(ctx, field.Selections, res)
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		ec.fieldContext_Forecast_visibilityHorizontalIsMoreThan,
+		func(ctx context.Context) (any, error) {
+			return obj.VisibilityHorizontalIsMoreThan, nil
+		},
+		nil,
+		ec.marshalNBoolean2bool,
+		true,
+		true,
+	)
 }
 
-func (ec *executionContext) fieldContext_Forecast_visibilityHorizontalIsMoreThan(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_Forecast_visibilityHorizontalIsMoreThan(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "Forecast",
 		Field:      field,
@@ -2641,34 +1884,22 @@ func (ec *executionContext) fieldContext_Forecast_visibilityHorizontalIsMoreThan
 }
 
 func (ec *executionContext) _Forecast_weather(ctx context.Context, field graphql.CollectedField, obj *ent.Forecast) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Forecast_weather(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.Weather, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		return graphql.Null
-	}
-	res := resTmp.(string)
-	fc.Result = res
-	return ec.marshalOString2string(ctx, field.Selections, res)
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		ec.fieldContext_Forecast_weather,
+		func(ctx context.Context) (any, error) {
+			return obj.Weather, nil
+		},
+		nil,
+		ec.marshalOString2string,
+		true,
+		false,
+	)
 }
 
-func (ec *executionContext) fieldContext_Forecast_weather(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_Forecast_weather(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "Forecast",
 		Field:      field,
@@ -2682,34 +1913,22 @@ func (ec *executionContext) fieldContext_Forecast_weather(ctx context.Context, f
 }
 
 func (ec *executionContext) _Forecast_notDecoded(ctx context.Context, field graphql.CollectedField, obj *ent.Forecast) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Forecast_notDecoded(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.NotDecoded, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		return graphql.Null
-	}
-	res := resTmp.(string)
-	fc.Result = res
-	return ec.marshalOString2string(ctx, field.Selections, res)
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		ec.fieldContext_Forecast_notDecoded,
+		func(ctx context.Context) (any, error) {
+			return obj.NotDecoded, nil
+		},
+		nil,
+		ec.marshalOString2string,
+		true,
+		false,
+	)
 }
 
-func (ec *executionContext) fieldContext_Forecast_notDecoded(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_Forecast_notDecoded(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "Forecast",
 		Field:      field,
@@ -2723,34 +1942,22 @@ func (ec *executionContext) fieldContext_Forecast_notDecoded(ctx context.Context
 }
 
 func (ec *executionContext) _Forecast_skyConditions(ctx context.Context, field graphql.CollectedField, obj *ent.Forecast) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Forecast_skyConditions(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.SkyConditions(ctx)
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		return graphql.Null
-	}
-	res := resTmp.([]*ent.SkyCondition)
-	fc.Result = res
-	return ec.marshalOSkyCondition2ᚕᚖmetarᚗggᚋentᚐSkyConditionᚄ(ctx, field.Selections, res)
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		ec.fieldContext_Forecast_skyConditions,
+		func(ctx context.Context) (any, error) {
+			return obj.SkyConditions(ctx)
+		},
+		nil,
+		ec.marshalOSkyCondition2ᚕᚖmetarᚗggᚋentᚐSkyConditionᚄ,
+		true,
+		false,
+	)
 }
 
-func (ec *executionContext) fieldContext_Forecast_skyConditions(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_Forecast_skyConditions(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "Forecast",
 		Field:      field,
@@ -2774,34 +1981,22 @@ func (ec *executionContext) fieldContext_Forecast_skyConditions(ctx context.Cont
 }
 
 func (ec *executionContext) _Forecast_turbulenceConditions(ctx context.Context, field graphql.CollectedField, obj *ent.Forecast) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Forecast_turbulenceConditions(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.TurbulenceConditions(ctx)
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		return graphql.Null
-	}
-	res := resTmp.([]*ent.TurbulenceCondition)
-	fc.Result = res
-	return ec.marshalOTurbulenceCondition2ᚕᚖmetarᚗggᚋentᚐTurbulenceConditionᚄ(ctx, field.Selections, res)
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		ec.fieldContext_Forecast_turbulenceConditions,
+		func(ctx context.Context) (any, error) {
+			return obj.TurbulenceConditions(ctx)
+		},
+		nil,
+		ec.marshalOTurbulenceCondition2ᚕᚖmetarᚗggᚋentᚐTurbulenceConditionᚄ,
+		true,
+		false,
+	)
 }
 
-func (ec *executionContext) fieldContext_Forecast_turbulenceConditions(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_Forecast_turbulenceConditions(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "Forecast",
 		Field:      field,
@@ -2825,34 +2020,22 @@ func (ec *executionContext) fieldContext_Forecast_turbulenceConditions(ctx conte
 }
 
 func (ec *executionContext) _Forecast_icingConditions(ctx context.Context, field graphql.CollectedField, obj *ent.Forecast) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Forecast_icingConditions(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.IcingConditions(ctx)
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		return graphql.Null
-	}
-	res := resTmp.([]*ent.IcingCondition)
-	fc.Result = res
-	return ec.marshalOIcingCondition2ᚕᚖmetarᚗggᚋentᚐIcingConditionᚄ(ctx, field.Selections, res)
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		ec.fieldContext_Forecast_icingConditions,
+		func(ctx context.Context) (any, error) {
+			return obj.IcingConditions(ctx)
+		},
+		nil,
+		ec.marshalOIcingCondition2ᚕᚖmetarᚗggᚋentᚐIcingConditionᚄ,
+		true,
+		false,
+	)
 }
 
-func (ec *executionContext) fieldContext_Forecast_icingConditions(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_Forecast_icingConditions(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "Forecast",
 		Field:      field,
@@ -2876,34 +2059,22 @@ func (ec *executionContext) fieldContext_Forecast_icingConditions(ctx context.Co
 }
 
 func (ec *executionContext) _Forecast_temperatureData(ctx context.Context, field graphql.CollectedField, obj *ent.Forecast) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Forecast_temperatureData(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.TemperatureData(ctx)
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		return graphql.Null
-	}
-	res := resTmp.([]*ent.TemperatureData)
-	fc.Result = res
-	return ec.marshalOTemperatureData2ᚕᚖmetarᚗggᚋentᚐTemperatureDataᚄ(ctx, field.Selections, res)
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		ec.fieldContext_Forecast_temperatureData,
+		func(ctx context.Context) (any, error) {
+			return obj.TemperatureData(ctx)
+		},
+		nil,
+		ec.marshalOTemperatureData2ᚕᚖmetarᚗggᚋentᚐTemperatureDataᚄ,
+		true,
+		false,
+	)
 }
 
-func (ec *executionContext) fieldContext_Forecast_temperatureData(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_Forecast_temperatureData(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "Forecast",
 		Field:      field,
@@ -2929,31 +2100,20 @@ func (ec *executionContext) fieldContext_Forecast_temperatureData(ctx context.Co
 }
 
 func (ec *executionContext) _Forecast_altimeter(ctx context.Context, field graphql.CollectedField, obj *ent.Forecast) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Forecast_altimeter(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return ec.resolvers.Forecast().Altimeter(rctx, obj, fc.Args["unit"].(model.PressureUnit))
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		return graphql.Null
-	}
-	res := resTmp.(*float64)
-	fc.Result = res
-	return ec.marshalOFloat2ᚖfloat64(ctx, field.Selections, res)
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		ec.fieldContext_Forecast_altimeter,
+		func(ctx context.Context) (any, error) {
+			fc := graphql.GetFieldContext(ctx)
+			return ec.resolvers.Forecast().Altimeter(ctx, obj, fc.Args["unit"].(model.PressureUnit))
+		},
+		nil,
+		ec.marshalOFloat2ᚖfloat64,
+		true,
+		false,
+	)
 }
 
 func (ec *executionContext) fieldContext_Forecast_altimeter(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -2981,31 +2141,20 @@ func (ec *executionContext) fieldContext_Forecast_altimeter(ctx context.Context,
 }
 
 func (ec *executionContext) _Forecast_windSpeed(ctx context.Context, field graphql.CollectedField, obj *ent.Forecast) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Forecast_windSpeed(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return ec.resolvers.Forecast().WindSpeed(rctx, obj, fc.Args["unit"].(model.SpeedUnit))
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		return graphql.Null
-	}
-	res := resTmp.(*float64)
-	fc.Result = res
-	return ec.marshalOFloat2ᚖfloat64(ctx, field.Selections, res)
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		ec.fieldContext_Forecast_windSpeed,
+		func(ctx context.Context) (any, error) {
+			fc := graphql.GetFieldContext(ctx)
+			return ec.resolvers.Forecast().WindSpeed(ctx, obj, fc.Args["unit"].(model.SpeedUnit))
+		},
+		nil,
+		ec.marshalOFloat2ᚖfloat64,
+		true,
+		false,
+	)
 }
 
 func (ec *executionContext) fieldContext_Forecast_windSpeed(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -3033,31 +2182,20 @@ func (ec *executionContext) fieldContext_Forecast_windSpeed(ctx context.Context,
 }
 
 func (ec *executionContext) _Forecast_windGust(ctx context.Context, field graphql.CollectedField, obj *ent.Forecast) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Forecast_windGust(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return ec.resolvers.Forecast().WindGust(rctx, obj, fc.Args["unit"].(model.SpeedUnit))
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		return graphql.Null
-	}
-	res := resTmp.(*float64)
-	fc.Result = res
-	return ec.marshalOFloat2ᚖfloat64(ctx, field.Selections, res)
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		ec.fieldContext_Forecast_windGust,
+		func(ctx context.Context) (any, error) {
+			fc := graphql.GetFieldContext(ctx)
+			return ec.resolvers.Forecast().WindGust(ctx, obj, fc.Args["unit"].(model.SpeedUnit))
+		},
+		nil,
+		ec.marshalOFloat2ᚖfloat64,
+		true,
+		false,
+	)
 }
 
 func (ec *executionContext) fieldContext_Forecast_windGust(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -3085,31 +2223,20 @@ func (ec *executionContext) fieldContext_Forecast_windGust(ctx context.Context, 
 }
 
 func (ec *executionContext) _Forecast_visibilityHorizontal(ctx context.Context, field graphql.CollectedField, obj *ent.Forecast) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Forecast_visibilityHorizontal(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return ec.resolvers.Forecast().VisibilityHorizontal(rctx, obj, fc.Args["unit"].(model.LengthUnit))
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		return graphql.Null
-	}
-	res := resTmp.(*float64)
-	fc.Result = res
-	return ec.marshalOFloat2ᚖfloat64(ctx, field.Selections, res)
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		ec.fieldContext_Forecast_visibilityHorizontal,
+		func(ctx context.Context) (any, error) {
+			fc := graphql.GetFieldContext(ctx)
+			return ec.resolvers.Forecast().VisibilityHorizontal(ctx, obj, fc.Args["unit"].(model.LengthUnit))
+		},
+		nil,
+		ec.marshalOFloat2ᚖfloat64,
+		true,
+		false,
+	)
 }
 
 func (ec *executionContext) fieldContext_Forecast_visibilityHorizontal(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -3137,31 +2264,20 @@ func (ec *executionContext) fieldContext_Forecast_visibilityHorizontal(ctx conte
 }
 
 func (ec *executionContext) _Forecast_visibilityVertical(ctx context.Context, field graphql.CollectedField, obj *ent.Forecast) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Forecast_visibilityVertical(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return ec.resolvers.Forecast().VisibilityVertical(rctx, obj, fc.Args["unit"].(model.LengthUnit))
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		return graphql.Null
-	}
-	res := resTmp.(*float64)
-	fc.Result = res
-	return ec.marshalOFloat2ᚖfloat64(ctx, field.Selections, res)
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		ec.fieldContext_Forecast_visibilityVertical,
+		func(ctx context.Context) (any, error) {
+			fc := graphql.GetFieldContext(ctx)
+			return ec.resolvers.Forecast().VisibilityVertical(ctx, obj, fc.Args["unit"].(model.LengthUnit))
+		},
+		nil,
+		ec.marshalOFloat2ᚖfloat64,
+		true,
+		false,
+	)
 }
 
 func (ec *executionContext) fieldContext_Forecast_visibilityVertical(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -3189,31 +2305,20 @@ func (ec *executionContext) fieldContext_Forecast_visibilityVertical(ctx context
 }
 
 func (ec *executionContext) _Forecast_windShearHeight(ctx context.Context, field graphql.CollectedField, obj *ent.Forecast) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Forecast_windShearHeight(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return ec.resolvers.Forecast().WindShearHeight(rctx, obj, fc.Args["unit"].(model.LengthUnit))
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		return graphql.Null
-	}
-	res := resTmp.(*float64)
-	fc.Result = res
-	return ec.marshalOFloat2ᚖfloat64(ctx, field.Selections, res)
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		ec.fieldContext_Forecast_windShearHeight,
+		func(ctx context.Context) (any, error) {
+			fc := graphql.GetFieldContext(ctx)
+			return ec.resolvers.Forecast().WindShearHeight(ctx, obj, fc.Args["unit"].(model.LengthUnit))
+		},
+		nil,
+		ec.marshalOFloat2ᚖfloat64,
+		true,
+		false,
+	)
 }
 
 func (ec *executionContext) fieldContext_Forecast_windShearHeight(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -3241,31 +2346,20 @@ func (ec *executionContext) fieldContext_Forecast_windShearHeight(ctx context.Co
 }
 
 func (ec *executionContext) _Forecast_windShearSpeed(ctx context.Context, field graphql.CollectedField, obj *ent.Forecast) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Forecast_windShearSpeed(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return ec.resolvers.Forecast().WindShearSpeed(rctx, obj, fc.Args["unit"].(model.SpeedUnit))
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		return graphql.Null
-	}
-	res := resTmp.(*float64)
-	fc.Result = res
-	return ec.marshalOFloat2ᚖfloat64(ctx, field.Selections, res)
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		ec.fieldContext_Forecast_windShearSpeed,
+		func(ctx context.Context) (any, error) {
+			fc := graphql.GetFieldContext(ctx)
+			return ec.resolvers.Forecast().WindShearSpeed(ctx, obj, fc.Args["unit"].(model.SpeedUnit))
+		},
+		nil,
+		ec.marshalOFloat2ᚖfloat64,
+		true,
+		false,
+	)
 }
 
 func (ec *executionContext) fieldContext_Forecast_windShearSpeed(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -3293,37 +2387,22 @@ func (ec *executionContext) fieldContext_Forecast_windShearSpeed(ctx context.Con
 }
 
 func (ec *executionContext) _Frequency_id(ctx context.Context, field graphql.CollectedField, obj *ent.Frequency) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Frequency_id(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.ID, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		if !graphql.HasFieldError(ctx, fc) {
-			ec.Errorf(ctx, "must not be null")
-		}
-		return graphql.Null
-	}
-	res := resTmp.(uuid.UUID)
-	fc.Result = res
-	return ec.marshalNID2githubᚗcomᚋgoogleᚋuuidᚐUUID(ctx, field.Selections, res)
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		ec.fieldContext_Frequency_id,
+		func(ctx context.Context) (any, error) {
+			return obj.ID, nil
+		},
+		nil,
+		ec.marshalNID2githubᚗcomᚋgoogleᚋuuidᚐUUID,
+		true,
+		true,
+	)
 }
 
-func (ec *executionContext) fieldContext_Frequency_id(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_Frequency_id(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "Frequency",
 		Field:      field,
@@ -3337,37 +2416,22 @@ func (ec *executionContext) fieldContext_Frequency_id(ctx context.Context, field
 }
 
 func (ec *executionContext) _Frequency_importID(ctx context.Context, field graphql.CollectedField, obj *ent.Frequency) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Frequency_importID(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.ImportID, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		if !graphql.HasFieldError(ctx, fc) {
-			ec.Errorf(ctx, "must not be null")
-		}
-		return graphql.Null
-	}
-	res := resTmp.(int)
-	fc.Result = res
-	return ec.marshalNInt2int(ctx, field.Selections, res)
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		ec.fieldContext_Frequency_importID,
+		func(ctx context.Context) (any, error) {
+			return obj.ImportID, nil
+		},
+		nil,
+		ec.marshalNInt2int,
+		true,
+		true,
+	)
 }
 
-func (ec *executionContext) fieldContext_Frequency_importID(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_Frequency_importID(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "Frequency",
 		Field:      field,
@@ -3381,37 +2445,22 @@ func (ec *executionContext) fieldContext_Frequency_importID(ctx context.Context,
 }
 
 func (ec *executionContext) _Frequency_lastUpdated(ctx context.Context, field graphql.CollectedField, obj *ent.Frequency) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Frequency_lastUpdated(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.LastUpdated, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		if !graphql.HasFieldError(ctx, fc) {
-			ec.Errorf(ctx, "must not be null")
-		}
-		return graphql.Null
-	}
-	res := resTmp.(time.Time)
-	fc.Result = res
-	return ec.marshalNTime2timeᚐTime(ctx, field.Selections, res)
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		ec.fieldContext_Frequency_lastUpdated,
+		func(ctx context.Context) (any, error) {
+			return obj.LastUpdated, nil
+		},
+		nil,
+		ec.marshalNTime2timeᚐTime,
+		true,
+		true,
+	)
 }
 
-func (ec *executionContext) fieldContext_Frequency_lastUpdated(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_Frequency_lastUpdated(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "Frequency",
 		Field:      field,
@@ -3425,37 +2474,22 @@ func (ec *executionContext) fieldContext_Frequency_lastUpdated(ctx context.Conte
 }
 
 func (ec *executionContext) _Frequency_type(ctx context.Context, field graphql.CollectedField, obj *ent.Frequency) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Frequency_type(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.Type, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		if !graphql.HasFieldError(ctx, fc) {
-			ec.Errorf(ctx, "must not be null")
-		}
-		return graphql.Null
-	}
-	res := resTmp.(string)
-	fc.Result = res
-	return ec.marshalNString2string(ctx, field.Selections, res)
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		ec.fieldContext_Frequency_type,
+		func(ctx context.Context) (any, error) {
+			return obj.Type, nil
+		},
+		nil,
+		ec.marshalNString2string,
+		true,
+		true,
+	)
 }
 
-func (ec *executionContext) fieldContext_Frequency_type(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_Frequency_type(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "Frequency",
 		Field:      field,
@@ -3469,37 +2503,22 @@ func (ec *executionContext) fieldContext_Frequency_type(ctx context.Context, fie
 }
 
 func (ec *executionContext) _Frequency_description(ctx context.Context, field graphql.CollectedField, obj *ent.Frequency) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Frequency_description(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.Description, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		if !graphql.HasFieldError(ctx, fc) {
-			ec.Errorf(ctx, "must not be null")
-		}
-		return graphql.Null
-	}
-	res := resTmp.(string)
-	fc.Result = res
-	return ec.marshalNString2string(ctx, field.Selections, res)
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		ec.fieldContext_Frequency_description,
+		func(ctx context.Context) (any, error) {
+			return obj.Description, nil
+		},
+		nil,
+		ec.marshalNString2string,
+		true,
+		true,
+	)
 }
 
-func (ec *executionContext) fieldContext_Frequency_description(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_Frequency_description(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "Frequency",
 		Field:      field,
@@ -3513,37 +2532,22 @@ func (ec *executionContext) fieldContext_Frequency_description(ctx context.Conte
 }
 
 func (ec *executionContext) _Frequency_frequency(ctx context.Context, field graphql.CollectedField, obj *ent.Frequency) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Frequency_frequency(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.Frequency, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		if !graphql.HasFieldError(ctx, fc) {
-			ec.Errorf(ctx, "must not be null")
-		}
-		return graphql.Null
-	}
-	res := resTmp.(float64)
-	fc.Result = res
-	return ec.marshalNFloat2float64(ctx, field.Selections, res)
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		ec.fieldContext_Frequency_frequency,
+		func(ctx context.Context) (any, error) {
+			return obj.Frequency, nil
+		},
+		nil,
+		ec.marshalNFloat2float64,
+		true,
+		true,
+	)
 }
 
-func (ec *executionContext) fieldContext_Frequency_frequency(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_Frequency_frequency(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "Frequency",
 		Field:      field,
@@ -3557,34 +2561,22 @@ func (ec *executionContext) fieldContext_Frequency_frequency(ctx context.Context
 }
 
 func (ec *executionContext) _Frequency_airport(ctx context.Context, field graphql.CollectedField, obj *ent.Frequency) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Frequency_airport(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.Airport(ctx)
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		return graphql.Null
-	}
-	res := resTmp.(*ent.Airport)
-	fc.Result = res
-	return ec.marshalOAirport2ᚖmetarᚗggᚋentᚐAirport(ctx, field.Selections, res)
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		ec.fieldContext_Frequency_airport,
+		func(ctx context.Context) (any, error) {
+			return obj.Airport(ctx)
+		},
+		nil,
+		ec.marshalOAirport2ᚖmetarᚗggᚋentᚐAirport,
+		true,
+		false,
+	)
 }
 
-func (ec *executionContext) fieldContext_Frequency_airport(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_Frequency_airport(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "Frequency",
 		Field:      field,
@@ -3652,37 +2644,22 @@ func (ec *executionContext) fieldContext_Frequency_airport(ctx context.Context, 
 }
 
 func (ec *executionContext) _IcingCondition_id(ctx context.Context, field graphql.CollectedField, obj *ent.IcingCondition) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_IcingCondition_id(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.ID, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		if !graphql.HasFieldError(ctx, fc) {
-			ec.Errorf(ctx, "must not be null")
-		}
-		return graphql.Null
-	}
-	res := resTmp.(uuid.UUID)
-	fc.Result = res
-	return ec.marshalNID2githubᚗcomᚋgoogleᚋuuidᚐUUID(ctx, field.Selections, res)
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		ec.fieldContext_IcingCondition_id,
+		func(ctx context.Context) (any, error) {
+			return obj.ID, nil
+		},
+		nil,
+		ec.marshalNID2githubᚗcomᚋgoogleᚋuuidᚐUUID,
+		true,
+		true,
+	)
 }
 
-func (ec *executionContext) fieldContext_IcingCondition_id(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_IcingCondition_id(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "IcingCondition",
 		Field:      field,
@@ -3696,37 +2673,22 @@ func (ec *executionContext) fieldContext_IcingCondition_id(ctx context.Context, 
 }
 
 func (ec *executionContext) _IcingCondition_intensity(ctx context.Context, field graphql.CollectedField, obj *ent.IcingCondition) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_IcingCondition_intensity(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.Intensity, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		if !graphql.HasFieldError(ctx, fc) {
-			ec.Errorf(ctx, "must not be null")
-		}
-		return graphql.Null
-	}
-	res := resTmp.(string)
-	fc.Result = res
-	return ec.marshalNString2string(ctx, field.Selections, res)
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		ec.fieldContext_IcingCondition_intensity,
+		func(ctx context.Context) (any, error) {
+			return obj.Intensity, nil
+		},
+		nil,
+		ec.marshalNString2string,
+		true,
+		true,
+	)
 }
 
-func (ec *executionContext) fieldContext_IcingCondition_intensity(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_IcingCondition_intensity(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "IcingCondition",
 		Field:      field,
@@ -3740,31 +2702,20 @@ func (ec *executionContext) fieldContext_IcingCondition_intensity(ctx context.Co
 }
 
 func (ec *executionContext) _IcingCondition_minAltitude(ctx context.Context, field graphql.CollectedField, obj *ent.IcingCondition) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_IcingCondition_minAltitude(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return ec.resolvers.IcingCondition().MinAltitude(rctx, obj, fc.Args["unit"].(model.LengthUnit))
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		return graphql.Null
-	}
-	res := resTmp.(*float64)
-	fc.Result = res
-	return ec.marshalOFloat2ᚖfloat64(ctx, field.Selections, res)
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		ec.fieldContext_IcingCondition_minAltitude,
+		func(ctx context.Context) (any, error) {
+			fc := graphql.GetFieldContext(ctx)
+			return ec.resolvers.IcingCondition().MinAltitude(ctx, obj, fc.Args["unit"].(model.LengthUnit))
+		},
+		nil,
+		ec.marshalOFloat2ᚖfloat64,
+		true,
+		false,
+	)
 }
 
 func (ec *executionContext) fieldContext_IcingCondition_minAltitude(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -3792,31 +2743,20 @@ func (ec *executionContext) fieldContext_IcingCondition_minAltitude(ctx context.
 }
 
 func (ec *executionContext) _IcingCondition_maxAltitude(ctx context.Context, field graphql.CollectedField, obj *ent.IcingCondition) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_IcingCondition_maxAltitude(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return ec.resolvers.IcingCondition().MaxAltitude(rctx, obj, fc.Args["unit"].(model.LengthUnit))
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		return graphql.Null
-	}
-	res := resTmp.(*float64)
-	fc.Result = res
-	return ec.marshalOFloat2ᚖfloat64(ctx, field.Selections, res)
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		ec.fieldContext_IcingCondition_maxAltitude,
+		func(ctx context.Context) (any, error) {
+			fc := graphql.GetFieldContext(ctx)
+			return ec.resolvers.IcingCondition().MaxAltitude(ctx, obj, fc.Args["unit"].(model.LengthUnit))
+		},
+		nil,
+		ec.marshalOFloat2ᚖfloat64,
+		true,
+		false,
+	)
 }
 
 func (ec *executionContext) fieldContext_IcingCondition_maxAltitude(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -3844,37 +2784,22 @@ func (ec *executionContext) fieldContext_IcingCondition_maxAltitude(ctx context.
 }
 
 func (ec *executionContext) _Metar_id(ctx context.Context, field graphql.CollectedField, obj *ent.Metar) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Metar_id(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.ID, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		if !graphql.HasFieldError(ctx, fc) {
-			ec.Errorf(ctx, "must not be null")
-		}
-		return graphql.Null
-	}
-	res := resTmp.(uuid.UUID)
-	fc.Result = res
-	return ec.marshalNID2githubᚗcomᚋgoogleᚋuuidᚐUUID(ctx, field.Selections, res)
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		ec.fieldContext_Metar_id,
+		func(ctx context.Context) (any, error) {
+			return obj.ID, nil
+		},
+		nil,
+		ec.marshalNID2githubᚗcomᚋgoogleᚋuuidᚐUUID,
+		true,
+		true,
+	)
 }
 
-func (ec *executionContext) fieldContext_Metar_id(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_Metar_id(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "Metar",
 		Field:      field,
@@ -3888,37 +2813,22 @@ func (ec *executionContext) fieldContext_Metar_id(ctx context.Context, field gra
 }
 
 func (ec *executionContext) _Metar_rawText(ctx context.Context, field graphql.CollectedField, obj *ent.Metar) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Metar_rawText(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.RawText, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		if !graphql.HasFieldError(ctx, fc) {
-			ec.Errorf(ctx, "must not be null")
-		}
-		return graphql.Null
-	}
-	res := resTmp.(string)
-	fc.Result = res
-	return ec.marshalNString2string(ctx, field.Selections, res)
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		ec.fieldContext_Metar_rawText,
+		func(ctx context.Context) (any, error) {
+			return obj.RawText, nil
+		},
+		nil,
+		ec.marshalNString2string,
+		true,
+		true,
+	)
 }
 
-func (ec *executionContext) fieldContext_Metar_rawText(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_Metar_rawText(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "Metar",
 		Field:      field,
@@ -3932,37 +2842,22 @@ func (ec *executionContext) fieldContext_Metar_rawText(ctx context.Context, fiel
 }
 
 func (ec *executionContext) _Metar_observationTime(ctx context.Context, field graphql.CollectedField, obj *ent.Metar) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Metar_observationTime(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.ObservationTime, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		if !graphql.HasFieldError(ctx, fc) {
-			ec.Errorf(ctx, "must not be null")
-		}
-		return graphql.Null
-	}
-	res := resTmp.(time.Time)
-	fc.Result = res
-	return ec.marshalNTime2timeᚐTime(ctx, field.Selections, res)
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		ec.fieldContext_Metar_observationTime,
+		func(ctx context.Context) (any, error) {
+			return obj.ObservationTime, nil
+		},
+		nil,
+		ec.marshalNTime2timeᚐTime,
+		true,
+		true,
+	)
 }
 
-func (ec *executionContext) fieldContext_Metar_observationTime(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_Metar_observationTime(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "Metar",
 		Field:      field,
@@ -3976,37 +2871,22 @@ func (ec *executionContext) fieldContext_Metar_observationTime(ctx context.Conte
 }
 
 func (ec *executionContext) _Metar_importTime(ctx context.Context, field graphql.CollectedField, obj *ent.Metar) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Metar_importTime(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.ImportTime, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		if !graphql.HasFieldError(ctx, fc) {
-			ec.Errorf(ctx, "must not be null")
-		}
-		return graphql.Null
-	}
-	res := resTmp.(time.Time)
-	fc.Result = res
-	return ec.marshalNTime2timeᚐTime(ctx, field.Selections, res)
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		ec.fieldContext_Metar_importTime,
+		func(ctx context.Context) (any, error) {
+			return obj.ImportTime, nil
+		},
+		nil,
+		ec.marshalNTime2timeᚐTime,
+		true,
+		true,
+	)
 }
 
-func (ec *executionContext) fieldContext_Metar_importTime(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_Metar_importTime(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "Metar",
 		Field:      field,
@@ -4020,34 +2900,22 @@ func (ec *executionContext) fieldContext_Metar_importTime(ctx context.Context, f
 }
 
 func (ec *executionContext) _Metar_nextImportTimePrediction(ctx context.Context, field graphql.CollectedField, obj *ent.Metar) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Metar_nextImportTimePrediction(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.NextImportTimePrediction, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		return graphql.Null
-	}
-	res := resTmp.(*time.Time)
-	fc.Result = res
-	return ec.marshalOTime2ᚖtimeᚐTime(ctx, field.Selections, res)
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		ec.fieldContext_Metar_nextImportTimePrediction,
+		func(ctx context.Context) (any, error) {
+			return obj.NextImportTimePrediction, nil
+		},
+		nil,
+		ec.marshalOTime2ᚖtimeᚐTime,
+		true,
+		false,
+	)
 }
 
-func (ec *executionContext) fieldContext_Metar_nextImportTimePrediction(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_Metar_nextImportTimePrediction(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "Metar",
 		Field:      field,
@@ -4061,34 +2929,22 @@ func (ec *executionContext) fieldContext_Metar_nextImportTimePrediction(ctx cont
 }
 
 func (ec *executionContext) _Metar_windDirection(ctx context.Context, field graphql.CollectedField, obj *ent.Metar) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Metar_windDirection(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.WindDirection, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		return graphql.Null
-	}
-	res := resTmp.(*int)
-	fc.Result = res
-	return ec.marshalOInt2ᚖint(ctx, field.Selections, res)
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		ec.fieldContext_Metar_windDirection,
+		func(ctx context.Context) (any, error) {
+			return obj.WindDirection, nil
+		},
+		nil,
+		ec.marshalOInt2ᚖint,
+		true,
+		false,
+	)
 }
 
-func (ec *executionContext) fieldContext_Metar_windDirection(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_Metar_windDirection(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "Metar",
 		Field:      field,
@@ -4102,37 +2958,22 @@ func (ec *executionContext) fieldContext_Metar_windDirection(ctx context.Context
 }
 
 func (ec *executionContext) _Metar_windDirectionVariable(ctx context.Context, field graphql.CollectedField, obj *ent.Metar) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Metar_windDirectionVariable(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.WindDirectionVariable, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		if !graphql.HasFieldError(ctx, fc) {
-			ec.Errorf(ctx, "must not be null")
-		}
-		return graphql.Null
-	}
-	res := resTmp.(bool)
-	fc.Result = res
-	return ec.marshalNBoolean2bool(ctx, field.Selections, res)
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		ec.fieldContext_Metar_windDirectionVariable,
+		func(ctx context.Context) (any, error) {
+			return obj.WindDirectionVariable, nil
+		},
+		nil,
+		ec.marshalNBoolean2bool,
+		true,
+		true,
+	)
 }
 
-func (ec *executionContext) fieldContext_Metar_windDirectionVariable(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_Metar_windDirectionVariable(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "Metar",
 		Field:      field,
@@ -4146,37 +2987,22 @@ func (ec *executionContext) fieldContext_Metar_windDirectionVariable(ctx context
 }
 
 func (ec *executionContext) _Metar_visibilityIsMoreThan(ctx context.Context, field graphql.CollectedField, obj *ent.Metar) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Metar_visibilityIsMoreThan(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.VisibilityIsMoreThan, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		if !graphql.HasFieldError(ctx, fc) {
-			ec.Errorf(ctx, "must not be null")
-		}
-		return graphql.Null
-	}
-	res := resTmp.(bool)
-	fc.Result = res
-	return ec.marshalNBoolean2bool(ctx, field.Selections, res)
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		ec.fieldContext_Metar_visibilityIsMoreThan,
+		func(ctx context.Context) (any, error) {
+			return obj.VisibilityIsMoreThan, nil
+		},
+		nil,
+		ec.marshalNBoolean2bool,
+		true,
+		true,
+	)
 }
 
-func (ec *executionContext) fieldContext_Metar_visibilityIsMoreThan(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_Metar_visibilityIsMoreThan(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "Metar",
 		Field:      field,
@@ -4190,34 +3016,22 @@ func (ec *executionContext) fieldContext_Metar_visibilityIsMoreThan(ctx context.
 }
 
 func (ec *executionContext) _Metar_presentWeather(ctx context.Context, field graphql.CollectedField, obj *ent.Metar) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Metar_presentWeather(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.PresentWeather, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		return graphql.Null
-	}
-	res := resTmp.(*string)
-	fc.Result = res
-	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		ec.fieldContext_Metar_presentWeather,
+		func(ctx context.Context) (any, error) {
+			return obj.PresentWeather, nil
+		},
+		nil,
+		ec.marshalOString2ᚖstring,
+		true,
+		false,
+	)
 }
 
-func (ec *executionContext) fieldContext_Metar_presentWeather(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_Metar_presentWeather(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "Metar",
 		Field:      field,
@@ -4231,34 +3045,22 @@ func (ec *executionContext) fieldContext_Metar_presentWeather(ctx context.Contex
 }
 
 func (ec *executionContext) _Metar_flightCategory(ctx context.Context, field graphql.CollectedField, obj *ent.Metar) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Metar_flightCategory(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.FlightCategory, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		return graphql.Null
-	}
-	res := resTmp.(*metar.FlightCategory)
-	fc.Result = res
-	return ec.marshalOMetarFlightCategory2ᚖmetarᚗggᚋentᚋmetarᚐFlightCategory(ctx, field.Selections, res)
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		ec.fieldContext_Metar_flightCategory,
+		func(ctx context.Context) (any, error) {
+			return obj.FlightCategory, nil
+		},
+		nil,
+		ec.marshalOMetarFlightCategory2ᚖmetarᚗggᚋentᚋmetarᚐFlightCategory,
+		true,
+		false,
+	)
 }
 
-func (ec *executionContext) fieldContext_Metar_flightCategory(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_Metar_flightCategory(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "Metar",
 		Field:      field,
@@ -4272,34 +3074,22 @@ func (ec *executionContext) fieldContext_Metar_flightCategory(ctx context.Contex
 }
 
 func (ec *executionContext) _Metar_qualityControlCorrected(ctx context.Context, field graphql.CollectedField, obj *ent.Metar) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Metar_qualityControlCorrected(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.QualityControlCorrected, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		return graphql.Null
-	}
-	res := resTmp.(*bool)
-	fc.Result = res
-	return ec.marshalOBoolean2ᚖbool(ctx, field.Selections, res)
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		ec.fieldContext_Metar_qualityControlCorrected,
+		func(ctx context.Context) (any, error) {
+			return obj.QualityControlCorrected, nil
+		},
+		nil,
+		ec.marshalOBoolean2ᚖbool,
+		true,
+		false,
+	)
 }
 
-func (ec *executionContext) fieldContext_Metar_qualityControlCorrected(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_Metar_qualityControlCorrected(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "Metar",
 		Field:      field,
@@ -4313,37 +3103,22 @@ func (ec *executionContext) fieldContext_Metar_qualityControlCorrected(ctx conte
 }
 
 func (ec *executionContext) _Metar_qualityControlAutoStation(ctx context.Context, field graphql.CollectedField, obj *ent.Metar) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Metar_qualityControlAutoStation(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.QualityControlAutoStation, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		if !graphql.HasFieldError(ctx, fc) {
-			ec.Errorf(ctx, "must not be null")
-		}
-		return graphql.Null
-	}
-	res := resTmp.(bool)
-	fc.Result = res
-	return ec.marshalNBoolean2bool(ctx, field.Selections, res)
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		ec.fieldContext_Metar_qualityControlAutoStation,
+		func(ctx context.Context) (any, error) {
+			return obj.QualityControlAutoStation, nil
+		},
+		nil,
+		ec.marshalNBoolean2bool,
+		true,
+		true,
+	)
 }
 
-func (ec *executionContext) fieldContext_Metar_qualityControlAutoStation(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_Metar_qualityControlAutoStation(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "Metar",
 		Field:      field,
@@ -4357,37 +3132,22 @@ func (ec *executionContext) fieldContext_Metar_qualityControlAutoStation(ctx con
 }
 
 func (ec *executionContext) _Metar_qualityControlMaintenanceIndicatorOn(ctx context.Context, field graphql.CollectedField, obj *ent.Metar) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Metar_qualityControlMaintenanceIndicatorOn(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.QualityControlMaintenanceIndicatorOn, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		if !graphql.HasFieldError(ctx, fc) {
-			ec.Errorf(ctx, "must not be null")
-		}
-		return graphql.Null
-	}
-	res := resTmp.(bool)
-	fc.Result = res
-	return ec.marshalNBoolean2bool(ctx, field.Selections, res)
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		ec.fieldContext_Metar_qualityControlMaintenanceIndicatorOn,
+		func(ctx context.Context) (any, error) {
+			return obj.QualityControlMaintenanceIndicatorOn, nil
+		},
+		nil,
+		ec.marshalNBoolean2bool,
+		true,
+		true,
+	)
 }
 
-func (ec *executionContext) fieldContext_Metar_qualityControlMaintenanceIndicatorOn(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_Metar_qualityControlMaintenanceIndicatorOn(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "Metar",
 		Field:      field,
@@ -4401,37 +3161,22 @@ func (ec *executionContext) fieldContext_Metar_qualityControlMaintenanceIndicato
 }
 
 func (ec *executionContext) _Metar_qualityControlNoSignal(ctx context.Context, field graphql.CollectedField, obj *ent.Metar) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Metar_qualityControlNoSignal(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.QualityControlNoSignal, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		if !graphql.HasFieldError(ctx, fc) {
-			ec.Errorf(ctx, "must not be null")
-		}
-		return graphql.Null
-	}
-	res := resTmp.(bool)
-	fc.Result = res
-	return ec.marshalNBoolean2bool(ctx, field.Selections, res)
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		ec.fieldContext_Metar_qualityControlNoSignal,
+		func(ctx context.Context) (any, error) {
+			return obj.QualityControlNoSignal, nil
+		},
+		nil,
+		ec.marshalNBoolean2bool,
+		true,
+		true,
+	)
 }
 
-func (ec *executionContext) fieldContext_Metar_qualityControlNoSignal(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_Metar_qualityControlNoSignal(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "Metar",
 		Field:      field,
@@ -4445,37 +3190,22 @@ func (ec *executionContext) fieldContext_Metar_qualityControlNoSignal(ctx contex
 }
 
 func (ec *executionContext) _Metar_qualityControlLightningSensorOff(ctx context.Context, field graphql.CollectedField, obj *ent.Metar) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Metar_qualityControlLightningSensorOff(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.QualityControlLightningSensorOff, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		if !graphql.HasFieldError(ctx, fc) {
-			ec.Errorf(ctx, "must not be null")
-		}
-		return graphql.Null
-	}
-	res := resTmp.(bool)
-	fc.Result = res
-	return ec.marshalNBoolean2bool(ctx, field.Selections, res)
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		ec.fieldContext_Metar_qualityControlLightningSensorOff,
+		func(ctx context.Context) (any, error) {
+			return obj.QualityControlLightningSensorOff, nil
+		},
+		nil,
+		ec.marshalNBoolean2bool,
+		true,
+		true,
+	)
 }
 
-func (ec *executionContext) fieldContext_Metar_qualityControlLightningSensorOff(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_Metar_qualityControlLightningSensorOff(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "Metar",
 		Field:      field,
@@ -4489,37 +3219,22 @@ func (ec *executionContext) fieldContext_Metar_qualityControlLightningSensorOff(
 }
 
 func (ec *executionContext) _Metar_qualityControlFreezingRainSensorOff(ctx context.Context, field graphql.CollectedField, obj *ent.Metar) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Metar_qualityControlFreezingRainSensorOff(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.QualityControlFreezingRainSensorOff, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		if !graphql.HasFieldError(ctx, fc) {
-			ec.Errorf(ctx, "must not be null")
-		}
-		return graphql.Null
-	}
-	res := resTmp.(bool)
-	fc.Result = res
-	return ec.marshalNBoolean2bool(ctx, field.Selections, res)
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		ec.fieldContext_Metar_qualityControlFreezingRainSensorOff,
+		func(ctx context.Context) (any, error) {
+			return obj.QualityControlFreezingRainSensorOff, nil
+		},
+		nil,
+		ec.marshalNBoolean2bool,
+		true,
+		true,
+	)
 }
 
-func (ec *executionContext) fieldContext_Metar_qualityControlFreezingRainSensorOff(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_Metar_qualityControlFreezingRainSensorOff(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "Metar",
 		Field:      field,
@@ -4533,37 +3248,22 @@ func (ec *executionContext) fieldContext_Metar_qualityControlFreezingRainSensorO
 }
 
 func (ec *executionContext) _Metar_qualityControlPresentWeatherSensorOff(ctx context.Context, field graphql.CollectedField, obj *ent.Metar) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Metar_qualityControlPresentWeatherSensorOff(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.QualityControlPresentWeatherSensorOff, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		if !graphql.HasFieldError(ctx, fc) {
-			ec.Errorf(ctx, "must not be null")
-		}
-		return graphql.Null
-	}
-	res := resTmp.(bool)
-	fc.Result = res
-	return ec.marshalNBoolean2bool(ctx, field.Selections, res)
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		ec.fieldContext_Metar_qualityControlPresentWeatherSensorOff,
+		func(ctx context.Context) (any, error) {
+			return obj.QualityControlPresentWeatherSensorOff, nil
+		},
+		nil,
+		ec.marshalNBoolean2bool,
+		true,
+		true,
+	)
 }
 
-func (ec *executionContext) fieldContext_Metar_qualityControlPresentWeatherSensorOff(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_Metar_qualityControlPresentWeatherSensorOff(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "Metar",
 		Field:      field,
@@ -4577,34 +3277,22 @@ func (ec *executionContext) fieldContext_Metar_qualityControlPresentWeatherSenso
 }
 
 func (ec *executionContext) _Metar_maxTemp6(ctx context.Context, field graphql.CollectedField, obj *ent.Metar) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Metar_maxTemp6(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.MaxTemp6, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		return graphql.Null
-	}
-	res := resTmp.(*float64)
-	fc.Result = res
-	return ec.marshalOFloat2ᚖfloat64(ctx, field.Selections, res)
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		ec.fieldContext_Metar_maxTemp6,
+		func(ctx context.Context) (any, error) {
+			return obj.MaxTemp6, nil
+		},
+		nil,
+		ec.marshalOFloat2ᚖfloat64,
+		true,
+		false,
+	)
 }
 
-func (ec *executionContext) fieldContext_Metar_maxTemp6(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_Metar_maxTemp6(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "Metar",
 		Field:      field,
@@ -4618,34 +3306,22 @@ func (ec *executionContext) fieldContext_Metar_maxTemp6(ctx context.Context, fie
 }
 
 func (ec *executionContext) _Metar_minTemp6(ctx context.Context, field graphql.CollectedField, obj *ent.Metar) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Metar_minTemp6(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.MinTemp6, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		return graphql.Null
-	}
-	res := resTmp.(*float64)
-	fc.Result = res
-	return ec.marshalOFloat2ᚖfloat64(ctx, field.Selections, res)
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		ec.fieldContext_Metar_minTemp6,
+		func(ctx context.Context) (any, error) {
+			return obj.MinTemp6, nil
+		},
+		nil,
+		ec.marshalOFloat2ᚖfloat64,
+		true,
+		false,
+	)
 }
 
-func (ec *executionContext) fieldContext_Metar_minTemp6(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_Metar_minTemp6(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "Metar",
 		Field:      field,
@@ -4659,34 +3335,22 @@ func (ec *executionContext) fieldContext_Metar_minTemp6(ctx context.Context, fie
 }
 
 func (ec *executionContext) _Metar_maxTemp24(ctx context.Context, field graphql.CollectedField, obj *ent.Metar) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Metar_maxTemp24(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.MaxTemp24, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		return graphql.Null
-	}
-	res := resTmp.(*float64)
-	fc.Result = res
-	return ec.marshalOFloat2ᚖfloat64(ctx, field.Selections, res)
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		ec.fieldContext_Metar_maxTemp24,
+		func(ctx context.Context) (any, error) {
+			return obj.MaxTemp24, nil
+		},
+		nil,
+		ec.marshalOFloat2ᚖfloat64,
+		true,
+		false,
+	)
 }
 
-func (ec *executionContext) fieldContext_Metar_maxTemp24(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_Metar_maxTemp24(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "Metar",
 		Field:      field,
@@ -4700,34 +3364,22 @@ func (ec *executionContext) fieldContext_Metar_maxTemp24(ctx context.Context, fi
 }
 
 func (ec *executionContext) _Metar_minTemp24(ctx context.Context, field graphql.CollectedField, obj *ent.Metar) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Metar_minTemp24(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.MinTemp24, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		return graphql.Null
-	}
-	res := resTmp.(*float64)
-	fc.Result = res
-	return ec.marshalOFloat2ᚖfloat64(ctx, field.Selections, res)
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		ec.fieldContext_Metar_minTemp24,
+		func(ctx context.Context) (any, error) {
+			return obj.MinTemp24, nil
+		},
+		nil,
+		ec.marshalOFloat2ᚖfloat64,
+		true,
+		false,
+	)
 }
 
-func (ec *executionContext) fieldContext_Metar_minTemp24(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_Metar_minTemp24(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "Metar",
 		Field:      field,
@@ -4741,34 +3393,22 @@ func (ec *executionContext) fieldContext_Metar_minTemp24(ctx context.Context, fi
 }
 
 func (ec *executionContext) _Metar_precipitation(ctx context.Context, field graphql.CollectedField, obj *ent.Metar) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Metar_precipitation(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.Precipitation, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		return graphql.Null
-	}
-	res := resTmp.(*float64)
-	fc.Result = res
-	return ec.marshalOFloat2ᚖfloat64(ctx, field.Selections, res)
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		ec.fieldContext_Metar_precipitation,
+		func(ctx context.Context) (any, error) {
+			return obj.Precipitation, nil
+		},
+		nil,
+		ec.marshalOFloat2ᚖfloat64,
+		true,
+		false,
+	)
 }
 
-func (ec *executionContext) fieldContext_Metar_precipitation(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_Metar_precipitation(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "Metar",
 		Field:      field,
@@ -4782,34 +3422,22 @@ func (ec *executionContext) fieldContext_Metar_precipitation(ctx context.Context
 }
 
 func (ec *executionContext) _Metar_precipitation3(ctx context.Context, field graphql.CollectedField, obj *ent.Metar) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Metar_precipitation3(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.Precipitation3, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		return graphql.Null
-	}
-	res := resTmp.(*float64)
-	fc.Result = res
-	return ec.marshalOFloat2ᚖfloat64(ctx, field.Selections, res)
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		ec.fieldContext_Metar_precipitation3,
+		func(ctx context.Context) (any, error) {
+			return obj.Precipitation3, nil
+		},
+		nil,
+		ec.marshalOFloat2ᚖfloat64,
+		true,
+		false,
+	)
 }
 
-func (ec *executionContext) fieldContext_Metar_precipitation3(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_Metar_precipitation3(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "Metar",
 		Field:      field,
@@ -4823,34 +3451,22 @@ func (ec *executionContext) fieldContext_Metar_precipitation3(ctx context.Contex
 }
 
 func (ec *executionContext) _Metar_precipitation6(ctx context.Context, field graphql.CollectedField, obj *ent.Metar) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Metar_precipitation6(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.Precipitation6, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		return graphql.Null
-	}
-	res := resTmp.(*float64)
-	fc.Result = res
-	return ec.marshalOFloat2ᚖfloat64(ctx, field.Selections, res)
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		ec.fieldContext_Metar_precipitation6,
+		func(ctx context.Context) (any, error) {
+			return obj.Precipitation6, nil
+		},
+		nil,
+		ec.marshalOFloat2ᚖfloat64,
+		true,
+		false,
+	)
 }
 
-func (ec *executionContext) fieldContext_Metar_precipitation6(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_Metar_precipitation6(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "Metar",
 		Field:      field,
@@ -4864,34 +3480,22 @@ func (ec *executionContext) fieldContext_Metar_precipitation6(ctx context.Contex
 }
 
 func (ec *executionContext) _Metar_precipitation24(ctx context.Context, field graphql.CollectedField, obj *ent.Metar) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Metar_precipitation24(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.Precipitation24, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		return graphql.Null
-	}
-	res := resTmp.(*float64)
-	fc.Result = res
-	return ec.marshalOFloat2ᚖfloat64(ctx, field.Selections, res)
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		ec.fieldContext_Metar_precipitation24,
+		func(ctx context.Context) (any, error) {
+			return obj.Precipitation24, nil
+		},
+		nil,
+		ec.marshalOFloat2ᚖfloat64,
+		true,
+		false,
+	)
 }
 
-func (ec *executionContext) fieldContext_Metar_precipitation24(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_Metar_precipitation24(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "Metar",
 		Field:      field,
@@ -4905,37 +3509,22 @@ func (ec *executionContext) fieldContext_Metar_precipitation24(ctx context.Conte
 }
 
 func (ec *executionContext) _Metar_metarType(ctx context.Context, field graphql.CollectedField, obj *ent.Metar) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Metar_metarType(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.MetarType, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		if !graphql.HasFieldError(ctx, fc) {
-			ec.Errorf(ctx, "must not be null")
-		}
-		return graphql.Null
-	}
-	res := resTmp.(metar.MetarType)
-	fc.Result = res
-	return ec.marshalNMetarMetarType2metarᚗggᚋentᚋmetarᚐMetarType(ctx, field.Selections, res)
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		ec.fieldContext_Metar_metarType,
+		func(ctx context.Context) (any, error) {
+			return obj.MetarType, nil
+		},
+		nil,
+		ec.marshalNMetarMetarType2metarᚗggᚋentᚋmetarᚐMetarType,
+		true,
+		true,
+	)
 }
 
-func (ec *executionContext) fieldContext_Metar_metarType(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_Metar_metarType(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "Metar",
 		Field:      field,
@@ -4949,37 +3538,22 @@ func (ec *executionContext) fieldContext_Metar_metarType(ctx context.Context, fi
 }
 
 func (ec *executionContext) _Metar_station(ctx context.Context, field graphql.CollectedField, obj *ent.Metar) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Metar_station(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.Station(ctx)
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		if !graphql.HasFieldError(ctx, fc) {
-			ec.Errorf(ctx, "must not be null")
-		}
-		return graphql.Null
-	}
-	res := resTmp.(*ent.WeatherStation)
-	fc.Result = res
-	return ec.marshalNWeatherStation2ᚖmetarᚗggᚋentᚐWeatherStation(ctx, field.Selections, res)
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		ec.fieldContext_Metar_station,
+		func(ctx context.Context) (any, error) {
+			return obj.Station(ctx)
+		},
+		nil,
+		ec.marshalNWeatherStation2ᚖmetarᚗggᚋentᚐWeatherStation,
+		true,
+		true,
+	)
 }
 
-func (ec *executionContext) fieldContext_Metar_station(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_Metar_station(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "Metar",
 		Field:      field,
@@ -5011,34 +3585,22 @@ func (ec *executionContext) fieldContext_Metar_station(ctx context.Context, fiel
 }
 
 func (ec *executionContext) _Metar_skyConditions(ctx context.Context, field graphql.CollectedField, obj *ent.Metar) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Metar_skyConditions(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.SkyConditions(ctx)
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		return graphql.Null
-	}
-	res := resTmp.([]*ent.SkyCondition)
-	fc.Result = res
-	return ec.marshalOSkyCondition2ᚕᚖmetarᚗggᚋentᚐSkyConditionᚄ(ctx, field.Selections, res)
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		ec.fieldContext_Metar_skyConditions,
+		func(ctx context.Context) (any, error) {
+			return obj.SkyConditions(ctx)
+		},
+		nil,
+		ec.marshalOSkyCondition2ᚕᚖmetarᚗggᚋentᚐSkyConditionᚄ,
+		true,
+		false,
+	)
 }
 
-func (ec *executionContext) fieldContext_Metar_skyConditions(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_Metar_skyConditions(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "Metar",
 		Field:      field,
@@ -5062,31 +3624,20 @@ func (ec *executionContext) fieldContext_Metar_skyConditions(ctx context.Context
 }
 
 func (ec *executionContext) _Metar_altimeter(ctx context.Context, field graphql.CollectedField, obj *ent.Metar) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Metar_altimeter(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return ec.resolvers.Metar().Altimeter(rctx, obj, fc.Args["unit"].(model.PressureUnit))
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		return graphql.Null
-	}
-	res := resTmp.(*float64)
-	fc.Result = res
-	return ec.marshalOFloat2ᚖfloat64(ctx, field.Selections, res)
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		ec.fieldContext_Metar_altimeter,
+		func(ctx context.Context) (any, error) {
+			fc := graphql.GetFieldContext(ctx)
+			return ec.resolvers.Metar().Altimeter(ctx, obj, fc.Args["unit"].(model.PressureUnit))
+		},
+		nil,
+		ec.marshalOFloat2ᚖfloat64,
+		true,
+		false,
+	)
 }
 
 func (ec *executionContext) fieldContext_Metar_altimeter(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -5114,31 +3665,20 @@ func (ec *executionContext) fieldContext_Metar_altimeter(ctx context.Context, fi
 }
 
 func (ec *executionContext) _Metar_temperature(ctx context.Context, field graphql.CollectedField, obj *ent.Metar) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Metar_temperature(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return ec.resolvers.Metar().Temperature(rctx, obj, fc.Args["unit"].(model.TemperatureUnit))
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		return graphql.Null
-	}
-	res := resTmp.(*float64)
-	fc.Result = res
-	return ec.marshalOFloat2ᚖfloat64(ctx, field.Selections, res)
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		ec.fieldContext_Metar_temperature,
+		func(ctx context.Context) (any, error) {
+			fc := graphql.GetFieldContext(ctx)
+			return ec.resolvers.Metar().Temperature(ctx, obj, fc.Args["unit"].(model.TemperatureUnit))
+		},
+		nil,
+		ec.marshalOFloat2ᚖfloat64,
+		true,
+		false,
+	)
 }
 
 func (ec *executionContext) fieldContext_Metar_temperature(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -5166,31 +3706,20 @@ func (ec *executionContext) fieldContext_Metar_temperature(ctx context.Context, 
 }
 
 func (ec *executionContext) _Metar_dewpoint(ctx context.Context, field graphql.CollectedField, obj *ent.Metar) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Metar_dewpoint(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return ec.resolvers.Metar().Dewpoint(rctx, obj, fc.Args["unit"].(model.TemperatureUnit))
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		return graphql.Null
-	}
-	res := resTmp.(*float64)
-	fc.Result = res
-	return ec.marshalOFloat2ᚖfloat64(ctx, field.Selections, res)
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		ec.fieldContext_Metar_dewpoint,
+		func(ctx context.Context) (any, error) {
+			fc := graphql.GetFieldContext(ctx)
+			return ec.resolvers.Metar().Dewpoint(ctx, obj, fc.Args["unit"].(model.TemperatureUnit))
+		},
+		nil,
+		ec.marshalOFloat2ᚖfloat64,
+		true,
+		false,
+	)
 }
 
 func (ec *executionContext) fieldContext_Metar_dewpoint(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -5218,31 +3747,20 @@ func (ec *executionContext) fieldContext_Metar_dewpoint(ctx context.Context, fie
 }
 
 func (ec *executionContext) _Metar_windSpeed(ctx context.Context, field graphql.CollectedField, obj *ent.Metar) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Metar_windSpeed(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return ec.resolvers.Metar().WindSpeed(rctx, obj, fc.Args["unit"].(model.SpeedUnit))
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		return graphql.Null
-	}
-	res := resTmp.(*float64)
-	fc.Result = res
-	return ec.marshalOFloat2ᚖfloat64(ctx, field.Selections, res)
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		ec.fieldContext_Metar_windSpeed,
+		func(ctx context.Context) (any, error) {
+			fc := graphql.GetFieldContext(ctx)
+			return ec.resolvers.Metar().WindSpeed(ctx, obj, fc.Args["unit"].(model.SpeedUnit))
+		},
+		nil,
+		ec.marshalOFloat2ᚖfloat64,
+		true,
+		false,
+	)
 }
 
 func (ec *executionContext) fieldContext_Metar_windSpeed(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -5270,31 +3788,20 @@ func (ec *executionContext) fieldContext_Metar_windSpeed(ctx context.Context, fi
 }
 
 func (ec *executionContext) _Metar_windGust(ctx context.Context, field graphql.CollectedField, obj *ent.Metar) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Metar_windGust(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return ec.resolvers.Metar().WindGust(rctx, obj, fc.Args["unit"].(model.SpeedUnit))
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		return graphql.Null
-	}
-	res := resTmp.(*float64)
-	fc.Result = res
-	return ec.marshalOFloat2ᚖfloat64(ctx, field.Selections, res)
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		ec.fieldContext_Metar_windGust,
+		func(ctx context.Context) (any, error) {
+			fc := graphql.GetFieldContext(ctx)
+			return ec.resolvers.Metar().WindGust(ctx, obj, fc.Args["unit"].(model.SpeedUnit))
+		},
+		nil,
+		ec.marshalOFloat2ᚖfloat64,
+		true,
+		false,
+	)
 }
 
 func (ec *executionContext) fieldContext_Metar_windGust(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -5322,31 +3829,20 @@ func (ec *executionContext) fieldContext_Metar_windGust(ctx context.Context, fie
 }
 
 func (ec *executionContext) _Metar_visibility(ctx context.Context, field graphql.CollectedField, obj *ent.Metar) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Metar_visibility(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return ec.resolvers.Metar().Visibility(rctx, obj, fc.Args["unit"].(model.LengthUnit))
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		return graphql.Null
-	}
-	res := resTmp.(*float64)
-	fc.Result = res
-	return ec.marshalOFloat2ᚖfloat64(ctx, field.Selections, res)
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		ec.fieldContext_Metar_visibility,
+		func(ctx context.Context) (any, error) {
+			fc := graphql.GetFieldContext(ctx)
+			return ec.resolvers.Metar().Visibility(ctx, obj, fc.Args["unit"].(model.LengthUnit))
+		},
+		nil,
+		ec.marshalOFloat2ᚖfloat64,
+		true,
+		false,
+	)
 }
 
 func (ec *executionContext) fieldContext_Metar_visibility(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -5374,31 +3870,20 @@ func (ec *executionContext) fieldContext_Metar_visibility(ctx context.Context, f
 }
 
 func (ec *executionContext) _Metar_verticalVisibility(ctx context.Context, field graphql.CollectedField, obj *ent.Metar) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Metar_verticalVisibility(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return ec.resolvers.Metar().VerticalVisibility(rctx, obj, fc.Args["unit"].(model.LengthUnit))
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		return graphql.Null
-	}
-	res := resTmp.(*float64)
-	fc.Result = res
-	return ec.marshalOFloat2ᚖfloat64(ctx, field.Selections, res)
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		ec.fieldContext_Metar_verticalVisibility,
+		func(ctx context.Context) (any, error) {
+			fc := graphql.GetFieldContext(ctx)
+			return ec.resolvers.Metar().VerticalVisibility(ctx, obj, fc.Args["unit"].(model.LengthUnit))
+		},
+		nil,
+		ec.marshalOFloat2ᚖfloat64,
+		true,
+		false,
+	)
 }
 
 func (ec *executionContext) fieldContext_Metar_verticalVisibility(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -5426,31 +3911,20 @@ func (ec *executionContext) fieldContext_Metar_verticalVisibility(ctx context.Co
 }
 
 func (ec *executionContext) _Metar_snowDepth(ctx context.Context, field graphql.CollectedField, obj *ent.Metar) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Metar_snowDepth(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return ec.resolvers.Metar().SnowDepth(rctx, obj, fc.Args["unit"].(model.SmallLengthUnit))
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		return graphql.Null
-	}
-	res := resTmp.(*float64)
-	fc.Result = res
-	return ec.marshalOFloat2ᚖfloat64(ctx, field.Selections, res)
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		ec.fieldContext_Metar_snowDepth,
+		func(ctx context.Context) (any, error) {
+			fc := graphql.GetFieldContext(ctx)
+			return ec.resolvers.Metar().SnowDepth(ctx, obj, fc.Args["unit"].(model.SmallLengthUnit))
+		},
+		nil,
+		ec.marshalOFloat2ᚖfloat64,
+		true,
+		false,
+	)
 }
 
 func (ec *executionContext) fieldContext_Metar_snowDepth(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -5478,31 +3952,20 @@ func (ec *executionContext) fieldContext_Metar_snowDepth(ctx context.Context, fi
 }
 
 func (ec *executionContext) _Metar_seaLevelPressure(ctx context.Context, field graphql.CollectedField, obj *ent.Metar) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Metar_seaLevelPressure(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return ec.resolvers.Metar().SeaLevelPressure(rctx, obj, fc.Args["unit"].(model.PressureUnit))
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		return graphql.Null
-	}
-	res := resTmp.(*float64)
-	fc.Result = res
-	return ec.marshalOFloat2ᚖfloat64(ctx, field.Selections, res)
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		ec.fieldContext_Metar_seaLevelPressure,
+		func(ctx context.Context) (any, error) {
+			fc := graphql.GetFieldContext(ctx)
+			return ec.resolvers.Metar().SeaLevelPressure(ctx, obj, fc.Args["unit"].(model.PressureUnit))
+		},
+		nil,
+		ec.marshalOFloat2ᚖfloat64,
+		true,
+		false,
+	)
 }
 
 func (ec *executionContext) fieldContext_Metar_seaLevelPressure(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -5530,31 +3993,20 @@ func (ec *executionContext) fieldContext_Metar_seaLevelPressure(ctx context.Cont
 }
 
 func (ec *executionContext) _Metar_pressureTendency(ctx context.Context, field graphql.CollectedField, obj *ent.Metar) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Metar_pressureTendency(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return ec.resolvers.Metar().PressureTendency(rctx, obj, fc.Args["unit"].(model.PressureUnit))
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		return graphql.Null
-	}
-	res := resTmp.(*float64)
-	fc.Result = res
-	return ec.marshalOFloat2ᚖfloat64(ctx, field.Selections, res)
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		ec.fieldContext_Metar_pressureTendency,
+		func(ctx context.Context) (any, error) {
+			fc := graphql.GetFieldContext(ctx)
+			return ec.resolvers.Metar().PressureTendency(ctx, obj, fc.Args["unit"].(model.PressureUnit))
+		},
+		nil,
+		ec.marshalOFloat2ᚖfloat64,
+		true,
+		false,
+	)
 }
 
 func (ec *executionContext) fieldContext_Metar_pressureTendency(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -5582,37 +4034,22 @@ func (ec *executionContext) fieldContext_Metar_pressureTendency(ctx context.Cont
 }
 
 func (ec *executionContext) _Region_id(ctx context.Context, field graphql.CollectedField, obj *ent.Region) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Region_id(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.ID, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		if !graphql.HasFieldError(ctx, fc) {
-			ec.Errorf(ctx, "must not be null")
-		}
-		return graphql.Null
-	}
-	res := resTmp.(uuid.UUID)
-	fc.Result = res
-	return ec.marshalNID2githubᚗcomᚋgoogleᚋuuidᚐUUID(ctx, field.Selections, res)
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		ec.fieldContext_Region_id,
+		func(ctx context.Context) (any, error) {
+			return obj.ID, nil
+		},
+		nil,
+		ec.marshalNID2githubᚗcomᚋgoogleᚋuuidᚐUUID,
+		true,
+		true,
+	)
 }
 
-func (ec *executionContext) fieldContext_Region_id(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_Region_id(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "Region",
 		Field:      field,
@@ -5626,37 +4063,22 @@ func (ec *executionContext) fieldContext_Region_id(ctx context.Context, field gr
 }
 
 func (ec *executionContext) _Region_importID(ctx context.Context, field graphql.CollectedField, obj *ent.Region) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Region_importID(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.ImportID, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		if !graphql.HasFieldError(ctx, fc) {
-			ec.Errorf(ctx, "must not be null")
-		}
-		return graphql.Null
-	}
-	res := resTmp.(int)
-	fc.Result = res
-	return ec.marshalNInt2int(ctx, field.Selections, res)
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		ec.fieldContext_Region_importID,
+		func(ctx context.Context) (any, error) {
+			return obj.ImportID, nil
+		},
+		nil,
+		ec.marshalNInt2int,
+		true,
+		true,
+	)
 }
 
-func (ec *executionContext) fieldContext_Region_importID(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_Region_importID(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "Region",
 		Field:      field,
@@ -5670,37 +4092,22 @@ func (ec *executionContext) fieldContext_Region_importID(ctx context.Context, fi
 }
 
 func (ec *executionContext) _Region_lastUpdated(ctx context.Context, field graphql.CollectedField, obj *ent.Region) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Region_lastUpdated(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.LastUpdated, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		if !graphql.HasFieldError(ctx, fc) {
-			ec.Errorf(ctx, "must not be null")
-		}
-		return graphql.Null
-	}
-	res := resTmp.(time.Time)
-	fc.Result = res
-	return ec.marshalNTime2timeᚐTime(ctx, field.Selections, res)
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		ec.fieldContext_Region_lastUpdated,
+		func(ctx context.Context) (any, error) {
+			return obj.LastUpdated, nil
+		},
+		nil,
+		ec.marshalNTime2timeᚐTime,
+		true,
+		true,
+	)
 }
 
-func (ec *executionContext) fieldContext_Region_lastUpdated(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_Region_lastUpdated(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "Region",
 		Field:      field,
@@ -5714,37 +4121,22 @@ func (ec *executionContext) fieldContext_Region_lastUpdated(ctx context.Context,
 }
 
 func (ec *executionContext) _Region_code(ctx context.Context, field graphql.CollectedField, obj *ent.Region) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Region_code(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.Code, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		if !graphql.HasFieldError(ctx, fc) {
-			ec.Errorf(ctx, "must not be null")
-		}
-		return graphql.Null
-	}
-	res := resTmp.(string)
-	fc.Result = res
-	return ec.marshalNString2string(ctx, field.Selections, res)
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		ec.fieldContext_Region_code,
+		func(ctx context.Context) (any, error) {
+			return obj.Code, nil
+		},
+		nil,
+		ec.marshalNString2string,
+		true,
+		true,
+	)
 }
 
-func (ec *executionContext) fieldContext_Region_code(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_Region_code(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "Region",
 		Field:      field,
@@ -5758,37 +4150,22 @@ func (ec *executionContext) fieldContext_Region_code(ctx context.Context, field 
 }
 
 func (ec *executionContext) _Region_localCode(ctx context.Context, field graphql.CollectedField, obj *ent.Region) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Region_localCode(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.LocalCode, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		if !graphql.HasFieldError(ctx, fc) {
-			ec.Errorf(ctx, "must not be null")
-		}
-		return graphql.Null
-	}
-	res := resTmp.(string)
-	fc.Result = res
-	return ec.marshalNString2string(ctx, field.Selections, res)
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		ec.fieldContext_Region_localCode,
+		func(ctx context.Context) (any, error) {
+			return obj.LocalCode, nil
+		},
+		nil,
+		ec.marshalNString2string,
+		true,
+		true,
+	)
 }
 
-func (ec *executionContext) fieldContext_Region_localCode(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_Region_localCode(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "Region",
 		Field:      field,
@@ -5802,37 +4179,22 @@ func (ec *executionContext) fieldContext_Region_localCode(ctx context.Context, f
 }
 
 func (ec *executionContext) _Region_name(ctx context.Context, field graphql.CollectedField, obj *ent.Region) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Region_name(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.Name, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		if !graphql.HasFieldError(ctx, fc) {
-			ec.Errorf(ctx, "must not be null")
-		}
-		return graphql.Null
-	}
-	res := resTmp.(string)
-	fc.Result = res
-	return ec.marshalNString2string(ctx, field.Selections, res)
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		ec.fieldContext_Region_name,
+		func(ctx context.Context) (any, error) {
+			return obj.Name, nil
+		},
+		nil,
+		ec.marshalNString2string,
+		true,
+		true,
+	)
 }
 
-func (ec *executionContext) fieldContext_Region_name(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_Region_name(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "Region",
 		Field:      field,
@@ -5846,37 +4208,22 @@ func (ec *executionContext) fieldContext_Region_name(ctx context.Context, field 
 }
 
 func (ec *executionContext) _Region_wikipediaLink(ctx context.Context, field graphql.CollectedField, obj *ent.Region) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Region_wikipediaLink(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.WikipediaLink, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		if !graphql.HasFieldError(ctx, fc) {
-			ec.Errorf(ctx, "must not be null")
-		}
-		return graphql.Null
-	}
-	res := resTmp.(string)
-	fc.Result = res
-	return ec.marshalNString2string(ctx, field.Selections, res)
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		ec.fieldContext_Region_wikipediaLink,
+		func(ctx context.Context) (any, error) {
+			return obj.WikipediaLink, nil
+		},
+		nil,
+		ec.marshalNString2string,
+		true,
+		true,
+	)
 }
 
-func (ec *executionContext) fieldContext_Region_wikipediaLink(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_Region_wikipediaLink(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "Region",
 		Field:      field,
@@ -5890,37 +4237,22 @@ func (ec *executionContext) fieldContext_Region_wikipediaLink(ctx context.Contex
 }
 
 func (ec *executionContext) _Region_keywords(ctx context.Context, field graphql.CollectedField, obj *ent.Region) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Region_keywords(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.Keywords, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		if !graphql.HasFieldError(ctx, fc) {
-			ec.Errorf(ctx, "must not be null")
-		}
-		return graphql.Null
-	}
-	res := resTmp.([]string)
-	fc.Result = res
-	return ec.marshalNString2ᚕstringᚄ(ctx, field.Selections, res)
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		ec.fieldContext_Region_keywords,
+		func(ctx context.Context) (any, error) {
+			return obj.Keywords, nil
+		},
+		nil,
+		ec.marshalNString2ᚕstringᚄ,
+		true,
+		true,
+	)
 }
 
-func (ec *executionContext) fieldContext_Region_keywords(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_Region_keywords(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "Region",
 		Field:      field,
@@ -5934,37 +4266,22 @@ func (ec *executionContext) fieldContext_Region_keywords(ctx context.Context, fi
 }
 
 func (ec *executionContext) _Runway_id(ctx context.Context, field graphql.CollectedField, obj *ent.Runway) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Runway_id(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.ID, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		if !graphql.HasFieldError(ctx, fc) {
-			ec.Errorf(ctx, "must not be null")
-		}
-		return graphql.Null
-	}
-	res := resTmp.(uuid.UUID)
-	fc.Result = res
-	return ec.marshalNID2githubᚗcomᚋgoogleᚋuuidᚐUUID(ctx, field.Selections, res)
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		ec.fieldContext_Runway_id,
+		func(ctx context.Context) (any, error) {
+			return obj.ID, nil
+		},
+		nil,
+		ec.marshalNID2githubᚗcomᚋgoogleᚋuuidᚐUUID,
+		true,
+		true,
+	)
 }
 
-func (ec *executionContext) fieldContext_Runway_id(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_Runway_id(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "Runway",
 		Field:      field,
@@ -5978,37 +4295,22 @@ func (ec *executionContext) fieldContext_Runway_id(ctx context.Context, field gr
 }
 
 func (ec *executionContext) _Runway_importID(ctx context.Context, field graphql.CollectedField, obj *ent.Runway) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Runway_importID(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.ImportID, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		if !graphql.HasFieldError(ctx, fc) {
-			ec.Errorf(ctx, "must not be null")
-		}
-		return graphql.Null
-	}
-	res := resTmp.(int)
-	fc.Result = res
-	return ec.marshalNInt2int(ctx, field.Selections, res)
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		ec.fieldContext_Runway_importID,
+		func(ctx context.Context) (any, error) {
+			return obj.ImportID, nil
+		},
+		nil,
+		ec.marshalNInt2int,
+		true,
+		true,
+	)
 }
 
-func (ec *executionContext) fieldContext_Runway_importID(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_Runway_importID(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "Runway",
 		Field:      field,
@@ -6022,37 +4324,22 @@ func (ec *executionContext) fieldContext_Runway_importID(ctx context.Context, fi
 }
 
 func (ec *executionContext) _Runway_lastUpdated(ctx context.Context, field graphql.CollectedField, obj *ent.Runway) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Runway_lastUpdated(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.LastUpdated, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		if !graphql.HasFieldError(ctx, fc) {
-			ec.Errorf(ctx, "must not be null")
-		}
-		return graphql.Null
-	}
-	res := resTmp.(time.Time)
-	fc.Result = res
-	return ec.marshalNTime2timeᚐTime(ctx, field.Selections, res)
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		ec.fieldContext_Runway_lastUpdated,
+		func(ctx context.Context) (any, error) {
+			return obj.LastUpdated, nil
+		},
+		nil,
+		ec.marshalNTime2timeᚐTime,
+		true,
+		true,
+	)
 }
 
-func (ec *executionContext) fieldContext_Runway_lastUpdated(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_Runway_lastUpdated(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "Runway",
 		Field:      field,
@@ -6066,34 +4353,22 @@ func (ec *executionContext) fieldContext_Runway_lastUpdated(ctx context.Context,
 }
 
 func (ec *executionContext) _Runway_surface(ctx context.Context, field graphql.CollectedField, obj *ent.Runway) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Runway_surface(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.Surface, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		return graphql.Null
-	}
-	res := resTmp.(*string)
-	fc.Result = res
-	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		ec.fieldContext_Runway_surface,
+		func(ctx context.Context) (any, error) {
+			return obj.Surface, nil
+		},
+		nil,
+		ec.marshalOString2ᚖstring,
+		true,
+		false,
+	)
 }
 
-func (ec *executionContext) fieldContext_Runway_surface(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_Runway_surface(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "Runway",
 		Field:      field,
@@ -6107,37 +4382,22 @@ func (ec *executionContext) fieldContext_Runway_surface(ctx context.Context, fie
 }
 
 func (ec *executionContext) _Runway_lighted(ctx context.Context, field graphql.CollectedField, obj *ent.Runway) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Runway_lighted(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.Lighted, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		if !graphql.HasFieldError(ctx, fc) {
-			ec.Errorf(ctx, "must not be null")
-		}
-		return graphql.Null
-	}
-	res := resTmp.(bool)
-	fc.Result = res
-	return ec.marshalNBoolean2bool(ctx, field.Selections, res)
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		ec.fieldContext_Runway_lighted,
+		func(ctx context.Context) (any, error) {
+			return obj.Lighted, nil
+		},
+		nil,
+		ec.marshalNBoolean2bool,
+		true,
+		true,
+	)
 }
 
-func (ec *executionContext) fieldContext_Runway_lighted(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_Runway_lighted(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "Runway",
 		Field:      field,
@@ -6151,37 +4411,22 @@ func (ec *executionContext) fieldContext_Runway_lighted(ctx context.Context, fie
 }
 
 func (ec *executionContext) _Runway_closed(ctx context.Context, field graphql.CollectedField, obj *ent.Runway) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Runway_closed(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.Closed, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		if !graphql.HasFieldError(ctx, fc) {
-			ec.Errorf(ctx, "must not be null")
-		}
-		return graphql.Null
-	}
-	res := resTmp.(bool)
-	fc.Result = res
-	return ec.marshalNBoolean2bool(ctx, field.Selections, res)
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		ec.fieldContext_Runway_closed,
+		func(ctx context.Context) (any, error) {
+			return obj.Closed, nil
+		},
+		nil,
+		ec.marshalNBoolean2bool,
+		true,
+		true,
+	)
 }
 
-func (ec *executionContext) fieldContext_Runway_closed(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_Runway_closed(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "Runway",
 		Field:      field,
@@ -6195,37 +4440,22 @@ func (ec *executionContext) fieldContext_Runway_closed(ctx context.Context, fiel
 }
 
 func (ec *executionContext) _Runway_lowRunwayIdentifier(ctx context.Context, field graphql.CollectedField, obj *ent.Runway) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Runway_lowRunwayIdentifier(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.LowRunwayIdentifier, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		if !graphql.HasFieldError(ctx, fc) {
-			ec.Errorf(ctx, "must not be null")
-		}
-		return graphql.Null
-	}
-	res := resTmp.(string)
-	fc.Result = res
-	return ec.marshalNString2string(ctx, field.Selections, res)
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		ec.fieldContext_Runway_lowRunwayIdentifier,
+		func(ctx context.Context) (any, error) {
+			return obj.LowRunwayIdentifier, nil
+		},
+		nil,
+		ec.marshalNString2string,
+		true,
+		true,
+	)
 }
 
-func (ec *executionContext) fieldContext_Runway_lowRunwayIdentifier(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_Runway_lowRunwayIdentifier(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "Runway",
 		Field:      field,
@@ -6239,34 +4469,22 @@ func (ec *executionContext) fieldContext_Runway_lowRunwayIdentifier(ctx context.
 }
 
 func (ec *executionContext) _Runway_lowRunwayLatitude(ctx context.Context, field graphql.CollectedField, obj *ent.Runway) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Runway_lowRunwayLatitude(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.LowRunwayLatitude, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		return graphql.Null
-	}
-	res := resTmp.(*float64)
-	fc.Result = res
-	return ec.marshalOFloat2ᚖfloat64(ctx, field.Selections, res)
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		ec.fieldContext_Runway_lowRunwayLatitude,
+		func(ctx context.Context) (any, error) {
+			return obj.LowRunwayLatitude, nil
+		},
+		nil,
+		ec.marshalOFloat2ᚖfloat64,
+		true,
+		false,
+	)
 }
 
-func (ec *executionContext) fieldContext_Runway_lowRunwayLatitude(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_Runway_lowRunwayLatitude(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "Runway",
 		Field:      field,
@@ -6280,34 +4498,22 @@ func (ec *executionContext) fieldContext_Runway_lowRunwayLatitude(ctx context.Co
 }
 
 func (ec *executionContext) _Runway_lowRunwayLongitude(ctx context.Context, field graphql.CollectedField, obj *ent.Runway) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Runway_lowRunwayLongitude(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.LowRunwayLongitude, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		return graphql.Null
-	}
-	res := resTmp.(*float64)
-	fc.Result = res
-	return ec.marshalOFloat2ᚖfloat64(ctx, field.Selections, res)
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		ec.fieldContext_Runway_lowRunwayLongitude,
+		func(ctx context.Context) (any, error) {
+			return obj.LowRunwayLongitude, nil
+		},
+		nil,
+		ec.marshalOFloat2ᚖfloat64,
+		true,
+		false,
+	)
 }
 
-func (ec *executionContext) fieldContext_Runway_lowRunwayLongitude(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_Runway_lowRunwayLongitude(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "Runway",
 		Field:      field,
@@ -6321,34 +4527,22 @@ func (ec *executionContext) fieldContext_Runway_lowRunwayLongitude(ctx context.C
 }
 
 func (ec *executionContext) _Runway_lowRunwayElevation(ctx context.Context, field graphql.CollectedField, obj *ent.Runway) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Runway_lowRunwayElevation(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.LowRunwayElevation, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		return graphql.Null
-	}
-	res := resTmp.(*int)
-	fc.Result = res
-	return ec.marshalOInt2ᚖint(ctx, field.Selections, res)
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		ec.fieldContext_Runway_lowRunwayElevation,
+		func(ctx context.Context) (any, error) {
+			return obj.LowRunwayElevation, nil
+		},
+		nil,
+		ec.marshalOInt2ᚖint,
+		true,
+		false,
+	)
 }
 
-func (ec *executionContext) fieldContext_Runway_lowRunwayElevation(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_Runway_lowRunwayElevation(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "Runway",
 		Field:      field,
@@ -6362,34 +4556,22 @@ func (ec *executionContext) fieldContext_Runway_lowRunwayElevation(ctx context.C
 }
 
 func (ec *executionContext) _Runway_lowRunwayHeading(ctx context.Context, field graphql.CollectedField, obj *ent.Runway) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Runway_lowRunwayHeading(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.LowRunwayHeading, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		return graphql.Null
-	}
-	res := resTmp.(*float64)
-	fc.Result = res
-	return ec.marshalOFloat2ᚖfloat64(ctx, field.Selections, res)
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		ec.fieldContext_Runway_lowRunwayHeading,
+		func(ctx context.Context) (any, error) {
+			return obj.LowRunwayHeading, nil
+		},
+		nil,
+		ec.marshalOFloat2ᚖfloat64,
+		true,
+		false,
+	)
 }
 
-func (ec *executionContext) fieldContext_Runway_lowRunwayHeading(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_Runway_lowRunwayHeading(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "Runway",
 		Field:      field,
@@ -6403,34 +4585,22 @@ func (ec *executionContext) fieldContext_Runway_lowRunwayHeading(ctx context.Con
 }
 
 func (ec *executionContext) _Runway_lowRunwayDisplacedThreshold(ctx context.Context, field graphql.CollectedField, obj *ent.Runway) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Runway_lowRunwayDisplacedThreshold(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.LowRunwayDisplacedThreshold, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		return graphql.Null
-	}
-	res := resTmp.(*int)
-	fc.Result = res
-	return ec.marshalOInt2ᚖint(ctx, field.Selections, res)
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		ec.fieldContext_Runway_lowRunwayDisplacedThreshold,
+		func(ctx context.Context) (any, error) {
+			return obj.LowRunwayDisplacedThreshold, nil
+		},
+		nil,
+		ec.marshalOInt2ᚖint,
+		true,
+		false,
+	)
 }
 
-func (ec *executionContext) fieldContext_Runway_lowRunwayDisplacedThreshold(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_Runway_lowRunwayDisplacedThreshold(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "Runway",
 		Field:      field,
@@ -6444,37 +4614,22 @@ func (ec *executionContext) fieldContext_Runway_lowRunwayDisplacedThreshold(ctx 
 }
 
 func (ec *executionContext) _Runway_highRunwayIdentifier(ctx context.Context, field graphql.CollectedField, obj *ent.Runway) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Runway_highRunwayIdentifier(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.HighRunwayIdentifier, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		if !graphql.HasFieldError(ctx, fc) {
-			ec.Errorf(ctx, "must not be null")
-		}
-		return graphql.Null
-	}
-	res := resTmp.(string)
-	fc.Result = res
-	return ec.marshalNString2string(ctx, field.Selections, res)
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		ec.fieldContext_Runway_highRunwayIdentifier,
+		func(ctx context.Context) (any, error) {
+			return obj.HighRunwayIdentifier, nil
+		},
+		nil,
+		ec.marshalNString2string,
+		true,
+		true,
+	)
 }
 
-func (ec *executionContext) fieldContext_Runway_highRunwayIdentifier(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_Runway_highRunwayIdentifier(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "Runway",
 		Field:      field,
@@ -6488,34 +4643,22 @@ func (ec *executionContext) fieldContext_Runway_highRunwayIdentifier(ctx context
 }
 
 func (ec *executionContext) _Runway_highRunwayLatitude(ctx context.Context, field graphql.CollectedField, obj *ent.Runway) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Runway_highRunwayLatitude(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.HighRunwayLatitude, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		return graphql.Null
-	}
-	res := resTmp.(*float64)
-	fc.Result = res
-	return ec.marshalOFloat2ᚖfloat64(ctx, field.Selections, res)
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		ec.fieldContext_Runway_highRunwayLatitude,
+		func(ctx context.Context) (any, error) {
+			return obj.HighRunwayLatitude, nil
+		},
+		nil,
+		ec.marshalOFloat2ᚖfloat64,
+		true,
+		false,
+	)
 }
 
-func (ec *executionContext) fieldContext_Runway_highRunwayLatitude(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_Runway_highRunwayLatitude(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "Runway",
 		Field:      field,
@@ -6529,34 +4672,22 @@ func (ec *executionContext) fieldContext_Runway_highRunwayLatitude(ctx context.C
 }
 
 func (ec *executionContext) _Runway_highRunwayLongitude(ctx context.Context, field graphql.CollectedField, obj *ent.Runway) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Runway_highRunwayLongitude(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.HighRunwayLongitude, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		return graphql.Null
-	}
-	res := resTmp.(*float64)
-	fc.Result = res
-	return ec.marshalOFloat2ᚖfloat64(ctx, field.Selections, res)
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		ec.fieldContext_Runway_highRunwayLongitude,
+		func(ctx context.Context) (any, error) {
+			return obj.HighRunwayLongitude, nil
+		},
+		nil,
+		ec.marshalOFloat2ᚖfloat64,
+		true,
+		false,
+	)
 }
 
-func (ec *executionContext) fieldContext_Runway_highRunwayLongitude(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_Runway_highRunwayLongitude(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "Runway",
 		Field:      field,
@@ -6570,34 +4701,22 @@ func (ec *executionContext) fieldContext_Runway_highRunwayLongitude(ctx context.
 }
 
 func (ec *executionContext) _Runway_highRunwayElevation(ctx context.Context, field graphql.CollectedField, obj *ent.Runway) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Runway_highRunwayElevation(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.HighRunwayElevation, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		return graphql.Null
-	}
-	res := resTmp.(*int)
-	fc.Result = res
-	return ec.marshalOInt2ᚖint(ctx, field.Selections, res)
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		ec.fieldContext_Runway_highRunwayElevation,
+		func(ctx context.Context) (any, error) {
+			return obj.HighRunwayElevation, nil
+		},
+		nil,
+		ec.marshalOInt2ᚖint,
+		true,
+		false,
+	)
 }
 
-func (ec *executionContext) fieldContext_Runway_highRunwayElevation(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_Runway_highRunwayElevation(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "Runway",
 		Field:      field,
@@ -6611,34 +4730,22 @@ func (ec *executionContext) fieldContext_Runway_highRunwayElevation(ctx context.
 }
 
 func (ec *executionContext) _Runway_highRunwayHeading(ctx context.Context, field graphql.CollectedField, obj *ent.Runway) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Runway_highRunwayHeading(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.HighRunwayHeading, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		return graphql.Null
-	}
-	res := resTmp.(*float64)
-	fc.Result = res
-	return ec.marshalOFloat2ᚖfloat64(ctx, field.Selections, res)
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		ec.fieldContext_Runway_highRunwayHeading,
+		func(ctx context.Context) (any, error) {
+			return obj.HighRunwayHeading, nil
+		},
+		nil,
+		ec.marshalOFloat2ᚖfloat64,
+		true,
+		false,
+	)
 }
 
-func (ec *executionContext) fieldContext_Runway_highRunwayHeading(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_Runway_highRunwayHeading(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "Runway",
 		Field:      field,
@@ -6652,34 +4759,22 @@ func (ec *executionContext) fieldContext_Runway_highRunwayHeading(ctx context.Co
 }
 
 func (ec *executionContext) _Runway_highRunwayDisplacedThreshold(ctx context.Context, field graphql.CollectedField, obj *ent.Runway) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Runway_highRunwayDisplacedThreshold(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.HighRunwayDisplacedThreshold, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		return graphql.Null
-	}
-	res := resTmp.(*int)
-	fc.Result = res
-	return ec.marshalOInt2ᚖint(ctx, field.Selections, res)
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		ec.fieldContext_Runway_highRunwayDisplacedThreshold,
+		func(ctx context.Context) (any, error) {
+			return obj.HighRunwayDisplacedThreshold, nil
+		},
+		nil,
+		ec.marshalOInt2ᚖint,
+		true,
+		false,
+	)
 }
 
-func (ec *executionContext) fieldContext_Runway_highRunwayDisplacedThreshold(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_Runway_highRunwayDisplacedThreshold(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "Runway",
 		Field:      field,
@@ -6693,34 +4788,22 @@ func (ec *executionContext) fieldContext_Runway_highRunwayDisplacedThreshold(ctx
 }
 
 func (ec *executionContext) _Runway_airport(ctx context.Context, field graphql.CollectedField, obj *ent.Runway) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Runway_airport(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.Airport(ctx)
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		return graphql.Null
-	}
-	res := resTmp.(*ent.Airport)
-	fc.Result = res
-	return ec.marshalOAirport2ᚖmetarᚗggᚋentᚐAirport(ctx, field.Selections, res)
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		ec.fieldContext_Runway_airport,
+		func(ctx context.Context) (any, error) {
+			return obj.Airport(ctx)
+		},
+		nil,
+		ec.marshalOAirport2ᚖmetarᚗggᚋentᚐAirport,
+		true,
+		false,
+	)
 }
 
-func (ec *executionContext) fieldContext_Runway_airport(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_Runway_airport(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "Runway",
 		Field:      field,
@@ -6788,31 +4871,20 @@ func (ec *executionContext) fieldContext_Runway_airport(ctx context.Context, fie
 }
 
 func (ec *executionContext) _Runway_length(ctx context.Context, field graphql.CollectedField, obj *ent.Runway) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Runway_length(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return ec.resolvers.Runway().Length(rctx, obj, fc.Args["unit"].(model.LengthUnit))
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		return graphql.Null
-	}
-	res := resTmp.(*float64)
-	fc.Result = res
-	return ec.marshalOFloat2ᚖfloat64(ctx, field.Selections, res)
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		ec.fieldContext_Runway_length,
+		func(ctx context.Context) (any, error) {
+			fc := graphql.GetFieldContext(ctx)
+			return ec.resolvers.Runway().Length(ctx, obj, fc.Args["unit"].(model.LengthUnit))
+		},
+		nil,
+		ec.marshalOFloat2ᚖfloat64,
+		true,
+		false,
+	)
 }
 
 func (ec *executionContext) fieldContext_Runway_length(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -6840,31 +4912,20 @@ func (ec *executionContext) fieldContext_Runway_length(ctx context.Context, fiel
 }
 
 func (ec *executionContext) _Runway_width(ctx context.Context, field graphql.CollectedField, obj *ent.Runway) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Runway_width(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return ec.resolvers.Runway().Width(rctx, obj, fc.Args["unit"].(model.LengthUnit))
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		return graphql.Null
-	}
-	res := resTmp.(*float64)
-	fc.Result = res
-	return ec.marshalOFloat2ᚖfloat64(ctx, field.Selections, res)
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		ec.fieldContext_Runway_width,
+		func(ctx context.Context) (any, error) {
+			fc := graphql.GetFieldContext(ctx)
+			return ec.resolvers.Runway().Width(ctx, obj, fc.Args["unit"].(model.LengthUnit))
+		},
+		nil,
+		ec.marshalOFloat2ᚖfloat64,
+		true,
+		false,
+	)
 }
 
 func (ec *executionContext) fieldContext_Runway_width(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -6892,37 +4953,22 @@ func (ec *executionContext) fieldContext_Runway_width(ctx context.Context, field
 }
 
 func (ec *executionContext) _SkyCondition_id(ctx context.Context, field graphql.CollectedField, obj *ent.SkyCondition) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_SkyCondition_id(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.ID, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		if !graphql.HasFieldError(ctx, fc) {
-			ec.Errorf(ctx, "must not be null")
-		}
-		return graphql.Null
-	}
-	res := resTmp.(uuid.UUID)
-	fc.Result = res
-	return ec.marshalNID2githubᚗcomᚋgoogleᚋuuidᚐUUID(ctx, field.Selections, res)
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		ec.fieldContext_SkyCondition_id,
+		func(ctx context.Context) (any, error) {
+			return obj.ID, nil
+		},
+		nil,
+		ec.marshalNID2githubᚗcomᚋgoogleᚋuuidᚐUUID,
+		true,
+		true,
+	)
 }
 
-func (ec *executionContext) fieldContext_SkyCondition_id(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_SkyCondition_id(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "SkyCondition",
 		Field:      field,
@@ -6936,37 +4982,22 @@ func (ec *executionContext) fieldContext_SkyCondition_id(ctx context.Context, fi
 }
 
 func (ec *executionContext) _SkyCondition_skyCover(ctx context.Context, field graphql.CollectedField, obj *ent.SkyCondition) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_SkyCondition_skyCover(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.SkyCover, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		if !graphql.HasFieldError(ctx, fc) {
-			ec.Errorf(ctx, "must not be null")
-		}
-		return graphql.Null
-	}
-	res := resTmp.(skycondition.SkyCover)
-	fc.Result = res
-	return ec.marshalNSkyConditionSkyCover2metarᚗggᚋentᚋskyconditionᚐSkyCover(ctx, field.Selections, res)
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		ec.fieldContext_SkyCondition_skyCover,
+		func(ctx context.Context) (any, error) {
+			return obj.SkyCover, nil
+		},
+		nil,
+		ec.marshalNSkyConditionSkyCover2metarᚗggᚋentᚋskyconditionᚐSkyCover,
+		true,
+		true,
+	)
 }
 
-func (ec *executionContext) fieldContext_SkyCondition_skyCover(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_SkyCondition_skyCover(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "SkyCondition",
 		Field:      field,
@@ -6980,34 +5011,22 @@ func (ec *executionContext) fieldContext_SkyCondition_skyCover(ctx context.Conte
 }
 
 func (ec *executionContext) _SkyCondition_cloudType(ctx context.Context, field graphql.CollectedField, obj *ent.SkyCondition) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_SkyCondition_cloudType(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.CloudType, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		return graphql.Null
-	}
-	res := resTmp.(*skycondition.CloudType)
-	fc.Result = res
-	return ec.marshalOSkyConditionCloudType2ᚖmetarᚗggᚋentᚋskyconditionᚐCloudType(ctx, field.Selections, res)
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		ec.fieldContext_SkyCondition_cloudType,
+		func(ctx context.Context) (any, error) {
+			return obj.CloudType, nil
+		},
+		nil,
+		ec.marshalOSkyConditionCloudType2ᚖmetarᚗggᚋentᚋskyconditionᚐCloudType,
+		true,
+		false,
+	)
 }
 
-func (ec *executionContext) fieldContext_SkyCondition_cloudType(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_SkyCondition_cloudType(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "SkyCondition",
 		Field:      field,
@@ -7021,31 +5040,20 @@ func (ec *executionContext) fieldContext_SkyCondition_cloudType(ctx context.Cont
 }
 
 func (ec *executionContext) _SkyCondition_cloudBase(ctx context.Context, field graphql.CollectedField, obj *ent.SkyCondition) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_SkyCondition_cloudBase(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return ec.resolvers.SkyCondition().CloudBase(rctx, obj, fc.Args["unit"].(model.LengthUnit))
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		return graphql.Null
-	}
-	res := resTmp.(*float64)
-	fc.Result = res
-	return ec.marshalOFloat2ᚖfloat64(ctx, field.Selections, res)
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		ec.fieldContext_SkyCondition_cloudBase,
+		func(ctx context.Context) (any, error) {
+			fc := graphql.GetFieldContext(ctx)
+			return ec.resolvers.SkyCondition().CloudBase(ctx, obj, fc.Args["unit"].(model.LengthUnit))
+		},
+		nil,
+		ec.marshalOFloat2ᚖfloat64,
+		true,
+		false,
+	)
 }
 
 func (ec *executionContext) fieldContext_SkyCondition_cloudBase(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -7073,37 +5081,22 @@ func (ec *executionContext) fieldContext_SkyCondition_cloudBase(ctx context.Cont
 }
 
 func (ec *executionContext) _Taf_id(ctx context.Context, field graphql.CollectedField, obj *ent.Taf) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Taf_id(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.ID, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		if !graphql.HasFieldError(ctx, fc) {
-			ec.Errorf(ctx, "must not be null")
-		}
-		return graphql.Null
-	}
-	res := resTmp.(uuid.UUID)
-	fc.Result = res
-	return ec.marshalNID2githubᚗcomᚋgoogleᚋuuidᚐUUID(ctx, field.Selections, res)
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		ec.fieldContext_Taf_id,
+		func(ctx context.Context) (any, error) {
+			return obj.ID, nil
+		},
+		nil,
+		ec.marshalNID2githubᚗcomᚋgoogleᚋuuidᚐUUID,
+		true,
+		true,
+	)
 }
 
-func (ec *executionContext) fieldContext_Taf_id(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_Taf_id(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "Taf",
 		Field:      field,
@@ -7117,37 +5110,22 @@ func (ec *executionContext) fieldContext_Taf_id(ctx context.Context, field graph
 }
 
 func (ec *executionContext) _Taf_rawText(ctx context.Context, field graphql.CollectedField, obj *ent.Taf) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Taf_rawText(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.RawText, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		if !graphql.HasFieldError(ctx, fc) {
-			ec.Errorf(ctx, "must not be null")
-		}
-		return graphql.Null
-	}
-	res := resTmp.(string)
-	fc.Result = res
-	return ec.marshalNString2string(ctx, field.Selections, res)
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		ec.fieldContext_Taf_rawText,
+		func(ctx context.Context) (any, error) {
+			return obj.RawText, nil
+		},
+		nil,
+		ec.marshalNString2string,
+		true,
+		true,
+	)
 }
 
-func (ec *executionContext) fieldContext_Taf_rawText(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_Taf_rawText(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "Taf",
 		Field:      field,
@@ -7161,37 +5139,22 @@ func (ec *executionContext) fieldContext_Taf_rawText(ctx context.Context, field 
 }
 
 func (ec *executionContext) _Taf_issueTime(ctx context.Context, field graphql.CollectedField, obj *ent.Taf) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Taf_issueTime(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.IssueTime, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		if !graphql.HasFieldError(ctx, fc) {
-			ec.Errorf(ctx, "must not be null")
-		}
-		return graphql.Null
-	}
-	res := resTmp.(time.Time)
-	fc.Result = res
-	return ec.marshalNTime2timeᚐTime(ctx, field.Selections, res)
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		ec.fieldContext_Taf_issueTime,
+		func(ctx context.Context) (any, error) {
+			return obj.IssueTime, nil
+		},
+		nil,
+		ec.marshalNTime2timeᚐTime,
+		true,
+		true,
+	)
 }
 
-func (ec *executionContext) fieldContext_Taf_issueTime(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_Taf_issueTime(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "Taf",
 		Field:      field,
@@ -7205,37 +5168,22 @@ func (ec *executionContext) fieldContext_Taf_issueTime(ctx context.Context, fiel
 }
 
 func (ec *executionContext) _Taf_importTime(ctx context.Context, field graphql.CollectedField, obj *ent.Taf) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Taf_importTime(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.ImportTime, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		if !graphql.HasFieldError(ctx, fc) {
-			ec.Errorf(ctx, "must not be null")
-		}
-		return graphql.Null
-	}
-	res := resTmp.(time.Time)
-	fc.Result = res
-	return ec.marshalNTime2timeᚐTime(ctx, field.Selections, res)
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		ec.fieldContext_Taf_importTime,
+		func(ctx context.Context) (any, error) {
+			return obj.ImportTime, nil
+		},
+		nil,
+		ec.marshalNTime2timeᚐTime,
+		true,
+		true,
+	)
 }
 
-func (ec *executionContext) fieldContext_Taf_importTime(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_Taf_importTime(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "Taf",
 		Field:      field,
@@ -7249,37 +5197,22 @@ func (ec *executionContext) fieldContext_Taf_importTime(ctx context.Context, fie
 }
 
 func (ec *executionContext) _Taf_bulletinTime(ctx context.Context, field graphql.CollectedField, obj *ent.Taf) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Taf_bulletinTime(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.BulletinTime, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		if !graphql.HasFieldError(ctx, fc) {
-			ec.Errorf(ctx, "must not be null")
-		}
-		return graphql.Null
-	}
-	res := resTmp.(time.Time)
-	fc.Result = res
-	return ec.marshalNTime2timeᚐTime(ctx, field.Selections, res)
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		ec.fieldContext_Taf_bulletinTime,
+		func(ctx context.Context) (any, error) {
+			return obj.BulletinTime, nil
+		},
+		nil,
+		ec.marshalNTime2timeᚐTime,
+		true,
+		true,
+	)
 }
 
-func (ec *executionContext) fieldContext_Taf_bulletinTime(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_Taf_bulletinTime(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "Taf",
 		Field:      field,
@@ -7293,37 +5226,22 @@ func (ec *executionContext) fieldContext_Taf_bulletinTime(ctx context.Context, f
 }
 
 func (ec *executionContext) _Taf_validFromTime(ctx context.Context, field graphql.CollectedField, obj *ent.Taf) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Taf_validFromTime(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.ValidFromTime, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		if !graphql.HasFieldError(ctx, fc) {
-			ec.Errorf(ctx, "must not be null")
-		}
-		return graphql.Null
-	}
-	res := resTmp.(time.Time)
-	fc.Result = res
-	return ec.marshalNTime2timeᚐTime(ctx, field.Selections, res)
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		ec.fieldContext_Taf_validFromTime,
+		func(ctx context.Context) (any, error) {
+			return obj.ValidFromTime, nil
+		},
+		nil,
+		ec.marshalNTime2timeᚐTime,
+		true,
+		true,
+	)
 }
 
-func (ec *executionContext) fieldContext_Taf_validFromTime(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_Taf_validFromTime(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "Taf",
 		Field:      field,
@@ -7337,37 +5255,22 @@ func (ec *executionContext) fieldContext_Taf_validFromTime(ctx context.Context, 
 }
 
 func (ec *executionContext) _Taf_validToTime(ctx context.Context, field graphql.CollectedField, obj *ent.Taf) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Taf_validToTime(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.ValidToTime, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		if !graphql.HasFieldError(ctx, fc) {
-			ec.Errorf(ctx, "must not be null")
-		}
-		return graphql.Null
-	}
-	res := resTmp.(time.Time)
-	fc.Result = res
-	return ec.marshalNTime2timeᚐTime(ctx, field.Selections, res)
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		ec.fieldContext_Taf_validToTime,
+		func(ctx context.Context) (any, error) {
+			return obj.ValidToTime, nil
+		},
+		nil,
+		ec.marshalNTime2timeᚐTime,
+		true,
+		true,
+	)
 }
 
-func (ec *executionContext) fieldContext_Taf_validToTime(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_Taf_validToTime(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "Taf",
 		Field:      field,
@@ -7381,37 +5284,22 @@ func (ec *executionContext) fieldContext_Taf_validToTime(ctx context.Context, fi
 }
 
 func (ec *executionContext) _Taf_remarks(ctx context.Context, field graphql.CollectedField, obj *ent.Taf) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Taf_remarks(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.Remarks, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		if !graphql.HasFieldError(ctx, fc) {
-			ec.Errorf(ctx, "must not be null")
-		}
-		return graphql.Null
-	}
-	res := resTmp.(string)
-	fc.Result = res
-	return ec.marshalNString2string(ctx, field.Selections, res)
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		ec.fieldContext_Taf_remarks,
+		func(ctx context.Context) (any, error) {
+			return obj.Remarks, nil
+		},
+		nil,
+		ec.marshalNString2string,
+		true,
+		true,
+	)
 }
 
-func (ec *executionContext) fieldContext_Taf_remarks(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_Taf_remarks(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "Taf",
 		Field:      field,
@@ -7425,37 +5313,22 @@ func (ec *executionContext) fieldContext_Taf_remarks(ctx context.Context, field 
 }
 
 func (ec *executionContext) _Taf_station(ctx context.Context, field graphql.CollectedField, obj *ent.Taf) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Taf_station(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.Station(ctx)
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		if !graphql.HasFieldError(ctx, fc) {
-			ec.Errorf(ctx, "must not be null")
-		}
-		return graphql.Null
-	}
-	res := resTmp.(*ent.WeatherStation)
-	fc.Result = res
-	return ec.marshalNWeatherStation2ᚖmetarᚗggᚋentᚐWeatherStation(ctx, field.Selections, res)
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		ec.fieldContext_Taf_station,
+		func(ctx context.Context) (any, error) {
+			return obj.Station(ctx)
+		},
+		nil,
+		ec.marshalNWeatherStation2ᚖmetarᚗggᚋentᚐWeatherStation,
+		true,
+		true,
+	)
 }
 
-func (ec *executionContext) fieldContext_Taf_station(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_Taf_station(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "Taf",
 		Field:      field,
@@ -7487,34 +5360,22 @@ func (ec *executionContext) fieldContext_Taf_station(ctx context.Context, field 
 }
 
 func (ec *executionContext) _Taf_forecast(ctx context.Context, field graphql.CollectedField, obj *ent.Taf) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Taf_forecast(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.Forecast(ctx)
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		return graphql.Null
-	}
-	res := resTmp.([]*ent.Forecast)
-	fc.Result = res
-	return ec.marshalOForecast2ᚕᚖmetarᚗggᚋentᚐForecastᚄ(ctx, field.Selections, res)
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		ec.fieldContext_Taf_forecast,
+		func(ctx context.Context) (any, error) {
+			return obj.Forecast(ctx)
+		},
+		nil,
+		ec.marshalOForecast2ᚕᚖmetarᚗggᚋentᚐForecastᚄ,
+		true,
+		false,
+	)
 }
 
-func (ec *executionContext) fieldContext_Taf_forecast(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_Taf_forecast(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "Taf",
 		Field:      field,
@@ -7576,37 +5437,22 @@ func (ec *executionContext) fieldContext_Taf_forecast(ctx context.Context, field
 }
 
 func (ec *executionContext) _TemperatureData_id(ctx context.Context, field graphql.CollectedField, obj *ent.TemperatureData) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_TemperatureData_id(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.ID, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		if !graphql.HasFieldError(ctx, fc) {
-			ec.Errorf(ctx, "must not be null")
-		}
-		return graphql.Null
-	}
-	res := resTmp.(uuid.UUID)
-	fc.Result = res
-	return ec.marshalNID2githubᚗcomᚋgoogleᚋuuidᚐUUID(ctx, field.Selections, res)
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		ec.fieldContext_TemperatureData_id,
+		func(ctx context.Context) (any, error) {
+			return obj.ID, nil
+		},
+		nil,
+		ec.marshalNID2githubᚗcomᚋgoogleᚋuuidᚐUUID,
+		true,
+		true,
+	)
 }
 
-func (ec *executionContext) fieldContext_TemperatureData_id(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_TemperatureData_id(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "TemperatureData",
 		Field:      field,
@@ -7620,37 +5466,22 @@ func (ec *executionContext) fieldContext_TemperatureData_id(ctx context.Context,
 }
 
 func (ec *executionContext) _TemperatureData_validTime(ctx context.Context, field graphql.CollectedField, obj *ent.TemperatureData) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_TemperatureData_validTime(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.ValidTime, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		if !graphql.HasFieldError(ctx, fc) {
-			ec.Errorf(ctx, "must not be null")
-		}
-		return graphql.Null
-	}
-	res := resTmp.(time.Time)
-	fc.Result = res
-	return ec.marshalNTime2timeᚐTime(ctx, field.Selections, res)
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		ec.fieldContext_TemperatureData_validTime,
+		func(ctx context.Context) (any, error) {
+			return obj.ValidTime, nil
+		},
+		nil,
+		ec.marshalNTime2timeᚐTime,
+		true,
+		true,
+	)
 }
 
-func (ec *executionContext) fieldContext_TemperatureData_validTime(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_TemperatureData_validTime(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "TemperatureData",
 		Field:      field,
@@ -7664,34 +5495,20 @@ func (ec *executionContext) fieldContext_TemperatureData_validTime(ctx context.C
 }
 
 func (ec *executionContext) _TemperatureData_temperature(ctx context.Context, field graphql.CollectedField, obj *ent.TemperatureData) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_TemperatureData_temperature(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return ec.resolvers.TemperatureData().Temperature(rctx, obj, fc.Args["unit"].(model.TemperatureUnit))
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		if !graphql.HasFieldError(ctx, fc) {
-			ec.Errorf(ctx, "must not be null")
-		}
-		return graphql.Null
-	}
-	res := resTmp.(float64)
-	fc.Result = res
-	return ec.marshalNFloat2float64(ctx, field.Selections, res)
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		ec.fieldContext_TemperatureData_temperature,
+		func(ctx context.Context) (any, error) {
+			fc := graphql.GetFieldContext(ctx)
+			return ec.resolvers.TemperatureData().Temperature(ctx, obj, fc.Args["unit"].(model.TemperatureUnit))
+		},
+		nil,
+		ec.marshalNFloat2float64,
+		true,
+		true,
+	)
 }
 
 func (ec *executionContext) fieldContext_TemperatureData_temperature(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -7719,31 +5536,20 @@ func (ec *executionContext) fieldContext_TemperatureData_temperature(ctx context
 }
 
 func (ec *executionContext) _TemperatureData_minTemperature(ctx context.Context, field graphql.CollectedField, obj *ent.TemperatureData) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_TemperatureData_minTemperature(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return ec.resolvers.TemperatureData().MinTemperature(rctx, obj, fc.Args["unit"].(model.TemperatureUnit))
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		return graphql.Null
-	}
-	res := resTmp.(*float64)
-	fc.Result = res
-	return ec.marshalOFloat2ᚖfloat64(ctx, field.Selections, res)
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		ec.fieldContext_TemperatureData_minTemperature,
+		func(ctx context.Context) (any, error) {
+			fc := graphql.GetFieldContext(ctx)
+			return ec.resolvers.TemperatureData().MinTemperature(ctx, obj, fc.Args["unit"].(model.TemperatureUnit))
+		},
+		nil,
+		ec.marshalOFloat2ᚖfloat64,
+		true,
+		false,
+	)
 }
 
 func (ec *executionContext) fieldContext_TemperatureData_minTemperature(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -7771,31 +5577,20 @@ func (ec *executionContext) fieldContext_TemperatureData_minTemperature(ctx cont
 }
 
 func (ec *executionContext) _TemperatureData_maxTemperature(ctx context.Context, field graphql.CollectedField, obj *ent.TemperatureData) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_TemperatureData_maxTemperature(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return ec.resolvers.TemperatureData().MaxTemperature(rctx, obj, fc.Args["unit"].(model.TemperatureUnit))
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		return graphql.Null
-	}
-	res := resTmp.(*float64)
-	fc.Result = res
-	return ec.marshalOFloat2ᚖfloat64(ctx, field.Selections, res)
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		ec.fieldContext_TemperatureData_maxTemperature,
+		func(ctx context.Context) (any, error) {
+			fc := graphql.GetFieldContext(ctx)
+			return ec.resolvers.TemperatureData().MaxTemperature(ctx, obj, fc.Args["unit"].(model.TemperatureUnit))
+		},
+		nil,
+		ec.marshalOFloat2ᚖfloat64,
+		true,
+		false,
+	)
 }
 
 func (ec *executionContext) fieldContext_TemperatureData_maxTemperature(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -7823,37 +5618,22 @@ func (ec *executionContext) fieldContext_TemperatureData_maxTemperature(ctx cont
 }
 
 func (ec *executionContext) _TurbulenceCondition_id(ctx context.Context, field graphql.CollectedField, obj *ent.TurbulenceCondition) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_TurbulenceCondition_id(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.ID, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		if !graphql.HasFieldError(ctx, fc) {
-			ec.Errorf(ctx, "must not be null")
-		}
-		return graphql.Null
-	}
-	res := resTmp.(uuid.UUID)
-	fc.Result = res
-	return ec.marshalNID2githubᚗcomᚋgoogleᚋuuidᚐUUID(ctx, field.Selections, res)
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		ec.fieldContext_TurbulenceCondition_id,
+		func(ctx context.Context) (any, error) {
+			return obj.ID, nil
+		},
+		nil,
+		ec.marshalNID2githubᚗcomᚋgoogleᚋuuidᚐUUID,
+		true,
+		true,
+	)
 }
 
-func (ec *executionContext) fieldContext_TurbulenceCondition_id(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_TurbulenceCondition_id(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "TurbulenceCondition",
 		Field:      field,
@@ -7867,37 +5647,22 @@ func (ec *executionContext) fieldContext_TurbulenceCondition_id(ctx context.Cont
 }
 
 func (ec *executionContext) _TurbulenceCondition_intensity(ctx context.Context, field graphql.CollectedField, obj *ent.TurbulenceCondition) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_TurbulenceCondition_intensity(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.Intensity, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		if !graphql.HasFieldError(ctx, fc) {
-			ec.Errorf(ctx, "must not be null")
-		}
-		return graphql.Null
-	}
-	res := resTmp.(string)
-	fc.Result = res
-	return ec.marshalNString2string(ctx, field.Selections, res)
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		ec.fieldContext_TurbulenceCondition_intensity,
+		func(ctx context.Context) (any, error) {
+			return obj.Intensity, nil
+		},
+		nil,
+		ec.marshalNString2string,
+		true,
+		true,
+	)
 }
 
-func (ec *executionContext) fieldContext_TurbulenceCondition_intensity(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_TurbulenceCondition_intensity(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "TurbulenceCondition",
 		Field:      field,
@@ -7911,31 +5676,20 @@ func (ec *executionContext) fieldContext_TurbulenceCondition_intensity(ctx conte
 }
 
 func (ec *executionContext) _TurbulenceCondition_minAltitude(ctx context.Context, field graphql.CollectedField, obj *ent.TurbulenceCondition) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_TurbulenceCondition_minAltitude(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return ec.resolvers.TurbulenceCondition().MinAltitude(rctx, obj, fc.Args["unit"].(model.LengthUnit))
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		return graphql.Null
-	}
-	res := resTmp.(*float64)
-	fc.Result = res
-	return ec.marshalOFloat2ᚖfloat64(ctx, field.Selections, res)
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		ec.fieldContext_TurbulenceCondition_minAltitude,
+		func(ctx context.Context) (any, error) {
+			fc := graphql.GetFieldContext(ctx)
+			return ec.resolvers.TurbulenceCondition().MinAltitude(ctx, obj, fc.Args["unit"].(model.LengthUnit))
+		},
+		nil,
+		ec.marshalOFloat2ᚖfloat64,
+		true,
+		false,
+	)
 }
 
 func (ec *executionContext) fieldContext_TurbulenceCondition_minAltitude(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -7963,31 +5717,20 @@ func (ec *executionContext) fieldContext_TurbulenceCondition_minAltitude(ctx con
 }
 
 func (ec *executionContext) _TurbulenceCondition_maxAltitude(ctx context.Context, field graphql.CollectedField, obj *ent.TurbulenceCondition) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_TurbulenceCondition_maxAltitude(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return ec.resolvers.TurbulenceCondition().MaxAltitude(rctx, obj, fc.Args["unit"].(model.LengthUnit))
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		return graphql.Null
-	}
-	res := resTmp.(*float64)
-	fc.Result = res
-	return ec.marshalOFloat2ᚖfloat64(ctx, field.Selections, res)
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		ec.fieldContext_TurbulenceCondition_maxAltitude,
+		func(ctx context.Context) (any, error) {
+			fc := graphql.GetFieldContext(ctx)
+			return ec.resolvers.TurbulenceCondition().MaxAltitude(ctx, obj, fc.Args["unit"].(model.LengthUnit))
+		},
+		nil,
+		ec.marshalOFloat2ᚖfloat64,
+		true,
+		false,
+	)
 }
 
 func (ec *executionContext) fieldContext_TurbulenceCondition_maxAltitude(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -8015,37 +5758,22 @@ func (ec *executionContext) fieldContext_TurbulenceCondition_maxAltitude(ctx con
 }
 
 func (ec *executionContext) _WeatherStation_id(ctx context.Context, field graphql.CollectedField, obj *ent.WeatherStation) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_WeatherStation_id(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.ID, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		if !graphql.HasFieldError(ctx, fc) {
-			ec.Errorf(ctx, "must not be null")
-		}
-		return graphql.Null
-	}
-	res := resTmp.(uuid.UUID)
-	fc.Result = res
-	return ec.marshalNID2githubᚗcomᚋgoogleᚋuuidᚐUUID(ctx, field.Selections, res)
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		ec.fieldContext_WeatherStation_id,
+		func(ctx context.Context) (any, error) {
+			return obj.ID, nil
+		},
+		nil,
+		ec.marshalNID2githubᚗcomᚋgoogleᚋuuidᚐUUID,
+		true,
+		true,
+	)
 }
 
-func (ec *executionContext) fieldContext_WeatherStation_id(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_WeatherStation_id(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "WeatherStation",
 		Field:      field,
@@ -8059,37 +5787,22 @@ func (ec *executionContext) fieldContext_WeatherStation_id(ctx context.Context, 
 }
 
 func (ec *executionContext) _WeatherStation_stationID(ctx context.Context, field graphql.CollectedField, obj *ent.WeatherStation) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_WeatherStation_stationID(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.StationID, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		if !graphql.HasFieldError(ctx, fc) {
-			ec.Errorf(ctx, "must not be null")
-		}
-		return graphql.Null
-	}
-	res := resTmp.(string)
-	fc.Result = res
-	return ec.marshalNString2string(ctx, field.Selections, res)
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		ec.fieldContext_WeatherStation_stationID,
+		func(ctx context.Context) (any, error) {
+			return obj.StationID, nil
+		},
+		nil,
+		ec.marshalNString2string,
+		true,
+		true,
+	)
 }
 
-func (ec *executionContext) fieldContext_WeatherStation_stationID(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_WeatherStation_stationID(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "WeatherStation",
 		Field:      field,
@@ -8103,34 +5816,22 @@ func (ec *executionContext) fieldContext_WeatherStation_stationID(ctx context.Co
 }
 
 func (ec *executionContext) _WeatherStation_latitude(ctx context.Context, field graphql.CollectedField, obj *ent.WeatherStation) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_WeatherStation_latitude(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.Latitude, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		return graphql.Null
-	}
-	res := resTmp.(*float64)
-	fc.Result = res
-	return ec.marshalOFloat2ᚖfloat64(ctx, field.Selections, res)
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		ec.fieldContext_WeatherStation_latitude,
+		func(ctx context.Context) (any, error) {
+			return obj.Latitude, nil
+		},
+		nil,
+		ec.marshalOFloat2ᚖfloat64,
+		true,
+		false,
+	)
 }
 
-func (ec *executionContext) fieldContext_WeatherStation_latitude(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_WeatherStation_latitude(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "WeatherStation",
 		Field:      field,
@@ -8144,34 +5845,22 @@ func (ec *executionContext) fieldContext_WeatherStation_latitude(ctx context.Con
 }
 
 func (ec *executionContext) _WeatherStation_longitude(ctx context.Context, field graphql.CollectedField, obj *ent.WeatherStation) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_WeatherStation_longitude(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.Longitude, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		return graphql.Null
-	}
-	res := resTmp.(*float64)
-	fc.Result = res
-	return ec.marshalOFloat2ᚖfloat64(ctx, field.Selections, res)
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		ec.fieldContext_WeatherStation_longitude,
+		func(ctx context.Context) (any, error) {
+			return obj.Longitude, nil
+		},
+		nil,
+		ec.marshalOFloat2ᚖfloat64,
+		true,
+		false,
+	)
 }
 
-func (ec *executionContext) fieldContext_WeatherStation_longitude(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_WeatherStation_longitude(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "WeatherStation",
 		Field:      field,
@@ -8185,34 +5874,22 @@ func (ec *executionContext) fieldContext_WeatherStation_longitude(ctx context.Co
 }
 
 func (ec *executionContext) _WeatherStation_elevation(ctx context.Context, field graphql.CollectedField, obj *ent.WeatherStation) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_WeatherStation_elevation(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.Elevation, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		return graphql.Null
-	}
-	res := resTmp.(*float64)
-	fc.Result = res
-	return ec.marshalOFloat2ᚖfloat64(ctx, field.Selections, res)
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		ec.fieldContext_WeatherStation_elevation,
+		func(ctx context.Context) (any, error) {
+			return obj.Elevation, nil
+		},
+		nil,
+		ec.marshalOFloat2ᚖfloat64,
+		true,
+		false,
+	)
 }
 
-func (ec *executionContext) fieldContext_WeatherStation_elevation(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_WeatherStation_elevation(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "WeatherStation",
 		Field:      field,
@@ -8226,34 +5903,22 @@ func (ec *executionContext) fieldContext_WeatherStation_elevation(ctx context.Co
 }
 
 func (ec *executionContext) _WeatherStation_airport(ctx context.Context, field graphql.CollectedField, obj *ent.WeatherStation) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_WeatherStation_airport(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.Airport(ctx)
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		return graphql.Null
-	}
-	res := resTmp.(*ent.Airport)
-	fc.Result = res
-	return ec.marshalOAirport2ᚖmetarᚗggᚋentᚐAirport(ctx, field.Selections, res)
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		ec.fieldContext_WeatherStation_airport,
+		func(ctx context.Context) (any, error) {
+			return obj.Airport(ctx)
+		},
+		nil,
+		ec.marshalOAirport2ᚖmetarᚗggᚋentᚐAirport,
+		true,
+		false,
+	)
 }
 
-func (ec *executionContext) fieldContext_WeatherStation_airport(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_WeatherStation_airport(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "WeatherStation",
 		Field:      field,
@@ -8321,34 +5986,20 @@ func (ec *executionContext) fieldContext_WeatherStation_airport(ctx context.Cont
 }
 
 func (ec *executionContext) _WeatherStation_metars(ctx context.Context, field graphql.CollectedField, obj *ent.WeatherStation) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_WeatherStation_metars(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return ec.resolvers.WeatherStation().Metars(rctx, obj, fc.Args["after"].(*entgql.Cursor[uuid.UUID]), fc.Args["first"].(*int), fc.Args["before"].(*entgql.Cursor[uuid.UUID]), fc.Args["last"].(*int))
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		if !graphql.HasFieldError(ctx, fc) {
-			ec.Errorf(ctx, "must not be null")
-		}
-		return graphql.Null
-	}
-	res := resTmp.(*ent.MetarConnection)
-	fc.Result = res
-	return ec.marshalNMetarConnection2ᚖmetarᚗggᚋentᚐMetarConnection(ctx, field.Selections, res)
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		ec.fieldContext_WeatherStation_metars,
+		func(ctx context.Context) (any, error) {
+			fc := graphql.GetFieldContext(ctx)
+			return ec.resolvers.WeatherStation().Metars(ctx, obj, fc.Args["after"].(*entgql.Cursor[uuid.UUID]), fc.Args["first"].(*int), fc.Args["before"].(*entgql.Cursor[uuid.UUID]), fc.Args["last"].(*int))
+		},
+		nil,
+		ec.marshalNMetarConnection2ᚖmetarᚗggᚋentᚐMetarConnection,
+		true,
+		true,
+	)
 }
 
 func (ec *executionContext) fieldContext_WeatherStation_metars(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -8384,34 +6035,20 @@ func (ec *executionContext) fieldContext_WeatherStation_metars(ctx context.Conte
 }
 
 func (ec *executionContext) _WeatherStation_tafs(ctx context.Context, field graphql.CollectedField, obj *ent.WeatherStation) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_WeatherStation_tafs(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return ec.resolvers.WeatherStation().Tafs(rctx, obj, fc.Args["after"].(*entgql.Cursor[uuid.UUID]), fc.Args["first"].(*int), fc.Args["before"].(*entgql.Cursor[uuid.UUID]), fc.Args["last"].(*int))
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		if !graphql.HasFieldError(ctx, fc) {
-			ec.Errorf(ctx, "must not be null")
-		}
-		return graphql.Null
-	}
-	res := resTmp.(*ent.TafConnection)
-	fc.Result = res
-	return ec.marshalNTafConnection2ᚖmetarᚗggᚋentᚐTafConnection(ctx, field.Selections, res)
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		ec.fieldContext_WeatherStation_tafs,
+		func(ctx context.Context) (any, error) {
+			fc := graphql.GetFieldContext(ctx)
+			return ec.resolvers.WeatherStation().Tafs(ctx, obj, fc.Args["after"].(*entgql.Cursor[uuid.UUID]), fc.Args["first"].(*int), fc.Args["before"].(*entgql.Cursor[uuid.UUID]), fc.Args["last"].(*int))
+		},
+		nil,
+		ec.marshalNTafConnection2ᚖmetarᚗggᚋentᚐTafConnection,
+		true,
+		true,
+	)
 }
 
 func (ec *executionContext) fieldContext_WeatherStation_tafs(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -8450,10 +6087,10 @@ func (ec *executionContext) fieldContext_WeatherStation_tafs(ctx context.Context
 
 // region    **************************** input.gotpl *****************************
 
-func (ec *executionContext) unmarshalInputAirportOrder(ctx context.Context, obj interface{}) (ent.AirportOrder, error) {
+func (ec *executionContext) unmarshalInputAirportOrder(ctx context.Context, obj any) (ent.AirportOrder, error) {
 	var it ent.AirportOrder
-	asMap := map[string]interface{}{}
-	for k, v := range obj.(map[string]interface{}) {
+	asMap := map[string]any{}
+	for k, v := range obj.(map[string]any) {
 		asMap[k] = v
 	}
 
@@ -8469,8 +6106,6 @@ func (ec *executionContext) unmarshalInputAirportOrder(ctx context.Context, obj 
 		}
 		switch k {
 		case "direction":
-			var err error
-
 			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("direction"))
 			data, err := ec.unmarshalNOrderDirection2entgoᚗioᚋcontribᚋentgqlᚐOrderDirection(ctx, v)
 			if err != nil {
@@ -8478,8 +6113,6 @@ func (ec *executionContext) unmarshalInputAirportOrder(ctx context.Context, obj 
 			}
 			it.Direction = data
 		case "field":
-			var err error
-
 			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("field"))
 			data, err := ec.unmarshalNAirportOrderField2ᚖmetarᚗggᚋentᚐAirportOrderField(ctx, v)
 			if err != nil {
@@ -8492,10 +6125,10 @@ func (ec *executionContext) unmarshalInputAirportOrder(ctx context.Context, obj 
 	return it, nil
 }
 
-func (ec *executionContext) unmarshalInputMetarOrder(ctx context.Context, obj interface{}) (ent.MetarOrder, error) {
+func (ec *executionContext) unmarshalInputMetarOrder(ctx context.Context, obj any) (ent.MetarOrder, error) {
 	var it ent.MetarOrder
-	asMap := map[string]interface{}{}
-	for k, v := range obj.(map[string]interface{}) {
+	asMap := map[string]any{}
+	for k, v := range obj.(map[string]any) {
 		asMap[k] = v
 	}
 
@@ -8511,8 +6144,6 @@ func (ec *executionContext) unmarshalInputMetarOrder(ctx context.Context, obj in
 		}
 		switch k {
 		case "direction":
-			var err error
-
 			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("direction"))
 			data, err := ec.unmarshalNOrderDirection2entgoᚗioᚋcontribᚋentgqlᚐOrderDirection(ctx, v)
 			if err != nil {
@@ -8520,8 +6151,6 @@ func (ec *executionContext) unmarshalInputMetarOrder(ctx context.Context, obj in
 			}
 			it.Direction = data
 		case "field":
-			var err error
-
 			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("field"))
 			data, err := ec.unmarshalNMetarOrderField2ᚖmetarᚗggᚋentᚐMetarOrderField(ctx, v)
 			if err != nil {
@@ -8534,10 +6163,10 @@ func (ec *executionContext) unmarshalInputMetarOrder(ctx context.Context, obj in
 	return it, nil
 }
 
-func (ec *executionContext) unmarshalInputTafOrder(ctx context.Context, obj interface{}) (ent.TafOrder, error) {
+func (ec *executionContext) unmarshalInputTafOrder(ctx context.Context, obj any) (ent.TafOrder, error) {
 	var it ent.TafOrder
-	asMap := map[string]interface{}{}
-	for k, v := range obj.(map[string]interface{}) {
+	asMap := map[string]any{}
+	for k, v := range obj.(map[string]any) {
 		asMap[k] = v
 	}
 
@@ -8553,8 +6182,6 @@ func (ec *executionContext) unmarshalInputTafOrder(ctx context.Context, obj inte
 		}
 		switch k {
 		case "direction":
-			var err error
-
 			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("direction"))
 			data, err := ec.unmarshalNOrderDirection2entgoᚗioᚋcontribᚋentgqlᚐOrderDirection(ctx, v)
 			if err != nil {
@@ -8562,8 +6189,6 @@ func (ec *executionContext) unmarshalInputTafOrder(ctx context.Context, obj inte
 			}
 			it.Direction = data
 		case "field":
-			var err error
-
 			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("field"))
 			data, err := ec.unmarshalNTafOrderField2ᚖmetarᚗggᚋentᚐTafOrderField(ctx, v)
 			if err != nil {
@@ -8671,7 +6296,7 @@ func (ec *executionContext) _Airport(ctx context.Context, sel ast.SelectionSet, 
 		case "region":
 			field := field
 
-			innerFunc := func(ctx context.Context, fs *graphql.FieldSet) (res graphql.Marshaler) {
+			innerFunc := func(ctx context.Context, _ *graphql.FieldSet) (res graphql.Marshaler) {
 				defer func() {
 					if r := recover(); r != nil {
 						ec.Error(ctx, ec.Recover(ctx, r))
@@ -8704,7 +6329,7 @@ func (ec *executionContext) _Airport(ctx context.Context, sel ast.SelectionSet, 
 		case "country":
 			field := field
 
-			innerFunc := func(ctx context.Context, fs *graphql.FieldSet) (res graphql.Marshaler) {
+			innerFunc := func(ctx context.Context, _ *graphql.FieldSet) (res graphql.Marshaler) {
 				defer func() {
 					if r := recover(); r != nil {
 						ec.Error(ctx, ec.Recover(ctx, r))
@@ -8737,7 +6362,7 @@ func (ec *executionContext) _Airport(ctx context.Context, sel ast.SelectionSet, 
 		case "frequencies":
 			field := field
 
-			innerFunc := func(ctx context.Context, fs *graphql.FieldSet) (res graphql.Marshaler) {
+			innerFunc := func(ctx context.Context, _ *graphql.FieldSet) (res graphql.Marshaler) {
 				defer func() {
 					if r := recover(); r != nil {
 						ec.Error(ctx, ec.Recover(ctx, r))
@@ -8770,7 +6395,7 @@ func (ec *executionContext) _Airport(ctx context.Context, sel ast.SelectionSet, 
 		case "station":
 			field := field
 
-			innerFunc := func(ctx context.Context, fs *graphql.FieldSet) (res graphql.Marshaler) {
+			innerFunc := func(ctx context.Context, _ *graphql.FieldSet) (res graphql.Marshaler) {
 				defer func() {
 					if r := recover(); r != nil {
 						ec.Error(ctx, ec.Recover(ctx, r))
@@ -9022,7 +6647,7 @@ func (ec *executionContext) _Forecast(ctx context.Context, sel ast.SelectionSet,
 		case "skyConditions":
 			field := field
 
-			innerFunc := func(ctx context.Context, fs *graphql.FieldSet) (res graphql.Marshaler) {
+			innerFunc := func(ctx context.Context, _ *graphql.FieldSet) (res graphql.Marshaler) {
 				defer func() {
 					if r := recover(); r != nil {
 						ec.Error(ctx, ec.Recover(ctx, r))
@@ -9055,7 +6680,7 @@ func (ec *executionContext) _Forecast(ctx context.Context, sel ast.SelectionSet,
 		case "turbulenceConditions":
 			field := field
 
-			innerFunc := func(ctx context.Context, fs *graphql.FieldSet) (res graphql.Marshaler) {
+			innerFunc := func(ctx context.Context, _ *graphql.FieldSet) (res graphql.Marshaler) {
 				defer func() {
 					if r := recover(); r != nil {
 						ec.Error(ctx, ec.Recover(ctx, r))
@@ -9088,7 +6713,7 @@ func (ec *executionContext) _Forecast(ctx context.Context, sel ast.SelectionSet,
 		case "icingConditions":
 			field := field
 
-			innerFunc := func(ctx context.Context, fs *graphql.FieldSet) (res graphql.Marshaler) {
+			innerFunc := func(ctx context.Context, _ *graphql.FieldSet) (res graphql.Marshaler) {
 				defer func() {
 					if r := recover(); r != nil {
 						ec.Error(ctx, ec.Recover(ctx, r))
@@ -9121,7 +6746,7 @@ func (ec *executionContext) _Forecast(ctx context.Context, sel ast.SelectionSet,
 		case "temperatureData":
 			field := field
 
-			innerFunc := func(ctx context.Context, fs *graphql.FieldSet) (res graphql.Marshaler) {
+			innerFunc := func(ctx context.Context, _ *graphql.FieldSet) (res graphql.Marshaler) {
 				defer func() {
 					if r := recover(); r != nil {
 						ec.Error(ctx, ec.Recover(ctx, r))
@@ -9154,7 +6779,7 @@ func (ec *executionContext) _Forecast(ctx context.Context, sel ast.SelectionSet,
 		case "altimeter":
 			field := field
 
-			innerFunc := func(ctx context.Context, fs *graphql.FieldSet) (res graphql.Marshaler) {
+			innerFunc := func(ctx context.Context, _ *graphql.FieldSet) (res graphql.Marshaler) {
 				defer func() {
 					if r := recover(); r != nil {
 						ec.Error(ctx, ec.Recover(ctx, r))
@@ -9187,7 +6812,7 @@ func (ec *executionContext) _Forecast(ctx context.Context, sel ast.SelectionSet,
 		case "windSpeed":
 			field := field
 
-			innerFunc := func(ctx context.Context, fs *graphql.FieldSet) (res graphql.Marshaler) {
+			innerFunc := func(ctx context.Context, _ *graphql.FieldSet) (res graphql.Marshaler) {
 				defer func() {
 					if r := recover(); r != nil {
 						ec.Error(ctx, ec.Recover(ctx, r))
@@ -9220,7 +6845,7 @@ func (ec *executionContext) _Forecast(ctx context.Context, sel ast.SelectionSet,
 		case "windGust":
 			field := field
 
-			innerFunc := func(ctx context.Context, fs *graphql.FieldSet) (res graphql.Marshaler) {
+			innerFunc := func(ctx context.Context, _ *graphql.FieldSet) (res graphql.Marshaler) {
 				defer func() {
 					if r := recover(); r != nil {
 						ec.Error(ctx, ec.Recover(ctx, r))
@@ -9253,7 +6878,7 @@ func (ec *executionContext) _Forecast(ctx context.Context, sel ast.SelectionSet,
 		case "visibilityHorizontal":
 			field := field
 
-			innerFunc := func(ctx context.Context, fs *graphql.FieldSet) (res graphql.Marshaler) {
+			innerFunc := func(ctx context.Context, _ *graphql.FieldSet) (res graphql.Marshaler) {
 				defer func() {
 					if r := recover(); r != nil {
 						ec.Error(ctx, ec.Recover(ctx, r))
@@ -9286,7 +6911,7 @@ func (ec *executionContext) _Forecast(ctx context.Context, sel ast.SelectionSet,
 		case "visibilityVertical":
 			field := field
 
-			innerFunc := func(ctx context.Context, fs *graphql.FieldSet) (res graphql.Marshaler) {
+			innerFunc := func(ctx context.Context, _ *graphql.FieldSet) (res graphql.Marshaler) {
 				defer func() {
 					if r := recover(); r != nil {
 						ec.Error(ctx, ec.Recover(ctx, r))
@@ -9319,7 +6944,7 @@ func (ec *executionContext) _Forecast(ctx context.Context, sel ast.SelectionSet,
 		case "windShearHeight":
 			field := field
 
-			innerFunc := func(ctx context.Context, fs *graphql.FieldSet) (res graphql.Marshaler) {
+			innerFunc := func(ctx context.Context, _ *graphql.FieldSet) (res graphql.Marshaler) {
 				defer func() {
 					if r := recover(); r != nil {
 						ec.Error(ctx, ec.Recover(ctx, r))
@@ -9352,7 +6977,7 @@ func (ec *executionContext) _Forecast(ctx context.Context, sel ast.SelectionSet,
 		case "windShearSpeed":
 			field := field
 
-			innerFunc := func(ctx context.Context, fs *graphql.FieldSet) (res graphql.Marshaler) {
+			innerFunc := func(ctx context.Context, _ *graphql.FieldSet) (res graphql.Marshaler) {
 				defer func() {
 					if r := recover(); r != nil {
 						ec.Error(ctx, ec.Recover(ctx, r))
@@ -9449,7 +7074,7 @@ func (ec *executionContext) _Frequency(ctx context.Context, sel ast.SelectionSet
 		case "airport":
 			field := field
 
-			innerFunc := func(ctx context.Context, fs *graphql.FieldSet) (res graphql.Marshaler) {
+			innerFunc := func(ctx context.Context, _ *graphql.FieldSet) (res graphql.Marshaler) {
 				defer func() {
 					if r := recover(); r != nil {
 						ec.Error(ctx, ec.Recover(ctx, r))
@@ -9526,7 +7151,7 @@ func (ec *executionContext) _IcingCondition(ctx context.Context, sel ast.Selecti
 		case "minAltitude":
 			field := field
 
-			innerFunc := func(ctx context.Context, fs *graphql.FieldSet) (res graphql.Marshaler) {
+			innerFunc := func(ctx context.Context, _ *graphql.FieldSet) (res graphql.Marshaler) {
 				defer func() {
 					if r := recover(); r != nil {
 						ec.Error(ctx, ec.Recover(ctx, r))
@@ -9559,7 +7184,7 @@ func (ec *executionContext) _IcingCondition(ctx context.Context, sel ast.Selecti
 		case "maxAltitude":
 			field := field
 
-			innerFunc := func(ctx context.Context, fs *graphql.FieldSet) (res graphql.Marshaler) {
+			innerFunc := func(ctx context.Context, _ *graphql.FieldSet) (res graphql.Marshaler) {
 				defer func() {
 					if r := recover(); r != nil {
 						ec.Error(ctx, ec.Recover(ctx, r))
@@ -9753,7 +7378,7 @@ func (ec *executionContext) _Metar(ctx context.Context, sel ast.SelectionSet, ob
 		case "skyConditions":
 			field := field
 
-			innerFunc := func(ctx context.Context, fs *graphql.FieldSet) (res graphql.Marshaler) {
+			innerFunc := func(ctx context.Context, _ *graphql.FieldSet) (res graphql.Marshaler) {
 				defer func() {
 					if r := recover(); r != nil {
 						ec.Error(ctx, ec.Recover(ctx, r))
@@ -9786,7 +7411,7 @@ func (ec *executionContext) _Metar(ctx context.Context, sel ast.SelectionSet, ob
 		case "altimeter":
 			field := field
 
-			innerFunc := func(ctx context.Context, fs *graphql.FieldSet) (res graphql.Marshaler) {
+			innerFunc := func(ctx context.Context, _ *graphql.FieldSet) (res graphql.Marshaler) {
 				defer func() {
 					if r := recover(); r != nil {
 						ec.Error(ctx, ec.Recover(ctx, r))
@@ -9819,7 +7444,7 @@ func (ec *executionContext) _Metar(ctx context.Context, sel ast.SelectionSet, ob
 		case "temperature":
 			field := field
 
-			innerFunc := func(ctx context.Context, fs *graphql.FieldSet) (res graphql.Marshaler) {
+			innerFunc := func(ctx context.Context, _ *graphql.FieldSet) (res graphql.Marshaler) {
 				defer func() {
 					if r := recover(); r != nil {
 						ec.Error(ctx, ec.Recover(ctx, r))
@@ -9852,7 +7477,7 @@ func (ec *executionContext) _Metar(ctx context.Context, sel ast.SelectionSet, ob
 		case "dewpoint":
 			field := field
 
-			innerFunc := func(ctx context.Context, fs *graphql.FieldSet) (res graphql.Marshaler) {
+			innerFunc := func(ctx context.Context, _ *graphql.FieldSet) (res graphql.Marshaler) {
 				defer func() {
 					if r := recover(); r != nil {
 						ec.Error(ctx, ec.Recover(ctx, r))
@@ -9885,7 +7510,7 @@ func (ec *executionContext) _Metar(ctx context.Context, sel ast.SelectionSet, ob
 		case "windSpeed":
 			field := field
 
-			innerFunc := func(ctx context.Context, fs *graphql.FieldSet) (res graphql.Marshaler) {
+			innerFunc := func(ctx context.Context, _ *graphql.FieldSet) (res graphql.Marshaler) {
 				defer func() {
 					if r := recover(); r != nil {
 						ec.Error(ctx, ec.Recover(ctx, r))
@@ -9918,7 +7543,7 @@ func (ec *executionContext) _Metar(ctx context.Context, sel ast.SelectionSet, ob
 		case "windGust":
 			field := field
 
-			innerFunc := func(ctx context.Context, fs *graphql.FieldSet) (res graphql.Marshaler) {
+			innerFunc := func(ctx context.Context, _ *graphql.FieldSet) (res graphql.Marshaler) {
 				defer func() {
 					if r := recover(); r != nil {
 						ec.Error(ctx, ec.Recover(ctx, r))
@@ -9951,7 +7576,7 @@ func (ec *executionContext) _Metar(ctx context.Context, sel ast.SelectionSet, ob
 		case "visibility":
 			field := field
 
-			innerFunc := func(ctx context.Context, fs *graphql.FieldSet) (res graphql.Marshaler) {
+			innerFunc := func(ctx context.Context, _ *graphql.FieldSet) (res graphql.Marshaler) {
 				defer func() {
 					if r := recover(); r != nil {
 						ec.Error(ctx, ec.Recover(ctx, r))
@@ -9984,7 +7609,7 @@ func (ec *executionContext) _Metar(ctx context.Context, sel ast.SelectionSet, ob
 		case "verticalVisibility":
 			field := field
 
-			innerFunc := func(ctx context.Context, fs *graphql.FieldSet) (res graphql.Marshaler) {
+			innerFunc := func(ctx context.Context, _ *graphql.FieldSet) (res graphql.Marshaler) {
 				defer func() {
 					if r := recover(); r != nil {
 						ec.Error(ctx, ec.Recover(ctx, r))
@@ -10017,7 +7642,7 @@ func (ec *executionContext) _Metar(ctx context.Context, sel ast.SelectionSet, ob
 		case "snowDepth":
 			field := field
 
-			innerFunc := func(ctx context.Context, fs *graphql.FieldSet) (res graphql.Marshaler) {
+			innerFunc := func(ctx context.Context, _ *graphql.FieldSet) (res graphql.Marshaler) {
 				defer func() {
 					if r := recover(); r != nil {
 						ec.Error(ctx, ec.Recover(ctx, r))
@@ -10050,7 +7675,7 @@ func (ec *executionContext) _Metar(ctx context.Context, sel ast.SelectionSet, ob
 		case "seaLevelPressure":
 			field := field
 
-			innerFunc := func(ctx context.Context, fs *graphql.FieldSet) (res graphql.Marshaler) {
+			innerFunc := func(ctx context.Context, _ *graphql.FieldSet) (res graphql.Marshaler) {
 				defer func() {
 					if r := recover(); r != nil {
 						ec.Error(ctx, ec.Recover(ctx, r))
@@ -10083,7 +7708,7 @@ func (ec *executionContext) _Metar(ctx context.Context, sel ast.SelectionSet, ob
 		case "pressureTendency":
 			field := field
 
-			innerFunc := func(ctx context.Context, fs *graphql.FieldSet) (res graphql.Marshaler) {
+			innerFunc := func(ctx context.Context, _ *graphql.FieldSet) (res graphql.Marshaler) {
 				defer func() {
 					if r := recover(); r != nil {
 						ec.Error(ctx, ec.Recover(ctx, r))
@@ -10281,7 +7906,7 @@ func (ec *executionContext) _Runway(ctx context.Context, sel ast.SelectionSet, o
 		case "airport":
 			field := field
 
-			innerFunc := func(ctx context.Context, fs *graphql.FieldSet) (res graphql.Marshaler) {
+			innerFunc := func(ctx context.Context, _ *graphql.FieldSet) (res graphql.Marshaler) {
 				defer func() {
 					if r := recover(); r != nil {
 						ec.Error(ctx, ec.Recover(ctx, r))
@@ -10314,7 +7939,7 @@ func (ec *executionContext) _Runway(ctx context.Context, sel ast.SelectionSet, o
 		case "length":
 			field := field
 
-			innerFunc := func(ctx context.Context, fs *graphql.FieldSet) (res graphql.Marshaler) {
+			innerFunc := func(ctx context.Context, _ *graphql.FieldSet) (res graphql.Marshaler) {
 				defer func() {
 					if r := recover(); r != nil {
 						ec.Error(ctx, ec.Recover(ctx, r))
@@ -10347,7 +7972,7 @@ func (ec *executionContext) _Runway(ctx context.Context, sel ast.SelectionSet, o
 		case "width":
 			field := field
 
-			innerFunc := func(ctx context.Context, fs *graphql.FieldSet) (res graphql.Marshaler) {
+			innerFunc := func(ctx context.Context, _ *graphql.FieldSet) (res graphql.Marshaler) {
 				defer func() {
 					if r := recover(); r != nil {
 						ec.Error(ctx, ec.Recover(ctx, r))
@@ -10426,7 +8051,7 @@ func (ec *executionContext) _SkyCondition(ctx context.Context, sel ast.Selection
 		case "cloudBase":
 			field := field
 
-			innerFunc := func(ctx context.Context, fs *graphql.FieldSet) (res graphql.Marshaler) {
+			innerFunc := func(ctx context.Context, _ *graphql.FieldSet) (res graphql.Marshaler) {
 				defer func() {
 					if r := recover(); r != nil {
 						ec.Error(ctx, ec.Recover(ctx, r))
@@ -10569,7 +8194,7 @@ func (ec *executionContext) _Taf(ctx context.Context, sel ast.SelectionSet, obj 
 		case "forecast":
 			field := field
 
-			innerFunc := func(ctx context.Context, fs *graphql.FieldSet) (res graphql.Marshaler) {
+			innerFunc := func(ctx context.Context, _ *graphql.FieldSet) (res graphql.Marshaler) {
 				defer func() {
 					if r := recover(); r != nil {
 						ec.Error(ctx, ec.Recover(ctx, r))
@@ -10682,7 +8307,7 @@ func (ec *executionContext) _TemperatureData(ctx context.Context, sel ast.Select
 		case "minTemperature":
 			field := field
 
-			innerFunc := func(ctx context.Context, fs *graphql.FieldSet) (res graphql.Marshaler) {
+			innerFunc := func(ctx context.Context, _ *graphql.FieldSet) (res graphql.Marshaler) {
 				defer func() {
 					if r := recover(); r != nil {
 						ec.Error(ctx, ec.Recover(ctx, r))
@@ -10715,7 +8340,7 @@ func (ec *executionContext) _TemperatureData(ctx context.Context, sel ast.Select
 		case "maxTemperature":
 			field := field
 
-			innerFunc := func(ctx context.Context, fs *graphql.FieldSet) (res graphql.Marshaler) {
+			innerFunc := func(ctx context.Context, _ *graphql.FieldSet) (res graphql.Marshaler) {
 				defer func() {
 					if r := recover(); r != nil {
 						ec.Error(ctx, ec.Recover(ctx, r))
@@ -10792,7 +8417,7 @@ func (ec *executionContext) _TurbulenceCondition(ctx context.Context, sel ast.Se
 		case "minAltitude":
 			field := field
 
-			innerFunc := func(ctx context.Context, fs *graphql.FieldSet) (res graphql.Marshaler) {
+			innerFunc := func(ctx context.Context, _ *graphql.FieldSet) (res graphql.Marshaler) {
 				defer func() {
 					if r := recover(); r != nil {
 						ec.Error(ctx, ec.Recover(ctx, r))
@@ -10825,7 +8450,7 @@ func (ec *executionContext) _TurbulenceCondition(ctx context.Context, sel ast.Se
 		case "maxAltitude":
 			field := field
 
-			innerFunc := func(ctx context.Context, fs *graphql.FieldSet) (res graphql.Marshaler) {
+			innerFunc := func(ctx context.Context, _ *graphql.FieldSet) (res graphql.Marshaler) {
 				defer func() {
 					if r := recover(); r != nil {
 						ec.Error(ctx, ec.Recover(ctx, r))
@@ -10908,7 +8533,7 @@ func (ec *executionContext) _WeatherStation(ctx context.Context, sel ast.Selecti
 		case "airport":
 			field := field
 
-			innerFunc := func(ctx context.Context, fs *graphql.FieldSet) (res graphql.Marshaler) {
+			innerFunc := func(ctx context.Context, _ *graphql.FieldSet) (res graphql.Marshaler) {
 				defer func() {
 					if r := recover(); r != nil {
 						ec.Error(ctx, ec.Recover(ctx, r))
@@ -11047,12 +8672,12 @@ func (ec *executionContext) marshalNAirport2ᚖmetarᚗggᚋentᚐAirport(ctx co
 	return ec._Airport(ctx, sel, v)
 }
 
-func (ec *executionContext) unmarshalNAirportOrder2ᚖmetarᚗggᚋentᚐAirportOrder(ctx context.Context, v interface{}) (*ent.AirportOrder, error) {
+func (ec *executionContext) unmarshalNAirportOrder2ᚖmetarᚗggᚋentᚐAirportOrder(ctx context.Context, v any) (*ent.AirportOrder, error) {
 	res, err := ec.unmarshalInputAirportOrder(ctx, v)
 	return &res, graphql.ErrorOnPath(ctx, err)
 }
 
-func (ec *executionContext) unmarshalNAirportOrderField2ᚖmetarᚗggᚋentᚐAirportOrderField(ctx context.Context, v interface{}) (*ent.AirportOrderField, error) {
+func (ec *executionContext) unmarshalNAirportOrderField2ᚖmetarᚗggᚋentᚐAirportOrderField(ctx context.Context, v any) (*ent.AirportOrderField, error) {
 	var res = new(ent.AirportOrderField)
 	err := res.UnmarshalGQL(v)
 	return res, graphql.ErrorOnPath(ctx, err)
@@ -11068,7 +8693,7 @@ func (ec *executionContext) marshalNAirportOrderField2ᚖmetarᚗggᚋentᚐAirp
 	return v
 }
 
-func (ec *executionContext) unmarshalNAirportType2metarᚗggᚋentᚋairportᚐType(ctx context.Context, v interface{}) (airport.Type, error) {
+func (ec *executionContext) unmarshalNAirportType2metarᚗggᚋentᚋairportᚐType(ctx context.Context, v any) (airport.Type, error) {
 	var res airport.Type
 	err := res.UnmarshalGQL(v)
 	return res, graphql.ErrorOnPath(ctx, err)
@@ -11078,7 +8703,7 @@ func (ec *executionContext) marshalNAirportType2metarᚗggᚋentᚋairportᚐTyp
 	return v
 }
 
-func (ec *executionContext) unmarshalNCountryContinent2metarᚗggᚋentᚋcountryᚐContinent(ctx context.Context, v interface{}) (country.Continent, error) {
+func (ec *executionContext) unmarshalNCountryContinent2metarᚗggᚋentᚋcountryᚐContinent(ctx context.Context, v any) (country.Continent, error) {
 	var res country.Continent
 	err := res.UnmarshalGQL(v)
 	return res, graphql.ErrorOnPath(ctx, err)
@@ -11128,7 +8753,7 @@ func (ec *executionContext) marshalNMetar2ᚖmetarᚗggᚋentᚐMetar(ctx contex
 	return ec._Metar(ctx, sel, v)
 }
 
-func (ec *executionContext) unmarshalNMetarMetarType2metarᚗggᚋentᚋmetarᚐMetarType(ctx context.Context, v interface{}) (metar.MetarType, error) {
+func (ec *executionContext) unmarshalNMetarMetarType2metarᚗggᚋentᚋmetarᚐMetarType(ctx context.Context, v any) (metar.MetarType, error) {
 	var res metar.MetarType
 	err := res.UnmarshalGQL(v)
 	return res, graphql.ErrorOnPath(ctx, err)
@@ -11138,7 +8763,7 @@ func (ec *executionContext) marshalNMetarMetarType2metarᚗggᚋentᚋmetarᚐMe
 	return v
 }
 
-func (ec *executionContext) unmarshalNMetarOrderField2ᚖmetarᚗggᚋentᚐMetarOrderField(ctx context.Context, v interface{}) (*ent.MetarOrderField, error) {
+func (ec *executionContext) unmarshalNMetarOrderField2ᚖmetarᚗggᚋentᚐMetarOrderField(ctx context.Context, v any) (*ent.MetarOrderField, error) {
 	var res = new(ent.MetarOrderField)
 	err := res.UnmarshalGQL(v)
 	return res, graphql.ErrorOnPath(ctx, err)
@@ -11154,7 +8779,7 @@ func (ec *executionContext) marshalNMetarOrderField2ᚖmetarᚗggᚋentᚐMetarO
 	return v
 }
 
-func (ec *executionContext) unmarshalNOrderDirection2entgoᚗioᚋcontribᚋentgqlᚐOrderDirection(ctx context.Context, v interface{}) (entgql.OrderDirection, error) {
+func (ec *executionContext) unmarshalNOrderDirection2entgoᚗioᚋcontribᚋentgqlᚐOrderDirection(ctx context.Context, v any) (entgql.OrderDirection, error) {
 	var res entgql.OrderDirection
 	err := res.UnmarshalGQL(v)
 	return res, graphql.ErrorOnPath(ctx, err)
@@ -11228,7 +8853,7 @@ func (ec *executionContext) marshalNSkyCondition2ᚖmetarᚗggᚋentᚐSkyCondit
 	return ec._SkyCondition(ctx, sel, v)
 }
 
-func (ec *executionContext) unmarshalNSkyConditionSkyCover2metarᚗggᚋentᚋskyconditionᚐSkyCover(ctx context.Context, v interface{}) (skycondition.SkyCover, error) {
+func (ec *executionContext) unmarshalNSkyConditionSkyCover2metarᚗggᚋentᚋskyconditionᚐSkyCover(ctx context.Context, v any) (skycondition.SkyCover, error) {
 	var res skycondition.SkyCover
 	err := res.UnmarshalGQL(v)
 	return res, graphql.ErrorOnPath(ctx, err)
@@ -11248,7 +8873,7 @@ func (ec *executionContext) marshalNTaf2ᚖmetarᚗggᚋentᚐTaf(ctx context.Co
 	return ec._Taf(ctx, sel, v)
 }
 
-func (ec *executionContext) unmarshalNTafOrderField2ᚖmetarᚗggᚋentᚐTafOrderField(ctx context.Context, v interface{}) (*ent.TafOrderField, error) {
+func (ec *executionContext) unmarshalNTafOrderField2ᚖmetarᚗggᚋentᚐTafOrderField(ctx context.Context, v any) (*ent.TafOrderField, error) {
 	var res = new(ent.TafOrderField)
 	err := res.UnmarshalGQL(v)
 	return res, graphql.ErrorOnPath(ctx, err)
@@ -11301,14 +8926,12 @@ func (ec *executionContext) marshalOAirport2ᚖmetarᚗggᚋentᚐAirport(ctx co
 	return ec._Airport(ctx, sel, v)
 }
 
-func (ec *executionContext) unmarshalOAirportOrder2ᚕᚖmetarᚗggᚋentᚐAirportOrderᚄ(ctx context.Context, v interface{}) ([]*ent.AirportOrder, error) {
+func (ec *executionContext) unmarshalOAirportOrder2ᚕᚖmetarᚗggᚋentᚐAirportOrderᚄ(ctx context.Context, v any) ([]*ent.AirportOrder, error) {
 	if v == nil {
 		return nil, nil
 	}
-	var vSlice []interface{}
-	if v != nil {
-		vSlice = graphql.CoerceList(v)
-	}
+	var vSlice []any
+	vSlice = graphql.CoerceList(v)
 	var err error
 	res := make([]*ent.AirportOrder, len(vSlice))
 	for i := range vSlice {
@@ -11321,7 +8944,7 @@ func (ec *executionContext) unmarshalOAirportOrder2ᚕᚖmetarᚗggᚋentᚐAirp
 	return res, nil
 }
 
-func (ec *executionContext) unmarshalOAirportType2ᚖmetarᚗggᚋentᚋairportᚐType(ctx context.Context, v interface{}) (*airport.Type, error) {
+func (ec *executionContext) unmarshalOAirportType2ᚖmetarᚗggᚋentᚋairportᚐType(ctx context.Context, v any) (*airport.Type, error) {
 	if v == nil {
 		return nil, nil
 	}
@@ -11391,7 +9014,7 @@ func (ec *executionContext) marshalOForecast2ᚕᚖmetarᚗggᚋentᚐForecast�
 	return ret
 }
 
-func (ec *executionContext) unmarshalOForecastChangeIndicator2ᚖmetarᚗggᚋentᚋforecastᚐChangeIndicator(ctx context.Context, v interface{}) (*forecast.ChangeIndicator, error) {
+func (ec *executionContext) unmarshalOForecastChangeIndicator2ᚖmetarᚗggᚋentᚋforecastᚐChangeIndicator(ctx context.Context, v any) (*forecast.ChangeIndicator, error) {
 	if v == nil {
 		return nil, nil
 	}
@@ -11501,7 +9124,7 @@ func (ec *executionContext) marshalOIcingCondition2ᚕᚖmetarᚗggᚋentᚐIcin
 	return ret
 }
 
-func (ec *executionContext) unmarshalOMetarFlightCategory2ᚖmetarᚗggᚋentᚋmetarᚐFlightCategory(ctx context.Context, v interface{}) (*metar.FlightCategory, error) {
+func (ec *executionContext) unmarshalOMetarFlightCategory2ᚖmetarᚗggᚋentᚋmetarᚐFlightCategory(ctx context.Context, v any) (*metar.FlightCategory, error) {
 	if v == nil {
 		return nil, nil
 	}
@@ -11571,7 +9194,7 @@ func (ec *executionContext) marshalOSkyCondition2ᚕᚖmetarᚗggᚋentᚐSkyCon
 	return ret
 }
 
-func (ec *executionContext) unmarshalOSkyConditionCloudType2ᚖmetarᚗggᚋentᚋskyconditionᚐCloudType(ctx context.Context, v interface{}) (*skycondition.CloudType, error) {
+func (ec *executionContext) unmarshalOSkyConditionCloudType2ᚖmetarᚗggᚋentᚋskyconditionᚐCloudType(ctx context.Context, v any) (*skycondition.CloudType, error) {
 	if v == nil {
 		return nil, nil
 	}

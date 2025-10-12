@@ -270,27 +270,21 @@ func (i *Importer) importAirportLine(ctx context.Context, data []string) error {
 	case airport.TypeLargeAirport.String():
 		airportType = airport.TypeLargeAirport
 		importance = 5
-		break
 	case airport.TypeMediumAirport.String():
 		airportType = airport.TypeMediumAirport
 		importance = 4
-		break
 	case airport.TypeSmallAirport.String():
 		airportType = airport.TypeSmallAirport
 		importance = 3
-		break
 	case airport.TypeHeliport.String():
 		airportType = airport.TypeHeliport
 		importance = 2
-		break
 	case airport.TypeSeaplaneBase.String():
 		airportType = airport.TypeSeaplaneBase
 		importance = 1
-		break
 	case airport.TypeClosedAirport.String():
 		airportType = airport.TypeClosedAirport
 		importance = 0
-		break
 	}
 
 	// Fetch country

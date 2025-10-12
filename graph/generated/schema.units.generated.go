@@ -40,7 +40,7 @@ import (
 
 // region    ***************************** type.gotpl *****************************
 
-func (ec *executionContext) unmarshalNLengthUnit2metarᚗggᚋgraphᚋmodelᚐLengthUnit(ctx context.Context, v interface{}) (model.LengthUnit, error) {
+func (ec *executionContext) unmarshalNLengthUnit2metarᚗggᚋgraphᚋmodelᚐLengthUnit(ctx context.Context, v any) (model.LengthUnit, error) {
 	var res model.LengthUnit
 	err := res.UnmarshalGQL(v)
 	return res, graphql.ErrorOnPath(ctx, err)
@@ -50,7 +50,7 @@ func (ec *executionContext) marshalNLengthUnit2metarᚗggᚋgraphᚋmodelᚐLeng
 	return v
 }
 
-func (ec *executionContext) unmarshalNPressureUnit2metarᚗggᚋgraphᚋmodelᚐPressureUnit(ctx context.Context, v interface{}) (model.PressureUnit, error) {
+func (ec *executionContext) unmarshalNPressureUnit2metarᚗggᚋgraphᚋmodelᚐPressureUnit(ctx context.Context, v any) (model.PressureUnit, error) {
 	var res model.PressureUnit
 	err := res.UnmarshalGQL(v)
 	return res, graphql.ErrorOnPath(ctx, err)
@@ -60,7 +60,7 @@ func (ec *executionContext) marshalNPressureUnit2metarᚗggᚋgraphᚋmodelᚐPr
 	return v
 }
 
-func (ec *executionContext) unmarshalNSmallLengthUnit2metarᚗggᚋgraphᚋmodelᚐSmallLengthUnit(ctx context.Context, v interface{}) (model.SmallLengthUnit, error) {
+func (ec *executionContext) unmarshalNSmallLengthUnit2metarᚗggᚋgraphᚋmodelᚐSmallLengthUnit(ctx context.Context, v any) (model.SmallLengthUnit, error) {
 	var res model.SmallLengthUnit
 	err := res.UnmarshalGQL(v)
 	return res, graphql.ErrorOnPath(ctx, err)
@@ -70,7 +70,7 @@ func (ec *executionContext) marshalNSmallLengthUnit2metarᚗggᚋgraphᚋmodel�
 	return v
 }
 
-func (ec *executionContext) unmarshalNSpeedUnit2metarᚗggᚋgraphᚋmodelᚐSpeedUnit(ctx context.Context, v interface{}) (model.SpeedUnit, error) {
+func (ec *executionContext) unmarshalNSpeedUnit2metarᚗggᚋgraphᚋmodelᚐSpeedUnit(ctx context.Context, v any) (model.SpeedUnit, error) {
 	var res model.SpeedUnit
 	err := res.UnmarshalGQL(v)
 	return res, graphql.ErrorOnPath(ctx, err)
@@ -80,7 +80,7 @@ func (ec *executionContext) marshalNSpeedUnit2metarᚗggᚋgraphᚋmodelᚐSpeed
 	return v
 }
 
-func (ec *executionContext) unmarshalNTemperatureUnit2metarᚗggᚋgraphᚋmodelᚐTemperatureUnit(ctx context.Context, v interface{}) (model.TemperatureUnit, error) {
+func (ec *executionContext) unmarshalNTemperatureUnit2metarᚗggᚋgraphᚋmodelᚐTemperatureUnit(ctx context.Context, v any) (model.TemperatureUnit, error) {
 	var res model.TemperatureUnit
 	err := res.UnmarshalGQL(v)
 	return res, graphql.ErrorOnPath(ctx, err)

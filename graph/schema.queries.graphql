@@ -120,6 +120,17 @@ type Query {
         """Filter whether the airport provides METARs and has recent ones."""
         hasWeather: Boolean
 
+        """Filter on the importance of the airport. This is a greater than equals filter.
+            The mapping is as follows:
+            0: Closed
+            1: Seaplane base
+            2: Heliport
+            3: Small airport
+            4: Medium airport
+            5: Large airport
+        """
+        importance: Int
+
         order: [AirportOrder!]
     ): AirportConnection!
 
