@@ -137,6 +137,9 @@ type Query {
     """Get a single airport by it's id, identifier, icao code or iata code."""
     getAirport(id: String, identifier: String, icao: String, iata: String,): Airport
 
+    """Get multiple specific airports. If airport could not be found, it won't be contained in the result."""
+    getAirportsByIds(identifiers: [String!]!): [Airport!]!
+
     """Search for weather stations by it's identifier."""
     getStations(
         first: Int

@@ -154,6 +154,11 @@ func (r *queryResolver) GetAirport(ctx context.Context, id *string, identifier *
 	return a, nil
 }
 
+// GetAirportsByIds is the resolver for the getAirportsByIds field.
+func (r *queryResolver) GetAirportsByIds(ctx context.Context, identifiers []string) ([]*ent.Airport, error) {
+	return r.client.Airport.Query().Where(airport.IdentifierIn(identifiers...)).All(ctx)
+}
+
 // GetStations is the resolver for the getStations field.
 func (r *queryResolver) GetStations(ctx context.Context, first *int, after *entgql.Cursor[uuid.UUID], before *entgql.Cursor[uuid.UUID], last *int, identifier *string) (*ent.WeatherStationConnection, error) {
 	first, last = BoundsForPagination(first, last)

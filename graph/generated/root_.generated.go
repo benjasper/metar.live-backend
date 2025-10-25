@@ -207,10 +207,11 @@ type ComplexityRoot struct {
 	}
 
 	Query struct {
-		GetAirport  func(childComplexity int, id *string, identifier *string, icao *string, iata *string) int
-		GetAirports func(childComplexity int, first *int, after *entgql.Cursor[uuid.UUID], before *entgql.Cursor[uuid.UUID], last *int, identifier *string, icao *string, iata *string, typeArg *airport.Type, search *string, hasWeather *bool, importance *int, order []*ent.AirportOrder) int
-		GetStation  func(childComplexity int, id *string, identifier *string) int
-		GetStations func(childComplexity int, first *int, after *entgql.Cursor[uuid.UUID], before *entgql.Cursor[uuid.UUID], last *int, identifier *string) int
+		GetAirport       func(childComplexity int, id *string, identifier *string, icao *string, iata *string) int
+		GetAirports      func(childComplexity int, first *int, after *entgql.Cursor[uuid.UUID], before *entgql.Cursor[uuid.UUID], last *int, identifier *string, icao *string, iata *string, typeArg *airport.Type, search *string, hasWeather *bool, importance *int, order []*ent.AirportOrder) int
+		GetAirportsByIds func(childComplexity int, identifiers []string) int
+		GetStation       func(childComplexity int, id *string, identifier *string) int
+		GetStations      func(childComplexity int, first *int, after *entgql.Cursor[uuid.UUID], before *entgql.Cursor[uuid.UUID], last *int, identifier *string) int
 	}
 
 	Region struct {
@@ -1309,6 +1310,18 @@ func (e *executableSchema) Complexity(ctx context.Context, typeName, field strin
 		}
 
 		return e.complexity.Query.GetAirports(childComplexity, args["first"].(*int), args["after"].(*entgql.Cursor[uuid.UUID]), args["before"].(*entgql.Cursor[uuid.UUID]), args["last"].(*int), args["identifier"].(*string), args["icao"].(*string), args["iata"].(*string), args["type"].(*airport.Type), args["search"].(*string), args["hasWeather"].(*bool), args["importance"].(*int), args["order"].([]*ent.AirportOrder)), true
+
+	case "Query.getAirportsByIds":
+		if e.complexity.Query.GetAirportsByIds == nil {
+			break
+		}
+
+		args, err := ec.field_Query_getAirportsByIds_args(ctx, rawArgs)
+		if err != nil {
+			return 0, false
+		}
+
+		return e.complexity.Query.GetAirportsByIds(childComplexity, args["identifiers"].([]string)), true
 
 	case "Query.getStation":
 		if e.complexity.Query.GetStation == nil {
@@ -2816,6 +2829,9 @@ type Query {
 
     """Get a single airport by it's id, identifier, icao code or iata code."""
     getAirport(id: String, identifier: String, icao: String, iata: String,): Airport
+
+    """Get multiple specific airports. If airport could not be found, it won't be contained in the result."""
+    getAirportsByIds(identifiers: [String!]!): [Airport!]!
 
     """Search for weather stations by it's identifier."""
     getStations(

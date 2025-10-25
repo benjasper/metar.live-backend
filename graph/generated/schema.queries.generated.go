@@ -24,6 +24,7 @@ import (
 type QueryResolver interface {
 	GetAirports(ctx context.Context, first *int, after *entgql.Cursor[uuid.UUID], before *entgql.Cursor[uuid.UUID], last *int, identifier *string, icao *string, iata *string, typeArg *airport.Type, search *string, hasWeather *bool, importance *int, order []*ent.AirportOrder) (*ent.AirportConnection, error)
 	GetAirport(ctx context.Context, id *string, identifier *string, icao *string, iata *string) (*ent.Airport, error)
+	GetAirportsByIds(ctx context.Context, identifiers []string) ([]*ent.Airport, error)
 	GetStations(ctx context.Context, first *int, after *entgql.Cursor[uuid.UUID], before *entgql.Cursor[uuid.UUID], last *int, identifier *string) (*ent.WeatherStationConnection, error)
 	GetStation(ctx context.Context, id *string, identifier *string) (*ent.WeatherStation, error)
 }
@@ -66,6 +67,17 @@ func (ec *executionContext) field_Query_getAirport_args(ctx context.Context, raw
 		return nil, err
 	}
 	args["iata"] = arg3
+	return args, nil
+}
+
+func (ec *executionContext) field_Query_getAirportsByIds_args(ctx context.Context, rawArgs map[string]any) (map[string]any, error) {
+	var err error
+	args := map[string]any{}
+	arg0, err := graphql.ProcessArgField(ctx, rawArgs, "identifiers", ec.unmarshalNString2ᚕstringᚄ)
+	if err != nil {
+		return nil, err
+	}
+	args["identifiers"] = arg0
 	return args, nil
 }
 
@@ -898,6 +910,101 @@ func (ec *executionContext) fieldContext_Query_getAirport(ctx context.Context, f
 	}()
 	ctx = graphql.WithFieldContext(ctx, fc)
 	if fc.Args, err = ec.field_Query_getAirport_args(ctx, field.ArgumentMap(ec.Variables)); err != nil {
+		ec.Error(ctx, err)
+		return fc, err
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _Query_getAirportsByIds(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
+	return graphql.ResolveField(
+		ctx,
+		ec.OperationContext,
+		field,
+		ec.fieldContext_Query_getAirportsByIds,
+		func(ctx context.Context) (any, error) {
+			fc := graphql.GetFieldContext(ctx)
+			return ec.resolvers.Query().GetAirportsByIds(ctx, fc.Args["identifiers"].([]string))
+		},
+		nil,
+		ec.marshalNAirport2ᚕᚖmetarᚗliveᚋentᚐAirportᚄ,
+		true,
+		true,
+	)
+}
+
+func (ec *executionContext) fieldContext_Query_getAirportsByIds(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "Query",
+		Field:      field,
+		IsMethod:   true,
+		IsResolver: true,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			switch field.Name {
+			case "id":
+				return ec.fieldContext_Airport_id(ctx, field)
+			case "importID":
+				return ec.fieldContext_Airport_importID(ctx, field)
+			case "lastUpdated":
+				return ec.fieldContext_Airport_lastUpdated(ctx, field)
+			case "icaoCode":
+				return ec.fieldContext_Airport_icaoCode(ctx, field)
+			case "iataCode":
+				return ec.fieldContext_Airport_iataCode(ctx, field)
+			case "identifier":
+				return ec.fieldContext_Airport_identifier(ctx, field)
+			case "type":
+				return ec.fieldContext_Airport_type(ctx, field)
+			case "importance":
+				return ec.fieldContext_Airport_importance(ctx, field)
+			case "name":
+				return ec.fieldContext_Airport_name(ctx, field)
+			case "latitude":
+				return ec.fieldContext_Airport_latitude(ctx, field)
+			case "longitude":
+				return ec.fieldContext_Airport_longitude(ctx, field)
+			case "timezone":
+				return ec.fieldContext_Airport_timezone(ctx, field)
+			case "elevation":
+				return ec.fieldContext_Airport_elevation(ctx, field)
+			case "municipality":
+				return ec.fieldContext_Airport_municipality(ctx, field)
+			case "scheduledService":
+				return ec.fieldContext_Airport_scheduledService(ctx, field)
+			case "gpsCode":
+				return ec.fieldContext_Airport_gpsCode(ctx, field)
+			case "localCode":
+				return ec.fieldContext_Airport_localCode(ctx, field)
+			case "website":
+				return ec.fieldContext_Airport_website(ctx, field)
+			case "wikipedia":
+				return ec.fieldContext_Airport_wikipedia(ctx, field)
+			case "keywords":
+				return ec.fieldContext_Airport_keywords(ctx, field)
+			case "region":
+				return ec.fieldContext_Airport_region(ctx, field)
+			case "country":
+				return ec.fieldContext_Airport_country(ctx, field)
+			case "frequencies":
+				return ec.fieldContext_Airport_frequencies(ctx, field)
+			case "station":
+				return ec.fieldContext_Airport_station(ctx, field)
+			case "runways":
+				return ec.fieldContext_Airport_runways(ctx, field)
+			case "stationsVicinity":
+				return ec.fieldContext_Airport_stationsVicinity(ctx, field)
+			}
+			return nil, fmt.Errorf("no field named %q was found under type Airport", field.Name)
+		},
+	}
+	defer func() {
+		if r := recover(); r != nil {
+			err = ec.Recover(ctx, r)
+			ec.Error(ctx, err)
+		}
+	}()
+	ctx = graphql.WithFieldContext(ctx, fc)
+	if fc.Args, err = ec.field_Query_getAirportsByIds_args(ctx, field.ArgumentMap(ec.Variables)); err != nil {
 		ec.Error(ctx, err)
 		return fc, err
 	}
@@ -1779,6 +1886,28 @@ func (ec *executionContext) _Query(ctx context.Context, sel ast.SelectionSet) gr
 					}
 				}()
 				res = ec._Query_getAirport(ctx, field)
+				return res
+			}
+
+			rrm := func(ctx context.Context) graphql.Marshaler {
+				return ec.OperationContext.RootResolverMiddleware(ctx,
+					func(ctx context.Context) graphql.Marshaler { return innerFunc(ctx, out) })
+			}
+
+			out.Concurrently(i, func(ctx context.Context) graphql.Marshaler { return rrm(innerCtx) })
+		case "getAirportsByIds":
+			field := field
+
+			innerFunc := func(ctx context.Context, fs *graphql.FieldSet) (res graphql.Marshaler) {
+				defer func() {
+					if r := recover(); r != nil {
+						ec.Error(ctx, ec.Recover(ctx, r))
+					}
+				}()
+				res = ec._Query_getAirportsByIds(ctx, field)
+				if res == graphql.Null {
+					atomic.AddUint32(&fs.Invalids, 1)
+				}
 				return res
 			}
 
