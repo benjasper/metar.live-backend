@@ -7,6 +7,7 @@ import (
 	"fmt"
 	"io"
 	"strconv"
+	"time"
 
 	"metar.live/ent"
 )
@@ -16,6 +17,11 @@ type StationWithDistance struct {
 	Distance float64 `json:"distance"`
 	// The METAR for the station.
 	Station *ent.WeatherStation `json:"station"`
+}
+
+type Status struct {
+	// Last weather sync time.
+	LastWeatherSync time.Time `json:"lastWeatherSync"`
 }
 
 type LengthUnit string

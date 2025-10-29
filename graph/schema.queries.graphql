@@ -94,7 +94,15 @@ type WeatherStationEdge {
     cursor: Cursor!
 }
 
+type Status {
+    """Last weather sync time."""
+    lastWeatherSync: Time!
+}
+
 type Query {
+    """Get the status of the server."""
+    status : Status!
+
     """Search for airports by a variety of criteria."""
     getAirports(
         first: Int

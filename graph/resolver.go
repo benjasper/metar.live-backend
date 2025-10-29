@@ -1,6 +1,8 @@
 package graph
 
 import (
+	"time"
+
 	"github.com/99designs/gqlgen/graphql"
 	"metar.live/ent"
 	"metar.live/graph/generated"
@@ -10,10 +12,17 @@ import (
 //
 // It serves as dependency injection for your app, add any dependencies you require here.
 
-type Resolver struct{ client *ent.Client }
+type StatusProvider interface {
+	LastWeatherSync() time.Time
+}
 
-func NewSchema(client *ent.Client) graphql.ExecutableSchema {
+type Resolver struct {
+	client         *ent.Client
+	statusProvider StatusProvider
+}
+
+func NewSchema(client *ent.Client, statusProvider StatusProvider) graphql.ExecutableSchema {
 	return generated.NewExecutableSchema(generated.Config{
-		Resolvers: &Resolver{client},
+		Resolvers: &Resolver{client: client, statusProvider: statusProvider},
 	})
 }

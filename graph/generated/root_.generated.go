@@ -212,6 +212,7 @@ type ComplexityRoot struct {
 		GetAirportsByIds func(childComplexity int, identifiers []string) int
 		GetStation       func(childComplexity int, id *string, identifier *string) int
 		GetStations      func(childComplexity int, first *int, after *entgql.Cursor[uuid.UUID], before *entgql.Cursor[uuid.UUID], last *int, identifier *string) int
+		Status           func(childComplexity int) int
 	}
 
 	Region struct {
@@ -259,6 +260,10 @@ type ComplexityRoot struct {
 	StationWithDistance struct {
 		Distance func(childComplexity int) int
 		Station  func(childComplexity int) int
+	}
+
+	Status struct {
+		LastWeatherSync func(childComplexity int) int
 	}
 
 	Taf struct {
@@ -1347,6 +1352,13 @@ func (e *executableSchema) Complexity(ctx context.Context, typeName, field strin
 
 		return e.complexity.Query.GetStations(childComplexity, args["first"].(*int), args["after"].(*entgql.Cursor[uuid.UUID]), args["before"].(*entgql.Cursor[uuid.UUID]), args["last"].(*int), args["identifier"].(*string)), true
 
+	case "Query.status":
+		if e.complexity.Query.Status == nil {
+			break
+		}
+
+		return e.complexity.Query.Status(childComplexity), true
+
 	case "Region.code":
 		if e.complexity.Region.Code == nil {
 			break
@@ -1606,6 +1618,13 @@ func (e *executableSchema) Complexity(ctx context.Context, typeName, field strin
 		}
 
 		return e.complexity.StationWithDistance.Station(childComplexity), true
+
+	case "Status.lastWeatherSync":
+		if e.complexity.Status.LastWeatherSync == nil {
+			break
+		}
+
+		return e.complexity.Status.LastWeatherSync(childComplexity), true
 
 	case "Taf.bulletinTime":
 		if e.complexity.Taf.BulletinTime == nil {
@@ -2787,7 +2806,15 @@ type WeatherStationEdge {
     cursor: Cursor!
 }
 
+type Status {
+    """Last weather sync time."""
+    lastWeatherSync: Time!
+}
+
 type Query {
+    """Get the status of the server."""
+    status : Status!
+
     """Search for airports by a variety of criteria."""
     getAirports(
         first: Int

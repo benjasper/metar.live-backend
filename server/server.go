@@ -32,6 +32,8 @@ type Server struct {
 	logger             *logging.Logger
 	sitemap            *stm.Sitemap
 	sitemapLastUpdated time.Time
+	lastWeatherSync    time.Time
+	lastWeatherSyncMu  sync.RWMutex
 }
 
 func NewServer(db *ent.Client, logger *logging.Logger) *Server {
@@ -50,9 +52,14 @@ func (s *Server) Run() error {
 		s.logger.Fatal(err)
 	}
 
+	ctx, cancel := context.WithDeadline(context.Background(), time.Now().Add(time.Second*5))
+	defer cancel()
+
+	s.refreshLastWeatherSync(ctx)
+
 	port := environment.Global.Port
 
-	srv := handler.NewDefaultServer(graph.NewSchema(s.db))
+	srv := handler.NewDefaultServer(graph.NewSchema(s.db, s))
 	srv.Use(extension.FixedComplexityLimit(environment.Global.GraphQLQueryComplexityLimit))
 
 	r := gin.New()
@@ -223,7 +230,7 @@ func (s *Server) RunWeatherImport(ctx context.Context) {
 	metarImporter := importer.NewNoaaWeatherImporter(s.db, s.logger)
 
 	b := backoff.NewExponentialBackOff()
-	b.MaxElapsedTime = 5 * time.Minute
+	b.MaxElapsedTime = 1 * time.Minute
 
 	err := backoff.Retry(func() error {
 		err := metarImporter.ImportMetars("https://aviationweather.gov/data/cache/metars.cache.xml.gz", ctx)
@@ -245,6 +252,8 @@ func (s *Server) RunWeatherImport(ctx context.Context) {
 		return
 	}
 
+	s.setLastWeatherSync(time.Now())
+
 	// Send heartbeat when configured
 	if environment.Global.HeartbeatEndpointWeather != "" {
 		req, err := http.NewRequest(http.MethodGet, environment.Global.HeartbeatEndpointWeather, nil)
@@ -263,6 +272,36 @@ func (s *Server) RunWeatherImport(ctx context.Context) {
 			return
 		}
 	}
+}
+
+func (s *Server) refreshLastWeatherSync(ctx context.Context) {
+	lastImportTime := time.Now().Add(-24 * time.Hour * time.Duration(environment.Global.WeatherDataRetentionDays))
+	latestMetar, err := s.db.Metar.Query().
+		Order(ent.Desc(metar.FieldImportTime)).
+		First(ctx)
+	if err != nil {
+		if !ent.IsNotFound(err) && ctx.Err() == nil {
+			s.logger.Error(fmt.Sprintf("[STATUS] Failed to refresh last weather sync: %s", err))
+		}
+	} else {
+		lastImportTime = latestMetar.ImportTime
+	}
+
+	s.setLastWeatherSync(lastImportTime)
+}
+
+func (s *Server) setLastWeatherSync(ts time.Time) {
+	s.lastWeatherSyncMu.Lock()
+	defer s.lastWeatherSyncMu.Unlock()
+
+	s.lastWeatherSync = ts
+}
+
+func (s *Server) LastWeatherSync() time.Time {
+	s.lastWeatherSyncMu.RLock()
+	defer s.lastWeatherSyncMu.RUnlock()
+
+	return s.lastWeatherSync
 }
 
 func (s *Server) DeleteOldData(ctx context.Context) {

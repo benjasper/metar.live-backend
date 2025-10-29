@@ -10,6 +10,7 @@ import (
 	"log"
 	"regexp"
 	"strings"
+	"time"
 
 	"entgo.io/contrib/entgql"
 	"entgo.io/ent/dialect/sql"
@@ -19,7 +20,21 @@ import (
 	"metar.live/ent/predicate"
 	"metar.live/ent/weatherstation"
 	"metar.live/graph/generated"
+	"metar.live/graph/model"
 )
+
+// Status is the resolver for the status field.
+func (r *queryResolver) Status(ctx context.Context) (*model.Status, error) {
+	var lastSync time.Time
+
+	if r.statusProvider != nil {
+		lastSync = r.statusProvider.LastWeatherSync()
+	}
+
+	return &model.Status{
+		LastWeatherSync: lastSync,
+	}, nil
+}
 
 // GetAirports is the resolver for the getAirports field.
 func (r *queryResolver) GetAirports(ctx context.Context, first *int, after *entgql.Cursor[uuid.UUID], before *entgql.Cursor[uuid.UUID], last *int, identifier *string, icao *string, iata *string, typeArg *airport.Type, search *string, hasWeather *bool, importance *int, order []*ent.AirportOrder) (*ent.AirportConnection, error) {
