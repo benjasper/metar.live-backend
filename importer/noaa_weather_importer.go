@@ -42,7 +42,10 @@ func (i *NoaaWeatherImporter) ImportMetars(url string, ctx context.Context) erro
 	i.stats.Start()
 
 	filepath := fmt.Sprintf("metars-%s.xml", time.Now().Format("2006-01-02-15-04-05"))
-	err := utils.DownloadFile(url, filepath, true)
+	downloadCtx, cancel := context.WithTimeout(ctx, 30*time.Second)
+	defer cancel()
+
+	err := utils.DownloadFile(downloadCtx, url, filepath, true)
 	if err != nil {
 		return err
 	}
@@ -75,8 +78,6 @@ func (i *NoaaWeatherImporter) ImportMetars(url string, ctx context.Context) erro
 	}
 
 	for _, xmlMetar := range xmlMetarResponse.Data.METAR {
-		xmlMetar := xmlMetar
-
 		i.stats.AddTotal()
 		wg.Go(func() error {
 			return i.importMetar(&xmlMetar, ctx)
@@ -105,7 +106,10 @@ func (i *NoaaWeatherImporter) ImportTafs(url string, ctx context.Context) error 
 	i.stats.Start()
 
 	filepath := fmt.Sprintf("taf-%s.xml", time.Now().Format("2006-01-02-15-04-05"))
-	err := utils.DownloadFile(url, filepath, true)
+	downloadCtx, cancel := context.WithTimeout(ctx, 30*time.Second)
+	defer cancel()
+
+	err := utils.DownloadFile(downloadCtx, url, filepath, true)
 	if err != nil {
 		return err
 	}
@@ -138,8 +142,6 @@ func (i *NoaaWeatherImporter) ImportTafs(url string, ctx context.Context) error 
 	}
 
 	for _, xmlTaf := range xmlTafResponse.Data.TAF {
-		xmlTaf := xmlTaf
-
 		i.stats.AddTotal()
 		wg.Go(func() error {
 			return i.importTaf(&xmlTaf, ctx)
@@ -190,11 +192,11 @@ func (i *NoaaWeatherImporter) importMetar(x *XmlMetar, ctx context.Context) erro
 
 	var flightCategory *metar.FlightCategory
 	if x.FlightCategory != nil {
-		flightCategoryXml := *x.FlightCategory
+		flightCategoryXML := *x.FlightCategory
 
 		var f metar.FlightCategory
 
-		switch flightCategoryXml {
+		switch flightCategoryXML {
 		case "VFR":
 			f = metar.FlightCategoryVFR
 		case "MVFR":
@@ -241,7 +243,7 @@ func (i *NoaaWeatherImporter) importMetar(x *XmlMetar, ctx context.Context) erro
 		visibilityToParse := *x.VisibilityStatuteMi
 		if strings.Contains(*x.VisibilityStatuteMi, "+") {
 			visibilityIsMoreThan = true
-			visibilityToParse = strings.Replace(*x.VisibilityStatuteMi, "+", "", -1)
+			visibilityToParse = strings.ReplaceAll(*x.VisibilityStatuteMi, "+", "", )
 		}
 
 		visibilityClear, err := strconv.ParseFloat(visibilityToParse, 64)
@@ -387,19 +389,14 @@ func (i *NoaaWeatherImporter) importTaf(x *XmlTaf, ctx context.Context) error {
 			switch *xmlForecast.Change {
 			case "TEMPO":
 				fc.SetChangeIndicator(forecast.ChangeIndicatorTEMPO)
-				break
 			case "BECMG":
 				fc.SetChangeIndicator(forecast.ChangeIndicatorBECMG)
-				break
 			case "FM":
 				fc.SetChangeIndicator(forecast.ChangeIndicatorFM)
-				break
 			case "PROB":
 				fc.SetChangeIndicator(forecast.ChangeIndicatorPROB)
-				break
 			default:
 				i.logger.Error(fmt.Sprintf("unknown forecast change indicator %s", *xmlForecast.Change))
-				break
 			}
 		}
 
@@ -424,7 +421,7 @@ func (i *NoaaWeatherImporter) importTaf(x *XmlTaf, ctx context.Context) error {
 			visibilityToParse := *xmlForecast.Visibility
 			if strings.Contains(*xmlForecast.Visibility, "+") {
 				visibilityHorizontalIsMoreThan = true
-				visibilityToParse = strings.Replace(*xmlForecast.Visibility, "+", "", -1)
+				visibilityToParse = strings.ReplaceAll(*xmlForecast.Visibility, "+", "", )
 			}
 
 			visibilityClear, err := strconv.ParseFloat(visibilityToParse, 64)

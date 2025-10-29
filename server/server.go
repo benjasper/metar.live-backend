@@ -385,8 +385,8 @@ func (s *Server) generateSitemap(ctx context.Context) *stm.Sitemap {
 	}
 
 	if environment.Global.SitemapAdditionalUrls != "" {
-		urls := strings.Split(environment.Global.SitemapAdditionalUrls, ",")
-		for _, u := range urls {
+		urls := strings.SplitSeq(environment.Global.SitemapAdditionalUrls, ",")
+		for u := range urls {
 			sm.Add(stm.URL{{"loc", u}, {"changefreq", "always"}, {"priority", "1.0"}})
 		}
 	}

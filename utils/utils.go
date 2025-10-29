@@ -2,6 +2,7 @@ package utils
 
 import (
 	"compress/gzip"
+	"context"
 	"fmt"
 	"io"
 	"math"
@@ -37,8 +38,8 @@ func NillableString(input string) *string {
 	return &input
 }
 
-// DownloadFile file and save it to disk.
-func DownloadFile(url string, filepath string, useGzip bool) error {
+// DownloadFile downloads a file and saves it to disk using the provided context.
+func DownloadFile(ctx context.Context, url string, filepath string, useGzip bool) error {
 	out, err := os.Create(filepath)
 	if err != nil {
 		return err
@@ -46,9 +47,12 @@ func DownloadFile(url string, filepath string, useGzip bool) error {
 	defer func(out *os.File) {
 		_ = out.Close()
 	}(out)
+	req, err := http.NewRequestWithContext(ctx, http.MethodGet, url, nil)
+	if err != nil {
+		return err
+	}
 
-	// Get the data
-	resp, err := http.Get(url)
+	resp, err := http.DefaultClient.Do(req)
 	if err != nil {
 		return err
 	}
@@ -61,14 +65,17 @@ func DownloadFile(url string, filepath string, useGzip bool) error {
 		return fmt.Errorf("could not download file from %s: %s", url, resp.Status)
 	}
 
-	content := resp.Body
+	var content io.Reader = resp.Body
 	if useGzip {
-		gzreader, err := gzip.NewReader(resp.Body);
-		if(err != nil){
+		gzreader, err := gzip.NewReader(resp.Body)
+		if err != nil {
 			return err
 		}
 
 		content = gzreader
+		defer func() {
+			_ = gzreader.Close()
+		}()
 	}
 
 	// Writer the body to file
