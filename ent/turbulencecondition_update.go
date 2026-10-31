@@ -10,6 +10,8 @@ import (
 	"entgo.io/ent/dialect/sql"
 	"entgo.io/ent/dialect/sql/sqlgraph"
 	"entgo.io/ent/schema/field"
+	"github.com/google/uuid"
+	"metar.live/ent/forecast"
 	"metar.live/ent/predicate"
 	"metar.live/ent/turbulencecondition"
 )
@@ -84,9 +86,34 @@ func (_u *TurbulenceConditionUpdate) AddMaxAltitude(v int) *TurbulenceConditionU
 	return _u
 }
 
+// SetForecastID sets the "forecast" edge to the Forecast entity by ID.
+func (_u *TurbulenceConditionUpdate) SetForecastID(id uuid.UUID) *TurbulenceConditionUpdate {
+	_u.mutation.SetForecastID(id)
+	return _u
+}
+
+// SetNillableForecastID sets the "forecast" edge to the Forecast entity by ID if the given value is not nil.
+func (_u *TurbulenceConditionUpdate) SetNillableForecastID(id *uuid.UUID) *TurbulenceConditionUpdate {
+	if id != nil {
+		_u = _u.SetForecastID(*id)
+	}
+	return _u
+}
+
+// SetForecast sets the "forecast" edge to the Forecast entity.
+func (_u *TurbulenceConditionUpdate) SetForecast(v *Forecast) *TurbulenceConditionUpdate {
+	return _u.SetForecastID(v.ID)
+}
+
 // Mutation returns the TurbulenceConditionMutation object of the builder.
 func (_u *TurbulenceConditionUpdate) Mutation() *TurbulenceConditionMutation {
 	return _u.mutation
+}
+
+// ClearForecast clears the "forecast" edge to the Forecast entity.
+func (_u *TurbulenceConditionUpdate) ClearForecast() *TurbulenceConditionUpdate {
+	_u.mutation.ClearForecast()
+	return _u
 }
 
 // Save executes the query and returns the number of nodes affected by the update operation.
@@ -145,6 +172,35 @@ func (_u *TurbulenceConditionUpdate) sqlSave(ctx context.Context) (_node int, er
 	}
 	if value, ok := _u.mutation.AddedMaxAltitude(); ok {
 		_spec.AddField(turbulencecondition.FieldMaxAltitude, field.TypeInt, value)
+	}
+	if _u.mutation.ForecastCleared() {
+		edge := &sqlgraph.EdgeSpec{
+			Rel:     sqlgraph.M2O,
+			Inverse: true,
+			Table:   turbulencecondition.ForecastTable,
+			Columns: []string{turbulencecondition.ForecastColumn},
+			Bidi:    false,
+			Target: &sqlgraph.EdgeTarget{
+				IDSpec: sqlgraph.NewFieldSpec(forecast.FieldID, field.TypeUUID),
+			},
+		}
+		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
+	}
+	if nodes := _u.mutation.ForecastIDs(); len(nodes) > 0 {
+		edge := &sqlgraph.EdgeSpec{
+			Rel:     sqlgraph.M2O,
+			Inverse: true,
+			Table:   turbulencecondition.ForecastTable,
+			Columns: []string{turbulencecondition.ForecastColumn},
+			Bidi:    false,
+			Target: &sqlgraph.EdgeTarget{
+				IDSpec: sqlgraph.NewFieldSpec(forecast.FieldID, field.TypeUUID),
+			},
+		}
+		for _, k := range nodes {
+			edge.Target.Nodes = append(edge.Target.Nodes, k)
+		}
+		_spec.Edges.Add = append(_spec.Edges.Add, edge)
 	}
 	_spec.AddModifiers(_u.modifiers...)
 	if _node, err = sqlgraph.UpdateNodes(ctx, _u.driver, _spec); err != nil {
@@ -224,9 +280,34 @@ func (_u *TurbulenceConditionUpdateOne) AddMaxAltitude(v int) *TurbulenceConditi
 	return _u
 }
 
+// SetForecastID sets the "forecast" edge to the Forecast entity by ID.
+func (_u *TurbulenceConditionUpdateOne) SetForecastID(id uuid.UUID) *TurbulenceConditionUpdateOne {
+	_u.mutation.SetForecastID(id)
+	return _u
+}
+
+// SetNillableForecastID sets the "forecast" edge to the Forecast entity by ID if the given value is not nil.
+func (_u *TurbulenceConditionUpdateOne) SetNillableForecastID(id *uuid.UUID) *TurbulenceConditionUpdateOne {
+	if id != nil {
+		_u = _u.SetForecastID(*id)
+	}
+	return _u
+}
+
+// SetForecast sets the "forecast" edge to the Forecast entity.
+func (_u *TurbulenceConditionUpdateOne) SetForecast(v *Forecast) *TurbulenceConditionUpdateOne {
+	return _u.SetForecastID(v.ID)
+}
+
 // Mutation returns the TurbulenceConditionMutation object of the builder.
 func (_u *TurbulenceConditionUpdateOne) Mutation() *TurbulenceConditionMutation {
 	return _u.mutation
+}
+
+// ClearForecast clears the "forecast" edge to the Forecast entity.
+func (_u *TurbulenceConditionUpdateOne) ClearForecast() *TurbulenceConditionUpdateOne {
+	_u.mutation.ClearForecast()
+	return _u
 }
 
 // Where appends a list predicates to the TurbulenceConditionUpdate builder.
@@ -315,6 +396,35 @@ func (_u *TurbulenceConditionUpdateOne) sqlSave(ctx context.Context) (_node *Tur
 	}
 	if value, ok := _u.mutation.AddedMaxAltitude(); ok {
 		_spec.AddField(turbulencecondition.FieldMaxAltitude, field.TypeInt, value)
+	}
+	if _u.mutation.ForecastCleared() {
+		edge := &sqlgraph.EdgeSpec{
+			Rel:     sqlgraph.M2O,
+			Inverse: true,
+			Table:   turbulencecondition.ForecastTable,
+			Columns: []string{turbulencecondition.ForecastColumn},
+			Bidi:    false,
+			Target: &sqlgraph.EdgeTarget{
+				IDSpec: sqlgraph.NewFieldSpec(forecast.FieldID, field.TypeUUID),
+			},
+		}
+		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
+	}
+	if nodes := _u.mutation.ForecastIDs(); len(nodes) > 0 {
+		edge := &sqlgraph.EdgeSpec{
+			Rel:     sqlgraph.M2O,
+			Inverse: true,
+			Table:   turbulencecondition.ForecastTable,
+			Columns: []string{turbulencecondition.ForecastColumn},
+			Bidi:    false,
+			Target: &sqlgraph.EdgeTarget{
+				IDSpec: sqlgraph.NewFieldSpec(forecast.FieldID, field.TypeUUID),
+			},
+		}
+		for _, k := range nodes {
+			edge.Target.Nodes = append(edge.Target.Nodes, k)
+		}
+		_spec.Edges.Add = append(_spec.Edges.Add, edge)
 	}
 	_spec.AddModifiers(_u.modifiers...)
 	_node = &TurbulenceCondition{config: _u.config}

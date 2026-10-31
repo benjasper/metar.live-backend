@@ -16,6 +16,7 @@ import (
 	"metar.live/ent/icingcondition"
 	"metar.live/ent/predicate"
 	"metar.live/ent/skycondition"
+	"metar.live/ent/taf"
 	"metar.live/ent/temperaturedata"
 	"metar.live/ent/turbulencecondition"
 )
@@ -440,6 +441,25 @@ func (_u *ForecastUpdate) ClearNotDecoded() *ForecastUpdate {
 	return _u
 }
 
+// SetTafID sets the "taf" edge to the Taf entity by ID.
+func (_u *ForecastUpdate) SetTafID(id uuid.UUID) *ForecastUpdate {
+	_u.mutation.SetTafID(id)
+	return _u
+}
+
+// SetNillableTafID sets the "taf" edge to the Taf entity by ID if the given value is not nil.
+func (_u *ForecastUpdate) SetNillableTafID(id *uuid.UUID) *ForecastUpdate {
+	if id != nil {
+		_u = _u.SetTafID(*id)
+	}
+	return _u
+}
+
+// SetTaf sets the "taf" edge to the Taf entity.
+func (_u *ForecastUpdate) SetTaf(v *Taf) *ForecastUpdate {
+	return _u.SetTafID(v.ID)
+}
+
 // AddSkyConditionIDs adds the "sky_conditions" edge to the SkyCondition entity by IDs.
 func (_u *ForecastUpdate) AddSkyConditionIDs(ids ...uuid.UUID) *ForecastUpdate {
 	_u.mutation.AddSkyConditionIDs(ids...)
@@ -503,6 +523,12 @@ func (_u *ForecastUpdate) AddTemperatureData(v ...*TemperatureData) *ForecastUpd
 // Mutation returns the ForecastMutation object of the builder.
 func (_u *ForecastUpdate) Mutation() *ForecastMutation {
 	return _u.mutation
+}
+
+// ClearTaf clears the "taf" edge to the Taf entity.
+func (_u *ForecastUpdate) ClearTaf() *ForecastUpdate {
+	_u.mutation.ClearTaf()
+	return _u
 }
 
 // ClearSkyConditions clears all "sky_conditions" edges to the SkyCondition entity.
@@ -769,6 +795,35 @@ func (_u *ForecastUpdate) sqlSave(ctx context.Context) (_node int, err error) {
 	}
 	if _u.mutation.NotDecodedCleared() {
 		_spec.ClearField(forecast.FieldNotDecoded, field.TypeString)
+	}
+	if _u.mutation.TafCleared() {
+		edge := &sqlgraph.EdgeSpec{
+			Rel:     sqlgraph.M2O,
+			Inverse: true,
+			Table:   forecast.TafTable,
+			Columns: []string{forecast.TafColumn},
+			Bidi:    false,
+			Target: &sqlgraph.EdgeTarget{
+				IDSpec: sqlgraph.NewFieldSpec(taf.FieldID, field.TypeUUID),
+			},
+		}
+		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
+	}
+	if nodes := _u.mutation.TafIDs(); len(nodes) > 0 {
+		edge := &sqlgraph.EdgeSpec{
+			Rel:     sqlgraph.M2O,
+			Inverse: true,
+			Table:   forecast.TafTable,
+			Columns: []string{forecast.TafColumn},
+			Bidi:    false,
+			Target: &sqlgraph.EdgeTarget{
+				IDSpec: sqlgraph.NewFieldSpec(taf.FieldID, field.TypeUUID),
+			},
+		}
+		for _, k := range nodes {
+			edge.Target.Nodes = append(edge.Target.Nodes, k)
+		}
+		_spec.Edges.Add = append(_spec.Edges.Add, edge)
 	}
 	if _u.mutation.SkyConditionsCleared() {
 		edge := &sqlgraph.EdgeSpec{
@@ -1378,6 +1433,25 @@ func (_u *ForecastUpdateOne) ClearNotDecoded() *ForecastUpdateOne {
 	return _u
 }
 
+// SetTafID sets the "taf" edge to the Taf entity by ID.
+func (_u *ForecastUpdateOne) SetTafID(id uuid.UUID) *ForecastUpdateOne {
+	_u.mutation.SetTafID(id)
+	return _u
+}
+
+// SetNillableTafID sets the "taf" edge to the Taf entity by ID if the given value is not nil.
+func (_u *ForecastUpdateOne) SetNillableTafID(id *uuid.UUID) *ForecastUpdateOne {
+	if id != nil {
+		_u = _u.SetTafID(*id)
+	}
+	return _u
+}
+
+// SetTaf sets the "taf" edge to the Taf entity.
+func (_u *ForecastUpdateOne) SetTaf(v *Taf) *ForecastUpdateOne {
+	return _u.SetTafID(v.ID)
+}
+
 // AddSkyConditionIDs adds the "sky_conditions" edge to the SkyCondition entity by IDs.
 func (_u *ForecastUpdateOne) AddSkyConditionIDs(ids ...uuid.UUID) *ForecastUpdateOne {
 	_u.mutation.AddSkyConditionIDs(ids...)
@@ -1441,6 +1515,12 @@ func (_u *ForecastUpdateOne) AddTemperatureData(v ...*TemperatureData) *Forecast
 // Mutation returns the ForecastMutation object of the builder.
 func (_u *ForecastUpdateOne) Mutation() *ForecastMutation {
 	return _u.mutation
+}
+
+// ClearTaf clears the "taf" edge to the Taf entity.
+func (_u *ForecastUpdateOne) ClearTaf() *ForecastUpdateOne {
+	_u.mutation.ClearTaf()
+	return _u
 }
 
 // ClearSkyConditions clears all "sky_conditions" edges to the SkyCondition entity.
@@ -1737,6 +1817,35 @@ func (_u *ForecastUpdateOne) sqlSave(ctx context.Context) (_node *Forecast, err 
 	}
 	if _u.mutation.NotDecodedCleared() {
 		_spec.ClearField(forecast.FieldNotDecoded, field.TypeString)
+	}
+	if _u.mutation.TafCleared() {
+		edge := &sqlgraph.EdgeSpec{
+			Rel:     sqlgraph.M2O,
+			Inverse: true,
+			Table:   forecast.TafTable,
+			Columns: []string{forecast.TafColumn},
+			Bidi:    false,
+			Target: &sqlgraph.EdgeTarget{
+				IDSpec: sqlgraph.NewFieldSpec(taf.FieldID, field.TypeUUID),
+			},
+		}
+		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
+	}
+	if nodes := _u.mutation.TafIDs(); len(nodes) > 0 {
+		edge := &sqlgraph.EdgeSpec{
+			Rel:     sqlgraph.M2O,
+			Inverse: true,
+			Table:   forecast.TafTable,
+			Columns: []string{forecast.TafColumn},
+			Bidi:    false,
+			Target: &sqlgraph.EdgeTarget{
+				IDSpec: sqlgraph.NewFieldSpec(taf.FieldID, field.TypeUUID),
+			},
+		}
+		for _, k := range nodes {
+			edge.Target.Nodes = append(edge.Target.Nodes, k)
+		}
+		_spec.Edges.Add = append(_spec.Edges.Add, edge)
 	}
 	if _u.mutation.SkyConditionsCleared() {
 		edge := &sqlgraph.EdgeSpec{

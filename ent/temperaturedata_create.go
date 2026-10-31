@@ -13,6 +13,7 @@ import (
 	"entgo.io/ent/dialect/sql/sqlgraph"
 	"entgo.io/ent/schema/field"
 	"github.com/google/uuid"
+	"metar.live/ent/forecast"
 	"metar.live/ent/temperaturedata"
 )
 
@@ -76,6 +77,25 @@ func (_c *TemperatureDataCreate) SetNillableID(v *uuid.UUID) *TemperatureDataCre
 		_c.SetID(*v)
 	}
 	return _c
+}
+
+// SetForecastID sets the "forecast" edge to the Forecast entity by ID.
+func (_c *TemperatureDataCreate) SetForecastID(id uuid.UUID) *TemperatureDataCreate {
+	_c.mutation.SetForecastID(id)
+	return _c
+}
+
+// SetNillableForecastID sets the "forecast" edge to the Forecast entity by ID if the given value is not nil.
+func (_c *TemperatureDataCreate) SetNillableForecastID(id *uuid.UUID) *TemperatureDataCreate {
+	if id != nil {
+		_c = _c.SetForecastID(*id)
+	}
+	return _c
+}
+
+// SetForecast sets the "forecast" edge to the Forecast entity.
+func (_c *TemperatureDataCreate) SetForecast(v *Forecast) *TemperatureDataCreate {
+	return _c.SetForecastID(v.ID)
 }
 
 // Mutation returns the TemperatureDataMutation object of the builder.
@@ -178,6 +198,23 @@ func (_c *TemperatureDataCreate) createSpec() (*TemperatureData, *sqlgraph.Creat
 	if value, ok := _c.mutation.MaxTemperature(); ok {
 		_spec.SetField(temperaturedata.FieldMaxTemperature, field.TypeFloat64, value)
 		_node.MaxTemperature = &value
+	}
+	if nodes := _c.mutation.ForecastIDs(); len(nodes) > 0 {
+		edge := &sqlgraph.EdgeSpec{
+			Rel:     sqlgraph.M2O,
+			Inverse: true,
+			Table:   temperaturedata.ForecastTable,
+			Columns: []string{temperaturedata.ForecastColumn},
+			Bidi:    false,
+			Target: &sqlgraph.EdgeTarget{
+				IDSpec: sqlgraph.NewFieldSpec(forecast.FieldID, field.TypeUUID),
+			},
+		}
+		for _, k := range nodes {
+			edge.Target.Nodes = append(edge.Target.Nodes, k)
+		}
+		_node.forecast_temperature_data = &nodes[0]
+		_spec.Edges = append(_spec.Edges, edge)
 	}
 	return _node, _spec
 }

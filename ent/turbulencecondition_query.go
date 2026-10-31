@@ -12,6 +12,7 @@ import (
 	"entgo.io/ent/dialect/sql/sqlgraph"
 	"entgo.io/ent/schema/field"
 	"github.com/google/uuid"
+	"metar.live/ent/forecast"
 	"metar.live/ent/predicate"
 	"metar.live/ent/turbulencecondition"
 )
@@ -19,13 +20,14 @@ import (
 // TurbulenceConditionQuery is the builder for querying TurbulenceCondition entities.
 type TurbulenceConditionQuery struct {
 	config
-	ctx        *QueryContext
-	order      []turbulencecondition.OrderOption
-	inters     []Interceptor
-	predicates []predicate.TurbulenceCondition
-	withFKs    bool
-	loadTotal  []func(context.Context, []*TurbulenceCondition) error
-	modifiers  []func(*sql.Selector)
+	ctx          *QueryContext
+	order        []turbulencecondition.OrderOption
+	inters       []Interceptor
+	predicates   []predicate.TurbulenceCondition
+	withForecast *ForecastQuery
+	withFKs      bool
+	loadTotal    []func(context.Context, []*TurbulenceCondition) error
+	modifiers    []func(*sql.Selector)
 	// intermediate query (i.e. traversal path).
 	sql  *sql.Selector
 	path func(context.Context) (*sql.Selector, error)
@@ -60,6 +62,28 @@ func (_q *TurbulenceConditionQuery) Unique(unique bool) *TurbulenceConditionQuer
 func (_q *TurbulenceConditionQuery) Order(o ...turbulencecondition.OrderOption) *TurbulenceConditionQuery {
 	_q.order = append(_q.order, o...)
 	return _q
+}
+
+// QueryForecast chains the current query on the "forecast" edge.
+func (_q *TurbulenceConditionQuery) QueryForecast() *ForecastQuery {
+	query := (&ForecastClient{config: _q.config}).Query()
+	query.path = func(ctx context.Context) (fromU *sql.Selector, err error) {
+		if err := _q.prepareQuery(ctx); err != nil {
+			return nil, err
+		}
+		selector := _q.sqlQuery(ctx)
+		if err := selector.Err(); err != nil {
+			return nil, err
+		}
+		step := sqlgraph.NewStep(
+			sqlgraph.From(turbulencecondition.Table, turbulencecondition.FieldID, selector),
+			sqlgraph.To(forecast.Table, forecast.FieldID),
+			sqlgraph.Edge(sqlgraph.M2O, true, turbulencecondition.ForecastTable, turbulencecondition.ForecastColumn),
+		)
+		fromU = sqlgraph.SetNeighbors(_q.driver.Dialect(), step)
+		return fromU, nil
+	}
+	return query
 }
 
 // First returns the first TurbulenceCondition entity from the query.
@@ -249,16 +273,28 @@ func (_q *TurbulenceConditionQuery) Clone() *TurbulenceConditionQuery {
 		return nil
 	}
 	return &TurbulenceConditionQuery{
-		config:     _q.config,
-		ctx:        _q.ctx.Clone(),
-		order:      append([]turbulencecondition.OrderOption{}, _q.order...),
-		inters:     append([]Interceptor{}, _q.inters...),
-		predicates: append([]predicate.TurbulenceCondition{}, _q.predicates...),
+		config:       _q.config,
+		ctx:          _q.ctx.Clone(),
+		order:        append([]turbulencecondition.OrderOption{}, _q.order...),
+		inters:       append([]Interceptor{}, _q.inters...),
+		predicates:   append([]predicate.TurbulenceCondition{}, _q.predicates...),
+		withForecast: _q.withForecast.Clone(),
 		// clone intermediate query.
 		sql:       _q.sql.Clone(),
 		path:      _q.path,
 		modifiers: append([]func(*sql.Selector){}, _q.modifiers...),
 	}
+}
+
+// WithForecast tells the query-builder to eager-load the nodes that are connected to
+// the "forecast" edge. The optional arguments are used to configure the query builder of the edge.
+func (_q *TurbulenceConditionQuery) WithForecast(opts ...func(*ForecastQuery)) *TurbulenceConditionQuery {
+	query := (&ForecastClient{config: _q.config}).Query()
+	for _, opt := range opts {
+		opt(query)
+	}
+	_q.withForecast = query
+	return _q
 }
 
 // GroupBy is used to group vertices by one or more fields/columns.
@@ -337,10 +373,16 @@ func (_q *TurbulenceConditionQuery) prepareQuery(ctx context.Context) error {
 
 func (_q *TurbulenceConditionQuery) sqlAll(ctx context.Context, hooks ...queryHook) ([]*TurbulenceCondition, error) {
 	var (
-		nodes   = []*TurbulenceCondition{}
-		withFKs = _q.withFKs
-		_spec   = _q.querySpec()
+		nodes       = []*TurbulenceCondition{}
+		withFKs     = _q.withFKs
+		_spec       = _q.querySpec()
+		loadedTypes = [1]bool{
+			_q.withForecast != nil,
+		}
 	)
+	if _q.withForecast != nil {
+		withFKs = true
+	}
 	if withFKs {
 		_spec.Node.Columns = append(_spec.Node.Columns, turbulencecondition.ForeignKeys...)
 	}
@@ -350,6 +392,7 @@ func (_q *TurbulenceConditionQuery) sqlAll(ctx context.Context, hooks ...queryHo
 	_spec.Assign = func(columns []string, values []any) error {
 		node := &TurbulenceCondition{config: _q.config}
 		nodes = append(nodes, node)
+		node.Edges.loadedTypes = loadedTypes
 		return node.assignValues(columns, values)
 	}
 	if len(_q.modifiers) > 0 {
@@ -364,12 +407,51 @@ func (_q *TurbulenceConditionQuery) sqlAll(ctx context.Context, hooks ...queryHo
 	if len(nodes) == 0 {
 		return nodes, nil
 	}
+	if query := _q.withForecast; query != nil {
+		if err := _q.loadForecast(ctx, query, nodes, nil,
+			func(n *TurbulenceCondition, e *Forecast) { n.Edges.Forecast = e }); err != nil {
+			return nil, err
+		}
+	}
 	for i := range _q.loadTotal {
 		if err := _q.loadTotal[i](ctx, nodes); err != nil {
 			return nil, err
 		}
 	}
 	return nodes, nil
+}
+
+func (_q *TurbulenceConditionQuery) loadForecast(ctx context.Context, query *ForecastQuery, nodes []*TurbulenceCondition, init func(*TurbulenceCondition), assign func(*TurbulenceCondition, *Forecast)) error {
+	ids := make([]uuid.UUID, 0, len(nodes))
+	nodeids := make(map[uuid.UUID][]*TurbulenceCondition)
+	for i := range nodes {
+		if nodes[i].forecast_turbulence_conditions == nil {
+			continue
+		}
+		fk := *nodes[i].forecast_turbulence_conditions
+		if _, ok := nodeids[fk]; !ok {
+			ids = append(ids, fk)
+		}
+		nodeids[fk] = append(nodeids[fk], nodes[i])
+	}
+	if len(ids) == 0 {
+		return nil
+	}
+	query.Where(forecast.IDIn(ids...))
+	neighbors, err := query.All(ctx)
+	if err != nil {
+		return err
+	}
+	for _, n := range neighbors {
+		nodes, ok := nodeids[n.ID]
+		if !ok {
+			return fmt.Errorf(`unexpected foreign-key "forecast_turbulence_conditions" returned %v`, n.ID)
+		}
+		for i := range nodes {
+			assign(nodes[i], n)
+		}
+	}
+	return nil
 }
 
 func (_q *TurbulenceConditionQuery) sqlCount(ctx context.Context) (int, error) {

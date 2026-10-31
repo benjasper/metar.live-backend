@@ -12,6 +12,8 @@ import (
 	"entgo.io/ent/dialect/sql/sqlgraph"
 	"entgo.io/ent/schema/field"
 	"github.com/google/uuid"
+	"metar.live/ent/forecast"
+	"metar.live/ent/metar"
 	"metar.live/ent/predicate"
 	"metar.live/ent/skycondition"
 )
@@ -19,13 +21,15 @@ import (
 // SkyConditionQuery is the builder for querying SkyCondition entities.
 type SkyConditionQuery struct {
 	config
-	ctx        *QueryContext
-	order      []skycondition.OrderOption
-	inters     []Interceptor
-	predicates []predicate.SkyCondition
-	withFKs    bool
-	loadTotal  []func(context.Context, []*SkyCondition) error
-	modifiers  []func(*sql.Selector)
+	ctx          *QueryContext
+	order        []skycondition.OrderOption
+	inters       []Interceptor
+	predicates   []predicate.SkyCondition
+	withMetar    *MetarQuery
+	withForecast *ForecastQuery
+	withFKs      bool
+	loadTotal    []func(context.Context, []*SkyCondition) error
+	modifiers    []func(*sql.Selector)
 	// intermediate query (i.e. traversal path).
 	sql  *sql.Selector
 	path func(context.Context) (*sql.Selector, error)
@@ -60,6 +64,50 @@ func (_q *SkyConditionQuery) Unique(unique bool) *SkyConditionQuery {
 func (_q *SkyConditionQuery) Order(o ...skycondition.OrderOption) *SkyConditionQuery {
 	_q.order = append(_q.order, o...)
 	return _q
+}
+
+// QueryMetar chains the current query on the "metar" edge.
+func (_q *SkyConditionQuery) QueryMetar() *MetarQuery {
+	query := (&MetarClient{config: _q.config}).Query()
+	query.path = func(ctx context.Context) (fromU *sql.Selector, err error) {
+		if err := _q.prepareQuery(ctx); err != nil {
+			return nil, err
+		}
+		selector := _q.sqlQuery(ctx)
+		if err := selector.Err(); err != nil {
+			return nil, err
+		}
+		step := sqlgraph.NewStep(
+			sqlgraph.From(skycondition.Table, skycondition.FieldID, selector),
+			sqlgraph.To(metar.Table, metar.FieldID),
+			sqlgraph.Edge(sqlgraph.M2O, true, skycondition.MetarTable, skycondition.MetarColumn),
+		)
+		fromU = sqlgraph.SetNeighbors(_q.driver.Dialect(), step)
+		return fromU, nil
+	}
+	return query
+}
+
+// QueryForecast chains the current query on the "forecast" edge.
+func (_q *SkyConditionQuery) QueryForecast() *ForecastQuery {
+	query := (&ForecastClient{config: _q.config}).Query()
+	query.path = func(ctx context.Context) (fromU *sql.Selector, err error) {
+		if err := _q.prepareQuery(ctx); err != nil {
+			return nil, err
+		}
+		selector := _q.sqlQuery(ctx)
+		if err := selector.Err(); err != nil {
+			return nil, err
+		}
+		step := sqlgraph.NewStep(
+			sqlgraph.From(skycondition.Table, skycondition.FieldID, selector),
+			sqlgraph.To(forecast.Table, forecast.FieldID),
+			sqlgraph.Edge(sqlgraph.M2O, true, skycondition.ForecastTable, skycondition.ForecastColumn),
+		)
+		fromU = sqlgraph.SetNeighbors(_q.driver.Dialect(), step)
+		return fromU, nil
+	}
+	return query
 }
 
 // First returns the first SkyCondition entity from the query.
@@ -249,16 +297,40 @@ func (_q *SkyConditionQuery) Clone() *SkyConditionQuery {
 		return nil
 	}
 	return &SkyConditionQuery{
-		config:     _q.config,
-		ctx:        _q.ctx.Clone(),
-		order:      append([]skycondition.OrderOption{}, _q.order...),
-		inters:     append([]Interceptor{}, _q.inters...),
-		predicates: append([]predicate.SkyCondition{}, _q.predicates...),
+		config:       _q.config,
+		ctx:          _q.ctx.Clone(),
+		order:        append([]skycondition.OrderOption{}, _q.order...),
+		inters:       append([]Interceptor{}, _q.inters...),
+		predicates:   append([]predicate.SkyCondition{}, _q.predicates...),
+		withMetar:    _q.withMetar.Clone(),
+		withForecast: _q.withForecast.Clone(),
 		// clone intermediate query.
 		sql:       _q.sql.Clone(),
 		path:      _q.path,
 		modifiers: append([]func(*sql.Selector){}, _q.modifiers...),
 	}
+}
+
+// WithMetar tells the query-builder to eager-load the nodes that are connected to
+// the "metar" edge. The optional arguments are used to configure the query builder of the edge.
+func (_q *SkyConditionQuery) WithMetar(opts ...func(*MetarQuery)) *SkyConditionQuery {
+	query := (&MetarClient{config: _q.config}).Query()
+	for _, opt := range opts {
+		opt(query)
+	}
+	_q.withMetar = query
+	return _q
+}
+
+// WithForecast tells the query-builder to eager-load the nodes that are connected to
+// the "forecast" edge. The optional arguments are used to configure the query builder of the edge.
+func (_q *SkyConditionQuery) WithForecast(opts ...func(*ForecastQuery)) *SkyConditionQuery {
+	query := (&ForecastClient{config: _q.config}).Query()
+	for _, opt := range opts {
+		opt(query)
+	}
+	_q.withForecast = query
+	return _q
 }
 
 // GroupBy is used to group vertices by one or more fields/columns.
@@ -337,10 +409,17 @@ func (_q *SkyConditionQuery) prepareQuery(ctx context.Context) error {
 
 func (_q *SkyConditionQuery) sqlAll(ctx context.Context, hooks ...queryHook) ([]*SkyCondition, error) {
 	var (
-		nodes   = []*SkyCondition{}
-		withFKs = _q.withFKs
-		_spec   = _q.querySpec()
+		nodes       = []*SkyCondition{}
+		withFKs     = _q.withFKs
+		_spec       = _q.querySpec()
+		loadedTypes = [2]bool{
+			_q.withMetar != nil,
+			_q.withForecast != nil,
+		}
 	)
+	if _q.withMetar != nil || _q.withForecast != nil {
+		withFKs = true
+	}
 	if withFKs {
 		_spec.Node.Columns = append(_spec.Node.Columns, skycondition.ForeignKeys...)
 	}
@@ -350,6 +429,7 @@ func (_q *SkyConditionQuery) sqlAll(ctx context.Context, hooks ...queryHook) ([]
 	_spec.Assign = func(columns []string, values []any) error {
 		node := &SkyCondition{config: _q.config}
 		nodes = append(nodes, node)
+		node.Edges.loadedTypes = loadedTypes
 		return node.assignValues(columns, values)
 	}
 	if len(_q.modifiers) > 0 {
@@ -364,12 +444,89 @@ func (_q *SkyConditionQuery) sqlAll(ctx context.Context, hooks ...queryHook) ([]
 	if len(nodes) == 0 {
 		return nodes, nil
 	}
+	if query := _q.withMetar; query != nil {
+		if err := _q.loadMetar(ctx, query, nodes, nil,
+			func(n *SkyCondition, e *Metar) { n.Edges.Metar = e }); err != nil {
+			return nil, err
+		}
+	}
+	if query := _q.withForecast; query != nil {
+		if err := _q.loadForecast(ctx, query, nodes, nil,
+			func(n *SkyCondition, e *Forecast) { n.Edges.Forecast = e }); err != nil {
+			return nil, err
+		}
+	}
 	for i := range _q.loadTotal {
 		if err := _q.loadTotal[i](ctx, nodes); err != nil {
 			return nil, err
 		}
 	}
 	return nodes, nil
+}
+
+func (_q *SkyConditionQuery) loadMetar(ctx context.Context, query *MetarQuery, nodes []*SkyCondition, init func(*SkyCondition), assign func(*SkyCondition, *Metar)) error {
+	ids := make([]uuid.UUID, 0, len(nodes))
+	nodeids := make(map[uuid.UUID][]*SkyCondition)
+	for i := range nodes {
+		if nodes[i].metar_sky_conditions == nil {
+			continue
+		}
+		fk := *nodes[i].metar_sky_conditions
+		if _, ok := nodeids[fk]; !ok {
+			ids = append(ids, fk)
+		}
+		nodeids[fk] = append(nodeids[fk], nodes[i])
+	}
+	if len(ids) == 0 {
+		return nil
+	}
+	query.Where(metar.IDIn(ids...))
+	neighbors, err := query.All(ctx)
+	if err != nil {
+		return err
+	}
+	for _, n := range neighbors {
+		nodes, ok := nodeids[n.ID]
+		if !ok {
+			return fmt.Errorf(`unexpected foreign-key "metar_sky_conditions" returned %v`, n.ID)
+		}
+		for i := range nodes {
+			assign(nodes[i], n)
+		}
+	}
+	return nil
+}
+func (_q *SkyConditionQuery) loadForecast(ctx context.Context, query *ForecastQuery, nodes []*SkyCondition, init func(*SkyCondition), assign func(*SkyCondition, *Forecast)) error {
+	ids := make([]uuid.UUID, 0, len(nodes))
+	nodeids := make(map[uuid.UUID][]*SkyCondition)
+	for i := range nodes {
+		if nodes[i].forecast_sky_conditions == nil {
+			continue
+		}
+		fk := *nodes[i].forecast_sky_conditions
+		if _, ok := nodeids[fk]; !ok {
+			ids = append(ids, fk)
+		}
+		nodeids[fk] = append(nodeids[fk], nodes[i])
+	}
+	if len(ids) == 0 {
+		return nil
+	}
+	query.Where(forecast.IDIn(ids...))
+	neighbors, err := query.All(ctx)
+	if err != nil {
+		return err
+	}
+	for _, n := range neighbors {
+		nodes, ok := nodeids[n.ID]
+		if !ok {
+			return fmt.Errorf(`unexpected foreign-key "forecast_sky_conditions" returned %v`, n.ID)
+		}
+		for i := range nodes {
+			assign(nodes[i], n)
+		}
+	}
+	return nil
 }
 
 func (_q *SkyConditionQuery) sqlCount(ctx context.Context) (int, error) {

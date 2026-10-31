@@ -12,6 +12,7 @@ import (
 	"entgo.io/ent/dialect/sql/sqlgraph"
 	"entgo.io/ent/schema/field"
 	"github.com/google/uuid"
+	"metar.live/ent/forecast"
 	"metar.live/ent/turbulencecondition"
 )
 
@@ -53,6 +54,25 @@ func (_c *TurbulenceConditionCreate) SetNillableID(v *uuid.UUID) *TurbulenceCond
 		_c.SetID(*v)
 	}
 	return _c
+}
+
+// SetForecastID sets the "forecast" edge to the Forecast entity by ID.
+func (_c *TurbulenceConditionCreate) SetForecastID(id uuid.UUID) *TurbulenceConditionCreate {
+	_c.mutation.SetForecastID(id)
+	return _c
+}
+
+// SetNillableForecastID sets the "forecast" edge to the Forecast entity by ID if the given value is not nil.
+func (_c *TurbulenceConditionCreate) SetNillableForecastID(id *uuid.UUID) *TurbulenceConditionCreate {
+	if id != nil {
+		_c = _c.SetForecastID(*id)
+	}
+	return _c
+}
+
+// SetForecast sets the "forecast" edge to the Forecast entity.
+func (_c *TurbulenceConditionCreate) SetForecast(v *Forecast) *TurbulenceConditionCreate {
+	return _c.SetForecastID(v.ID)
 }
 
 // Mutation returns the TurbulenceConditionMutation object of the builder.
@@ -154,6 +174,23 @@ func (_c *TurbulenceConditionCreate) createSpec() (*TurbulenceCondition, *sqlgra
 	if value, ok := _c.mutation.MaxAltitude(); ok {
 		_spec.SetField(turbulencecondition.FieldMaxAltitude, field.TypeInt, value)
 		_node.MaxAltitude = value
+	}
+	if nodes := _c.mutation.ForecastIDs(); len(nodes) > 0 {
+		edge := &sqlgraph.EdgeSpec{
+			Rel:     sqlgraph.M2O,
+			Inverse: true,
+			Table:   turbulencecondition.ForecastTable,
+			Columns: []string{turbulencecondition.ForecastColumn},
+			Bidi:    false,
+			Target: &sqlgraph.EdgeTarget{
+				IDSpec: sqlgraph.NewFieldSpec(forecast.FieldID, field.TypeUUID),
+			},
+		}
+		for _, k := range nodes {
+			edge.Target.Nodes = append(edge.Target.Nodes, k)
+		}
+		_node.forecast_turbulence_conditions = &nodes[0]
+		_spec.Edges = append(_spec.Edges, edge)
 	}
 	return _node, _spec
 }

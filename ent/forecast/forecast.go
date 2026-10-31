@@ -53,6 +53,8 @@ const (
 	FieldWeather = "weather"
 	// FieldNotDecoded holds the string denoting the not_decoded field in the database.
 	FieldNotDecoded = "not_decoded"
+	// EdgeTaf holds the string denoting the taf edge name in mutations.
+	EdgeTaf = "taf"
 	// EdgeSkyConditions holds the string denoting the sky_conditions edge name in mutations.
 	EdgeSkyConditions = "sky_conditions"
 	// EdgeTurbulenceConditions holds the string denoting the turbulence_conditions edge name in mutations.
@@ -63,6 +65,13 @@ const (
 	EdgeTemperatureData = "temperature_data"
 	// Table holds the table name of the forecast in the database.
 	Table = "forecasts"
+	// TafTable is the table that holds the taf relation/edge.
+	TafTable = "forecasts"
+	// TafInverseTable is the table name for the Taf entity.
+	// It exists in this package in order to avoid circular dependency with the "taf" package.
+	TafInverseTable = "tafs"
+	// TafColumn is the table column denoting the taf relation/edge.
+	TafColumn = "taf_forecast"
 	// SkyConditionsTable is the table that holds the sky_conditions relation/edge.
 	SkyConditionsTable = "sky_conditions"
 	// SkyConditionsInverseTable is the table name for the SkyCondition entity.
@@ -265,6 +274,13 @@ func ByNotDecoded(opts ...sql.OrderTermOption) OrderOption {
 	return sql.OrderByField(FieldNotDecoded, opts...).ToFunc()
 }
 
+// ByTafField orders the results by taf field.
+func ByTafField(field string, opts ...sql.OrderTermOption) OrderOption {
+	return func(s *sql.Selector) {
+		sqlgraph.OrderByNeighborTerms(s, newTafStep(), sql.OrderByField(field, opts...))
+	}
+}
+
 // BySkyConditionsCount orders the results by sky_conditions count.
 func BySkyConditionsCount(opts ...sql.OrderTermOption) OrderOption {
 	return func(s *sql.Selector) {
@@ -319,6 +335,13 @@ func ByTemperatureData(term sql.OrderTerm, terms ...sql.OrderTerm) OrderOption {
 	return func(s *sql.Selector) {
 		sqlgraph.OrderByNeighborTerms(s, newTemperatureDataStep(), append([]sql.OrderTerm{term}, terms...)...)
 	}
+}
+func newTafStep() *sqlgraph.Step {
+	return sqlgraph.NewStep(
+		sqlgraph.From(Table, FieldID),
+		sqlgraph.To(TafInverseTable, FieldID),
+		sqlgraph.Edge(sqlgraph.M2O, true, TafTable, TafColumn),
+	)
 }
 func newSkyConditionsStep() *sqlgraph.Step {
 	return sqlgraph.NewStep(

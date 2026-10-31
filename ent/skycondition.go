@@ -9,6 +9,8 @@ import (
 	"entgo.io/ent"
 	"entgo.io/ent/dialect/sql"
 	"github.com/google/uuid"
+	"metar.live/ent/forecast"
+	"metar.live/ent/metar"
 	"metar.live/ent/skycondition"
 )
 
@@ -23,10 +25,46 @@ type SkyCondition struct {
 	// Cloud base in feet.
 	CloudBase *int `json:"cloud_base,omitempty"`
 	// Cloud type. Only present in TAFs.
-	CloudType               *skycondition.CloudType `json:"cloud_type,omitempty"`
+	CloudType *skycondition.CloudType `json:"cloud_type,omitempty"`
+	// Edges holds the relations/edges for other nodes in the graph.
+	// The values are being populated by the SkyConditionQuery when eager-loading is set.
+	Edges                   SkyConditionEdges `json:"edges"`
 	forecast_sky_conditions *uuid.UUID
 	metar_sky_conditions    *uuid.UUID
 	selectValues            sql.SelectValues
+}
+
+// SkyConditionEdges holds the relations/edges for other nodes in the graph.
+type SkyConditionEdges struct {
+	// Metar holds the value of the metar edge.
+	Metar *Metar `json:"metar,omitempty"`
+	// Forecast holds the value of the forecast edge.
+	Forecast *Forecast `json:"forecast,omitempty"`
+	// loadedTypes holds the information for reporting if a
+	// type was loaded (or requested) in eager-loading or not.
+	loadedTypes [2]bool
+}
+
+// MetarOrErr returns the Metar value or an error if the edge
+// was not loaded in eager-loading, or loaded but was not found.
+func (e SkyConditionEdges) MetarOrErr() (*Metar, error) {
+	if e.Metar != nil {
+		return e.Metar, nil
+	} else if e.loadedTypes[0] {
+		return nil, &NotFoundError{label: metar.Label}
+	}
+	return nil, &NotLoadedError{edge: "metar"}
+}
+
+// ForecastOrErr returns the Forecast value or an error if the edge
+// was not loaded in eager-loading, or loaded but was not found.
+func (e SkyConditionEdges) ForecastOrErr() (*Forecast, error) {
+	if e.Forecast != nil {
+		return e.Forecast, nil
+	} else if e.loadedTypes[1] {
+		return nil, &NotFoundError{label: forecast.Label}
+	}
+	return nil, &NotLoadedError{edge: "forecast"}
 }
 
 // scanValues returns the types for scanning values from sql.Rows.
@@ -110,6 +148,16 @@ func (_m *SkyCondition) assignValues(columns []string, values []any) error {
 // This includes values selected through modifiers, order, etc.
 func (_m *SkyCondition) Value(name string) (ent.Value, error) {
 	return _m.selectValues.Get(name)
+}
+
+// QueryMetar queries the "metar" edge of the SkyCondition entity.
+func (_m *SkyCondition) QueryMetar() *MetarQuery {
+	return NewSkyConditionClient(_m.config).QueryMetar(_m)
+}
+
+// QueryForecast queries the "forecast" edge of the SkyCondition entity.
+func (_m *SkyCondition) QueryForecast() *ForecastQuery {
+	return NewSkyConditionClient(_m.config).QueryForecast(_m)
 }
 
 // Update returns a builder for updating this SkyCondition.

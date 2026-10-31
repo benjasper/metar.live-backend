@@ -776,6 +776,22 @@ func (c *ForecastClient) GetX(ctx context.Context, id uuid.UUID) *Forecast {
 	return obj
 }
 
+// QueryTaf queries the taf edge of a Forecast.
+func (c *ForecastClient) QueryTaf(_m *Forecast) *TafQuery {
+	query := (&TafClient{config: c.config}).Query()
+	query.path = func(context.Context) (fromV *sql.Selector, _ error) {
+		id := _m.ID
+		step := sqlgraph.NewStep(
+			sqlgraph.From(forecast.Table, forecast.FieldID, id),
+			sqlgraph.To(taf.Table, taf.FieldID),
+			sqlgraph.Edge(sqlgraph.M2O, true, forecast.TafTable, forecast.TafColumn),
+		)
+		fromV = sqlgraph.Neighbors(_m.driver.Dialect(), step)
+		return fromV, nil
+	}
+	return query
+}
+
 // QuerySkyConditions queries the sky_conditions edge of a Forecast.
 func (c *ForecastClient) QuerySkyConditions(_m *Forecast) *SkyConditionQuery {
 	query := (&SkyConditionClient{config: c.config}).Query()
@@ -1120,6 +1136,22 @@ func (c *IcingConditionClient) GetX(ctx context.Context, id uuid.UUID) *IcingCon
 		panic(err)
 	}
 	return obj
+}
+
+// QueryForecast queries the forecast edge of a IcingCondition.
+func (c *IcingConditionClient) QueryForecast(_m *IcingCondition) *ForecastQuery {
+	query := (&ForecastClient{config: c.config}).Query()
+	query.path = func(context.Context) (fromV *sql.Selector, _ error) {
+		id := _m.ID
+		step := sqlgraph.NewStep(
+			sqlgraph.From(icingcondition.Table, icingcondition.FieldID, id),
+			sqlgraph.To(forecast.Table, forecast.FieldID),
+			sqlgraph.Edge(sqlgraph.M2O, true, icingcondition.ForecastTable, icingcondition.ForecastColumn),
+		)
+		fromV = sqlgraph.Neighbors(_m.driver.Dialect(), step)
+		return fromV, nil
+	}
+	return query
 }
 
 // Hooks returns the client hooks.
@@ -1718,6 +1750,38 @@ func (c *SkyConditionClient) GetX(ctx context.Context, id uuid.UUID) *SkyConditi
 	return obj
 }
 
+// QueryMetar queries the metar edge of a SkyCondition.
+func (c *SkyConditionClient) QueryMetar(_m *SkyCondition) *MetarQuery {
+	query := (&MetarClient{config: c.config}).Query()
+	query.path = func(context.Context) (fromV *sql.Selector, _ error) {
+		id := _m.ID
+		step := sqlgraph.NewStep(
+			sqlgraph.From(skycondition.Table, skycondition.FieldID, id),
+			sqlgraph.To(metar.Table, metar.FieldID),
+			sqlgraph.Edge(sqlgraph.M2O, true, skycondition.MetarTable, skycondition.MetarColumn),
+		)
+		fromV = sqlgraph.Neighbors(_m.driver.Dialect(), step)
+		return fromV, nil
+	}
+	return query
+}
+
+// QueryForecast queries the forecast edge of a SkyCondition.
+func (c *SkyConditionClient) QueryForecast(_m *SkyCondition) *ForecastQuery {
+	query := (&ForecastClient{config: c.config}).Query()
+	query.path = func(context.Context) (fromV *sql.Selector, _ error) {
+		id := _m.ID
+		step := sqlgraph.NewStep(
+			sqlgraph.From(skycondition.Table, skycondition.FieldID, id),
+			sqlgraph.To(forecast.Table, forecast.FieldID),
+			sqlgraph.Edge(sqlgraph.M2O, true, skycondition.ForecastTable, skycondition.ForecastColumn),
+		)
+		fromV = sqlgraph.Neighbors(_m.driver.Dialect(), step)
+		return fromV, nil
+	}
+	return query
+}
+
 // Hooks returns the client hooks.
 func (c *SkyConditionClient) Hooks() []Hook {
 	return c.hooks.SkyCondition
@@ -2016,6 +2080,22 @@ func (c *TemperatureDataClient) GetX(ctx context.Context, id uuid.UUID) *Tempera
 	return obj
 }
 
+// QueryForecast queries the forecast edge of a TemperatureData.
+func (c *TemperatureDataClient) QueryForecast(_m *TemperatureData) *ForecastQuery {
+	query := (&ForecastClient{config: c.config}).Query()
+	query.path = func(context.Context) (fromV *sql.Selector, _ error) {
+		id := _m.ID
+		step := sqlgraph.NewStep(
+			sqlgraph.From(temperaturedata.Table, temperaturedata.FieldID, id),
+			sqlgraph.To(forecast.Table, forecast.FieldID),
+			sqlgraph.Edge(sqlgraph.M2O, true, temperaturedata.ForecastTable, temperaturedata.ForecastColumn),
+		)
+		fromV = sqlgraph.Neighbors(_m.driver.Dialect(), step)
+		return fromV, nil
+	}
+	return query
+}
+
 // Hooks returns the client hooks.
 func (c *TemperatureDataClient) Hooks() []Hook {
 	return c.hooks.TemperatureData
@@ -2147,6 +2227,22 @@ func (c *TurbulenceConditionClient) GetX(ctx context.Context, id uuid.UUID) *Tur
 		panic(err)
 	}
 	return obj
+}
+
+// QueryForecast queries the forecast edge of a TurbulenceCondition.
+func (c *TurbulenceConditionClient) QueryForecast(_m *TurbulenceCondition) *ForecastQuery {
+	query := (&ForecastClient{config: c.config}).Query()
+	query.path = func(context.Context) (fromV *sql.Selector, _ error) {
+		id := _m.ID
+		step := sqlgraph.NewStep(
+			sqlgraph.From(turbulencecondition.Table, turbulencecondition.FieldID, id),
+			sqlgraph.To(forecast.Table, forecast.FieldID),
+			sqlgraph.Edge(sqlgraph.M2O, true, turbulencecondition.ForecastTable, turbulencecondition.ForecastColumn),
+		)
+		fromV = sqlgraph.Neighbors(_m.driver.Dialect(), step)
+		return fromV, nil
+	}
+	return query
 }
 
 // Hooks returns the client hooks.

@@ -10,6 +10,7 @@ import (
 	"entgo.io/ent"
 	"entgo.io/ent/dialect/sql"
 	"github.com/google/uuid"
+	"metar.live/ent/forecast"
 	"metar.live/ent/temperaturedata"
 )
 
@@ -26,9 +27,32 @@ type TemperatureData struct {
 	// The minimum temperature in degrees Celsius.
 	MinTemperature *float64 `json:"min_temperature,omitempty"`
 	// The maximum temperature in degrees Celsius.
-	MaxTemperature            *float64 `json:"max_temperature,omitempty"`
+	MaxTemperature *float64 `json:"max_temperature,omitempty"`
+	// Edges holds the relations/edges for other nodes in the graph.
+	// The values are being populated by the TemperatureDataQuery when eager-loading is set.
+	Edges                     TemperatureDataEdges `json:"edges"`
 	forecast_temperature_data *uuid.UUID
 	selectValues              sql.SelectValues
+}
+
+// TemperatureDataEdges holds the relations/edges for other nodes in the graph.
+type TemperatureDataEdges struct {
+	// Forecast holds the value of the forecast edge.
+	Forecast *Forecast `json:"forecast,omitempty"`
+	// loadedTypes holds the information for reporting if a
+	// type was loaded (or requested) in eager-loading or not.
+	loadedTypes [1]bool
+}
+
+// ForecastOrErr returns the Forecast value or an error if the edge
+// was not loaded in eager-loading, or loaded but was not found.
+func (e TemperatureDataEdges) ForecastOrErr() (*Forecast, error) {
+	if e.Forecast != nil {
+		return e.Forecast, nil
+	} else if e.loadedTypes[0] {
+		return nil, &NotFoundError{label: forecast.Label}
+	}
+	return nil, &NotLoadedError{edge: "forecast"}
 }
 
 // scanValues returns the types for scanning values from sql.Rows.
@@ -109,6 +133,11 @@ func (_m *TemperatureData) assignValues(columns []string, values []any) error {
 // This includes values selected through modifiers, order, etc.
 func (_m *TemperatureData) Value(name string) (ent.Value, error) {
 	return _m.selectValues.Get(name)
+}
+
+// QueryForecast queries the "forecast" edge of the TemperatureData entity.
+func (_m *TemperatureData) QueryForecast() *ForecastQuery {
+	return NewTemperatureDataClient(_m.config).QueryForecast(_m)
 }
 
 // Update returns a builder for updating this TemperatureData.

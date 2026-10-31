@@ -4,6 +4,7 @@ package icingcondition
 
 import (
 	"entgo.io/ent/dialect/sql"
+	"entgo.io/ent/dialect/sql/sqlgraph"
 	"github.com/google/uuid"
 	"metar.live/ent/predicate"
 )
@@ -231,6 +232,29 @@ func MaxAltitudeIsNil() predicate.IcingCondition {
 // MaxAltitudeNotNil applies the NotNil predicate on the "max_altitude" field.
 func MaxAltitudeNotNil() predicate.IcingCondition {
 	return predicate.IcingCondition(sql.FieldNotNull(FieldMaxAltitude))
+}
+
+// HasForecast applies the HasEdge predicate on the "forecast" edge.
+func HasForecast() predicate.IcingCondition {
+	return predicate.IcingCondition(func(s *sql.Selector) {
+		step := sqlgraph.NewStep(
+			sqlgraph.From(Table, FieldID),
+			sqlgraph.Edge(sqlgraph.M2O, true, ForecastTable, ForecastColumn),
+		)
+		sqlgraph.HasNeighbors(s, step)
+	})
+}
+
+// HasForecastWith applies the HasEdge predicate on the "forecast" edge with a given conditions (other predicates).
+func HasForecastWith(preds ...predicate.Forecast) predicate.IcingCondition {
+	return predicate.IcingCondition(func(s *sql.Selector) {
+		step := newForecastStep()
+		sqlgraph.HasNeighborsWith(s, step, func(s *sql.Selector) {
+			for _, p := range preds {
+				p(s)
+			}
+		})
+	})
 }
 
 // And groups predicates with the AND operator between them.

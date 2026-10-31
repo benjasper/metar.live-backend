@@ -10,6 +10,9 @@ import (
 	"entgo.io/ent/dialect/sql"
 	"entgo.io/ent/dialect/sql/sqlgraph"
 	"entgo.io/ent/schema/field"
+	"github.com/google/uuid"
+	"metar.live/ent/forecast"
+	"metar.live/ent/metar"
 	"metar.live/ent/predicate"
 	"metar.live/ent/skycondition"
 )
@@ -89,9 +92,59 @@ func (_u *SkyConditionUpdate) ClearCloudType() *SkyConditionUpdate {
 	return _u
 }
 
+// SetMetarID sets the "metar" edge to the Metar entity by ID.
+func (_u *SkyConditionUpdate) SetMetarID(id uuid.UUID) *SkyConditionUpdate {
+	_u.mutation.SetMetarID(id)
+	return _u
+}
+
+// SetNillableMetarID sets the "metar" edge to the Metar entity by ID if the given value is not nil.
+func (_u *SkyConditionUpdate) SetNillableMetarID(id *uuid.UUID) *SkyConditionUpdate {
+	if id != nil {
+		_u = _u.SetMetarID(*id)
+	}
+	return _u
+}
+
+// SetMetar sets the "metar" edge to the Metar entity.
+func (_u *SkyConditionUpdate) SetMetar(v *Metar) *SkyConditionUpdate {
+	return _u.SetMetarID(v.ID)
+}
+
+// SetForecastID sets the "forecast" edge to the Forecast entity by ID.
+func (_u *SkyConditionUpdate) SetForecastID(id uuid.UUID) *SkyConditionUpdate {
+	_u.mutation.SetForecastID(id)
+	return _u
+}
+
+// SetNillableForecastID sets the "forecast" edge to the Forecast entity by ID if the given value is not nil.
+func (_u *SkyConditionUpdate) SetNillableForecastID(id *uuid.UUID) *SkyConditionUpdate {
+	if id != nil {
+		_u = _u.SetForecastID(*id)
+	}
+	return _u
+}
+
+// SetForecast sets the "forecast" edge to the Forecast entity.
+func (_u *SkyConditionUpdate) SetForecast(v *Forecast) *SkyConditionUpdate {
+	return _u.SetForecastID(v.ID)
+}
+
 // Mutation returns the SkyConditionMutation object of the builder.
 func (_u *SkyConditionUpdate) Mutation() *SkyConditionMutation {
 	return _u.mutation
+}
+
+// ClearMetar clears the "metar" edge to the Metar entity.
+func (_u *SkyConditionUpdate) ClearMetar() *SkyConditionUpdate {
+	_u.mutation.ClearMetar()
+	return _u
+}
+
+// ClearForecast clears the "forecast" edge to the Forecast entity.
+func (_u *SkyConditionUpdate) ClearForecast() *SkyConditionUpdate {
+	_u.mutation.ClearForecast()
+	return _u
 }
 
 // Save executes the query and returns the number of nodes affected by the update operation.
@@ -171,6 +224,64 @@ func (_u *SkyConditionUpdate) sqlSave(ctx context.Context) (_node int, err error
 	}
 	if _u.mutation.CloudTypeCleared() {
 		_spec.ClearField(skycondition.FieldCloudType, field.TypeEnum)
+	}
+	if _u.mutation.MetarCleared() {
+		edge := &sqlgraph.EdgeSpec{
+			Rel:     sqlgraph.M2O,
+			Inverse: true,
+			Table:   skycondition.MetarTable,
+			Columns: []string{skycondition.MetarColumn},
+			Bidi:    false,
+			Target: &sqlgraph.EdgeTarget{
+				IDSpec: sqlgraph.NewFieldSpec(metar.FieldID, field.TypeUUID),
+			},
+		}
+		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
+	}
+	if nodes := _u.mutation.MetarIDs(); len(nodes) > 0 {
+		edge := &sqlgraph.EdgeSpec{
+			Rel:     sqlgraph.M2O,
+			Inverse: true,
+			Table:   skycondition.MetarTable,
+			Columns: []string{skycondition.MetarColumn},
+			Bidi:    false,
+			Target: &sqlgraph.EdgeTarget{
+				IDSpec: sqlgraph.NewFieldSpec(metar.FieldID, field.TypeUUID),
+			},
+		}
+		for _, k := range nodes {
+			edge.Target.Nodes = append(edge.Target.Nodes, k)
+		}
+		_spec.Edges.Add = append(_spec.Edges.Add, edge)
+	}
+	if _u.mutation.ForecastCleared() {
+		edge := &sqlgraph.EdgeSpec{
+			Rel:     sqlgraph.M2O,
+			Inverse: true,
+			Table:   skycondition.ForecastTable,
+			Columns: []string{skycondition.ForecastColumn},
+			Bidi:    false,
+			Target: &sqlgraph.EdgeTarget{
+				IDSpec: sqlgraph.NewFieldSpec(forecast.FieldID, field.TypeUUID),
+			},
+		}
+		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
+	}
+	if nodes := _u.mutation.ForecastIDs(); len(nodes) > 0 {
+		edge := &sqlgraph.EdgeSpec{
+			Rel:     sqlgraph.M2O,
+			Inverse: true,
+			Table:   skycondition.ForecastTable,
+			Columns: []string{skycondition.ForecastColumn},
+			Bidi:    false,
+			Target: &sqlgraph.EdgeTarget{
+				IDSpec: sqlgraph.NewFieldSpec(forecast.FieldID, field.TypeUUID),
+			},
+		}
+		for _, k := range nodes {
+			edge.Target.Nodes = append(edge.Target.Nodes, k)
+		}
+		_spec.Edges.Add = append(_spec.Edges.Add, edge)
 	}
 	_spec.AddModifiers(_u.modifiers...)
 	if _node, err = sqlgraph.UpdateNodes(ctx, _u.driver, _spec); err != nil {
@@ -255,9 +366,59 @@ func (_u *SkyConditionUpdateOne) ClearCloudType() *SkyConditionUpdateOne {
 	return _u
 }
 
+// SetMetarID sets the "metar" edge to the Metar entity by ID.
+func (_u *SkyConditionUpdateOne) SetMetarID(id uuid.UUID) *SkyConditionUpdateOne {
+	_u.mutation.SetMetarID(id)
+	return _u
+}
+
+// SetNillableMetarID sets the "metar" edge to the Metar entity by ID if the given value is not nil.
+func (_u *SkyConditionUpdateOne) SetNillableMetarID(id *uuid.UUID) *SkyConditionUpdateOne {
+	if id != nil {
+		_u = _u.SetMetarID(*id)
+	}
+	return _u
+}
+
+// SetMetar sets the "metar" edge to the Metar entity.
+func (_u *SkyConditionUpdateOne) SetMetar(v *Metar) *SkyConditionUpdateOne {
+	return _u.SetMetarID(v.ID)
+}
+
+// SetForecastID sets the "forecast" edge to the Forecast entity by ID.
+func (_u *SkyConditionUpdateOne) SetForecastID(id uuid.UUID) *SkyConditionUpdateOne {
+	_u.mutation.SetForecastID(id)
+	return _u
+}
+
+// SetNillableForecastID sets the "forecast" edge to the Forecast entity by ID if the given value is not nil.
+func (_u *SkyConditionUpdateOne) SetNillableForecastID(id *uuid.UUID) *SkyConditionUpdateOne {
+	if id != nil {
+		_u = _u.SetForecastID(*id)
+	}
+	return _u
+}
+
+// SetForecast sets the "forecast" edge to the Forecast entity.
+func (_u *SkyConditionUpdateOne) SetForecast(v *Forecast) *SkyConditionUpdateOne {
+	return _u.SetForecastID(v.ID)
+}
+
 // Mutation returns the SkyConditionMutation object of the builder.
 func (_u *SkyConditionUpdateOne) Mutation() *SkyConditionMutation {
 	return _u.mutation
+}
+
+// ClearMetar clears the "metar" edge to the Metar entity.
+func (_u *SkyConditionUpdateOne) ClearMetar() *SkyConditionUpdateOne {
+	_u.mutation.ClearMetar()
+	return _u
+}
+
+// ClearForecast clears the "forecast" edge to the Forecast entity.
+func (_u *SkyConditionUpdateOne) ClearForecast() *SkyConditionUpdateOne {
+	_u.mutation.ClearForecast()
+	return _u
 }
 
 // Where appends a list predicates to the SkyConditionUpdate builder.
@@ -367,6 +528,64 @@ func (_u *SkyConditionUpdateOne) sqlSave(ctx context.Context) (_node *SkyConditi
 	}
 	if _u.mutation.CloudTypeCleared() {
 		_spec.ClearField(skycondition.FieldCloudType, field.TypeEnum)
+	}
+	if _u.mutation.MetarCleared() {
+		edge := &sqlgraph.EdgeSpec{
+			Rel:     sqlgraph.M2O,
+			Inverse: true,
+			Table:   skycondition.MetarTable,
+			Columns: []string{skycondition.MetarColumn},
+			Bidi:    false,
+			Target: &sqlgraph.EdgeTarget{
+				IDSpec: sqlgraph.NewFieldSpec(metar.FieldID, field.TypeUUID),
+			},
+		}
+		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
+	}
+	if nodes := _u.mutation.MetarIDs(); len(nodes) > 0 {
+		edge := &sqlgraph.EdgeSpec{
+			Rel:     sqlgraph.M2O,
+			Inverse: true,
+			Table:   skycondition.MetarTable,
+			Columns: []string{skycondition.MetarColumn},
+			Bidi:    false,
+			Target: &sqlgraph.EdgeTarget{
+				IDSpec: sqlgraph.NewFieldSpec(metar.FieldID, field.TypeUUID),
+			},
+		}
+		for _, k := range nodes {
+			edge.Target.Nodes = append(edge.Target.Nodes, k)
+		}
+		_spec.Edges.Add = append(_spec.Edges.Add, edge)
+	}
+	if _u.mutation.ForecastCleared() {
+		edge := &sqlgraph.EdgeSpec{
+			Rel:     sqlgraph.M2O,
+			Inverse: true,
+			Table:   skycondition.ForecastTable,
+			Columns: []string{skycondition.ForecastColumn},
+			Bidi:    false,
+			Target: &sqlgraph.EdgeTarget{
+				IDSpec: sqlgraph.NewFieldSpec(forecast.FieldID, field.TypeUUID),
+			},
+		}
+		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
+	}
+	if nodes := _u.mutation.ForecastIDs(); len(nodes) > 0 {
+		edge := &sqlgraph.EdgeSpec{
+			Rel:     sqlgraph.M2O,
+			Inverse: true,
+			Table:   skycondition.ForecastTable,
+			Columns: []string{skycondition.ForecastColumn},
+			Bidi:    false,
+			Target: &sqlgraph.EdgeTarget{
+				IDSpec: sqlgraph.NewFieldSpec(forecast.FieldID, field.TypeUUID),
+			},
+		}
+		for _, k := range nodes {
+			edge.Target.Nodes = append(edge.Target.Nodes, k)
+		}
+		_spec.Edges.Add = append(_spec.Edges.Add, edge)
 	}
 	_spec.AddModifiers(_u.modifiers...)
 	_node = &SkyCondition{config: _u.config}

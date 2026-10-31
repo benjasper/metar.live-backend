@@ -11,6 +11,8 @@ import (
 	"entgo.io/ent/dialect/sql"
 	"entgo.io/ent/dialect/sql/sqlgraph"
 	"entgo.io/ent/schema/field"
+	"github.com/google/uuid"
+	"metar.live/ent/forecast"
 	"metar.live/ent/predicate"
 	"metar.live/ent/temperaturedata"
 )
@@ -118,9 +120,34 @@ func (_u *TemperatureDataUpdate) ClearMaxTemperature() *TemperatureDataUpdate {
 	return _u
 }
 
+// SetForecastID sets the "forecast" edge to the Forecast entity by ID.
+func (_u *TemperatureDataUpdate) SetForecastID(id uuid.UUID) *TemperatureDataUpdate {
+	_u.mutation.SetForecastID(id)
+	return _u
+}
+
+// SetNillableForecastID sets the "forecast" edge to the Forecast entity by ID if the given value is not nil.
+func (_u *TemperatureDataUpdate) SetNillableForecastID(id *uuid.UUID) *TemperatureDataUpdate {
+	if id != nil {
+		_u = _u.SetForecastID(*id)
+	}
+	return _u
+}
+
+// SetForecast sets the "forecast" edge to the Forecast entity.
+func (_u *TemperatureDataUpdate) SetForecast(v *Forecast) *TemperatureDataUpdate {
+	return _u.SetForecastID(v.ID)
+}
+
 // Mutation returns the TemperatureDataMutation object of the builder.
 func (_u *TemperatureDataUpdate) Mutation() *TemperatureDataMutation {
 	return _u.mutation
+}
+
+// ClearForecast clears the "forecast" edge to the Forecast entity.
+func (_u *TemperatureDataUpdate) ClearForecast() *TemperatureDataUpdate {
+	_u.mutation.ClearForecast()
+	return _u
 }
 
 // Save executes the query and returns the number of nodes affected by the update operation.
@@ -191,6 +218,35 @@ func (_u *TemperatureDataUpdate) sqlSave(ctx context.Context) (_node int, err er
 	}
 	if _u.mutation.MaxTemperatureCleared() {
 		_spec.ClearField(temperaturedata.FieldMaxTemperature, field.TypeFloat64)
+	}
+	if _u.mutation.ForecastCleared() {
+		edge := &sqlgraph.EdgeSpec{
+			Rel:     sqlgraph.M2O,
+			Inverse: true,
+			Table:   temperaturedata.ForecastTable,
+			Columns: []string{temperaturedata.ForecastColumn},
+			Bidi:    false,
+			Target: &sqlgraph.EdgeTarget{
+				IDSpec: sqlgraph.NewFieldSpec(forecast.FieldID, field.TypeUUID),
+			},
+		}
+		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
+	}
+	if nodes := _u.mutation.ForecastIDs(); len(nodes) > 0 {
+		edge := &sqlgraph.EdgeSpec{
+			Rel:     sqlgraph.M2O,
+			Inverse: true,
+			Table:   temperaturedata.ForecastTable,
+			Columns: []string{temperaturedata.ForecastColumn},
+			Bidi:    false,
+			Target: &sqlgraph.EdgeTarget{
+				IDSpec: sqlgraph.NewFieldSpec(forecast.FieldID, field.TypeUUID),
+			},
+		}
+		for _, k := range nodes {
+			edge.Target.Nodes = append(edge.Target.Nodes, k)
+		}
+		_spec.Edges.Add = append(_spec.Edges.Add, edge)
 	}
 	_spec.AddModifiers(_u.modifiers...)
 	if _node, err = sqlgraph.UpdateNodes(ctx, _u.driver, _spec); err != nil {
@@ -303,9 +359,34 @@ func (_u *TemperatureDataUpdateOne) ClearMaxTemperature() *TemperatureDataUpdate
 	return _u
 }
 
+// SetForecastID sets the "forecast" edge to the Forecast entity by ID.
+func (_u *TemperatureDataUpdateOne) SetForecastID(id uuid.UUID) *TemperatureDataUpdateOne {
+	_u.mutation.SetForecastID(id)
+	return _u
+}
+
+// SetNillableForecastID sets the "forecast" edge to the Forecast entity by ID if the given value is not nil.
+func (_u *TemperatureDataUpdateOne) SetNillableForecastID(id *uuid.UUID) *TemperatureDataUpdateOne {
+	if id != nil {
+		_u = _u.SetForecastID(*id)
+	}
+	return _u
+}
+
+// SetForecast sets the "forecast" edge to the Forecast entity.
+func (_u *TemperatureDataUpdateOne) SetForecast(v *Forecast) *TemperatureDataUpdateOne {
+	return _u.SetForecastID(v.ID)
+}
+
 // Mutation returns the TemperatureDataMutation object of the builder.
 func (_u *TemperatureDataUpdateOne) Mutation() *TemperatureDataMutation {
 	return _u.mutation
+}
+
+// ClearForecast clears the "forecast" edge to the Forecast entity.
+func (_u *TemperatureDataUpdateOne) ClearForecast() *TemperatureDataUpdateOne {
+	_u.mutation.ClearForecast()
+	return _u
 }
 
 // Where appends a list predicates to the TemperatureDataUpdate builder.
@@ -406,6 +487,35 @@ func (_u *TemperatureDataUpdateOne) sqlSave(ctx context.Context) (_node *Tempera
 	}
 	if _u.mutation.MaxTemperatureCleared() {
 		_spec.ClearField(temperaturedata.FieldMaxTemperature, field.TypeFloat64)
+	}
+	if _u.mutation.ForecastCleared() {
+		edge := &sqlgraph.EdgeSpec{
+			Rel:     sqlgraph.M2O,
+			Inverse: true,
+			Table:   temperaturedata.ForecastTable,
+			Columns: []string{temperaturedata.ForecastColumn},
+			Bidi:    false,
+			Target: &sqlgraph.EdgeTarget{
+				IDSpec: sqlgraph.NewFieldSpec(forecast.FieldID, field.TypeUUID),
+			},
+		}
+		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
+	}
+	if nodes := _u.mutation.ForecastIDs(); len(nodes) > 0 {
+		edge := &sqlgraph.EdgeSpec{
+			Rel:     sqlgraph.M2O,
+			Inverse: true,
+			Table:   temperaturedata.ForecastTable,
+			Columns: []string{temperaturedata.ForecastColumn},
+			Bidi:    false,
+			Target: &sqlgraph.EdgeTarget{
+				IDSpec: sqlgraph.NewFieldSpec(forecast.FieldID, field.TypeUUID),
+			},
+		}
+		for _, k := range nodes {
+			edge.Target.Nodes = append(edge.Target.Nodes, k)
+		}
+		_spec.Edges.Add = append(_spec.Edges.Add, edge)
 	}
 	_spec.AddModifiers(_u.modifiers...)
 	_node = &TemperatureData{config: _u.config}

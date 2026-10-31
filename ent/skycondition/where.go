@@ -4,6 +4,7 @@ package skycondition
 
 import (
 	"entgo.io/ent/dialect/sql"
+	"entgo.io/ent/dialect/sql/sqlgraph"
 	"github.com/google/uuid"
 	"metar.live/ent/predicate"
 )
@@ -156,6 +157,52 @@ func CloudTypeIsNil() predicate.SkyCondition {
 // CloudTypeNotNil applies the NotNil predicate on the "cloud_type" field.
 func CloudTypeNotNil() predicate.SkyCondition {
 	return predicate.SkyCondition(sql.FieldNotNull(FieldCloudType))
+}
+
+// HasMetar applies the HasEdge predicate on the "metar" edge.
+func HasMetar() predicate.SkyCondition {
+	return predicate.SkyCondition(func(s *sql.Selector) {
+		step := sqlgraph.NewStep(
+			sqlgraph.From(Table, FieldID),
+			sqlgraph.Edge(sqlgraph.M2O, true, MetarTable, MetarColumn),
+		)
+		sqlgraph.HasNeighbors(s, step)
+	})
+}
+
+// HasMetarWith applies the HasEdge predicate on the "metar" edge with a given conditions (other predicates).
+func HasMetarWith(preds ...predicate.Metar) predicate.SkyCondition {
+	return predicate.SkyCondition(func(s *sql.Selector) {
+		step := newMetarStep()
+		sqlgraph.HasNeighborsWith(s, step, func(s *sql.Selector) {
+			for _, p := range preds {
+				p(s)
+			}
+		})
+	})
+}
+
+// HasForecast applies the HasEdge predicate on the "forecast" edge.
+func HasForecast() predicate.SkyCondition {
+	return predicate.SkyCondition(func(s *sql.Selector) {
+		step := sqlgraph.NewStep(
+			sqlgraph.From(Table, FieldID),
+			sqlgraph.Edge(sqlgraph.M2O, true, ForecastTable, ForecastColumn),
+		)
+		sqlgraph.HasNeighbors(s, step)
+	})
+}
+
+// HasForecastWith applies the HasEdge predicate on the "forecast" edge with a given conditions (other predicates).
+func HasForecastWith(preds ...predicate.Forecast) predicate.SkyCondition {
+	return predicate.SkyCondition(func(s *sql.Selector) {
+		step := newForecastStep()
+		sqlgraph.HasNeighborsWith(s, step, func(s *sql.Selector) {
+			for _, p := range preds {
+				p(s)
+			}
+		})
+	})
 }
 
 // And groups predicates with the AND operator between them.

@@ -3,6 +3,7 @@ package schema
 import (
 	"entgo.io/contrib/entgql"
 	"entgo.io/ent"
+	"entgo.io/ent/schema/edge"
 	"entgo.io/ent/schema/field"
 )
 
@@ -23,7 +24,9 @@ func (TemperatureData) Fields() []ent.Field {
 
 // Edges of the TemperatureData.
 func (TemperatureData) Edges() []ent.Edge {
-	return nil
+	return []ent.Edge{
+		edge.From("forecast", Forecast.Type).Ref("temperature_data").Unique().Annotations(entgql.Skip()),
+	}
 }
 
 // Mixin of the TemperatureData.

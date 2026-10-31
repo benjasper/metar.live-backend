@@ -4,6 +4,7 @@ package turbulencecondition
 
 import (
 	"entgo.io/ent/dialect/sql"
+	"entgo.io/ent/dialect/sql/sqlgraph"
 	"github.com/google/uuid"
 	"metar.live/ent/predicate"
 )
@@ -211,6 +212,29 @@ func MaxAltitudeLT(v int) predicate.TurbulenceCondition {
 // MaxAltitudeLTE applies the LTE predicate on the "max_altitude" field.
 func MaxAltitudeLTE(v int) predicate.TurbulenceCondition {
 	return predicate.TurbulenceCondition(sql.FieldLTE(FieldMaxAltitude, v))
+}
+
+// HasForecast applies the HasEdge predicate on the "forecast" edge.
+func HasForecast() predicate.TurbulenceCondition {
+	return predicate.TurbulenceCondition(func(s *sql.Selector) {
+		step := sqlgraph.NewStep(
+			sqlgraph.From(Table, FieldID),
+			sqlgraph.Edge(sqlgraph.M2O, true, ForecastTable, ForecastColumn),
+		)
+		sqlgraph.HasNeighbors(s, step)
+	})
+}
+
+// HasForecastWith applies the HasEdge predicate on the "forecast" edge with a given conditions (other predicates).
+func HasForecastWith(preds ...predicate.Forecast) predicate.TurbulenceCondition {
+	return predicate.TurbulenceCondition(func(s *sql.Selector) {
+		step := newForecastStep()
+		sqlgraph.HasNeighborsWith(s, step, func(s *sql.Selector) {
+			for _, p := range preds {
+				p(s)
+			}
+		})
+	})
 }
 
 // And groups predicates with the AND operator between them.

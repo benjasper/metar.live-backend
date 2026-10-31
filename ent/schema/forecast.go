@@ -40,6 +40,7 @@ func (Forecast) Fields() []ent.Field {
 // Edges of the Forecast.
 func (Forecast) Edges() []ent.Edge {
 	return []ent.Edge{
+		edge.From("taf", Taf.Type).Ref("forecast").Unique().Annotations(entgql.Skip()),
 		edge.To("sky_conditions", SkyCondition.Type).Comment("The sky conditions.").Annotations(entsql.Annotation{
 			OnDelete: entsql.Cascade,
 		}),

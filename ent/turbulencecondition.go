@@ -9,6 +9,7 @@ import (
 	"entgo.io/ent"
 	"entgo.io/ent/dialect/sql"
 	"github.com/google/uuid"
+	"metar.live/ent/forecast"
 	"metar.live/ent/turbulencecondition"
 )
 
@@ -23,9 +24,32 @@ type TurbulenceCondition struct {
 	// The minimum altitude in feet that the turbulence is present.
 	MinAltitude int `json:"min_altitude,omitempty"`
 	// The maximum altitude in feet that the turbulence is present.
-	MaxAltitude                    int `json:"max_altitude,omitempty"`
+	MaxAltitude int `json:"max_altitude,omitempty"`
+	// Edges holds the relations/edges for other nodes in the graph.
+	// The values are being populated by the TurbulenceConditionQuery when eager-loading is set.
+	Edges                          TurbulenceConditionEdges `json:"edges"`
 	forecast_turbulence_conditions *uuid.UUID
 	selectValues                   sql.SelectValues
+}
+
+// TurbulenceConditionEdges holds the relations/edges for other nodes in the graph.
+type TurbulenceConditionEdges struct {
+	// Forecast holds the value of the forecast edge.
+	Forecast *Forecast `json:"forecast,omitempty"`
+	// loadedTypes holds the information for reporting if a
+	// type was loaded (or requested) in eager-loading or not.
+	loadedTypes [1]bool
+}
+
+// ForecastOrErr returns the Forecast value or an error if the edge
+// was not loaded in eager-loading, or loaded but was not found.
+func (e TurbulenceConditionEdges) ForecastOrErr() (*Forecast, error) {
+	if e.Forecast != nil {
+		return e.Forecast, nil
+	} else if e.loadedTypes[0] {
+		return nil, &NotFoundError{label: forecast.Label}
+	}
+	return nil, &NotLoadedError{edge: "forecast"}
 }
 
 // scanValues returns the types for scanning values from sql.Rows.
@@ -98,6 +122,11 @@ func (_m *TurbulenceCondition) assignValues(columns []string, values []any) erro
 // This includes values selected through modifiers, order, etc.
 func (_m *TurbulenceCondition) Value(name string) (ent.Value, error) {
 	return _m.selectValues.Get(name)
+}
+
+// QueryForecast queries the "forecast" edge of the TurbulenceCondition entity.
+func (_m *TurbulenceCondition) QueryForecast() *ForecastQuery {
+	return NewTurbulenceConditionClient(_m.config).QueryForecast(_m)
 }
 
 // Update returns a builder for updating this TurbulenceCondition.

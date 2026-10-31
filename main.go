@@ -9,6 +9,7 @@ import (
 	"metar.live/ent"
 	"metar.live/ent/migrate"
 	"metar.live/environment"
+	"metar.live/importer"
 	"metar.live/logging"
 	"metar.live/server"
 )
@@ -38,6 +39,10 @@ func main() {
 	if err = client.Schema.Create(context.Background(), migrate.WithDropIndex(true),
 		migrate.WithDropColumn(true),
 	); err != nil {
+		logger.Fatal(err)
+	}
+
+	if err = importer.MigrateWeatherHashes(context.Background(), client); err != nil {
 		logger.Fatal(err)
 	}
 

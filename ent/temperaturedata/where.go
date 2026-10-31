@@ -6,6 +6,7 @@ import (
 	"time"
 
 	"entgo.io/ent/dialect/sql"
+	"entgo.io/ent/dialect/sql/sqlgraph"
 	"github.com/google/uuid"
 	"metar.live/ent/predicate"
 )
@@ -253,6 +254,29 @@ func MaxTemperatureIsNil() predicate.TemperatureData {
 // MaxTemperatureNotNil applies the NotNil predicate on the "max_temperature" field.
 func MaxTemperatureNotNil() predicate.TemperatureData {
 	return predicate.TemperatureData(sql.FieldNotNull(FieldMaxTemperature))
+}
+
+// HasForecast applies the HasEdge predicate on the "forecast" edge.
+func HasForecast() predicate.TemperatureData {
+	return predicate.TemperatureData(func(s *sql.Selector) {
+		step := sqlgraph.NewStep(
+			sqlgraph.From(Table, FieldID),
+			sqlgraph.Edge(sqlgraph.M2O, true, ForecastTable, ForecastColumn),
+		)
+		sqlgraph.HasNeighbors(s, step)
+	})
+}
+
+// HasForecastWith applies the HasEdge predicate on the "forecast" edge with a given conditions (other predicates).
+func HasForecastWith(preds ...predicate.Forecast) predicate.TemperatureData {
+	return predicate.TemperatureData(func(s *sql.Selector) {
+		step := newForecastStep()
+		sqlgraph.HasNeighborsWith(s, step, func(s *sql.Selector) {
+			for _, p := range preds {
+				p(s)
+			}
+		})
+	})
 }
 
 // And groups predicates with the AND operator between them.

@@ -12,6 +12,8 @@ import (
 	"entgo.io/ent/dialect/sql/sqlgraph"
 	"entgo.io/ent/schema/field"
 	"github.com/google/uuid"
+	"metar.live/ent/forecast"
+	"metar.live/ent/metar"
 	"metar.live/ent/skycondition"
 )
 
@@ -69,6 +71,44 @@ func (_c *SkyConditionCreate) SetNillableID(v *uuid.UUID) *SkyConditionCreate {
 		_c.SetID(*v)
 	}
 	return _c
+}
+
+// SetMetarID sets the "metar" edge to the Metar entity by ID.
+func (_c *SkyConditionCreate) SetMetarID(id uuid.UUID) *SkyConditionCreate {
+	_c.mutation.SetMetarID(id)
+	return _c
+}
+
+// SetNillableMetarID sets the "metar" edge to the Metar entity by ID if the given value is not nil.
+func (_c *SkyConditionCreate) SetNillableMetarID(id *uuid.UUID) *SkyConditionCreate {
+	if id != nil {
+		_c = _c.SetMetarID(*id)
+	}
+	return _c
+}
+
+// SetMetar sets the "metar" edge to the Metar entity.
+func (_c *SkyConditionCreate) SetMetar(v *Metar) *SkyConditionCreate {
+	return _c.SetMetarID(v.ID)
+}
+
+// SetForecastID sets the "forecast" edge to the Forecast entity by ID.
+func (_c *SkyConditionCreate) SetForecastID(id uuid.UUID) *SkyConditionCreate {
+	_c.mutation.SetForecastID(id)
+	return _c
+}
+
+// SetNillableForecastID sets the "forecast" edge to the Forecast entity by ID if the given value is not nil.
+func (_c *SkyConditionCreate) SetNillableForecastID(id *uuid.UUID) *SkyConditionCreate {
+	if id != nil {
+		_c = _c.SetForecastID(*id)
+	}
+	return _c
+}
+
+// SetForecast sets the "forecast" edge to the Forecast entity.
+func (_c *SkyConditionCreate) SetForecast(v *Forecast) *SkyConditionCreate {
+	return _c.SetForecastID(v.ID)
 }
 
 // Mutation returns the SkyConditionMutation object of the builder.
@@ -174,6 +214,40 @@ func (_c *SkyConditionCreate) createSpec() (*SkyCondition, *sqlgraph.CreateSpec)
 	if value, ok := _c.mutation.CloudType(); ok {
 		_spec.SetField(skycondition.FieldCloudType, field.TypeEnum, value)
 		_node.CloudType = &value
+	}
+	if nodes := _c.mutation.MetarIDs(); len(nodes) > 0 {
+		edge := &sqlgraph.EdgeSpec{
+			Rel:     sqlgraph.M2O,
+			Inverse: true,
+			Table:   skycondition.MetarTable,
+			Columns: []string{skycondition.MetarColumn},
+			Bidi:    false,
+			Target: &sqlgraph.EdgeTarget{
+				IDSpec: sqlgraph.NewFieldSpec(metar.FieldID, field.TypeUUID),
+			},
+		}
+		for _, k := range nodes {
+			edge.Target.Nodes = append(edge.Target.Nodes, k)
+		}
+		_node.metar_sky_conditions = &nodes[0]
+		_spec.Edges = append(_spec.Edges, edge)
+	}
+	if nodes := _c.mutation.ForecastIDs(); len(nodes) > 0 {
+		edge := &sqlgraph.EdgeSpec{
+			Rel:     sqlgraph.M2O,
+			Inverse: true,
+			Table:   skycondition.ForecastTable,
+			Columns: []string{skycondition.ForecastColumn},
+			Bidi:    false,
+			Target: &sqlgraph.EdgeTarget{
+				IDSpec: sqlgraph.NewFieldSpec(forecast.FieldID, field.TypeUUID),
+			},
+		}
+		for _, k := range nodes {
+			edge.Target.Nodes = append(edge.Target.Nodes, k)
+		}
+		_node.forecast_sky_conditions = &nodes[0]
+		_spec.Edges = append(_spec.Edges, edge)
 	}
 	return _node, _spec
 }

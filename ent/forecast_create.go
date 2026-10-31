@@ -16,6 +16,7 @@ import (
 	"metar.live/ent/forecast"
 	"metar.live/ent/icingcondition"
 	"metar.live/ent/skycondition"
+	"metar.live/ent/taf"
 	"metar.live/ent/temperaturedata"
 	"metar.live/ent/turbulencecondition"
 )
@@ -262,6 +263,25 @@ func (_c *ForecastCreate) SetNillableID(v *uuid.UUID) *ForecastCreate {
 	return _c
 }
 
+// SetTafID sets the "taf" edge to the Taf entity by ID.
+func (_c *ForecastCreate) SetTafID(id uuid.UUID) *ForecastCreate {
+	_c.mutation.SetTafID(id)
+	return _c
+}
+
+// SetNillableTafID sets the "taf" edge to the Taf entity by ID if the given value is not nil.
+func (_c *ForecastCreate) SetNillableTafID(id *uuid.UUID) *ForecastCreate {
+	if id != nil {
+		_c = _c.SetTafID(*id)
+	}
+	return _c
+}
+
+// SetTaf sets the "taf" edge to the Taf entity.
+func (_c *ForecastCreate) SetTaf(v *Taf) *ForecastCreate {
+	return _c.SetTafID(v.ID)
+}
+
 // AddSkyConditionIDs adds the "sky_conditions" edge to the SkyCondition entity by IDs.
 func (_c *ForecastCreate) AddSkyConditionIDs(ids ...uuid.UUID) *ForecastCreate {
 	_c.mutation.AddSkyConditionIDs(ids...)
@@ -489,6 +509,23 @@ func (_c *ForecastCreate) createSpec() (*Forecast, *sqlgraph.CreateSpec) {
 	if value, ok := _c.mutation.NotDecoded(); ok {
 		_spec.SetField(forecast.FieldNotDecoded, field.TypeString, value)
 		_node.NotDecoded = value
+	}
+	if nodes := _c.mutation.TafIDs(); len(nodes) > 0 {
+		edge := &sqlgraph.EdgeSpec{
+			Rel:     sqlgraph.M2O,
+			Inverse: true,
+			Table:   forecast.TafTable,
+			Columns: []string{forecast.TafColumn},
+			Bidi:    false,
+			Target: &sqlgraph.EdgeTarget{
+				IDSpec: sqlgraph.NewFieldSpec(taf.FieldID, field.TypeUUID),
+			},
+		}
+		for _, k := range nodes {
+			edge.Target.Nodes = append(edge.Target.Nodes, k)
+		}
+		_node.taf_forecast = &nodes[0]
+		_spec.Edges = append(_spec.Edges, edge)
 	}
 	if nodes := _c.mutation.SkyConditionsIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{

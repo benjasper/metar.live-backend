@@ -10,6 +10,8 @@ import (
 	"entgo.io/ent/dialect/sql"
 	"entgo.io/ent/dialect/sql/sqlgraph"
 	"entgo.io/ent/schema/field"
+	"github.com/google/uuid"
+	"metar.live/ent/forecast"
 	"metar.live/ent/icingcondition"
 	"metar.live/ent/predicate"
 )
@@ -96,9 +98,34 @@ func (_u *IcingConditionUpdate) ClearMaxAltitude() *IcingConditionUpdate {
 	return _u
 }
 
+// SetForecastID sets the "forecast" edge to the Forecast entity by ID.
+func (_u *IcingConditionUpdate) SetForecastID(id uuid.UUID) *IcingConditionUpdate {
+	_u.mutation.SetForecastID(id)
+	return _u
+}
+
+// SetNillableForecastID sets the "forecast" edge to the Forecast entity by ID if the given value is not nil.
+func (_u *IcingConditionUpdate) SetNillableForecastID(id *uuid.UUID) *IcingConditionUpdate {
+	if id != nil {
+		_u = _u.SetForecastID(*id)
+	}
+	return _u
+}
+
+// SetForecast sets the "forecast" edge to the Forecast entity.
+func (_u *IcingConditionUpdate) SetForecast(v *Forecast) *IcingConditionUpdate {
+	return _u.SetForecastID(v.ID)
+}
+
 // Mutation returns the IcingConditionMutation object of the builder.
 func (_u *IcingConditionUpdate) Mutation() *IcingConditionMutation {
 	return _u.mutation
+}
+
+// ClearForecast clears the "forecast" edge to the Forecast entity.
+func (_u *IcingConditionUpdate) ClearForecast() *IcingConditionUpdate {
+	_u.mutation.ClearForecast()
+	return _u
 }
 
 // Save executes the query and returns the number of nodes affected by the update operation.
@@ -163,6 +190,35 @@ func (_u *IcingConditionUpdate) sqlSave(ctx context.Context) (_node int, err err
 	}
 	if _u.mutation.MaxAltitudeCleared() {
 		_spec.ClearField(icingcondition.FieldMaxAltitude, field.TypeInt)
+	}
+	if _u.mutation.ForecastCleared() {
+		edge := &sqlgraph.EdgeSpec{
+			Rel:     sqlgraph.M2O,
+			Inverse: true,
+			Table:   icingcondition.ForecastTable,
+			Columns: []string{icingcondition.ForecastColumn},
+			Bidi:    false,
+			Target: &sqlgraph.EdgeTarget{
+				IDSpec: sqlgraph.NewFieldSpec(forecast.FieldID, field.TypeUUID),
+			},
+		}
+		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
+	}
+	if nodes := _u.mutation.ForecastIDs(); len(nodes) > 0 {
+		edge := &sqlgraph.EdgeSpec{
+			Rel:     sqlgraph.M2O,
+			Inverse: true,
+			Table:   icingcondition.ForecastTable,
+			Columns: []string{icingcondition.ForecastColumn},
+			Bidi:    false,
+			Target: &sqlgraph.EdgeTarget{
+				IDSpec: sqlgraph.NewFieldSpec(forecast.FieldID, field.TypeUUID),
+			},
+		}
+		for _, k := range nodes {
+			edge.Target.Nodes = append(edge.Target.Nodes, k)
+		}
+		_spec.Edges.Add = append(_spec.Edges.Add, edge)
 	}
 	_spec.AddModifiers(_u.modifiers...)
 	if _node, err = sqlgraph.UpdateNodes(ctx, _u.driver, _spec); err != nil {
@@ -254,9 +310,34 @@ func (_u *IcingConditionUpdateOne) ClearMaxAltitude() *IcingConditionUpdateOne {
 	return _u
 }
 
+// SetForecastID sets the "forecast" edge to the Forecast entity by ID.
+func (_u *IcingConditionUpdateOne) SetForecastID(id uuid.UUID) *IcingConditionUpdateOne {
+	_u.mutation.SetForecastID(id)
+	return _u
+}
+
+// SetNillableForecastID sets the "forecast" edge to the Forecast entity by ID if the given value is not nil.
+func (_u *IcingConditionUpdateOne) SetNillableForecastID(id *uuid.UUID) *IcingConditionUpdateOne {
+	if id != nil {
+		_u = _u.SetForecastID(*id)
+	}
+	return _u
+}
+
+// SetForecast sets the "forecast" edge to the Forecast entity.
+func (_u *IcingConditionUpdateOne) SetForecast(v *Forecast) *IcingConditionUpdateOne {
+	return _u.SetForecastID(v.ID)
+}
+
 // Mutation returns the IcingConditionMutation object of the builder.
 func (_u *IcingConditionUpdateOne) Mutation() *IcingConditionMutation {
 	return _u.mutation
+}
+
+// ClearForecast clears the "forecast" edge to the Forecast entity.
+func (_u *IcingConditionUpdateOne) ClearForecast() *IcingConditionUpdateOne {
+	_u.mutation.ClearForecast()
+	return _u
 }
 
 // Where appends a list predicates to the IcingConditionUpdate builder.
@@ -351,6 +432,35 @@ func (_u *IcingConditionUpdateOne) sqlSave(ctx context.Context) (_node *IcingCon
 	}
 	if _u.mutation.MaxAltitudeCleared() {
 		_spec.ClearField(icingcondition.FieldMaxAltitude, field.TypeInt)
+	}
+	if _u.mutation.ForecastCleared() {
+		edge := &sqlgraph.EdgeSpec{
+			Rel:     sqlgraph.M2O,
+			Inverse: true,
+			Table:   icingcondition.ForecastTable,
+			Columns: []string{icingcondition.ForecastColumn},
+			Bidi:    false,
+			Target: &sqlgraph.EdgeTarget{
+				IDSpec: sqlgraph.NewFieldSpec(forecast.FieldID, field.TypeUUID),
+			},
+		}
+		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
+	}
+	if nodes := _u.mutation.ForecastIDs(); len(nodes) > 0 {
+		edge := &sqlgraph.EdgeSpec{
+			Rel:     sqlgraph.M2O,
+			Inverse: true,
+			Table:   icingcondition.ForecastTable,
+			Columns: []string{icingcondition.ForecastColumn},
+			Bidi:    false,
+			Target: &sqlgraph.EdgeTarget{
+				IDSpec: sqlgraph.NewFieldSpec(forecast.FieldID, field.TypeUUID),
+			},
+		}
+		for _, k := range nodes {
+			edge.Target.Nodes = append(edge.Target.Nodes, k)
+		}
+		_spec.Edges.Add = append(_spec.Edges.Add, edge)
 	}
 	_spec.AddModifiers(_u.modifiers...)
 	_node = &IcingCondition{config: _u.config}

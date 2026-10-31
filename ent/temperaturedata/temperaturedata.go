@@ -4,6 +4,7 @@ package temperaturedata
 
 import (
 	"entgo.io/ent/dialect/sql"
+	"entgo.io/ent/dialect/sql/sqlgraph"
 	"github.com/google/uuid"
 )
 
@@ -20,8 +21,17 @@ const (
 	FieldMinTemperature = "min_temperature"
 	// FieldMaxTemperature holds the string denoting the max_temperature field in the database.
 	FieldMaxTemperature = "max_temperature"
+	// EdgeForecast holds the string denoting the forecast edge name in mutations.
+	EdgeForecast = "forecast"
 	// Table holds the table name of the temperaturedata in the database.
 	Table = "temperature_data"
+	// ForecastTable is the table that holds the forecast relation/edge.
+	ForecastTable = "temperature_data"
+	// ForecastInverseTable is the table name for the Forecast entity.
+	// It exists in this package in order to avoid circular dependency with the "forecast" package.
+	ForecastInverseTable = "forecasts"
+	// ForecastColumn is the table column denoting the forecast relation/edge.
+	ForecastColumn = "forecast_temperature_data"
 )
 
 // Columns holds all SQL columns for temperaturedata fields.
@@ -85,4 +95,18 @@ func ByMinTemperature(opts ...sql.OrderTermOption) OrderOption {
 // ByMaxTemperature orders the results by the max_temperature field.
 func ByMaxTemperature(opts ...sql.OrderTermOption) OrderOption {
 	return sql.OrderByField(FieldMaxTemperature, opts...).ToFunc()
+}
+
+// ByForecastField orders the results by forecast field.
+func ByForecastField(field string, opts ...sql.OrderTermOption) OrderOption {
+	return func(s *sql.Selector) {
+		sqlgraph.OrderByNeighborTerms(s, newForecastStep(), sql.OrderByField(field, opts...))
+	}
+}
+func newForecastStep() *sqlgraph.Step {
+	return sqlgraph.NewStep(
+		sqlgraph.From(Table, FieldID),
+		sqlgraph.To(ForecastInverseTable, FieldID),
+		sqlgraph.Edge(sqlgraph.M2O, true, ForecastTable, ForecastColumn),
+	)
 }

@@ -1,9 +1,10 @@
 package importer
 
 import (
+	"crypto/md5"
+	"encoding/hex"
 	"encoding/xml"
-	"fmt"
-	"github.com/cnf/structhash"
+	"strings"
 	"time"
 )
 
@@ -56,7 +57,7 @@ type XmlMetar struct {
 }
 
 func (x *XmlMetar) Hash() string {
-	return fmt.Sprintf("%x", structhash.Md5(x, 1))
+	return rawTextHash(x.RawText)
 }
 
 type XmlMetarResponse struct {
@@ -100,7 +101,14 @@ type XmlTaf struct {
 }
 
 func (x *XmlTaf) Hash() string {
-	return fmt.Sprintf("%x", structhash.Md5(x, 1))
+	return rawTextHash(x.RawText)
+}
+
+// rawTextHash must stay equal to MySQL's MD5(TRIM(raw_text)), see MigrateWeatherHashes.
+// NOAA sometimes republishes a report with a trailing space, which would otherwise be imported twice.
+func rawTextHash(rawText string) string {
+	sum := md5.Sum([]byte(strings.Trim(rawText, " ")))
+	return hex.EncodeToString(sum[:])
 }
 
 type XmlForecast struct {
@@ -115,7 +123,7 @@ type XmlForecast struct {
 	WindShear           *int                     `xml:"wind_shear_hgt_ft_agl"`
 	WindShearDir        *int                     `xml:"wind_shear_dir_degrees"`
 	WindShearSpd        *int                     `xml:"wind_shear_speed_kt"`
-	Visibility          *string                 `xml:"visibility_statute_mi"`
+	Visibility          *string                  `xml:"visibility_statute_mi"`
 	Altimeter           *float64                 `xml:"altim_in_hg"`
 	VertVis             *int                     `xml:"vert_vis_ft"`
 	Weather             string                   `xml:"wx_string"`

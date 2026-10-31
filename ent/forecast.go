@@ -11,6 +11,7 @@ import (
 	"entgo.io/ent/dialect/sql"
 	"github.com/google/uuid"
 	"metar.live/ent/forecast"
+	"metar.live/ent/taf"
 )
 
 // Forecast is the model entity for the Forecast schema.
@@ -64,6 +65,8 @@ type Forecast struct {
 
 // ForecastEdges holds the relations/edges for other nodes in the graph.
 type ForecastEdges struct {
+	// Taf holds the value of the taf edge.
+	Taf *Taf `json:"taf,omitempty"`
 	// The sky conditions.
 	SkyConditions []*SkyCondition `json:"sky_conditions,omitempty"`
 	// The turbulence conditions.
@@ -74,7 +77,7 @@ type ForecastEdges struct {
 	TemperatureData []*TemperatureData `json:"temperature_data,omitempty"`
 	// loadedTypes holds the information for reporting if a
 	// type was loaded (or requested) in eager-loading or not.
-	loadedTypes [4]bool
+	loadedTypes [5]bool
 	// totalCount holds the count of the edges above.
 	totalCount [4]map[string]int
 
@@ -84,10 +87,21 @@ type ForecastEdges struct {
 	namedTemperatureData      map[string][]*TemperatureData
 }
 
+// TafOrErr returns the Taf value or an error if the edge
+// was not loaded in eager-loading, or loaded but was not found.
+func (e ForecastEdges) TafOrErr() (*Taf, error) {
+	if e.Taf != nil {
+		return e.Taf, nil
+	} else if e.loadedTypes[0] {
+		return nil, &NotFoundError{label: taf.Label}
+	}
+	return nil, &NotLoadedError{edge: "taf"}
+}
+
 // SkyConditionsOrErr returns the SkyConditions value or an error if the edge
 // was not loaded in eager-loading.
 func (e ForecastEdges) SkyConditionsOrErr() ([]*SkyCondition, error) {
-	if e.loadedTypes[0] {
+	if e.loadedTypes[1] {
 		return e.SkyConditions, nil
 	}
 	return nil, &NotLoadedError{edge: "sky_conditions"}
@@ -96,7 +110,7 @@ func (e ForecastEdges) SkyConditionsOrErr() ([]*SkyCondition, error) {
 // TurbulenceConditionsOrErr returns the TurbulenceConditions value or an error if the edge
 // was not loaded in eager-loading.
 func (e ForecastEdges) TurbulenceConditionsOrErr() ([]*TurbulenceCondition, error) {
-	if e.loadedTypes[1] {
+	if e.loadedTypes[2] {
 		return e.TurbulenceConditions, nil
 	}
 	return nil, &NotLoadedError{edge: "turbulence_conditions"}
@@ -105,7 +119,7 @@ func (e ForecastEdges) TurbulenceConditionsOrErr() ([]*TurbulenceCondition, erro
 // IcingConditionsOrErr returns the IcingConditions value or an error if the edge
 // was not loaded in eager-loading.
 func (e ForecastEdges) IcingConditionsOrErr() ([]*IcingCondition, error) {
-	if e.loadedTypes[2] {
+	if e.loadedTypes[3] {
 		return e.IcingConditions, nil
 	}
 	return nil, &NotLoadedError{edge: "icing_conditions"}
@@ -114,7 +128,7 @@ func (e ForecastEdges) IcingConditionsOrErr() ([]*IcingCondition, error) {
 // TemperatureDataOrErr returns the TemperatureData value or an error if the edge
 // was not loaded in eager-loading.
 func (e ForecastEdges) TemperatureDataOrErr() ([]*TemperatureData, error) {
-	if e.loadedTypes[3] {
+	if e.loadedTypes[4] {
 		return e.TemperatureData, nil
 	}
 	return nil, &NotLoadedError{edge: "temperature_data"}
@@ -298,6 +312,11 @@ func (_m *Forecast) assignValues(columns []string, values []any) error {
 // This includes values selected through modifiers, order, etc.
 func (_m *Forecast) Value(name string) (ent.Value, error) {
 	return _m.selectValues.Get(name)
+}
+
+// QueryTaf queries the "taf" edge of the Forecast entity.
+func (_m *Forecast) QueryTaf() *TafQuery {
+	return NewForecastClient(_m.config).QueryTaf(_m)
 }
 
 // QuerySkyConditions queries the "sky_conditions" edge of the Forecast entity.

@@ -971,6 +971,29 @@ func NotDecodedContainsFold(v string) predicate.Forecast {
 	return predicate.Forecast(sql.FieldContainsFold(FieldNotDecoded, v))
 }
 
+// HasTaf applies the HasEdge predicate on the "taf" edge.
+func HasTaf() predicate.Forecast {
+	return predicate.Forecast(func(s *sql.Selector) {
+		step := sqlgraph.NewStep(
+			sqlgraph.From(Table, FieldID),
+			sqlgraph.Edge(sqlgraph.M2O, true, TafTable, TafColumn),
+		)
+		sqlgraph.HasNeighbors(s, step)
+	})
+}
+
+// HasTafWith applies the HasEdge predicate on the "taf" edge with a given conditions (other predicates).
+func HasTafWith(preds ...predicate.Taf) predicate.Forecast {
+	return predicate.Forecast(func(s *sql.Selector) {
+		step := newTafStep()
+		sqlgraph.HasNeighborsWith(s, step, func(s *sql.Selector) {
+			for _, p := range preds {
+				p(s)
+			}
+		})
+	})
+}
+
 // HasSkyConditions applies the HasEdge predicate on the "sky_conditions" edge.
 func HasSkyConditions() predicate.Forecast {
 	return predicate.Forecast(func(s *sql.Selector) {
