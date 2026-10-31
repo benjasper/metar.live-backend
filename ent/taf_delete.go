@@ -20,56 +20,56 @@ type TafDelete struct {
 }
 
 // Where appends a list predicates to the TafDelete builder.
-func (td *TafDelete) Where(ps ...predicate.Taf) *TafDelete {
-	td.mutation.Where(ps...)
-	return td
+func (_d *TafDelete) Where(ps ...predicate.Taf) *TafDelete {
+	_d.mutation.Where(ps...)
+	return _d
 }
 
 // Exec executes the deletion query and returns how many vertices were deleted.
-func (td *TafDelete) Exec(ctx context.Context) (int, error) {
-	return withHooks(ctx, td.sqlExec, td.mutation, td.hooks)
+func (_d *TafDelete) Exec(ctx context.Context) (int, error) {
+	return withHooks(ctx, _d.sqlExec, _d.mutation, _d.hooks)
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (td *TafDelete) ExecX(ctx context.Context) int {
-	n, err := td.Exec(ctx)
+func (_d *TafDelete) ExecX(ctx context.Context) int {
+	n, err := _d.Exec(ctx)
 	if err != nil {
 		panic(err)
 	}
 	return n
 }
 
-func (td *TafDelete) sqlExec(ctx context.Context) (int, error) {
+func (_d *TafDelete) sqlExec(ctx context.Context) (int, error) {
 	_spec := sqlgraph.NewDeleteSpec(taf.Table, sqlgraph.NewFieldSpec(taf.FieldID, field.TypeUUID))
-	if ps := td.mutation.predicates; len(ps) > 0 {
+	if ps := _d.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	affected, err := sqlgraph.DeleteNodes(ctx, td.driver, _spec)
+	affected, err := sqlgraph.DeleteNodes(ctx, _d.driver, _spec)
 	if err != nil && sqlgraph.IsConstraintError(err) {
 		err = &ConstraintError{msg: err.Error(), wrap: err}
 	}
-	td.mutation.done = true
+	_d.mutation.done = true
 	return affected, err
 }
 
 // TafDeleteOne is the builder for deleting a single Taf entity.
 type TafDeleteOne struct {
-	td *TafDelete
+	_d *TafDelete
 }
 
 // Where appends a list predicates to the TafDelete builder.
-func (tdo *TafDeleteOne) Where(ps ...predicate.Taf) *TafDeleteOne {
-	tdo.td.mutation.Where(ps...)
-	return tdo
+func (_d *TafDeleteOne) Where(ps ...predicate.Taf) *TafDeleteOne {
+	_d._d.mutation.Where(ps...)
+	return _d
 }
 
 // Exec executes the deletion query.
-func (tdo *TafDeleteOne) Exec(ctx context.Context) error {
-	n, err := tdo.td.Exec(ctx)
+func (_d *TafDeleteOne) Exec(ctx context.Context) error {
+	n, err := _d._d.Exec(ctx)
 	switch {
 	case err != nil:
 		return err
@@ -81,8 +81,8 @@ func (tdo *TafDeleteOne) Exec(ctx context.Context) error {
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (tdo *TafDeleteOne) ExecX(ctx context.Context) {
-	if err := tdo.Exec(ctx); err != nil {
+func (_d *TafDeleteOne) ExecX(ctx context.Context) {
+	if err := _d.Exec(ctx); err != nil {
 		panic(err)
 	}
 }

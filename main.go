@@ -2,6 +2,8 @@ package main
 
 import (
 	"context"
+	"entgo.io/ent/dialect"
+	"entgo.io/ent/schema/field"
 	_ "github.com/go-sql-driver/mysql"
 	"golang.org/x/sync/errgroup"
 	"metar.live/ent"
@@ -31,6 +33,7 @@ func main() {
 	logger.Info("Connected to database")
 
 	logger.Info("Running migrations...")
+	keepUUIDColumns()
 	// Run the auto migration tool.
 	if err = client.Schema.Create(context.Background(), migrate.WithDropIndex(true),
 		migrate.WithDropColumn(true),
@@ -58,4 +61,17 @@ func RunServer(db *ent.Client, logger *logging.Logger) error {
 	}
 
 	return nil
+}
+
+// keepUUIDColumns keeps UUID columns as char(36), because newer ent versions would migrate them to MariaDB's native
+// uuid type, which fails on columns that are referenced by foreign keys.
+func keepUUIDColumns() {
+	for _, table := range migrate.Tables {
+		for _, column := range table.Columns {
+			if column.Type == field.TypeUUID {
+				column.SchemaType = map[string]string{dialect.MySQL: "char(36)"}
+				column.Collation = "utf8mb4_bin"
+			}
+		}
+	}
 }

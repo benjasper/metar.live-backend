@@ -20,56 +20,56 @@ type WeatherStationDelete struct {
 }
 
 // Where appends a list predicates to the WeatherStationDelete builder.
-func (wsd *WeatherStationDelete) Where(ps ...predicate.WeatherStation) *WeatherStationDelete {
-	wsd.mutation.Where(ps...)
-	return wsd
+func (_d *WeatherStationDelete) Where(ps ...predicate.WeatherStation) *WeatherStationDelete {
+	_d.mutation.Where(ps...)
+	return _d
 }
 
 // Exec executes the deletion query and returns how many vertices were deleted.
-func (wsd *WeatherStationDelete) Exec(ctx context.Context) (int, error) {
-	return withHooks(ctx, wsd.sqlExec, wsd.mutation, wsd.hooks)
+func (_d *WeatherStationDelete) Exec(ctx context.Context) (int, error) {
+	return withHooks(ctx, _d.sqlExec, _d.mutation, _d.hooks)
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (wsd *WeatherStationDelete) ExecX(ctx context.Context) int {
-	n, err := wsd.Exec(ctx)
+func (_d *WeatherStationDelete) ExecX(ctx context.Context) int {
+	n, err := _d.Exec(ctx)
 	if err != nil {
 		panic(err)
 	}
 	return n
 }
 
-func (wsd *WeatherStationDelete) sqlExec(ctx context.Context) (int, error) {
+func (_d *WeatherStationDelete) sqlExec(ctx context.Context) (int, error) {
 	_spec := sqlgraph.NewDeleteSpec(weatherstation.Table, sqlgraph.NewFieldSpec(weatherstation.FieldID, field.TypeUUID))
-	if ps := wsd.mutation.predicates; len(ps) > 0 {
+	if ps := _d.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	affected, err := sqlgraph.DeleteNodes(ctx, wsd.driver, _spec)
+	affected, err := sqlgraph.DeleteNodes(ctx, _d.driver, _spec)
 	if err != nil && sqlgraph.IsConstraintError(err) {
 		err = &ConstraintError{msg: err.Error(), wrap: err}
 	}
-	wsd.mutation.done = true
+	_d.mutation.done = true
 	return affected, err
 }
 
 // WeatherStationDeleteOne is the builder for deleting a single WeatherStation entity.
 type WeatherStationDeleteOne struct {
-	wsd *WeatherStationDelete
+	_d *WeatherStationDelete
 }
 
 // Where appends a list predicates to the WeatherStationDelete builder.
-func (wsdo *WeatherStationDeleteOne) Where(ps ...predicate.WeatherStation) *WeatherStationDeleteOne {
-	wsdo.wsd.mutation.Where(ps...)
-	return wsdo
+func (_d *WeatherStationDeleteOne) Where(ps ...predicate.WeatherStation) *WeatherStationDeleteOne {
+	_d._d.mutation.Where(ps...)
+	return _d
 }
 
 // Exec executes the deletion query.
-func (wsdo *WeatherStationDeleteOne) Exec(ctx context.Context) error {
-	n, err := wsdo.wsd.Exec(ctx)
+func (_d *WeatherStationDeleteOne) Exec(ctx context.Context) error {
+	n, err := _d._d.Exec(ctx)
 	switch {
 	case err != nil:
 		return err
@@ -81,8 +81,8 @@ func (wsdo *WeatherStationDeleteOne) Exec(ctx context.Context) error {
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (wsdo *WeatherStationDeleteOne) ExecX(ctx context.Context) {
-	if err := wsdo.Exec(ctx); err != nil {
+func (_d *WeatherStationDeleteOne) ExecX(ctx context.Context) {
+	if err := _d.Exec(ctx); err != nil {
 		panic(err)
 	}
 }

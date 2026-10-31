@@ -29,542 +29,574 @@ type ForecastUpdate struct {
 }
 
 // Where appends a list predicates to the ForecastUpdate builder.
-func (fu *ForecastUpdate) Where(ps ...predicate.Forecast) *ForecastUpdate {
-	fu.mutation.Where(ps...)
-	return fu
+func (_u *ForecastUpdate) Where(ps ...predicate.Forecast) *ForecastUpdate {
+	_u.mutation.Where(ps...)
+	return _u
 }
 
 // SetFromTime sets the "from_time" field.
-func (fu *ForecastUpdate) SetFromTime(t time.Time) *ForecastUpdate {
-	fu.mutation.SetFromTime(t)
-	return fu
+func (_u *ForecastUpdate) SetFromTime(v time.Time) *ForecastUpdate {
+	_u.mutation.SetFromTime(v)
+	return _u
+}
+
+// SetNillableFromTime sets the "from_time" field if the given value is not nil.
+func (_u *ForecastUpdate) SetNillableFromTime(v *time.Time) *ForecastUpdate {
+	if v != nil {
+		_u.SetFromTime(*v)
+	}
+	return _u
 }
 
 // SetToTime sets the "to_time" field.
-func (fu *ForecastUpdate) SetToTime(t time.Time) *ForecastUpdate {
-	fu.mutation.SetToTime(t)
-	return fu
+func (_u *ForecastUpdate) SetToTime(v time.Time) *ForecastUpdate {
+	_u.mutation.SetToTime(v)
+	return _u
+}
+
+// SetNillableToTime sets the "to_time" field if the given value is not nil.
+func (_u *ForecastUpdate) SetNillableToTime(v *time.Time) *ForecastUpdate {
+	if v != nil {
+		_u.SetToTime(*v)
+	}
+	return _u
 }
 
 // SetChangeIndicator sets the "change_indicator" field.
-func (fu *ForecastUpdate) SetChangeIndicator(fi forecast.ChangeIndicator) *ForecastUpdate {
-	fu.mutation.SetChangeIndicator(fi)
-	return fu
+func (_u *ForecastUpdate) SetChangeIndicator(v forecast.ChangeIndicator) *ForecastUpdate {
+	_u.mutation.SetChangeIndicator(v)
+	return _u
 }
 
 // SetNillableChangeIndicator sets the "change_indicator" field if the given value is not nil.
-func (fu *ForecastUpdate) SetNillableChangeIndicator(fi *forecast.ChangeIndicator) *ForecastUpdate {
-	if fi != nil {
-		fu.SetChangeIndicator(*fi)
+func (_u *ForecastUpdate) SetNillableChangeIndicator(v *forecast.ChangeIndicator) *ForecastUpdate {
+	if v != nil {
+		_u.SetChangeIndicator(*v)
 	}
-	return fu
+	return _u
 }
 
 // ClearChangeIndicator clears the value of the "change_indicator" field.
-func (fu *ForecastUpdate) ClearChangeIndicator() *ForecastUpdate {
-	fu.mutation.ClearChangeIndicator()
-	return fu
+func (_u *ForecastUpdate) ClearChangeIndicator() *ForecastUpdate {
+	_u.mutation.ClearChangeIndicator()
+	return _u
 }
 
 // SetChangeTime sets the "change_time" field.
-func (fu *ForecastUpdate) SetChangeTime(t time.Time) *ForecastUpdate {
-	fu.mutation.SetChangeTime(t)
-	return fu
+func (_u *ForecastUpdate) SetChangeTime(v time.Time) *ForecastUpdate {
+	_u.mutation.SetChangeTime(v)
+	return _u
 }
 
 // SetNillableChangeTime sets the "change_time" field if the given value is not nil.
-func (fu *ForecastUpdate) SetNillableChangeTime(t *time.Time) *ForecastUpdate {
-	if t != nil {
-		fu.SetChangeTime(*t)
+func (_u *ForecastUpdate) SetNillableChangeTime(v *time.Time) *ForecastUpdate {
+	if v != nil {
+		_u.SetChangeTime(*v)
 	}
-	return fu
+	return _u
 }
 
 // ClearChangeTime clears the value of the "change_time" field.
-func (fu *ForecastUpdate) ClearChangeTime() *ForecastUpdate {
-	fu.mutation.ClearChangeTime()
-	return fu
+func (_u *ForecastUpdate) ClearChangeTime() *ForecastUpdate {
+	_u.mutation.ClearChangeTime()
+	return _u
 }
 
 // SetChangeProbability sets the "change_probability" field.
-func (fu *ForecastUpdate) SetChangeProbability(i int) *ForecastUpdate {
-	fu.mutation.ResetChangeProbability()
-	fu.mutation.SetChangeProbability(i)
-	return fu
+func (_u *ForecastUpdate) SetChangeProbability(v int) *ForecastUpdate {
+	_u.mutation.ResetChangeProbability()
+	_u.mutation.SetChangeProbability(v)
+	return _u
 }
 
 // SetNillableChangeProbability sets the "change_probability" field if the given value is not nil.
-func (fu *ForecastUpdate) SetNillableChangeProbability(i *int) *ForecastUpdate {
-	if i != nil {
-		fu.SetChangeProbability(*i)
+func (_u *ForecastUpdate) SetNillableChangeProbability(v *int) *ForecastUpdate {
+	if v != nil {
+		_u.SetChangeProbability(*v)
 	}
-	return fu
+	return _u
 }
 
-// AddChangeProbability adds i to the "change_probability" field.
-func (fu *ForecastUpdate) AddChangeProbability(i int) *ForecastUpdate {
-	fu.mutation.AddChangeProbability(i)
-	return fu
+// AddChangeProbability adds value to the "change_probability" field.
+func (_u *ForecastUpdate) AddChangeProbability(v int) *ForecastUpdate {
+	_u.mutation.AddChangeProbability(v)
+	return _u
 }
 
 // ClearChangeProbability clears the value of the "change_probability" field.
-func (fu *ForecastUpdate) ClearChangeProbability() *ForecastUpdate {
-	fu.mutation.ClearChangeProbability()
-	return fu
+func (_u *ForecastUpdate) ClearChangeProbability() *ForecastUpdate {
+	_u.mutation.ClearChangeProbability()
+	return _u
 }
 
 // SetWindDirection sets the "wind_direction" field.
-func (fu *ForecastUpdate) SetWindDirection(i int) *ForecastUpdate {
-	fu.mutation.ResetWindDirection()
-	fu.mutation.SetWindDirection(i)
-	return fu
+func (_u *ForecastUpdate) SetWindDirection(v int) *ForecastUpdate {
+	_u.mutation.ResetWindDirection()
+	_u.mutation.SetWindDirection(v)
+	return _u
 }
 
 // SetNillableWindDirection sets the "wind_direction" field if the given value is not nil.
-func (fu *ForecastUpdate) SetNillableWindDirection(i *int) *ForecastUpdate {
-	if i != nil {
-		fu.SetWindDirection(*i)
+func (_u *ForecastUpdate) SetNillableWindDirection(v *int) *ForecastUpdate {
+	if v != nil {
+		_u.SetWindDirection(*v)
 	}
-	return fu
+	return _u
 }
 
-// AddWindDirection adds i to the "wind_direction" field.
-func (fu *ForecastUpdate) AddWindDirection(i int) *ForecastUpdate {
-	fu.mutation.AddWindDirection(i)
-	return fu
+// AddWindDirection adds value to the "wind_direction" field.
+func (_u *ForecastUpdate) AddWindDirection(v int) *ForecastUpdate {
+	_u.mutation.AddWindDirection(v)
+	return _u
 }
 
 // ClearWindDirection clears the value of the "wind_direction" field.
-func (fu *ForecastUpdate) ClearWindDirection() *ForecastUpdate {
-	fu.mutation.ClearWindDirection()
-	return fu
+func (_u *ForecastUpdate) ClearWindDirection() *ForecastUpdate {
+	_u.mutation.ClearWindDirection()
+	return _u
 }
 
 // SetWindDirectionVariable sets the "wind_direction_variable" field.
-func (fu *ForecastUpdate) SetWindDirectionVariable(b bool) *ForecastUpdate {
-	fu.mutation.SetWindDirectionVariable(b)
-	return fu
+func (_u *ForecastUpdate) SetWindDirectionVariable(v bool) *ForecastUpdate {
+	_u.mutation.SetWindDirectionVariable(v)
+	return _u
+}
+
+// SetNillableWindDirectionVariable sets the "wind_direction_variable" field if the given value is not nil.
+func (_u *ForecastUpdate) SetNillableWindDirectionVariable(v *bool) *ForecastUpdate {
+	if v != nil {
+		_u.SetWindDirectionVariable(*v)
+	}
+	return _u
 }
 
 // SetWindSpeed sets the "wind_speed" field.
-func (fu *ForecastUpdate) SetWindSpeed(i int) *ForecastUpdate {
-	fu.mutation.ResetWindSpeed()
-	fu.mutation.SetWindSpeed(i)
-	return fu
+func (_u *ForecastUpdate) SetWindSpeed(v int) *ForecastUpdate {
+	_u.mutation.ResetWindSpeed()
+	_u.mutation.SetWindSpeed(v)
+	return _u
 }
 
 // SetNillableWindSpeed sets the "wind_speed" field if the given value is not nil.
-func (fu *ForecastUpdate) SetNillableWindSpeed(i *int) *ForecastUpdate {
-	if i != nil {
-		fu.SetWindSpeed(*i)
+func (_u *ForecastUpdate) SetNillableWindSpeed(v *int) *ForecastUpdate {
+	if v != nil {
+		_u.SetWindSpeed(*v)
 	}
-	return fu
+	return _u
 }
 
-// AddWindSpeed adds i to the "wind_speed" field.
-func (fu *ForecastUpdate) AddWindSpeed(i int) *ForecastUpdate {
-	fu.mutation.AddWindSpeed(i)
-	return fu
+// AddWindSpeed adds value to the "wind_speed" field.
+func (_u *ForecastUpdate) AddWindSpeed(v int) *ForecastUpdate {
+	_u.mutation.AddWindSpeed(v)
+	return _u
 }
 
 // ClearWindSpeed clears the value of the "wind_speed" field.
-func (fu *ForecastUpdate) ClearWindSpeed() *ForecastUpdate {
-	fu.mutation.ClearWindSpeed()
-	return fu
+func (_u *ForecastUpdate) ClearWindSpeed() *ForecastUpdate {
+	_u.mutation.ClearWindSpeed()
+	return _u
 }
 
 // SetWindGust sets the "wind_gust" field.
-func (fu *ForecastUpdate) SetWindGust(i int) *ForecastUpdate {
-	fu.mutation.ResetWindGust()
-	fu.mutation.SetWindGust(i)
-	return fu
+func (_u *ForecastUpdate) SetWindGust(v int) *ForecastUpdate {
+	_u.mutation.ResetWindGust()
+	_u.mutation.SetWindGust(v)
+	return _u
 }
 
 // SetNillableWindGust sets the "wind_gust" field if the given value is not nil.
-func (fu *ForecastUpdate) SetNillableWindGust(i *int) *ForecastUpdate {
-	if i != nil {
-		fu.SetWindGust(*i)
+func (_u *ForecastUpdate) SetNillableWindGust(v *int) *ForecastUpdate {
+	if v != nil {
+		_u.SetWindGust(*v)
 	}
-	return fu
+	return _u
 }
 
-// AddWindGust adds i to the "wind_gust" field.
-func (fu *ForecastUpdate) AddWindGust(i int) *ForecastUpdate {
-	fu.mutation.AddWindGust(i)
-	return fu
+// AddWindGust adds value to the "wind_gust" field.
+func (_u *ForecastUpdate) AddWindGust(v int) *ForecastUpdate {
+	_u.mutation.AddWindGust(v)
+	return _u
 }
 
 // ClearWindGust clears the value of the "wind_gust" field.
-func (fu *ForecastUpdate) ClearWindGust() *ForecastUpdate {
-	fu.mutation.ClearWindGust()
-	return fu
+func (_u *ForecastUpdate) ClearWindGust() *ForecastUpdate {
+	_u.mutation.ClearWindGust()
+	return _u
 }
 
 // SetWindShearHeight sets the "wind_shear_height" field.
-func (fu *ForecastUpdate) SetWindShearHeight(i int) *ForecastUpdate {
-	fu.mutation.ResetWindShearHeight()
-	fu.mutation.SetWindShearHeight(i)
-	return fu
+func (_u *ForecastUpdate) SetWindShearHeight(v int) *ForecastUpdate {
+	_u.mutation.ResetWindShearHeight()
+	_u.mutation.SetWindShearHeight(v)
+	return _u
 }
 
 // SetNillableWindShearHeight sets the "wind_shear_height" field if the given value is not nil.
-func (fu *ForecastUpdate) SetNillableWindShearHeight(i *int) *ForecastUpdate {
-	if i != nil {
-		fu.SetWindShearHeight(*i)
+func (_u *ForecastUpdate) SetNillableWindShearHeight(v *int) *ForecastUpdate {
+	if v != nil {
+		_u.SetWindShearHeight(*v)
 	}
-	return fu
+	return _u
 }
 
-// AddWindShearHeight adds i to the "wind_shear_height" field.
-func (fu *ForecastUpdate) AddWindShearHeight(i int) *ForecastUpdate {
-	fu.mutation.AddWindShearHeight(i)
-	return fu
+// AddWindShearHeight adds value to the "wind_shear_height" field.
+func (_u *ForecastUpdate) AddWindShearHeight(v int) *ForecastUpdate {
+	_u.mutation.AddWindShearHeight(v)
+	return _u
 }
 
 // ClearWindShearHeight clears the value of the "wind_shear_height" field.
-func (fu *ForecastUpdate) ClearWindShearHeight() *ForecastUpdate {
-	fu.mutation.ClearWindShearHeight()
-	return fu
+func (_u *ForecastUpdate) ClearWindShearHeight() *ForecastUpdate {
+	_u.mutation.ClearWindShearHeight()
+	return _u
 }
 
 // SetWindShearDirection sets the "wind_shear_direction" field.
-func (fu *ForecastUpdate) SetWindShearDirection(i int) *ForecastUpdate {
-	fu.mutation.ResetWindShearDirection()
-	fu.mutation.SetWindShearDirection(i)
-	return fu
+func (_u *ForecastUpdate) SetWindShearDirection(v int) *ForecastUpdate {
+	_u.mutation.ResetWindShearDirection()
+	_u.mutation.SetWindShearDirection(v)
+	return _u
 }
 
 // SetNillableWindShearDirection sets the "wind_shear_direction" field if the given value is not nil.
-func (fu *ForecastUpdate) SetNillableWindShearDirection(i *int) *ForecastUpdate {
-	if i != nil {
-		fu.SetWindShearDirection(*i)
+func (_u *ForecastUpdate) SetNillableWindShearDirection(v *int) *ForecastUpdate {
+	if v != nil {
+		_u.SetWindShearDirection(*v)
 	}
-	return fu
+	return _u
 }
 
-// AddWindShearDirection adds i to the "wind_shear_direction" field.
-func (fu *ForecastUpdate) AddWindShearDirection(i int) *ForecastUpdate {
-	fu.mutation.AddWindShearDirection(i)
-	return fu
+// AddWindShearDirection adds value to the "wind_shear_direction" field.
+func (_u *ForecastUpdate) AddWindShearDirection(v int) *ForecastUpdate {
+	_u.mutation.AddWindShearDirection(v)
+	return _u
 }
 
 // ClearWindShearDirection clears the value of the "wind_shear_direction" field.
-func (fu *ForecastUpdate) ClearWindShearDirection() *ForecastUpdate {
-	fu.mutation.ClearWindShearDirection()
-	return fu
+func (_u *ForecastUpdate) ClearWindShearDirection() *ForecastUpdate {
+	_u.mutation.ClearWindShearDirection()
+	return _u
 }
 
 // SetWindShearSpeed sets the "wind_shear_speed" field.
-func (fu *ForecastUpdate) SetWindShearSpeed(i int) *ForecastUpdate {
-	fu.mutation.ResetWindShearSpeed()
-	fu.mutation.SetWindShearSpeed(i)
-	return fu
+func (_u *ForecastUpdate) SetWindShearSpeed(v int) *ForecastUpdate {
+	_u.mutation.ResetWindShearSpeed()
+	_u.mutation.SetWindShearSpeed(v)
+	return _u
 }
 
 // SetNillableWindShearSpeed sets the "wind_shear_speed" field if the given value is not nil.
-func (fu *ForecastUpdate) SetNillableWindShearSpeed(i *int) *ForecastUpdate {
-	if i != nil {
-		fu.SetWindShearSpeed(*i)
+func (_u *ForecastUpdate) SetNillableWindShearSpeed(v *int) *ForecastUpdate {
+	if v != nil {
+		_u.SetWindShearSpeed(*v)
 	}
-	return fu
+	return _u
 }
 
-// AddWindShearSpeed adds i to the "wind_shear_speed" field.
-func (fu *ForecastUpdate) AddWindShearSpeed(i int) *ForecastUpdate {
-	fu.mutation.AddWindShearSpeed(i)
-	return fu
+// AddWindShearSpeed adds value to the "wind_shear_speed" field.
+func (_u *ForecastUpdate) AddWindShearSpeed(v int) *ForecastUpdate {
+	_u.mutation.AddWindShearSpeed(v)
+	return _u
 }
 
 // ClearWindShearSpeed clears the value of the "wind_shear_speed" field.
-func (fu *ForecastUpdate) ClearWindShearSpeed() *ForecastUpdate {
-	fu.mutation.ClearWindShearSpeed()
-	return fu
+func (_u *ForecastUpdate) ClearWindShearSpeed() *ForecastUpdate {
+	_u.mutation.ClearWindShearSpeed()
+	return _u
 }
 
 // SetVisibilityHorizontal sets the "visibility_horizontal" field.
-func (fu *ForecastUpdate) SetVisibilityHorizontal(f float64) *ForecastUpdate {
-	fu.mutation.ResetVisibilityHorizontal()
-	fu.mutation.SetVisibilityHorizontal(f)
-	return fu
+func (_u *ForecastUpdate) SetVisibilityHorizontal(v float64) *ForecastUpdate {
+	_u.mutation.ResetVisibilityHorizontal()
+	_u.mutation.SetVisibilityHorizontal(v)
+	return _u
 }
 
 // SetNillableVisibilityHorizontal sets the "visibility_horizontal" field if the given value is not nil.
-func (fu *ForecastUpdate) SetNillableVisibilityHorizontal(f *float64) *ForecastUpdate {
-	if f != nil {
-		fu.SetVisibilityHorizontal(*f)
+func (_u *ForecastUpdate) SetNillableVisibilityHorizontal(v *float64) *ForecastUpdate {
+	if v != nil {
+		_u.SetVisibilityHorizontal(*v)
 	}
-	return fu
+	return _u
 }
 
-// AddVisibilityHorizontal adds f to the "visibility_horizontal" field.
-func (fu *ForecastUpdate) AddVisibilityHorizontal(f float64) *ForecastUpdate {
-	fu.mutation.AddVisibilityHorizontal(f)
-	return fu
+// AddVisibilityHorizontal adds value to the "visibility_horizontal" field.
+func (_u *ForecastUpdate) AddVisibilityHorizontal(v float64) *ForecastUpdate {
+	_u.mutation.AddVisibilityHorizontal(v)
+	return _u
 }
 
 // ClearVisibilityHorizontal clears the value of the "visibility_horizontal" field.
-func (fu *ForecastUpdate) ClearVisibilityHorizontal() *ForecastUpdate {
-	fu.mutation.ClearVisibilityHorizontal()
-	return fu
+func (_u *ForecastUpdate) ClearVisibilityHorizontal() *ForecastUpdate {
+	_u.mutation.ClearVisibilityHorizontal()
+	return _u
 }
 
 // SetVisibilityHorizontalIsMoreThan sets the "visibility_horizontal_is_more_than" field.
-func (fu *ForecastUpdate) SetVisibilityHorizontalIsMoreThan(b bool) *ForecastUpdate {
-	fu.mutation.SetVisibilityHorizontalIsMoreThan(b)
-	return fu
+func (_u *ForecastUpdate) SetVisibilityHorizontalIsMoreThan(v bool) *ForecastUpdate {
+	_u.mutation.SetVisibilityHorizontalIsMoreThan(v)
+	return _u
+}
+
+// SetNillableVisibilityHorizontalIsMoreThan sets the "visibility_horizontal_is_more_than" field if the given value is not nil.
+func (_u *ForecastUpdate) SetNillableVisibilityHorizontalIsMoreThan(v *bool) *ForecastUpdate {
+	if v != nil {
+		_u.SetVisibilityHorizontalIsMoreThan(*v)
+	}
+	return _u
 }
 
 // SetVisibilityVertical sets the "visibility_vertical" field.
-func (fu *ForecastUpdate) SetVisibilityVertical(i int) *ForecastUpdate {
-	fu.mutation.ResetVisibilityVertical()
-	fu.mutation.SetVisibilityVertical(i)
-	return fu
+func (_u *ForecastUpdate) SetVisibilityVertical(v int) *ForecastUpdate {
+	_u.mutation.ResetVisibilityVertical()
+	_u.mutation.SetVisibilityVertical(v)
+	return _u
 }
 
 // SetNillableVisibilityVertical sets the "visibility_vertical" field if the given value is not nil.
-func (fu *ForecastUpdate) SetNillableVisibilityVertical(i *int) *ForecastUpdate {
-	if i != nil {
-		fu.SetVisibilityVertical(*i)
+func (_u *ForecastUpdate) SetNillableVisibilityVertical(v *int) *ForecastUpdate {
+	if v != nil {
+		_u.SetVisibilityVertical(*v)
 	}
-	return fu
+	return _u
 }
 
-// AddVisibilityVertical adds i to the "visibility_vertical" field.
-func (fu *ForecastUpdate) AddVisibilityVertical(i int) *ForecastUpdate {
-	fu.mutation.AddVisibilityVertical(i)
-	return fu
+// AddVisibilityVertical adds value to the "visibility_vertical" field.
+func (_u *ForecastUpdate) AddVisibilityVertical(v int) *ForecastUpdate {
+	_u.mutation.AddVisibilityVertical(v)
+	return _u
 }
 
 // ClearVisibilityVertical clears the value of the "visibility_vertical" field.
-func (fu *ForecastUpdate) ClearVisibilityVertical() *ForecastUpdate {
-	fu.mutation.ClearVisibilityVertical()
-	return fu
+func (_u *ForecastUpdate) ClearVisibilityVertical() *ForecastUpdate {
+	_u.mutation.ClearVisibilityVertical()
+	return _u
 }
 
 // SetAltimeter sets the "altimeter" field.
-func (fu *ForecastUpdate) SetAltimeter(f float64) *ForecastUpdate {
-	fu.mutation.ResetAltimeter()
-	fu.mutation.SetAltimeter(f)
-	return fu
+func (_u *ForecastUpdate) SetAltimeter(v float64) *ForecastUpdate {
+	_u.mutation.ResetAltimeter()
+	_u.mutation.SetAltimeter(v)
+	return _u
 }
 
 // SetNillableAltimeter sets the "altimeter" field if the given value is not nil.
-func (fu *ForecastUpdate) SetNillableAltimeter(f *float64) *ForecastUpdate {
-	if f != nil {
-		fu.SetAltimeter(*f)
+func (_u *ForecastUpdate) SetNillableAltimeter(v *float64) *ForecastUpdate {
+	if v != nil {
+		_u.SetAltimeter(*v)
 	}
-	return fu
+	return _u
 }
 
-// AddAltimeter adds f to the "altimeter" field.
-func (fu *ForecastUpdate) AddAltimeter(f float64) *ForecastUpdate {
-	fu.mutation.AddAltimeter(f)
-	return fu
+// AddAltimeter adds value to the "altimeter" field.
+func (_u *ForecastUpdate) AddAltimeter(v float64) *ForecastUpdate {
+	_u.mutation.AddAltimeter(v)
+	return _u
 }
 
 // ClearAltimeter clears the value of the "altimeter" field.
-func (fu *ForecastUpdate) ClearAltimeter() *ForecastUpdate {
-	fu.mutation.ClearAltimeter()
-	return fu
+func (_u *ForecastUpdate) ClearAltimeter() *ForecastUpdate {
+	_u.mutation.ClearAltimeter()
+	return _u
 }
 
 // SetWeather sets the "weather" field.
-func (fu *ForecastUpdate) SetWeather(s string) *ForecastUpdate {
-	fu.mutation.SetWeather(s)
-	return fu
+func (_u *ForecastUpdate) SetWeather(v string) *ForecastUpdate {
+	_u.mutation.SetWeather(v)
+	return _u
 }
 
 // SetNillableWeather sets the "weather" field if the given value is not nil.
-func (fu *ForecastUpdate) SetNillableWeather(s *string) *ForecastUpdate {
-	if s != nil {
-		fu.SetWeather(*s)
+func (_u *ForecastUpdate) SetNillableWeather(v *string) *ForecastUpdate {
+	if v != nil {
+		_u.SetWeather(*v)
 	}
-	return fu
+	return _u
 }
 
 // ClearWeather clears the value of the "weather" field.
-func (fu *ForecastUpdate) ClearWeather() *ForecastUpdate {
-	fu.mutation.ClearWeather()
-	return fu
+func (_u *ForecastUpdate) ClearWeather() *ForecastUpdate {
+	_u.mutation.ClearWeather()
+	return _u
 }
 
 // SetNotDecoded sets the "not_decoded" field.
-func (fu *ForecastUpdate) SetNotDecoded(s string) *ForecastUpdate {
-	fu.mutation.SetNotDecoded(s)
-	return fu
+func (_u *ForecastUpdate) SetNotDecoded(v string) *ForecastUpdate {
+	_u.mutation.SetNotDecoded(v)
+	return _u
 }
 
 // SetNillableNotDecoded sets the "not_decoded" field if the given value is not nil.
-func (fu *ForecastUpdate) SetNillableNotDecoded(s *string) *ForecastUpdate {
-	if s != nil {
-		fu.SetNotDecoded(*s)
+func (_u *ForecastUpdate) SetNillableNotDecoded(v *string) *ForecastUpdate {
+	if v != nil {
+		_u.SetNotDecoded(*v)
 	}
-	return fu
+	return _u
 }
 
 // ClearNotDecoded clears the value of the "not_decoded" field.
-func (fu *ForecastUpdate) ClearNotDecoded() *ForecastUpdate {
-	fu.mutation.ClearNotDecoded()
-	return fu
+func (_u *ForecastUpdate) ClearNotDecoded() *ForecastUpdate {
+	_u.mutation.ClearNotDecoded()
+	return _u
 }
 
 // AddSkyConditionIDs adds the "sky_conditions" edge to the SkyCondition entity by IDs.
-func (fu *ForecastUpdate) AddSkyConditionIDs(ids ...uuid.UUID) *ForecastUpdate {
-	fu.mutation.AddSkyConditionIDs(ids...)
-	return fu
+func (_u *ForecastUpdate) AddSkyConditionIDs(ids ...uuid.UUID) *ForecastUpdate {
+	_u.mutation.AddSkyConditionIDs(ids...)
+	return _u
 }
 
 // AddSkyConditions adds the "sky_conditions" edges to the SkyCondition entity.
-func (fu *ForecastUpdate) AddSkyConditions(s ...*SkyCondition) *ForecastUpdate {
-	ids := make([]uuid.UUID, len(s))
-	for i := range s {
-		ids[i] = s[i].ID
+func (_u *ForecastUpdate) AddSkyConditions(v ...*SkyCondition) *ForecastUpdate {
+	ids := make([]uuid.UUID, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return fu.AddSkyConditionIDs(ids...)
+	return _u.AddSkyConditionIDs(ids...)
 }
 
 // AddTurbulenceConditionIDs adds the "turbulence_conditions" edge to the TurbulenceCondition entity by IDs.
-func (fu *ForecastUpdate) AddTurbulenceConditionIDs(ids ...uuid.UUID) *ForecastUpdate {
-	fu.mutation.AddTurbulenceConditionIDs(ids...)
-	return fu
+func (_u *ForecastUpdate) AddTurbulenceConditionIDs(ids ...uuid.UUID) *ForecastUpdate {
+	_u.mutation.AddTurbulenceConditionIDs(ids...)
+	return _u
 }
 
 // AddTurbulenceConditions adds the "turbulence_conditions" edges to the TurbulenceCondition entity.
-func (fu *ForecastUpdate) AddTurbulenceConditions(t ...*TurbulenceCondition) *ForecastUpdate {
-	ids := make([]uuid.UUID, len(t))
-	for i := range t {
-		ids[i] = t[i].ID
+func (_u *ForecastUpdate) AddTurbulenceConditions(v ...*TurbulenceCondition) *ForecastUpdate {
+	ids := make([]uuid.UUID, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return fu.AddTurbulenceConditionIDs(ids...)
+	return _u.AddTurbulenceConditionIDs(ids...)
 }
 
 // AddIcingConditionIDs adds the "icing_conditions" edge to the IcingCondition entity by IDs.
-func (fu *ForecastUpdate) AddIcingConditionIDs(ids ...uuid.UUID) *ForecastUpdate {
-	fu.mutation.AddIcingConditionIDs(ids...)
-	return fu
+func (_u *ForecastUpdate) AddIcingConditionIDs(ids ...uuid.UUID) *ForecastUpdate {
+	_u.mutation.AddIcingConditionIDs(ids...)
+	return _u
 }
 
 // AddIcingConditions adds the "icing_conditions" edges to the IcingCondition entity.
-func (fu *ForecastUpdate) AddIcingConditions(i ...*IcingCondition) *ForecastUpdate {
-	ids := make([]uuid.UUID, len(i))
-	for j := range i {
-		ids[j] = i[j].ID
+func (_u *ForecastUpdate) AddIcingConditions(v ...*IcingCondition) *ForecastUpdate {
+	ids := make([]uuid.UUID, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return fu.AddIcingConditionIDs(ids...)
+	return _u.AddIcingConditionIDs(ids...)
 }
 
 // AddTemperatureDatumIDs adds the "temperature_data" edge to the TemperatureData entity by IDs.
-func (fu *ForecastUpdate) AddTemperatureDatumIDs(ids ...uuid.UUID) *ForecastUpdate {
-	fu.mutation.AddTemperatureDatumIDs(ids...)
-	return fu
+func (_u *ForecastUpdate) AddTemperatureDatumIDs(ids ...uuid.UUID) *ForecastUpdate {
+	_u.mutation.AddTemperatureDatumIDs(ids...)
+	return _u
 }
 
 // AddTemperatureData adds the "temperature_data" edges to the TemperatureData entity.
-func (fu *ForecastUpdate) AddTemperatureData(t ...*TemperatureData) *ForecastUpdate {
-	ids := make([]uuid.UUID, len(t))
-	for i := range t {
-		ids[i] = t[i].ID
+func (_u *ForecastUpdate) AddTemperatureData(v ...*TemperatureData) *ForecastUpdate {
+	ids := make([]uuid.UUID, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return fu.AddTemperatureDatumIDs(ids...)
+	return _u.AddTemperatureDatumIDs(ids...)
 }
 
 // Mutation returns the ForecastMutation object of the builder.
-func (fu *ForecastUpdate) Mutation() *ForecastMutation {
-	return fu.mutation
+func (_u *ForecastUpdate) Mutation() *ForecastMutation {
+	return _u.mutation
 }
 
 // ClearSkyConditions clears all "sky_conditions" edges to the SkyCondition entity.
-func (fu *ForecastUpdate) ClearSkyConditions() *ForecastUpdate {
-	fu.mutation.ClearSkyConditions()
-	return fu
+func (_u *ForecastUpdate) ClearSkyConditions() *ForecastUpdate {
+	_u.mutation.ClearSkyConditions()
+	return _u
 }
 
 // RemoveSkyConditionIDs removes the "sky_conditions" edge to SkyCondition entities by IDs.
-func (fu *ForecastUpdate) RemoveSkyConditionIDs(ids ...uuid.UUID) *ForecastUpdate {
-	fu.mutation.RemoveSkyConditionIDs(ids...)
-	return fu
+func (_u *ForecastUpdate) RemoveSkyConditionIDs(ids ...uuid.UUID) *ForecastUpdate {
+	_u.mutation.RemoveSkyConditionIDs(ids...)
+	return _u
 }
 
 // RemoveSkyConditions removes "sky_conditions" edges to SkyCondition entities.
-func (fu *ForecastUpdate) RemoveSkyConditions(s ...*SkyCondition) *ForecastUpdate {
-	ids := make([]uuid.UUID, len(s))
-	for i := range s {
-		ids[i] = s[i].ID
+func (_u *ForecastUpdate) RemoveSkyConditions(v ...*SkyCondition) *ForecastUpdate {
+	ids := make([]uuid.UUID, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return fu.RemoveSkyConditionIDs(ids...)
+	return _u.RemoveSkyConditionIDs(ids...)
 }
 
 // ClearTurbulenceConditions clears all "turbulence_conditions" edges to the TurbulenceCondition entity.
-func (fu *ForecastUpdate) ClearTurbulenceConditions() *ForecastUpdate {
-	fu.mutation.ClearTurbulenceConditions()
-	return fu
+func (_u *ForecastUpdate) ClearTurbulenceConditions() *ForecastUpdate {
+	_u.mutation.ClearTurbulenceConditions()
+	return _u
 }
 
 // RemoveTurbulenceConditionIDs removes the "turbulence_conditions" edge to TurbulenceCondition entities by IDs.
-func (fu *ForecastUpdate) RemoveTurbulenceConditionIDs(ids ...uuid.UUID) *ForecastUpdate {
-	fu.mutation.RemoveTurbulenceConditionIDs(ids...)
-	return fu
+func (_u *ForecastUpdate) RemoveTurbulenceConditionIDs(ids ...uuid.UUID) *ForecastUpdate {
+	_u.mutation.RemoveTurbulenceConditionIDs(ids...)
+	return _u
 }
 
 // RemoveTurbulenceConditions removes "turbulence_conditions" edges to TurbulenceCondition entities.
-func (fu *ForecastUpdate) RemoveTurbulenceConditions(t ...*TurbulenceCondition) *ForecastUpdate {
-	ids := make([]uuid.UUID, len(t))
-	for i := range t {
-		ids[i] = t[i].ID
+func (_u *ForecastUpdate) RemoveTurbulenceConditions(v ...*TurbulenceCondition) *ForecastUpdate {
+	ids := make([]uuid.UUID, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return fu.RemoveTurbulenceConditionIDs(ids...)
+	return _u.RemoveTurbulenceConditionIDs(ids...)
 }
 
 // ClearIcingConditions clears all "icing_conditions" edges to the IcingCondition entity.
-func (fu *ForecastUpdate) ClearIcingConditions() *ForecastUpdate {
-	fu.mutation.ClearIcingConditions()
-	return fu
+func (_u *ForecastUpdate) ClearIcingConditions() *ForecastUpdate {
+	_u.mutation.ClearIcingConditions()
+	return _u
 }
 
 // RemoveIcingConditionIDs removes the "icing_conditions" edge to IcingCondition entities by IDs.
-func (fu *ForecastUpdate) RemoveIcingConditionIDs(ids ...uuid.UUID) *ForecastUpdate {
-	fu.mutation.RemoveIcingConditionIDs(ids...)
-	return fu
+func (_u *ForecastUpdate) RemoveIcingConditionIDs(ids ...uuid.UUID) *ForecastUpdate {
+	_u.mutation.RemoveIcingConditionIDs(ids...)
+	return _u
 }
 
 // RemoveIcingConditions removes "icing_conditions" edges to IcingCondition entities.
-func (fu *ForecastUpdate) RemoveIcingConditions(i ...*IcingCondition) *ForecastUpdate {
-	ids := make([]uuid.UUID, len(i))
-	for j := range i {
-		ids[j] = i[j].ID
+func (_u *ForecastUpdate) RemoveIcingConditions(v ...*IcingCondition) *ForecastUpdate {
+	ids := make([]uuid.UUID, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return fu.RemoveIcingConditionIDs(ids...)
+	return _u.RemoveIcingConditionIDs(ids...)
 }
 
 // ClearTemperatureData clears all "temperature_data" edges to the TemperatureData entity.
-func (fu *ForecastUpdate) ClearTemperatureData() *ForecastUpdate {
-	fu.mutation.ClearTemperatureData()
-	return fu
+func (_u *ForecastUpdate) ClearTemperatureData() *ForecastUpdate {
+	_u.mutation.ClearTemperatureData()
+	return _u
 }
 
 // RemoveTemperatureDatumIDs removes the "temperature_data" edge to TemperatureData entities by IDs.
-func (fu *ForecastUpdate) RemoveTemperatureDatumIDs(ids ...uuid.UUID) *ForecastUpdate {
-	fu.mutation.RemoveTemperatureDatumIDs(ids...)
-	return fu
+func (_u *ForecastUpdate) RemoveTemperatureDatumIDs(ids ...uuid.UUID) *ForecastUpdate {
+	_u.mutation.RemoveTemperatureDatumIDs(ids...)
+	return _u
 }
 
 // RemoveTemperatureData removes "temperature_data" edges to TemperatureData entities.
-func (fu *ForecastUpdate) RemoveTemperatureData(t ...*TemperatureData) *ForecastUpdate {
-	ids := make([]uuid.UUID, len(t))
-	for i := range t {
-		ids[i] = t[i].ID
+func (_u *ForecastUpdate) RemoveTemperatureData(v ...*TemperatureData) *ForecastUpdate {
+	ids := make([]uuid.UUID, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return fu.RemoveTemperatureDatumIDs(ids...)
+	return _u.RemoveTemperatureDatumIDs(ids...)
 }
 
 // Save executes the query and returns the number of nodes affected by the update operation.
-func (fu *ForecastUpdate) Save(ctx context.Context) (int, error) {
-	return withHooks(ctx, fu.sqlSave, fu.mutation, fu.hooks)
+func (_u *ForecastUpdate) Save(ctx context.Context) (int, error) {
+	return withHooks(ctx, _u.sqlSave, _u.mutation, _u.hooks)
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (fu *ForecastUpdate) SaveX(ctx context.Context) int {
-	affected, err := fu.Save(ctx)
+func (_u *ForecastUpdate) SaveX(ctx context.Context) int {
+	affected, err := _u.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -572,21 +604,21 @@ func (fu *ForecastUpdate) SaveX(ctx context.Context) int {
 }
 
 // Exec executes the query.
-func (fu *ForecastUpdate) Exec(ctx context.Context) error {
-	_, err := fu.Save(ctx)
+func (_u *ForecastUpdate) Exec(ctx context.Context) error {
+	_, err := _u.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (fu *ForecastUpdate) ExecX(ctx context.Context) {
-	if err := fu.Exec(ctx); err != nil {
+func (_u *ForecastUpdate) ExecX(ctx context.Context) {
+	if err := _u.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // check runs all checks and user-defined validators on the builder.
-func (fu *ForecastUpdate) check() error {
-	if v, ok := fu.mutation.ChangeIndicator(); ok {
+func (_u *ForecastUpdate) check() error {
+	if v, ok := _u.mutation.ChangeIndicator(); ok {
 		if err := forecast.ChangeIndicatorValidator(v); err != nil {
 			return &ValidationError{Name: "change_indicator", err: fmt.Errorf(`ent: validator failed for field "Forecast.change_indicator": %w`, err)}
 		}
@@ -595,150 +627,150 @@ func (fu *ForecastUpdate) check() error {
 }
 
 // Modify adds a statement modifier for attaching custom logic to the UPDATE statement.
-func (fu *ForecastUpdate) Modify(modifiers ...func(u *sql.UpdateBuilder)) *ForecastUpdate {
-	fu.modifiers = append(fu.modifiers, modifiers...)
-	return fu
+func (_u *ForecastUpdate) Modify(modifiers ...func(u *sql.UpdateBuilder)) *ForecastUpdate {
+	_u.modifiers = append(_u.modifiers, modifiers...)
+	return _u
 }
 
-func (fu *ForecastUpdate) sqlSave(ctx context.Context) (n int, err error) {
-	if err := fu.check(); err != nil {
-		return n, err
+func (_u *ForecastUpdate) sqlSave(ctx context.Context) (_node int, err error) {
+	if err := _u.check(); err != nil {
+		return _node, err
 	}
 	_spec := sqlgraph.NewUpdateSpec(forecast.Table, forecast.Columns, sqlgraph.NewFieldSpec(forecast.FieldID, field.TypeUUID))
-	if ps := fu.mutation.predicates; len(ps) > 0 {
+	if ps := _u.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if value, ok := fu.mutation.FromTime(); ok {
+	if value, ok := _u.mutation.FromTime(); ok {
 		_spec.SetField(forecast.FieldFromTime, field.TypeTime, value)
 	}
-	if value, ok := fu.mutation.ToTime(); ok {
+	if value, ok := _u.mutation.ToTime(); ok {
 		_spec.SetField(forecast.FieldToTime, field.TypeTime, value)
 	}
-	if value, ok := fu.mutation.ChangeIndicator(); ok {
+	if value, ok := _u.mutation.ChangeIndicator(); ok {
 		_spec.SetField(forecast.FieldChangeIndicator, field.TypeEnum, value)
 	}
-	if fu.mutation.ChangeIndicatorCleared() {
+	if _u.mutation.ChangeIndicatorCleared() {
 		_spec.ClearField(forecast.FieldChangeIndicator, field.TypeEnum)
 	}
-	if value, ok := fu.mutation.ChangeTime(); ok {
+	if value, ok := _u.mutation.ChangeTime(); ok {
 		_spec.SetField(forecast.FieldChangeTime, field.TypeTime, value)
 	}
-	if fu.mutation.ChangeTimeCleared() {
+	if _u.mutation.ChangeTimeCleared() {
 		_spec.ClearField(forecast.FieldChangeTime, field.TypeTime)
 	}
-	if value, ok := fu.mutation.ChangeProbability(); ok {
+	if value, ok := _u.mutation.ChangeProbability(); ok {
 		_spec.SetField(forecast.FieldChangeProbability, field.TypeInt, value)
 	}
-	if value, ok := fu.mutation.AddedChangeProbability(); ok {
+	if value, ok := _u.mutation.AddedChangeProbability(); ok {
 		_spec.AddField(forecast.FieldChangeProbability, field.TypeInt, value)
 	}
-	if fu.mutation.ChangeProbabilityCleared() {
+	if _u.mutation.ChangeProbabilityCleared() {
 		_spec.ClearField(forecast.FieldChangeProbability, field.TypeInt)
 	}
-	if value, ok := fu.mutation.WindDirection(); ok {
+	if value, ok := _u.mutation.WindDirection(); ok {
 		_spec.SetField(forecast.FieldWindDirection, field.TypeInt, value)
 	}
-	if value, ok := fu.mutation.AddedWindDirection(); ok {
+	if value, ok := _u.mutation.AddedWindDirection(); ok {
 		_spec.AddField(forecast.FieldWindDirection, field.TypeInt, value)
 	}
-	if fu.mutation.WindDirectionCleared() {
+	if _u.mutation.WindDirectionCleared() {
 		_spec.ClearField(forecast.FieldWindDirection, field.TypeInt)
 	}
-	if value, ok := fu.mutation.WindDirectionVariable(); ok {
+	if value, ok := _u.mutation.WindDirectionVariable(); ok {
 		_spec.SetField(forecast.FieldWindDirectionVariable, field.TypeBool, value)
 	}
-	if value, ok := fu.mutation.WindSpeed(); ok {
+	if value, ok := _u.mutation.WindSpeed(); ok {
 		_spec.SetField(forecast.FieldWindSpeed, field.TypeInt, value)
 	}
-	if value, ok := fu.mutation.AddedWindSpeed(); ok {
+	if value, ok := _u.mutation.AddedWindSpeed(); ok {
 		_spec.AddField(forecast.FieldWindSpeed, field.TypeInt, value)
 	}
-	if fu.mutation.WindSpeedCleared() {
+	if _u.mutation.WindSpeedCleared() {
 		_spec.ClearField(forecast.FieldWindSpeed, field.TypeInt)
 	}
-	if value, ok := fu.mutation.WindGust(); ok {
+	if value, ok := _u.mutation.WindGust(); ok {
 		_spec.SetField(forecast.FieldWindGust, field.TypeInt, value)
 	}
-	if value, ok := fu.mutation.AddedWindGust(); ok {
+	if value, ok := _u.mutation.AddedWindGust(); ok {
 		_spec.AddField(forecast.FieldWindGust, field.TypeInt, value)
 	}
-	if fu.mutation.WindGustCleared() {
+	if _u.mutation.WindGustCleared() {
 		_spec.ClearField(forecast.FieldWindGust, field.TypeInt)
 	}
-	if value, ok := fu.mutation.WindShearHeight(); ok {
+	if value, ok := _u.mutation.WindShearHeight(); ok {
 		_spec.SetField(forecast.FieldWindShearHeight, field.TypeInt, value)
 	}
-	if value, ok := fu.mutation.AddedWindShearHeight(); ok {
+	if value, ok := _u.mutation.AddedWindShearHeight(); ok {
 		_spec.AddField(forecast.FieldWindShearHeight, field.TypeInt, value)
 	}
-	if fu.mutation.WindShearHeightCleared() {
+	if _u.mutation.WindShearHeightCleared() {
 		_spec.ClearField(forecast.FieldWindShearHeight, field.TypeInt)
 	}
-	if value, ok := fu.mutation.WindShearDirection(); ok {
+	if value, ok := _u.mutation.WindShearDirection(); ok {
 		_spec.SetField(forecast.FieldWindShearDirection, field.TypeInt, value)
 	}
-	if value, ok := fu.mutation.AddedWindShearDirection(); ok {
+	if value, ok := _u.mutation.AddedWindShearDirection(); ok {
 		_spec.AddField(forecast.FieldWindShearDirection, field.TypeInt, value)
 	}
-	if fu.mutation.WindShearDirectionCleared() {
+	if _u.mutation.WindShearDirectionCleared() {
 		_spec.ClearField(forecast.FieldWindShearDirection, field.TypeInt)
 	}
-	if value, ok := fu.mutation.WindShearSpeed(); ok {
+	if value, ok := _u.mutation.WindShearSpeed(); ok {
 		_spec.SetField(forecast.FieldWindShearSpeed, field.TypeInt, value)
 	}
-	if value, ok := fu.mutation.AddedWindShearSpeed(); ok {
+	if value, ok := _u.mutation.AddedWindShearSpeed(); ok {
 		_spec.AddField(forecast.FieldWindShearSpeed, field.TypeInt, value)
 	}
-	if fu.mutation.WindShearSpeedCleared() {
+	if _u.mutation.WindShearSpeedCleared() {
 		_spec.ClearField(forecast.FieldWindShearSpeed, field.TypeInt)
 	}
-	if value, ok := fu.mutation.VisibilityHorizontal(); ok {
+	if value, ok := _u.mutation.VisibilityHorizontal(); ok {
 		_spec.SetField(forecast.FieldVisibilityHorizontal, field.TypeFloat64, value)
 	}
-	if value, ok := fu.mutation.AddedVisibilityHorizontal(); ok {
+	if value, ok := _u.mutation.AddedVisibilityHorizontal(); ok {
 		_spec.AddField(forecast.FieldVisibilityHorizontal, field.TypeFloat64, value)
 	}
-	if fu.mutation.VisibilityHorizontalCleared() {
+	if _u.mutation.VisibilityHorizontalCleared() {
 		_spec.ClearField(forecast.FieldVisibilityHorizontal, field.TypeFloat64)
 	}
-	if value, ok := fu.mutation.VisibilityHorizontalIsMoreThan(); ok {
+	if value, ok := _u.mutation.VisibilityHorizontalIsMoreThan(); ok {
 		_spec.SetField(forecast.FieldVisibilityHorizontalIsMoreThan, field.TypeBool, value)
 	}
-	if value, ok := fu.mutation.VisibilityVertical(); ok {
+	if value, ok := _u.mutation.VisibilityVertical(); ok {
 		_spec.SetField(forecast.FieldVisibilityVertical, field.TypeInt, value)
 	}
-	if value, ok := fu.mutation.AddedVisibilityVertical(); ok {
+	if value, ok := _u.mutation.AddedVisibilityVertical(); ok {
 		_spec.AddField(forecast.FieldVisibilityVertical, field.TypeInt, value)
 	}
-	if fu.mutation.VisibilityVerticalCleared() {
+	if _u.mutation.VisibilityVerticalCleared() {
 		_spec.ClearField(forecast.FieldVisibilityVertical, field.TypeInt)
 	}
-	if value, ok := fu.mutation.Altimeter(); ok {
+	if value, ok := _u.mutation.Altimeter(); ok {
 		_spec.SetField(forecast.FieldAltimeter, field.TypeFloat64, value)
 	}
-	if value, ok := fu.mutation.AddedAltimeter(); ok {
+	if value, ok := _u.mutation.AddedAltimeter(); ok {
 		_spec.AddField(forecast.FieldAltimeter, field.TypeFloat64, value)
 	}
-	if fu.mutation.AltimeterCleared() {
+	if _u.mutation.AltimeterCleared() {
 		_spec.ClearField(forecast.FieldAltimeter, field.TypeFloat64)
 	}
-	if value, ok := fu.mutation.Weather(); ok {
+	if value, ok := _u.mutation.Weather(); ok {
 		_spec.SetField(forecast.FieldWeather, field.TypeString, value)
 	}
-	if fu.mutation.WeatherCleared() {
+	if _u.mutation.WeatherCleared() {
 		_spec.ClearField(forecast.FieldWeather, field.TypeString)
 	}
-	if value, ok := fu.mutation.NotDecoded(); ok {
+	if value, ok := _u.mutation.NotDecoded(); ok {
 		_spec.SetField(forecast.FieldNotDecoded, field.TypeString, value)
 	}
-	if fu.mutation.NotDecodedCleared() {
+	if _u.mutation.NotDecodedCleared() {
 		_spec.ClearField(forecast.FieldNotDecoded, field.TypeString)
 	}
-	if fu.mutation.SkyConditionsCleared() {
+	if _u.mutation.SkyConditionsCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -751,23 +783,7 @@ func (fu *ForecastUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := fu.mutation.RemovedSkyConditionsIDs(); len(nodes) > 0 && !fu.mutation.SkyConditionsCleared() {
-		edge := &sqlgraph.EdgeSpec{
-			Rel:     sqlgraph.O2M,
-			Inverse: false,
-			Table:   forecast.SkyConditionsTable,
-			Columns: []string{forecast.SkyConditionsColumn},
-			Bidi:    false,
-			Target: &sqlgraph.EdgeTarget{
-				IDSpec: sqlgraph.NewFieldSpec(skycondition.FieldID, field.TypeUUID),
-			},
-		}
-		for _, k := range nodes {
-			edge.Target.Nodes = append(edge.Target.Nodes, k)
-		}
-		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
-	}
-	if nodes := fu.mutation.SkyConditionsIDs(); len(nodes) > 0 {
+	if nodes := _u.mutation.RemovedSkyConditionsIDs(); len(nodes) > 0 && !_u.mutation.SkyConditionsCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -781,9 +797,25 @@ func (fu *ForecastUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		for _, k := range nodes {
 			edge.Target.Nodes = append(edge.Target.Nodes, k)
 		}
+		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
+	}
+	if nodes := _u.mutation.SkyConditionsIDs(); len(nodes) > 0 {
+		edge := &sqlgraph.EdgeSpec{
+			Rel:     sqlgraph.O2M,
+			Inverse: false,
+			Table:   forecast.SkyConditionsTable,
+			Columns: []string{forecast.SkyConditionsColumn},
+			Bidi:    false,
+			Target: &sqlgraph.EdgeTarget{
+				IDSpec: sqlgraph.NewFieldSpec(skycondition.FieldID, field.TypeUUID),
+			},
+		}
+		for _, k := range nodes {
+			edge.Target.Nodes = append(edge.Target.Nodes, k)
+		}
 		_spec.Edges.Add = append(_spec.Edges.Add, edge)
 	}
-	if fu.mutation.TurbulenceConditionsCleared() {
+	if _u.mutation.TurbulenceConditionsCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -796,7 +828,7 @@ func (fu *ForecastUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := fu.mutation.RemovedTurbulenceConditionsIDs(); len(nodes) > 0 && !fu.mutation.TurbulenceConditionsCleared() {
+	if nodes := _u.mutation.RemovedTurbulenceConditionsIDs(); len(nodes) > 0 && !_u.mutation.TurbulenceConditionsCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -812,7 +844,7 @@ func (fu *ForecastUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := fu.mutation.TurbulenceConditionsIDs(); len(nodes) > 0 {
+	if nodes := _u.mutation.TurbulenceConditionsIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -828,7 +860,7 @@ func (fu *ForecastUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		_spec.Edges.Add = append(_spec.Edges.Add, edge)
 	}
-	if fu.mutation.IcingConditionsCleared() {
+	if _u.mutation.IcingConditionsCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -841,7 +873,7 @@ func (fu *ForecastUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := fu.mutation.RemovedIcingConditionsIDs(); len(nodes) > 0 && !fu.mutation.IcingConditionsCleared() {
+	if nodes := _u.mutation.RemovedIcingConditionsIDs(); len(nodes) > 0 && !_u.mutation.IcingConditionsCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -857,7 +889,7 @@ func (fu *ForecastUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := fu.mutation.IcingConditionsIDs(); len(nodes) > 0 {
+	if nodes := _u.mutation.IcingConditionsIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -873,7 +905,7 @@ func (fu *ForecastUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		_spec.Edges.Add = append(_spec.Edges.Add, edge)
 	}
-	if fu.mutation.TemperatureDataCleared() {
+	if _u.mutation.TemperatureDataCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -886,7 +918,7 @@ func (fu *ForecastUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := fu.mutation.RemovedTemperatureDataIDs(); len(nodes) > 0 && !fu.mutation.TemperatureDataCleared() {
+	if nodes := _u.mutation.RemovedTemperatureDataIDs(); len(nodes) > 0 && !_u.mutation.TemperatureDataCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -902,7 +934,7 @@ func (fu *ForecastUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := fu.mutation.TemperatureDataIDs(); len(nodes) > 0 {
+	if nodes := _u.mutation.TemperatureDataIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -918,8 +950,8 @@ func (fu *ForecastUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		_spec.Edges.Add = append(_spec.Edges.Add, edge)
 	}
-	_spec.AddModifiers(fu.modifiers...)
-	if n, err = sqlgraph.UpdateNodes(ctx, fu.driver, _spec); err != nil {
+	_spec.AddModifiers(_u.modifiers...)
+	if _node, err = sqlgraph.UpdateNodes(ctx, _u.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
 			err = &NotFoundError{forecast.Label}
 		} else if sqlgraph.IsConstraintError(err) {
@@ -927,8 +959,8 @@ func (fu *ForecastUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		return 0, err
 	}
-	fu.mutation.done = true
-	return n, nil
+	_u.mutation.done = true
+	return _node, nil
 }
 
 // ForecastUpdateOne is the builder for updating a single Forecast entity.
@@ -941,549 +973,581 @@ type ForecastUpdateOne struct {
 }
 
 // SetFromTime sets the "from_time" field.
-func (fuo *ForecastUpdateOne) SetFromTime(t time.Time) *ForecastUpdateOne {
-	fuo.mutation.SetFromTime(t)
-	return fuo
+func (_u *ForecastUpdateOne) SetFromTime(v time.Time) *ForecastUpdateOne {
+	_u.mutation.SetFromTime(v)
+	return _u
+}
+
+// SetNillableFromTime sets the "from_time" field if the given value is not nil.
+func (_u *ForecastUpdateOne) SetNillableFromTime(v *time.Time) *ForecastUpdateOne {
+	if v != nil {
+		_u.SetFromTime(*v)
+	}
+	return _u
 }
 
 // SetToTime sets the "to_time" field.
-func (fuo *ForecastUpdateOne) SetToTime(t time.Time) *ForecastUpdateOne {
-	fuo.mutation.SetToTime(t)
-	return fuo
+func (_u *ForecastUpdateOne) SetToTime(v time.Time) *ForecastUpdateOne {
+	_u.mutation.SetToTime(v)
+	return _u
+}
+
+// SetNillableToTime sets the "to_time" field if the given value is not nil.
+func (_u *ForecastUpdateOne) SetNillableToTime(v *time.Time) *ForecastUpdateOne {
+	if v != nil {
+		_u.SetToTime(*v)
+	}
+	return _u
 }
 
 // SetChangeIndicator sets the "change_indicator" field.
-func (fuo *ForecastUpdateOne) SetChangeIndicator(fi forecast.ChangeIndicator) *ForecastUpdateOne {
-	fuo.mutation.SetChangeIndicator(fi)
-	return fuo
+func (_u *ForecastUpdateOne) SetChangeIndicator(v forecast.ChangeIndicator) *ForecastUpdateOne {
+	_u.mutation.SetChangeIndicator(v)
+	return _u
 }
 
 // SetNillableChangeIndicator sets the "change_indicator" field if the given value is not nil.
-func (fuo *ForecastUpdateOne) SetNillableChangeIndicator(fi *forecast.ChangeIndicator) *ForecastUpdateOne {
-	if fi != nil {
-		fuo.SetChangeIndicator(*fi)
+func (_u *ForecastUpdateOne) SetNillableChangeIndicator(v *forecast.ChangeIndicator) *ForecastUpdateOne {
+	if v != nil {
+		_u.SetChangeIndicator(*v)
 	}
-	return fuo
+	return _u
 }
 
 // ClearChangeIndicator clears the value of the "change_indicator" field.
-func (fuo *ForecastUpdateOne) ClearChangeIndicator() *ForecastUpdateOne {
-	fuo.mutation.ClearChangeIndicator()
-	return fuo
+func (_u *ForecastUpdateOne) ClearChangeIndicator() *ForecastUpdateOne {
+	_u.mutation.ClearChangeIndicator()
+	return _u
 }
 
 // SetChangeTime sets the "change_time" field.
-func (fuo *ForecastUpdateOne) SetChangeTime(t time.Time) *ForecastUpdateOne {
-	fuo.mutation.SetChangeTime(t)
-	return fuo
+func (_u *ForecastUpdateOne) SetChangeTime(v time.Time) *ForecastUpdateOne {
+	_u.mutation.SetChangeTime(v)
+	return _u
 }
 
 // SetNillableChangeTime sets the "change_time" field if the given value is not nil.
-func (fuo *ForecastUpdateOne) SetNillableChangeTime(t *time.Time) *ForecastUpdateOne {
-	if t != nil {
-		fuo.SetChangeTime(*t)
+func (_u *ForecastUpdateOne) SetNillableChangeTime(v *time.Time) *ForecastUpdateOne {
+	if v != nil {
+		_u.SetChangeTime(*v)
 	}
-	return fuo
+	return _u
 }
 
 // ClearChangeTime clears the value of the "change_time" field.
-func (fuo *ForecastUpdateOne) ClearChangeTime() *ForecastUpdateOne {
-	fuo.mutation.ClearChangeTime()
-	return fuo
+func (_u *ForecastUpdateOne) ClearChangeTime() *ForecastUpdateOne {
+	_u.mutation.ClearChangeTime()
+	return _u
 }
 
 // SetChangeProbability sets the "change_probability" field.
-func (fuo *ForecastUpdateOne) SetChangeProbability(i int) *ForecastUpdateOne {
-	fuo.mutation.ResetChangeProbability()
-	fuo.mutation.SetChangeProbability(i)
-	return fuo
+func (_u *ForecastUpdateOne) SetChangeProbability(v int) *ForecastUpdateOne {
+	_u.mutation.ResetChangeProbability()
+	_u.mutation.SetChangeProbability(v)
+	return _u
 }
 
 // SetNillableChangeProbability sets the "change_probability" field if the given value is not nil.
-func (fuo *ForecastUpdateOne) SetNillableChangeProbability(i *int) *ForecastUpdateOne {
-	if i != nil {
-		fuo.SetChangeProbability(*i)
+func (_u *ForecastUpdateOne) SetNillableChangeProbability(v *int) *ForecastUpdateOne {
+	if v != nil {
+		_u.SetChangeProbability(*v)
 	}
-	return fuo
+	return _u
 }
 
-// AddChangeProbability adds i to the "change_probability" field.
-func (fuo *ForecastUpdateOne) AddChangeProbability(i int) *ForecastUpdateOne {
-	fuo.mutation.AddChangeProbability(i)
-	return fuo
+// AddChangeProbability adds value to the "change_probability" field.
+func (_u *ForecastUpdateOne) AddChangeProbability(v int) *ForecastUpdateOne {
+	_u.mutation.AddChangeProbability(v)
+	return _u
 }
 
 // ClearChangeProbability clears the value of the "change_probability" field.
-func (fuo *ForecastUpdateOne) ClearChangeProbability() *ForecastUpdateOne {
-	fuo.mutation.ClearChangeProbability()
-	return fuo
+func (_u *ForecastUpdateOne) ClearChangeProbability() *ForecastUpdateOne {
+	_u.mutation.ClearChangeProbability()
+	return _u
 }
 
 // SetWindDirection sets the "wind_direction" field.
-func (fuo *ForecastUpdateOne) SetWindDirection(i int) *ForecastUpdateOne {
-	fuo.mutation.ResetWindDirection()
-	fuo.mutation.SetWindDirection(i)
-	return fuo
+func (_u *ForecastUpdateOne) SetWindDirection(v int) *ForecastUpdateOne {
+	_u.mutation.ResetWindDirection()
+	_u.mutation.SetWindDirection(v)
+	return _u
 }
 
 // SetNillableWindDirection sets the "wind_direction" field if the given value is not nil.
-func (fuo *ForecastUpdateOne) SetNillableWindDirection(i *int) *ForecastUpdateOne {
-	if i != nil {
-		fuo.SetWindDirection(*i)
+func (_u *ForecastUpdateOne) SetNillableWindDirection(v *int) *ForecastUpdateOne {
+	if v != nil {
+		_u.SetWindDirection(*v)
 	}
-	return fuo
+	return _u
 }
 
-// AddWindDirection adds i to the "wind_direction" field.
-func (fuo *ForecastUpdateOne) AddWindDirection(i int) *ForecastUpdateOne {
-	fuo.mutation.AddWindDirection(i)
-	return fuo
+// AddWindDirection adds value to the "wind_direction" field.
+func (_u *ForecastUpdateOne) AddWindDirection(v int) *ForecastUpdateOne {
+	_u.mutation.AddWindDirection(v)
+	return _u
 }
 
 // ClearWindDirection clears the value of the "wind_direction" field.
-func (fuo *ForecastUpdateOne) ClearWindDirection() *ForecastUpdateOne {
-	fuo.mutation.ClearWindDirection()
-	return fuo
+func (_u *ForecastUpdateOne) ClearWindDirection() *ForecastUpdateOne {
+	_u.mutation.ClearWindDirection()
+	return _u
 }
 
 // SetWindDirectionVariable sets the "wind_direction_variable" field.
-func (fuo *ForecastUpdateOne) SetWindDirectionVariable(b bool) *ForecastUpdateOne {
-	fuo.mutation.SetWindDirectionVariable(b)
-	return fuo
+func (_u *ForecastUpdateOne) SetWindDirectionVariable(v bool) *ForecastUpdateOne {
+	_u.mutation.SetWindDirectionVariable(v)
+	return _u
+}
+
+// SetNillableWindDirectionVariable sets the "wind_direction_variable" field if the given value is not nil.
+func (_u *ForecastUpdateOne) SetNillableWindDirectionVariable(v *bool) *ForecastUpdateOne {
+	if v != nil {
+		_u.SetWindDirectionVariable(*v)
+	}
+	return _u
 }
 
 // SetWindSpeed sets the "wind_speed" field.
-func (fuo *ForecastUpdateOne) SetWindSpeed(i int) *ForecastUpdateOne {
-	fuo.mutation.ResetWindSpeed()
-	fuo.mutation.SetWindSpeed(i)
-	return fuo
+func (_u *ForecastUpdateOne) SetWindSpeed(v int) *ForecastUpdateOne {
+	_u.mutation.ResetWindSpeed()
+	_u.mutation.SetWindSpeed(v)
+	return _u
 }
 
 // SetNillableWindSpeed sets the "wind_speed" field if the given value is not nil.
-func (fuo *ForecastUpdateOne) SetNillableWindSpeed(i *int) *ForecastUpdateOne {
-	if i != nil {
-		fuo.SetWindSpeed(*i)
+func (_u *ForecastUpdateOne) SetNillableWindSpeed(v *int) *ForecastUpdateOne {
+	if v != nil {
+		_u.SetWindSpeed(*v)
 	}
-	return fuo
+	return _u
 }
 
-// AddWindSpeed adds i to the "wind_speed" field.
-func (fuo *ForecastUpdateOne) AddWindSpeed(i int) *ForecastUpdateOne {
-	fuo.mutation.AddWindSpeed(i)
-	return fuo
+// AddWindSpeed adds value to the "wind_speed" field.
+func (_u *ForecastUpdateOne) AddWindSpeed(v int) *ForecastUpdateOne {
+	_u.mutation.AddWindSpeed(v)
+	return _u
 }
 
 // ClearWindSpeed clears the value of the "wind_speed" field.
-func (fuo *ForecastUpdateOne) ClearWindSpeed() *ForecastUpdateOne {
-	fuo.mutation.ClearWindSpeed()
-	return fuo
+func (_u *ForecastUpdateOne) ClearWindSpeed() *ForecastUpdateOne {
+	_u.mutation.ClearWindSpeed()
+	return _u
 }
 
 // SetWindGust sets the "wind_gust" field.
-func (fuo *ForecastUpdateOne) SetWindGust(i int) *ForecastUpdateOne {
-	fuo.mutation.ResetWindGust()
-	fuo.mutation.SetWindGust(i)
-	return fuo
+func (_u *ForecastUpdateOne) SetWindGust(v int) *ForecastUpdateOne {
+	_u.mutation.ResetWindGust()
+	_u.mutation.SetWindGust(v)
+	return _u
 }
 
 // SetNillableWindGust sets the "wind_gust" field if the given value is not nil.
-func (fuo *ForecastUpdateOne) SetNillableWindGust(i *int) *ForecastUpdateOne {
-	if i != nil {
-		fuo.SetWindGust(*i)
+func (_u *ForecastUpdateOne) SetNillableWindGust(v *int) *ForecastUpdateOne {
+	if v != nil {
+		_u.SetWindGust(*v)
 	}
-	return fuo
+	return _u
 }
 
-// AddWindGust adds i to the "wind_gust" field.
-func (fuo *ForecastUpdateOne) AddWindGust(i int) *ForecastUpdateOne {
-	fuo.mutation.AddWindGust(i)
-	return fuo
+// AddWindGust adds value to the "wind_gust" field.
+func (_u *ForecastUpdateOne) AddWindGust(v int) *ForecastUpdateOne {
+	_u.mutation.AddWindGust(v)
+	return _u
 }
 
 // ClearWindGust clears the value of the "wind_gust" field.
-func (fuo *ForecastUpdateOne) ClearWindGust() *ForecastUpdateOne {
-	fuo.mutation.ClearWindGust()
-	return fuo
+func (_u *ForecastUpdateOne) ClearWindGust() *ForecastUpdateOne {
+	_u.mutation.ClearWindGust()
+	return _u
 }
 
 // SetWindShearHeight sets the "wind_shear_height" field.
-func (fuo *ForecastUpdateOne) SetWindShearHeight(i int) *ForecastUpdateOne {
-	fuo.mutation.ResetWindShearHeight()
-	fuo.mutation.SetWindShearHeight(i)
-	return fuo
+func (_u *ForecastUpdateOne) SetWindShearHeight(v int) *ForecastUpdateOne {
+	_u.mutation.ResetWindShearHeight()
+	_u.mutation.SetWindShearHeight(v)
+	return _u
 }
 
 // SetNillableWindShearHeight sets the "wind_shear_height" field if the given value is not nil.
-func (fuo *ForecastUpdateOne) SetNillableWindShearHeight(i *int) *ForecastUpdateOne {
-	if i != nil {
-		fuo.SetWindShearHeight(*i)
+func (_u *ForecastUpdateOne) SetNillableWindShearHeight(v *int) *ForecastUpdateOne {
+	if v != nil {
+		_u.SetWindShearHeight(*v)
 	}
-	return fuo
+	return _u
 }
 
-// AddWindShearHeight adds i to the "wind_shear_height" field.
-func (fuo *ForecastUpdateOne) AddWindShearHeight(i int) *ForecastUpdateOne {
-	fuo.mutation.AddWindShearHeight(i)
-	return fuo
+// AddWindShearHeight adds value to the "wind_shear_height" field.
+func (_u *ForecastUpdateOne) AddWindShearHeight(v int) *ForecastUpdateOne {
+	_u.mutation.AddWindShearHeight(v)
+	return _u
 }
 
 // ClearWindShearHeight clears the value of the "wind_shear_height" field.
-func (fuo *ForecastUpdateOne) ClearWindShearHeight() *ForecastUpdateOne {
-	fuo.mutation.ClearWindShearHeight()
-	return fuo
+func (_u *ForecastUpdateOne) ClearWindShearHeight() *ForecastUpdateOne {
+	_u.mutation.ClearWindShearHeight()
+	return _u
 }
 
 // SetWindShearDirection sets the "wind_shear_direction" field.
-func (fuo *ForecastUpdateOne) SetWindShearDirection(i int) *ForecastUpdateOne {
-	fuo.mutation.ResetWindShearDirection()
-	fuo.mutation.SetWindShearDirection(i)
-	return fuo
+func (_u *ForecastUpdateOne) SetWindShearDirection(v int) *ForecastUpdateOne {
+	_u.mutation.ResetWindShearDirection()
+	_u.mutation.SetWindShearDirection(v)
+	return _u
 }
 
 // SetNillableWindShearDirection sets the "wind_shear_direction" field if the given value is not nil.
-func (fuo *ForecastUpdateOne) SetNillableWindShearDirection(i *int) *ForecastUpdateOne {
-	if i != nil {
-		fuo.SetWindShearDirection(*i)
+func (_u *ForecastUpdateOne) SetNillableWindShearDirection(v *int) *ForecastUpdateOne {
+	if v != nil {
+		_u.SetWindShearDirection(*v)
 	}
-	return fuo
+	return _u
 }
 
-// AddWindShearDirection adds i to the "wind_shear_direction" field.
-func (fuo *ForecastUpdateOne) AddWindShearDirection(i int) *ForecastUpdateOne {
-	fuo.mutation.AddWindShearDirection(i)
-	return fuo
+// AddWindShearDirection adds value to the "wind_shear_direction" field.
+func (_u *ForecastUpdateOne) AddWindShearDirection(v int) *ForecastUpdateOne {
+	_u.mutation.AddWindShearDirection(v)
+	return _u
 }
 
 // ClearWindShearDirection clears the value of the "wind_shear_direction" field.
-func (fuo *ForecastUpdateOne) ClearWindShearDirection() *ForecastUpdateOne {
-	fuo.mutation.ClearWindShearDirection()
-	return fuo
+func (_u *ForecastUpdateOne) ClearWindShearDirection() *ForecastUpdateOne {
+	_u.mutation.ClearWindShearDirection()
+	return _u
 }
 
 // SetWindShearSpeed sets the "wind_shear_speed" field.
-func (fuo *ForecastUpdateOne) SetWindShearSpeed(i int) *ForecastUpdateOne {
-	fuo.mutation.ResetWindShearSpeed()
-	fuo.mutation.SetWindShearSpeed(i)
-	return fuo
+func (_u *ForecastUpdateOne) SetWindShearSpeed(v int) *ForecastUpdateOne {
+	_u.mutation.ResetWindShearSpeed()
+	_u.mutation.SetWindShearSpeed(v)
+	return _u
 }
 
 // SetNillableWindShearSpeed sets the "wind_shear_speed" field if the given value is not nil.
-func (fuo *ForecastUpdateOne) SetNillableWindShearSpeed(i *int) *ForecastUpdateOne {
-	if i != nil {
-		fuo.SetWindShearSpeed(*i)
+func (_u *ForecastUpdateOne) SetNillableWindShearSpeed(v *int) *ForecastUpdateOne {
+	if v != nil {
+		_u.SetWindShearSpeed(*v)
 	}
-	return fuo
+	return _u
 }
 
-// AddWindShearSpeed adds i to the "wind_shear_speed" field.
-func (fuo *ForecastUpdateOne) AddWindShearSpeed(i int) *ForecastUpdateOne {
-	fuo.mutation.AddWindShearSpeed(i)
-	return fuo
+// AddWindShearSpeed adds value to the "wind_shear_speed" field.
+func (_u *ForecastUpdateOne) AddWindShearSpeed(v int) *ForecastUpdateOne {
+	_u.mutation.AddWindShearSpeed(v)
+	return _u
 }
 
 // ClearWindShearSpeed clears the value of the "wind_shear_speed" field.
-func (fuo *ForecastUpdateOne) ClearWindShearSpeed() *ForecastUpdateOne {
-	fuo.mutation.ClearWindShearSpeed()
-	return fuo
+func (_u *ForecastUpdateOne) ClearWindShearSpeed() *ForecastUpdateOne {
+	_u.mutation.ClearWindShearSpeed()
+	return _u
 }
 
 // SetVisibilityHorizontal sets the "visibility_horizontal" field.
-func (fuo *ForecastUpdateOne) SetVisibilityHorizontal(f float64) *ForecastUpdateOne {
-	fuo.mutation.ResetVisibilityHorizontal()
-	fuo.mutation.SetVisibilityHorizontal(f)
-	return fuo
+func (_u *ForecastUpdateOne) SetVisibilityHorizontal(v float64) *ForecastUpdateOne {
+	_u.mutation.ResetVisibilityHorizontal()
+	_u.mutation.SetVisibilityHorizontal(v)
+	return _u
 }
 
 // SetNillableVisibilityHorizontal sets the "visibility_horizontal" field if the given value is not nil.
-func (fuo *ForecastUpdateOne) SetNillableVisibilityHorizontal(f *float64) *ForecastUpdateOne {
-	if f != nil {
-		fuo.SetVisibilityHorizontal(*f)
+func (_u *ForecastUpdateOne) SetNillableVisibilityHorizontal(v *float64) *ForecastUpdateOne {
+	if v != nil {
+		_u.SetVisibilityHorizontal(*v)
 	}
-	return fuo
+	return _u
 }
 
-// AddVisibilityHorizontal adds f to the "visibility_horizontal" field.
-func (fuo *ForecastUpdateOne) AddVisibilityHorizontal(f float64) *ForecastUpdateOne {
-	fuo.mutation.AddVisibilityHorizontal(f)
-	return fuo
+// AddVisibilityHorizontal adds value to the "visibility_horizontal" field.
+func (_u *ForecastUpdateOne) AddVisibilityHorizontal(v float64) *ForecastUpdateOne {
+	_u.mutation.AddVisibilityHorizontal(v)
+	return _u
 }
 
 // ClearVisibilityHorizontal clears the value of the "visibility_horizontal" field.
-func (fuo *ForecastUpdateOne) ClearVisibilityHorizontal() *ForecastUpdateOne {
-	fuo.mutation.ClearVisibilityHorizontal()
-	return fuo
+func (_u *ForecastUpdateOne) ClearVisibilityHorizontal() *ForecastUpdateOne {
+	_u.mutation.ClearVisibilityHorizontal()
+	return _u
 }
 
 // SetVisibilityHorizontalIsMoreThan sets the "visibility_horizontal_is_more_than" field.
-func (fuo *ForecastUpdateOne) SetVisibilityHorizontalIsMoreThan(b bool) *ForecastUpdateOne {
-	fuo.mutation.SetVisibilityHorizontalIsMoreThan(b)
-	return fuo
+func (_u *ForecastUpdateOne) SetVisibilityHorizontalIsMoreThan(v bool) *ForecastUpdateOne {
+	_u.mutation.SetVisibilityHorizontalIsMoreThan(v)
+	return _u
+}
+
+// SetNillableVisibilityHorizontalIsMoreThan sets the "visibility_horizontal_is_more_than" field if the given value is not nil.
+func (_u *ForecastUpdateOne) SetNillableVisibilityHorizontalIsMoreThan(v *bool) *ForecastUpdateOne {
+	if v != nil {
+		_u.SetVisibilityHorizontalIsMoreThan(*v)
+	}
+	return _u
 }
 
 // SetVisibilityVertical sets the "visibility_vertical" field.
-func (fuo *ForecastUpdateOne) SetVisibilityVertical(i int) *ForecastUpdateOne {
-	fuo.mutation.ResetVisibilityVertical()
-	fuo.mutation.SetVisibilityVertical(i)
-	return fuo
+func (_u *ForecastUpdateOne) SetVisibilityVertical(v int) *ForecastUpdateOne {
+	_u.mutation.ResetVisibilityVertical()
+	_u.mutation.SetVisibilityVertical(v)
+	return _u
 }
 
 // SetNillableVisibilityVertical sets the "visibility_vertical" field if the given value is not nil.
-func (fuo *ForecastUpdateOne) SetNillableVisibilityVertical(i *int) *ForecastUpdateOne {
-	if i != nil {
-		fuo.SetVisibilityVertical(*i)
+func (_u *ForecastUpdateOne) SetNillableVisibilityVertical(v *int) *ForecastUpdateOne {
+	if v != nil {
+		_u.SetVisibilityVertical(*v)
 	}
-	return fuo
+	return _u
 }
 
-// AddVisibilityVertical adds i to the "visibility_vertical" field.
-func (fuo *ForecastUpdateOne) AddVisibilityVertical(i int) *ForecastUpdateOne {
-	fuo.mutation.AddVisibilityVertical(i)
-	return fuo
+// AddVisibilityVertical adds value to the "visibility_vertical" field.
+func (_u *ForecastUpdateOne) AddVisibilityVertical(v int) *ForecastUpdateOne {
+	_u.mutation.AddVisibilityVertical(v)
+	return _u
 }
 
 // ClearVisibilityVertical clears the value of the "visibility_vertical" field.
-func (fuo *ForecastUpdateOne) ClearVisibilityVertical() *ForecastUpdateOne {
-	fuo.mutation.ClearVisibilityVertical()
-	return fuo
+func (_u *ForecastUpdateOne) ClearVisibilityVertical() *ForecastUpdateOne {
+	_u.mutation.ClearVisibilityVertical()
+	return _u
 }
 
 // SetAltimeter sets the "altimeter" field.
-func (fuo *ForecastUpdateOne) SetAltimeter(f float64) *ForecastUpdateOne {
-	fuo.mutation.ResetAltimeter()
-	fuo.mutation.SetAltimeter(f)
-	return fuo
+func (_u *ForecastUpdateOne) SetAltimeter(v float64) *ForecastUpdateOne {
+	_u.mutation.ResetAltimeter()
+	_u.mutation.SetAltimeter(v)
+	return _u
 }
 
 // SetNillableAltimeter sets the "altimeter" field if the given value is not nil.
-func (fuo *ForecastUpdateOne) SetNillableAltimeter(f *float64) *ForecastUpdateOne {
-	if f != nil {
-		fuo.SetAltimeter(*f)
+func (_u *ForecastUpdateOne) SetNillableAltimeter(v *float64) *ForecastUpdateOne {
+	if v != nil {
+		_u.SetAltimeter(*v)
 	}
-	return fuo
+	return _u
 }
 
-// AddAltimeter adds f to the "altimeter" field.
-func (fuo *ForecastUpdateOne) AddAltimeter(f float64) *ForecastUpdateOne {
-	fuo.mutation.AddAltimeter(f)
-	return fuo
+// AddAltimeter adds value to the "altimeter" field.
+func (_u *ForecastUpdateOne) AddAltimeter(v float64) *ForecastUpdateOne {
+	_u.mutation.AddAltimeter(v)
+	return _u
 }
 
 // ClearAltimeter clears the value of the "altimeter" field.
-func (fuo *ForecastUpdateOne) ClearAltimeter() *ForecastUpdateOne {
-	fuo.mutation.ClearAltimeter()
-	return fuo
+func (_u *ForecastUpdateOne) ClearAltimeter() *ForecastUpdateOne {
+	_u.mutation.ClearAltimeter()
+	return _u
 }
 
 // SetWeather sets the "weather" field.
-func (fuo *ForecastUpdateOne) SetWeather(s string) *ForecastUpdateOne {
-	fuo.mutation.SetWeather(s)
-	return fuo
+func (_u *ForecastUpdateOne) SetWeather(v string) *ForecastUpdateOne {
+	_u.mutation.SetWeather(v)
+	return _u
 }
 
 // SetNillableWeather sets the "weather" field if the given value is not nil.
-func (fuo *ForecastUpdateOne) SetNillableWeather(s *string) *ForecastUpdateOne {
-	if s != nil {
-		fuo.SetWeather(*s)
+func (_u *ForecastUpdateOne) SetNillableWeather(v *string) *ForecastUpdateOne {
+	if v != nil {
+		_u.SetWeather(*v)
 	}
-	return fuo
+	return _u
 }
 
 // ClearWeather clears the value of the "weather" field.
-func (fuo *ForecastUpdateOne) ClearWeather() *ForecastUpdateOne {
-	fuo.mutation.ClearWeather()
-	return fuo
+func (_u *ForecastUpdateOne) ClearWeather() *ForecastUpdateOne {
+	_u.mutation.ClearWeather()
+	return _u
 }
 
 // SetNotDecoded sets the "not_decoded" field.
-func (fuo *ForecastUpdateOne) SetNotDecoded(s string) *ForecastUpdateOne {
-	fuo.mutation.SetNotDecoded(s)
-	return fuo
+func (_u *ForecastUpdateOne) SetNotDecoded(v string) *ForecastUpdateOne {
+	_u.mutation.SetNotDecoded(v)
+	return _u
 }
 
 // SetNillableNotDecoded sets the "not_decoded" field if the given value is not nil.
-func (fuo *ForecastUpdateOne) SetNillableNotDecoded(s *string) *ForecastUpdateOne {
-	if s != nil {
-		fuo.SetNotDecoded(*s)
+func (_u *ForecastUpdateOne) SetNillableNotDecoded(v *string) *ForecastUpdateOne {
+	if v != nil {
+		_u.SetNotDecoded(*v)
 	}
-	return fuo
+	return _u
 }
 
 // ClearNotDecoded clears the value of the "not_decoded" field.
-func (fuo *ForecastUpdateOne) ClearNotDecoded() *ForecastUpdateOne {
-	fuo.mutation.ClearNotDecoded()
-	return fuo
+func (_u *ForecastUpdateOne) ClearNotDecoded() *ForecastUpdateOne {
+	_u.mutation.ClearNotDecoded()
+	return _u
 }
 
 // AddSkyConditionIDs adds the "sky_conditions" edge to the SkyCondition entity by IDs.
-func (fuo *ForecastUpdateOne) AddSkyConditionIDs(ids ...uuid.UUID) *ForecastUpdateOne {
-	fuo.mutation.AddSkyConditionIDs(ids...)
-	return fuo
+func (_u *ForecastUpdateOne) AddSkyConditionIDs(ids ...uuid.UUID) *ForecastUpdateOne {
+	_u.mutation.AddSkyConditionIDs(ids...)
+	return _u
 }
 
 // AddSkyConditions adds the "sky_conditions" edges to the SkyCondition entity.
-func (fuo *ForecastUpdateOne) AddSkyConditions(s ...*SkyCondition) *ForecastUpdateOne {
-	ids := make([]uuid.UUID, len(s))
-	for i := range s {
-		ids[i] = s[i].ID
+func (_u *ForecastUpdateOne) AddSkyConditions(v ...*SkyCondition) *ForecastUpdateOne {
+	ids := make([]uuid.UUID, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return fuo.AddSkyConditionIDs(ids...)
+	return _u.AddSkyConditionIDs(ids...)
 }
 
 // AddTurbulenceConditionIDs adds the "turbulence_conditions" edge to the TurbulenceCondition entity by IDs.
-func (fuo *ForecastUpdateOne) AddTurbulenceConditionIDs(ids ...uuid.UUID) *ForecastUpdateOne {
-	fuo.mutation.AddTurbulenceConditionIDs(ids...)
-	return fuo
+func (_u *ForecastUpdateOne) AddTurbulenceConditionIDs(ids ...uuid.UUID) *ForecastUpdateOne {
+	_u.mutation.AddTurbulenceConditionIDs(ids...)
+	return _u
 }
 
 // AddTurbulenceConditions adds the "turbulence_conditions" edges to the TurbulenceCondition entity.
-func (fuo *ForecastUpdateOne) AddTurbulenceConditions(t ...*TurbulenceCondition) *ForecastUpdateOne {
-	ids := make([]uuid.UUID, len(t))
-	for i := range t {
-		ids[i] = t[i].ID
+func (_u *ForecastUpdateOne) AddTurbulenceConditions(v ...*TurbulenceCondition) *ForecastUpdateOne {
+	ids := make([]uuid.UUID, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return fuo.AddTurbulenceConditionIDs(ids...)
+	return _u.AddTurbulenceConditionIDs(ids...)
 }
 
 // AddIcingConditionIDs adds the "icing_conditions" edge to the IcingCondition entity by IDs.
-func (fuo *ForecastUpdateOne) AddIcingConditionIDs(ids ...uuid.UUID) *ForecastUpdateOne {
-	fuo.mutation.AddIcingConditionIDs(ids...)
-	return fuo
+func (_u *ForecastUpdateOne) AddIcingConditionIDs(ids ...uuid.UUID) *ForecastUpdateOne {
+	_u.mutation.AddIcingConditionIDs(ids...)
+	return _u
 }
 
 // AddIcingConditions adds the "icing_conditions" edges to the IcingCondition entity.
-func (fuo *ForecastUpdateOne) AddIcingConditions(i ...*IcingCondition) *ForecastUpdateOne {
-	ids := make([]uuid.UUID, len(i))
-	for j := range i {
-		ids[j] = i[j].ID
+func (_u *ForecastUpdateOne) AddIcingConditions(v ...*IcingCondition) *ForecastUpdateOne {
+	ids := make([]uuid.UUID, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return fuo.AddIcingConditionIDs(ids...)
+	return _u.AddIcingConditionIDs(ids...)
 }
 
 // AddTemperatureDatumIDs adds the "temperature_data" edge to the TemperatureData entity by IDs.
-func (fuo *ForecastUpdateOne) AddTemperatureDatumIDs(ids ...uuid.UUID) *ForecastUpdateOne {
-	fuo.mutation.AddTemperatureDatumIDs(ids...)
-	return fuo
+func (_u *ForecastUpdateOne) AddTemperatureDatumIDs(ids ...uuid.UUID) *ForecastUpdateOne {
+	_u.mutation.AddTemperatureDatumIDs(ids...)
+	return _u
 }
 
 // AddTemperatureData adds the "temperature_data" edges to the TemperatureData entity.
-func (fuo *ForecastUpdateOne) AddTemperatureData(t ...*TemperatureData) *ForecastUpdateOne {
-	ids := make([]uuid.UUID, len(t))
-	for i := range t {
-		ids[i] = t[i].ID
+func (_u *ForecastUpdateOne) AddTemperatureData(v ...*TemperatureData) *ForecastUpdateOne {
+	ids := make([]uuid.UUID, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return fuo.AddTemperatureDatumIDs(ids...)
+	return _u.AddTemperatureDatumIDs(ids...)
 }
 
 // Mutation returns the ForecastMutation object of the builder.
-func (fuo *ForecastUpdateOne) Mutation() *ForecastMutation {
-	return fuo.mutation
+func (_u *ForecastUpdateOne) Mutation() *ForecastMutation {
+	return _u.mutation
 }
 
 // ClearSkyConditions clears all "sky_conditions" edges to the SkyCondition entity.
-func (fuo *ForecastUpdateOne) ClearSkyConditions() *ForecastUpdateOne {
-	fuo.mutation.ClearSkyConditions()
-	return fuo
+func (_u *ForecastUpdateOne) ClearSkyConditions() *ForecastUpdateOne {
+	_u.mutation.ClearSkyConditions()
+	return _u
 }
 
 // RemoveSkyConditionIDs removes the "sky_conditions" edge to SkyCondition entities by IDs.
-func (fuo *ForecastUpdateOne) RemoveSkyConditionIDs(ids ...uuid.UUID) *ForecastUpdateOne {
-	fuo.mutation.RemoveSkyConditionIDs(ids...)
-	return fuo
+func (_u *ForecastUpdateOne) RemoveSkyConditionIDs(ids ...uuid.UUID) *ForecastUpdateOne {
+	_u.mutation.RemoveSkyConditionIDs(ids...)
+	return _u
 }
 
 // RemoveSkyConditions removes "sky_conditions" edges to SkyCondition entities.
-func (fuo *ForecastUpdateOne) RemoveSkyConditions(s ...*SkyCondition) *ForecastUpdateOne {
-	ids := make([]uuid.UUID, len(s))
-	for i := range s {
-		ids[i] = s[i].ID
+func (_u *ForecastUpdateOne) RemoveSkyConditions(v ...*SkyCondition) *ForecastUpdateOne {
+	ids := make([]uuid.UUID, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return fuo.RemoveSkyConditionIDs(ids...)
+	return _u.RemoveSkyConditionIDs(ids...)
 }
 
 // ClearTurbulenceConditions clears all "turbulence_conditions" edges to the TurbulenceCondition entity.
-func (fuo *ForecastUpdateOne) ClearTurbulenceConditions() *ForecastUpdateOne {
-	fuo.mutation.ClearTurbulenceConditions()
-	return fuo
+func (_u *ForecastUpdateOne) ClearTurbulenceConditions() *ForecastUpdateOne {
+	_u.mutation.ClearTurbulenceConditions()
+	return _u
 }
 
 // RemoveTurbulenceConditionIDs removes the "turbulence_conditions" edge to TurbulenceCondition entities by IDs.
-func (fuo *ForecastUpdateOne) RemoveTurbulenceConditionIDs(ids ...uuid.UUID) *ForecastUpdateOne {
-	fuo.mutation.RemoveTurbulenceConditionIDs(ids...)
-	return fuo
+func (_u *ForecastUpdateOne) RemoveTurbulenceConditionIDs(ids ...uuid.UUID) *ForecastUpdateOne {
+	_u.mutation.RemoveTurbulenceConditionIDs(ids...)
+	return _u
 }
 
 // RemoveTurbulenceConditions removes "turbulence_conditions" edges to TurbulenceCondition entities.
-func (fuo *ForecastUpdateOne) RemoveTurbulenceConditions(t ...*TurbulenceCondition) *ForecastUpdateOne {
-	ids := make([]uuid.UUID, len(t))
-	for i := range t {
-		ids[i] = t[i].ID
+func (_u *ForecastUpdateOne) RemoveTurbulenceConditions(v ...*TurbulenceCondition) *ForecastUpdateOne {
+	ids := make([]uuid.UUID, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return fuo.RemoveTurbulenceConditionIDs(ids...)
+	return _u.RemoveTurbulenceConditionIDs(ids...)
 }
 
 // ClearIcingConditions clears all "icing_conditions" edges to the IcingCondition entity.
-func (fuo *ForecastUpdateOne) ClearIcingConditions() *ForecastUpdateOne {
-	fuo.mutation.ClearIcingConditions()
-	return fuo
+func (_u *ForecastUpdateOne) ClearIcingConditions() *ForecastUpdateOne {
+	_u.mutation.ClearIcingConditions()
+	return _u
 }
 
 // RemoveIcingConditionIDs removes the "icing_conditions" edge to IcingCondition entities by IDs.
-func (fuo *ForecastUpdateOne) RemoveIcingConditionIDs(ids ...uuid.UUID) *ForecastUpdateOne {
-	fuo.mutation.RemoveIcingConditionIDs(ids...)
-	return fuo
+func (_u *ForecastUpdateOne) RemoveIcingConditionIDs(ids ...uuid.UUID) *ForecastUpdateOne {
+	_u.mutation.RemoveIcingConditionIDs(ids...)
+	return _u
 }
 
 // RemoveIcingConditions removes "icing_conditions" edges to IcingCondition entities.
-func (fuo *ForecastUpdateOne) RemoveIcingConditions(i ...*IcingCondition) *ForecastUpdateOne {
-	ids := make([]uuid.UUID, len(i))
-	for j := range i {
-		ids[j] = i[j].ID
+func (_u *ForecastUpdateOne) RemoveIcingConditions(v ...*IcingCondition) *ForecastUpdateOne {
+	ids := make([]uuid.UUID, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return fuo.RemoveIcingConditionIDs(ids...)
+	return _u.RemoveIcingConditionIDs(ids...)
 }
 
 // ClearTemperatureData clears all "temperature_data" edges to the TemperatureData entity.
-func (fuo *ForecastUpdateOne) ClearTemperatureData() *ForecastUpdateOne {
-	fuo.mutation.ClearTemperatureData()
-	return fuo
+func (_u *ForecastUpdateOne) ClearTemperatureData() *ForecastUpdateOne {
+	_u.mutation.ClearTemperatureData()
+	return _u
 }
 
 // RemoveTemperatureDatumIDs removes the "temperature_data" edge to TemperatureData entities by IDs.
-func (fuo *ForecastUpdateOne) RemoveTemperatureDatumIDs(ids ...uuid.UUID) *ForecastUpdateOne {
-	fuo.mutation.RemoveTemperatureDatumIDs(ids...)
-	return fuo
+func (_u *ForecastUpdateOne) RemoveTemperatureDatumIDs(ids ...uuid.UUID) *ForecastUpdateOne {
+	_u.mutation.RemoveTemperatureDatumIDs(ids...)
+	return _u
 }
 
 // RemoveTemperatureData removes "temperature_data" edges to TemperatureData entities.
-func (fuo *ForecastUpdateOne) RemoveTemperatureData(t ...*TemperatureData) *ForecastUpdateOne {
-	ids := make([]uuid.UUID, len(t))
-	for i := range t {
-		ids[i] = t[i].ID
+func (_u *ForecastUpdateOne) RemoveTemperatureData(v ...*TemperatureData) *ForecastUpdateOne {
+	ids := make([]uuid.UUID, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return fuo.RemoveTemperatureDatumIDs(ids...)
+	return _u.RemoveTemperatureDatumIDs(ids...)
 }
 
 // Where appends a list predicates to the ForecastUpdate builder.
-func (fuo *ForecastUpdateOne) Where(ps ...predicate.Forecast) *ForecastUpdateOne {
-	fuo.mutation.Where(ps...)
-	return fuo
+func (_u *ForecastUpdateOne) Where(ps ...predicate.Forecast) *ForecastUpdateOne {
+	_u.mutation.Where(ps...)
+	return _u
 }
 
 // Select allows selecting one or more fields (columns) of the returned entity.
 // The default is selecting all fields defined in the entity schema.
-func (fuo *ForecastUpdateOne) Select(field string, fields ...string) *ForecastUpdateOne {
-	fuo.fields = append([]string{field}, fields...)
-	return fuo
+func (_u *ForecastUpdateOne) Select(field string, fields ...string) *ForecastUpdateOne {
+	_u.fields = append([]string{field}, fields...)
+	return _u
 }
 
 // Save executes the query and returns the updated Forecast entity.
-func (fuo *ForecastUpdateOne) Save(ctx context.Context) (*Forecast, error) {
-	return withHooks(ctx, fuo.sqlSave, fuo.mutation, fuo.hooks)
+func (_u *ForecastUpdateOne) Save(ctx context.Context) (*Forecast, error) {
+	return withHooks(ctx, _u.sqlSave, _u.mutation, _u.hooks)
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (fuo *ForecastUpdateOne) SaveX(ctx context.Context) *Forecast {
-	node, err := fuo.Save(ctx)
+func (_u *ForecastUpdateOne) SaveX(ctx context.Context) *Forecast {
+	node, err := _u.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -1491,21 +1555,21 @@ func (fuo *ForecastUpdateOne) SaveX(ctx context.Context) *Forecast {
 }
 
 // Exec executes the query on the entity.
-func (fuo *ForecastUpdateOne) Exec(ctx context.Context) error {
-	_, err := fuo.Save(ctx)
+func (_u *ForecastUpdateOne) Exec(ctx context.Context) error {
+	_, err := _u.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (fuo *ForecastUpdateOne) ExecX(ctx context.Context) {
-	if err := fuo.Exec(ctx); err != nil {
+func (_u *ForecastUpdateOne) ExecX(ctx context.Context) {
+	if err := _u.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // check runs all checks and user-defined validators on the builder.
-func (fuo *ForecastUpdateOne) check() error {
-	if v, ok := fuo.mutation.ChangeIndicator(); ok {
+func (_u *ForecastUpdateOne) check() error {
+	if v, ok := _u.mutation.ChangeIndicator(); ok {
 		if err := forecast.ChangeIndicatorValidator(v); err != nil {
 			return &ValidationError{Name: "change_indicator", err: fmt.Errorf(`ent: validator failed for field "Forecast.change_indicator": %w`, err)}
 		}
@@ -1514,22 +1578,22 @@ func (fuo *ForecastUpdateOne) check() error {
 }
 
 // Modify adds a statement modifier for attaching custom logic to the UPDATE statement.
-func (fuo *ForecastUpdateOne) Modify(modifiers ...func(u *sql.UpdateBuilder)) *ForecastUpdateOne {
-	fuo.modifiers = append(fuo.modifiers, modifiers...)
-	return fuo
+func (_u *ForecastUpdateOne) Modify(modifiers ...func(u *sql.UpdateBuilder)) *ForecastUpdateOne {
+	_u.modifiers = append(_u.modifiers, modifiers...)
+	return _u
 }
 
-func (fuo *ForecastUpdateOne) sqlSave(ctx context.Context) (_node *Forecast, err error) {
-	if err := fuo.check(); err != nil {
+func (_u *ForecastUpdateOne) sqlSave(ctx context.Context) (_node *Forecast, err error) {
+	if err := _u.check(); err != nil {
 		return _node, err
 	}
 	_spec := sqlgraph.NewUpdateSpec(forecast.Table, forecast.Columns, sqlgraph.NewFieldSpec(forecast.FieldID, field.TypeUUID))
-	id, ok := fuo.mutation.ID()
+	id, ok := _u.mutation.ID()
 	if !ok {
 		return nil, &ValidationError{Name: "id", err: errors.New(`ent: missing "Forecast.id" for update`)}
 	}
 	_spec.Node.ID.Value = id
-	if fields := fuo.fields; len(fields) > 0 {
+	if fields := _u.fields; len(fields) > 0 {
 		_spec.Node.Columns = make([]string, 0, len(fields))
 		_spec.Node.Columns = append(_spec.Node.Columns, forecast.FieldID)
 		for _, f := range fields {
@@ -1541,140 +1605,140 @@ func (fuo *ForecastUpdateOne) sqlSave(ctx context.Context) (_node *Forecast, err
 			}
 		}
 	}
-	if ps := fuo.mutation.predicates; len(ps) > 0 {
+	if ps := _u.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if value, ok := fuo.mutation.FromTime(); ok {
+	if value, ok := _u.mutation.FromTime(); ok {
 		_spec.SetField(forecast.FieldFromTime, field.TypeTime, value)
 	}
-	if value, ok := fuo.mutation.ToTime(); ok {
+	if value, ok := _u.mutation.ToTime(); ok {
 		_spec.SetField(forecast.FieldToTime, field.TypeTime, value)
 	}
-	if value, ok := fuo.mutation.ChangeIndicator(); ok {
+	if value, ok := _u.mutation.ChangeIndicator(); ok {
 		_spec.SetField(forecast.FieldChangeIndicator, field.TypeEnum, value)
 	}
-	if fuo.mutation.ChangeIndicatorCleared() {
+	if _u.mutation.ChangeIndicatorCleared() {
 		_spec.ClearField(forecast.FieldChangeIndicator, field.TypeEnum)
 	}
-	if value, ok := fuo.mutation.ChangeTime(); ok {
+	if value, ok := _u.mutation.ChangeTime(); ok {
 		_spec.SetField(forecast.FieldChangeTime, field.TypeTime, value)
 	}
-	if fuo.mutation.ChangeTimeCleared() {
+	if _u.mutation.ChangeTimeCleared() {
 		_spec.ClearField(forecast.FieldChangeTime, field.TypeTime)
 	}
-	if value, ok := fuo.mutation.ChangeProbability(); ok {
+	if value, ok := _u.mutation.ChangeProbability(); ok {
 		_spec.SetField(forecast.FieldChangeProbability, field.TypeInt, value)
 	}
-	if value, ok := fuo.mutation.AddedChangeProbability(); ok {
+	if value, ok := _u.mutation.AddedChangeProbability(); ok {
 		_spec.AddField(forecast.FieldChangeProbability, field.TypeInt, value)
 	}
-	if fuo.mutation.ChangeProbabilityCleared() {
+	if _u.mutation.ChangeProbabilityCleared() {
 		_spec.ClearField(forecast.FieldChangeProbability, field.TypeInt)
 	}
-	if value, ok := fuo.mutation.WindDirection(); ok {
+	if value, ok := _u.mutation.WindDirection(); ok {
 		_spec.SetField(forecast.FieldWindDirection, field.TypeInt, value)
 	}
-	if value, ok := fuo.mutation.AddedWindDirection(); ok {
+	if value, ok := _u.mutation.AddedWindDirection(); ok {
 		_spec.AddField(forecast.FieldWindDirection, field.TypeInt, value)
 	}
-	if fuo.mutation.WindDirectionCleared() {
+	if _u.mutation.WindDirectionCleared() {
 		_spec.ClearField(forecast.FieldWindDirection, field.TypeInt)
 	}
-	if value, ok := fuo.mutation.WindDirectionVariable(); ok {
+	if value, ok := _u.mutation.WindDirectionVariable(); ok {
 		_spec.SetField(forecast.FieldWindDirectionVariable, field.TypeBool, value)
 	}
-	if value, ok := fuo.mutation.WindSpeed(); ok {
+	if value, ok := _u.mutation.WindSpeed(); ok {
 		_spec.SetField(forecast.FieldWindSpeed, field.TypeInt, value)
 	}
-	if value, ok := fuo.mutation.AddedWindSpeed(); ok {
+	if value, ok := _u.mutation.AddedWindSpeed(); ok {
 		_spec.AddField(forecast.FieldWindSpeed, field.TypeInt, value)
 	}
-	if fuo.mutation.WindSpeedCleared() {
+	if _u.mutation.WindSpeedCleared() {
 		_spec.ClearField(forecast.FieldWindSpeed, field.TypeInt)
 	}
-	if value, ok := fuo.mutation.WindGust(); ok {
+	if value, ok := _u.mutation.WindGust(); ok {
 		_spec.SetField(forecast.FieldWindGust, field.TypeInt, value)
 	}
-	if value, ok := fuo.mutation.AddedWindGust(); ok {
+	if value, ok := _u.mutation.AddedWindGust(); ok {
 		_spec.AddField(forecast.FieldWindGust, field.TypeInt, value)
 	}
-	if fuo.mutation.WindGustCleared() {
+	if _u.mutation.WindGustCleared() {
 		_spec.ClearField(forecast.FieldWindGust, field.TypeInt)
 	}
-	if value, ok := fuo.mutation.WindShearHeight(); ok {
+	if value, ok := _u.mutation.WindShearHeight(); ok {
 		_spec.SetField(forecast.FieldWindShearHeight, field.TypeInt, value)
 	}
-	if value, ok := fuo.mutation.AddedWindShearHeight(); ok {
+	if value, ok := _u.mutation.AddedWindShearHeight(); ok {
 		_spec.AddField(forecast.FieldWindShearHeight, field.TypeInt, value)
 	}
-	if fuo.mutation.WindShearHeightCleared() {
+	if _u.mutation.WindShearHeightCleared() {
 		_spec.ClearField(forecast.FieldWindShearHeight, field.TypeInt)
 	}
-	if value, ok := fuo.mutation.WindShearDirection(); ok {
+	if value, ok := _u.mutation.WindShearDirection(); ok {
 		_spec.SetField(forecast.FieldWindShearDirection, field.TypeInt, value)
 	}
-	if value, ok := fuo.mutation.AddedWindShearDirection(); ok {
+	if value, ok := _u.mutation.AddedWindShearDirection(); ok {
 		_spec.AddField(forecast.FieldWindShearDirection, field.TypeInt, value)
 	}
-	if fuo.mutation.WindShearDirectionCleared() {
+	if _u.mutation.WindShearDirectionCleared() {
 		_spec.ClearField(forecast.FieldWindShearDirection, field.TypeInt)
 	}
-	if value, ok := fuo.mutation.WindShearSpeed(); ok {
+	if value, ok := _u.mutation.WindShearSpeed(); ok {
 		_spec.SetField(forecast.FieldWindShearSpeed, field.TypeInt, value)
 	}
-	if value, ok := fuo.mutation.AddedWindShearSpeed(); ok {
+	if value, ok := _u.mutation.AddedWindShearSpeed(); ok {
 		_spec.AddField(forecast.FieldWindShearSpeed, field.TypeInt, value)
 	}
-	if fuo.mutation.WindShearSpeedCleared() {
+	if _u.mutation.WindShearSpeedCleared() {
 		_spec.ClearField(forecast.FieldWindShearSpeed, field.TypeInt)
 	}
-	if value, ok := fuo.mutation.VisibilityHorizontal(); ok {
+	if value, ok := _u.mutation.VisibilityHorizontal(); ok {
 		_spec.SetField(forecast.FieldVisibilityHorizontal, field.TypeFloat64, value)
 	}
-	if value, ok := fuo.mutation.AddedVisibilityHorizontal(); ok {
+	if value, ok := _u.mutation.AddedVisibilityHorizontal(); ok {
 		_spec.AddField(forecast.FieldVisibilityHorizontal, field.TypeFloat64, value)
 	}
-	if fuo.mutation.VisibilityHorizontalCleared() {
+	if _u.mutation.VisibilityHorizontalCleared() {
 		_spec.ClearField(forecast.FieldVisibilityHorizontal, field.TypeFloat64)
 	}
-	if value, ok := fuo.mutation.VisibilityHorizontalIsMoreThan(); ok {
+	if value, ok := _u.mutation.VisibilityHorizontalIsMoreThan(); ok {
 		_spec.SetField(forecast.FieldVisibilityHorizontalIsMoreThan, field.TypeBool, value)
 	}
-	if value, ok := fuo.mutation.VisibilityVertical(); ok {
+	if value, ok := _u.mutation.VisibilityVertical(); ok {
 		_spec.SetField(forecast.FieldVisibilityVertical, field.TypeInt, value)
 	}
-	if value, ok := fuo.mutation.AddedVisibilityVertical(); ok {
+	if value, ok := _u.mutation.AddedVisibilityVertical(); ok {
 		_spec.AddField(forecast.FieldVisibilityVertical, field.TypeInt, value)
 	}
-	if fuo.mutation.VisibilityVerticalCleared() {
+	if _u.mutation.VisibilityVerticalCleared() {
 		_spec.ClearField(forecast.FieldVisibilityVertical, field.TypeInt)
 	}
-	if value, ok := fuo.mutation.Altimeter(); ok {
+	if value, ok := _u.mutation.Altimeter(); ok {
 		_spec.SetField(forecast.FieldAltimeter, field.TypeFloat64, value)
 	}
-	if value, ok := fuo.mutation.AddedAltimeter(); ok {
+	if value, ok := _u.mutation.AddedAltimeter(); ok {
 		_spec.AddField(forecast.FieldAltimeter, field.TypeFloat64, value)
 	}
-	if fuo.mutation.AltimeterCleared() {
+	if _u.mutation.AltimeterCleared() {
 		_spec.ClearField(forecast.FieldAltimeter, field.TypeFloat64)
 	}
-	if value, ok := fuo.mutation.Weather(); ok {
+	if value, ok := _u.mutation.Weather(); ok {
 		_spec.SetField(forecast.FieldWeather, field.TypeString, value)
 	}
-	if fuo.mutation.WeatherCleared() {
+	if _u.mutation.WeatherCleared() {
 		_spec.ClearField(forecast.FieldWeather, field.TypeString)
 	}
-	if value, ok := fuo.mutation.NotDecoded(); ok {
+	if value, ok := _u.mutation.NotDecoded(); ok {
 		_spec.SetField(forecast.FieldNotDecoded, field.TypeString, value)
 	}
-	if fuo.mutation.NotDecodedCleared() {
+	if _u.mutation.NotDecodedCleared() {
 		_spec.ClearField(forecast.FieldNotDecoded, field.TypeString)
 	}
-	if fuo.mutation.SkyConditionsCleared() {
+	if _u.mutation.SkyConditionsCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -1687,23 +1751,7 @@ func (fuo *ForecastUpdateOne) sqlSave(ctx context.Context) (_node *Forecast, err
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := fuo.mutation.RemovedSkyConditionsIDs(); len(nodes) > 0 && !fuo.mutation.SkyConditionsCleared() {
-		edge := &sqlgraph.EdgeSpec{
-			Rel:     sqlgraph.O2M,
-			Inverse: false,
-			Table:   forecast.SkyConditionsTable,
-			Columns: []string{forecast.SkyConditionsColumn},
-			Bidi:    false,
-			Target: &sqlgraph.EdgeTarget{
-				IDSpec: sqlgraph.NewFieldSpec(skycondition.FieldID, field.TypeUUID),
-			},
-		}
-		for _, k := range nodes {
-			edge.Target.Nodes = append(edge.Target.Nodes, k)
-		}
-		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
-	}
-	if nodes := fuo.mutation.SkyConditionsIDs(); len(nodes) > 0 {
+	if nodes := _u.mutation.RemovedSkyConditionsIDs(); len(nodes) > 0 && !_u.mutation.SkyConditionsCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -1717,9 +1765,25 @@ func (fuo *ForecastUpdateOne) sqlSave(ctx context.Context) (_node *Forecast, err
 		for _, k := range nodes {
 			edge.Target.Nodes = append(edge.Target.Nodes, k)
 		}
+		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
+	}
+	if nodes := _u.mutation.SkyConditionsIDs(); len(nodes) > 0 {
+		edge := &sqlgraph.EdgeSpec{
+			Rel:     sqlgraph.O2M,
+			Inverse: false,
+			Table:   forecast.SkyConditionsTable,
+			Columns: []string{forecast.SkyConditionsColumn},
+			Bidi:    false,
+			Target: &sqlgraph.EdgeTarget{
+				IDSpec: sqlgraph.NewFieldSpec(skycondition.FieldID, field.TypeUUID),
+			},
+		}
+		for _, k := range nodes {
+			edge.Target.Nodes = append(edge.Target.Nodes, k)
+		}
 		_spec.Edges.Add = append(_spec.Edges.Add, edge)
 	}
-	if fuo.mutation.TurbulenceConditionsCleared() {
+	if _u.mutation.TurbulenceConditionsCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -1732,7 +1796,7 @@ func (fuo *ForecastUpdateOne) sqlSave(ctx context.Context) (_node *Forecast, err
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := fuo.mutation.RemovedTurbulenceConditionsIDs(); len(nodes) > 0 && !fuo.mutation.TurbulenceConditionsCleared() {
+	if nodes := _u.mutation.RemovedTurbulenceConditionsIDs(); len(nodes) > 0 && !_u.mutation.TurbulenceConditionsCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -1748,7 +1812,7 @@ func (fuo *ForecastUpdateOne) sqlSave(ctx context.Context) (_node *Forecast, err
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := fuo.mutation.TurbulenceConditionsIDs(); len(nodes) > 0 {
+	if nodes := _u.mutation.TurbulenceConditionsIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -1764,7 +1828,7 @@ func (fuo *ForecastUpdateOne) sqlSave(ctx context.Context) (_node *Forecast, err
 		}
 		_spec.Edges.Add = append(_spec.Edges.Add, edge)
 	}
-	if fuo.mutation.IcingConditionsCleared() {
+	if _u.mutation.IcingConditionsCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -1777,7 +1841,7 @@ func (fuo *ForecastUpdateOne) sqlSave(ctx context.Context) (_node *Forecast, err
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := fuo.mutation.RemovedIcingConditionsIDs(); len(nodes) > 0 && !fuo.mutation.IcingConditionsCleared() {
+	if nodes := _u.mutation.RemovedIcingConditionsIDs(); len(nodes) > 0 && !_u.mutation.IcingConditionsCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -1793,7 +1857,7 @@ func (fuo *ForecastUpdateOne) sqlSave(ctx context.Context) (_node *Forecast, err
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := fuo.mutation.IcingConditionsIDs(); len(nodes) > 0 {
+	if nodes := _u.mutation.IcingConditionsIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -1809,7 +1873,7 @@ func (fuo *ForecastUpdateOne) sqlSave(ctx context.Context) (_node *Forecast, err
 		}
 		_spec.Edges.Add = append(_spec.Edges.Add, edge)
 	}
-	if fuo.mutation.TemperatureDataCleared() {
+	if _u.mutation.TemperatureDataCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -1822,7 +1886,7 @@ func (fuo *ForecastUpdateOne) sqlSave(ctx context.Context) (_node *Forecast, err
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := fuo.mutation.RemovedTemperatureDataIDs(); len(nodes) > 0 && !fuo.mutation.TemperatureDataCleared() {
+	if nodes := _u.mutation.RemovedTemperatureDataIDs(); len(nodes) > 0 && !_u.mutation.TemperatureDataCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -1838,7 +1902,7 @@ func (fuo *ForecastUpdateOne) sqlSave(ctx context.Context) (_node *Forecast, err
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := fuo.mutation.TemperatureDataIDs(); len(nodes) > 0 {
+	if nodes := _u.mutation.TemperatureDataIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -1854,11 +1918,11 @@ func (fuo *ForecastUpdateOne) sqlSave(ctx context.Context) (_node *Forecast, err
 		}
 		_spec.Edges.Add = append(_spec.Edges.Add, edge)
 	}
-	_spec.AddModifiers(fuo.modifiers...)
-	_node = &Forecast{config: fuo.config}
+	_spec.AddModifiers(_u.modifiers...)
+	_node = &Forecast{config: _u.config}
 	_spec.Assign = _node.assignValues
 	_spec.ScanValues = _node.scanValues
-	if err = sqlgraph.UpdateNode(ctx, fuo.driver, _spec); err != nil {
+	if err = sqlgraph.UpdateNode(ctx, _u.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
 			err = &NotFoundError{forecast.Label}
 		} else if sqlgraph.IsConstraintError(err) {
@@ -1866,6 +1930,6 @@ func (fuo *ForecastUpdateOne) sqlSave(ctx context.Context) (_node *Forecast, err
 		}
 		return nil, err
 	}
-	fuo.mutation.done = true
+	_u.mutation.done = true
 	return _node, nil
 }

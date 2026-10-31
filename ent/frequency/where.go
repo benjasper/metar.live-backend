@@ -441,32 +441,15 @@ func HasAirportWith(preds ...predicate.Airport) predicate.Frequency {
 
 // And groups predicates with the AND operator between them.
 func And(predicates ...predicate.Frequency) predicate.Frequency {
-	return predicate.Frequency(func(s *sql.Selector) {
-		s1 := s.Clone().SetP(nil)
-		for _, p := range predicates {
-			p(s1)
-		}
-		s.Where(s1.P())
-	})
+	return predicate.Frequency(sql.AndPredicates(predicates...))
 }
 
 // Or groups predicates with the OR operator between them.
 func Or(predicates ...predicate.Frequency) predicate.Frequency {
-	return predicate.Frequency(func(s *sql.Selector) {
-		s1 := s.Clone().SetP(nil)
-		for i, p := range predicates {
-			if i > 0 {
-				s1.Or()
-			}
-			p(s1)
-		}
-		s.Where(s1.P())
-	})
+	return predicate.Frequency(sql.OrPredicates(predicates...))
 }
 
 // Not applies the not operator on the given predicate.
 func Not(p predicate.Frequency) predicate.Frequency {
-	return predicate.Frequency(func(s *sql.Selector) {
-		p(s.Not())
-	})
+	return predicate.Frequency(sql.NotPredicates(p))
 }

@@ -26,118 +26,118 @@ type RegionCreate struct {
 }
 
 // SetImportID sets the "import_id" field.
-func (rc *RegionCreate) SetImportID(i int) *RegionCreate {
-	rc.mutation.SetImportID(i)
-	return rc
+func (_c *RegionCreate) SetImportID(v int) *RegionCreate {
+	_c.mutation.SetImportID(v)
+	return _c
 }
 
 // SetHash sets the "hash" field.
-func (rc *RegionCreate) SetHash(s string) *RegionCreate {
-	rc.mutation.SetHash(s)
-	return rc
+func (_c *RegionCreate) SetHash(v string) *RegionCreate {
+	_c.mutation.SetHash(v)
+	return _c
 }
 
 // SetImportFlag sets the "import_flag" field.
-func (rc *RegionCreate) SetImportFlag(b bool) *RegionCreate {
-	rc.mutation.SetImportFlag(b)
-	return rc
+func (_c *RegionCreate) SetImportFlag(v bool) *RegionCreate {
+	_c.mutation.SetImportFlag(v)
+	return _c
 }
 
 // SetNillableImportFlag sets the "import_flag" field if the given value is not nil.
-func (rc *RegionCreate) SetNillableImportFlag(b *bool) *RegionCreate {
-	if b != nil {
-		rc.SetImportFlag(*b)
+func (_c *RegionCreate) SetNillableImportFlag(v *bool) *RegionCreate {
+	if v != nil {
+		_c.SetImportFlag(*v)
 	}
-	return rc
+	return _c
 }
 
 // SetLastUpdated sets the "last_updated" field.
-func (rc *RegionCreate) SetLastUpdated(t time.Time) *RegionCreate {
-	rc.mutation.SetLastUpdated(t)
-	return rc
+func (_c *RegionCreate) SetLastUpdated(v time.Time) *RegionCreate {
+	_c.mutation.SetLastUpdated(v)
+	return _c
 }
 
 // SetNillableLastUpdated sets the "last_updated" field if the given value is not nil.
-func (rc *RegionCreate) SetNillableLastUpdated(t *time.Time) *RegionCreate {
-	if t != nil {
-		rc.SetLastUpdated(*t)
+func (_c *RegionCreate) SetNillableLastUpdated(v *time.Time) *RegionCreate {
+	if v != nil {
+		_c.SetLastUpdated(*v)
 	}
-	return rc
+	return _c
 }
 
 // SetCode sets the "code" field.
-func (rc *RegionCreate) SetCode(s string) *RegionCreate {
-	rc.mutation.SetCode(s)
-	return rc
+func (_c *RegionCreate) SetCode(v string) *RegionCreate {
+	_c.mutation.SetCode(v)
+	return _c
 }
 
 // SetLocalCode sets the "local_code" field.
-func (rc *RegionCreate) SetLocalCode(s string) *RegionCreate {
-	rc.mutation.SetLocalCode(s)
-	return rc
+func (_c *RegionCreate) SetLocalCode(v string) *RegionCreate {
+	_c.mutation.SetLocalCode(v)
+	return _c
 }
 
 // SetName sets the "name" field.
-func (rc *RegionCreate) SetName(s string) *RegionCreate {
-	rc.mutation.SetName(s)
-	return rc
+func (_c *RegionCreate) SetName(v string) *RegionCreate {
+	_c.mutation.SetName(v)
+	return _c
 }
 
 // SetWikipediaLink sets the "wikipedia_link" field.
-func (rc *RegionCreate) SetWikipediaLink(s string) *RegionCreate {
-	rc.mutation.SetWikipediaLink(s)
-	return rc
+func (_c *RegionCreate) SetWikipediaLink(v string) *RegionCreate {
+	_c.mutation.SetWikipediaLink(v)
+	return _c
 }
 
 // SetKeywords sets the "keywords" field.
-func (rc *RegionCreate) SetKeywords(s []string) *RegionCreate {
-	rc.mutation.SetKeywords(s)
-	return rc
+func (_c *RegionCreate) SetKeywords(v []string) *RegionCreate {
+	_c.mutation.SetKeywords(v)
+	return _c
 }
 
 // SetID sets the "id" field.
-func (rc *RegionCreate) SetID(u uuid.UUID) *RegionCreate {
-	rc.mutation.SetID(u)
-	return rc
+func (_c *RegionCreate) SetID(v uuid.UUID) *RegionCreate {
+	_c.mutation.SetID(v)
+	return _c
 }
 
 // SetNillableID sets the "id" field if the given value is not nil.
-func (rc *RegionCreate) SetNillableID(u *uuid.UUID) *RegionCreate {
-	if u != nil {
-		rc.SetID(*u)
+func (_c *RegionCreate) SetNillableID(v *uuid.UUID) *RegionCreate {
+	if v != nil {
+		_c.SetID(*v)
 	}
-	return rc
+	return _c
 }
 
 // AddAirportIDs adds the "airports" edge to the Airport entity by IDs.
-func (rc *RegionCreate) AddAirportIDs(ids ...uuid.UUID) *RegionCreate {
-	rc.mutation.AddAirportIDs(ids...)
-	return rc
+func (_c *RegionCreate) AddAirportIDs(ids ...uuid.UUID) *RegionCreate {
+	_c.mutation.AddAirportIDs(ids...)
+	return _c
 }
 
 // AddAirports adds the "airports" edges to the Airport entity.
-func (rc *RegionCreate) AddAirports(a ...*Airport) *RegionCreate {
-	ids := make([]uuid.UUID, len(a))
-	for i := range a {
-		ids[i] = a[i].ID
+func (_c *RegionCreate) AddAirports(v ...*Airport) *RegionCreate {
+	ids := make([]uuid.UUID, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return rc.AddAirportIDs(ids...)
+	return _c.AddAirportIDs(ids...)
 }
 
 // Mutation returns the RegionMutation object of the builder.
-func (rc *RegionCreate) Mutation() *RegionMutation {
-	return rc.mutation
+func (_c *RegionCreate) Mutation() *RegionMutation {
+	return _c.mutation
 }
 
 // Save creates the Region in the database.
-func (rc *RegionCreate) Save(ctx context.Context) (*Region, error) {
-	rc.defaults()
-	return withHooks(ctx, rc.sqlSave, rc.mutation, rc.hooks)
+func (_c *RegionCreate) Save(ctx context.Context) (*Region, error) {
+	_c.defaults()
+	return withHooks(ctx, _c.sqlSave, _c.mutation, _c.hooks)
 }
 
 // SaveX calls Save and panics if Save returns an error.
-func (rc *RegionCreate) SaveX(ctx context.Context) *Region {
-	v, err := rc.Save(ctx)
+func (_c *RegionCreate) SaveX(ctx context.Context) *Region {
+	v, err := _c.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -145,72 +145,72 @@ func (rc *RegionCreate) SaveX(ctx context.Context) *Region {
 }
 
 // Exec executes the query.
-func (rc *RegionCreate) Exec(ctx context.Context) error {
-	_, err := rc.Save(ctx)
+func (_c *RegionCreate) Exec(ctx context.Context) error {
+	_, err := _c.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (rc *RegionCreate) ExecX(ctx context.Context) {
-	if err := rc.Exec(ctx); err != nil {
+func (_c *RegionCreate) ExecX(ctx context.Context) {
+	if err := _c.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // defaults sets the default values of the builder before save.
-func (rc *RegionCreate) defaults() {
-	if _, ok := rc.mutation.ImportFlag(); !ok {
+func (_c *RegionCreate) defaults() {
+	if _, ok := _c.mutation.ImportFlag(); !ok {
 		v := region.DefaultImportFlag
-		rc.mutation.SetImportFlag(v)
+		_c.mutation.SetImportFlag(v)
 	}
-	if _, ok := rc.mutation.LastUpdated(); !ok {
+	if _, ok := _c.mutation.LastUpdated(); !ok {
 		v := region.DefaultLastUpdated()
-		rc.mutation.SetLastUpdated(v)
+		_c.mutation.SetLastUpdated(v)
 	}
-	if _, ok := rc.mutation.ID(); !ok {
+	if _, ok := _c.mutation.ID(); !ok {
 		v := region.DefaultID()
-		rc.mutation.SetID(v)
+		_c.mutation.SetID(v)
 	}
 }
 
 // check runs all checks and user-defined validators on the builder.
-func (rc *RegionCreate) check() error {
-	if _, ok := rc.mutation.ImportID(); !ok {
+func (_c *RegionCreate) check() error {
+	if _, ok := _c.mutation.ImportID(); !ok {
 		return &ValidationError{Name: "import_id", err: errors.New(`ent: missing required field "Region.import_id"`)}
 	}
-	if _, ok := rc.mutation.Hash(); !ok {
+	if _, ok := _c.mutation.Hash(); !ok {
 		return &ValidationError{Name: "hash", err: errors.New(`ent: missing required field "Region.hash"`)}
 	}
-	if _, ok := rc.mutation.ImportFlag(); !ok {
+	if _, ok := _c.mutation.ImportFlag(); !ok {
 		return &ValidationError{Name: "import_flag", err: errors.New(`ent: missing required field "Region.import_flag"`)}
 	}
-	if _, ok := rc.mutation.LastUpdated(); !ok {
+	if _, ok := _c.mutation.LastUpdated(); !ok {
 		return &ValidationError{Name: "last_updated", err: errors.New(`ent: missing required field "Region.last_updated"`)}
 	}
-	if _, ok := rc.mutation.Code(); !ok {
+	if _, ok := _c.mutation.Code(); !ok {
 		return &ValidationError{Name: "code", err: errors.New(`ent: missing required field "Region.code"`)}
 	}
-	if _, ok := rc.mutation.LocalCode(); !ok {
+	if _, ok := _c.mutation.LocalCode(); !ok {
 		return &ValidationError{Name: "local_code", err: errors.New(`ent: missing required field "Region.local_code"`)}
 	}
-	if _, ok := rc.mutation.Name(); !ok {
+	if _, ok := _c.mutation.Name(); !ok {
 		return &ValidationError{Name: "name", err: errors.New(`ent: missing required field "Region.name"`)}
 	}
-	if _, ok := rc.mutation.WikipediaLink(); !ok {
+	if _, ok := _c.mutation.WikipediaLink(); !ok {
 		return &ValidationError{Name: "wikipedia_link", err: errors.New(`ent: missing required field "Region.wikipedia_link"`)}
 	}
-	if _, ok := rc.mutation.Keywords(); !ok {
+	if _, ok := _c.mutation.Keywords(); !ok {
 		return &ValidationError{Name: "keywords", err: errors.New(`ent: missing required field "Region.keywords"`)}
 	}
 	return nil
 }
 
-func (rc *RegionCreate) sqlSave(ctx context.Context) (*Region, error) {
-	if err := rc.check(); err != nil {
+func (_c *RegionCreate) sqlSave(ctx context.Context) (*Region, error) {
+	if err := _c.check(); err != nil {
 		return nil, err
 	}
-	_node, _spec := rc.createSpec()
-	if err := sqlgraph.CreateNode(ctx, rc.driver, _spec); err != nil {
+	_node, _spec := _c.createSpec()
+	if err := sqlgraph.CreateNode(ctx, _c.driver, _spec); err != nil {
 		if sqlgraph.IsConstraintError(err) {
 			err = &ConstraintError{msg: err.Error(), wrap: err}
 		}
@@ -223,58 +223,58 @@ func (rc *RegionCreate) sqlSave(ctx context.Context) (*Region, error) {
 			return nil, err
 		}
 	}
-	rc.mutation.id = &_node.ID
-	rc.mutation.done = true
+	_c.mutation.id = &_node.ID
+	_c.mutation.done = true
 	return _node, nil
 }
 
-func (rc *RegionCreate) createSpec() (*Region, *sqlgraph.CreateSpec) {
+func (_c *RegionCreate) createSpec() (*Region, *sqlgraph.CreateSpec) {
 	var (
-		_node = &Region{config: rc.config}
+		_node = &Region{config: _c.config}
 		_spec = sqlgraph.NewCreateSpec(region.Table, sqlgraph.NewFieldSpec(region.FieldID, field.TypeUUID))
 	)
-	_spec.OnConflict = rc.conflict
-	if id, ok := rc.mutation.ID(); ok {
+	_spec.OnConflict = _c.conflict
+	if id, ok := _c.mutation.ID(); ok {
 		_node.ID = id
 		_spec.ID.Value = &id
 	}
-	if value, ok := rc.mutation.ImportID(); ok {
+	if value, ok := _c.mutation.ImportID(); ok {
 		_spec.SetField(region.FieldImportID, field.TypeInt, value)
 		_node.ImportID = value
 	}
-	if value, ok := rc.mutation.Hash(); ok {
+	if value, ok := _c.mutation.Hash(); ok {
 		_spec.SetField(region.FieldHash, field.TypeString, value)
 		_node.Hash = value
 	}
-	if value, ok := rc.mutation.ImportFlag(); ok {
+	if value, ok := _c.mutation.ImportFlag(); ok {
 		_spec.SetField(region.FieldImportFlag, field.TypeBool, value)
 		_node.ImportFlag = value
 	}
-	if value, ok := rc.mutation.LastUpdated(); ok {
+	if value, ok := _c.mutation.LastUpdated(); ok {
 		_spec.SetField(region.FieldLastUpdated, field.TypeTime, value)
 		_node.LastUpdated = value
 	}
-	if value, ok := rc.mutation.Code(); ok {
+	if value, ok := _c.mutation.Code(); ok {
 		_spec.SetField(region.FieldCode, field.TypeString, value)
 		_node.Code = value
 	}
-	if value, ok := rc.mutation.LocalCode(); ok {
+	if value, ok := _c.mutation.LocalCode(); ok {
 		_spec.SetField(region.FieldLocalCode, field.TypeString, value)
 		_node.LocalCode = value
 	}
-	if value, ok := rc.mutation.Name(); ok {
+	if value, ok := _c.mutation.Name(); ok {
 		_spec.SetField(region.FieldName, field.TypeString, value)
 		_node.Name = value
 	}
-	if value, ok := rc.mutation.WikipediaLink(); ok {
+	if value, ok := _c.mutation.WikipediaLink(); ok {
 		_spec.SetField(region.FieldWikipediaLink, field.TypeString, value)
 		_node.WikipediaLink = value
 	}
-	if value, ok := rc.mutation.Keywords(); ok {
+	if value, ok := _c.mutation.Keywords(); ok {
 		_spec.SetField(region.FieldKeywords, field.TypeJSON, value)
 		_node.Keywords = value
 	}
-	if nodes := rc.mutation.AirportsIDs(); len(nodes) > 0 {
+	if nodes := _c.mutation.AirportsIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -309,10 +309,10 @@ func (rc *RegionCreate) createSpec() (*Region, *sqlgraph.CreateSpec) {
 //			SetImportID(v+v).
 //		}).
 //		Exec(ctx)
-func (rc *RegionCreate) OnConflict(opts ...sql.ConflictOption) *RegionUpsertOne {
-	rc.conflict = opts
+func (_c *RegionCreate) OnConflict(opts ...sql.ConflictOption) *RegionUpsertOne {
+	_c.conflict = opts
 	return &RegionUpsertOne{
-		create: rc,
+		create: _c,
 	}
 }
 
@@ -322,10 +322,10 @@ func (rc *RegionCreate) OnConflict(opts ...sql.ConflictOption) *RegionUpsertOne 
 //	client.Region.Create().
 //		OnConflict(sql.ConflictColumns(columns...)).
 //		Exec(ctx)
-func (rc *RegionCreate) OnConflictColumns(columns ...string) *RegionUpsertOne {
-	rc.conflict = append(rc.conflict, sql.ConflictColumns(columns...))
+func (_c *RegionCreate) OnConflictColumns(columns ...string) *RegionUpsertOne {
+	_c.conflict = append(_c.conflict, sql.ConflictColumns(columns...))
 	return &RegionUpsertOne{
-		create: rc,
+		create: _c,
 	}
 }
 
@@ -678,18 +678,22 @@ func (u *RegionUpsertOne) IDX(ctx context.Context) uuid.UUID {
 // RegionCreateBulk is the builder for creating many Region entities in bulk.
 type RegionCreateBulk struct {
 	config
+	err      error
 	builders []*RegionCreate
 	conflict []sql.ConflictOption
 }
 
 // Save creates the Region entities in the database.
-func (rcb *RegionCreateBulk) Save(ctx context.Context) ([]*Region, error) {
-	specs := make([]*sqlgraph.CreateSpec, len(rcb.builders))
-	nodes := make([]*Region, len(rcb.builders))
-	mutators := make([]Mutator, len(rcb.builders))
-	for i := range rcb.builders {
+func (_c *RegionCreateBulk) Save(ctx context.Context) ([]*Region, error) {
+	if _c.err != nil {
+		return nil, _c.err
+	}
+	specs := make([]*sqlgraph.CreateSpec, len(_c.builders))
+	nodes := make([]*Region, len(_c.builders))
+	mutators := make([]Mutator, len(_c.builders))
+	for i := range _c.builders {
 		func(i int, root context.Context) {
-			builder := rcb.builders[i]
+			builder := _c.builders[i]
 			builder.defaults()
 			var mut Mutator = MutateFunc(func(ctx context.Context, m Mutation) (Value, error) {
 				mutation, ok := m.(*RegionMutation)
@@ -703,12 +707,12 @@ func (rcb *RegionCreateBulk) Save(ctx context.Context) ([]*Region, error) {
 				var err error
 				nodes[i], specs[i] = builder.createSpec()
 				if i < len(mutators)-1 {
-					_, err = mutators[i+1].Mutate(root, rcb.builders[i+1].mutation)
+					_, err = mutators[i+1].Mutate(root, _c.builders[i+1].mutation)
 				} else {
 					spec := &sqlgraph.BatchCreateSpec{Nodes: specs}
-					spec.OnConflict = rcb.conflict
+					spec.OnConflict = _c.conflict
 					// Invoke the actual operation on the latest mutation in the chain.
-					if err = sqlgraph.BatchCreate(ctx, rcb.driver, spec); err != nil {
+					if err = sqlgraph.BatchCreate(ctx, _c.driver, spec); err != nil {
 						if sqlgraph.IsConstraintError(err) {
 							err = &ConstraintError{msg: err.Error(), wrap: err}
 						}
@@ -728,7 +732,7 @@ func (rcb *RegionCreateBulk) Save(ctx context.Context) ([]*Region, error) {
 		}(i, ctx)
 	}
 	if len(mutators) > 0 {
-		if _, err := mutators[0].Mutate(ctx, rcb.builders[0].mutation); err != nil {
+		if _, err := mutators[0].Mutate(ctx, _c.builders[0].mutation); err != nil {
 			return nil, err
 		}
 	}
@@ -736,8 +740,8 @@ func (rcb *RegionCreateBulk) Save(ctx context.Context) ([]*Region, error) {
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (rcb *RegionCreateBulk) SaveX(ctx context.Context) []*Region {
-	v, err := rcb.Save(ctx)
+func (_c *RegionCreateBulk) SaveX(ctx context.Context) []*Region {
+	v, err := _c.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -745,14 +749,14 @@ func (rcb *RegionCreateBulk) SaveX(ctx context.Context) []*Region {
 }
 
 // Exec executes the query.
-func (rcb *RegionCreateBulk) Exec(ctx context.Context) error {
-	_, err := rcb.Save(ctx)
+func (_c *RegionCreateBulk) Exec(ctx context.Context) error {
+	_, err := _c.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (rcb *RegionCreateBulk) ExecX(ctx context.Context) {
-	if err := rcb.Exec(ctx); err != nil {
+func (_c *RegionCreateBulk) ExecX(ctx context.Context) {
+	if err := _c.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
@@ -772,10 +776,10 @@ func (rcb *RegionCreateBulk) ExecX(ctx context.Context) {
 //			SetImportID(v+v).
 //		}).
 //		Exec(ctx)
-func (rcb *RegionCreateBulk) OnConflict(opts ...sql.ConflictOption) *RegionUpsertBulk {
-	rcb.conflict = opts
+func (_c *RegionCreateBulk) OnConflict(opts ...sql.ConflictOption) *RegionUpsertBulk {
+	_c.conflict = opts
 	return &RegionUpsertBulk{
-		create: rcb,
+		create: _c,
 	}
 }
 
@@ -785,10 +789,10 @@ func (rcb *RegionCreateBulk) OnConflict(opts ...sql.ConflictOption) *RegionUpser
 //	client.Region.Create().
 //		OnConflict(sql.ConflictColumns(columns...)).
 //		Exec(ctx)
-func (rcb *RegionCreateBulk) OnConflictColumns(columns ...string) *RegionUpsertBulk {
-	rcb.conflict = append(rcb.conflict, sql.ConflictColumns(columns...))
+func (_c *RegionCreateBulk) OnConflictColumns(columns ...string) *RegionUpsertBulk {
+	_c.conflict = append(_c.conflict, sql.ConflictColumns(columns...))
 	return &RegionUpsertBulk{
-		create: rcb,
+		create: _c,
 	}
 }
 
@@ -983,6 +987,9 @@ func (u *RegionUpsertBulk) UpdateKeywords() *RegionUpsertBulk {
 
 // Exec executes the query.
 func (u *RegionUpsertBulk) Exec(ctx context.Context) error {
+	if u.create.err != nil {
+		return u.create.err
+	}
 	for i, b := range u.create.builders {
 		if len(b.conflict) != 0 {
 			return fmt.Errorf("ent: OnConflict was set for builder %d. Set it on the RegionCreateBulk instead", i)

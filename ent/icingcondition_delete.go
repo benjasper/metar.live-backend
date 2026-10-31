@@ -20,56 +20,56 @@ type IcingConditionDelete struct {
 }
 
 // Where appends a list predicates to the IcingConditionDelete builder.
-func (icd *IcingConditionDelete) Where(ps ...predicate.IcingCondition) *IcingConditionDelete {
-	icd.mutation.Where(ps...)
-	return icd
+func (_d *IcingConditionDelete) Where(ps ...predicate.IcingCondition) *IcingConditionDelete {
+	_d.mutation.Where(ps...)
+	return _d
 }
 
 // Exec executes the deletion query and returns how many vertices were deleted.
-func (icd *IcingConditionDelete) Exec(ctx context.Context) (int, error) {
-	return withHooks(ctx, icd.sqlExec, icd.mutation, icd.hooks)
+func (_d *IcingConditionDelete) Exec(ctx context.Context) (int, error) {
+	return withHooks(ctx, _d.sqlExec, _d.mutation, _d.hooks)
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (icd *IcingConditionDelete) ExecX(ctx context.Context) int {
-	n, err := icd.Exec(ctx)
+func (_d *IcingConditionDelete) ExecX(ctx context.Context) int {
+	n, err := _d.Exec(ctx)
 	if err != nil {
 		panic(err)
 	}
 	return n
 }
 
-func (icd *IcingConditionDelete) sqlExec(ctx context.Context) (int, error) {
+func (_d *IcingConditionDelete) sqlExec(ctx context.Context) (int, error) {
 	_spec := sqlgraph.NewDeleteSpec(icingcondition.Table, sqlgraph.NewFieldSpec(icingcondition.FieldID, field.TypeUUID))
-	if ps := icd.mutation.predicates; len(ps) > 0 {
+	if ps := _d.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	affected, err := sqlgraph.DeleteNodes(ctx, icd.driver, _spec)
+	affected, err := sqlgraph.DeleteNodes(ctx, _d.driver, _spec)
 	if err != nil && sqlgraph.IsConstraintError(err) {
 		err = &ConstraintError{msg: err.Error(), wrap: err}
 	}
-	icd.mutation.done = true
+	_d.mutation.done = true
 	return affected, err
 }
 
 // IcingConditionDeleteOne is the builder for deleting a single IcingCondition entity.
 type IcingConditionDeleteOne struct {
-	icd *IcingConditionDelete
+	_d *IcingConditionDelete
 }
 
 // Where appends a list predicates to the IcingConditionDelete builder.
-func (icdo *IcingConditionDeleteOne) Where(ps ...predicate.IcingCondition) *IcingConditionDeleteOne {
-	icdo.icd.mutation.Where(ps...)
-	return icdo
+func (_d *IcingConditionDeleteOne) Where(ps ...predicate.IcingCondition) *IcingConditionDeleteOne {
+	_d._d.mutation.Where(ps...)
+	return _d
 }
 
 // Exec executes the deletion query.
-func (icdo *IcingConditionDeleteOne) Exec(ctx context.Context) error {
-	n, err := icdo.icd.Exec(ctx)
+func (_d *IcingConditionDeleteOne) Exec(ctx context.Context) error {
+	n, err := _d._d.Exec(ctx)
 	switch {
 	case err != nil:
 		return err
@@ -81,8 +81,8 @@ func (icdo *IcingConditionDeleteOne) Exec(ctx context.Context) error {
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (icdo *IcingConditionDeleteOne) ExecX(ctx context.Context) {
-	if err := icdo.Exec(ctx); err != nil {
+func (_d *IcingConditionDeleteOne) ExecX(ctx context.Context) {
+	if err := _d.Exec(ctx); err != nil {
 		panic(err)
 	}
 }

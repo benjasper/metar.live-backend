@@ -23,56 +23,80 @@ type TurbulenceConditionUpdate struct {
 }
 
 // Where appends a list predicates to the TurbulenceConditionUpdate builder.
-func (tcu *TurbulenceConditionUpdate) Where(ps ...predicate.TurbulenceCondition) *TurbulenceConditionUpdate {
-	tcu.mutation.Where(ps...)
-	return tcu
+func (_u *TurbulenceConditionUpdate) Where(ps ...predicate.TurbulenceCondition) *TurbulenceConditionUpdate {
+	_u.mutation.Where(ps...)
+	return _u
 }
 
 // SetIntensity sets the "intensity" field.
-func (tcu *TurbulenceConditionUpdate) SetIntensity(s string) *TurbulenceConditionUpdate {
-	tcu.mutation.SetIntensity(s)
-	return tcu
+func (_u *TurbulenceConditionUpdate) SetIntensity(v string) *TurbulenceConditionUpdate {
+	_u.mutation.SetIntensity(v)
+	return _u
+}
+
+// SetNillableIntensity sets the "intensity" field if the given value is not nil.
+func (_u *TurbulenceConditionUpdate) SetNillableIntensity(v *string) *TurbulenceConditionUpdate {
+	if v != nil {
+		_u.SetIntensity(*v)
+	}
+	return _u
 }
 
 // SetMinAltitude sets the "min_altitude" field.
-func (tcu *TurbulenceConditionUpdate) SetMinAltitude(i int) *TurbulenceConditionUpdate {
-	tcu.mutation.ResetMinAltitude()
-	tcu.mutation.SetMinAltitude(i)
-	return tcu
+func (_u *TurbulenceConditionUpdate) SetMinAltitude(v int) *TurbulenceConditionUpdate {
+	_u.mutation.ResetMinAltitude()
+	_u.mutation.SetMinAltitude(v)
+	return _u
 }
 
-// AddMinAltitude adds i to the "min_altitude" field.
-func (tcu *TurbulenceConditionUpdate) AddMinAltitude(i int) *TurbulenceConditionUpdate {
-	tcu.mutation.AddMinAltitude(i)
-	return tcu
+// SetNillableMinAltitude sets the "min_altitude" field if the given value is not nil.
+func (_u *TurbulenceConditionUpdate) SetNillableMinAltitude(v *int) *TurbulenceConditionUpdate {
+	if v != nil {
+		_u.SetMinAltitude(*v)
+	}
+	return _u
+}
+
+// AddMinAltitude adds value to the "min_altitude" field.
+func (_u *TurbulenceConditionUpdate) AddMinAltitude(v int) *TurbulenceConditionUpdate {
+	_u.mutation.AddMinAltitude(v)
+	return _u
 }
 
 // SetMaxAltitude sets the "max_altitude" field.
-func (tcu *TurbulenceConditionUpdate) SetMaxAltitude(i int) *TurbulenceConditionUpdate {
-	tcu.mutation.ResetMaxAltitude()
-	tcu.mutation.SetMaxAltitude(i)
-	return tcu
+func (_u *TurbulenceConditionUpdate) SetMaxAltitude(v int) *TurbulenceConditionUpdate {
+	_u.mutation.ResetMaxAltitude()
+	_u.mutation.SetMaxAltitude(v)
+	return _u
 }
 
-// AddMaxAltitude adds i to the "max_altitude" field.
-func (tcu *TurbulenceConditionUpdate) AddMaxAltitude(i int) *TurbulenceConditionUpdate {
-	tcu.mutation.AddMaxAltitude(i)
-	return tcu
+// SetNillableMaxAltitude sets the "max_altitude" field if the given value is not nil.
+func (_u *TurbulenceConditionUpdate) SetNillableMaxAltitude(v *int) *TurbulenceConditionUpdate {
+	if v != nil {
+		_u.SetMaxAltitude(*v)
+	}
+	return _u
+}
+
+// AddMaxAltitude adds value to the "max_altitude" field.
+func (_u *TurbulenceConditionUpdate) AddMaxAltitude(v int) *TurbulenceConditionUpdate {
+	_u.mutation.AddMaxAltitude(v)
+	return _u
 }
 
 // Mutation returns the TurbulenceConditionMutation object of the builder.
-func (tcu *TurbulenceConditionUpdate) Mutation() *TurbulenceConditionMutation {
-	return tcu.mutation
+func (_u *TurbulenceConditionUpdate) Mutation() *TurbulenceConditionMutation {
+	return _u.mutation
 }
 
 // Save executes the query and returns the number of nodes affected by the update operation.
-func (tcu *TurbulenceConditionUpdate) Save(ctx context.Context) (int, error) {
-	return withHooks(ctx, tcu.sqlSave, tcu.mutation, tcu.hooks)
+func (_u *TurbulenceConditionUpdate) Save(ctx context.Context) (int, error) {
+	return withHooks(ctx, _u.sqlSave, _u.mutation, _u.hooks)
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (tcu *TurbulenceConditionUpdate) SaveX(ctx context.Context) int {
-	affected, err := tcu.Save(ctx)
+func (_u *TurbulenceConditionUpdate) SaveX(ctx context.Context) int {
+	affected, err := _u.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -80,50 +104,50 @@ func (tcu *TurbulenceConditionUpdate) SaveX(ctx context.Context) int {
 }
 
 // Exec executes the query.
-func (tcu *TurbulenceConditionUpdate) Exec(ctx context.Context) error {
-	_, err := tcu.Save(ctx)
+func (_u *TurbulenceConditionUpdate) Exec(ctx context.Context) error {
+	_, err := _u.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (tcu *TurbulenceConditionUpdate) ExecX(ctx context.Context) {
-	if err := tcu.Exec(ctx); err != nil {
+func (_u *TurbulenceConditionUpdate) ExecX(ctx context.Context) {
+	if err := _u.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // Modify adds a statement modifier for attaching custom logic to the UPDATE statement.
-func (tcu *TurbulenceConditionUpdate) Modify(modifiers ...func(u *sql.UpdateBuilder)) *TurbulenceConditionUpdate {
-	tcu.modifiers = append(tcu.modifiers, modifiers...)
-	return tcu
+func (_u *TurbulenceConditionUpdate) Modify(modifiers ...func(u *sql.UpdateBuilder)) *TurbulenceConditionUpdate {
+	_u.modifiers = append(_u.modifiers, modifiers...)
+	return _u
 }
 
-func (tcu *TurbulenceConditionUpdate) sqlSave(ctx context.Context) (n int, err error) {
+func (_u *TurbulenceConditionUpdate) sqlSave(ctx context.Context) (_node int, err error) {
 	_spec := sqlgraph.NewUpdateSpec(turbulencecondition.Table, turbulencecondition.Columns, sqlgraph.NewFieldSpec(turbulencecondition.FieldID, field.TypeUUID))
-	if ps := tcu.mutation.predicates; len(ps) > 0 {
+	if ps := _u.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if value, ok := tcu.mutation.Intensity(); ok {
+	if value, ok := _u.mutation.Intensity(); ok {
 		_spec.SetField(turbulencecondition.FieldIntensity, field.TypeString, value)
 	}
-	if value, ok := tcu.mutation.MinAltitude(); ok {
+	if value, ok := _u.mutation.MinAltitude(); ok {
 		_spec.SetField(turbulencecondition.FieldMinAltitude, field.TypeInt, value)
 	}
-	if value, ok := tcu.mutation.AddedMinAltitude(); ok {
+	if value, ok := _u.mutation.AddedMinAltitude(); ok {
 		_spec.AddField(turbulencecondition.FieldMinAltitude, field.TypeInt, value)
 	}
-	if value, ok := tcu.mutation.MaxAltitude(); ok {
+	if value, ok := _u.mutation.MaxAltitude(); ok {
 		_spec.SetField(turbulencecondition.FieldMaxAltitude, field.TypeInt, value)
 	}
-	if value, ok := tcu.mutation.AddedMaxAltitude(); ok {
+	if value, ok := _u.mutation.AddedMaxAltitude(); ok {
 		_spec.AddField(turbulencecondition.FieldMaxAltitude, field.TypeInt, value)
 	}
-	_spec.AddModifiers(tcu.modifiers...)
-	if n, err = sqlgraph.UpdateNodes(ctx, tcu.driver, _spec); err != nil {
+	_spec.AddModifiers(_u.modifiers...)
+	if _node, err = sqlgraph.UpdateNodes(ctx, _u.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
 			err = &NotFoundError{turbulencecondition.Label}
 		} else if sqlgraph.IsConstraintError(err) {
@@ -131,8 +155,8 @@ func (tcu *TurbulenceConditionUpdate) sqlSave(ctx context.Context) (n int, err e
 		}
 		return 0, err
 	}
-	tcu.mutation.done = true
-	return n, nil
+	_u.mutation.done = true
+	return _node, nil
 }
 
 // TurbulenceConditionUpdateOne is the builder for updating a single TurbulenceCondition entity.
@@ -145,63 +169,87 @@ type TurbulenceConditionUpdateOne struct {
 }
 
 // SetIntensity sets the "intensity" field.
-func (tcuo *TurbulenceConditionUpdateOne) SetIntensity(s string) *TurbulenceConditionUpdateOne {
-	tcuo.mutation.SetIntensity(s)
-	return tcuo
+func (_u *TurbulenceConditionUpdateOne) SetIntensity(v string) *TurbulenceConditionUpdateOne {
+	_u.mutation.SetIntensity(v)
+	return _u
+}
+
+// SetNillableIntensity sets the "intensity" field if the given value is not nil.
+func (_u *TurbulenceConditionUpdateOne) SetNillableIntensity(v *string) *TurbulenceConditionUpdateOne {
+	if v != nil {
+		_u.SetIntensity(*v)
+	}
+	return _u
 }
 
 // SetMinAltitude sets the "min_altitude" field.
-func (tcuo *TurbulenceConditionUpdateOne) SetMinAltitude(i int) *TurbulenceConditionUpdateOne {
-	tcuo.mutation.ResetMinAltitude()
-	tcuo.mutation.SetMinAltitude(i)
-	return tcuo
+func (_u *TurbulenceConditionUpdateOne) SetMinAltitude(v int) *TurbulenceConditionUpdateOne {
+	_u.mutation.ResetMinAltitude()
+	_u.mutation.SetMinAltitude(v)
+	return _u
 }
 
-// AddMinAltitude adds i to the "min_altitude" field.
-func (tcuo *TurbulenceConditionUpdateOne) AddMinAltitude(i int) *TurbulenceConditionUpdateOne {
-	tcuo.mutation.AddMinAltitude(i)
-	return tcuo
+// SetNillableMinAltitude sets the "min_altitude" field if the given value is not nil.
+func (_u *TurbulenceConditionUpdateOne) SetNillableMinAltitude(v *int) *TurbulenceConditionUpdateOne {
+	if v != nil {
+		_u.SetMinAltitude(*v)
+	}
+	return _u
+}
+
+// AddMinAltitude adds value to the "min_altitude" field.
+func (_u *TurbulenceConditionUpdateOne) AddMinAltitude(v int) *TurbulenceConditionUpdateOne {
+	_u.mutation.AddMinAltitude(v)
+	return _u
 }
 
 // SetMaxAltitude sets the "max_altitude" field.
-func (tcuo *TurbulenceConditionUpdateOne) SetMaxAltitude(i int) *TurbulenceConditionUpdateOne {
-	tcuo.mutation.ResetMaxAltitude()
-	tcuo.mutation.SetMaxAltitude(i)
-	return tcuo
+func (_u *TurbulenceConditionUpdateOne) SetMaxAltitude(v int) *TurbulenceConditionUpdateOne {
+	_u.mutation.ResetMaxAltitude()
+	_u.mutation.SetMaxAltitude(v)
+	return _u
 }
 
-// AddMaxAltitude adds i to the "max_altitude" field.
-func (tcuo *TurbulenceConditionUpdateOne) AddMaxAltitude(i int) *TurbulenceConditionUpdateOne {
-	tcuo.mutation.AddMaxAltitude(i)
-	return tcuo
+// SetNillableMaxAltitude sets the "max_altitude" field if the given value is not nil.
+func (_u *TurbulenceConditionUpdateOne) SetNillableMaxAltitude(v *int) *TurbulenceConditionUpdateOne {
+	if v != nil {
+		_u.SetMaxAltitude(*v)
+	}
+	return _u
+}
+
+// AddMaxAltitude adds value to the "max_altitude" field.
+func (_u *TurbulenceConditionUpdateOne) AddMaxAltitude(v int) *TurbulenceConditionUpdateOne {
+	_u.mutation.AddMaxAltitude(v)
+	return _u
 }
 
 // Mutation returns the TurbulenceConditionMutation object of the builder.
-func (tcuo *TurbulenceConditionUpdateOne) Mutation() *TurbulenceConditionMutation {
-	return tcuo.mutation
+func (_u *TurbulenceConditionUpdateOne) Mutation() *TurbulenceConditionMutation {
+	return _u.mutation
 }
 
 // Where appends a list predicates to the TurbulenceConditionUpdate builder.
-func (tcuo *TurbulenceConditionUpdateOne) Where(ps ...predicate.TurbulenceCondition) *TurbulenceConditionUpdateOne {
-	tcuo.mutation.Where(ps...)
-	return tcuo
+func (_u *TurbulenceConditionUpdateOne) Where(ps ...predicate.TurbulenceCondition) *TurbulenceConditionUpdateOne {
+	_u.mutation.Where(ps...)
+	return _u
 }
 
 // Select allows selecting one or more fields (columns) of the returned entity.
 // The default is selecting all fields defined in the entity schema.
-func (tcuo *TurbulenceConditionUpdateOne) Select(field string, fields ...string) *TurbulenceConditionUpdateOne {
-	tcuo.fields = append([]string{field}, fields...)
-	return tcuo
+func (_u *TurbulenceConditionUpdateOne) Select(field string, fields ...string) *TurbulenceConditionUpdateOne {
+	_u.fields = append([]string{field}, fields...)
+	return _u
 }
 
 // Save executes the query and returns the updated TurbulenceCondition entity.
-func (tcuo *TurbulenceConditionUpdateOne) Save(ctx context.Context) (*TurbulenceCondition, error) {
-	return withHooks(ctx, tcuo.sqlSave, tcuo.mutation, tcuo.hooks)
+func (_u *TurbulenceConditionUpdateOne) Save(ctx context.Context) (*TurbulenceCondition, error) {
+	return withHooks(ctx, _u.sqlSave, _u.mutation, _u.hooks)
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (tcuo *TurbulenceConditionUpdateOne) SaveX(ctx context.Context) *TurbulenceCondition {
-	node, err := tcuo.Save(ctx)
+func (_u *TurbulenceConditionUpdateOne) SaveX(ctx context.Context) *TurbulenceCondition {
+	node, err := _u.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -209,32 +257,32 @@ func (tcuo *TurbulenceConditionUpdateOne) SaveX(ctx context.Context) *Turbulence
 }
 
 // Exec executes the query on the entity.
-func (tcuo *TurbulenceConditionUpdateOne) Exec(ctx context.Context) error {
-	_, err := tcuo.Save(ctx)
+func (_u *TurbulenceConditionUpdateOne) Exec(ctx context.Context) error {
+	_, err := _u.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (tcuo *TurbulenceConditionUpdateOne) ExecX(ctx context.Context) {
-	if err := tcuo.Exec(ctx); err != nil {
+func (_u *TurbulenceConditionUpdateOne) ExecX(ctx context.Context) {
+	if err := _u.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // Modify adds a statement modifier for attaching custom logic to the UPDATE statement.
-func (tcuo *TurbulenceConditionUpdateOne) Modify(modifiers ...func(u *sql.UpdateBuilder)) *TurbulenceConditionUpdateOne {
-	tcuo.modifiers = append(tcuo.modifiers, modifiers...)
-	return tcuo
+func (_u *TurbulenceConditionUpdateOne) Modify(modifiers ...func(u *sql.UpdateBuilder)) *TurbulenceConditionUpdateOne {
+	_u.modifiers = append(_u.modifiers, modifiers...)
+	return _u
 }
 
-func (tcuo *TurbulenceConditionUpdateOne) sqlSave(ctx context.Context) (_node *TurbulenceCondition, err error) {
+func (_u *TurbulenceConditionUpdateOne) sqlSave(ctx context.Context) (_node *TurbulenceCondition, err error) {
 	_spec := sqlgraph.NewUpdateSpec(turbulencecondition.Table, turbulencecondition.Columns, sqlgraph.NewFieldSpec(turbulencecondition.FieldID, field.TypeUUID))
-	id, ok := tcuo.mutation.ID()
+	id, ok := _u.mutation.ID()
 	if !ok {
 		return nil, &ValidationError{Name: "id", err: errors.New(`ent: missing "TurbulenceCondition.id" for update`)}
 	}
 	_spec.Node.ID.Value = id
-	if fields := tcuo.fields; len(fields) > 0 {
+	if fields := _u.fields; len(fields) > 0 {
 		_spec.Node.Columns = make([]string, 0, len(fields))
 		_spec.Node.Columns = append(_spec.Node.Columns, turbulencecondition.FieldID)
 		for _, f := range fields {
@@ -246,33 +294,33 @@ func (tcuo *TurbulenceConditionUpdateOne) sqlSave(ctx context.Context) (_node *T
 			}
 		}
 	}
-	if ps := tcuo.mutation.predicates; len(ps) > 0 {
+	if ps := _u.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if value, ok := tcuo.mutation.Intensity(); ok {
+	if value, ok := _u.mutation.Intensity(); ok {
 		_spec.SetField(turbulencecondition.FieldIntensity, field.TypeString, value)
 	}
-	if value, ok := tcuo.mutation.MinAltitude(); ok {
+	if value, ok := _u.mutation.MinAltitude(); ok {
 		_spec.SetField(turbulencecondition.FieldMinAltitude, field.TypeInt, value)
 	}
-	if value, ok := tcuo.mutation.AddedMinAltitude(); ok {
+	if value, ok := _u.mutation.AddedMinAltitude(); ok {
 		_spec.AddField(turbulencecondition.FieldMinAltitude, field.TypeInt, value)
 	}
-	if value, ok := tcuo.mutation.MaxAltitude(); ok {
+	if value, ok := _u.mutation.MaxAltitude(); ok {
 		_spec.SetField(turbulencecondition.FieldMaxAltitude, field.TypeInt, value)
 	}
-	if value, ok := tcuo.mutation.AddedMaxAltitude(); ok {
+	if value, ok := _u.mutation.AddedMaxAltitude(); ok {
 		_spec.AddField(turbulencecondition.FieldMaxAltitude, field.TypeInt, value)
 	}
-	_spec.AddModifiers(tcuo.modifiers...)
-	_node = &TurbulenceCondition{config: tcuo.config}
+	_spec.AddModifiers(_u.modifiers...)
+	_node = &TurbulenceCondition{config: _u.config}
 	_spec.Assign = _node.assignValues
 	_spec.ScanValues = _node.scanValues
-	if err = sqlgraph.UpdateNode(ctx, tcuo.driver, _spec); err != nil {
+	if err = sqlgraph.UpdateNode(ctx, _u.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
 			err = &NotFoundError{turbulencecondition.Label}
 		} else if sqlgraph.IsConstraintError(err) {
@@ -280,6 +328,6 @@ func (tcuo *TurbulenceConditionUpdateOne) sqlSave(ctx context.Context) (_node *T
 		}
 		return nil, err
 	}
-	tcuo.mutation.done = true
+	_u.mutation.done = true
 	return _node, nil
 }

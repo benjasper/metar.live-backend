@@ -30,342 +30,342 @@ type AirportCreate struct {
 }
 
 // SetImportID sets the "import_id" field.
-func (ac *AirportCreate) SetImportID(i int) *AirportCreate {
-	ac.mutation.SetImportID(i)
-	return ac
+func (_c *AirportCreate) SetImportID(v int) *AirportCreate {
+	_c.mutation.SetImportID(v)
+	return _c
 }
 
 // SetHash sets the "hash" field.
-func (ac *AirportCreate) SetHash(s string) *AirportCreate {
-	ac.mutation.SetHash(s)
-	return ac
+func (_c *AirportCreate) SetHash(v string) *AirportCreate {
+	_c.mutation.SetHash(v)
+	return _c
 }
 
 // SetImportFlag sets the "import_flag" field.
-func (ac *AirportCreate) SetImportFlag(b bool) *AirportCreate {
-	ac.mutation.SetImportFlag(b)
-	return ac
+func (_c *AirportCreate) SetImportFlag(v bool) *AirportCreate {
+	_c.mutation.SetImportFlag(v)
+	return _c
 }
 
 // SetNillableImportFlag sets the "import_flag" field if the given value is not nil.
-func (ac *AirportCreate) SetNillableImportFlag(b *bool) *AirportCreate {
-	if b != nil {
-		ac.SetImportFlag(*b)
+func (_c *AirportCreate) SetNillableImportFlag(v *bool) *AirportCreate {
+	if v != nil {
+		_c.SetImportFlag(*v)
 	}
-	return ac
+	return _c
 }
 
 // SetLastUpdated sets the "last_updated" field.
-func (ac *AirportCreate) SetLastUpdated(t time.Time) *AirportCreate {
-	ac.mutation.SetLastUpdated(t)
-	return ac
+func (_c *AirportCreate) SetLastUpdated(v time.Time) *AirportCreate {
+	_c.mutation.SetLastUpdated(v)
+	return _c
 }
 
 // SetNillableLastUpdated sets the "last_updated" field if the given value is not nil.
-func (ac *AirportCreate) SetNillableLastUpdated(t *time.Time) *AirportCreate {
-	if t != nil {
-		ac.SetLastUpdated(*t)
+func (_c *AirportCreate) SetNillableLastUpdated(v *time.Time) *AirportCreate {
+	if v != nil {
+		_c.SetLastUpdated(*v)
 	}
-	return ac
+	return _c
 }
 
 // SetIcaoCode sets the "icao_code" field.
-func (ac *AirportCreate) SetIcaoCode(s string) *AirportCreate {
-	ac.mutation.SetIcaoCode(s)
-	return ac
+func (_c *AirportCreate) SetIcaoCode(v string) *AirportCreate {
+	_c.mutation.SetIcaoCode(v)
+	return _c
 }
 
 // SetNillableIcaoCode sets the "icao_code" field if the given value is not nil.
-func (ac *AirportCreate) SetNillableIcaoCode(s *string) *AirportCreate {
-	if s != nil {
-		ac.SetIcaoCode(*s)
+func (_c *AirportCreate) SetNillableIcaoCode(v *string) *AirportCreate {
+	if v != nil {
+		_c.SetIcaoCode(*v)
 	}
-	return ac
+	return _c
 }
 
 // SetIataCode sets the "iata_code" field.
-func (ac *AirportCreate) SetIataCode(s string) *AirportCreate {
-	ac.mutation.SetIataCode(s)
-	return ac
+func (_c *AirportCreate) SetIataCode(v string) *AirportCreate {
+	_c.mutation.SetIataCode(v)
+	return _c
 }
 
 // SetNillableIataCode sets the "iata_code" field if the given value is not nil.
-func (ac *AirportCreate) SetNillableIataCode(s *string) *AirportCreate {
-	if s != nil {
-		ac.SetIataCode(*s)
+func (_c *AirportCreate) SetNillableIataCode(v *string) *AirportCreate {
+	if v != nil {
+		_c.SetIataCode(*v)
 	}
-	return ac
+	return _c
 }
 
 // SetIdentifier sets the "identifier" field.
-func (ac *AirportCreate) SetIdentifier(s string) *AirportCreate {
-	ac.mutation.SetIdentifier(s)
-	return ac
+func (_c *AirportCreate) SetIdentifier(v string) *AirportCreate {
+	_c.mutation.SetIdentifier(v)
+	return _c
 }
 
 // SetType sets the "type" field.
-func (ac *AirportCreate) SetType(a airport.Type) *AirportCreate {
-	ac.mutation.SetType(a)
-	return ac
+func (_c *AirportCreate) SetType(v airport.Type) *AirportCreate {
+	_c.mutation.SetType(v)
+	return _c
 }
 
 // SetImportance sets the "importance" field.
-func (ac *AirportCreate) SetImportance(i int) *AirportCreate {
-	ac.mutation.SetImportance(i)
-	return ac
+func (_c *AirportCreate) SetImportance(v int) *AirportCreate {
+	_c.mutation.SetImportance(v)
+	return _c
 }
 
 // SetNillableImportance sets the "importance" field if the given value is not nil.
-func (ac *AirportCreate) SetNillableImportance(i *int) *AirportCreate {
-	if i != nil {
-		ac.SetImportance(*i)
+func (_c *AirportCreate) SetNillableImportance(v *int) *AirportCreate {
+	if v != nil {
+		_c.SetImportance(*v)
 	}
-	return ac
+	return _c
 }
 
 // SetName sets the "name" field.
-func (ac *AirportCreate) SetName(s string) *AirportCreate {
-	ac.mutation.SetName(s)
-	return ac
+func (_c *AirportCreate) SetName(v string) *AirportCreate {
+	_c.mutation.SetName(v)
+	return _c
 }
 
 // SetLatitude sets the "latitude" field.
-func (ac *AirportCreate) SetLatitude(f float64) *AirportCreate {
-	ac.mutation.SetLatitude(f)
-	return ac
+func (_c *AirportCreate) SetLatitude(v float64) *AirportCreate {
+	_c.mutation.SetLatitude(v)
+	return _c
 }
 
 // SetLongitude sets the "longitude" field.
-func (ac *AirportCreate) SetLongitude(f float64) *AirportCreate {
-	ac.mutation.SetLongitude(f)
-	return ac
+func (_c *AirportCreate) SetLongitude(v float64) *AirportCreate {
+	_c.mutation.SetLongitude(v)
+	return _c
 }
 
 // SetTimezone sets the "timezone" field.
-func (ac *AirportCreate) SetTimezone(s string) *AirportCreate {
-	ac.mutation.SetTimezone(s)
-	return ac
+func (_c *AirportCreate) SetTimezone(v string) *AirportCreate {
+	_c.mutation.SetTimezone(v)
+	return _c
 }
 
 // SetNillableTimezone sets the "timezone" field if the given value is not nil.
-func (ac *AirportCreate) SetNillableTimezone(s *string) *AirportCreate {
-	if s != nil {
-		ac.SetTimezone(*s)
+func (_c *AirportCreate) SetNillableTimezone(v *string) *AirportCreate {
+	if v != nil {
+		_c.SetTimezone(*v)
 	}
-	return ac
+	return _c
 }
 
 // SetElevation sets the "elevation" field.
-func (ac *AirportCreate) SetElevation(i int) *AirportCreate {
-	ac.mutation.SetElevation(i)
-	return ac
+func (_c *AirportCreate) SetElevation(v int) *AirportCreate {
+	_c.mutation.SetElevation(v)
+	return _c
 }
 
 // SetNillableElevation sets the "elevation" field if the given value is not nil.
-func (ac *AirportCreate) SetNillableElevation(i *int) *AirportCreate {
-	if i != nil {
-		ac.SetElevation(*i)
+func (_c *AirportCreate) SetNillableElevation(v *int) *AirportCreate {
+	if v != nil {
+		_c.SetElevation(*v)
 	}
-	return ac
+	return _c
 }
 
 // SetMunicipality sets the "municipality" field.
-func (ac *AirportCreate) SetMunicipality(s string) *AirportCreate {
-	ac.mutation.SetMunicipality(s)
-	return ac
+func (_c *AirportCreate) SetMunicipality(v string) *AirportCreate {
+	_c.mutation.SetMunicipality(v)
+	return _c
 }
 
 // SetNillableMunicipality sets the "municipality" field if the given value is not nil.
-func (ac *AirportCreate) SetNillableMunicipality(s *string) *AirportCreate {
-	if s != nil {
-		ac.SetMunicipality(*s)
+func (_c *AirportCreate) SetNillableMunicipality(v *string) *AirportCreate {
+	if v != nil {
+		_c.SetMunicipality(*v)
 	}
-	return ac
+	return _c
 }
 
 // SetScheduledService sets the "scheduled_service" field.
-func (ac *AirportCreate) SetScheduledService(b bool) *AirportCreate {
-	ac.mutation.SetScheduledService(b)
-	return ac
+func (_c *AirportCreate) SetScheduledService(v bool) *AirportCreate {
+	_c.mutation.SetScheduledService(v)
+	return _c
 }
 
 // SetGpsCode sets the "gps_code" field.
-func (ac *AirportCreate) SetGpsCode(s string) *AirportCreate {
-	ac.mutation.SetGpsCode(s)
-	return ac
+func (_c *AirportCreate) SetGpsCode(v string) *AirportCreate {
+	_c.mutation.SetGpsCode(v)
+	return _c
 }
 
 // SetNillableGpsCode sets the "gps_code" field if the given value is not nil.
-func (ac *AirportCreate) SetNillableGpsCode(s *string) *AirportCreate {
-	if s != nil {
-		ac.SetGpsCode(*s)
+func (_c *AirportCreate) SetNillableGpsCode(v *string) *AirportCreate {
+	if v != nil {
+		_c.SetGpsCode(*v)
 	}
-	return ac
+	return _c
 }
 
 // SetLocalCode sets the "local_code" field.
-func (ac *AirportCreate) SetLocalCode(s string) *AirportCreate {
-	ac.mutation.SetLocalCode(s)
-	return ac
+func (_c *AirportCreate) SetLocalCode(v string) *AirportCreate {
+	_c.mutation.SetLocalCode(v)
+	return _c
 }
 
 // SetNillableLocalCode sets the "local_code" field if the given value is not nil.
-func (ac *AirportCreate) SetNillableLocalCode(s *string) *AirportCreate {
-	if s != nil {
-		ac.SetLocalCode(*s)
+func (_c *AirportCreate) SetNillableLocalCode(v *string) *AirportCreate {
+	if v != nil {
+		_c.SetLocalCode(*v)
 	}
-	return ac
+	return _c
 }
 
 // SetWebsite sets the "website" field.
-func (ac *AirportCreate) SetWebsite(s string) *AirportCreate {
-	ac.mutation.SetWebsite(s)
-	return ac
+func (_c *AirportCreate) SetWebsite(v string) *AirportCreate {
+	_c.mutation.SetWebsite(v)
+	return _c
 }
 
 // SetNillableWebsite sets the "website" field if the given value is not nil.
-func (ac *AirportCreate) SetNillableWebsite(s *string) *AirportCreate {
-	if s != nil {
-		ac.SetWebsite(*s)
+func (_c *AirportCreate) SetNillableWebsite(v *string) *AirportCreate {
+	if v != nil {
+		_c.SetWebsite(*v)
 	}
-	return ac
+	return _c
 }
 
 // SetWikipedia sets the "wikipedia" field.
-func (ac *AirportCreate) SetWikipedia(s string) *AirportCreate {
-	ac.mutation.SetWikipedia(s)
-	return ac
+func (_c *AirportCreate) SetWikipedia(v string) *AirportCreate {
+	_c.mutation.SetWikipedia(v)
+	return _c
 }
 
 // SetNillableWikipedia sets the "wikipedia" field if the given value is not nil.
-func (ac *AirportCreate) SetNillableWikipedia(s *string) *AirportCreate {
-	if s != nil {
-		ac.SetWikipedia(*s)
+func (_c *AirportCreate) SetNillableWikipedia(v *string) *AirportCreate {
+	if v != nil {
+		_c.SetWikipedia(*v)
 	}
-	return ac
+	return _c
 }
 
 // SetKeywords sets the "keywords" field.
-func (ac *AirportCreate) SetKeywords(s []string) *AirportCreate {
-	ac.mutation.SetKeywords(s)
-	return ac
+func (_c *AirportCreate) SetKeywords(v []string) *AirportCreate {
+	_c.mutation.SetKeywords(v)
+	return _c
 }
 
 // SetID sets the "id" field.
-func (ac *AirportCreate) SetID(u uuid.UUID) *AirportCreate {
-	ac.mutation.SetID(u)
-	return ac
+func (_c *AirportCreate) SetID(v uuid.UUID) *AirportCreate {
+	_c.mutation.SetID(v)
+	return _c
 }
 
 // SetNillableID sets the "id" field if the given value is not nil.
-func (ac *AirportCreate) SetNillableID(u *uuid.UUID) *AirportCreate {
-	if u != nil {
-		ac.SetID(*u)
+func (_c *AirportCreate) SetNillableID(v *uuid.UUID) *AirportCreate {
+	if v != nil {
+		_c.SetID(*v)
 	}
-	return ac
+	return _c
 }
 
 // SetRegionID sets the "region" edge to the Region entity by ID.
-func (ac *AirportCreate) SetRegionID(id uuid.UUID) *AirportCreate {
-	ac.mutation.SetRegionID(id)
-	return ac
+func (_c *AirportCreate) SetRegionID(id uuid.UUID) *AirportCreate {
+	_c.mutation.SetRegionID(id)
+	return _c
 }
 
 // SetNillableRegionID sets the "region" edge to the Region entity by ID if the given value is not nil.
-func (ac *AirportCreate) SetNillableRegionID(id *uuid.UUID) *AirportCreate {
+func (_c *AirportCreate) SetNillableRegionID(id *uuid.UUID) *AirportCreate {
 	if id != nil {
-		ac = ac.SetRegionID(*id)
+		_c = _c.SetRegionID(*id)
 	}
-	return ac
+	return _c
 }
 
 // SetRegion sets the "region" edge to the Region entity.
-func (ac *AirportCreate) SetRegion(r *Region) *AirportCreate {
-	return ac.SetRegionID(r.ID)
+func (_c *AirportCreate) SetRegion(v *Region) *AirportCreate {
+	return _c.SetRegionID(v.ID)
 }
 
 // SetCountryID sets the "country" edge to the Country entity by ID.
-func (ac *AirportCreate) SetCountryID(id uuid.UUID) *AirportCreate {
-	ac.mutation.SetCountryID(id)
-	return ac
+func (_c *AirportCreate) SetCountryID(id uuid.UUID) *AirportCreate {
+	_c.mutation.SetCountryID(id)
+	return _c
 }
 
 // SetNillableCountryID sets the "country" edge to the Country entity by ID if the given value is not nil.
-func (ac *AirportCreate) SetNillableCountryID(id *uuid.UUID) *AirportCreate {
+func (_c *AirportCreate) SetNillableCountryID(id *uuid.UUID) *AirportCreate {
 	if id != nil {
-		ac = ac.SetCountryID(*id)
+		_c = _c.SetCountryID(*id)
 	}
-	return ac
+	return _c
 }
 
 // SetCountry sets the "country" edge to the Country entity.
-func (ac *AirportCreate) SetCountry(c *Country) *AirportCreate {
-	return ac.SetCountryID(c.ID)
+func (_c *AirportCreate) SetCountry(v *Country) *AirportCreate {
+	return _c.SetCountryID(v.ID)
 }
 
 // AddRunwayIDs adds the "runways" edge to the Runway entity by IDs.
-func (ac *AirportCreate) AddRunwayIDs(ids ...uuid.UUID) *AirportCreate {
-	ac.mutation.AddRunwayIDs(ids...)
-	return ac
+func (_c *AirportCreate) AddRunwayIDs(ids ...uuid.UUID) *AirportCreate {
+	_c.mutation.AddRunwayIDs(ids...)
+	return _c
 }
 
 // AddRunways adds the "runways" edges to the Runway entity.
-func (ac *AirportCreate) AddRunways(r ...*Runway) *AirportCreate {
-	ids := make([]uuid.UUID, len(r))
-	for i := range r {
-		ids[i] = r[i].ID
+func (_c *AirportCreate) AddRunways(v ...*Runway) *AirportCreate {
+	ids := make([]uuid.UUID, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return ac.AddRunwayIDs(ids...)
+	return _c.AddRunwayIDs(ids...)
 }
 
 // AddFrequencyIDs adds the "frequencies" edge to the Frequency entity by IDs.
-func (ac *AirportCreate) AddFrequencyIDs(ids ...uuid.UUID) *AirportCreate {
-	ac.mutation.AddFrequencyIDs(ids...)
-	return ac
+func (_c *AirportCreate) AddFrequencyIDs(ids ...uuid.UUID) *AirportCreate {
+	_c.mutation.AddFrequencyIDs(ids...)
+	return _c
 }
 
 // AddFrequencies adds the "frequencies" edges to the Frequency entity.
-func (ac *AirportCreate) AddFrequencies(f ...*Frequency) *AirportCreate {
-	ids := make([]uuid.UUID, len(f))
-	for i := range f {
-		ids[i] = f[i].ID
+func (_c *AirportCreate) AddFrequencies(v ...*Frequency) *AirportCreate {
+	ids := make([]uuid.UUID, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return ac.AddFrequencyIDs(ids...)
+	return _c.AddFrequencyIDs(ids...)
 }
 
 // SetStationID sets the "station" edge to the WeatherStation entity by ID.
-func (ac *AirportCreate) SetStationID(id uuid.UUID) *AirportCreate {
-	ac.mutation.SetStationID(id)
-	return ac
+func (_c *AirportCreate) SetStationID(id uuid.UUID) *AirportCreate {
+	_c.mutation.SetStationID(id)
+	return _c
 }
 
 // SetNillableStationID sets the "station" edge to the WeatherStation entity by ID if the given value is not nil.
-func (ac *AirportCreate) SetNillableStationID(id *uuid.UUID) *AirportCreate {
+func (_c *AirportCreate) SetNillableStationID(id *uuid.UUID) *AirportCreate {
 	if id != nil {
-		ac = ac.SetStationID(*id)
+		_c = _c.SetStationID(*id)
 	}
-	return ac
+	return _c
 }
 
 // SetStation sets the "station" edge to the WeatherStation entity.
-func (ac *AirportCreate) SetStation(w *WeatherStation) *AirportCreate {
-	return ac.SetStationID(w.ID)
+func (_c *AirportCreate) SetStation(v *WeatherStation) *AirportCreate {
+	return _c.SetStationID(v.ID)
 }
 
 // Mutation returns the AirportMutation object of the builder.
-func (ac *AirportCreate) Mutation() *AirportMutation {
-	return ac.mutation
+func (_c *AirportCreate) Mutation() *AirportMutation {
+	return _c.mutation
 }
 
 // Save creates the Airport in the database.
-func (ac *AirportCreate) Save(ctx context.Context) (*Airport, error) {
-	ac.defaults()
-	return withHooks(ctx, ac.sqlSave, ac.mutation, ac.hooks)
+func (_c *AirportCreate) Save(ctx context.Context) (*Airport, error) {
+	_c.defaults()
+	return withHooks(ctx, _c.sqlSave, _c.mutation, _c.hooks)
 }
 
 // SaveX calls Save and panics if Save returns an error.
-func (ac *AirportCreate) SaveX(ctx context.Context) *Airport {
-	v, err := ac.Save(ctx)
+func (_c *AirportCreate) SaveX(ctx context.Context) *Airport {
+	v, err := _c.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -373,95 +373,95 @@ func (ac *AirportCreate) SaveX(ctx context.Context) *Airport {
 }
 
 // Exec executes the query.
-func (ac *AirportCreate) Exec(ctx context.Context) error {
-	_, err := ac.Save(ctx)
+func (_c *AirportCreate) Exec(ctx context.Context) error {
+	_, err := _c.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (ac *AirportCreate) ExecX(ctx context.Context) {
-	if err := ac.Exec(ctx); err != nil {
+func (_c *AirportCreate) ExecX(ctx context.Context) {
+	if err := _c.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // defaults sets the default values of the builder before save.
-func (ac *AirportCreate) defaults() {
-	if _, ok := ac.mutation.ImportFlag(); !ok {
+func (_c *AirportCreate) defaults() {
+	if _, ok := _c.mutation.ImportFlag(); !ok {
 		v := airport.DefaultImportFlag
-		ac.mutation.SetImportFlag(v)
+		_c.mutation.SetImportFlag(v)
 	}
-	if _, ok := ac.mutation.LastUpdated(); !ok {
+	if _, ok := _c.mutation.LastUpdated(); !ok {
 		v := airport.DefaultLastUpdated()
-		ac.mutation.SetLastUpdated(v)
+		_c.mutation.SetLastUpdated(v)
 	}
-	if _, ok := ac.mutation.Importance(); !ok {
+	if _, ok := _c.mutation.Importance(); !ok {
 		v := airport.DefaultImportance
-		ac.mutation.SetImportance(v)
+		_c.mutation.SetImportance(v)
 	}
-	if _, ok := ac.mutation.ID(); !ok {
+	if _, ok := _c.mutation.ID(); !ok {
 		v := airport.DefaultID()
-		ac.mutation.SetID(v)
+		_c.mutation.SetID(v)
 	}
 }
 
 // check runs all checks and user-defined validators on the builder.
-func (ac *AirportCreate) check() error {
-	if _, ok := ac.mutation.ImportID(); !ok {
+func (_c *AirportCreate) check() error {
+	if _, ok := _c.mutation.ImportID(); !ok {
 		return &ValidationError{Name: "import_id", err: errors.New(`ent: missing required field "Airport.import_id"`)}
 	}
-	if _, ok := ac.mutation.Hash(); !ok {
+	if _, ok := _c.mutation.Hash(); !ok {
 		return &ValidationError{Name: "hash", err: errors.New(`ent: missing required field "Airport.hash"`)}
 	}
-	if _, ok := ac.mutation.ImportFlag(); !ok {
+	if _, ok := _c.mutation.ImportFlag(); !ok {
 		return &ValidationError{Name: "import_flag", err: errors.New(`ent: missing required field "Airport.import_flag"`)}
 	}
-	if _, ok := ac.mutation.LastUpdated(); !ok {
+	if _, ok := _c.mutation.LastUpdated(); !ok {
 		return &ValidationError{Name: "last_updated", err: errors.New(`ent: missing required field "Airport.last_updated"`)}
 	}
-	if v, ok := ac.mutation.IcaoCode(); ok {
+	if v, ok := _c.mutation.IcaoCode(); ok {
 		if err := airport.IcaoCodeValidator(v); err != nil {
 			return &ValidationError{Name: "icao_code", err: fmt.Errorf(`ent: validator failed for field "Airport.icao_code": %w`, err)}
 		}
 	}
-	if _, ok := ac.mutation.Identifier(); !ok {
+	if _, ok := _c.mutation.Identifier(); !ok {
 		return &ValidationError{Name: "identifier", err: errors.New(`ent: missing required field "Airport.identifier"`)}
 	}
-	if _, ok := ac.mutation.GetType(); !ok {
+	if _, ok := _c.mutation.GetType(); !ok {
 		return &ValidationError{Name: "type", err: errors.New(`ent: missing required field "Airport.type"`)}
 	}
-	if v, ok := ac.mutation.GetType(); ok {
+	if v, ok := _c.mutation.GetType(); ok {
 		if err := airport.TypeValidator(v); err != nil {
 			return &ValidationError{Name: "type", err: fmt.Errorf(`ent: validator failed for field "Airport.type": %w`, err)}
 		}
 	}
-	if _, ok := ac.mutation.Importance(); !ok {
+	if _, ok := _c.mutation.Importance(); !ok {
 		return &ValidationError{Name: "importance", err: errors.New(`ent: missing required field "Airport.importance"`)}
 	}
-	if _, ok := ac.mutation.Name(); !ok {
+	if _, ok := _c.mutation.Name(); !ok {
 		return &ValidationError{Name: "name", err: errors.New(`ent: missing required field "Airport.name"`)}
 	}
-	if _, ok := ac.mutation.Latitude(); !ok {
+	if _, ok := _c.mutation.Latitude(); !ok {
 		return &ValidationError{Name: "latitude", err: errors.New(`ent: missing required field "Airport.latitude"`)}
 	}
-	if _, ok := ac.mutation.Longitude(); !ok {
+	if _, ok := _c.mutation.Longitude(); !ok {
 		return &ValidationError{Name: "longitude", err: errors.New(`ent: missing required field "Airport.longitude"`)}
 	}
-	if _, ok := ac.mutation.ScheduledService(); !ok {
+	if _, ok := _c.mutation.ScheduledService(); !ok {
 		return &ValidationError{Name: "scheduled_service", err: errors.New(`ent: missing required field "Airport.scheduled_service"`)}
 	}
-	if _, ok := ac.mutation.Keywords(); !ok {
+	if _, ok := _c.mutation.Keywords(); !ok {
 		return &ValidationError{Name: "keywords", err: errors.New(`ent: missing required field "Airport.keywords"`)}
 	}
 	return nil
 }
 
-func (ac *AirportCreate) sqlSave(ctx context.Context) (*Airport, error) {
-	if err := ac.check(); err != nil {
+func (_c *AirportCreate) sqlSave(ctx context.Context) (*Airport, error) {
+	if err := _c.check(); err != nil {
 		return nil, err
 	}
-	_node, _spec := ac.createSpec()
-	if err := sqlgraph.CreateNode(ctx, ac.driver, _spec); err != nil {
+	_node, _spec := _c.createSpec()
+	if err := sqlgraph.CreateNode(ctx, _c.driver, _spec); err != nil {
 		if sqlgraph.IsConstraintError(err) {
 			err = &ConstraintError{msg: err.Error(), wrap: err}
 		}
@@ -474,106 +474,106 @@ func (ac *AirportCreate) sqlSave(ctx context.Context) (*Airport, error) {
 			return nil, err
 		}
 	}
-	ac.mutation.id = &_node.ID
-	ac.mutation.done = true
+	_c.mutation.id = &_node.ID
+	_c.mutation.done = true
 	return _node, nil
 }
 
-func (ac *AirportCreate) createSpec() (*Airport, *sqlgraph.CreateSpec) {
+func (_c *AirportCreate) createSpec() (*Airport, *sqlgraph.CreateSpec) {
 	var (
-		_node = &Airport{config: ac.config}
+		_node = &Airport{config: _c.config}
 		_spec = sqlgraph.NewCreateSpec(airport.Table, sqlgraph.NewFieldSpec(airport.FieldID, field.TypeUUID))
 	)
-	_spec.OnConflict = ac.conflict
-	if id, ok := ac.mutation.ID(); ok {
+	_spec.OnConflict = _c.conflict
+	if id, ok := _c.mutation.ID(); ok {
 		_node.ID = id
 		_spec.ID.Value = &id
 	}
-	if value, ok := ac.mutation.ImportID(); ok {
+	if value, ok := _c.mutation.ImportID(); ok {
 		_spec.SetField(airport.FieldImportID, field.TypeInt, value)
 		_node.ImportID = value
 	}
-	if value, ok := ac.mutation.Hash(); ok {
+	if value, ok := _c.mutation.Hash(); ok {
 		_spec.SetField(airport.FieldHash, field.TypeString, value)
 		_node.Hash = value
 	}
-	if value, ok := ac.mutation.ImportFlag(); ok {
+	if value, ok := _c.mutation.ImportFlag(); ok {
 		_spec.SetField(airport.FieldImportFlag, field.TypeBool, value)
 		_node.ImportFlag = value
 	}
-	if value, ok := ac.mutation.LastUpdated(); ok {
+	if value, ok := _c.mutation.LastUpdated(); ok {
 		_spec.SetField(airport.FieldLastUpdated, field.TypeTime, value)
 		_node.LastUpdated = value
 	}
-	if value, ok := ac.mutation.IcaoCode(); ok {
+	if value, ok := _c.mutation.IcaoCode(); ok {
 		_spec.SetField(airport.FieldIcaoCode, field.TypeString, value)
 		_node.IcaoCode = value
 	}
-	if value, ok := ac.mutation.IataCode(); ok {
+	if value, ok := _c.mutation.IataCode(); ok {
 		_spec.SetField(airport.FieldIataCode, field.TypeString, value)
 		_node.IataCode = &value
 	}
-	if value, ok := ac.mutation.Identifier(); ok {
+	if value, ok := _c.mutation.Identifier(); ok {
 		_spec.SetField(airport.FieldIdentifier, field.TypeString, value)
 		_node.Identifier = value
 	}
-	if value, ok := ac.mutation.GetType(); ok {
+	if value, ok := _c.mutation.GetType(); ok {
 		_spec.SetField(airport.FieldType, field.TypeEnum, value)
 		_node.Type = value
 	}
-	if value, ok := ac.mutation.Importance(); ok {
+	if value, ok := _c.mutation.Importance(); ok {
 		_spec.SetField(airport.FieldImportance, field.TypeInt, value)
 		_node.Importance = value
 	}
-	if value, ok := ac.mutation.Name(); ok {
+	if value, ok := _c.mutation.Name(); ok {
 		_spec.SetField(airport.FieldName, field.TypeString, value)
 		_node.Name = value
 	}
-	if value, ok := ac.mutation.Latitude(); ok {
+	if value, ok := _c.mutation.Latitude(); ok {
 		_spec.SetField(airport.FieldLatitude, field.TypeFloat64, value)
 		_node.Latitude = value
 	}
-	if value, ok := ac.mutation.Longitude(); ok {
+	if value, ok := _c.mutation.Longitude(); ok {
 		_spec.SetField(airport.FieldLongitude, field.TypeFloat64, value)
 		_node.Longitude = value
 	}
-	if value, ok := ac.mutation.Timezone(); ok {
+	if value, ok := _c.mutation.Timezone(); ok {
 		_spec.SetField(airport.FieldTimezone, field.TypeString, value)
 		_node.Timezone = &value
 	}
-	if value, ok := ac.mutation.Elevation(); ok {
+	if value, ok := _c.mutation.Elevation(); ok {
 		_spec.SetField(airport.FieldElevation, field.TypeInt, value)
 		_node.Elevation = &value
 	}
-	if value, ok := ac.mutation.Municipality(); ok {
+	if value, ok := _c.mutation.Municipality(); ok {
 		_spec.SetField(airport.FieldMunicipality, field.TypeString, value)
 		_node.Municipality = &value
 	}
-	if value, ok := ac.mutation.ScheduledService(); ok {
+	if value, ok := _c.mutation.ScheduledService(); ok {
 		_spec.SetField(airport.FieldScheduledService, field.TypeBool, value)
 		_node.ScheduledService = value
 	}
-	if value, ok := ac.mutation.GpsCode(); ok {
+	if value, ok := _c.mutation.GpsCode(); ok {
 		_spec.SetField(airport.FieldGpsCode, field.TypeString, value)
 		_node.GpsCode = &value
 	}
-	if value, ok := ac.mutation.LocalCode(); ok {
+	if value, ok := _c.mutation.LocalCode(); ok {
 		_spec.SetField(airport.FieldLocalCode, field.TypeString, value)
 		_node.LocalCode = &value
 	}
-	if value, ok := ac.mutation.Website(); ok {
+	if value, ok := _c.mutation.Website(); ok {
 		_spec.SetField(airport.FieldWebsite, field.TypeString, value)
 		_node.Website = &value
 	}
-	if value, ok := ac.mutation.Wikipedia(); ok {
+	if value, ok := _c.mutation.Wikipedia(); ok {
 		_spec.SetField(airport.FieldWikipedia, field.TypeString, value)
 		_node.Wikipedia = &value
 	}
-	if value, ok := ac.mutation.Keywords(); ok {
+	if value, ok := _c.mutation.Keywords(); ok {
 		_spec.SetField(airport.FieldKeywords, field.TypeJSON, value)
 		_node.Keywords = value
 	}
-	if nodes := ac.mutation.RegionIDs(); len(nodes) > 0 {
+	if nodes := _c.mutation.RegionIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.M2O,
 			Inverse: true,
@@ -590,7 +590,7 @@ func (ac *AirportCreate) createSpec() (*Airport, *sqlgraph.CreateSpec) {
 		_node.region_airports = &nodes[0]
 		_spec.Edges = append(_spec.Edges, edge)
 	}
-	if nodes := ac.mutation.CountryIDs(); len(nodes) > 0 {
+	if nodes := _c.mutation.CountryIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.M2O,
 			Inverse: true,
@@ -607,7 +607,7 @@ func (ac *AirportCreate) createSpec() (*Airport, *sqlgraph.CreateSpec) {
 		_node.country_airports = &nodes[0]
 		_spec.Edges = append(_spec.Edges, edge)
 	}
-	if nodes := ac.mutation.RunwaysIDs(); len(nodes) > 0 {
+	if nodes := _c.mutation.RunwaysIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -623,7 +623,7 @@ func (ac *AirportCreate) createSpec() (*Airport, *sqlgraph.CreateSpec) {
 		}
 		_spec.Edges = append(_spec.Edges, edge)
 	}
-	if nodes := ac.mutation.FrequenciesIDs(); len(nodes) > 0 {
+	if nodes := _c.mutation.FrequenciesIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -639,7 +639,7 @@ func (ac *AirportCreate) createSpec() (*Airport, *sqlgraph.CreateSpec) {
 		}
 		_spec.Edges = append(_spec.Edges, edge)
 	}
-	if nodes := ac.mutation.StationIDs(); len(nodes) > 0 {
+	if nodes := _c.mutation.StationIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2O,
 			Inverse: false,
@@ -674,10 +674,10 @@ func (ac *AirportCreate) createSpec() (*Airport, *sqlgraph.CreateSpec) {
 //			SetImportID(v+v).
 //		}).
 //		Exec(ctx)
-func (ac *AirportCreate) OnConflict(opts ...sql.ConflictOption) *AirportUpsertOne {
-	ac.conflict = opts
+func (_c *AirportCreate) OnConflict(opts ...sql.ConflictOption) *AirportUpsertOne {
+	_c.conflict = opts
 	return &AirportUpsertOne{
-		create: ac,
+		create: _c,
 	}
 }
 
@@ -687,10 +687,10 @@ func (ac *AirportCreate) OnConflict(opts ...sql.ConflictOption) *AirportUpsertOn
 //	client.Airport.Create().
 //		OnConflict(sql.ConflictColumns(columns...)).
 //		Exec(ctx)
-func (ac *AirportCreate) OnConflictColumns(columns ...string) *AirportUpsertOne {
-	ac.conflict = append(ac.conflict, sql.ConflictColumns(columns...))
+func (_c *AirportCreate) OnConflictColumns(columns ...string) *AirportUpsertOne {
+	_c.conflict = append(_c.conflict, sql.ConflictColumns(columns...))
 	return &AirportUpsertOne{
-		create: ac,
+		create: _c,
 	}
 }
 
@@ -1524,18 +1524,22 @@ func (u *AirportUpsertOne) IDX(ctx context.Context) uuid.UUID {
 // AirportCreateBulk is the builder for creating many Airport entities in bulk.
 type AirportCreateBulk struct {
 	config
+	err      error
 	builders []*AirportCreate
 	conflict []sql.ConflictOption
 }
 
 // Save creates the Airport entities in the database.
-func (acb *AirportCreateBulk) Save(ctx context.Context) ([]*Airport, error) {
-	specs := make([]*sqlgraph.CreateSpec, len(acb.builders))
-	nodes := make([]*Airport, len(acb.builders))
-	mutators := make([]Mutator, len(acb.builders))
-	for i := range acb.builders {
+func (_c *AirportCreateBulk) Save(ctx context.Context) ([]*Airport, error) {
+	if _c.err != nil {
+		return nil, _c.err
+	}
+	specs := make([]*sqlgraph.CreateSpec, len(_c.builders))
+	nodes := make([]*Airport, len(_c.builders))
+	mutators := make([]Mutator, len(_c.builders))
+	for i := range _c.builders {
 		func(i int, root context.Context) {
-			builder := acb.builders[i]
+			builder := _c.builders[i]
 			builder.defaults()
 			var mut Mutator = MutateFunc(func(ctx context.Context, m Mutation) (Value, error) {
 				mutation, ok := m.(*AirportMutation)
@@ -1549,12 +1553,12 @@ func (acb *AirportCreateBulk) Save(ctx context.Context) ([]*Airport, error) {
 				var err error
 				nodes[i], specs[i] = builder.createSpec()
 				if i < len(mutators)-1 {
-					_, err = mutators[i+1].Mutate(root, acb.builders[i+1].mutation)
+					_, err = mutators[i+1].Mutate(root, _c.builders[i+1].mutation)
 				} else {
 					spec := &sqlgraph.BatchCreateSpec{Nodes: specs}
-					spec.OnConflict = acb.conflict
+					spec.OnConflict = _c.conflict
 					// Invoke the actual operation on the latest mutation in the chain.
-					if err = sqlgraph.BatchCreate(ctx, acb.driver, spec); err != nil {
+					if err = sqlgraph.BatchCreate(ctx, _c.driver, spec); err != nil {
 						if sqlgraph.IsConstraintError(err) {
 							err = &ConstraintError{msg: err.Error(), wrap: err}
 						}
@@ -1574,7 +1578,7 @@ func (acb *AirportCreateBulk) Save(ctx context.Context) ([]*Airport, error) {
 		}(i, ctx)
 	}
 	if len(mutators) > 0 {
-		if _, err := mutators[0].Mutate(ctx, acb.builders[0].mutation); err != nil {
+		if _, err := mutators[0].Mutate(ctx, _c.builders[0].mutation); err != nil {
 			return nil, err
 		}
 	}
@@ -1582,8 +1586,8 @@ func (acb *AirportCreateBulk) Save(ctx context.Context) ([]*Airport, error) {
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (acb *AirportCreateBulk) SaveX(ctx context.Context) []*Airport {
-	v, err := acb.Save(ctx)
+func (_c *AirportCreateBulk) SaveX(ctx context.Context) []*Airport {
+	v, err := _c.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -1591,14 +1595,14 @@ func (acb *AirportCreateBulk) SaveX(ctx context.Context) []*Airport {
 }
 
 // Exec executes the query.
-func (acb *AirportCreateBulk) Exec(ctx context.Context) error {
-	_, err := acb.Save(ctx)
+func (_c *AirportCreateBulk) Exec(ctx context.Context) error {
+	_, err := _c.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (acb *AirportCreateBulk) ExecX(ctx context.Context) {
-	if err := acb.Exec(ctx); err != nil {
+func (_c *AirportCreateBulk) ExecX(ctx context.Context) {
+	if err := _c.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
@@ -1618,10 +1622,10 @@ func (acb *AirportCreateBulk) ExecX(ctx context.Context) {
 //			SetImportID(v+v).
 //		}).
 //		Exec(ctx)
-func (acb *AirportCreateBulk) OnConflict(opts ...sql.ConflictOption) *AirportUpsertBulk {
-	acb.conflict = opts
+func (_c *AirportCreateBulk) OnConflict(opts ...sql.ConflictOption) *AirportUpsertBulk {
+	_c.conflict = opts
 	return &AirportUpsertBulk{
-		create: acb,
+		create: _c,
 	}
 }
 
@@ -1631,10 +1635,10 @@ func (acb *AirportCreateBulk) OnConflict(opts ...sql.ConflictOption) *AirportUps
 //	client.Airport.Create().
 //		OnConflict(sql.ConflictColumns(columns...)).
 //		Exec(ctx)
-func (acb *AirportCreateBulk) OnConflictColumns(columns ...string) *AirportUpsertBulk {
-	acb.conflict = append(acb.conflict, sql.ConflictColumns(columns...))
+func (_c *AirportCreateBulk) OnConflictColumns(columns ...string) *AirportUpsertBulk {
+	_c.conflict = append(_c.conflict, sql.ConflictColumns(columns...))
 	return &AirportUpsertBulk{
-		create: acb,
+		create: _c,
 	}
 }
 
@@ -2088,6 +2092,9 @@ func (u *AirportUpsertBulk) UpdateKeywords() *AirportUpsertBulk {
 
 // Exec executes the query.
 func (u *AirportUpsertBulk) Exec(ctx context.Context) error {
+	if u.create.err != nil {
+		return u.create.err
+	}
 	for i, b := range u.create.builders {
 		if len(b.conflict) != 0 {
 			return fmt.Errorf("ent: OnConflict was set for builder %d. Set it on the AirportCreateBulk instead", i)

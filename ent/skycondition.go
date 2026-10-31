@@ -53,7 +53,7 @@ func (*SkyCondition) scanValues(columns []string) ([]any, error) {
 
 // assignValues assigns the values that were returned from sql.Rows (after scanning)
 // to the SkyCondition fields.
-func (sc *SkyCondition) assignValues(columns []string, values []any) error {
+func (_m *SkyCondition) assignValues(columns []string, values []any) error {
 	if m, n := len(values), len(columns); m < n {
 		return fmt.Errorf("mismatch number of scan values: %d != %d", m, n)
 	}
@@ -63,44 +63,44 @@ func (sc *SkyCondition) assignValues(columns []string, values []any) error {
 			if value, ok := values[i].(*uuid.UUID); !ok {
 				return fmt.Errorf("unexpected type %T for field id", values[i])
 			} else if value != nil {
-				sc.ID = *value
+				_m.ID = *value
 			}
 		case skycondition.FieldSkyCover:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field sky_cover", values[i])
 			} else if value.Valid {
-				sc.SkyCover = skycondition.SkyCover(value.String)
+				_m.SkyCover = skycondition.SkyCover(value.String)
 			}
 		case skycondition.FieldCloudBase:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field cloud_base", values[i])
 			} else if value.Valid {
-				sc.CloudBase = new(int)
-				*sc.CloudBase = int(value.Int64)
+				_m.CloudBase = new(int)
+				*_m.CloudBase = int(value.Int64)
 			}
 		case skycondition.FieldCloudType:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field cloud_type", values[i])
 			} else if value.Valid {
-				sc.CloudType = new(skycondition.CloudType)
-				*sc.CloudType = skycondition.CloudType(value.String)
+				_m.CloudType = new(skycondition.CloudType)
+				*_m.CloudType = skycondition.CloudType(value.String)
 			}
 		case skycondition.ForeignKeys[0]:
 			if value, ok := values[i].(*sql.NullScanner); !ok {
 				return fmt.Errorf("unexpected type %T for field forecast_sky_conditions", values[i])
 			} else if value.Valid {
-				sc.forecast_sky_conditions = new(uuid.UUID)
-				*sc.forecast_sky_conditions = *value.S.(*uuid.UUID)
+				_m.forecast_sky_conditions = new(uuid.UUID)
+				*_m.forecast_sky_conditions = *value.S.(*uuid.UUID)
 			}
 		case skycondition.ForeignKeys[1]:
 			if value, ok := values[i].(*sql.NullScanner); !ok {
 				return fmt.Errorf("unexpected type %T for field metar_sky_conditions", values[i])
 			} else if value.Valid {
-				sc.metar_sky_conditions = new(uuid.UUID)
-				*sc.metar_sky_conditions = *value.S.(*uuid.UUID)
+				_m.metar_sky_conditions = new(uuid.UUID)
+				*_m.metar_sky_conditions = *value.S.(*uuid.UUID)
 			}
 		default:
-			sc.selectValues.Set(columns[i], values[i])
+			_m.selectValues.Set(columns[i], values[i])
 		}
 	}
 	return nil
@@ -108,42 +108,42 @@ func (sc *SkyCondition) assignValues(columns []string, values []any) error {
 
 // Value returns the ent.Value that was dynamically selected and assigned to the SkyCondition.
 // This includes values selected through modifiers, order, etc.
-func (sc *SkyCondition) Value(name string) (ent.Value, error) {
-	return sc.selectValues.Get(name)
+func (_m *SkyCondition) Value(name string) (ent.Value, error) {
+	return _m.selectValues.Get(name)
 }
 
 // Update returns a builder for updating this SkyCondition.
 // Note that you need to call SkyCondition.Unwrap() before calling this method if this SkyCondition
 // was returned from a transaction, and the transaction was committed or rolled back.
-func (sc *SkyCondition) Update() *SkyConditionUpdateOne {
-	return NewSkyConditionClient(sc.config).UpdateOne(sc)
+func (_m *SkyCondition) Update() *SkyConditionUpdateOne {
+	return NewSkyConditionClient(_m.config).UpdateOne(_m)
 }
 
 // Unwrap unwraps the SkyCondition entity that was returned from a transaction after it was closed,
 // so that all future queries will be executed through the driver which created the transaction.
-func (sc *SkyCondition) Unwrap() *SkyCondition {
-	_tx, ok := sc.config.driver.(*txDriver)
+func (_m *SkyCondition) Unwrap() *SkyCondition {
+	_tx, ok := _m.config.driver.(*txDriver)
 	if !ok {
 		panic("ent: SkyCondition is not a transactional entity")
 	}
-	sc.config.driver = _tx.drv
-	return sc
+	_m.config.driver = _tx.drv
+	return _m
 }
 
 // String implements the fmt.Stringer.
-func (sc *SkyCondition) String() string {
+func (_m *SkyCondition) String() string {
 	var builder strings.Builder
 	builder.WriteString("SkyCondition(")
-	builder.WriteString(fmt.Sprintf("id=%v, ", sc.ID))
+	builder.WriteString(fmt.Sprintf("id=%v, ", _m.ID))
 	builder.WriteString("sky_cover=")
-	builder.WriteString(fmt.Sprintf("%v", sc.SkyCover))
+	builder.WriteString(fmt.Sprintf("%v", _m.SkyCover))
 	builder.WriteString(", ")
-	if v := sc.CloudBase; v != nil {
+	if v := _m.CloudBase; v != nil {
 		builder.WriteString("cloud_base=")
 		builder.WriteString(fmt.Sprintf("%v", *v))
 	}
 	builder.WriteString(", ")
-	if v := sc.CloudType; v != nil {
+	if v := _m.CloudType; v != nil {
 		builder.WriteString("cloud_type=")
 		builder.WriteString(fmt.Sprintf("%v", *v))
 	}

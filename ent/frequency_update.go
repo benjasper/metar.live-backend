@@ -26,121 +26,161 @@ type FrequencyUpdate struct {
 }
 
 // Where appends a list predicates to the FrequencyUpdate builder.
-func (fu *FrequencyUpdate) Where(ps ...predicate.Frequency) *FrequencyUpdate {
-	fu.mutation.Where(ps...)
-	return fu
+func (_u *FrequencyUpdate) Where(ps ...predicate.Frequency) *FrequencyUpdate {
+	_u.mutation.Where(ps...)
+	return _u
 }
 
 // SetImportID sets the "import_id" field.
-func (fu *FrequencyUpdate) SetImportID(i int) *FrequencyUpdate {
-	fu.mutation.ResetImportID()
-	fu.mutation.SetImportID(i)
-	return fu
+func (_u *FrequencyUpdate) SetImportID(v int) *FrequencyUpdate {
+	_u.mutation.ResetImportID()
+	_u.mutation.SetImportID(v)
+	return _u
 }
 
-// AddImportID adds i to the "import_id" field.
-func (fu *FrequencyUpdate) AddImportID(i int) *FrequencyUpdate {
-	fu.mutation.AddImportID(i)
-	return fu
+// SetNillableImportID sets the "import_id" field if the given value is not nil.
+func (_u *FrequencyUpdate) SetNillableImportID(v *int) *FrequencyUpdate {
+	if v != nil {
+		_u.SetImportID(*v)
+	}
+	return _u
+}
+
+// AddImportID adds value to the "import_id" field.
+func (_u *FrequencyUpdate) AddImportID(v int) *FrequencyUpdate {
+	_u.mutation.AddImportID(v)
+	return _u
 }
 
 // SetHash sets the "hash" field.
-func (fu *FrequencyUpdate) SetHash(s string) *FrequencyUpdate {
-	fu.mutation.SetHash(s)
-	return fu
+func (_u *FrequencyUpdate) SetHash(v string) *FrequencyUpdate {
+	_u.mutation.SetHash(v)
+	return _u
+}
+
+// SetNillableHash sets the "hash" field if the given value is not nil.
+func (_u *FrequencyUpdate) SetNillableHash(v *string) *FrequencyUpdate {
+	if v != nil {
+		_u.SetHash(*v)
+	}
+	return _u
 }
 
 // SetImportFlag sets the "import_flag" field.
-func (fu *FrequencyUpdate) SetImportFlag(b bool) *FrequencyUpdate {
-	fu.mutation.SetImportFlag(b)
-	return fu
+func (_u *FrequencyUpdate) SetImportFlag(v bool) *FrequencyUpdate {
+	_u.mutation.SetImportFlag(v)
+	return _u
 }
 
 // SetNillableImportFlag sets the "import_flag" field if the given value is not nil.
-func (fu *FrequencyUpdate) SetNillableImportFlag(b *bool) *FrequencyUpdate {
-	if b != nil {
-		fu.SetImportFlag(*b)
+func (_u *FrequencyUpdate) SetNillableImportFlag(v *bool) *FrequencyUpdate {
+	if v != nil {
+		_u.SetImportFlag(*v)
 	}
-	return fu
+	return _u
 }
 
 // SetLastUpdated sets the "last_updated" field.
-func (fu *FrequencyUpdate) SetLastUpdated(t time.Time) *FrequencyUpdate {
-	fu.mutation.SetLastUpdated(t)
-	return fu
+func (_u *FrequencyUpdate) SetLastUpdated(v time.Time) *FrequencyUpdate {
+	_u.mutation.SetLastUpdated(v)
+	return _u
 }
 
 // SetNillableLastUpdated sets the "last_updated" field if the given value is not nil.
-func (fu *FrequencyUpdate) SetNillableLastUpdated(t *time.Time) *FrequencyUpdate {
-	if t != nil {
-		fu.SetLastUpdated(*t)
+func (_u *FrequencyUpdate) SetNillableLastUpdated(v *time.Time) *FrequencyUpdate {
+	if v != nil {
+		_u.SetLastUpdated(*v)
 	}
-	return fu
+	return _u
 }
 
 // SetType sets the "type" field.
-func (fu *FrequencyUpdate) SetType(s string) *FrequencyUpdate {
-	fu.mutation.SetType(s)
-	return fu
+func (_u *FrequencyUpdate) SetType(v string) *FrequencyUpdate {
+	_u.mutation.SetType(v)
+	return _u
+}
+
+// SetNillableType sets the "type" field if the given value is not nil.
+func (_u *FrequencyUpdate) SetNillableType(v *string) *FrequencyUpdate {
+	if v != nil {
+		_u.SetType(*v)
+	}
+	return _u
 }
 
 // SetDescription sets the "description" field.
-func (fu *FrequencyUpdate) SetDescription(s string) *FrequencyUpdate {
-	fu.mutation.SetDescription(s)
-	return fu
+func (_u *FrequencyUpdate) SetDescription(v string) *FrequencyUpdate {
+	_u.mutation.SetDescription(v)
+	return _u
+}
+
+// SetNillableDescription sets the "description" field if the given value is not nil.
+func (_u *FrequencyUpdate) SetNillableDescription(v *string) *FrequencyUpdate {
+	if v != nil {
+		_u.SetDescription(*v)
+	}
+	return _u
 }
 
 // SetFrequency sets the "frequency" field.
-func (fu *FrequencyUpdate) SetFrequency(f float64) *FrequencyUpdate {
-	fu.mutation.ResetFrequency()
-	fu.mutation.SetFrequency(f)
-	return fu
+func (_u *FrequencyUpdate) SetFrequency(v float64) *FrequencyUpdate {
+	_u.mutation.ResetFrequency()
+	_u.mutation.SetFrequency(v)
+	return _u
 }
 
-// AddFrequency adds f to the "frequency" field.
-func (fu *FrequencyUpdate) AddFrequency(f float64) *FrequencyUpdate {
-	fu.mutation.AddFrequency(f)
-	return fu
+// SetNillableFrequency sets the "frequency" field if the given value is not nil.
+func (_u *FrequencyUpdate) SetNillableFrequency(v *float64) *FrequencyUpdate {
+	if v != nil {
+		_u.SetFrequency(*v)
+	}
+	return _u
+}
+
+// AddFrequency adds value to the "frequency" field.
+func (_u *FrequencyUpdate) AddFrequency(v float64) *FrequencyUpdate {
+	_u.mutation.AddFrequency(v)
+	return _u
 }
 
 // SetAirportID sets the "airport" edge to the Airport entity by ID.
-func (fu *FrequencyUpdate) SetAirportID(id uuid.UUID) *FrequencyUpdate {
-	fu.mutation.SetAirportID(id)
-	return fu
+func (_u *FrequencyUpdate) SetAirportID(id uuid.UUID) *FrequencyUpdate {
+	_u.mutation.SetAirportID(id)
+	return _u
 }
 
 // SetNillableAirportID sets the "airport" edge to the Airport entity by ID if the given value is not nil.
-func (fu *FrequencyUpdate) SetNillableAirportID(id *uuid.UUID) *FrequencyUpdate {
+func (_u *FrequencyUpdate) SetNillableAirportID(id *uuid.UUID) *FrequencyUpdate {
 	if id != nil {
-		fu = fu.SetAirportID(*id)
+		_u = _u.SetAirportID(*id)
 	}
-	return fu
+	return _u
 }
 
 // SetAirport sets the "airport" edge to the Airport entity.
-func (fu *FrequencyUpdate) SetAirport(a *Airport) *FrequencyUpdate {
-	return fu.SetAirportID(a.ID)
+func (_u *FrequencyUpdate) SetAirport(v *Airport) *FrequencyUpdate {
+	return _u.SetAirportID(v.ID)
 }
 
 // Mutation returns the FrequencyMutation object of the builder.
-func (fu *FrequencyUpdate) Mutation() *FrequencyMutation {
-	return fu.mutation
+func (_u *FrequencyUpdate) Mutation() *FrequencyMutation {
+	return _u.mutation
 }
 
 // ClearAirport clears the "airport" edge to the Airport entity.
-func (fu *FrequencyUpdate) ClearAirport() *FrequencyUpdate {
-	fu.mutation.ClearAirport()
-	return fu
+func (_u *FrequencyUpdate) ClearAirport() *FrequencyUpdate {
+	_u.mutation.ClearAirport()
+	return _u
 }
 
 // Save executes the query and returns the number of nodes affected by the update operation.
-func (fu *FrequencyUpdate) Save(ctx context.Context) (int, error) {
-	return withHooks(ctx, fu.sqlSave, fu.mutation, fu.hooks)
+func (_u *FrequencyUpdate) Save(ctx context.Context) (int, error) {
+	return withHooks(ctx, _u.sqlSave, _u.mutation, _u.hooks)
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (fu *FrequencyUpdate) SaveX(ctx context.Context) int {
-	affected, err := fu.Save(ctx)
+func (_u *FrequencyUpdate) SaveX(ctx context.Context) int {
+	affected, err := _u.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -148,61 +188,61 @@ func (fu *FrequencyUpdate) SaveX(ctx context.Context) int {
 }
 
 // Exec executes the query.
-func (fu *FrequencyUpdate) Exec(ctx context.Context) error {
-	_, err := fu.Save(ctx)
+func (_u *FrequencyUpdate) Exec(ctx context.Context) error {
+	_, err := _u.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (fu *FrequencyUpdate) ExecX(ctx context.Context) {
-	if err := fu.Exec(ctx); err != nil {
+func (_u *FrequencyUpdate) ExecX(ctx context.Context) {
+	if err := _u.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // Modify adds a statement modifier for attaching custom logic to the UPDATE statement.
-func (fu *FrequencyUpdate) Modify(modifiers ...func(u *sql.UpdateBuilder)) *FrequencyUpdate {
-	fu.modifiers = append(fu.modifiers, modifiers...)
-	return fu
+func (_u *FrequencyUpdate) Modify(modifiers ...func(u *sql.UpdateBuilder)) *FrequencyUpdate {
+	_u.modifiers = append(_u.modifiers, modifiers...)
+	return _u
 }
 
-func (fu *FrequencyUpdate) sqlSave(ctx context.Context) (n int, err error) {
+func (_u *FrequencyUpdate) sqlSave(ctx context.Context) (_node int, err error) {
 	_spec := sqlgraph.NewUpdateSpec(frequency.Table, frequency.Columns, sqlgraph.NewFieldSpec(frequency.FieldID, field.TypeUUID))
-	if ps := fu.mutation.predicates; len(ps) > 0 {
+	if ps := _u.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if value, ok := fu.mutation.ImportID(); ok {
+	if value, ok := _u.mutation.ImportID(); ok {
 		_spec.SetField(frequency.FieldImportID, field.TypeInt, value)
 	}
-	if value, ok := fu.mutation.AddedImportID(); ok {
+	if value, ok := _u.mutation.AddedImportID(); ok {
 		_spec.AddField(frequency.FieldImportID, field.TypeInt, value)
 	}
-	if value, ok := fu.mutation.Hash(); ok {
+	if value, ok := _u.mutation.Hash(); ok {
 		_spec.SetField(frequency.FieldHash, field.TypeString, value)
 	}
-	if value, ok := fu.mutation.ImportFlag(); ok {
+	if value, ok := _u.mutation.ImportFlag(); ok {
 		_spec.SetField(frequency.FieldImportFlag, field.TypeBool, value)
 	}
-	if value, ok := fu.mutation.LastUpdated(); ok {
+	if value, ok := _u.mutation.LastUpdated(); ok {
 		_spec.SetField(frequency.FieldLastUpdated, field.TypeTime, value)
 	}
-	if value, ok := fu.mutation.GetType(); ok {
+	if value, ok := _u.mutation.GetType(); ok {
 		_spec.SetField(frequency.FieldType, field.TypeString, value)
 	}
-	if value, ok := fu.mutation.Description(); ok {
+	if value, ok := _u.mutation.Description(); ok {
 		_spec.SetField(frequency.FieldDescription, field.TypeString, value)
 	}
-	if value, ok := fu.mutation.Frequency(); ok {
+	if value, ok := _u.mutation.Frequency(); ok {
 		_spec.SetField(frequency.FieldFrequency, field.TypeFloat64, value)
 	}
-	if value, ok := fu.mutation.AddedFrequency(); ok {
+	if value, ok := _u.mutation.AddedFrequency(); ok {
 		_spec.AddField(frequency.FieldFrequency, field.TypeFloat64, value)
 	}
-	if fu.mutation.AirportCleared() {
+	if _u.mutation.AirportCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.M2O,
 			Inverse: true,
@@ -215,7 +255,7 @@ func (fu *FrequencyUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := fu.mutation.AirportIDs(); len(nodes) > 0 {
+	if nodes := _u.mutation.AirportIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.M2O,
 			Inverse: true,
@@ -231,8 +271,8 @@ func (fu *FrequencyUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		_spec.Edges.Add = append(_spec.Edges.Add, edge)
 	}
-	_spec.AddModifiers(fu.modifiers...)
-	if n, err = sqlgraph.UpdateNodes(ctx, fu.driver, _spec); err != nil {
+	_spec.AddModifiers(_u.modifiers...)
+	if _node, err = sqlgraph.UpdateNodes(ctx, _u.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
 			err = &NotFoundError{frequency.Label}
 		} else if sqlgraph.IsConstraintError(err) {
@@ -240,8 +280,8 @@ func (fu *FrequencyUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		return 0, err
 	}
-	fu.mutation.done = true
-	return n, nil
+	_u.mutation.done = true
+	return _node, nil
 }
 
 // FrequencyUpdateOne is the builder for updating a single Frequency entity.
@@ -254,128 +294,168 @@ type FrequencyUpdateOne struct {
 }
 
 // SetImportID sets the "import_id" field.
-func (fuo *FrequencyUpdateOne) SetImportID(i int) *FrequencyUpdateOne {
-	fuo.mutation.ResetImportID()
-	fuo.mutation.SetImportID(i)
-	return fuo
+func (_u *FrequencyUpdateOne) SetImportID(v int) *FrequencyUpdateOne {
+	_u.mutation.ResetImportID()
+	_u.mutation.SetImportID(v)
+	return _u
 }
 
-// AddImportID adds i to the "import_id" field.
-func (fuo *FrequencyUpdateOne) AddImportID(i int) *FrequencyUpdateOne {
-	fuo.mutation.AddImportID(i)
-	return fuo
+// SetNillableImportID sets the "import_id" field if the given value is not nil.
+func (_u *FrequencyUpdateOne) SetNillableImportID(v *int) *FrequencyUpdateOne {
+	if v != nil {
+		_u.SetImportID(*v)
+	}
+	return _u
+}
+
+// AddImportID adds value to the "import_id" field.
+func (_u *FrequencyUpdateOne) AddImportID(v int) *FrequencyUpdateOne {
+	_u.mutation.AddImportID(v)
+	return _u
 }
 
 // SetHash sets the "hash" field.
-func (fuo *FrequencyUpdateOne) SetHash(s string) *FrequencyUpdateOne {
-	fuo.mutation.SetHash(s)
-	return fuo
+func (_u *FrequencyUpdateOne) SetHash(v string) *FrequencyUpdateOne {
+	_u.mutation.SetHash(v)
+	return _u
+}
+
+// SetNillableHash sets the "hash" field if the given value is not nil.
+func (_u *FrequencyUpdateOne) SetNillableHash(v *string) *FrequencyUpdateOne {
+	if v != nil {
+		_u.SetHash(*v)
+	}
+	return _u
 }
 
 // SetImportFlag sets the "import_flag" field.
-func (fuo *FrequencyUpdateOne) SetImportFlag(b bool) *FrequencyUpdateOne {
-	fuo.mutation.SetImportFlag(b)
-	return fuo
+func (_u *FrequencyUpdateOne) SetImportFlag(v bool) *FrequencyUpdateOne {
+	_u.mutation.SetImportFlag(v)
+	return _u
 }
 
 // SetNillableImportFlag sets the "import_flag" field if the given value is not nil.
-func (fuo *FrequencyUpdateOne) SetNillableImportFlag(b *bool) *FrequencyUpdateOne {
-	if b != nil {
-		fuo.SetImportFlag(*b)
+func (_u *FrequencyUpdateOne) SetNillableImportFlag(v *bool) *FrequencyUpdateOne {
+	if v != nil {
+		_u.SetImportFlag(*v)
 	}
-	return fuo
+	return _u
 }
 
 // SetLastUpdated sets the "last_updated" field.
-func (fuo *FrequencyUpdateOne) SetLastUpdated(t time.Time) *FrequencyUpdateOne {
-	fuo.mutation.SetLastUpdated(t)
-	return fuo
+func (_u *FrequencyUpdateOne) SetLastUpdated(v time.Time) *FrequencyUpdateOne {
+	_u.mutation.SetLastUpdated(v)
+	return _u
 }
 
 // SetNillableLastUpdated sets the "last_updated" field if the given value is not nil.
-func (fuo *FrequencyUpdateOne) SetNillableLastUpdated(t *time.Time) *FrequencyUpdateOne {
-	if t != nil {
-		fuo.SetLastUpdated(*t)
+func (_u *FrequencyUpdateOne) SetNillableLastUpdated(v *time.Time) *FrequencyUpdateOne {
+	if v != nil {
+		_u.SetLastUpdated(*v)
 	}
-	return fuo
+	return _u
 }
 
 // SetType sets the "type" field.
-func (fuo *FrequencyUpdateOne) SetType(s string) *FrequencyUpdateOne {
-	fuo.mutation.SetType(s)
-	return fuo
+func (_u *FrequencyUpdateOne) SetType(v string) *FrequencyUpdateOne {
+	_u.mutation.SetType(v)
+	return _u
+}
+
+// SetNillableType sets the "type" field if the given value is not nil.
+func (_u *FrequencyUpdateOne) SetNillableType(v *string) *FrequencyUpdateOne {
+	if v != nil {
+		_u.SetType(*v)
+	}
+	return _u
 }
 
 // SetDescription sets the "description" field.
-func (fuo *FrequencyUpdateOne) SetDescription(s string) *FrequencyUpdateOne {
-	fuo.mutation.SetDescription(s)
-	return fuo
+func (_u *FrequencyUpdateOne) SetDescription(v string) *FrequencyUpdateOne {
+	_u.mutation.SetDescription(v)
+	return _u
+}
+
+// SetNillableDescription sets the "description" field if the given value is not nil.
+func (_u *FrequencyUpdateOne) SetNillableDescription(v *string) *FrequencyUpdateOne {
+	if v != nil {
+		_u.SetDescription(*v)
+	}
+	return _u
 }
 
 // SetFrequency sets the "frequency" field.
-func (fuo *FrequencyUpdateOne) SetFrequency(f float64) *FrequencyUpdateOne {
-	fuo.mutation.ResetFrequency()
-	fuo.mutation.SetFrequency(f)
-	return fuo
+func (_u *FrequencyUpdateOne) SetFrequency(v float64) *FrequencyUpdateOne {
+	_u.mutation.ResetFrequency()
+	_u.mutation.SetFrequency(v)
+	return _u
 }
 
-// AddFrequency adds f to the "frequency" field.
-func (fuo *FrequencyUpdateOne) AddFrequency(f float64) *FrequencyUpdateOne {
-	fuo.mutation.AddFrequency(f)
-	return fuo
+// SetNillableFrequency sets the "frequency" field if the given value is not nil.
+func (_u *FrequencyUpdateOne) SetNillableFrequency(v *float64) *FrequencyUpdateOne {
+	if v != nil {
+		_u.SetFrequency(*v)
+	}
+	return _u
+}
+
+// AddFrequency adds value to the "frequency" field.
+func (_u *FrequencyUpdateOne) AddFrequency(v float64) *FrequencyUpdateOne {
+	_u.mutation.AddFrequency(v)
+	return _u
 }
 
 // SetAirportID sets the "airport" edge to the Airport entity by ID.
-func (fuo *FrequencyUpdateOne) SetAirportID(id uuid.UUID) *FrequencyUpdateOne {
-	fuo.mutation.SetAirportID(id)
-	return fuo
+func (_u *FrequencyUpdateOne) SetAirportID(id uuid.UUID) *FrequencyUpdateOne {
+	_u.mutation.SetAirportID(id)
+	return _u
 }
 
 // SetNillableAirportID sets the "airport" edge to the Airport entity by ID if the given value is not nil.
-func (fuo *FrequencyUpdateOne) SetNillableAirportID(id *uuid.UUID) *FrequencyUpdateOne {
+func (_u *FrequencyUpdateOne) SetNillableAirportID(id *uuid.UUID) *FrequencyUpdateOne {
 	if id != nil {
-		fuo = fuo.SetAirportID(*id)
+		_u = _u.SetAirportID(*id)
 	}
-	return fuo
+	return _u
 }
 
 // SetAirport sets the "airport" edge to the Airport entity.
-func (fuo *FrequencyUpdateOne) SetAirport(a *Airport) *FrequencyUpdateOne {
-	return fuo.SetAirportID(a.ID)
+func (_u *FrequencyUpdateOne) SetAirport(v *Airport) *FrequencyUpdateOne {
+	return _u.SetAirportID(v.ID)
 }
 
 // Mutation returns the FrequencyMutation object of the builder.
-func (fuo *FrequencyUpdateOne) Mutation() *FrequencyMutation {
-	return fuo.mutation
+func (_u *FrequencyUpdateOne) Mutation() *FrequencyMutation {
+	return _u.mutation
 }
 
 // ClearAirport clears the "airport" edge to the Airport entity.
-func (fuo *FrequencyUpdateOne) ClearAirport() *FrequencyUpdateOne {
-	fuo.mutation.ClearAirport()
-	return fuo
+func (_u *FrequencyUpdateOne) ClearAirport() *FrequencyUpdateOne {
+	_u.mutation.ClearAirport()
+	return _u
 }
 
 // Where appends a list predicates to the FrequencyUpdate builder.
-func (fuo *FrequencyUpdateOne) Where(ps ...predicate.Frequency) *FrequencyUpdateOne {
-	fuo.mutation.Where(ps...)
-	return fuo
+func (_u *FrequencyUpdateOne) Where(ps ...predicate.Frequency) *FrequencyUpdateOne {
+	_u.mutation.Where(ps...)
+	return _u
 }
 
 // Select allows selecting one or more fields (columns) of the returned entity.
 // The default is selecting all fields defined in the entity schema.
-func (fuo *FrequencyUpdateOne) Select(field string, fields ...string) *FrequencyUpdateOne {
-	fuo.fields = append([]string{field}, fields...)
-	return fuo
+func (_u *FrequencyUpdateOne) Select(field string, fields ...string) *FrequencyUpdateOne {
+	_u.fields = append([]string{field}, fields...)
+	return _u
 }
 
 // Save executes the query and returns the updated Frequency entity.
-func (fuo *FrequencyUpdateOne) Save(ctx context.Context) (*Frequency, error) {
-	return withHooks(ctx, fuo.sqlSave, fuo.mutation, fuo.hooks)
+func (_u *FrequencyUpdateOne) Save(ctx context.Context) (*Frequency, error) {
+	return withHooks(ctx, _u.sqlSave, _u.mutation, _u.hooks)
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (fuo *FrequencyUpdateOne) SaveX(ctx context.Context) *Frequency {
-	node, err := fuo.Save(ctx)
+func (_u *FrequencyUpdateOne) SaveX(ctx context.Context) *Frequency {
+	node, err := _u.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -383,32 +463,32 @@ func (fuo *FrequencyUpdateOne) SaveX(ctx context.Context) *Frequency {
 }
 
 // Exec executes the query on the entity.
-func (fuo *FrequencyUpdateOne) Exec(ctx context.Context) error {
-	_, err := fuo.Save(ctx)
+func (_u *FrequencyUpdateOne) Exec(ctx context.Context) error {
+	_, err := _u.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (fuo *FrequencyUpdateOne) ExecX(ctx context.Context) {
-	if err := fuo.Exec(ctx); err != nil {
+func (_u *FrequencyUpdateOne) ExecX(ctx context.Context) {
+	if err := _u.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // Modify adds a statement modifier for attaching custom logic to the UPDATE statement.
-func (fuo *FrequencyUpdateOne) Modify(modifiers ...func(u *sql.UpdateBuilder)) *FrequencyUpdateOne {
-	fuo.modifiers = append(fuo.modifiers, modifiers...)
-	return fuo
+func (_u *FrequencyUpdateOne) Modify(modifiers ...func(u *sql.UpdateBuilder)) *FrequencyUpdateOne {
+	_u.modifiers = append(_u.modifiers, modifiers...)
+	return _u
 }
 
-func (fuo *FrequencyUpdateOne) sqlSave(ctx context.Context) (_node *Frequency, err error) {
+func (_u *FrequencyUpdateOne) sqlSave(ctx context.Context) (_node *Frequency, err error) {
 	_spec := sqlgraph.NewUpdateSpec(frequency.Table, frequency.Columns, sqlgraph.NewFieldSpec(frequency.FieldID, field.TypeUUID))
-	id, ok := fuo.mutation.ID()
+	id, ok := _u.mutation.ID()
 	if !ok {
 		return nil, &ValidationError{Name: "id", err: errors.New(`ent: missing "Frequency.id" for update`)}
 	}
 	_spec.Node.ID.Value = id
-	if fields := fuo.fields; len(fields) > 0 {
+	if fields := _u.fields; len(fields) > 0 {
 		_spec.Node.Columns = make([]string, 0, len(fields))
 		_spec.Node.Columns = append(_spec.Node.Columns, frequency.FieldID)
 		for _, f := range fields {
@@ -420,41 +500,41 @@ func (fuo *FrequencyUpdateOne) sqlSave(ctx context.Context) (_node *Frequency, e
 			}
 		}
 	}
-	if ps := fuo.mutation.predicates; len(ps) > 0 {
+	if ps := _u.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if value, ok := fuo.mutation.ImportID(); ok {
+	if value, ok := _u.mutation.ImportID(); ok {
 		_spec.SetField(frequency.FieldImportID, field.TypeInt, value)
 	}
-	if value, ok := fuo.mutation.AddedImportID(); ok {
+	if value, ok := _u.mutation.AddedImportID(); ok {
 		_spec.AddField(frequency.FieldImportID, field.TypeInt, value)
 	}
-	if value, ok := fuo.mutation.Hash(); ok {
+	if value, ok := _u.mutation.Hash(); ok {
 		_spec.SetField(frequency.FieldHash, field.TypeString, value)
 	}
-	if value, ok := fuo.mutation.ImportFlag(); ok {
+	if value, ok := _u.mutation.ImportFlag(); ok {
 		_spec.SetField(frequency.FieldImportFlag, field.TypeBool, value)
 	}
-	if value, ok := fuo.mutation.LastUpdated(); ok {
+	if value, ok := _u.mutation.LastUpdated(); ok {
 		_spec.SetField(frequency.FieldLastUpdated, field.TypeTime, value)
 	}
-	if value, ok := fuo.mutation.GetType(); ok {
+	if value, ok := _u.mutation.GetType(); ok {
 		_spec.SetField(frequency.FieldType, field.TypeString, value)
 	}
-	if value, ok := fuo.mutation.Description(); ok {
+	if value, ok := _u.mutation.Description(); ok {
 		_spec.SetField(frequency.FieldDescription, field.TypeString, value)
 	}
-	if value, ok := fuo.mutation.Frequency(); ok {
+	if value, ok := _u.mutation.Frequency(); ok {
 		_spec.SetField(frequency.FieldFrequency, field.TypeFloat64, value)
 	}
-	if value, ok := fuo.mutation.AddedFrequency(); ok {
+	if value, ok := _u.mutation.AddedFrequency(); ok {
 		_spec.AddField(frequency.FieldFrequency, field.TypeFloat64, value)
 	}
-	if fuo.mutation.AirportCleared() {
+	if _u.mutation.AirportCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.M2O,
 			Inverse: true,
@@ -467,7 +547,7 @@ func (fuo *FrequencyUpdateOne) sqlSave(ctx context.Context) (_node *Frequency, e
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := fuo.mutation.AirportIDs(); len(nodes) > 0 {
+	if nodes := _u.mutation.AirportIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.M2O,
 			Inverse: true,
@@ -483,11 +563,11 @@ func (fuo *FrequencyUpdateOne) sqlSave(ctx context.Context) (_node *Frequency, e
 		}
 		_spec.Edges.Add = append(_spec.Edges.Add, edge)
 	}
-	_spec.AddModifiers(fuo.modifiers...)
-	_node = &Frequency{config: fuo.config}
+	_spec.AddModifiers(_u.modifiers...)
+	_node = &Frequency{config: _u.config}
 	_spec.Assign = _node.assignValues
 	_spec.ScanValues = _node.scanValues
-	if err = sqlgraph.UpdateNode(ctx, fuo.driver, _spec); err != nil {
+	if err = sqlgraph.UpdateNode(ctx, _u.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
 			err = &NotFoundError{frequency.Label}
 		} else if sqlgraph.IsConstraintError(err) {
@@ -495,6 +575,6 @@ func (fuo *FrequencyUpdateOne) sqlSave(ctx context.Context) (_node *Frequency, e
 		}
 		return nil, err
 	}
-	fuo.mutation.done = true
+	_u.mutation.done = true
 	return _node, nil
 }

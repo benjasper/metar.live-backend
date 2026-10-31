@@ -26,282 +26,282 @@ type RunwayCreate struct {
 }
 
 // SetImportID sets the "import_id" field.
-func (rc *RunwayCreate) SetImportID(i int) *RunwayCreate {
-	rc.mutation.SetImportID(i)
-	return rc
+func (_c *RunwayCreate) SetImportID(v int) *RunwayCreate {
+	_c.mutation.SetImportID(v)
+	return _c
 }
 
 // SetHash sets the "hash" field.
-func (rc *RunwayCreate) SetHash(s string) *RunwayCreate {
-	rc.mutation.SetHash(s)
-	return rc
+func (_c *RunwayCreate) SetHash(v string) *RunwayCreate {
+	_c.mutation.SetHash(v)
+	return _c
 }
 
 // SetImportFlag sets the "import_flag" field.
-func (rc *RunwayCreate) SetImportFlag(b bool) *RunwayCreate {
-	rc.mutation.SetImportFlag(b)
-	return rc
+func (_c *RunwayCreate) SetImportFlag(v bool) *RunwayCreate {
+	_c.mutation.SetImportFlag(v)
+	return _c
 }
 
 // SetNillableImportFlag sets the "import_flag" field if the given value is not nil.
-func (rc *RunwayCreate) SetNillableImportFlag(b *bool) *RunwayCreate {
-	if b != nil {
-		rc.SetImportFlag(*b)
+func (_c *RunwayCreate) SetNillableImportFlag(v *bool) *RunwayCreate {
+	if v != nil {
+		_c.SetImportFlag(*v)
 	}
-	return rc
+	return _c
 }
 
 // SetLastUpdated sets the "last_updated" field.
-func (rc *RunwayCreate) SetLastUpdated(t time.Time) *RunwayCreate {
-	rc.mutation.SetLastUpdated(t)
-	return rc
+func (_c *RunwayCreate) SetLastUpdated(v time.Time) *RunwayCreate {
+	_c.mutation.SetLastUpdated(v)
+	return _c
 }
 
 // SetNillableLastUpdated sets the "last_updated" field if the given value is not nil.
-func (rc *RunwayCreate) SetNillableLastUpdated(t *time.Time) *RunwayCreate {
-	if t != nil {
-		rc.SetLastUpdated(*t)
+func (_c *RunwayCreate) SetNillableLastUpdated(v *time.Time) *RunwayCreate {
+	if v != nil {
+		_c.SetLastUpdated(*v)
 	}
-	return rc
+	return _c
 }
 
 // SetLength sets the "length" field.
-func (rc *RunwayCreate) SetLength(i int) *RunwayCreate {
-	rc.mutation.SetLength(i)
-	return rc
+func (_c *RunwayCreate) SetLength(v int) *RunwayCreate {
+	_c.mutation.SetLength(v)
+	return _c
 }
 
 // SetWidth sets the "width" field.
-func (rc *RunwayCreate) SetWidth(i int) *RunwayCreate {
-	rc.mutation.SetWidth(i)
-	return rc
+func (_c *RunwayCreate) SetWidth(v int) *RunwayCreate {
+	_c.mutation.SetWidth(v)
+	return _c
 }
 
 // SetSurface sets the "surface" field.
-func (rc *RunwayCreate) SetSurface(s string) *RunwayCreate {
-	rc.mutation.SetSurface(s)
-	return rc
+func (_c *RunwayCreate) SetSurface(v string) *RunwayCreate {
+	_c.mutation.SetSurface(v)
+	return _c
 }
 
 // SetNillableSurface sets the "surface" field if the given value is not nil.
-func (rc *RunwayCreate) SetNillableSurface(s *string) *RunwayCreate {
-	if s != nil {
-		rc.SetSurface(*s)
+func (_c *RunwayCreate) SetNillableSurface(v *string) *RunwayCreate {
+	if v != nil {
+		_c.SetSurface(*v)
 	}
-	return rc
+	return _c
 }
 
 // SetLighted sets the "lighted" field.
-func (rc *RunwayCreate) SetLighted(b bool) *RunwayCreate {
-	rc.mutation.SetLighted(b)
-	return rc
+func (_c *RunwayCreate) SetLighted(v bool) *RunwayCreate {
+	_c.mutation.SetLighted(v)
+	return _c
 }
 
 // SetClosed sets the "closed" field.
-func (rc *RunwayCreate) SetClosed(b bool) *RunwayCreate {
-	rc.mutation.SetClosed(b)
-	return rc
+func (_c *RunwayCreate) SetClosed(v bool) *RunwayCreate {
+	_c.mutation.SetClosed(v)
+	return _c
 }
 
 // SetLowRunwayIdentifier sets the "low_runway_identifier" field.
-func (rc *RunwayCreate) SetLowRunwayIdentifier(s string) *RunwayCreate {
-	rc.mutation.SetLowRunwayIdentifier(s)
-	return rc
+func (_c *RunwayCreate) SetLowRunwayIdentifier(v string) *RunwayCreate {
+	_c.mutation.SetLowRunwayIdentifier(v)
+	return _c
 }
 
 // SetLowRunwayLatitude sets the "low_runway_latitude" field.
-func (rc *RunwayCreate) SetLowRunwayLatitude(f float64) *RunwayCreate {
-	rc.mutation.SetLowRunwayLatitude(f)
-	return rc
+func (_c *RunwayCreate) SetLowRunwayLatitude(v float64) *RunwayCreate {
+	_c.mutation.SetLowRunwayLatitude(v)
+	return _c
 }
 
 // SetNillableLowRunwayLatitude sets the "low_runway_latitude" field if the given value is not nil.
-func (rc *RunwayCreate) SetNillableLowRunwayLatitude(f *float64) *RunwayCreate {
-	if f != nil {
-		rc.SetLowRunwayLatitude(*f)
+func (_c *RunwayCreate) SetNillableLowRunwayLatitude(v *float64) *RunwayCreate {
+	if v != nil {
+		_c.SetLowRunwayLatitude(*v)
 	}
-	return rc
+	return _c
 }
 
 // SetLowRunwayLongitude sets the "low_runway_longitude" field.
-func (rc *RunwayCreate) SetLowRunwayLongitude(f float64) *RunwayCreate {
-	rc.mutation.SetLowRunwayLongitude(f)
-	return rc
+func (_c *RunwayCreate) SetLowRunwayLongitude(v float64) *RunwayCreate {
+	_c.mutation.SetLowRunwayLongitude(v)
+	return _c
 }
 
 // SetNillableLowRunwayLongitude sets the "low_runway_longitude" field if the given value is not nil.
-func (rc *RunwayCreate) SetNillableLowRunwayLongitude(f *float64) *RunwayCreate {
-	if f != nil {
-		rc.SetLowRunwayLongitude(*f)
+func (_c *RunwayCreate) SetNillableLowRunwayLongitude(v *float64) *RunwayCreate {
+	if v != nil {
+		_c.SetLowRunwayLongitude(*v)
 	}
-	return rc
+	return _c
 }
 
 // SetLowRunwayElevation sets the "low_runway_elevation" field.
-func (rc *RunwayCreate) SetLowRunwayElevation(i int) *RunwayCreate {
-	rc.mutation.SetLowRunwayElevation(i)
-	return rc
+func (_c *RunwayCreate) SetLowRunwayElevation(v int) *RunwayCreate {
+	_c.mutation.SetLowRunwayElevation(v)
+	return _c
 }
 
 // SetNillableLowRunwayElevation sets the "low_runway_elevation" field if the given value is not nil.
-func (rc *RunwayCreate) SetNillableLowRunwayElevation(i *int) *RunwayCreate {
-	if i != nil {
-		rc.SetLowRunwayElevation(*i)
+func (_c *RunwayCreate) SetNillableLowRunwayElevation(v *int) *RunwayCreate {
+	if v != nil {
+		_c.SetLowRunwayElevation(*v)
 	}
-	return rc
+	return _c
 }
 
 // SetLowRunwayHeading sets the "low_runway_heading" field.
-func (rc *RunwayCreate) SetLowRunwayHeading(f float64) *RunwayCreate {
-	rc.mutation.SetLowRunwayHeading(f)
-	return rc
+func (_c *RunwayCreate) SetLowRunwayHeading(v float64) *RunwayCreate {
+	_c.mutation.SetLowRunwayHeading(v)
+	return _c
 }
 
 // SetNillableLowRunwayHeading sets the "low_runway_heading" field if the given value is not nil.
-func (rc *RunwayCreate) SetNillableLowRunwayHeading(f *float64) *RunwayCreate {
-	if f != nil {
-		rc.SetLowRunwayHeading(*f)
+func (_c *RunwayCreate) SetNillableLowRunwayHeading(v *float64) *RunwayCreate {
+	if v != nil {
+		_c.SetLowRunwayHeading(*v)
 	}
-	return rc
+	return _c
 }
 
 // SetLowRunwayDisplacedThreshold sets the "low_runway_displaced_threshold" field.
-func (rc *RunwayCreate) SetLowRunwayDisplacedThreshold(i int) *RunwayCreate {
-	rc.mutation.SetLowRunwayDisplacedThreshold(i)
-	return rc
+func (_c *RunwayCreate) SetLowRunwayDisplacedThreshold(v int) *RunwayCreate {
+	_c.mutation.SetLowRunwayDisplacedThreshold(v)
+	return _c
 }
 
 // SetNillableLowRunwayDisplacedThreshold sets the "low_runway_displaced_threshold" field if the given value is not nil.
-func (rc *RunwayCreate) SetNillableLowRunwayDisplacedThreshold(i *int) *RunwayCreate {
-	if i != nil {
-		rc.SetLowRunwayDisplacedThreshold(*i)
+func (_c *RunwayCreate) SetNillableLowRunwayDisplacedThreshold(v *int) *RunwayCreate {
+	if v != nil {
+		_c.SetLowRunwayDisplacedThreshold(*v)
 	}
-	return rc
+	return _c
 }
 
 // SetHighRunwayIdentifier sets the "high_runway_identifier" field.
-func (rc *RunwayCreate) SetHighRunwayIdentifier(s string) *RunwayCreate {
-	rc.mutation.SetHighRunwayIdentifier(s)
-	return rc
+func (_c *RunwayCreate) SetHighRunwayIdentifier(v string) *RunwayCreate {
+	_c.mutation.SetHighRunwayIdentifier(v)
+	return _c
 }
 
 // SetHighRunwayLatitude sets the "high_runway_latitude" field.
-func (rc *RunwayCreate) SetHighRunwayLatitude(f float64) *RunwayCreate {
-	rc.mutation.SetHighRunwayLatitude(f)
-	return rc
+func (_c *RunwayCreate) SetHighRunwayLatitude(v float64) *RunwayCreate {
+	_c.mutation.SetHighRunwayLatitude(v)
+	return _c
 }
 
 // SetNillableHighRunwayLatitude sets the "high_runway_latitude" field if the given value is not nil.
-func (rc *RunwayCreate) SetNillableHighRunwayLatitude(f *float64) *RunwayCreate {
-	if f != nil {
-		rc.SetHighRunwayLatitude(*f)
+func (_c *RunwayCreate) SetNillableHighRunwayLatitude(v *float64) *RunwayCreate {
+	if v != nil {
+		_c.SetHighRunwayLatitude(*v)
 	}
-	return rc
+	return _c
 }
 
 // SetHighRunwayLongitude sets the "high_runway_longitude" field.
-func (rc *RunwayCreate) SetHighRunwayLongitude(f float64) *RunwayCreate {
-	rc.mutation.SetHighRunwayLongitude(f)
-	return rc
+func (_c *RunwayCreate) SetHighRunwayLongitude(v float64) *RunwayCreate {
+	_c.mutation.SetHighRunwayLongitude(v)
+	return _c
 }
 
 // SetNillableHighRunwayLongitude sets the "high_runway_longitude" field if the given value is not nil.
-func (rc *RunwayCreate) SetNillableHighRunwayLongitude(f *float64) *RunwayCreate {
-	if f != nil {
-		rc.SetHighRunwayLongitude(*f)
+func (_c *RunwayCreate) SetNillableHighRunwayLongitude(v *float64) *RunwayCreate {
+	if v != nil {
+		_c.SetHighRunwayLongitude(*v)
 	}
-	return rc
+	return _c
 }
 
 // SetHighRunwayElevation sets the "high_runway_elevation" field.
-func (rc *RunwayCreate) SetHighRunwayElevation(i int) *RunwayCreate {
-	rc.mutation.SetHighRunwayElevation(i)
-	return rc
+func (_c *RunwayCreate) SetHighRunwayElevation(v int) *RunwayCreate {
+	_c.mutation.SetHighRunwayElevation(v)
+	return _c
 }
 
 // SetNillableHighRunwayElevation sets the "high_runway_elevation" field if the given value is not nil.
-func (rc *RunwayCreate) SetNillableHighRunwayElevation(i *int) *RunwayCreate {
-	if i != nil {
-		rc.SetHighRunwayElevation(*i)
+func (_c *RunwayCreate) SetNillableHighRunwayElevation(v *int) *RunwayCreate {
+	if v != nil {
+		_c.SetHighRunwayElevation(*v)
 	}
-	return rc
+	return _c
 }
 
 // SetHighRunwayHeading sets the "high_runway_heading" field.
-func (rc *RunwayCreate) SetHighRunwayHeading(f float64) *RunwayCreate {
-	rc.mutation.SetHighRunwayHeading(f)
-	return rc
+func (_c *RunwayCreate) SetHighRunwayHeading(v float64) *RunwayCreate {
+	_c.mutation.SetHighRunwayHeading(v)
+	return _c
 }
 
 // SetNillableHighRunwayHeading sets the "high_runway_heading" field if the given value is not nil.
-func (rc *RunwayCreate) SetNillableHighRunwayHeading(f *float64) *RunwayCreate {
-	if f != nil {
-		rc.SetHighRunwayHeading(*f)
+func (_c *RunwayCreate) SetNillableHighRunwayHeading(v *float64) *RunwayCreate {
+	if v != nil {
+		_c.SetHighRunwayHeading(*v)
 	}
-	return rc
+	return _c
 }
 
 // SetHighRunwayDisplacedThreshold sets the "high_runway_displaced_threshold" field.
-func (rc *RunwayCreate) SetHighRunwayDisplacedThreshold(i int) *RunwayCreate {
-	rc.mutation.SetHighRunwayDisplacedThreshold(i)
-	return rc
+func (_c *RunwayCreate) SetHighRunwayDisplacedThreshold(v int) *RunwayCreate {
+	_c.mutation.SetHighRunwayDisplacedThreshold(v)
+	return _c
 }
 
 // SetNillableHighRunwayDisplacedThreshold sets the "high_runway_displaced_threshold" field if the given value is not nil.
-func (rc *RunwayCreate) SetNillableHighRunwayDisplacedThreshold(i *int) *RunwayCreate {
-	if i != nil {
-		rc.SetHighRunwayDisplacedThreshold(*i)
+func (_c *RunwayCreate) SetNillableHighRunwayDisplacedThreshold(v *int) *RunwayCreate {
+	if v != nil {
+		_c.SetHighRunwayDisplacedThreshold(*v)
 	}
-	return rc
+	return _c
 }
 
 // SetID sets the "id" field.
-func (rc *RunwayCreate) SetID(u uuid.UUID) *RunwayCreate {
-	rc.mutation.SetID(u)
-	return rc
+func (_c *RunwayCreate) SetID(v uuid.UUID) *RunwayCreate {
+	_c.mutation.SetID(v)
+	return _c
 }
 
 // SetNillableID sets the "id" field if the given value is not nil.
-func (rc *RunwayCreate) SetNillableID(u *uuid.UUID) *RunwayCreate {
-	if u != nil {
-		rc.SetID(*u)
+func (_c *RunwayCreate) SetNillableID(v *uuid.UUID) *RunwayCreate {
+	if v != nil {
+		_c.SetID(*v)
 	}
-	return rc
+	return _c
 }
 
 // SetAirportID sets the "airport" edge to the Airport entity by ID.
-func (rc *RunwayCreate) SetAirportID(id uuid.UUID) *RunwayCreate {
-	rc.mutation.SetAirportID(id)
-	return rc
+func (_c *RunwayCreate) SetAirportID(id uuid.UUID) *RunwayCreate {
+	_c.mutation.SetAirportID(id)
+	return _c
 }
 
 // SetNillableAirportID sets the "airport" edge to the Airport entity by ID if the given value is not nil.
-func (rc *RunwayCreate) SetNillableAirportID(id *uuid.UUID) *RunwayCreate {
+func (_c *RunwayCreate) SetNillableAirportID(id *uuid.UUID) *RunwayCreate {
 	if id != nil {
-		rc = rc.SetAirportID(*id)
+		_c = _c.SetAirportID(*id)
 	}
-	return rc
+	return _c
 }
 
 // SetAirport sets the "airport" edge to the Airport entity.
-func (rc *RunwayCreate) SetAirport(a *Airport) *RunwayCreate {
-	return rc.SetAirportID(a.ID)
+func (_c *RunwayCreate) SetAirport(v *Airport) *RunwayCreate {
+	return _c.SetAirportID(v.ID)
 }
 
 // Mutation returns the RunwayMutation object of the builder.
-func (rc *RunwayCreate) Mutation() *RunwayMutation {
-	return rc.mutation
+func (_c *RunwayCreate) Mutation() *RunwayMutation {
+	return _c.mutation
 }
 
 // Save creates the Runway in the database.
-func (rc *RunwayCreate) Save(ctx context.Context) (*Runway, error) {
-	rc.defaults()
-	return withHooks(ctx, rc.sqlSave, rc.mutation, rc.hooks)
+func (_c *RunwayCreate) Save(ctx context.Context) (*Runway, error) {
+	_c.defaults()
+	return withHooks(ctx, _c.sqlSave, _c.mutation, _c.hooks)
 }
 
 // SaveX calls Save and panics if Save returns an error.
-func (rc *RunwayCreate) SaveX(ctx context.Context) *Runway {
-	v, err := rc.Save(ctx)
+func (_c *RunwayCreate) SaveX(ctx context.Context) *Runway {
+	v, err := _c.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -309,75 +309,75 @@ func (rc *RunwayCreate) SaveX(ctx context.Context) *Runway {
 }
 
 // Exec executes the query.
-func (rc *RunwayCreate) Exec(ctx context.Context) error {
-	_, err := rc.Save(ctx)
+func (_c *RunwayCreate) Exec(ctx context.Context) error {
+	_, err := _c.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (rc *RunwayCreate) ExecX(ctx context.Context) {
-	if err := rc.Exec(ctx); err != nil {
+func (_c *RunwayCreate) ExecX(ctx context.Context) {
+	if err := _c.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // defaults sets the default values of the builder before save.
-func (rc *RunwayCreate) defaults() {
-	if _, ok := rc.mutation.ImportFlag(); !ok {
+func (_c *RunwayCreate) defaults() {
+	if _, ok := _c.mutation.ImportFlag(); !ok {
 		v := runway.DefaultImportFlag
-		rc.mutation.SetImportFlag(v)
+		_c.mutation.SetImportFlag(v)
 	}
-	if _, ok := rc.mutation.LastUpdated(); !ok {
+	if _, ok := _c.mutation.LastUpdated(); !ok {
 		v := runway.DefaultLastUpdated()
-		rc.mutation.SetLastUpdated(v)
+		_c.mutation.SetLastUpdated(v)
 	}
-	if _, ok := rc.mutation.ID(); !ok {
+	if _, ok := _c.mutation.ID(); !ok {
 		v := runway.DefaultID()
-		rc.mutation.SetID(v)
+		_c.mutation.SetID(v)
 	}
 }
 
 // check runs all checks and user-defined validators on the builder.
-func (rc *RunwayCreate) check() error {
-	if _, ok := rc.mutation.ImportID(); !ok {
+func (_c *RunwayCreate) check() error {
+	if _, ok := _c.mutation.ImportID(); !ok {
 		return &ValidationError{Name: "import_id", err: errors.New(`ent: missing required field "Runway.import_id"`)}
 	}
-	if _, ok := rc.mutation.Hash(); !ok {
+	if _, ok := _c.mutation.Hash(); !ok {
 		return &ValidationError{Name: "hash", err: errors.New(`ent: missing required field "Runway.hash"`)}
 	}
-	if _, ok := rc.mutation.ImportFlag(); !ok {
+	if _, ok := _c.mutation.ImportFlag(); !ok {
 		return &ValidationError{Name: "import_flag", err: errors.New(`ent: missing required field "Runway.import_flag"`)}
 	}
-	if _, ok := rc.mutation.LastUpdated(); !ok {
+	if _, ok := _c.mutation.LastUpdated(); !ok {
 		return &ValidationError{Name: "last_updated", err: errors.New(`ent: missing required field "Runway.last_updated"`)}
 	}
-	if _, ok := rc.mutation.Length(); !ok {
+	if _, ok := _c.mutation.Length(); !ok {
 		return &ValidationError{Name: "length", err: errors.New(`ent: missing required field "Runway.length"`)}
 	}
-	if _, ok := rc.mutation.Width(); !ok {
+	if _, ok := _c.mutation.Width(); !ok {
 		return &ValidationError{Name: "width", err: errors.New(`ent: missing required field "Runway.width"`)}
 	}
-	if _, ok := rc.mutation.Lighted(); !ok {
+	if _, ok := _c.mutation.Lighted(); !ok {
 		return &ValidationError{Name: "lighted", err: errors.New(`ent: missing required field "Runway.lighted"`)}
 	}
-	if _, ok := rc.mutation.Closed(); !ok {
+	if _, ok := _c.mutation.Closed(); !ok {
 		return &ValidationError{Name: "closed", err: errors.New(`ent: missing required field "Runway.closed"`)}
 	}
-	if _, ok := rc.mutation.LowRunwayIdentifier(); !ok {
+	if _, ok := _c.mutation.LowRunwayIdentifier(); !ok {
 		return &ValidationError{Name: "low_runway_identifier", err: errors.New(`ent: missing required field "Runway.low_runway_identifier"`)}
 	}
-	if _, ok := rc.mutation.HighRunwayIdentifier(); !ok {
+	if _, ok := _c.mutation.HighRunwayIdentifier(); !ok {
 		return &ValidationError{Name: "high_runway_identifier", err: errors.New(`ent: missing required field "Runway.high_runway_identifier"`)}
 	}
 	return nil
 }
 
-func (rc *RunwayCreate) sqlSave(ctx context.Context) (*Runway, error) {
-	if err := rc.check(); err != nil {
+func (_c *RunwayCreate) sqlSave(ctx context.Context) (*Runway, error) {
+	if err := _c.check(); err != nil {
 		return nil, err
 	}
-	_node, _spec := rc.createSpec()
-	if err := sqlgraph.CreateNode(ctx, rc.driver, _spec); err != nil {
+	_node, _spec := _c.createSpec()
+	if err := sqlgraph.CreateNode(ctx, _c.driver, _spec); err != nil {
 		if sqlgraph.IsConstraintError(err) {
 			err = &ConstraintError{msg: err.Error(), wrap: err}
 		}
@@ -390,106 +390,106 @@ func (rc *RunwayCreate) sqlSave(ctx context.Context) (*Runway, error) {
 			return nil, err
 		}
 	}
-	rc.mutation.id = &_node.ID
-	rc.mutation.done = true
+	_c.mutation.id = &_node.ID
+	_c.mutation.done = true
 	return _node, nil
 }
 
-func (rc *RunwayCreate) createSpec() (*Runway, *sqlgraph.CreateSpec) {
+func (_c *RunwayCreate) createSpec() (*Runway, *sqlgraph.CreateSpec) {
 	var (
-		_node = &Runway{config: rc.config}
+		_node = &Runway{config: _c.config}
 		_spec = sqlgraph.NewCreateSpec(runway.Table, sqlgraph.NewFieldSpec(runway.FieldID, field.TypeUUID))
 	)
-	_spec.OnConflict = rc.conflict
-	if id, ok := rc.mutation.ID(); ok {
+	_spec.OnConflict = _c.conflict
+	if id, ok := _c.mutation.ID(); ok {
 		_node.ID = id
 		_spec.ID.Value = &id
 	}
-	if value, ok := rc.mutation.ImportID(); ok {
+	if value, ok := _c.mutation.ImportID(); ok {
 		_spec.SetField(runway.FieldImportID, field.TypeInt, value)
 		_node.ImportID = value
 	}
-	if value, ok := rc.mutation.Hash(); ok {
+	if value, ok := _c.mutation.Hash(); ok {
 		_spec.SetField(runway.FieldHash, field.TypeString, value)
 		_node.Hash = value
 	}
-	if value, ok := rc.mutation.ImportFlag(); ok {
+	if value, ok := _c.mutation.ImportFlag(); ok {
 		_spec.SetField(runway.FieldImportFlag, field.TypeBool, value)
 		_node.ImportFlag = value
 	}
-	if value, ok := rc.mutation.LastUpdated(); ok {
+	if value, ok := _c.mutation.LastUpdated(); ok {
 		_spec.SetField(runway.FieldLastUpdated, field.TypeTime, value)
 		_node.LastUpdated = value
 	}
-	if value, ok := rc.mutation.Length(); ok {
+	if value, ok := _c.mutation.Length(); ok {
 		_spec.SetField(runway.FieldLength, field.TypeInt, value)
 		_node.Length = value
 	}
-	if value, ok := rc.mutation.Width(); ok {
+	if value, ok := _c.mutation.Width(); ok {
 		_spec.SetField(runway.FieldWidth, field.TypeInt, value)
 		_node.Width = value
 	}
-	if value, ok := rc.mutation.Surface(); ok {
+	if value, ok := _c.mutation.Surface(); ok {
 		_spec.SetField(runway.FieldSurface, field.TypeString, value)
 		_node.Surface = &value
 	}
-	if value, ok := rc.mutation.Lighted(); ok {
+	if value, ok := _c.mutation.Lighted(); ok {
 		_spec.SetField(runway.FieldLighted, field.TypeBool, value)
 		_node.Lighted = value
 	}
-	if value, ok := rc.mutation.Closed(); ok {
+	if value, ok := _c.mutation.Closed(); ok {
 		_spec.SetField(runway.FieldClosed, field.TypeBool, value)
 		_node.Closed = value
 	}
-	if value, ok := rc.mutation.LowRunwayIdentifier(); ok {
+	if value, ok := _c.mutation.LowRunwayIdentifier(); ok {
 		_spec.SetField(runway.FieldLowRunwayIdentifier, field.TypeString, value)
 		_node.LowRunwayIdentifier = value
 	}
-	if value, ok := rc.mutation.LowRunwayLatitude(); ok {
+	if value, ok := _c.mutation.LowRunwayLatitude(); ok {
 		_spec.SetField(runway.FieldLowRunwayLatitude, field.TypeFloat64, value)
 		_node.LowRunwayLatitude = &value
 	}
-	if value, ok := rc.mutation.LowRunwayLongitude(); ok {
+	if value, ok := _c.mutation.LowRunwayLongitude(); ok {
 		_spec.SetField(runway.FieldLowRunwayLongitude, field.TypeFloat64, value)
 		_node.LowRunwayLongitude = &value
 	}
-	if value, ok := rc.mutation.LowRunwayElevation(); ok {
+	if value, ok := _c.mutation.LowRunwayElevation(); ok {
 		_spec.SetField(runway.FieldLowRunwayElevation, field.TypeInt, value)
 		_node.LowRunwayElevation = &value
 	}
-	if value, ok := rc.mutation.LowRunwayHeading(); ok {
+	if value, ok := _c.mutation.LowRunwayHeading(); ok {
 		_spec.SetField(runway.FieldLowRunwayHeading, field.TypeFloat64, value)
 		_node.LowRunwayHeading = &value
 	}
-	if value, ok := rc.mutation.LowRunwayDisplacedThreshold(); ok {
+	if value, ok := _c.mutation.LowRunwayDisplacedThreshold(); ok {
 		_spec.SetField(runway.FieldLowRunwayDisplacedThreshold, field.TypeInt, value)
 		_node.LowRunwayDisplacedThreshold = &value
 	}
-	if value, ok := rc.mutation.HighRunwayIdentifier(); ok {
+	if value, ok := _c.mutation.HighRunwayIdentifier(); ok {
 		_spec.SetField(runway.FieldHighRunwayIdentifier, field.TypeString, value)
 		_node.HighRunwayIdentifier = value
 	}
-	if value, ok := rc.mutation.HighRunwayLatitude(); ok {
+	if value, ok := _c.mutation.HighRunwayLatitude(); ok {
 		_spec.SetField(runway.FieldHighRunwayLatitude, field.TypeFloat64, value)
 		_node.HighRunwayLatitude = &value
 	}
-	if value, ok := rc.mutation.HighRunwayLongitude(); ok {
+	if value, ok := _c.mutation.HighRunwayLongitude(); ok {
 		_spec.SetField(runway.FieldHighRunwayLongitude, field.TypeFloat64, value)
 		_node.HighRunwayLongitude = &value
 	}
-	if value, ok := rc.mutation.HighRunwayElevation(); ok {
+	if value, ok := _c.mutation.HighRunwayElevation(); ok {
 		_spec.SetField(runway.FieldHighRunwayElevation, field.TypeInt, value)
 		_node.HighRunwayElevation = &value
 	}
-	if value, ok := rc.mutation.HighRunwayHeading(); ok {
+	if value, ok := _c.mutation.HighRunwayHeading(); ok {
 		_spec.SetField(runway.FieldHighRunwayHeading, field.TypeFloat64, value)
 		_node.HighRunwayHeading = &value
 	}
-	if value, ok := rc.mutation.HighRunwayDisplacedThreshold(); ok {
+	if value, ok := _c.mutation.HighRunwayDisplacedThreshold(); ok {
 		_spec.SetField(runway.FieldHighRunwayDisplacedThreshold, field.TypeInt, value)
 		_node.HighRunwayDisplacedThreshold = &value
 	}
-	if nodes := rc.mutation.AirportIDs(); len(nodes) > 0 {
+	if nodes := _c.mutation.AirportIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.M2O,
 			Inverse: true,
@@ -525,10 +525,10 @@ func (rc *RunwayCreate) createSpec() (*Runway, *sqlgraph.CreateSpec) {
 //			SetImportID(v+v).
 //		}).
 //		Exec(ctx)
-func (rc *RunwayCreate) OnConflict(opts ...sql.ConflictOption) *RunwayUpsertOne {
-	rc.conflict = opts
+func (_c *RunwayCreate) OnConflict(opts ...sql.ConflictOption) *RunwayUpsertOne {
+	_c.conflict = opts
 	return &RunwayUpsertOne{
-		create: rc,
+		create: _c,
 	}
 }
 
@@ -538,10 +538,10 @@ func (rc *RunwayCreate) OnConflict(opts ...sql.ConflictOption) *RunwayUpsertOne 
 //	client.Runway.Create().
 //		OnConflict(sql.ConflictColumns(columns...)).
 //		Exec(ctx)
-func (rc *RunwayCreate) OnConflictColumns(columns ...string) *RunwayUpsertOne {
-	rc.conflict = append(rc.conflict, sql.ConflictColumns(columns...))
+func (_c *RunwayCreate) OnConflictColumns(columns ...string) *RunwayUpsertOne {
+	_c.conflict = append(_c.conflict, sql.ConflictColumns(columns...))
 	return &RunwayUpsertOne{
-		create: rc,
+		create: _c,
 	}
 }
 
@@ -1505,18 +1505,22 @@ func (u *RunwayUpsertOne) IDX(ctx context.Context) uuid.UUID {
 // RunwayCreateBulk is the builder for creating many Runway entities in bulk.
 type RunwayCreateBulk struct {
 	config
+	err      error
 	builders []*RunwayCreate
 	conflict []sql.ConflictOption
 }
 
 // Save creates the Runway entities in the database.
-func (rcb *RunwayCreateBulk) Save(ctx context.Context) ([]*Runway, error) {
-	specs := make([]*sqlgraph.CreateSpec, len(rcb.builders))
-	nodes := make([]*Runway, len(rcb.builders))
-	mutators := make([]Mutator, len(rcb.builders))
-	for i := range rcb.builders {
+func (_c *RunwayCreateBulk) Save(ctx context.Context) ([]*Runway, error) {
+	if _c.err != nil {
+		return nil, _c.err
+	}
+	specs := make([]*sqlgraph.CreateSpec, len(_c.builders))
+	nodes := make([]*Runway, len(_c.builders))
+	mutators := make([]Mutator, len(_c.builders))
+	for i := range _c.builders {
 		func(i int, root context.Context) {
-			builder := rcb.builders[i]
+			builder := _c.builders[i]
 			builder.defaults()
 			var mut Mutator = MutateFunc(func(ctx context.Context, m Mutation) (Value, error) {
 				mutation, ok := m.(*RunwayMutation)
@@ -1530,12 +1534,12 @@ func (rcb *RunwayCreateBulk) Save(ctx context.Context) ([]*Runway, error) {
 				var err error
 				nodes[i], specs[i] = builder.createSpec()
 				if i < len(mutators)-1 {
-					_, err = mutators[i+1].Mutate(root, rcb.builders[i+1].mutation)
+					_, err = mutators[i+1].Mutate(root, _c.builders[i+1].mutation)
 				} else {
 					spec := &sqlgraph.BatchCreateSpec{Nodes: specs}
-					spec.OnConflict = rcb.conflict
+					spec.OnConflict = _c.conflict
 					// Invoke the actual operation on the latest mutation in the chain.
-					if err = sqlgraph.BatchCreate(ctx, rcb.driver, spec); err != nil {
+					if err = sqlgraph.BatchCreate(ctx, _c.driver, spec); err != nil {
 						if sqlgraph.IsConstraintError(err) {
 							err = &ConstraintError{msg: err.Error(), wrap: err}
 						}
@@ -1555,7 +1559,7 @@ func (rcb *RunwayCreateBulk) Save(ctx context.Context) ([]*Runway, error) {
 		}(i, ctx)
 	}
 	if len(mutators) > 0 {
-		if _, err := mutators[0].Mutate(ctx, rcb.builders[0].mutation); err != nil {
+		if _, err := mutators[0].Mutate(ctx, _c.builders[0].mutation); err != nil {
 			return nil, err
 		}
 	}
@@ -1563,8 +1567,8 @@ func (rcb *RunwayCreateBulk) Save(ctx context.Context) ([]*Runway, error) {
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (rcb *RunwayCreateBulk) SaveX(ctx context.Context) []*Runway {
-	v, err := rcb.Save(ctx)
+func (_c *RunwayCreateBulk) SaveX(ctx context.Context) []*Runway {
+	v, err := _c.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -1572,14 +1576,14 @@ func (rcb *RunwayCreateBulk) SaveX(ctx context.Context) []*Runway {
 }
 
 // Exec executes the query.
-func (rcb *RunwayCreateBulk) Exec(ctx context.Context) error {
-	_, err := rcb.Save(ctx)
+func (_c *RunwayCreateBulk) Exec(ctx context.Context) error {
+	_, err := _c.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (rcb *RunwayCreateBulk) ExecX(ctx context.Context) {
-	if err := rcb.Exec(ctx); err != nil {
+func (_c *RunwayCreateBulk) ExecX(ctx context.Context) {
+	if err := _c.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
@@ -1599,10 +1603,10 @@ func (rcb *RunwayCreateBulk) ExecX(ctx context.Context) {
 //			SetImportID(v+v).
 //		}).
 //		Exec(ctx)
-func (rcb *RunwayCreateBulk) OnConflict(opts ...sql.ConflictOption) *RunwayUpsertBulk {
-	rcb.conflict = opts
+func (_c *RunwayCreateBulk) OnConflict(opts ...sql.ConflictOption) *RunwayUpsertBulk {
+	_c.conflict = opts
 	return &RunwayUpsertBulk{
-		create: rcb,
+		create: _c,
 	}
 }
 
@@ -1612,10 +1616,10 @@ func (rcb *RunwayCreateBulk) OnConflict(opts ...sql.ConflictOption) *RunwayUpser
 //	client.Runway.Create().
 //		OnConflict(sql.ConflictColumns(columns...)).
 //		Exec(ctx)
-func (rcb *RunwayCreateBulk) OnConflictColumns(columns ...string) *RunwayUpsertBulk {
-	rcb.conflict = append(rcb.conflict, sql.ConflictColumns(columns...))
+func (_c *RunwayCreateBulk) OnConflictColumns(columns ...string) *RunwayUpsertBulk {
+	_c.conflict = append(_c.conflict, sql.ConflictColumns(columns...))
 	return &RunwayUpsertBulk{
-		create: rcb,
+		create: _c,
 	}
 }
 
@@ -2139,6 +2143,9 @@ func (u *RunwayUpsertBulk) ClearHighRunwayDisplacedThreshold() *RunwayUpsertBulk
 
 // Exec executes the query.
 func (u *RunwayUpsertBulk) Exec(ctx context.Context) error {
+	if u.create.err != nil {
+		return u.create.err
+	}
 	for i, b := range u.create.builders {
 		if len(b.conflict) != 0 {
 			return fmt.Errorf("ent: OnConflict was set for builder %d. Set it on the RunwayCreateBulk instead", i)

@@ -148,7 +148,7 @@ func (*Forecast) scanValues(columns []string) ([]any, error) {
 
 // assignValues assigns the values that were returned from sql.Rows (after scanning)
 // to the Forecast fields.
-func (f *Forecast) assignValues(columns []string, values []any) error {
+func (_m *Forecast) assignValues(columns []string, values []any) error {
 	if m, n := len(values), len(columns); m < n {
 		return fmt.Errorf("mismatch number of scan values: %d != %d", m, n)
 	}
@@ -158,137 +158,137 @@ func (f *Forecast) assignValues(columns []string, values []any) error {
 			if value, ok := values[i].(*uuid.UUID); !ok {
 				return fmt.Errorf("unexpected type %T for field id", values[i])
 			} else if value != nil {
-				f.ID = *value
+				_m.ID = *value
 			}
 		case forecast.FieldFromTime:
 			if value, ok := values[i].(*sql.NullTime); !ok {
 				return fmt.Errorf("unexpected type %T for field from_time", values[i])
 			} else if value.Valid {
-				f.FromTime = value.Time
+				_m.FromTime = value.Time
 			}
 		case forecast.FieldToTime:
 			if value, ok := values[i].(*sql.NullTime); !ok {
 				return fmt.Errorf("unexpected type %T for field to_time", values[i])
 			} else if value.Valid {
-				f.ToTime = value.Time
+				_m.ToTime = value.Time
 			}
 		case forecast.FieldChangeIndicator:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field change_indicator", values[i])
 			} else if value.Valid {
-				f.ChangeIndicator = new(forecast.ChangeIndicator)
-				*f.ChangeIndicator = forecast.ChangeIndicator(value.String)
+				_m.ChangeIndicator = new(forecast.ChangeIndicator)
+				*_m.ChangeIndicator = forecast.ChangeIndicator(value.String)
 			}
 		case forecast.FieldChangeTime:
 			if value, ok := values[i].(*sql.NullTime); !ok {
 				return fmt.Errorf("unexpected type %T for field change_time", values[i])
 			} else if value.Valid {
-				f.ChangeTime = new(time.Time)
-				*f.ChangeTime = value.Time
+				_m.ChangeTime = new(time.Time)
+				*_m.ChangeTime = value.Time
 			}
 		case forecast.FieldChangeProbability:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field change_probability", values[i])
 			} else if value.Valid {
-				f.ChangeProbability = new(int)
-				*f.ChangeProbability = int(value.Int64)
+				_m.ChangeProbability = new(int)
+				*_m.ChangeProbability = int(value.Int64)
 			}
 		case forecast.FieldWindDirection:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field wind_direction", values[i])
 			} else if value.Valid {
-				f.WindDirection = new(int)
-				*f.WindDirection = int(value.Int64)
+				_m.WindDirection = new(int)
+				*_m.WindDirection = int(value.Int64)
 			}
 		case forecast.FieldWindDirectionVariable:
 			if value, ok := values[i].(*sql.NullBool); !ok {
 				return fmt.Errorf("unexpected type %T for field wind_direction_variable", values[i])
 			} else if value.Valid {
-				f.WindDirectionVariable = value.Bool
+				_m.WindDirectionVariable = value.Bool
 			}
 		case forecast.FieldWindSpeed:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field wind_speed", values[i])
 			} else if value.Valid {
-				f.WindSpeed = new(int)
-				*f.WindSpeed = int(value.Int64)
+				_m.WindSpeed = new(int)
+				*_m.WindSpeed = int(value.Int64)
 			}
 		case forecast.FieldWindGust:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field wind_gust", values[i])
 			} else if value.Valid {
-				f.WindGust = new(int)
-				*f.WindGust = int(value.Int64)
+				_m.WindGust = new(int)
+				*_m.WindGust = int(value.Int64)
 			}
 		case forecast.FieldWindShearHeight:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field wind_shear_height", values[i])
 			} else if value.Valid {
-				f.WindShearHeight = new(int)
-				*f.WindShearHeight = int(value.Int64)
+				_m.WindShearHeight = new(int)
+				*_m.WindShearHeight = int(value.Int64)
 			}
 		case forecast.FieldWindShearDirection:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field wind_shear_direction", values[i])
 			} else if value.Valid {
-				f.WindShearDirection = new(int)
-				*f.WindShearDirection = int(value.Int64)
+				_m.WindShearDirection = new(int)
+				*_m.WindShearDirection = int(value.Int64)
 			}
 		case forecast.FieldWindShearSpeed:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field wind_shear_speed", values[i])
 			} else if value.Valid {
-				f.WindShearSpeed = new(int)
-				*f.WindShearSpeed = int(value.Int64)
+				_m.WindShearSpeed = new(int)
+				*_m.WindShearSpeed = int(value.Int64)
 			}
 		case forecast.FieldVisibilityHorizontal:
 			if value, ok := values[i].(*sql.NullFloat64); !ok {
 				return fmt.Errorf("unexpected type %T for field visibility_horizontal", values[i])
 			} else if value.Valid {
-				f.VisibilityHorizontal = new(float64)
-				*f.VisibilityHorizontal = value.Float64
+				_m.VisibilityHorizontal = new(float64)
+				*_m.VisibilityHorizontal = value.Float64
 			}
 		case forecast.FieldVisibilityHorizontalIsMoreThan:
 			if value, ok := values[i].(*sql.NullBool); !ok {
 				return fmt.Errorf("unexpected type %T for field visibility_horizontal_is_more_than", values[i])
 			} else if value.Valid {
-				f.VisibilityHorizontalIsMoreThan = value.Bool
+				_m.VisibilityHorizontalIsMoreThan = value.Bool
 			}
 		case forecast.FieldVisibilityVertical:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field visibility_vertical", values[i])
 			} else if value.Valid {
-				f.VisibilityVertical = new(int)
-				*f.VisibilityVertical = int(value.Int64)
+				_m.VisibilityVertical = new(int)
+				*_m.VisibilityVertical = int(value.Int64)
 			}
 		case forecast.FieldAltimeter:
 			if value, ok := values[i].(*sql.NullFloat64); !ok {
 				return fmt.Errorf("unexpected type %T for field altimeter", values[i])
 			} else if value.Valid {
-				f.Altimeter = new(float64)
-				*f.Altimeter = value.Float64
+				_m.Altimeter = new(float64)
+				*_m.Altimeter = value.Float64
 			}
 		case forecast.FieldWeather:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field weather", values[i])
 			} else if value.Valid {
-				f.Weather = value.String
+				_m.Weather = value.String
 			}
 		case forecast.FieldNotDecoded:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field not_decoded", values[i])
 			} else if value.Valid {
-				f.NotDecoded = value.String
+				_m.NotDecoded = value.String
 			}
 		case forecast.ForeignKeys[0]:
 			if value, ok := values[i].(*sql.NullScanner); !ok {
 				return fmt.Errorf("unexpected type %T for field taf_forecast", values[i])
 			} else if value.Valid {
-				f.taf_forecast = new(uuid.UUID)
-				*f.taf_forecast = *value.S.(*uuid.UUID)
+				_m.taf_forecast = new(uuid.UUID)
+				*_m.taf_forecast = *value.S.(*uuid.UUID)
 			}
 		default:
-			f.selectValues.Set(columns[i], values[i])
+			_m.selectValues.Set(columns[i], values[i])
 		}
 	}
 	return nil
@@ -296,227 +296,227 @@ func (f *Forecast) assignValues(columns []string, values []any) error {
 
 // Value returns the ent.Value that was dynamically selected and assigned to the Forecast.
 // This includes values selected through modifiers, order, etc.
-func (f *Forecast) Value(name string) (ent.Value, error) {
-	return f.selectValues.Get(name)
+func (_m *Forecast) Value(name string) (ent.Value, error) {
+	return _m.selectValues.Get(name)
 }
 
 // QuerySkyConditions queries the "sky_conditions" edge of the Forecast entity.
-func (f *Forecast) QuerySkyConditions() *SkyConditionQuery {
-	return NewForecastClient(f.config).QuerySkyConditions(f)
+func (_m *Forecast) QuerySkyConditions() *SkyConditionQuery {
+	return NewForecastClient(_m.config).QuerySkyConditions(_m)
 }
 
 // QueryTurbulenceConditions queries the "turbulence_conditions" edge of the Forecast entity.
-func (f *Forecast) QueryTurbulenceConditions() *TurbulenceConditionQuery {
-	return NewForecastClient(f.config).QueryTurbulenceConditions(f)
+func (_m *Forecast) QueryTurbulenceConditions() *TurbulenceConditionQuery {
+	return NewForecastClient(_m.config).QueryTurbulenceConditions(_m)
 }
 
 // QueryIcingConditions queries the "icing_conditions" edge of the Forecast entity.
-func (f *Forecast) QueryIcingConditions() *IcingConditionQuery {
-	return NewForecastClient(f.config).QueryIcingConditions(f)
+func (_m *Forecast) QueryIcingConditions() *IcingConditionQuery {
+	return NewForecastClient(_m.config).QueryIcingConditions(_m)
 }
 
 // QueryTemperatureData queries the "temperature_data" edge of the Forecast entity.
-func (f *Forecast) QueryTemperatureData() *TemperatureDataQuery {
-	return NewForecastClient(f.config).QueryTemperatureData(f)
+func (_m *Forecast) QueryTemperatureData() *TemperatureDataQuery {
+	return NewForecastClient(_m.config).QueryTemperatureData(_m)
 }
 
 // Update returns a builder for updating this Forecast.
 // Note that you need to call Forecast.Unwrap() before calling this method if this Forecast
 // was returned from a transaction, and the transaction was committed or rolled back.
-func (f *Forecast) Update() *ForecastUpdateOne {
-	return NewForecastClient(f.config).UpdateOne(f)
+func (_m *Forecast) Update() *ForecastUpdateOne {
+	return NewForecastClient(_m.config).UpdateOne(_m)
 }
 
 // Unwrap unwraps the Forecast entity that was returned from a transaction after it was closed,
 // so that all future queries will be executed through the driver which created the transaction.
-func (f *Forecast) Unwrap() *Forecast {
-	_tx, ok := f.config.driver.(*txDriver)
+func (_m *Forecast) Unwrap() *Forecast {
+	_tx, ok := _m.config.driver.(*txDriver)
 	if !ok {
 		panic("ent: Forecast is not a transactional entity")
 	}
-	f.config.driver = _tx.drv
-	return f
+	_m.config.driver = _tx.drv
+	return _m
 }
 
 // String implements the fmt.Stringer.
-func (f *Forecast) String() string {
+func (_m *Forecast) String() string {
 	var builder strings.Builder
 	builder.WriteString("Forecast(")
-	builder.WriteString(fmt.Sprintf("id=%v, ", f.ID))
+	builder.WriteString(fmt.Sprintf("id=%v, ", _m.ID))
 	builder.WriteString("from_time=")
-	builder.WriteString(f.FromTime.Format(time.ANSIC))
+	builder.WriteString(_m.FromTime.Format(time.ANSIC))
 	builder.WriteString(", ")
 	builder.WriteString("to_time=")
-	builder.WriteString(f.ToTime.Format(time.ANSIC))
+	builder.WriteString(_m.ToTime.Format(time.ANSIC))
 	builder.WriteString(", ")
-	if v := f.ChangeIndicator; v != nil {
+	if v := _m.ChangeIndicator; v != nil {
 		builder.WriteString("change_indicator=")
 		builder.WriteString(fmt.Sprintf("%v", *v))
 	}
 	builder.WriteString(", ")
-	if v := f.ChangeTime; v != nil {
+	if v := _m.ChangeTime; v != nil {
 		builder.WriteString("change_time=")
 		builder.WriteString(v.Format(time.ANSIC))
 	}
 	builder.WriteString(", ")
-	if v := f.ChangeProbability; v != nil {
+	if v := _m.ChangeProbability; v != nil {
 		builder.WriteString("change_probability=")
 		builder.WriteString(fmt.Sprintf("%v", *v))
 	}
 	builder.WriteString(", ")
-	if v := f.WindDirection; v != nil {
+	if v := _m.WindDirection; v != nil {
 		builder.WriteString("wind_direction=")
 		builder.WriteString(fmt.Sprintf("%v", *v))
 	}
 	builder.WriteString(", ")
 	builder.WriteString("wind_direction_variable=")
-	builder.WriteString(fmt.Sprintf("%v", f.WindDirectionVariable))
+	builder.WriteString(fmt.Sprintf("%v", _m.WindDirectionVariable))
 	builder.WriteString(", ")
-	if v := f.WindSpeed; v != nil {
+	if v := _m.WindSpeed; v != nil {
 		builder.WriteString("wind_speed=")
 		builder.WriteString(fmt.Sprintf("%v", *v))
 	}
 	builder.WriteString(", ")
-	if v := f.WindGust; v != nil {
+	if v := _m.WindGust; v != nil {
 		builder.WriteString("wind_gust=")
 		builder.WriteString(fmt.Sprintf("%v", *v))
 	}
 	builder.WriteString(", ")
-	if v := f.WindShearHeight; v != nil {
+	if v := _m.WindShearHeight; v != nil {
 		builder.WriteString("wind_shear_height=")
 		builder.WriteString(fmt.Sprintf("%v", *v))
 	}
 	builder.WriteString(", ")
-	if v := f.WindShearDirection; v != nil {
+	if v := _m.WindShearDirection; v != nil {
 		builder.WriteString("wind_shear_direction=")
 		builder.WriteString(fmt.Sprintf("%v", *v))
 	}
 	builder.WriteString(", ")
-	if v := f.WindShearSpeed; v != nil {
+	if v := _m.WindShearSpeed; v != nil {
 		builder.WriteString("wind_shear_speed=")
 		builder.WriteString(fmt.Sprintf("%v", *v))
 	}
 	builder.WriteString(", ")
-	if v := f.VisibilityHorizontal; v != nil {
+	if v := _m.VisibilityHorizontal; v != nil {
 		builder.WriteString("visibility_horizontal=")
 		builder.WriteString(fmt.Sprintf("%v", *v))
 	}
 	builder.WriteString(", ")
 	builder.WriteString("visibility_horizontal_is_more_than=")
-	builder.WriteString(fmt.Sprintf("%v", f.VisibilityHorizontalIsMoreThan))
+	builder.WriteString(fmt.Sprintf("%v", _m.VisibilityHorizontalIsMoreThan))
 	builder.WriteString(", ")
-	if v := f.VisibilityVertical; v != nil {
+	if v := _m.VisibilityVertical; v != nil {
 		builder.WriteString("visibility_vertical=")
 		builder.WriteString(fmt.Sprintf("%v", *v))
 	}
 	builder.WriteString(", ")
-	if v := f.Altimeter; v != nil {
+	if v := _m.Altimeter; v != nil {
 		builder.WriteString("altimeter=")
 		builder.WriteString(fmt.Sprintf("%v", *v))
 	}
 	builder.WriteString(", ")
 	builder.WriteString("weather=")
-	builder.WriteString(f.Weather)
+	builder.WriteString(_m.Weather)
 	builder.WriteString(", ")
 	builder.WriteString("not_decoded=")
-	builder.WriteString(f.NotDecoded)
+	builder.WriteString(_m.NotDecoded)
 	builder.WriteByte(')')
 	return builder.String()
 }
 
 // NamedSkyConditions returns the SkyConditions named value or an error if the edge was not
 // loaded in eager-loading with this name.
-func (f *Forecast) NamedSkyConditions(name string) ([]*SkyCondition, error) {
-	if f.Edges.namedSkyConditions == nil {
+func (_m *Forecast) NamedSkyConditions(name string) ([]*SkyCondition, error) {
+	if _m.Edges.namedSkyConditions == nil {
 		return nil, &NotLoadedError{edge: name}
 	}
-	nodes, ok := f.Edges.namedSkyConditions[name]
+	nodes, ok := _m.Edges.namedSkyConditions[name]
 	if !ok {
 		return nil, &NotLoadedError{edge: name}
 	}
 	return nodes, nil
 }
 
-func (f *Forecast) appendNamedSkyConditions(name string, edges ...*SkyCondition) {
-	if f.Edges.namedSkyConditions == nil {
-		f.Edges.namedSkyConditions = make(map[string][]*SkyCondition)
+func (_m *Forecast) appendNamedSkyConditions(name string, edges ...*SkyCondition) {
+	if _m.Edges.namedSkyConditions == nil {
+		_m.Edges.namedSkyConditions = make(map[string][]*SkyCondition)
 	}
 	if len(edges) == 0 {
-		f.Edges.namedSkyConditions[name] = []*SkyCondition{}
+		_m.Edges.namedSkyConditions[name] = []*SkyCondition{}
 	} else {
-		f.Edges.namedSkyConditions[name] = append(f.Edges.namedSkyConditions[name], edges...)
+		_m.Edges.namedSkyConditions[name] = append(_m.Edges.namedSkyConditions[name], edges...)
 	}
 }
 
 // NamedTurbulenceConditions returns the TurbulenceConditions named value or an error if the edge was not
 // loaded in eager-loading with this name.
-func (f *Forecast) NamedTurbulenceConditions(name string) ([]*TurbulenceCondition, error) {
-	if f.Edges.namedTurbulenceConditions == nil {
+func (_m *Forecast) NamedTurbulenceConditions(name string) ([]*TurbulenceCondition, error) {
+	if _m.Edges.namedTurbulenceConditions == nil {
 		return nil, &NotLoadedError{edge: name}
 	}
-	nodes, ok := f.Edges.namedTurbulenceConditions[name]
+	nodes, ok := _m.Edges.namedTurbulenceConditions[name]
 	if !ok {
 		return nil, &NotLoadedError{edge: name}
 	}
 	return nodes, nil
 }
 
-func (f *Forecast) appendNamedTurbulenceConditions(name string, edges ...*TurbulenceCondition) {
-	if f.Edges.namedTurbulenceConditions == nil {
-		f.Edges.namedTurbulenceConditions = make(map[string][]*TurbulenceCondition)
+func (_m *Forecast) appendNamedTurbulenceConditions(name string, edges ...*TurbulenceCondition) {
+	if _m.Edges.namedTurbulenceConditions == nil {
+		_m.Edges.namedTurbulenceConditions = make(map[string][]*TurbulenceCondition)
 	}
 	if len(edges) == 0 {
-		f.Edges.namedTurbulenceConditions[name] = []*TurbulenceCondition{}
+		_m.Edges.namedTurbulenceConditions[name] = []*TurbulenceCondition{}
 	} else {
-		f.Edges.namedTurbulenceConditions[name] = append(f.Edges.namedTurbulenceConditions[name], edges...)
+		_m.Edges.namedTurbulenceConditions[name] = append(_m.Edges.namedTurbulenceConditions[name], edges...)
 	}
 }
 
 // NamedIcingConditions returns the IcingConditions named value or an error if the edge was not
 // loaded in eager-loading with this name.
-func (f *Forecast) NamedIcingConditions(name string) ([]*IcingCondition, error) {
-	if f.Edges.namedIcingConditions == nil {
+func (_m *Forecast) NamedIcingConditions(name string) ([]*IcingCondition, error) {
+	if _m.Edges.namedIcingConditions == nil {
 		return nil, &NotLoadedError{edge: name}
 	}
-	nodes, ok := f.Edges.namedIcingConditions[name]
+	nodes, ok := _m.Edges.namedIcingConditions[name]
 	if !ok {
 		return nil, &NotLoadedError{edge: name}
 	}
 	return nodes, nil
 }
 
-func (f *Forecast) appendNamedIcingConditions(name string, edges ...*IcingCondition) {
-	if f.Edges.namedIcingConditions == nil {
-		f.Edges.namedIcingConditions = make(map[string][]*IcingCondition)
+func (_m *Forecast) appendNamedIcingConditions(name string, edges ...*IcingCondition) {
+	if _m.Edges.namedIcingConditions == nil {
+		_m.Edges.namedIcingConditions = make(map[string][]*IcingCondition)
 	}
 	if len(edges) == 0 {
-		f.Edges.namedIcingConditions[name] = []*IcingCondition{}
+		_m.Edges.namedIcingConditions[name] = []*IcingCondition{}
 	} else {
-		f.Edges.namedIcingConditions[name] = append(f.Edges.namedIcingConditions[name], edges...)
+		_m.Edges.namedIcingConditions[name] = append(_m.Edges.namedIcingConditions[name], edges...)
 	}
 }
 
 // NamedTemperatureData returns the TemperatureData named value or an error if the edge was not
 // loaded in eager-loading with this name.
-func (f *Forecast) NamedTemperatureData(name string) ([]*TemperatureData, error) {
-	if f.Edges.namedTemperatureData == nil {
+func (_m *Forecast) NamedTemperatureData(name string) ([]*TemperatureData, error) {
+	if _m.Edges.namedTemperatureData == nil {
 		return nil, &NotLoadedError{edge: name}
 	}
-	nodes, ok := f.Edges.namedTemperatureData[name]
+	nodes, ok := _m.Edges.namedTemperatureData[name]
 	if !ok {
 		return nil, &NotLoadedError{edge: name}
 	}
 	return nodes, nil
 }
 
-func (f *Forecast) appendNamedTemperatureData(name string, edges ...*TemperatureData) {
-	if f.Edges.namedTemperatureData == nil {
-		f.Edges.namedTemperatureData = make(map[string][]*TemperatureData)
+func (_m *Forecast) appendNamedTemperatureData(name string, edges ...*TemperatureData) {
+	if _m.Edges.namedTemperatureData == nil {
+		_m.Edges.namedTemperatureData = make(map[string][]*TemperatureData)
 	}
 	if len(edges) == 0 {
-		f.Edges.namedTemperatureData[name] = []*TemperatureData{}
+		_m.Edges.namedTemperatureData[name] = []*TemperatureData{}
 	} else {
-		f.Edges.namedTemperatureData[name] = append(f.Edges.namedTemperatureData[name], edges...)
+		_m.Edges.namedTemperatureData[name] = append(_m.Edges.namedTemperatureData[name], edges...)
 	}
 }
 

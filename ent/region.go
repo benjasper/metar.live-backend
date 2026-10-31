@@ -90,7 +90,7 @@ func (*Region) scanValues(columns []string) ([]any, error) {
 
 // assignValues assigns the values that were returned from sql.Rows (after scanning)
 // to the Region fields.
-func (r *Region) assignValues(columns []string, values []any) error {
+func (_m *Region) assignValues(columns []string, values []any) error {
 	if m, n := len(values), len(columns); m < n {
 		return fmt.Errorf("mismatch number of scan values: %d != %d", m, n)
 	}
@@ -100,66 +100,66 @@ func (r *Region) assignValues(columns []string, values []any) error {
 			if value, ok := values[i].(*uuid.UUID); !ok {
 				return fmt.Errorf("unexpected type %T for field id", values[i])
 			} else if value != nil {
-				r.ID = *value
+				_m.ID = *value
 			}
 		case region.FieldImportID:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field import_id", values[i])
 			} else if value.Valid {
-				r.ImportID = int(value.Int64)
+				_m.ImportID = int(value.Int64)
 			}
 		case region.FieldHash:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field hash", values[i])
 			} else if value.Valid {
-				r.Hash = value.String
+				_m.Hash = value.String
 			}
 		case region.FieldImportFlag:
 			if value, ok := values[i].(*sql.NullBool); !ok {
 				return fmt.Errorf("unexpected type %T for field import_flag", values[i])
 			} else if value.Valid {
-				r.ImportFlag = value.Bool
+				_m.ImportFlag = value.Bool
 			}
 		case region.FieldLastUpdated:
 			if value, ok := values[i].(*sql.NullTime); !ok {
 				return fmt.Errorf("unexpected type %T for field last_updated", values[i])
 			} else if value.Valid {
-				r.LastUpdated = value.Time
+				_m.LastUpdated = value.Time
 			}
 		case region.FieldCode:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field code", values[i])
 			} else if value.Valid {
-				r.Code = value.String
+				_m.Code = value.String
 			}
 		case region.FieldLocalCode:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field local_code", values[i])
 			} else if value.Valid {
-				r.LocalCode = value.String
+				_m.LocalCode = value.String
 			}
 		case region.FieldName:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field name", values[i])
 			} else if value.Valid {
-				r.Name = value.String
+				_m.Name = value.String
 			}
 		case region.FieldWikipediaLink:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field wikipedia_link", values[i])
 			} else if value.Valid {
-				r.WikipediaLink = value.String
+				_m.WikipediaLink = value.String
 			}
 		case region.FieldKeywords:
 			if value, ok := values[i].(*[]byte); !ok {
 				return fmt.Errorf("unexpected type %T for field keywords", values[i])
 			} else if value != nil && len(*value) > 0 {
-				if err := json.Unmarshal(*value, &r.Keywords); err != nil {
+				if err := json.Unmarshal(*value, &_m.Keywords); err != nil {
 					return fmt.Errorf("unmarshal field keywords: %w", err)
 				}
 			}
 		default:
-			r.selectValues.Set(columns[i], values[i])
+			_m.selectValues.Set(columns[i], values[i])
 		}
 	}
 	return nil
@@ -167,89 +167,89 @@ func (r *Region) assignValues(columns []string, values []any) error {
 
 // Value returns the ent.Value that was dynamically selected and assigned to the Region.
 // This includes values selected through modifiers, order, etc.
-func (r *Region) Value(name string) (ent.Value, error) {
-	return r.selectValues.Get(name)
+func (_m *Region) Value(name string) (ent.Value, error) {
+	return _m.selectValues.Get(name)
 }
 
 // QueryAirports queries the "airports" edge of the Region entity.
-func (r *Region) QueryAirports() *AirportQuery {
-	return NewRegionClient(r.config).QueryAirports(r)
+func (_m *Region) QueryAirports() *AirportQuery {
+	return NewRegionClient(_m.config).QueryAirports(_m)
 }
 
 // Update returns a builder for updating this Region.
 // Note that you need to call Region.Unwrap() before calling this method if this Region
 // was returned from a transaction, and the transaction was committed or rolled back.
-func (r *Region) Update() *RegionUpdateOne {
-	return NewRegionClient(r.config).UpdateOne(r)
+func (_m *Region) Update() *RegionUpdateOne {
+	return NewRegionClient(_m.config).UpdateOne(_m)
 }
 
 // Unwrap unwraps the Region entity that was returned from a transaction after it was closed,
 // so that all future queries will be executed through the driver which created the transaction.
-func (r *Region) Unwrap() *Region {
-	_tx, ok := r.config.driver.(*txDriver)
+func (_m *Region) Unwrap() *Region {
+	_tx, ok := _m.config.driver.(*txDriver)
 	if !ok {
 		panic("ent: Region is not a transactional entity")
 	}
-	r.config.driver = _tx.drv
-	return r
+	_m.config.driver = _tx.drv
+	return _m
 }
 
 // String implements the fmt.Stringer.
-func (r *Region) String() string {
+func (_m *Region) String() string {
 	var builder strings.Builder
 	builder.WriteString("Region(")
-	builder.WriteString(fmt.Sprintf("id=%v, ", r.ID))
+	builder.WriteString(fmt.Sprintf("id=%v, ", _m.ID))
 	builder.WriteString("import_id=")
-	builder.WriteString(fmt.Sprintf("%v", r.ImportID))
+	builder.WriteString(fmt.Sprintf("%v", _m.ImportID))
 	builder.WriteString(", ")
 	builder.WriteString("hash=")
-	builder.WriteString(r.Hash)
+	builder.WriteString(_m.Hash)
 	builder.WriteString(", ")
 	builder.WriteString("import_flag=")
-	builder.WriteString(fmt.Sprintf("%v", r.ImportFlag))
+	builder.WriteString(fmt.Sprintf("%v", _m.ImportFlag))
 	builder.WriteString(", ")
 	builder.WriteString("last_updated=")
-	builder.WriteString(r.LastUpdated.Format(time.ANSIC))
+	builder.WriteString(_m.LastUpdated.Format(time.ANSIC))
 	builder.WriteString(", ")
 	builder.WriteString("code=")
-	builder.WriteString(r.Code)
+	builder.WriteString(_m.Code)
 	builder.WriteString(", ")
 	builder.WriteString("local_code=")
-	builder.WriteString(r.LocalCode)
+	builder.WriteString(_m.LocalCode)
 	builder.WriteString(", ")
 	builder.WriteString("name=")
-	builder.WriteString(r.Name)
+	builder.WriteString(_m.Name)
 	builder.WriteString(", ")
 	builder.WriteString("wikipedia_link=")
-	builder.WriteString(r.WikipediaLink)
+	builder.WriteString(_m.WikipediaLink)
 	builder.WriteString(", ")
 	builder.WriteString("keywords=")
-	builder.WriteString(fmt.Sprintf("%v", r.Keywords))
+	builder.WriteString(fmt.Sprintf("%v", _m.Keywords))
 	builder.WriteByte(')')
 	return builder.String()
 }
 
 // NamedAirports returns the Airports named value or an error if the edge was not
 // loaded in eager-loading with this name.
-func (r *Region) NamedAirports(name string) ([]*Airport, error) {
-	if r.Edges.namedAirports == nil {
+func (_m *Region) NamedAirports(name string) ([]*Airport, error) {
+	if _m.Edges.namedAirports == nil {
 		return nil, &NotLoadedError{edge: name}
 	}
-	nodes, ok := r.Edges.namedAirports[name]
+	nodes, ok := _m.Edges.namedAirports[name]
 	if !ok {
 		return nil, &NotLoadedError{edge: name}
 	}
 	return nodes, nil
 }
 
-func (r *Region) appendNamedAirports(name string, edges ...*Airport) {
-	if r.Edges.namedAirports == nil {
-		r.Edges.namedAirports = make(map[string][]*Airport)
+func (_m *Region) appendNamedAirports(name string, edges ...*Airport) {
+	if _m.Edges.namedAirports == nil {
+		_m.Edges.namedAirports = make(map[string][]*Airport)
 	}
 	if len(edges) == 0 {
-		r.Edges.namedAirports[name] = []*Airport{}
+		_m.Edges.namedAirports[name] = []*Airport{}
 	} else {
-		r.Edges.namedAirports[name] = append(r.Edges.namedAirports[name], edges...)
+		_m.Edges.namedAirports[name] = append(_m.Edges.namedAirports[name], edges...)
 	}
 }
 

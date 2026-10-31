@@ -55,12 +55,10 @@ type FrequencyEdges struct {
 // AirportOrErr returns the Airport value or an error if the edge
 // was not loaded in eager-loading, or loaded but was not found.
 func (e FrequencyEdges) AirportOrErr() (*Airport, error) {
-	if e.loadedTypes[0] {
-		if e.Airport == nil {
-			// Edge was loaded but was not found.
-			return nil, &NotFoundError{label: airport.Label}
-		}
+	if e.Airport != nil {
 		return e.Airport, nil
+	} else if e.loadedTypes[0] {
+		return nil, &NotFoundError{label: airport.Label}
 	}
 	return nil, &NotLoadedError{edge: "airport"}
 }
@@ -93,7 +91,7 @@ func (*Frequency) scanValues(columns []string) ([]any, error) {
 
 // assignValues assigns the values that were returned from sql.Rows (after scanning)
 // to the Frequency fields.
-func (f *Frequency) assignValues(columns []string, values []any) error {
+func (_m *Frequency) assignValues(columns []string, values []any) error {
 	if m, n := len(values), len(columns); m < n {
 		return fmt.Errorf("mismatch number of scan values: %d != %d", m, n)
 	}
@@ -103,59 +101,59 @@ func (f *Frequency) assignValues(columns []string, values []any) error {
 			if value, ok := values[i].(*uuid.UUID); !ok {
 				return fmt.Errorf("unexpected type %T for field id", values[i])
 			} else if value != nil {
-				f.ID = *value
+				_m.ID = *value
 			}
 		case frequency.FieldImportID:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field import_id", values[i])
 			} else if value.Valid {
-				f.ImportID = int(value.Int64)
+				_m.ImportID = int(value.Int64)
 			}
 		case frequency.FieldHash:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field hash", values[i])
 			} else if value.Valid {
-				f.Hash = value.String
+				_m.Hash = value.String
 			}
 		case frequency.FieldImportFlag:
 			if value, ok := values[i].(*sql.NullBool); !ok {
 				return fmt.Errorf("unexpected type %T for field import_flag", values[i])
 			} else if value.Valid {
-				f.ImportFlag = value.Bool
+				_m.ImportFlag = value.Bool
 			}
 		case frequency.FieldLastUpdated:
 			if value, ok := values[i].(*sql.NullTime); !ok {
 				return fmt.Errorf("unexpected type %T for field last_updated", values[i])
 			} else if value.Valid {
-				f.LastUpdated = value.Time
+				_m.LastUpdated = value.Time
 			}
 		case frequency.FieldType:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field type", values[i])
 			} else if value.Valid {
-				f.Type = value.String
+				_m.Type = value.String
 			}
 		case frequency.FieldDescription:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field description", values[i])
 			} else if value.Valid {
-				f.Description = value.String
+				_m.Description = value.String
 			}
 		case frequency.FieldFrequency:
 			if value, ok := values[i].(*sql.NullFloat64); !ok {
 				return fmt.Errorf("unexpected type %T for field frequency", values[i])
 			} else if value.Valid {
-				f.Frequency = value.Float64
+				_m.Frequency = value.Float64
 			}
 		case frequency.ForeignKeys[0]:
 			if value, ok := values[i].(*sql.NullScanner); !ok {
 				return fmt.Errorf("unexpected type %T for field airport_frequencies", values[i])
 			} else if value.Valid {
-				f.airport_frequencies = new(uuid.UUID)
-				*f.airport_frequencies = *value.S.(*uuid.UUID)
+				_m.airport_frequencies = new(uuid.UUID)
+				*_m.airport_frequencies = *value.S.(*uuid.UUID)
 			}
 		default:
-			f.selectValues.Set(columns[i], values[i])
+			_m.selectValues.Set(columns[i], values[i])
 		}
 	}
 	return nil
@@ -163,58 +161,58 @@ func (f *Frequency) assignValues(columns []string, values []any) error {
 
 // Value returns the ent.Value that was dynamically selected and assigned to the Frequency.
 // This includes values selected through modifiers, order, etc.
-func (f *Frequency) Value(name string) (ent.Value, error) {
-	return f.selectValues.Get(name)
+func (_m *Frequency) Value(name string) (ent.Value, error) {
+	return _m.selectValues.Get(name)
 }
 
 // QueryAirport queries the "airport" edge of the Frequency entity.
-func (f *Frequency) QueryAirport() *AirportQuery {
-	return NewFrequencyClient(f.config).QueryAirport(f)
+func (_m *Frequency) QueryAirport() *AirportQuery {
+	return NewFrequencyClient(_m.config).QueryAirport(_m)
 }
 
 // Update returns a builder for updating this Frequency.
 // Note that you need to call Frequency.Unwrap() before calling this method if this Frequency
 // was returned from a transaction, and the transaction was committed or rolled back.
-func (f *Frequency) Update() *FrequencyUpdateOne {
-	return NewFrequencyClient(f.config).UpdateOne(f)
+func (_m *Frequency) Update() *FrequencyUpdateOne {
+	return NewFrequencyClient(_m.config).UpdateOne(_m)
 }
 
 // Unwrap unwraps the Frequency entity that was returned from a transaction after it was closed,
 // so that all future queries will be executed through the driver which created the transaction.
-func (f *Frequency) Unwrap() *Frequency {
-	_tx, ok := f.config.driver.(*txDriver)
+func (_m *Frequency) Unwrap() *Frequency {
+	_tx, ok := _m.config.driver.(*txDriver)
 	if !ok {
 		panic("ent: Frequency is not a transactional entity")
 	}
-	f.config.driver = _tx.drv
-	return f
+	_m.config.driver = _tx.drv
+	return _m
 }
 
 // String implements the fmt.Stringer.
-func (f *Frequency) String() string {
+func (_m *Frequency) String() string {
 	var builder strings.Builder
 	builder.WriteString("Frequency(")
-	builder.WriteString(fmt.Sprintf("id=%v, ", f.ID))
+	builder.WriteString(fmt.Sprintf("id=%v, ", _m.ID))
 	builder.WriteString("import_id=")
-	builder.WriteString(fmt.Sprintf("%v", f.ImportID))
+	builder.WriteString(fmt.Sprintf("%v", _m.ImportID))
 	builder.WriteString(", ")
 	builder.WriteString("hash=")
-	builder.WriteString(f.Hash)
+	builder.WriteString(_m.Hash)
 	builder.WriteString(", ")
 	builder.WriteString("import_flag=")
-	builder.WriteString(fmt.Sprintf("%v", f.ImportFlag))
+	builder.WriteString(fmt.Sprintf("%v", _m.ImportFlag))
 	builder.WriteString(", ")
 	builder.WriteString("last_updated=")
-	builder.WriteString(f.LastUpdated.Format(time.ANSIC))
+	builder.WriteString(_m.LastUpdated.Format(time.ANSIC))
 	builder.WriteString(", ")
 	builder.WriteString("type=")
-	builder.WriteString(f.Type)
+	builder.WriteString(_m.Type)
 	builder.WriteString(", ")
 	builder.WriteString("description=")
-	builder.WriteString(f.Description)
+	builder.WriteString(_m.Description)
 	builder.WriteString(", ")
 	builder.WriteString("frequency=")
-	builder.WriteString(fmt.Sprintf("%v", f.Frequency))
+	builder.WriteString(fmt.Sprintf("%v", _m.Frequency))
 	builder.WriteByte(')')
 	return builder.String()
 }

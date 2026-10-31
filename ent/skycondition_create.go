@@ -24,67 +24,67 @@ type SkyConditionCreate struct {
 }
 
 // SetSkyCover sets the "sky_cover" field.
-func (scc *SkyConditionCreate) SetSkyCover(sc skycondition.SkyCover) *SkyConditionCreate {
-	scc.mutation.SetSkyCover(sc)
-	return scc
+func (_c *SkyConditionCreate) SetSkyCover(v skycondition.SkyCover) *SkyConditionCreate {
+	_c.mutation.SetSkyCover(v)
+	return _c
 }
 
 // SetCloudBase sets the "cloud_base" field.
-func (scc *SkyConditionCreate) SetCloudBase(i int) *SkyConditionCreate {
-	scc.mutation.SetCloudBase(i)
-	return scc
+func (_c *SkyConditionCreate) SetCloudBase(v int) *SkyConditionCreate {
+	_c.mutation.SetCloudBase(v)
+	return _c
 }
 
 // SetNillableCloudBase sets the "cloud_base" field if the given value is not nil.
-func (scc *SkyConditionCreate) SetNillableCloudBase(i *int) *SkyConditionCreate {
-	if i != nil {
-		scc.SetCloudBase(*i)
+func (_c *SkyConditionCreate) SetNillableCloudBase(v *int) *SkyConditionCreate {
+	if v != nil {
+		_c.SetCloudBase(*v)
 	}
-	return scc
+	return _c
 }
 
 // SetCloudType sets the "cloud_type" field.
-func (scc *SkyConditionCreate) SetCloudType(st skycondition.CloudType) *SkyConditionCreate {
-	scc.mutation.SetCloudType(st)
-	return scc
+func (_c *SkyConditionCreate) SetCloudType(v skycondition.CloudType) *SkyConditionCreate {
+	_c.mutation.SetCloudType(v)
+	return _c
 }
 
 // SetNillableCloudType sets the "cloud_type" field if the given value is not nil.
-func (scc *SkyConditionCreate) SetNillableCloudType(st *skycondition.CloudType) *SkyConditionCreate {
-	if st != nil {
-		scc.SetCloudType(*st)
+func (_c *SkyConditionCreate) SetNillableCloudType(v *skycondition.CloudType) *SkyConditionCreate {
+	if v != nil {
+		_c.SetCloudType(*v)
 	}
-	return scc
+	return _c
 }
 
 // SetID sets the "id" field.
-func (scc *SkyConditionCreate) SetID(u uuid.UUID) *SkyConditionCreate {
-	scc.mutation.SetID(u)
-	return scc
+func (_c *SkyConditionCreate) SetID(v uuid.UUID) *SkyConditionCreate {
+	_c.mutation.SetID(v)
+	return _c
 }
 
 // SetNillableID sets the "id" field if the given value is not nil.
-func (scc *SkyConditionCreate) SetNillableID(u *uuid.UUID) *SkyConditionCreate {
-	if u != nil {
-		scc.SetID(*u)
+func (_c *SkyConditionCreate) SetNillableID(v *uuid.UUID) *SkyConditionCreate {
+	if v != nil {
+		_c.SetID(*v)
 	}
-	return scc
+	return _c
 }
 
 // Mutation returns the SkyConditionMutation object of the builder.
-func (scc *SkyConditionCreate) Mutation() *SkyConditionMutation {
-	return scc.mutation
+func (_c *SkyConditionCreate) Mutation() *SkyConditionMutation {
+	return _c.mutation
 }
 
 // Save creates the SkyCondition in the database.
-func (scc *SkyConditionCreate) Save(ctx context.Context) (*SkyCondition, error) {
-	scc.defaults()
-	return withHooks(ctx, scc.sqlSave, scc.mutation, scc.hooks)
+func (_c *SkyConditionCreate) Save(ctx context.Context) (*SkyCondition, error) {
+	_c.defaults()
+	return withHooks(ctx, _c.sqlSave, _c.mutation, _c.hooks)
 }
 
 // SaveX calls Save and panics if Save returns an error.
-func (scc *SkyConditionCreate) SaveX(ctx context.Context) *SkyCondition {
-	v, err := scc.Save(ctx)
+func (_c *SkyConditionCreate) SaveX(ctx context.Context) *SkyCondition {
+	v, err := _c.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -92,37 +92,37 @@ func (scc *SkyConditionCreate) SaveX(ctx context.Context) *SkyCondition {
 }
 
 // Exec executes the query.
-func (scc *SkyConditionCreate) Exec(ctx context.Context) error {
-	_, err := scc.Save(ctx)
+func (_c *SkyConditionCreate) Exec(ctx context.Context) error {
+	_, err := _c.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (scc *SkyConditionCreate) ExecX(ctx context.Context) {
-	if err := scc.Exec(ctx); err != nil {
+func (_c *SkyConditionCreate) ExecX(ctx context.Context) {
+	if err := _c.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // defaults sets the default values of the builder before save.
-func (scc *SkyConditionCreate) defaults() {
-	if _, ok := scc.mutation.ID(); !ok {
+func (_c *SkyConditionCreate) defaults() {
+	if _, ok := _c.mutation.ID(); !ok {
 		v := skycondition.DefaultID()
-		scc.mutation.SetID(v)
+		_c.mutation.SetID(v)
 	}
 }
 
 // check runs all checks and user-defined validators on the builder.
-func (scc *SkyConditionCreate) check() error {
-	if _, ok := scc.mutation.SkyCover(); !ok {
+func (_c *SkyConditionCreate) check() error {
+	if _, ok := _c.mutation.SkyCover(); !ok {
 		return &ValidationError{Name: "sky_cover", err: errors.New(`ent: missing required field "SkyCondition.sky_cover"`)}
 	}
-	if v, ok := scc.mutation.SkyCover(); ok {
+	if v, ok := _c.mutation.SkyCover(); ok {
 		if err := skycondition.SkyCoverValidator(v); err != nil {
 			return &ValidationError{Name: "sky_cover", err: fmt.Errorf(`ent: validator failed for field "SkyCondition.sky_cover": %w`, err)}
 		}
 	}
-	if v, ok := scc.mutation.CloudType(); ok {
+	if v, ok := _c.mutation.CloudType(); ok {
 		if err := skycondition.CloudTypeValidator(v); err != nil {
 			return &ValidationError{Name: "cloud_type", err: fmt.Errorf(`ent: validator failed for field "SkyCondition.cloud_type": %w`, err)}
 		}
@@ -130,12 +130,12 @@ func (scc *SkyConditionCreate) check() error {
 	return nil
 }
 
-func (scc *SkyConditionCreate) sqlSave(ctx context.Context) (*SkyCondition, error) {
-	if err := scc.check(); err != nil {
+func (_c *SkyConditionCreate) sqlSave(ctx context.Context) (*SkyCondition, error) {
+	if err := _c.check(); err != nil {
 		return nil, err
 	}
-	_node, _spec := scc.createSpec()
-	if err := sqlgraph.CreateNode(ctx, scc.driver, _spec); err != nil {
+	_node, _spec := _c.createSpec()
+	if err := sqlgraph.CreateNode(ctx, _c.driver, _spec); err != nil {
 		if sqlgraph.IsConstraintError(err) {
 			err = &ConstraintError{msg: err.Error(), wrap: err}
 		}
@@ -148,30 +148,30 @@ func (scc *SkyConditionCreate) sqlSave(ctx context.Context) (*SkyCondition, erro
 			return nil, err
 		}
 	}
-	scc.mutation.id = &_node.ID
-	scc.mutation.done = true
+	_c.mutation.id = &_node.ID
+	_c.mutation.done = true
 	return _node, nil
 }
 
-func (scc *SkyConditionCreate) createSpec() (*SkyCondition, *sqlgraph.CreateSpec) {
+func (_c *SkyConditionCreate) createSpec() (*SkyCondition, *sqlgraph.CreateSpec) {
 	var (
-		_node = &SkyCondition{config: scc.config}
+		_node = &SkyCondition{config: _c.config}
 		_spec = sqlgraph.NewCreateSpec(skycondition.Table, sqlgraph.NewFieldSpec(skycondition.FieldID, field.TypeUUID))
 	)
-	_spec.OnConflict = scc.conflict
-	if id, ok := scc.mutation.ID(); ok {
+	_spec.OnConflict = _c.conflict
+	if id, ok := _c.mutation.ID(); ok {
 		_node.ID = id
 		_spec.ID.Value = &id
 	}
-	if value, ok := scc.mutation.SkyCover(); ok {
+	if value, ok := _c.mutation.SkyCover(); ok {
 		_spec.SetField(skycondition.FieldSkyCover, field.TypeEnum, value)
 		_node.SkyCover = value
 	}
-	if value, ok := scc.mutation.CloudBase(); ok {
+	if value, ok := _c.mutation.CloudBase(); ok {
 		_spec.SetField(skycondition.FieldCloudBase, field.TypeInt, value)
 		_node.CloudBase = &value
 	}
-	if value, ok := scc.mutation.CloudType(); ok {
+	if value, ok := _c.mutation.CloudType(); ok {
 		_spec.SetField(skycondition.FieldCloudType, field.TypeEnum, value)
 		_node.CloudType = &value
 	}
@@ -194,10 +194,10 @@ func (scc *SkyConditionCreate) createSpec() (*SkyCondition, *sqlgraph.CreateSpec
 //			SetSkyCover(v+v).
 //		}).
 //		Exec(ctx)
-func (scc *SkyConditionCreate) OnConflict(opts ...sql.ConflictOption) *SkyConditionUpsertOne {
-	scc.conflict = opts
+func (_c *SkyConditionCreate) OnConflict(opts ...sql.ConflictOption) *SkyConditionUpsertOne {
+	_c.conflict = opts
 	return &SkyConditionUpsertOne{
-		create: scc,
+		create: _c,
 	}
 }
 
@@ -207,10 +207,10 @@ func (scc *SkyConditionCreate) OnConflict(opts ...sql.ConflictOption) *SkyCondit
 //	client.SkyCondition.Create().
 //		OnConflict(sql.ConflictColumns(columns...)).
 //		Exec(ctx)
-func (scc *SkyConditionCreate) OnConflictColumns(columns ...string) *SkyConditionUpsertOne {
-	scc.conflict = append(scc.conflict, sql.ConflictColumns(columns...))
+func (_c *SkyConditionCreate) OnConflictColumns(columns ...string) *SkyConditionUpsertOne {
+	_c.conflict = append(_c.conflict, sql.ConflictColumns(columns...))
 	return &SkyConditionUpsertOne{
-		create: scc,
+		create: _c,
 	}
 }
 
@@ -433,18 +433,22 @@ func (u *SkyConditionUpsertOne) IDX(ctx context.Context) uuid.UUID {
 // SkyConditionCreateBulk is the builder for creating many SkyCondition entities in bulk.
 type SkyConditionCreateBulk struct {
 	config
+	err      error
 	builders []*SkyConditionCreate
 	conflict []sql.ConflictOption
 }
 
 // Save creates the SkyCondition entities in the database.
-func (sccb *SkyConditionCreateBulk) Save(ctx context.Context) ([]*SkyCondition, error) {
-	specs := make([]*sqlgraph.CreateSpec, len(sccb.builders))
-	nodes := make([]*SkyCondition, len(sccb.builders))
-	mutators := make([]Mutator, len(sccb.builders))
-	for i := range sccb.builders {
+func (_c *SkyConditionCreateBulk) Save(ctx context.Context) ([]*SkyCondition, error) {
+	if _c.err != nil {
+		return nil, _c.err
+	}
+	specs := make([]*sqlgraph.CreateSpec, len(_c.builders))
+	nodes := make([]*SkyCondition, len(_c.builders))
+	mutators := make([]Mutator, len(_c.builders))
+	for i := range _c.builders {
 		func(i int, root context.Context) {
-			builder := sccb.builders[i]
+			builder := _c.builders[i]
 			builder.defaults()
 			var mut Mutator = MutateFunc(func(ctx context.Context, m Mutation) (Value, error) {
 				mutation, ok := m.(*SkyConditionMutation)
@@ -458,12 +462,12 @@ func (sccb *SkyConditionCreateBulk) Save(ctx context.Context) ([]*SkyCondition, 
 				var err error
 				nodes[i], specs[i] = builder.createSpec()
 				if i < len(mutators)-1 {
-					_, err = mutators[i+1].Mutate(root, sccb.builders[i+1].mutation)
+					_, err = mutators[i+1].Mutate(root, _c.builders[i+1].mutation)
 				} else {
 					spec := &sqlgraph.BatchCreateSpec{Nodes: specs}
-					spec.OnConflict = sccb.conflict
+					spec.OnConflict = _c.conflict
 					// Invoke the actual operation on the latest mutation in the chain.
-					if err = sqlgraph.BatchCreate(ctx, sccb.driver, spec); err != nil {
+					if err = sqlgraph.BatchCreate(ctx, _c.driver, spec); err != nil {
 						if sqlgraph.IsConstraintError(err) {
 							err = &ConstraintError{msg: err.Error(), wrap: err}
 						}
@@ -483,7 +487,7 @@ func (sccb *SkyConditionCreateBulk) Save(ctx context.Context) ([]*SkyCondition, 
 		}(i, ctx)
 	}
 	if len(mutators) > 0 {
-		if _, err := mutators[0].Mutate(ctx, sccb.builders[0].mutation); err != nil {
+		if _, err := mutators[0].Mutate(ctx, _c.builders[0].mutation); err != nil {
 			return nil, err
 		}
 	}
@@ -491,8 +495,8 @@ func (sccb *SkyConditionCreateBulk) Save(ctx context.Context) ([]*SkyCondition, 
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (sccb *SkyConditionCreateBulk) SaveX(ctx context.Context) []*SkyCondition {
-	v, err := sccb.Save(ctx)
+func (_c *SkyConditionCreateBulk) SaveX(ctx context.Context) []*SkyCondition {
+	v, err := _c.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -500,14 +504,14 @@ func (sccb *SkyConditionCreateBulk) SaveX(ctx context.Context) []*SkyCondition {
 }
 
 // Exec executes the query.
-func (sccb *SkyConditionCreateBulk) Exec(ctx context.Context) error {
-	_, err := sccb.Save(ctx)
+func (_c *SkyConditionCreateBulk) Exec(ctx context.Context) error {
+	_, err := _c.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (sccb *SkyConditionCreateBulk) ExecX(ctx context.Context) {
-	if err := sccb.Exec(ctx); err != nil {
+func (_c *SkyConditionCreateBulk) ExecX(ctx context.Context) {
+	if err := _c.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
@@ -527,10 +531,10 @@ func (sccb *SkyConditionCreateBulk) ExecX(ctx context.Context) {
 //			SetSkyCover(v+v).
 //		}).
 //		Exec(ctx)
-func (sccb *SkyConditionCreateBulk) OnConflict(opts ...sql.ConflictOption) *SkyConditionUpsertBulk {
-	sccb.conflict = opts
+func (_c *SkyConditionCreateBulk) OnConflict(opts ...sql.ConflictOption) *SkyConditionUpsertBulk {
+	_c.conflict = opts
 	return &SkyConditionUpsertBulk{
-		create: sccb,
+		create: _c,
 	}
 }
 
@@ -540,10 +544,10 @@ func (sccb *SkyConditionCreateBulk) OnConflict(opts ...sql.ConflictOption) *SkyC
 //	client.SkyCondition.Create().
 //		OnConflict(sql.ConflictColumns(columns...)).
 //		Exec(ctx)
-func (sccb *SkyConditionCreateBulk) OnConflictColumns(columns ...string) *SkyConditionUpsertBulk {
-	sccb.conflict = append(sccb.conflict, sql.ConflictColumns(columns...))
+func (_c *SkyConditionCreateBulk) OnConflictColumns(columns ...string) *SkyConditionUpsertBulk {
+	_c.conflict = append(_c.conflict, sql.ConflictColumns(columns...))
 	return &SkyConditionUpsertBulk{
-		create: sccb,
+		create: _c,
 	}
 }
 
@@ -668,6 +672,9 @@ func (u *SkyConditionUpsertBulk) ClearCloudType() *SkyConditionUpsertBulk {
 
 // Exec executes the query.
 func (u *SkyConditionUpsertBulk) Exec(ctx context.Context) error {
+	if u.create.err != nil {
+		return u.create.err
+	}
 	for i, b := range u.create.builders {
 		if len(b.conflict) != 0 {
 			return fmt.Errorf("ent: OnConflict was set for builder %d. Set it on the SkyConditionCreateBulk instead", i)

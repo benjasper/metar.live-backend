@@ -30,44 +30,70 @@ type Noder interface {
 	IsNode()
 }
 
-// IsNode implements the Node interface check for GQLGen.
-func (n *Airport) IsNode() {}
+var airportImplementors = []string{"Airport", "Node"}
 
 // IsNode implements the Node interface check for GQLGen.
-func (n *Country) IsNode() {}
+func (*Airport) IsNode() {}
+
+var countryImplementors = []string{"Country", "Node"}
 
 // IsNode implements the Node interface check for GQLGen.
-func (n *Forecast) IsNode() {}
+func (*Country) IsNode() {}
+
+var forecastImplementors = []string{"Forecast", "Node"}
 
 // IsNode implements the Node interface check for GQLGen.
-func (n *Frequency) IsNode() {}
+func (*Forecast) IsNode() {}
+
+var frequencyImplementors = []string{"Frequency", "Node"}
 
 // IsNode implements the Node interface check for GQLGen.
-func (n *IcingCondition) IsNode() {}
+func (*Frequency) IsNode() {}
+
+var icingconditionImplementors = []string{"IcingCondition", "Node"}
 
 // IsNode implements the Node interface check for GQLGen.
-func (n *Metar) IsNode() {}
+func (*IcingCondition) IsNode() {}
+
+var metarImplementors = []string{"Metar", "Node"}
 
 // IsNode implements the Node interface check for GQLGen.
-func (n *Region) IsNode() {}
+func (*Metar) IsNode() {}
+
+var regionImplementors = []string{"Region", "Node"}
 
 // IsNode implements the Node interface check for GQLGen.
-func (n *Runway) IsNode() {}
+func (*Region) IsNode() {}
+
+var runwayImplementors = []string{"Runway", "Node"}
 
 // IsNode implements the Node interface check for GQLGen.
-func (n *SkyCondition) IsNode() {}
+func (*Runway) IsNode() {}
+
+var skyconditionImplementors = []string{"SkyCondition", "Node"}
 
 // IsNode implements the Node interface check for GQLGen.
-func (n *Taf) IsNode() {}
+func (*SkyCondition) IsNode() {}
+
+var tafImplementors = []string{"Taf", "Node"}
 
 // IsNode implements the Node interface check for GQLGen.
-func (n *TemperatureData) IsNode() {}
+func (*Taf) IsNode() {}
+
+var temperaturedataImplementors = []string{"TemperatureData", "Node"}
 
 // IsNode implements the Node interface check for GQLGen.
-func (n *TurbulenceCondition) IsNode() {}
+func (*TemperatureData) IsNode() {}
+
+var turbulenceconditionImplementors = []string{"TurbulenceCondition", "Node"}
 
 // IsNode implements the Node interface check for GQLGen.
-func (n *WeatherStation) IsNode() {}
+func (*TurbulenceCondition) IsNode() {}
+
+var weatherstationImplementors = []string{"WeatherStation", "Node"}
+
+// IsNode implements the Node interface check for GQLGen.
+func (*WeatherStation) IsNode() {}
 
 var errNodeInvalidID = &NotFoundError{"node"}
 
@@ -130,159 +156,120 @@ func (c *Client) noder(ctx context.Context, table string, id uuid.UUID) (Noder, 
 	case airport.Table:
 		query := c.Airport.Query().
 			Where(airport.ID(id))
-		query, err := query.CollectFields(ctx, "Airport")
-		if err != nil {
-			return nil, err
+		if fc := graphql.GetFieldContext(ctx); fc != nil {
+			if err := query.collectField(ctx, true, graphql.GetOperationContext(ctx), fc.Field, nil, airportImplementors...); err != nil {
+				return nil, err
+			}
 		}
-		n, err := query.Only(ctx)
-		if err != nil {
-			return nil, err
-		}
-		return n, nil
+		return query.Only(ctx)
 	case country.Table:
 		query := c.Country.Query().
 			Where(country.ID(id))
-		query, err := query.CollectFields(ctx, "Country")
-		if err != nil {
-			return nil, err
+		if fc := graphql.GetFieldContext(ctx); fc != nil {
+			if err := query.collectField(ctx, true, graphql.GetOperationContext(ctx), fc.Field, nil, countryImplementors...); err != nil {
+				return nil, err
+			}
 		}
-		n, err := query.Only(ctx)
-		if err != nil {
-			return nil, err
-		}
-		return n, nil
+		return query.Only(ctx)
 	case forecast.Table:
 		query := c.Forecast.Query().
 			Where(forecast.ID(id))
-		query, err := query.CollectFields(ctx, "Forecast")
-		if err != nil {
-			return nil, err
+		if fc := graphql.GetFieldContext(ctx); fc != nil {
+			if err := query.collectField(ctx, true, graphql.GetOperationContext(ctx), fc.Field, nil, forecastImplementors...); err != nil {
+				return nil, err
+			}
 		}
-		n, err := query.Only(ctx)
-		if err != nil {
-			return nil, err
-		}
-		return n, nil
+		return query.Only(ctx)
 	case frequency.Table:
 		query := c.Frequency.Query().
 			Where(frequency.ID(id))
-		query, err := query.CollectFields(ctx, "Frequency")
-		if err != nil {
-			return nil, err
+		if fc := graphql.GetFieldContext(ctx); fc != nil {
+			if err := query.collectField(ctx, true, graphql.GetOperationContext(ctx), fc.Field, nil, frequencyImplementors...); err != nil {
+				return nil, err
+			}
 		}
-		n, err := query.Only(ctx)
-		if err != nil {
-			return nil, err
-		}
-		return n, nil
+		return query.Only(ctx)
 	case icingcondition.Table:
 		query := c.IcingCondition.Query().
 			Where(icingcondition.ID(id))
-		query, err := query.CollectFields(ctx, "IcingCondition")
-		if err != nil {
-			return nil, err
+		if fc := graphql.GetFieldContext(ctx); fc != nil {
+			if err := query.collectField(ctx, true, graphql.GetOperationContext(ctx), fc.Field, nil, icingconditionImplementors...); err != nil {
+				return nil, err
+			}
 		}
-		n, err := query.Only(ctx)
-		if err != nil {
-			return nil, err
-		}
-		return n, nil
+		return query.Only(ctx)
 	case metar.Table:
 		query := c.Metar.Query().
 			Where(metar.ID(id))
-		query, err := query.CollectFields(ctx, "Metar")
-		if err != nil {
-			return nil, err
+		if fc := graphql.GetFieldContext(ctx); fc != nil {
+			if err := query.collectField(ctx, true, graphql.GetOperationContext(ctx), fc.Field, nil, metarImplementors...); err != nil {
+				return nil, err
+			}
 		}
-		n, err := query.Only(ctx)
-		if err != nil {
-			return nil, err
-		}
-		return n, nil
+		return query.Only(ctx)
 	case region.Table:
 		query := c.Region.Query().
 			Where(region.ID(id))
-		query, err := query.CollectFields(ctx, "Region")
-		if err != nil {
-			return nil, err
+		if fc := graphql.GetFieldContext(ctx); fc != nil {
+			if err := query.collectField(ctx, true, graphql.GetOperationContext(ctx), fc.Field, nil, regionImplementors...); err != nil {
+				return nil, err
+			}
 		}
-		n, err := query.Only(ctx)
-		if err != nil {
-			return nil, err
-		}
-		return n, nil
+		return query.Only(ctx)
 	case runway.Table:
 		query := c.Runway.Query().
 			Where(runway.ID(id))
-		query, err := query.CollectFields(ctx, "Runway")
-		if err != nil {
-			return nil, err
+		if fc := graphql.GetFieldContext(ctx); fc != nil {
+			if err := query.collectField(ctx, true, graphql.GetOperationContext(ctx), fc.Field, nil, runwayImplementors...); err != nil {
+				return nil, err
+			}
 		}
-		n, err := query.Only(ctx)
-		if err != nil {
-			return nil, err
-		}
-		return n, nil
+		return query.Only(ctx)
 	case skycondition.Table:
 		query := c.SkyCondition.Query().
 			Where(skycondition.ID(id))
-		query, err := query.CollectFields(ctx, "SkyCondition")
-		if err != nil {
-			return nil, err
+		if fc := graphql.GetFieldContext(ctx); fc != nil {
+			if err := query.collectField(ctx, true, graphql.GetOperationContext(ctx), fc.Field, nil, skyconditionImplementors...); err != nil {
+				return nil, err
+			}
 		}
-		n, err := query.Only(ctx)
-		if err != nil {
-			return nil, err
-		}
-		return n, nil
+		return query.Only(ctx)
 	case taf.Table:
 		query := c.Taf.Query().
 			Where(taf.ID(id))
-		query, err := query.CollectFields(ctx, "Taf")
-		if err != nil {
-			return nil, err
+		if fc := graphql.GetFieldContext(ctx); fc != nil {
+			if err := query.collectField(ctx, true, graphql.GetOperationContext(ctx), fc.Field, nil, tafImplementors...); err != nil {
+				return nil, err
+			}
 		}
-		n, err := query.Only(ctx)
-		if err != nil {
-			return nil, err
-		}
-		return n, nil
+		return query.Only(ctx)
 	case temperaturedata.Table:
 		query := c.TemperatureData.Query().
 			Where(temperaturedata.ID(id))
-		query, err := query.CollectFields(ctx, "TemperatureData")
-		if err != nil {
-			return nil, err
+		if fc := graphql.GetFieldContext(ctx); fc != nil {
+			if err := query.collectField(ctx, true, graphql.GetOperationContext(ctx), fc.Field, nil, temperaturedataImplementors...); err != nil {
+				return nil, err
+			}
 		}
-		n, err := query.Only(ctx)
-		if err != nil {
-			return nil, err
-		}
-		return n, nil
+		return query.Only(ctx)
 	case turbulencecondition.Table:
 		query := c.TurbulenceCondition.Query().
 			Where(turbulencecondition.ID(id))
-		query, err := query.CollectFields(ctx, "TurbulenceCondition")
-		if err != nil {
-			return nil, err
+		if fc := graphql.GetFieldContext(ctx); fc != nil {
+			if err := query.collectField(ctx, true, graphql.GetOperationContext(ctx), fc.Field, nil, turbulenceconditionImplementors...); err != nil {
+				return nil, err
+			}
 		}
-		n, err := query.Only(ctx)
-		if err != nil {
-			return nil, err
-		}
-		return n, nil
+		return query.Only(ctx)
 	case weatherstation.Table:
 		query := c.WeatherStation.Query().
 			Where(weatherstation.ID(id))
-		query, err := query.CollectFields(ctx, "WeatherStation")
-		if err != nil {
-			return nil, err
+		if fc := graphql.GetFieldContext(ctx); fc != nil {
+			if err := query.collectField(ctx, true, graphql.GetOperationContext(ctx), fc.Field, nil, weatherstationImplementors...); err != nil {
+				return nil, err
+			}
 		}
-		n, err := query.Only(ctx)
-		if err != nil {
-			return nil, err
-		}
-		return n, nil
+		return query.Only(ctx)
 	default:
 		return nil, fmt.Errorf("cannot resolve noder from table %q: %w", table, errNodeInvalidID)
 	}
@@ -359,7 +346,7 @@ func (c *Client) noders(ctx context.Context, table string, ids []uuid.UUID) ([]N
 	case airport.Table:
 		query := c.Airport.Query().
 			Where(airport.IDIn(ids...))
-		query, err := query.CollectFields(ctx, "Airport")
+		query, err := query.CollectFields(ctx, airportImplementors...)
 		if err != nil {
 			return nil, err
 		}
@@ -375,7 +362,7 @@ func (c *Client) noders(ctx context.Context, table string, ids []uuid.UUID) ([]N
 	case country.Table:
 		query := c.Country.Query().
 			Where(country.IDIn(ids...))
-		query, err := query.CollectFields(ctx, "Country")
+		query, err := query.CollectFields(ctx, countryImplementors...)
 		if err != nil {
 			return nil, err
 		}
@@ -391,7 +378,7 @@ func (c *Client) noders(ctx context.Context, table string, ids []uuid.UUID) ([]N
 	case forecast.Table:
 		query := c.Forecast.Query().
 			Where(forecast.IDIn(ids...))
-		query, err := query.CollectFields(ctx, "Forecast")
+		query, err := query.CollectFields(ctx, forecastImplementors...)
 		if err != nil {
 			return nil, err
 		}
@@ -407,7 +394,7 @@ func (c *Client) noders(ctx context.Context, table string, ids []uuid.UUID) ([]N
 	case frequency.Table:
 		query := c.Frequency.Query().
 			Where(frequency.IDIn(ids...))
-		query, err := query.CollectFields(ctx, "Frequency")
+		query, err := query.CollectFields(ctx, frequencyImplementors...)
 		if err != nil {
 			return nil, err
 		}
@@ -423,7 +410,7 @@ func (c *Client) noders(ctx context.Context, table string, ids []uuid.UUID) ([]N
 	case icingcondition.Table:
 		query := c.IcingCondition.Query().
 			Where(icingcondition.IDIn(ids...))
-		query, err := query.CollectFields(ctx, "IcingCondition")
+		query, err := query.CollectFields(ctx, icingconditionImplementors...)
 		if err != nil {
 			return nil, err
 		}
@@ -439,7 +426,7 @@ func (c *Client) noders(ctx context.Context, table string, ids []uuid.UUID) ([]N
 	case metar.Table:
 		query := c.Metar.Query().
 			Where(metar.IDIn(ids...))
-		query, err := query.CollectFields(ctx, "Metar")
+		query, err := query.CollectFields(ctx, metarImplementors...)
 		if err != nil {
 			return nil, err
 		}
@@ -455,7 +442,7 @@ func (c *Client) noders(ctx context.Context, table string, ids []uuid.UUID) ([]N
 	case region.Table:
 		query := c.Region.Query().
 			Where(region.IDIn(ids...))
-		query, err := query.CollectFields(ctx, "Region")
+		query, err := query.CollectFields(ctx, regionImplementors...)
 		if err != nil {
 			return nil, err
 		}
@@ -471,7 +458,7 @@ func (c *Client) noders(ctx context.Context, table string, ids []uuid.UUID) ([]N
 	case runway.Table:
 		query := c.Runway.Query().
 			Where(runway.IDIn(ids...))
-		query, err := query.CollectFields(ctx, "Runway")
+		query, err := query.CollectFields(ctx, runwayImplementors...)
 		if err != nil {
 			return nil, err
 		}
@@ -487,7 +474,7 @@ func (c *Client) noders(ctx context.Context, table string, ids []uuid.UUID) ([]N
 	case skycondition.Table:
 		query := c.SkyCondition.Query().
 			Where(skycondition.IDIn(ids...))
-		query, err := query.CollectFields(ctx, "SkyCondition")
+		query, err := query.CollectFields(ctx, skyconditionImplementors...)
 		if err != nil {
 			return nil, err
 		}
@@ -503,7 +490,7 @@ func (c *Client) noders(ctx context.Context, table string, ids []uuid.UUID) ([]N
 	case taf.Table:
 		query := c.Taf.Query().
 			Where(taf.IDIn(ids...))
-		query, err := query.CollectFields(ctx, "Taf")
+		query, err := query.CollectFields(ctx, tafImplementors...)
 		if err != nil {
 			return nil, err
 		}
@@ -519,7 +506,7 @@ func (c *Client) noders(ctx context.Context, table string, ids []uuid.UUID) ([]N
 	case temperaturedata.Table:
 		query := c.TemperatureData.Query().
 			Where(temperaturedata.IDIn(ids...))
-		query, err := query.CollectFields(ctx, "TemperatureData")
+		query, err := query.CollectFields(ctx, temperaturedataImplementors...)
 		if err != nil {
 			return nil, err
 		}
@@ -535,7 +522,7 @@ func (c *Client) noders(ctx context.Context, table string, ids []uuid.UUID) ([]N
 	case turbulencecondition.Table:
 		query := c.TurbulenceCondition.Query().
 			Where(turbulencecondition.IDIn(ids...))
-		query, err := query.CollectFields(ctx, "TurbulenceCondition")
+		query, err := query.CollectFields(ctx, turbulenceconditionImplementors...)
 		if err != nil {
 			return nil, err
 		}
@@ -551,7 +538,7 @@ func (c *Client) noders(ctx context.Context, table string, ids []uuid.UUID) ([]N
 	case weatherstation.Table:
 		query := c.WeatherStation.Query().
 			Where(weatherstation.IDIn(ids...))
-		query, err := query.CollectFields(ctx, "WeatherStation")
+		query, err := query.CollectFields(ctx, weatherstationImplementors...)
 		if err != nil {
 			return nil, err
 		}

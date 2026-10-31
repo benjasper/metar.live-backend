@@ -68,7 +68,7 @@ func (e *LengthUnit) UnmarshalGQL(v any) error {
 }
 
 func (e LengthUnit) MarshalGQL(w io.Writer) {
-	fmt.Fprint(w, strconv.Quote(e.String()))
+	_, _ = fmt.Fprint(w, strconv.Quote(e.String()))
 }
 
 func (e *LengthUnit) UnmarshalJSON(b []byte) error {
@@ -123,7 +123,7 @@ func (e *PressureUnit) UnmarshalGQL(v any) error {
 }
 
 func (e PressureUnit) MarshalGQL(w io.Writer) {
-	fmt.Fprint(w, strconv.Quote(e.String()))
+	_, _ = fmt.Fprint(w, strconv.Quote(e.String()))
 }
 
 func (e *PressureUnit) UnmarshalJSON(b []byte) error {
@@ -178,7 +178,7 @@ func (e *SmallLengthUnit) UnmarshalGQL(v any) error {
 }
 
 func (e SmallLengthUnit) MarshalGQL(w io.Writer) {
-	fmt.Fprint(w, strconv.Quote(e.String()))
+	_, _ = fmt.Fprint(w, strconv.Quote(e.String()))
 }
 
 func (e *SmallLengthUnit) UnmarshalJSON(b []byte) error {
@@ -233,7 +233,7 @@ func (e *SpeedUnit) UnmarshalGQL(v any) error {
 }
 
 func (e SpeedUnit) MarshalGQL(w io.Writer) {
-	fmt.Fprint(w, strconv.Quote(e.String()))
+	_, _ = fmt.Fprint(w, strconv.Quote(e.String()))
 }
 
 func (e *SpeedUnit) UnmarshalJSON(b []byte) error {
@@ -288,7 +288,7 @@ func (e *TemperatureUnit) UnmarshalGQL(v any) error {
 }
 
 func (e TemperatureUnit) MarshalGQL(w io.Writer) {
-	fmt.Fprint(w, strconv.Quote(e.String()))
+	_, _ = fmt.Fprint(w, strconv.Quote(e.String()))
 }
 
 func (e *TemperatureUnit) UnmarshalJSON(b []byte) error {

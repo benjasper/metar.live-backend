@@ -7,6 +7,7 @@ import (
 	"errors"
 	"fmt"
 	"log"
+	"reflect"
 
 	"github.com/google/uuid"
 	"metar.live/ent/migrate"
@@ -65,9 +66,7 @@ type Client struct {
 
 // NewClient creates a new client configured with the given options.
 func NewClient(opts ...Option) *Client {
-	cfg := config{log: log.Println, hooks: &hooks{}, inters: &inters{}}
-	cfg.options(opts...)
-	client := &Client{config: cfg}
+	client := &Client{config: newConfig(opts...)}
 	client.init()
 	return client
 }
@@ -106,6 +105,13 @@ type (
 	// Option function to configure the client.
 	Option func(*config)
 )
+
+// newConfig creates a new config for the client.
+func newConfig(opts ...Option) config {
+	cfg := config{log: log.Println, hooks: &hooks{}, inters: &inters{}}
+	cfg.options(opts...)
+	return cfg
+}
 
 // options applies the options on the config object.
 func (c *config) options(opts ...Option) {
@@ -154,11 +160,14 @@ func Open(driverName, dataSourceName string, options ...Option) (*Client, error)
 	}
 }
 
+// ErrTxStarted is returned when trying to start a new transaction from a transactional client.
+var ErrTxStarted = errors.New("ent: cannot start a transaction within a transaction")
+
 // Tx returns a new transactional client. The provided context
 // is used until the transaction is committed or rolled back.
 func (c *Client) Tx(ctx context.Context) (*Tx, error) {
 	if _, ok := c.driver.(*txDriver); ok {
-		return nil, errors.New("ent: cannot start a transaction within a transaction")
+		return nil, ErrTxStarted
 	}
 	tx, err := newTx(ctx, c.driver)
 	if err != nil {
@@ -330,6 +339,21 @@ func (c *AirportClient) CreateBulk(builders ...*AirportCreate) *AirportCreateBul
 	return &AirportCreateBulk{config: c.config, builders: builders}
 }
 
+// MapCreateBulk creates a bulk creation builder from the given slice. For each item in the slice, the function creates
+// a builder and applies setFunc on it.
+func (c *AirportClient) MapCreateBulk(slice any, setFunc func(*AirportCreate, int)) *AirportCreateBulk {
+	rv := reflect.ValueOf(slice)
+	if rv.Kind() != reflect.Slice {
+		return &AirportCreateBulk{err: fmt.Errorf("calling to AirportClient.MapCreateBulk with wrong type %T, need slice", slice)}
+	}
+	builders := make([]*AirportCreate, rv.Len())
+	for i := 0; i < rv.Len(); i++ {
+		builders[i] = c.Create()
+		setFunc(builders[i], i)
+	}
+	return &AirportCreateBulk{config: c.config, builders: builders}
+}
+
 // Update returns an update builder for Airport.
 func (c *AirportClient) Update() *AirportUpdate {
 	mutation := newAirportMutation(c.config, OpUpdate)
@@ -337,8 +361,8 @@ func (c *AirportClient) Update() *AirportUpdate {
 }
 
 // UpdateOne returns an update builder for the given entity.
-func (c *AirportClient) UpdateOne(a *Airport) *AirportUpdateOne {
-	mutation := newAirportMutation(c.config, OpUpdateOne, withAirport(a))
+func (c *AirportClient) UpdateOne(_m *Airport) *AirportUpdateOne {
+	mutation := newAirportMutation(c.config, OpUpdateOne, withAirport(_m))
 	return &AirportUpdateOne{config: c.config, hooks: c.Hooks(), mutation: mutation}
 }
 
@@ -355,8 +379,8 @@ func (c *AirportClient) Delete() *AirportDelete {
 }
 
 // DeleteOne returns a builder for deleting the given entity.
-func (c *AirportClient) DeleteOne(a *Airport) *AirportDeleteOne {
-	return c.DeleteOneID(a.ID)
+func (c *AirportClient) DeleteOne(_m *Airport) *AirportDeleteOne {
+	return c.DeleteOneID(_m.ID)
 }
 
 // DeleteOneID returns a builder for deleting the given entity by its id.
@@ -391,80 +415,80 @@ func (c *AirportClient) GetX(ctx context.Context, id uuid.UUID) *Airport {
 }
 
 // QueryRegion queries the region edge of a Airport.
-func (c *AirportClient) QueryRegion(a *Airport) *RegionQuery {
+func (c *AirportClient) QueryRegion(_m *Airport) *RegionQuery {
 	query := (&RegionClient{config: c.config}).Query()
 	query.path = func(context.Context) (fromV *sql.Selector, _ error) {
-		id := a.ID
+		id := _m.ID
 		step := sqlgraph.NewStep(
 			sqlgraph.From(airport.Table, airport.FieldID, id),
 			sqlgraph.To(region.Table, region.FieldID),
 			sqlgraph.Edge(sqlgraph.M2O, true, airport.RegionTable, airport.RegionColumn),
 		)
-		fromV = sqlgraph.Neighbors(a.driver.Dialect(), step)
+		fromV = sqlgraph.Neighbors(_m.driver.Dialect(), step)
 		return fromV, nil
 	}
 	return query
 }
 
 // QueryCountry queries the country edge of a Airport.
-func (c *AirportClient) QueryCountry(a *Airport) *CountryQuery {
+func (c *AirportClient) QueryCountry(_m *Airport) *CountryQuery {
 	query := (&CountryClient{config: c.config}).Query()
 	query.path = func(context.Context) (fromV *sql.Selector, _ error) {
-		id := a.ID
+		id := _m.ID
 		step := sqlgraph.NewStep(
 			sqlgraph.From(airport.Table, airport.FieldID, id),
 			sqlgraph.To(country.Table, country.FieldID),
 			sqlgraph.Edge(sqlgraph.M2O, true, airport.CountryTable, airport.CountryColumn),
 		)
-		fromV = sqlgraph.Neighbors(a.driver.Dialect(), step)
+		fromV = sqlgraph.Neighbors(_m.driver.Dialect(), step)
 		return fromV, nil
 	}
 	return query
 }
 
 // QueryRunways queries the runways edge of a Airport.
-func (c *AirportClient) QueryRunways(a *Airport) *RunwayQuery {
+func (c *AirportClient) QueryRunways(_m *Airport) *RunwayQuery {
 	query := (&RunwayClient{config: c.config}).Query()
 	query.path = func(context.Context) (fromV *sql.Selector, _ error) {
-		id := a.ID
+		id := _m.ID
 		step := sqlgraph.NewStep(
 			sqlgraph.From(airport.Table, airport.FieldID, id),
 			sqlgraph.To(runway.Table, runway.FieldID),
 			sqlgraph.Edge(sqlgraph.O2M, false, airport.RunwaysTable, airport.RunwaysColumn),
 		)
-		fromV = sqlgraph.Neighbors(a.driver.Dialect(), step)
+		fromV = sqlgraph.Neighbors(_m.driver.Dialect(), step)
 		return fromV, nil
 	}
 	return query
 }
 
 // QueryFrequencies queries the frequencies edge of a Airport.
-func (c *AirportClient) QueryFrequencies(a *Airport) *FrequencyQuery {
+func (c *AirportClient) QueryFrequencies(_m *Airport) *FrequencyQuery {
 	query := (&FrequencyClient{config: c.config}).Query()
 	query.path = func(context.Context) (fromV *sql.Selector, _ error) {
-		id := a.ID
+		id := _m.ID
 		step := sqlgraph.NewStep(
 			sqlgraph.From(airport.Table, airport.FieldID, id),
 			sqlgraph.To(frequency.Table, frequency.FieldID),
 			sqlgraph.Edge(sqlgraph.O2M, false, airport.FrequenciesTable, airport.FrequenciesColumn),
 		)
-		fromV = sqlgraph.Neighbors(a.driver.Dialect(), step)
+		fromV = sqlgraph.Neighbors(_m.driver.Dialect(), step)
 		return fromV, nil
 	}
 	return query
 }
 
 // QueryStation queries the station edge of a Airport.
-func (c *AirportClient) QueryStation(a *Airport) *WeatherStationQuery {
+func (c *AirportClient) QueryStation(_m *Airport) *WeatherStationQuery {
 	query := (&WeatherStationClient{config: c.config}).Query()
 	query.path = func(context.Context) (fromV *sql.Selector, _ error) {
-		id := a.ID
+		id := _m.ID
 		step := sqlgraph.NewStep(
 			sqlgraph.From(airport.Table, airport.FieldID, id),
 			sqlgraph.To(weatherstation.Table, weatherstation.FieldID),
 			sqlgraph.Edge(sqlgraph.O2O, false, airport.StationTable, airport.StationColumn),
 		)
-		fromV = sqlgraph.Neighbors(a.driver.Dialect(), step)
+		fromV = sqlgraph.Neighbors(_m.driver.Dialect(), step)
 		return fromV, nil
 	}
 	return query
@@ -528,6 +552,21 @@ func (c *CountryClient) CreateBulk(builders ...*CountryCreate) *CountryCreateBul
 	return &CountryCreateBulk{config: c.config, builders: builders}
 }
 
+// MapCreateBulk creates a bulk creation builder from the given slice. For each item in the slice, the function creates
+// a builder and applies setFunc on it.
+func (c *CountryClient) MapCreateBulk(slice any, setFunc func(*CountryCreate, int)) *CountryCreateBulk {
+	rv := reflect.ValueOf(slice)
+	if rv.Kind() != reflect.Slice {
+		return &CountryCreateBulk{err: fmt.Errorf("calling to CountryClient.MapCreateBulk with wrong type %T, need slice", slice)}
+	}
+	builders := make([]*CountryCreate, rv.Len())
+	for i := 0; i < rv.Len(); i++ {
+		builders[i] = c.Create()
+		setFunc(builders[i], i)
+	}
+	return &CountryCreateBulk{config: c.config, builders: builders}
+}
+
 // Update returns an update builder for Country.
 func (c *CountryClient) Update() *CountryUpdate {
 	mutation := newCountryMutation(c.config, OpUpdate)
@@ -535,8 +574,8 @@ func (c *CountryClient) Update() *CountryUpdate {
 }
 
 // UpdateOne returns an update builder for the given entity.
-func (c *CountryClient) UpdateOne(co *Country) *CountryUpdateOne {
-	mutation := newCountryMutation(c.config, OpUpdateOne, withCountry(co))
+func (c *CountryClient) UpdateOne(_m *Country) *CountryUpdateOne {
+	mutation := newCountryMutation(c.config, OpUpdateOne, withCountry(_m))
 	return &CountryUpdateOne{config: c.config, hooks: c.Hooks(), mutation: mutation}
 }
 
@@ -553,8 +592,8 @@ func (c *CountryClient) Delete() *CountryDelete {
 }
 
 // DeleteOne returns a builder for deleting the given entity.
-func (c *CountryClient) DeleteOne(co *Country) *CountryDeleteOne {
-	return c.DeleteOneID(co.ID)
+func (c *CountryClient) DeleteOne(_m *Country) *CountryDeleteOne {
+	return c.DeleteOneID(_m.ID)
 }
 
 // DeleteOneID returns a builder for deleting the given entity by its id.
@@ -589,16 +628,16 @@ func (c *CountryClient) GetX(ctx context.Context, id uuid.UUID) *Country {
 }
 
 // QueryAirports queries the airports edge of a Country.
-func (c *CountryClient) QueryAirports(co *Country) *AirportQuery {
+func (c *CountryClient) QueryAirports(_m *Country) *AirportQuery {
 	query := (&AirportClient{config: c.config}).Query()
 	query.path = func(context.Context) (fromV *sql.Selector, _ error) {
-		id := co.ID
+		id := _m.ID
 		step := sqlgraph.NewStep(
 			sqlgraph.From(country.Table, country.FieldID, id),
 			sqlgraph.To(airport.Table, airport.FieldID),
 			sqlgraph.Edge(sqlgraph.O2M, false, country.AirportsTable, country.AirportsColumn),
 		)
-		fromV = sqlgraph.Neighbors(co.driver.Dialect(), step)
+		fromV = sqlgraph.Neighbors(_m.driver.Dialect(), step)
 		return fromV, nil
 	}
 	return query
@@ -662,6 +701,21 @@ func (c *ForecastClient) CreateBulk(builders ...*ForecastCreate) *ForecastCreate
 	return &ForecastCreateBulk{config: c.config, builders: builders}
 }
 
+// MapCreateBulk creates a bulk creation builder from the given slice. For each item in the slice, the function creates
+// a builder and applies setFunc on it.
+func (c *ForecastClient) MapCreateBulk(slice any, setFunc func(*ForecastCreate, int)) *ForecastCreateBulk {
+	rv := reflect.ValueOf(slice)
+	if rv.Kind() != reflect.Slice {
+		return &ForecastCreateBulk{err: fmt.Errorf("calling to ForecastClient.MapCreateBulk with wrong type %T, need slice", slice)}
+	}
+	builders := make([]*ForecastCreate, rv.Len())
+	for i := 0; i < rv.Len(); i++ {
+		builders[i] = c.Create()
+		setFunc(builders[i], i)
+	}
+	return &ForecastCreateBulk{config: c.config, builders: builders}
+}
+
 // Update returns an update builder for Forecast.
 func (c *ForecastClient) Update() *ForecastUpdate {
 	mutation := newForecastMutation(c.config, OpUpdate)
@@ -669,8 +723,8 @@ func (c *ForecastClient) Update() *ForecastUpdate {
 }
 
 // UpdateOne returns an update builder for the given entity.
-func (c *ForecastClient) UpdateOne(f *Forecast) *ForecastUpdateOne {
-	mutation := newForecastMutation(c.config, OpUpdateOne, withForecast(f))
+func (c *ForecastClient) UpdateOne(_m *Forecast) *ForecastUpdateOne {
+	mutation := newForecastMutation(c.config, OpUpdateOne, withForecast(_m))
 	return &ForecastUpdateOne{config: c.config, hooks: c.Hooks(), mutation: mutation}
 }
 
@@ -687,8 +741,8 @@ func (c *ForecastClient) Delete() *ForecastDelete {
 }
 
 // DeleteOne returns a builder for deleting the given entity.
-func (c *ForecastClient) DeleteOne(f *Forecast) *ForecastDeleteOne {
-	return c.DeleteOneID(f.ID)
+func (c *ForecastClient) DeleteOne(_m *Forecast) *ForecastDeleteOne {
+	return c.DeleteOneID(_m.ID)
 }
 
 // DeleteOneID returns a builder for deleting the given entity by its id.
@@ -723,64 +777,64 @@ func (c *ForecastClient) GetX(ctx context.Context, id uuid.UUID) *Forecast {
 }
 
 // QuerySkyConditions queries the sky_conditions edge of a Forecast.
-func (c *ForecastClient) QuerySkyConditions(f *Forecast) *SkyConditionQuery {
+func (c *ForecastClient) QuerySkyConditions(_m *Forecast) *SkyConditionQuery {
 	query := (&SkyConditionClient{config: c.config}).Query()
 	query.path = func(context.Context) (fromV *sql.Selector, _ error) {
-		id := f.ID
+		id := _m.ID
 		step := sqlgraph.NewStep(
 			sqlgraph.From(forecast.Table, forecast.FieldID, id),
 			sqlgraph.To(skycondition.Table, skycondition.FieldID),
 			sqlgraph.Edge(sqlgraph.O2M, false, forecast.SkyConditionsTable, forecast.SkyConditionsColumn),
 		)
-		fromV = sqlgraph.Neighbors(f.driver.Dialect(), step)
+		fromV = sqlgraph.Neighbors(_m.driver.Dialect(), step)
 		return fromV, nil
 	}
 	return query
 }
 
 // QueryTurbulenceConditions queries the turbulence_conditions edge of a Forecast.
-func (c *ForecastClient) QueryTurbulenceConditions(f *Forecast) *TurbulenceConditionQuery {
+func (c *ForecastClient) QueryTurbulenceConditions(_m *Forecast) *TurbulenceConditionQuery {
 	query := (&TurbulenceConditionClient{config: c.config}).Query()
 	query.path = func(context.Context) (fromV *sql.Selector, _ error) {
-		id := f.ID
+		id := _m.ID
 		step := sqlgraph.NewStep(
 			sqlgraph.From(forecast.Table, forecast.FieldID, id),
 			sqlgraph.To(turbulencecondition.Table, turbulencecondition.FieldID),
 			sqlgraph.Edge(sqlgraph.O2M, false, forecast.TurbulenceConditionsTable, forecast.TurbulenceConditionsColumn),
 		)
-		fromV = sqlgraph.Neighbors(f.driver.Dialect(), step)
+		fromV = sqlgraph.Neighbors(_m.driver.Dialect(), step)
 		return fromV, nil
 	}
 	return query
 }
 
 // QueryIcingConditions queries the icing_conditions edge of a Forecast.
-func (c *ForecastClient) QueryIcingConditions(f *Forecast) *IcingConditionQuery {
+func (c *ForecastClient) QueryIcingConditions(_m *Forecast) *IcingConditionQuery {
 	query := (&IcingConditionClient{config: c.config}).Query()
 	query.path = func(context.Context) (fromV *sql.Selector, _ error) {
-		id := f.ID
+		id := _m.ID
 		step := sqlgraph.NewStep(
 			sqlgraph.From(forecast.Table, forecast.FieldID, id),
 			sqlgraph.To(icingcondition.Table, icingcondition.FieldID),
 			sqlgraph.Edge(sqlgraph.O2M, false, forecast.IcingConditionsTable, forecast.IcingConditionsColumn),
 		)
-		fromV = sqlgraph.Neighbors(f.driver.Dialect(), step)
+		fromV = sqlgraph.Neighbors(_m.driver.Dialect(), step)
 		return fromV, nil
 	}
 	return query
 }
 
 // QueryTemperatureData queries the temperature_data edge of a Forecast.
-func (c *ForecastClient) QueryTemperatureData(f *Forecast) *TemperatureDataQuery {
+func (c *ForecastClient) QueryTemperatureData(_m *Forecast) *TemperatureDataQuery {
 	query := (&TemperatureDataClient{config: c.config}).Query()
 	query.path = func(context.Context) (fromV *sql.Selector, _ error) {
-		id := f.ID
+		id := _m.ID
 		step := sqlgraph.NewStep(
 			sqlgraph.From(forecast.Table, forecast.FieldID, id),
 			sqlgraph.To(temperaturedata.Table, temperaturedata.FieldID),
 			sqlgraph.Edge(sqlgraph.O2M, false, forecast.TemperatureDataTable, forecast.TemperatureDataColumn),
 		)
-		fromV = sqlgraph.Neighbors(f.driver.Dialect(), step)
+		fromV = sqlgraph.Neighbors(_m.driver.Dialect(), step)
 		return fromV, nil
 	}
 	return query
@@ -844,6 +898,21 @@ func (c *FrequencyClient) CreateBulk(builders ...*FrequencyCreate) *FrequencyCre
 	return &FrequencyCreateBulk{config: c.config, builders: builders}
 }
 
+// MapCreateBulk creates a bulk creation builder from the given slice. For each item in the slice, the function creates
+// a builder and applies setFunc on it.
+func (c *FrequencyClient) MapCreateBulk(slice any, setFunc func(*FrequencyCreate, int)) *FrequencyCreateBulk {
+	rv := reflect.ValueOf(slice)
+	if rv.Kind() != reflect.Slice {
+		return &FrequencyCreateBulk{err: fmt.Errorf("calling to FrequencyClient.MapCreateBulk with wrong type %T, need slice", slice)}
+	}
+	builders := make([]*FrequencyCreate, rv.Len())
+	for i := 0; i < rv.Len(); i++ {
+		builders[i] = c.Create()
+		setFunc(builders[i], i)
+	}
+	return &FrequencyCreateBulk{config: c.config, builders: builders}
+}
+
 // Update returns an update builder for Frequency.
 func (c *FrequencyClient) Update() *FrequencyUpdate {
 	mutation := newFrequencyMutation(c.config, OpUpdate)
@@ -851,8 +920,8 @@ func (c *FrequencyClient) Update() *FrequencyUpdate {
 }
 
 // UpdateOne returns an update builder for the given entity.
-func (c *FrequencyClient) UpdateOne(f *Frequency) *FrequencyUpdateOne {
-	mutation := newFrequencyMutation(c.config, OpUpdateOne, withFrequency(f))
+func (c *FrequencyClient) UpdateOne(_m *Frequency) *FrequencyUpdateOne {
+	mutation := newFrequencyMutation(c.config, OpUpdateOne, withFrequency(_m))
 	return &FrequencyUpdateOne{config: c.config, hooks: c.Hooks(), mutation: mutation}
 }
 
@@ -869,8 +938,8 @@ func (c *FrequencyClient) Delete() *FrequencyDelete {
 }
 
 // DeleteOne returns a builder for deleting the given entity.
-func (c *FrequencyClient) DeleteOne(f *Frequency) *FrequencyDeleteOne {
-	return c.DeleteOneID(f.ID)
+func (c *FrequencyClient) DeleteOne(_m *Frequency) *FrequencyDeleteOne {
+	return c.DeleteOneID(_m.ID)
 }
 
 // DeleteOneID returns a builder for deleting the given entity by its id.
@@ -905,16 +974,16 @@ func (c *FrequencyClient) GetX(ctx context.Context, id uuid.UUID) *Frequency {
 }
 
 // QueryAirport queries the airport edge of a Frequency.
-func (c *FrequencyClient) QueryAirport(f *Frequency) *AirportQuery {
+func (c *FrequencyClient) QueryAirport(_m *Frequency) *AirportQuery {
 	query := (&AirportClient{config: c.config}).Query()
 	query.path = func(context.Context) (fromV *sql.Selector, _ error) {
-		id := f.ID
+		id := _m.ID
 		step := sqlgraph.NewStep(
 			sqlgraph.From(frequency.Table, frequency.FieldID, id),
 			sqlgraph.To(airport.Table, airport.FieldID),
 			sqlgraph.Edge(sqlgraph.M2O, true, frequency.AirportTable, frequency.AirportColumn),
 		)
-		fromV = sqlgraph.Neighbors(f.driver.Dialect(), step)
+		fromV = sqlgraph.Neighbors(_m.driver.Dialect(), step)
 		return fromV, nil
 	}
 	return query
@@ -978,6 +1047,21 @@ func (c *IcingConditionClient) CreateBulk(builders ...*IcingConditionCreate) *Ic
 	return &IcingConditionCreateBulk{config: c.config, builders: builders}
 }
 
+// MapCreateBulk creates a bulk creation builder from the given slice. For each item in the slice, the function creates
+// a builder and applies setFunc on it.
+func (c *IcingConditionClient) MapCreateBulk(slice any, setFunc func(*IcingConditionCreate, int)) *IcingConditionCreateBulk {
+	rv := reflect.ValueOf(slice)
+	if rv.Kind() != reflect.Slice {
+		return &IcingConditionCreateBulk{err: fmt.Errorf("calling to IcingConditionClient.MapCreateBulk with wrong type %T, need slice", slice)}
+	}
+	builders := make([]*IcingConditionCreate, rv.Len())
+	for i := 0; i < rv.Len(); i++ {
+		builders[i] = c.Create()
+		setFunc(builders[i], i)
+	}
+	return &IcingConditionCreateBulk{config: c.config, builders: builders}
+}
+
 // Update returns an update builder for IcingCondition.
 func (c *IcingConditionClient) Update() *IcingConditionUpdate {
 	mutation := newIcingConditionMutation(c.config, OpUpdate)
@@ -985,8 +1069,8 @@ func (c *IcingConditionClient) Update() *IcingConditionUpdate {
 }
 
 // UpdateOne returns an update builder for the given entity.
-func (c *IcingConditionClient) UpdateOne(ic *IcingCondition) *IcingConditionUpdateOne {
-	mutation := newIcingConditionMutation(c.config, OpUpdateOne, withIcingCondition(ic))
+func (c *IcingConditionClient) UpdateOne(_m *IcingCondition) *IcingConditionUpdateOne {
+	mutation := newIcingConditionMutation(c.config, OpUpdateOne, withIcingCondition(_m))
 	return &IcingConditionUpdateOne{config: c.config, hooks: c.Hooks(), mutation: mutation}
 }
 
@@ -1003,8 +1087,8 @@ func (c *IcingConditionClient) Delete() *IcingConditionDelete {
 }
 
 // DeleteOne returns a builder for deleting the given entity.
-func (c *IcingConditionClient) DeleteOne(ic *IcingCondition) *IcingConditionDeleteOne {
-	return c.DeleteOneID(ic.ID)
+func (c *IcingConditionClient) DeleteOne(_m *IcingCondition) *IcingConditionDeleteOne {
+	return c.DeleteOneID(_m.ID)
 }
 
 // DeleteOneID returns a builder for deleting the given entity by its id.
@@ -1096,6 +1180,21 @@ func (c *MetarClient) CreateBulk(builders ...*MetarCreate) *MetarCreateBulk {
 	return &MetarCreateBulk{config: c.config, builders: builders}
 }
 
+// MapCreateBulk creates a bulk creation builder from the given slice. For each item in the slice, the function creates
+// a builder and applies setFunc on it.
+func (c *MetarClient) MapCreateBulk(slice any, setFunc func(*MetarCreate, int)) *MetarCreateBulk {
+	rv := reflect.ValueOf(slice)
+	if rv.Kind() != reflect.Slice {
+		return &MetarCreateBulk{err: fmt.Errorf("calling to MetarClient.MapCreateBulk with wrong type %T, need slice", slice)}
+	}
+	builders := make([]*MetarCreate, rv.Len())
+	for i := 0; i < rv.Len(); i++ {
+		builders[i] = c.Create()
+		setFunc(builders[i], i)
+	}
+	return &MetarCreateBulk{config: c.config, builders: builders}
+}
+
 // Update returns an update builder for Metar.
 func (c *MetarClient) Update() *MetarUpdate {
 	mutation := newMetarMutation(c.config, OpUpdate)
@@ -1103,8 +1202,8 @@ func (c *MetarClient) Update() *MetarUpdate {
 }
 
 // UpdateOne returns an update builder for the given entity.
-func (c *MetarClient) UpdateOne(m *Metar) *MetarUpdateOne {
-	mutation := newMetarMutation(c.config, OpUpdateOne, withMetar(m))
+func (c *MetarClient) UpdateOne(_m *Metar) *MetarUpdateOne {
+	mutation := newMetarMutation(c.config, OpUpdateOne, withMetar(_m))
 	return &MetarUpdateOne{config: c.config, hooks: c.Hooks(), mutation: mutation}
 }
 
@@ -1121,8 +1220,8 @@ func (c *MetarClient) Delete() *MetarDelete {
 }
 
 // DeleteOne returns a builder for deleting the given entity.
-func (c *MetarClient) DeleteOne(m *Metar) *MetarDeleteOne {
-	return c.DeleteOneID(m.ID)
+func (c *MetarClient) DeleteOne(_m *Metar) *MetarDeleteOne {
+	return c.DeleteOneID(_m.ID)
 }
 
 // DeleteOneID returns a builder for deleting the given entity by its id.
@@ -1157,32 +1256,32 @@ func (c *MetarClient) GetX(ctx context.Context, id uuid.UUID) *Metar {
 }
 
 // QueryStation queries the station edge of a Metar.
-func (c *MetarClient) QueryStation(m *Metar) *WeatherStationQuery {
+func (c *MetarClient) QueryStation(_m *Metar) *WeatherStationQuery {
 	query := (&WeatherStationClient{config: c.config}).Query()
 	query.path = func(context.Context) (fromV *sql.Selector, _ error) {
-		id := m.ID
+		id := _m.ID
 		step := sqlgraph.NewStep(
 			sqlgraph.From(metar.Table, metar.FieldID, id),
 			sqlgraph.To(weatherstation.Table, weatherstation.FieldID),
 			sqlgraph.Edge(sqlgraph.M2O, true, metar.StationTable, metar.StationColumn),
 		)
-		fromV = sqlgraph.Neighbors(m.driver.Dialect(), step)
+		fromV = sqlgraph.Neighbors(_m.driver.Dialect(), step)
 		return fromV, nil
 	}
 	return query
 }
 
 // QuerySkyConditions queries the sky_conditions edge of a Metar.
-func (c *MetarClient) QuerySkyConditions(m *Metar) *SkyConditionQuery {
+func (c *MetarClient) QuerySkyConditions(_m *Metar) *SkyConditionQuery {
 	query := (&SkyConditionClient{config: c.config}).Query()
 	query.path = func(context.Context) (fromV *sql.Selector, _ error) {
-		id := m.ID
+		id := _m.ID
 		step := sqlgraph.NewStep(
 			sqlgraph.From(metar.Table, metar.FieldID, id),
 			sqlgraph.To(skycondition.Table, skycondition.FieldID),
 			sqlgraph.Edge(sqlgraph.O2M, false, metar.SkyConditionsTable, metar.SkyConditionsColumn),
 		)
-		fromV = sqlgraph.Neighbors(m.driver.Dialect(), step)
+		fromV = sqlgraph.Neighbors(_m.driver.Dialect(), step)
 		return fromV, nil
 	}
 	return query
@@ -1246,6 +1345,21 @@ func (c *RegionClient) CreateBulk(builders ...*RegionCreate) *RegionCreateBulk {
 	return &RegionCreateBulk{config: c.config, builders: builders}
 }
 
+// MapCreateBulk creates a bulk creation builder from the given slice. For each item in the slice, the function creates
+// a builder and applies setFunc on it.
+func (c *RegionClient) MapCreateBulk(slice any, setFunc func(*RegionCreate, int)) *RegionCreateBulk {
+	rv := reflect.ValueOf(slice)
+	if rv.Kind() != reflect.Slice {
+		return &RegionCreateBulk{err: fmt.Errorf("calling to RegionClient.MapCreateBulk with wrong type %T, need slice", slice)}
+	}
+	builders := make([]*RegionCreate, rv.Len())
+	for i := 0; i < rv.Len(); i++ {
+		builders[i] = c.Create()
+		setFunc(builders[i], i)
+	}
+	return &RegionCreateBulk{config: c.config, builders: builders}
+}
+
 // Update returns an update builder for Region.
 func (c *RegionClient) Update() *RegionUpdate {
 	mutation := newRegionMutation(c.config, OpUpdate)
@@ -1253,8 +1367,8 @@ func (c *RegionClient) Update() *RegionUpdate {
 }
 
 // UpdateOne returns an update builder for the given entity.
-func (c *RegionClient) UpdateOne(r *Region) *RegionUpdateOne {
-	mutation := newRegionMutation(c.config, OpUpdateOne, withRegion(r))
+func (c *RegionClient) UpdateOne(_m *Region) *RegionUpdateOne {
+	mutation := newRegionMutation(c.config, OpUpdateOne, withRegion(_m))
 	return &RegionUpdateOne{config: c.config, hooks: c.Hooks(), mutation: mutation}
 }
 
@@ -1271,8 +1385,8 @@ func (c *RegionClient) Delete() *RegionDelete {
 }
 
 // DeleteOne returns a builder for deleting the given entity.
-func (c *RegionClient) DeleteOne(r *Region) *RegionDeleteOne {
-	return c.DeleteOneID(r.ID)
+func (c *RegionClient) DeleteOne(_m *Region) *RegionDeleteOne {
+	return c.DeleteOneID(_m.ID)
 }
 
 // DeleteOneID returns a builder for deleting the given entity by its id.
@@ -1307,16 +1421,16 @@ func (c *RegionClient) GetX(ctx context.Context, id uuid.UUID) *Region {
 }
 
 // QueryAirports queries the airports edge of a Region.
-func (c *RegionClient) QueryAirports(r *Region) *AirportQuery {
+func (c *RegionClient) QueryAirports(_m *Region) *AirportQuery {
 	query := (&AirportClient{config: c.config}).Query()
 	query.path = func(context.Context) (fromV *sql.Selector, _ error) {
-		id := r.ID
+		id := _m.ID
 		step := sqlgraph.NewStep(
 			sqlgraph.From(region.Table, region.FieldID, id),
 			sqlgraph.To(airport.Table, airport.FieldID),
 			sqlgraph.Edge(sqlgraph.O2M, false, region.AirportsTable, region.AirportsColumn),
 		)
-		fromV = sqlgraph.Neighbors(r.driver.Dialect(), step)
+		fromV = sqlgraph.Neighbors(_m.driver.Dialect(), step)
 		return fromV, nil
 	}
 	return query
@@ -1380,6 +1494,21 @@ func (c *RunwayClient) CreateBulk(builders ...*RunwayCreate) *RunwayCreateBulk {
 	return &RunwayCreateBulk{config: c.config, builders: builders}
 }
 
+// MapCreateBulk creates a bulk creation builder from the given slice. For each item in the slice, the function creates
+// a builder and applies setFunc on it.
+func (c *RunwayClient) MapCreateBulk(slice any, setFunc func(*RunwayCreate, int)) *RunwayCreateBulk {
+	rv := reflect.ValueOf(slice)
+	if rv.Kind() != reflect.Slice {
+		return &RunwayCreateBulk{err: fmt.Errorf("calling to RunwayClient.MapCreateBulk with wrong type %T, need slice", slice)}
+	}
+	builders := make([]*RunwayCreate, rv.Len())
+	for i := 0; i < rv.Len(); i++ {
+		builders[i] = c.Create()
+		setFunc(builders[i], i)
+	}
+	return &RunwayCreateBulk{config: c.config, builders: builders}
+}
+
 // Update returns an update builder for Runway.
 func (c *RunwayClient) Update() *RunwayUpdate {
 	mutation := newRunwayMutation(c.config, OpUpdate)
@@ -1387,8 +1516,8 @@ func (c *RunwayClient) Update() *RunwayUpdate {
 }
 
 // UpdateOne returns an update builder for the given entity.
-func (c *RunwayClient) UpdateOne(r *Runway) *RunwayUpdateOne {
-	mutation := newRunwayMutation(c.config, OpUpdateOne, withRunway(r))
+func (c *RunwayClient) UpdateOne(_m *Runway) *RunwayUpdateOne {
+	mutation := newRunwayMutation(c.config, OpUpdateOne, withRunway(_m))
 	return &RunwayUpdateOne{config: c.config, hooks: c.Hooks(), mutation: mutation}
 }
 
@@ -1405,8 +1534,8 @@ func (c *RunwayClient) Delete() *RunwayDelete {
 }
 
 // DeleteOne returns a builder for deleting the given entity.
-func (c *RunwayClient) DeleteOne(r *Runway) *RunwayDeleteOne {
-	return c.DeleteOneID(r.ID)
+func (c *RunwayClient) DeleteOne(_m *Runway) *RunwayDeleteOne {
+	return c.DeleteOneID(_m.ID)
 }
 
 // DeleteOneID returns a builder for deleting the given entity by its id.
@@ -1441,16 +1570,16 @@ func (c *RunwayClient) GetX(ctx context.Context, id uuid.UUID) *Runway {
 }
 
 // QueryAirport queries the airport edge of a Runway.
-func (c *RunwayClient) QueryAirport(r *Runway) *AirportQuery {
+func (c *RunwayClient) QueryAirport(_m *Runway) *AirportQuery {
 	query := (&AirportClient{config: c.config}).Query()
 	query.path = func(context.Context) (fromV *sql.Selector, _ error) {
-		id := r.ID
+		id := _m.ID
 		step := sqlgraph.NewStep(
 			sqlgraph.From(runway.Table, runway.FieldID, id),
 			sqlgraph.To(airport.Table, airport.FieldID),
 			sqlgraph.Edge(sqlgraph.M2O, true, runway.AirportTable, runway.AirportColumn),
 		)
-		fromV = sqlgraph.Neighbors(r.driver.Dialect(), step)
+		fromV = sqlgraph.Neighbors(_m.driver.Dialect(), step)
 		return fromV, nil
 	}
 	return query
@@ -1514,6 +1643,21 @@ func (c *SkyConditionClient) CreateBulk(builders ...*SkyConditionCreate) *SkyCon
 	return &SkyConditionCreateBulk{config: c.config, builders: builders}
 }
 
+// MapCreateBulk creates a bulk creation builder from the given slice. For each item in the slice, the function creates
+// a builder and applies setFunc on it.
+func (c *SkyConditionClient) MapCreateBulk(slice any, setFunc func(*SkyConditionCreate, int)) *SkyConditionCreateBulk {
+	rv := reflect.ValueOf(slice)
+	if rv.Kind() != reflect.Slice {
+		return &SkyConditionCreateBulk{err: fmt.Errorf("calling to SkyConditionClient.MapCreateBulk with wrong type %T, need slice", slice)}
+	}
+	builders := make([]*SkyConditionCreate, rv.Len())
+	for i := 0; i < rv.Len(); i++ {
+		builders[i] = c.Create()
+		setFunc(builders[i], i)
+	}
+	return &SkyConditionCreateBulk{config: c.config, builders: builders}
+}
+
 // Update returns an update builder for SkyCondition.
 func (c *SkyConditionClient) Update() *SkyConditionUpdate {
 	mutation := newSkyConditionMutation(c.config, OpUpdate)
@@ -1521,8 +1665,8 @@ func (c *SkyConditionClient) Update() *SkyConditionUpdate {
 }
 
 // UpdateOne returns an update builder for the given entity.
-func (c *SkyConditionClient) UpdateOne(sc *SkyCondition) *SkyConditionUpdateOne {
-	mutation := newSkyConditionMutation(c.config, OpUpdateOne, withSkyCondition(sc))
+func (c *SkyConditionClient) UpdateOne(_m *SkyCondition) *SkyConditionUpdateOne {
+	mutation := newSkyConditionMutation(c.config, OpUpdateOne, withSkyCondition(_m))
 	return &SkyConditionUpdateOne{config: c.config, hooks: c.Hooks(), mutation: mutation}
 }
 
@@ -1539,8 +1683,8 @@ func (c *SkyConditionClient) Delete() *SkyConditionDelete {
 }
 
 // DeleteOne returns a builder for deleting the given entity.
-func (c *SkyConditionClient) DeleteOne(sc *SkyCondition) *SkyConditionDeleteOne {
-	return c.DeleteOneID(sc.ID)
+func (c *SkyConditionClient) DeleteOne(_m *SkyCondition) *SkyConditionDeleteOne {
+	return c.DeleteOneID(_m.ID)
 }
 
 // DeleteOneID returns a builder for deleting the given entity by its id.
@@ -1632,6 +1776,21 @@ func (c *TafClient) CreateBulk(builders ...*TafCreate) *TafCreateBulk {
 	return &TafCreateBulk{config: c.config, builders: builders}
 }
 
+// MapCreateBulk creates a bulk creation builder from the given slice. For each item in the slice, the function creates
+// a builder and applies setFunc on it.
+func (c *TafClient) MapCreateBulk(slice any, setFunc func(*TafCreate, int)) *TafCreateBulk {
+	rv := reflect.ValueOf(slice)
+	if rv.Kind() != reflect.Slice {
+		return &TafCreateBulk{err: fmt.Errorf("calling to TafClient.MapCreateBulk with wrong type %T, need slice", slice)}
+	}
+	builders := make([]*TafCreate, rv.Len())
+	for i := 0; i < rv.Len(); i++ {
+		builders[i] = c.Create()
+		setFunc(builders[i], i)
+	}
+	return &TafCreateBulk{config: c.config, builders: builders}
+}
+
 // Update returns an update builder for Taf.
 func (c *TafClient) Update() *TafUpdate {
 	mutation := newTafMutation(c.config, OpUpdate)
@@ -1639,8 +1798,8 @@ func (c *TafClient) Update() *TafUpdate {
 }
 
 // UpdateOne returns an update builder for the given entity.
-func (c *TafClient) UpdateOne(t *Taf) *TafUpdateOne {
-	mutation := newTafMutation(c.config, OpUpdateOne, withTaf(t))
+func (c *TafClient) UpdateOne(_m *Taf) *TafUpdateOne {
+	mutation := newTafMutation(c.config, OpUpdateOne, withTaf(_m))
 	return &TafUpdateOne{config: c.config, hooks: c.Hooks(), mutation: mutation}
 }
 
@@ -1657,8 +1816,8 @@ func (c *TafClient) Delete() *TafDelete {
 }
 
 // DeleteOne returns a builder for deleting the given entity.
-func (c *TafClient) DeleteOne(t *Taf) *TafDeleteOne {
-	return c.DeleteOneID(t.ID)
+func (c *TafClient) DeleteOne(_m *Taf) *TafDeleteOne {
+	return c.DeleteOneID(_m.ID)
 }
 
 // DeleteOneID returns a builder for deleting the given entity by its id.
@@ -1693,32 +1852,32 @@ func (c *TafClient) GetX(ctx context.Context, id uuid.UUID) *Taf {
 }
 
 // QueryStation queries the station edge of a Taf.
-func (c *TafClient) QueryStation(t *Taf) *WeatherStationQuery {
+func (c *TafClient) QueryStation(_m *Taf) *WeatherStationQuery {
 	query := (&WeatherStationClient{config: c.config}).Query()
 	query.path = func(context.Context) (fromV *sql.Selector, _ error) {
-		id := t.ID
+		id := _m.ID
 		step := sqlgraph.NewStep(
 			sqlgraph.From(taf.Table, taf.FieldID, id),
 			sqlgraph.To(weatherstation.Table, weatherstation.FieldID),
 			sqlgraph.Edge(sqlgraph.M2O, true, taf.StationTable, taf.StationColumn),
 		)
-		fromV = sqlgraph.Neighbors(t.driver.Dialect(), step)
+		fromV = sqlgraph.Neighbors(_m.driver.Dialect(), step)
 		return fromV, nil
 	}
 	return query
 }
 
 // QueryForecast queries the forecast edge of a Taf.
-func (c *TafClient) QueryForecast(t *Taf) *ForecastQuery {
+func (c *TafClient) QueryForecast(_m *Taf) *ForecastQuery {
 	query := (&ForecastClient{config: c.config}).Query()
 	query.path = func(context.Context) (fromV *sql.Selector, _ error) {
-		id := t.ID
+		id := _m.ID
 		step := sqlgraph.NewStep(
 			sqlgraph.From(taf.Table, taf.FieldID, id),
 			sqlgraph.To(forecast.Table, forecast.FieldID),
 			sqlgraph.Edge(sqlgraph.O2M, false, taf.ForecastTable, taf.ForecastColumn),
 		)
-		fromV = sqlgraph.Neighbors(t.driver.Dialect(), step)
+		fromV = sqlgraph.Neighbors(_m.driver.Dialect(), step)
 		return fromV, nil
 	}
 	return query
@@ -1782,6 +1941,21 @@ func (c *TemperatureDataClient) CreateBulk(builders ...*TemperatureDataCreate) *
 	return &TemperatureDataCreateBulk{config: c.config, builders: builders}
 }
 
+// MapCreateBulk creates a bulk creation builder from the given slice. For each item in the slice, the function creates
+// a builder and applies setFunc on it.
+func (c *TemperatureDataClient) MapCreateBulk(slice any, setFunc func(*TemperatureDataCreate, int)) *TemperatureDataCreateBulk {
+	rv := reflect.ValueOf(slice)
+	if rv.Kind() != reflect.Slice {
+		return &TemperatureDataCreateBulk{err: fmt.Errorf("calling to TemperatureDataClient.MapCreateBulk with wrong type %T, need slice", slice)}
+	}
+	builders := make([]*TemperatureDataCreate, rv.Len())
+	for i := 0; i < rv.Len(); i++ {
+		builders[i] = c.Create()
+		setFunc(builders[i], i)
+	}
+	return &TemperatureDataCreateBulk{config: c.config, builders: builders}
+}
+
 // Update returns an update builder for TemperatureData.
 func (c *TemperatureDataClient) Update() *TemperatureDataUpdate {
 	mutation := newTemperatureDataMutation(c.config, OpUpdate)
@@ -1789,8 +1963,8 @@ func (c *TemperatureDataClient) Update() *TemperatureDataUpdate {
 }
 
 // UpdateOne returns an update builder for the given entity.
-func (c *TemperatureDataClient) UpdateOne(td *TemperatureData) *TemperatureDataUpdateOne {
-	mutation := newTemperatureDataMutation(c.config, OpUpdateOne, withTemperatureData(td))
+func (c *TemperatureDataClient) UpdateOne(_m *TemperatureData) *TemperatureDataUpdateOne {
+	mutation := newTemperatureDataMutation(c.config, OpUpdateOne, withTemperatureData(_m))
 	return &TemperatureDataUpdateOne{config: c.config, hooks: c.Hooks(), mutation: mutation}
 }
 
@@ -1807,8 +1981,8 @@ func (c *TemperatureDataClient) Delete() *TemperatureDataDelete {
 }
 
 // DeleteOne returns a builder for deleting the given entity.
-func (c *TemperatureDataClient) DeleteOne(td *TemperatureData) *TemperatureDataDeleteOne {
-	return c.DeleteOneID(td.ID)
+func (c *TemperatureDataClient) DeleteOne(_m *TemperatureData) *TemperatureDataDeleteOne {
+	return c.DeleteOneID(_m.ID)
 }
 
 // DeleteOneID returns a builder for deleting the given entity by its id.
@@ -1900,6 +2074,21 @@ func (c *TurbulenceConditionClient) CreateBulk(builders ...*TurbulenceConditionC
 	return &TurbulenceConditionCreateBulk{config: c.config, builders: builders}
 }
 
+// MapCreateBulk creates a bulk creation builder from the given slice. For each item in the slice, the function creates
+// a builder and applies setFunc on it.
+func (c *TurbulenceConditionClient) MapCreateBulk(slice any, setFunc func(*TurbulenceConditionCreate, int)) *TurbulenceConditionCreateBulk {
+	rv := reflect.ValueOf(slice)
+	if rv.Kind() != reflect.Slice {
+		return &TurbulenceConditionCreateBulk{err: fmt.Errorf("calling to TurbulenceConditionClient.MapCreateBulk with wrong type %T, need slice", slice)}
+	}
+	builders := make([]*TurbulenceConditionCreate, rv.Len())
+	for i := 0; i < rv.Len(); i++ {
+		builders[i] = c.Create()
+		setFunc(builders[i], i)
+	}
+	return &TurbulenceConditionCreateBulk{config: c.config, builders: builders}
+}
+
 // Update returns an update builder for TurbulenceCondition.
 func (c *TurbulenceConditionClient) Update() *TurbulenceConditionUpdate {
 	mutation := newTurbulenceConditionMutation(c.config, OpUpdate)
@@ -1907,8 +2096,8 @@ func (c *TurbulenceConditionClient) Update() *TurbulenceConditionUpdate {
 }
 
 // UpdateOne returns an update builder for the given entity.
-func (c *TurbulenceConditionClient) UpdateOne(tc *TurbulenceCondition) *TurbulenceConditionUpdateOne {
-	mutation := newTurbulenceConditionMutation(c.config, OpUpdateOne, withTurbulenceCondition(tc))
+func (c *TurbulenceConditionClient) UpdateOne(_m *TurbulenceCondition) *TurbulenceConditionUpdateOne {
+	mutation := newTurbulenceConditionMutation(c.config, OpUpdateOne, withTurbulenceCondition(_m))
 	return &TurbulenceConditionUpdateOne{config: c.config, hooks: c.Hooks(), mutation: mutation}
 }
 
@@ -1925,8 +2114,8 @@ func (c *TurbulenceConditionClient) Delete() *TurbulenceConditionDelete {
 }
 
 // DeleteOne returns a builder for deleting the given entity.
-func (c *TurbulenceConditionClient) DeleteOne(tc *TurbulenceCondition) *TurbulenceConditionDeleteOne {
-	return c.DeleteOneID(tc.ID)
+func (c *TurbulenceConditionClient) DeleteOne(_m *TurbulenceCondition) *TurbulenceConditionDeleteOne {
+	return c.DeleteOneID(_m.ID)
 }
 
 // DeleteOneID returns a builder for deleting the given entity by its id.
@@ -2018,6 +2207,21 @@ func (c *WeatherStationClient) CreateBulk(builders ...*WeatherStationCreate) *We
 	return &WeatherStationCreateBulk{config: c.config, builders: builders}
 }
 
+// MapCreateBulk creates a bulk creation builder from the given slice. For each item in the slice, the function creates
+// a builder and applies setFunc on it.
+func (c *WeatherStationClient) MapCreateBulk(slice any, setFunc func(*WeatherStationCreate, int)) *WeatherStationCreateBulk {
+	rv := reflect.ValueOf(slice)
+	if rv.Kind() != reflect.Slice {
+		return &WeatherStationCreateBulk{err: fmt.Errorf("calling to WeatherStationClient.MapCreateBulk with wrong type %T, need slice", slice)}
+	}
+	builders := make([]*WeatherStationCreate, rv.Len())
+	for i := 0; i < rv.Len(); i++ {
+		builders[i] = c.Create()
+		setFunc(builders[i], i)
+	}
+	return &WeatherStationCreateBulk{config: c.config, builders: builders}
+}
+
 // Update returns an update builder for WeatherStation.
 func (c *WeatherStationClient) Update() *WeatherStationUpdate {
 	mutation := newWeatherStationMutation(c.config, OpUpdate)
@@ -2025,8 +2229,8 @@ func (c *WeatherStationClient) Update() *WeatherStationUpdate {
 }
 
 // UpdateOne returns an update builder for the given entity.
-func (c *WeatherStationClient) UpdateOne(ws *WeatherStation) *WeatherStationUpdateOne {
-	mutation := newWeatherStationMutation(c.config, OpUpdateOne, withWeatherStation(ws))
+func (c *WeatherStationClient) UpdateOne(_m *WeatherStation) *WeatherStationUpdateOne {
+	mutation := newWeatherStationMutation(c.config, OpUpdateOne, withWeatherStation(_m))
 	return &WeatherStationUpdateOne{config: c.config, hooks: c.Hooks(), mutation: mutation}
 }
 
@@ -2043,8 +2247,8 @@ func (c *WeatherStationClient) Delete() *WeatherStationDelete {
 }
 
 // DeleteOne returns a builder for deleting the given entity.
-func (c *WeatherStationClient) DeleteOne(ws *WeatherStation) *WeatherStationDeleteOne {
-	return c.DeleteOneID(ws.ID)
+func (c *WeatherStationClient) DeleteOne(_m *WeatherStation) *WeatherStationDeleteOne {
+	return c.DeleteOneID(_m.ID)
 }
 
 // DeleteOneID returns a builder for deleting the given entity by its id.
@@ -2079,48 +2283,48 @@ func (c *WeatherStationClient) GetX(ctx context.Context, id uuid.UUID) *WeatherS
 }
 
 // QueryAirport queries the airport edge of a WeatherStation.
-func (c *WeatherStationClient) QueryAirport(ws *WeatherStation) *AirportQuery {
+func (c *WeatherStationClient) QueryAirport(_m *WeatherStation) *AirportQuery {
 	query := (&AirportClient{config: c.config}).Query()
 	query.path = func(context.Context) (fromV *sql.Selector, _ error) {
-		id := ws.ID
+		id := _m.ID
 		step := sqlgraph.NewStep(
 			sqlgraph.From(weatherstation.Table, weatherstation.FieldID, id),
 			sqlgraph.To(airport.Table, airport.FieldID),
 			sqlgraph.Edge(sqlgraph.O2O, true, weatherstation.AirportTable, weatherstation.AirportColumn),
 		)
-		fromV = sqlgraph.Neighbors(ws.driver.Dialect(), step)
+		fromV = sqlgraph.Neighbors(_m.driver.Dialect(), step)
 		return fromV, nil
 	}
 	return query
 }
 
 // QueryMetars queries the metars edge of a WeatherStation.
-func (c *WeatherStationClient) QueryMetars(ws *WeatherStation) *MetarQuery {
+func (c *WeatherStationClient) QueryMetars(_m *WeatherStation) *MetarQuery {
 	query := (&MetarClient{config: c.config}).Query()
 	query.path = func(context.Context) (fromV *sql.Selector, _ error) {
-		id := ws.ID
+		id := _m.ID
 		step := sqlgraph.NewStep(
 			sqlgraph.From(weatherstation.Table, weatherstation.FieldID, id),
 			sqlgraph.To(metar.Table, metar.FieldID),
 			sqlgraph.Edge(sqlgraph.O2M, false, weatherstation.MetarsTable, weatherstation.MetarsColumn),
 		)
-		fromV = sqlgraph.Neighbors(ws.driver.Dialect(), step)
+		fromV = sqlgraph.Neighbors(_m.driver.Dialect(), step)
 		return fromV, nil
 	}
 	return query
 }
 
 // QueryTafs queries the tafs edge of a WeatherStation.
-func (c *WeatherStationClient) QueryTafs(ws *WeatherStation) *TafQuery {
+func (c *WeatherStationClient) QueryTafs(_m *WeatherStation) *TafQuery {
 	query := (&TafClient{config: c.config}).Query()
 	query.path = func(context.Context) (fromV *sql.Selector, _ error) {
-		id := ws.ID
+		id := _m.ID
 		step := sqlgraph.NewStep(
 			sqlgraph.From(weatherstation.Table, weatherstation.FieldID, id),
 			sqlgraph.To(taf.Table, taf.FieldID),
 			sqlgraph.Edge(sqlgraph.O2M, false, weatherstation.TafsTable, weatherstation.TafsColumn),
 		)
-		fromV = sqlgraph.Neighbors(ws.driver.Dialect(), step)
+		fromV = sqlgraph.Neighbors(_m.driver.Dialect(), step)
 		return fromV, nil
 	}
 	return query

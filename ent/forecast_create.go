@@ -29,313 +29,313 @@ type ForecastCreate struct {
 }
 
 // SetFromTime sets the "from_time" field.
-func (fc *ForecastCreate) SetFromTime(t time.Time) *ForecastCreate {
-	fc.mutation.SetFromTime(t)
-	return fc
+func (_c *ForecastCreate) SetFromTime(v time.Time) *ForecastCreate {
+	_c.mutation.SetFromTime(v)
+	return _c
 }
 
 // SetToTime sets the "to_time" field.
-func (fc *ForecastCreate) SetToTime(t time.Time) *ForecastCreate {
-	fc.mutation.SetToTime(t)
-	return fc
+func (_c *ForecastCreate) SetToTime(v time.Time) *ForecastCreate {
+	_c.mutation.SetToTime(v)
+	return _c
 }
 
 // SetChangeIndicator sets the "change_indicator" field.
-func (fc *ForecastCreate) SetChangeIndicator(fi forecast.ChangeIndicator) *ForecastCreate {
-	fc.mutation.SetChangeIndicator(fi)
-	return fc
+func (_c *ForecastCreate) SetChangeIndicator(v forecast.ChangeIndicator) *ForecastCreate {
+	_c.mutation.SetChangeIndicator(v)
+	return _c
 }
 
 // SetNillableChangeIndicator sets the "change_indicator" field if the given value is not nil.
-func (fc *ForecastCreate) SetNillableChangeIndicator(fi *forecast.ChangeIndicator) *ForecastCreate {
-	if fi != nil {
-		fc.SetChangeIndicator(*fi)
+func (_c *ForecastCreate) SetNillableChangeIndicator(v *forecast.ChangeIndicator) *ForecastCreate {
+	if v != nil {
+		_c.SetChangeIndicator(*v)
 	}
-	return fc
+	return _c
 }
 
 // SetChangeTime sets the "change_time" field.
-func (fc *ForecastCreate) SetChangeTime(t time.Time) *ForecastCreate {
-	fc.mutation.SetChangeTime(t)
-	return fc
+func (_c *ForecastCreate) SetChangeTime(v time.Time) *ForecastCreate {
+	_c.mutation.SetChangeTime(v)
+	return _c
 }
 
 // SetNillableChangeTime sets the "change_time" field if the given value is not nil.
-func (fc *ForecastCreate) SetNillableChangeTime(t *time.Time) *ForecastCreate {
-	if t != nil {
-		fc.SetChangeTime(*t)
+func (_c *ForecastCreate) SetNillableChangeTime(v *time.Time) *ForecastCreate {
+	if v != nil {
+		_c.SetChangeTime(*v)
 	}
-	return fc
+	return _c
 }
 
 // SetChangeProbability sets the "change_probability" field.
-func (fc *ForecastCreate) SetChangeProbability(i int) *ForecastCreate {
-	fc.mutation.SetChangeProbability(i)
-	return fc
+func (_c *ForecastCreate) SetChangeProbability(v int) *ForecastCreate {
+	_c.mutation.SetChangeProbability(v)
+	return _c
 }
 
 // SetNillableChangeProbability sets the "change_probability" field if the given value is not nil.
-func (fc *ForecastCreate) SetNillableChangeProbability(i *int) *ForecastCreate {
-	if i != nil {
-		fc.SetChangeProbability(*i)
+func (_c *ForecastCreate) SetNillableChangeProbability(v *int) *ForecastCreate {
+	if v != nil {
+		_c.SetChangeProbability(*v)
 	}
-	return fc
+	return _c
 }
 
 // SetWindDirection sets the "wind_direction" field.
-func (fc *ForecastCreate) SetWindDirection(i int) *ForecastCreate {
-	fc.mutation.SetWindDirection(i)
-	return fc
+func (_c *ForecastCreate) SetWindDirection(v int) *ForecastCreate {
+	_c.mutation.SetWindDirection(v)
+	return _c
 }
 
 // SetNillableWindDirection sets the "wind_direction" field if the given value is not nil.
-func (fc *ForecastCreate) SetNillableWindDirection(i *int) *ForecastCreate {
-	if i != nil {
-		fc.SetWindDirection(*i)
+func (_c *ForecastCreate) SetNillableWindDirection(v *int) *ForecastCreate {
+	if v != nil {
+		_c.SetWindDirection(*v)
 	}
-	return fc
+	return _c
 }
 
 // SetWindDirectionVariable sets the "wind_direction_variable" field.
-func (fc *ForecastCreate) SetWindDirectionVariable(b bool) *ForecastCreate {
-	fc.mutation.SetWindDirectionVariable(b)
-	return fc
+func (_c *ForecastCreate) SetWindDirectionVariable(v bool) *ForecastCreate {
+	_c.mutation.SetWindDirectionVariable(v)
+	return _c
 }
 
 // SetWindSpeed sets the "wind_speed" field.
-func (fc *ForecastCreate) SetWindSpeed(i int) *ForecastCreate {
-	fc.mutation.SetWindSpeed(i)
-	return fc
+func (_c *ForecastCreate) SetWindSpeed(v int) *ForecastCreate {
+	_c.mutation.SetWindSpeed(v)
+	return _c
 }
 
 // SetNillableWindSpeed sets the "wind_speed" field if the given value is not nil.
-func (fc *ForecastCreate) SetNillableWindSpeed(i *int) *ForecastCreate {
-	if i != nil {
-		fc.SetWindSpeed(*i)
+func (_c *ForecastCreate) SetNillableWindSpeed(v *int) *ForecastCreate {
+	if v != nil {
+		_c.SetWindSpeed(*v)
 	}
-	return fc
+	return _c
 }
 
 // SetWindGust sets the "wind_gust" field.
-func (fc *ForecastCreate) SetWindGust(i int) *ForecastCreate {
-	fc.mutation.SetWindGust(i)
-	return fc
+func (_c *ForecastCreate) SetWindGust(v int) *ForecastCreate {
+	_c.mutation.SetWindGust(v)
+	return _c
 }
 
 // SetNillableWindGust sets the "wind_gust" field if the given value is not nil.
-func (fc *ForecastCreate) SetNillableWindGust(i *int) *ForecastCreate {
-	if i != nil {
-		fc.SetWindGust(*i)
+func (_c *ForecastCreate) SetNillableWindGust(v *int) *ForecastCreate {
+	if v != nil {
+		_c.SetWindGust(*v)
 	}
-	return fc
+	return _c
 }
 
 // SetWindShearHeight sets the "wind_shear_height" field.
-func (fc *ForecastCreate) SetWindShearHeight(i int) *ForecastCreate {
-	fc.mutation.SetWindShearHeight(i)
-	return fc
+func (_c *ForecastCreate) SetWindShearHeight(v int) *ForecastCreate {
+	_c.mutation.SetWindShearHeight(v)
+	return _c
 }
 
 // SetNillableWindShearHeight sets the "wind_shear_height" field if the given value is not nil.
-func (fc *ForecastCreate) SetNillableWindShearHeight(i *int) *ForecastCreate {
-	if i != nil {
-		fc.SetWindShearHeight(*i)
+func (_c *ForecastCreate) SetNillableWindShearHeight(v *int) *ForecastCreate {
+	if v != nil {
+		_c.SetWindShearHeight(*v)
 	}
-	return fc
+	return _c
 }
 
 // SetWindShearDirection sets the "wind_shear_direction" field.
-func (fc *ForecastCreate) SetWindShearDirection(i int) *ForecastCreate {
-	fc.mutation.SetWindShearDirection(i)
-	return fc
+func (_c *ForecastCreate) SetWindShearDirection(v int) *ForecastCreate {
+	_c.mutation.SetWindShearDirection(v)
+	return _c
 }
 
 // SetNillableWindShearDirection sets the "wind_shear_direction" field if the given value is not nil.
-func (fc *ForecastCreate) SetNillableWindShearDirection(i *int) *ForecastCreate {
-	if i != nil {
-		fc.SetWindShearDirection(*i)
+func (_c *ForecastCreate) SetNillableWindShearDirection(v *int) *ForecastCreate {
+	if v != nil {
+		_c.SetWindShearDirection(*v)
 	}
-	return fc
+	return _c
 }
 
 // SetWindShearSpeed sets the "wind_shear_speed" field.
-func (fc *ForecastCreate) SetWindShearSpeed(i int) *ForecastCreate {
-	fc.mutation.SetWindShearSpeed(i)
-	return fc
+func (_c *ForecastCreate) SetWindShearSpeed(v int) *ForecastCreate {
+	_c.mutation.SetWindShearSpeed(v)
+	return _c
 }
 
 // SetNillableWindShearSpeed sets the "wind_shear_speed" field if the given value is not nil.
-func (fc *ForecastCreate) SetNillableWindShearSpeed(i *int) *ForecastCreate {
-	if i != nil {
-		fc.SetWindShearSpeed(*i)
+func (_c *ForecastCreate) SetNillableWindShearSpeed(v *int) *ForecastCreate {
+	if v != nil {
+		_c.SetWindShearSpeed(*v)
 	}
-	return fc
+	return _c
 }
 
 // SetVisibilityHorizontal sets the "visibility_horizontal" field.
-func (fc *ForecastCreate) SetVisibilityHorizontal(f float64) *ForecastCreate {
-	fc.mutation.SetVisibilityHorizontal(f)
-	return fc
+func (_c *ForecastCreate) SetVisibilityHorizontal(v float64) *ForecastCreate {
+	_c.mutation.SetVisibilityHorizontal(v)
+	return _c
 }
 
 // SetNillableVisibilityHorizontal sets the "visibility_horizontal" field if the given value is not nil.
-func (fc *ForecastCreate) SetNillableVisibilityHorizontal(f *float64) *ForecastCreate {
-	if f != nil {
-		fc.SetVisibilityHorizontal(*f)
+func (_c *ForecastCreate) SetNillableVisibilityHorizontal(v *float64) *ForecastCreate {
+	if v != nil {
+		_c.SetVisibilityHorizontal(*v)
 	}
-	return fc
+	return _c
 }
 
 // SetVisibilityHorizontalIsMoreThan sets the "visibility_horizontal_is_more_than" field.
-func (fc *ForecastCreate) SetVisibilityHorizontalIsMoreThan(b bool) *ForecastCreate {
-	fc.mutation.SetVisibilityHorizontalIsMoreThan(b)
-	return fc
+func (_c *ForecastCreate) SetVisibilityHorizontalIsMoreThan(v bool) *ForecastCreate {
+	_c.mutation.SetVisibilityHorizontalIsMoreThan(v)
+	return _c
 }
 
 // SetVisibilityVertical sets the "visibility_vertical" field.
-func (fc *ForecastCreate) SetVisibilityVertical(i int) *ForecastCreate {
-	fc.mutation.SetVisibilityVertical(i)
-	return fc
+func (_c *ForecastCreate) SetVisibilityVertical(v int) *ForecastCreate {
+	_c.mutation.SetVisibilityVertical(v)
+	return _c
 }
 
 // SetNillableVisibilityVertical sets the "visibility_vertical" field if the given value is not nil.
-func (fc *ForecastCreate) SetNillableVisibilityVertical(i *int) *ForecastCreate {
-	if i != nil {
-		fc.SetVisibilityVertical(*i)
+func (_c *ForecastCreate) SetNillableVisibilityVertical(v *int) *ForecastCreate {
+	if v != nil {
+		_c.SetVisibilityVertical(*v)
 	}
-	return fc
+	return _c
 }
 
 // SetAltimeter sets the "altimeter" field.
-func (fc *ForecastCreate) SetAltimeter(f float64) *ForecastCreate {
-	fc.mutation.SetAltimeter(f)
-	return fc
+func (_c *ForecastCreate) SetAltimeter(v float64) *ForecastCreate {
+	_c.mutation.SetAltimeter(v)
+	return _c
 }
 
 // SetNillableAltimeter sets the "altimeter" field if the given value is not nil.
-func (fc *ForecastCreate) SetNillableAltimeter(f *float64) *ForecastCreate {
-	if f != nil {
-		fc.SetAltimeter(*f)
+func (_c *ForecastCreate) SetNillableAltimeter(v *float64) *ForecastCreate {
+	if v != nil {
+		_c.SetAltimeter(*v)
 	}
-	return fc
+	return _c
 }
 
 // SetWeather sets the "weather" field.
-func (fc *ForecastCreate) SetWeather(s string) *ForecastCreate {
-	fc.mutation.SetWeather(s)
-	return fc
+func (_c *ForecastCreate) SetWeather(v string) *ForecastCreate {
+	_c.mutation.SetWeather(v)
+	return _c
 }
 
 // SetNillableWeather sets the "weather" field if the given value is not nil.
-func (fc *ForecastCreate) SetNillableWeather(s *string) *ForecastCreate {
-	if s != nil {
-		fc.SetWeather(*s)
+func (_c *ForecastCreate) SetNillableWeather(v *string) *ForecastCreate {
+	if v != nil {
+		_c.SetWeather(*v)
 	}
-	return fc
+	return _c
 }
 
 // SetNotDecoded sets the "not_decoded" field.
-func (fc *ForecastCreate) SetNotDecoded(s string) *ForecastCreate {
-	fc.mutation.SetNotDecoded(s)
-	return fc
+func (_c *ForecastCreate) SetNotDecoded(v string) *ForecastCreate {
+	_c.mutation.SetNotDecoded(v)
+	return _c
 }
 
 // SetNillableNotDecoded sets the "not_decoded" field if the given value is not nil.
-func (fc *ForecastCreate) SetNillableNotDecoded(s *string) *ForecastCreate {
-	if s != nil {
-		fc.SetNotDecoded(*s)
+func (_c *ForecastCreate) SetNillableNotDecoded(v *string) *ForecastCreate {
+	if v != nil {
+		_c.SetNotDecoded(*v)
 	}
-	return fc
+	return _c
 }
 
 // SetID sets the "id" field.
-func (fc *ForecastCreate) SetID(u uuid.UUID) *ForecastCreate {
-	fc.mutation.SetID(u)
-	return fc
+func (_c *ForecastCreate) SetID(v uuid.UUID) *ForecastCreate {
+	_c.mutation.SetID(v)
+	return _c
 }
 
 // SetNillableID sets the "id" field if the given value is not nil.
-func (fc *ForecastCreate) SetNillableID(u *uuid.UUID) *ForecastCreate {
-	if u != nil {
-		fc.SetID(*u)
+func (_c *ForecastCreate) SetNillableID(v *uuid.UUID) *ForecastCreate {
+	if v != nil {
+		_c.SetID(*v)
 	}
-	return fc
+	return _c
 }
 
 // AddSkyConditionIDs adds the "sky_conditions" edge to the SkyCondition entity by IDs.
-func (fc *ForecastCreate) AddSkyConditionIDs(ids ...uuid.UUID) *ForecastCreate {
-	fc.mutation.AddSkyConditionIDs(ids...)
-	return fc
+func (_c *ForecastCreate) AddSkyConditionIDs(ids ...uuid.UUID) *ForecastCreate {
+	_c.mutation.AddSkyConditionIDs(ids...)
+	return _c
 }
 
 // AddSkyConditions adds the "sky_conditions" edges to the SkyCondition entity.
-func (fc *ForecastCreate) AddSkyConditions(s ...*SkyCondition) *ForecastCreate {
-	ids := make([]uuid.UUID, len(s))
-	for i := range s {
-		ids[i] = s[i].ID
+func (_c *ForecastCreate) AddSkyConditions(v ...*SkyCondition) *ForecastCreate {
+	ids := make([]uuid.UUID, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return fc.AddSkyConditionIDs(ids...)
+	return _c.AddSkyConditionIDs(ids...)
 }
 
 // AddTurbulenceConditionIDs adds the "turbulence_conditions" edge to the TurbulenceCondition entity by IDs.
-func (fc *ForecastCreate) AddTurbulenceConditionIDs(ids ...uuid.UUID) *ForecastCreate {
-	fc.mutation.AddTurbulenceConditionIDs(ids...)
-	return fc
+func (_c *ForecastCreate) AddTurbulenceConditionIDs(ids ...uuid.UUID) *ForecastCreate {
+	_c.mutation.AddTurbulenceConditionIDs(ids...)
+	return _c
 }
 
 // AddTurbulenceConditions adds the "turbulence_conditions" edges to the TurbulenceCondition entity.
-func (fc *ForecastCreate) AddTurbulenceConditions(t ...*TurbulenceCondition) *ForecastCreate {
-	ids := make([]uuid.UUID, len(t))
-	for i := range t {
-		ids[i] = t[i].ID
+func (_c *ForecastCreate) AddTurbulenceConditions(v ...*TurbulenceCondition) *ForecastCreate {
+	ids := make([]uuid.UUID, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return fc.AddTurbulenceConditionIDs(ids...)
+	return _c.AddTurbulenceConditionIDs(ids...)
 }
 
 // AddIcingConditionIDs adds the "icing_conditions" edge to the IcingCondition entity by IDs.
-func (fc *ForecastCreate) AddIcingConditionIDs(ids ...uuid.UUID) *ForecastCreate {
-	fc.mutation.AddIcingConditionIDs(ids...)
-	return fc
+func (_c *ForecastCreate) AddIcingConditionIDs(ids ...uuid.UUID) *ForecastCreate {
+	_c.mutation.AddIcingConditionIDs(ids...)
+	return _c
 }
 
 // AddIcingConditions adds the "icing_conditions" edges to the IcingCondition entity.
-func (fc *ForecastCreate) AddIcingConditions(i ...*IcingCondition) *ForecastCreate {
-	ids := make([]uuid.UUID, len(i))
-	for j := range i {
-		ids[j] = i[j].ID
+func (_c *ForecastCreate) AddIcingConditions(v ...*IcingCondition) *ForecastCreate {
+	ids := make([]uuid.UUID, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return fc.AddIcingConditionIDs(ids...)
+	return _c.AddIcingConditionIDs(ids...)
 }
 
 // AddTemperatureDatumIDs adds the "temperature_data" edge to the TemperatureData entity by IDs.
-func (fc *ForecastCreate) AddTemperatureDatumIDs(ids ...uuid.UUID) *ForecastCreate {
-	fc.mutation.AddTemperatureDatumIDs(ids...)
-	return fc
+func (_c *ForecastCreate) AddTemperatureDatumIDs(ids ...uuid.UUID) *ForecastCreate {
+	_c.mutation.AddTemperatureDatumIDs(ids...)
+	return _c
 }
 
 // AddTemperatureData adds the "temperature_data" edges to the TemperatureData entity.
-func (fc *ForecastCreate) AddTemperatureData(t ...*TemperatureData) *ForecastCreate {
-	ids := make([]uuid.UUID, len(t))
-	for i := range t {
-		ids[i] = t[i].ID
+func (_c *ForecastCreate) AddTemperatureData(v ...*TemperatureData) *ForecastCreate {
+	ids := make([]uuid.UUID, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return fc.AddTemperatureDatumIDs(ids...)
+	return _c.AddTemperatureDatumIDs(ids...)
 }
 
 // Mutation returns the ForecastMutation object of the builder.
-func (fc *ForecastCreate) Mutation() *ForecastMutation {
-	return fc.mutation
+func (_c *ForecastCreate) Mutation() *ForecastMutation {
+	return _c.mutation
 }
 
 // Save creates the Forecast in the database.
-func (fc *ForecastCreate) Save(ctx context.Context) (*Forecast, error) {
-	fc.defaults()
-	return withHooks(ctx, fc.sqlSave, fc.mutation, fc.hooks)
+func (_c *ForecastCreate) Save(ctx context.Context) (*Forecast, error) {
+	_c.defaults()
+	return withHooks(ctx, _c.sqlSave, _c.mutation, _c.hooks)
 }
 
 // SaveX calls Save and panics if Save returns an error.
-func (fc *ForecastCreate) SaveX(ctx context.Context) *Forecast {
-	v, err := fc.Save(ctx)
+func (_c *ForecastCreate) SaveX(ctx context.Context) *Forecast {
+	v, err := _c.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -343,54 +343,54 @@ func (fc *ForecastCreate) SaveX(ctx context.Context) *Forecast {
 }
 
 // Exec executes the query.
-func (fc *ForecastCreate) Exec(ctx context.Context) error {
-	_, err := fc.Save(ctx)
+func (_c *ForecastCreate) Exec(ctx context.Context) error {
+	_, err := _c.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (fc *ForecastCreate) ExecX(ctx context.Context) {
-	if err := fc.Exec(ctx); err != nil {
+func (_c *ForecastCreate) ExecX(ctx context.Context) {
+	if err := _c.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // defaults sets the default values of the builder before save.
-func (fc *ForecastCreate) defaults() {
-	if _, ok := fc.mutation.ID(); !ok {
+func (_c *ForecastCreate) defaults() {
+	if _, ok := _c.mutation.ID(); !ok {
 		v := forecast.DefaultID()
-		fc.mutation.SetID(v)
+		_c.mutation.SetID(v)
 	}
 }
 
 // check runs all checks and user-defined validators on the builder.
-func (fc *ForecastCreate) check() error {
-	if _, ok := fc.mutation.FromTime(); !ok {
+func (_c *ForecastCreate) check() error {
+	if _, ok := _c.mutation.FromTime(); !ok {
 		return &ValidationError{Name: "from_time", err: errors.New(`ent: missing required field "Forecast.from_time"`)}
 	}
-	if _, ok := fc.mutation.ToTime(); !ok {
+	if _, ok := _c.mutation.ToTime(); !ok {
 		return &ValidationError{Name: "to_time", err: errors.New(`ent: missing required field "Forecast.to_time"`)}
 	}
-	if v, ok := fc.mutation.ChangeIndicator(); ok {
+	if v, ok := _c.mutation.ChangeIndicator(); ok {
 		if err := forecast.ChangeIndicatorValidator(v); err != nil {
 			return &ValidationError{Name: "change_indicator", err: fmt.Errorf(`ent: validator failed for field "Forecast.change_indicator": %w`, err)}
 		}
 	}
-	if _, ok := fc.mutation.WindDirectionVariable(); !ok {
+	if _, ok := _c.mutation.WindDirectionVariable(); !ok {
 		return &ValidationError{Name: "wind_direction_variable", err: errors.New(`ent: missing required field "Forecast.wind_direction_variable"`)}
 	}
-	if _, ok := fc.mutation.VisibilityHorizontalIsMoreThan(); !ok {
+	if _, ok := _c.mutation.VisibilityHorizontalIsMoreThan(); !ok {
 		return &ValidationError{Name: "visibility_horizontal_is_more_than", err: errors.New(`ent: missing required field "Forecast.visibility_horizontal_is_more_than"`)}
 	}
 	return nil
 }
 
-func (fc *ForecastCreate) sqlSave(ctx context.Context) (*Forecast, error) {
-	if err := fc.check(); err != nil {
+func (_c *ForecastCreate) sqlSave(ctx context.Context) (*Forecast, error) {
+	if err := _c.check(); err != nil {
 		return nil, err
 	}
-	_node, _spec := fc.createSpec()
-	if err := sqlgraph.CreateNode(ctx, fc.driver, _spec); err != nil {
+	_node, _spec := _c.createSpec()
+	if err := sqlgraph.CreateNode(ctx, _c.driver, _spec); err != nil {
 		if sqlgraph.IsConstraintError(err) {
 			err = &ConstraintError{msg: err.Error(), wrap: err}
 		}
@@ -403,94 +403,94 @@ func (fc *ForecastCreate) sqlSave(ctx context.Context) (*Forecast, error) {
 			return nil, err
 		}
 	}
-	fc.mutation.id = &_node.ID
-	fc.mutation.done = true
+	_c.mutation.id = &_node.ID
+	_c.mutation.done = true
 	return _node, nil
 }
 
-func (fc *ForecastCreate) createSpec() (*Forecast, *sqlgraph.CreateSpec) {
+func (_c *ForecastCreate) createSpec() (*Forecast, *sqlgraph.CreateSpec) {
 	var (
-		_node = &Forecast{config: fc.config}
+		_node = &Forecast{config: _c.config}
 		_spec = sqlgraph.NewCreateSpec(forecast.Table, sqlgraph.NewFieldSpec(forecast.FieldID, field.TypeUUID))
 	)
-	_spec.OnConflict = fc.conflict
-	if id, ok := fc.mutation.ID(); ok {
+	_spec.OnConflict = _c.conflict
+	if id, ok := _c.mutation.ID(); ok {
 		_node.ID = id
 		_spec.ID.Value = &id
 	}
-	if value, ok := fc.mutation.FromTime(); ok {
+	if value, ok := _c.mutation.FromTime(); ok {
 		_spec.SetField(forecast.FieldFromTime, field.TypeTime, value)
 		_node.FromTime = value
 	}
-	if value, ok := fc.mutation.ToTime(); ok {
+	if value, ok := _c.mutation.ToTime(); ok {
 		_spec.SetField(forecast.FieldToTime, field.TypeTime, value)
 		_node.ToTime = value
 	}
-	if value, ok := fc.mutation.ChangeIndicator(); ok {
+	if value, ok := _c.mutation.ChangeIndicator(); ok {
 		_spec.SetField(forecast.FieldChangeIndicator, field.TypeEnum, value)
 		_node.ChangeIndicator = &value
 	}
-	if value, ok := fc.mutation.ChangeTime(); ok {
+	if value, ok := _c.mutation.ChangeTime(); ok {
 		_spec.SetField(forecast.FieldChangeTime, field.TypeTime, value)
 		_node.ChangeTime = &value
 	}
-	if value, ok := fc.mutation.ChangeProbability(); ok {
+	if value, ok := _c.mutation.ChangeProbability(); ok {
 		_spec.SetField(forecast.FieldChangeProbability, field.TypeInt, value)
 		_node.ChangeProbability = &value
 	}
-	if value, ok := fc.mutation.WindDirection(); ok {
+	if value, ok := _c.mutation.WindDirection(); ok {
 		_spec.SetField(forecast.FieldWindDirection, field.TypeInt, value)
 		_node.WindDirection = &value
 	}
-	if value, ok := fc.mutation.WindDirectionVariable(); ok {
+	if value, ok := _c.mutation.WindDirectionVariable(); ok {
 		_spec.SetField(forecast.FieldWindDirectionVariable, field.TypeBool, value)
 		_node.WindDirectionVariable = value
 	}
-	if value, ok := fc.mutation.WindSpeed(); ok {
+	if value, ok := _c.mutation.WindSpeed(); ok {
 		_spec.SetField(forecast.FieldWindSpeed, field.TypeInt, value)
 		_node.WindSpeed = &value
 	}
-	if value, ok := fc.mutation.WindGust(); ok {
+	if value, ok := _c.mutation.WindGust(); ok {
 		_spec.SetField(forecast.FieldWindGust, field.TypeInt, value)
 		_node.WindGust = &value
 	}
-	if value, ok := fc.mutation.WindShearHeight(); ok {
+	if value, ok := _c.mutation.WindShearHeight(); ok {
 		_spec.SetField(forecast.FieldWindShearHeight, field.TypeInt, value)
 		_node.WindShearHeight = &value
 	}
-	if value, ok := fc.mutation.WindShearDirection(); ok {
+	if value, ok := _c.mutation.WindShearDirection(); ok {
 		_spec.SetField(forecast.FieldWindShearDirection, field.TypeInt, value)
 		_node.WindShearDirection = &value
 	}
-	if value, ok := fc.mutation.WindShearSpeed(); ok {
+	if value, ok := _c.mutation.WindShearSpeed(); ok {
 		_spec.SetField(forecast.FieldWindShearSpeed, field.TypeInt, value)
 		_node.WindShearSpeed = &value
 	}
-	if value, ok := fc.mutation.VisibilityHorizontal(); ok {
+	if value, ok := _c.mutation.VisibilityHorizontal(); ok {
 		_spec.SetField(forecast.FieldVisibilityHorizontal, field.TypeFloat64, value)
 		_node.VisibilityHorizontal = &value
 	}
-	if value, ok := fc.mutation.VisibilityHorizontalIsMoreThan(); ok {
+	if value, ok := _c.mutation.VisibilityHorizontalIsMoreThan(); ok {
 		_spec.SetField(forecast.FieldVisibilityHorizontalIsMoreThan, field.TypeBool, value)
 		_node.VisibilityHorizontalIsMoreThan = value
 	}
-	if value, ok := fc.mutation.VisibilityVertical(); ok {
+	if value, ok := _c.mutation.VisibilityVertical(); ok {
 		_spec.SetField(forecast.FieldVisibilityVertical, field.TypeInt, value)
 		_node.VisibilityVertical = &value
 	}
-	if value, ok := fc.mutation.Altimeter(); ok {
+	if value, ok := _c.mutation.Altimeter(); ok {
 		_spec.SetField(forecast.FieldAltimeter, field.TypeFloat64, value)
 		_node.Altimeter = &value
 	}
-	if value, ok := fc.mutation.Weather(); ok {
+	if value, ok := _c.mutation.Weather(); ok {
 		_spec.SetField(forecast.FieldWeather, field.TypeString, value)
 		_node.Weather = value
 	}
-	if value, ok := fc.mutation.NotDecoded(); ok {
+	if value, ok := _c.mutation.NotDecoded(); ok {
 		_spec.SetField(forecast.FieldNotDecoded, field.TypeString, value)
 		_node.NotDecoded = value
 	}
-	if nodes := fc.mutation.SkyConditionsIDs(); len(nodes) > 0 {
+	if nodes := _c.mutation.SkyConditionsIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -506,7 +506,7 @@ func (fc *ForecastCreate) createSpec() (*Forecast, *sqlgraph.CreateSpec) {
 		}
 		_spec.Edges = append(_spec.Edges, edge)
 	}
-	if nodes := fc.mutation.TurbulenceConditionsIDs(); len(nodes) > 0 {
+	if nodes := _c.mutation.TurbulenceConditionsIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -522,7 +522,7 @@ func (fc *ForecastCreate) createSpec() (*Forecast, *sqlgraph.CreateSpec) {
 		}
 		_spec.Edges = append(_spec.Edges, edge)
 	}
-	if nodes := fc.mutation.IcingConditionsIDs(); len(nodes) > 0 {
+	if nodes := _c.mutation.IcingConditionsIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -538,7 +538,7 @@ func (fc *ForecastCreate) createSpec() (*Forecast, *sqlgraph.CreateSpec) {
 		}
 		_spec.Edges = append(_spec.Edges, edge)
 	}
-	if nodes := fc.mutation.TemperatureDataIDs(); len(nodes) > 0 {
+	if nodes := _c.mutation.TemperatureDataIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -573,10 +573,10 @@ func (fc *ForecastCreate) createSpec() (*Forecast, *sqlgraph.CreateSpec) {
 //			SetFromTime(v+v).
 //		}).
 //		Exec(ctx)
-func (fc *ForecastCreate) OnConflict(opts ...sql.ConflictOption) *ForecastUpsertOne {
-	fc.conflict = opts
+func (_c *ForecastCreate) OnConflict(opts ...sql.ConflictOption) *ForecastUpsertOne {
+	_c.conflict = opts
 	return &ForecastUpsertOne{
-		create: fc,
+		create: _c,
 	}
 }
 
@@ -586,10 +586,10 @@ func (fc *ForecastCreate) OnConflict(opts ...sql.ConflictOption) *ForecastUpsert
 //	client.Forecast.Create().
 //		OnConflict(sql.ConflictColumns(columns...)).
 //		Exec(ctx)
-func (fc *ForecastCreate) OnConflictColumns(columns ...string) *ForecastUpsertOne {
-	fc.conflict = append(fc.conflict, sql.ConflictColumns(columns...))
+func (_c *ForecastCreate) OnConflictColumns(columns ...string) *ForecastUpsertOne {
+	_c.conflict = append(_c.conflict, sql.ConflictColumns(columns...))
 	return &ForecastUpsertOne{
-		create: fc,
+		create: _c,
 	}
 }
 
@@ -1475,18 +1475,22 @@ func (u *ForecastUpsertOne) IDX(ctx context.Context) uuid.UUID {
 // ForecastCreateBulk is the builder for creating many Forecast entities in bulk.
 type ForecastCreateBulk struct {
 	config
+	err      error
 	builders []*ForecastCreate
 	conflict []sql.ConflictOption
 }
 
 // Save creates the Forecast entities in the database.
-func (fcb *ForecastCreateBulk) Save(ctx context.Context) ([]*Forecast, error) {
-	specs := make([]*sqlgraph.CreateSpec, len(fcb.builders))
-	nodes := make([]*Forecast, len(fcb.builders))
-	mutators := make([]Mutator, len(fcb.builders))
-	for i := range fcb.builders {
+func (_c *ForecastCreateBulk) Save(ctx context.Context) ([]*Forecast, error) {
+	if _c.err != nil {
+		return nil, _c.err
+	}
+	specs := make([]*sqlgraph.CreateSpec, len(_c.builders))
+	nodes := make([]*Forecast, len(_c.builders))
+	mutators := make([]Mutator, len(_c.builders))
+	for i := range _c.builders {
 		func(i int, root context.Context) {
-			builder := fcb.builders[i]
+			builder := _c.builders[i]
 			builder.defaults()
 			var mut Mutator = MutateFunc(func(ctx context.Context, m Mutation) (Value, error) {
 				mutation, ok := m.(*ForecastMutation)
@@ -1500,12 +1504,12 @@ func (fcb *ForecastCreateBulk) Save(ctx context.Context) ([]*Forecast, error) {
 				var err error
 				nodes[i], specs[i] = builder.createSpec()
 				if i < len(mutators)-1 {
-					_, err = mutators[i+1].Mutate(root, fcb.builders[i+1].mutation)
+					_, err = mutators[i+1].Mutate(root, _c.builders[i+1].mutation)
 				} else {
 					spec := &sqlgraph.BatchCreateSpec{Nodes: specs}
-					spec.OnConflict = fcb.conflict
+					spec.OnConflict = _c.conflict
 					// Invoke the actual operation on the latest mutation in the chain.
-					if err = sqlgraph.BatchCreate(ctx, fcb.driver, spec); err != nil {
+					if err = sqlgraph.BatchCreate(ctx, _c.driver, spec); err != nil {
 						if sqlgraph.IsConstraintError(err) {
 							err = &ConstraintError{msg: err.Error(), wrap: err}
 						}
@@ -1525,7 +1529,7 @@ func (fcb *ForecastCreateBulk) Save(ctx context.Context) ([]*Forecast, error) {
 		}(i, ctx)
 	}
 	if len(mutators) > 0 {
-		if _, err := mutators[0].Mutate(ctx, fcb.builders[0].mutation); err != nil {
+		if _, err := mutators[0].Mutate(ctx, _c.builders[0].mutation); err != nil {
 			return nil, err
 		}
 	}
@@ -1533,8 +1537,8 @@ func (fcb *ForecastCreateBulk) Save(ctx context.Context) ([]*Forecast, error) {
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (fcb *ForecastCreateBulk) SaveX(ctx context.Context) []*Forecast {
-	v, err := fcb.Save(ctx)
+func (_c *ForecastCreateBulk) SaveX(ctx context.Context) []*Forecast {
+	v, err := _c.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -1542,14 +1546,14 @@ func (fcb *ForecastCreateBulk) SaveX(ctx context.Context) []*Forecast {
 }
 
 // Exec executes the query.
-func (fcb *ForecastCreateBulk) Exec(ctx context.Context) error {
-	_, err := fcb.Save(ctx)
+func (_c *ForecastCreateBulk) Exec(ctx context.Context) error {
+	_, err := _c.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (fcb *ForecastCreateBulk) ExecX(ctx context.Context) {
-	if err := fcb.Exec(ctx); err != nil {
+func (_c *ForecastCreateBulk) ExecX(ctx context.Context) {
+	if err := _c.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
@@ -1569,10 +1573,10 @@ func (fcb *ForecastCreateBulk) ExecX(ctx context.Context) {
 //			SetFromTime(v+v).
 //		}).
 //		Exec(ctx)
-func (fcb *ForecastCreateBulk) OnConflict(opts ...sql.ConflictOption) *ForecastUpsertBulk {
-	fcb.conflict = opts
+func (_c *ForecastCreateBulk) OnConflict(opts ...sql.ConflictOption) *ForecastUpsertBulk {
+	_c.conflict = opts
 	return &ForecastUpsertBulk{
-		create: fcb,
+		create: _c,
 	}
 }
 
@@ -1582,10 +1586,10 @@ func (fcb *ForecastCreateBulk) OnConflict(opts ...sql.ConflictOption) *ForecastU
 //	client.Forecast.Create().
 //		OnConflict(sql.ConflictColumns(columns...)).
 //		Exec(ctx)
-func (fcb *ForecastCreateBulk) OnConflictColumns(columns ...string) *ForecastUpsertBulk {
-	fcb.conflict = append(fcb.conflict, sql.ConflictColumns(columns...))
+func (_c *ForecastCreateBulk) OnConflictColumns(columns ...string) *ForecastUpsertBulk {
+	_c.conflict = append(_c.conflict, sql.ConflictColumns(columns...))
 	return &ForecastUpsertBulk{
-		create: fcb,
+		create: _c,
 	}
 }
 
@@ -2067,6 +2071,9 @@ func (u *ForecastUpsertBulk) ClearNotDecoded() *ForecastUpsertBulk {
 
 // Exec executes the query.
 func (u *ForecastUpsertBulk) Exec(ctx context.Context) error {
+	if u.create.err != nil {
+		return u.create.err
+	}
 	for i, b := range u.create.builders {
 		if len(b.conflict) != 0 {
 			return fmt.Errorf("ent: OnConflict was set for builder %d. Set it on the ForecastCreateBulk instead", i)

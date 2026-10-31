@@ -24,67 +24,67 @@ type IcingConditionCreate struct {
 }
 
 // SetIntensity sets the "intensity" field.
-func (icc *IcingConditionCreate) SetIntensity(s string) *IcingConditionCreate {
-	icc.mutation.SetIntensity(s)
-	return icc
+func (_c *IcingConditionCreate) SetIntensity(v string) *IcingConditionCreate {
+	_c.mutation.SetIntensity(v)
+	return _c
 }
 
 // SetMinAltitude sets the "min_altitude" field.
-func (icc *IcingConditionCreate) SetMinAltitude(i int) *IcingConditionCreate {
-	icc.mutation.SetMinAltitude(i)
-	return icc
+func (_c *IcingConditionCreate) SetMinAltitude(v int) *IcingConditionCreate {
+	_c.mutation.SetMinAltitude(v)
+	return _c
 }
 
 // SetNillableMinAltitude sets the "min_altitude" field if the given value is not nil.
-func (icc *IcingConditionCreate) SetNillableMinAltitude(i *int) *IcingConditionCreate {
-	if i != nil {
-		icc.SetMinAltitude(*i)
+func (_c *IcingConditionCreate) SetNillableMinAltitude(v *int) *IcingConditionCreate {
+	if v != nil {
+		_c.SetMinAltitude(*v)
 	}
-	return icc
+	return _c
 }
 
 // SetMaxAltitude sets the "max_altitude" field.
-func (icc *IcingConditionCreate) SetMaxAltitude(i int) *IcingConditionCreate {
-	icc.mutation.SetMaxAltitude(i)
-	return icc
+func (_c *IcingConditionCreate) SetMaxAltitude(v int) *IcingConditionCreate {
+	_c.mutation.SetMaxAltitude(v)
+	return _c
 }
 
 // SetNillableMaxAltitude sets the "max_altitude" field if the given value is not nil.
-func (icc *IcingConditionCreate) SetNillableMaxAltitude(i *int) *IcingConditionCreate {
-	if i != nil {
-		icc.SetMaxAltitude(*i)
+func (_c *IcingConditionCreate) SetNillableMaxAltitude(v *int) *IcingConditionCreate {
+	if v != nil {
+		_c.SetMaxAltitude(*v)
 	}
-	return icc
+	return _c
 }
 
 // SetID sets the "id" field.
-func (icc *IcingConditionCreate) SetID(u uuid.UUID) *IcingConditionCreate {
-	icc.mutation.SetID(u)
-	return icc
+func (_c *IcingConditionCreate) SetID(v uuid.UUID) *IcingConditionCreate {
+	_c.mutation.SetID(v)
+	return _c
 }
 
 // SetNillableID sets the "id" field if the given value is not nil.
-func (icc *IcingConditionCreate) SetNillableID(u *uuid.UUID) *IcingConditionCreate {
-	if u != nil {
-		icc.SetID(*u)
+func (_c *IcingConditionCreate) SetNillableID(v *uuid.UUID) *IcingConditionCreate {
+	if v != nil {
+		_c.SetID(*v)
 	}
-	return icc
+	return _c
 }
 
 // Mutation returns the IcingConditionMutation object of the builder.
-func (icc *IcingConditionCreate) Mutation() *IcingConditionMutation {
-	return icc.mutation
+func (_c *IcingConditionCreate) Mutation() *IcingConditionMutation {
+	return _c.mutation
 }
 
 // Save creates the IcingCondition in the database.
-func (icc *IcingConditionCreate) Save(ctx context.Context) (*IcingCondition, error) {
-	icc.defaults()
-	return withHooks(ctx, icc.sqlSave, icc.mutation, icc.hooks)
+func (_c *IcingConditionCreate) Save(ctx context.Context) (*IcingCondition, error) {
+	_c.defaults()
+	return withHooks(ctx, _c.sqlSave, _c.mutation, _c.hooks)
 }
 
 // SaveX calls Save and panics if Save returns an error.
-func (icc *IcingConditionCreate) SaveX(ctx context.Context) *IcingCondition {
-	v, err := icc.Save(ctx)
+func (_c *IcingConditionCreate) SaveX(ctx context.Context) *IcingCondition {
+	v, err := _c.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -92,40 +92,40 @@ func (icc *IcingConditionCreate) SaveX(ctx context.Context) *IcingCondition {
 }
 
 // Exec executes the query.
-func (icc *IcingConditionCreate) Exec(ctx context.Context) error {
-	_, err := icc.Save(ctx)
+func (_c *IcingConditionCreate) Exec(ctx context.Context) error {
+	_, err := _c.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (icc *IcingConditionCreate) ExecX(ctx context.Context) {
-	if err := icc.Exec(ctx); err != nil {
+func (_c *IcingConditionCreate) ExecX(ctx context.Context) {
+	if err := _c.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // defaults sets the default values of the builder before save.
-func (icc *IcingConditionCreate) defaults() {
-	if _, ok := icc.mutation.ID(); !ok {
+func (_c *IcingConditionCreate) defaults() {
+	if _, ok := _c.mutation.ID(); !ok {
 		v := icingcondition.DefaultID()
-		icc.mutation.SetID(v)
+		_c.mutation.SetID(v)
 	}
 }
 
 // check runs all checks and user-defined validators on the builder.
-func (icc *IcingConditionCreate) check() error {
-	if _, ok := icc.mutation.Intensity(); !ok {
+func (_c *IcingConditionCreate) check() error {
+	if _, ok := _c.mutation.Intensity(); !ok {
 		return &ValidationError{Name: "intensity", err: errors.New(`ent: missing required field "IcingCondition.intensity"`)}
 	}
 	return nil
 }
 
-func (icc *IcingConditionCreate) sqlSave(ctx context.Context) (*IcingCondition, error) {
-	if err := icc.check(); err != nil {
+func (_c *IcingConditionCreate) sqlSave(ctx context.Context) (*IcingCondition, error) {
+	if err := _c.check(); err != nil {
 		return nil, err
 	}
-	_node, _spec := icc.createSpec()
-	if err := sqlgraph.CreateNode(ctx, icc.driver, _spec); err != nil {
+	_node, _spec := _c.createSpec()
+	if err := sqlgraph.CreateNode(ctx, _c.driver, _spec); err != nil {
 		if sqlgraph.IsConstraintError(err) {
 			err = &ConstraintError{msg: err.Error(), wrap: err}
 		}
@@ -138,30 +138,30 @@ func (icc *IcingConditionCreate) sqlSave(ctx context.Context) (*IcingCondition, 
 			return nil, err
 		}
 	}
-	icc.mutation.id = &_node.ID
-	icc.mutation.done = true
+	_c.mutation.id = &_node.ID
+	_c.mutation.done = true
 	return _node, nil
 }
 
-func (icc *IcingConditionCreate) createSpec() (*IcingCondition, *sqlgraph.CreateSpec) {
+func (_c *IcingConditionCreate) createSpec() (*IcingCondition, *sqlgraph.CreateSpec) {
 	var (
-		_node = &IcingCondition{config: icc.config}
+		_node = &IcingCondition{config: _c.config}
 		_spec = sqlgraph.NewCreateSpec(icingcondition.Table, sqlgraph.NewFieldSpec(icingcondition.FieldID, field.TypeUUID))
 	)
-	_spec.OnConflict = icc.conflict
-	if id, ok := icc.mutation.ID(); ok {
+	_spec.OnConflict = _c.conflict
+	if id, ok := _c.mutation.ID(); ok {
 		_node.ID = id
 		_spec.ID.Value = &id
 	}
-	if value, ok := icc.mutation.Intensity(); ok {
+	if value, ok := _c.mutation.Intensity(); ok {
 		_spec.SetField(icingcondition.FieldIntensity, field.TypeString, value)
 		_node.Intensity = value
 	}
-	if value, ok := icc.mutation.MinAltitude(); ok {
+	if value, ok := _c.mutation.MinAltitude(); ok {
 		_spec.SetField(icingcondition.FieldMinAltitude, field.TypeInt, value)
 		_node.MinAltitude = &value
 	}
-	if value, ok := icc.mutation.MaxAltitude(); ok {
+	if value, ok := _c.mutation.MaxAltitude(); ok {
 		_spec.SetField(icingcondition.FieldMaxAltitude, field.TypeInt, value)
 		_node.MaxAltitude = &value
 	}
@@ -184,10 +184,10 @@ func (icc *IcingConditionCreate) createSpec() (*IcingCondition, *sqlgraph.Create
 //			SetIntensity(v+v).
 //		}).
 //		Exec(ctx)
-func (icc *IcingConditionCreate) OnConflict(opts ...sql.ConflictOption) *IcingConditionUpsertOne {
-	icc.conflict = opts
+func (_c *IcingConditionCreate) OnConflict(opts ...sql.ConflictOption) *IcingConditionUpsertOne {
+	_c.conflict = opts
 	return &IcingConditionUpsertOne{
-		create: icc,
+		create: _c,
 	}
 }
 
@@ -197,10 +197,10 @@ func (icc *IcingConditionCreate) OnConflict(opts ...sql.ConflictOption) *IcingCo
 //	client.IcingCondition.Create().
 //		OnConflict(sql.ConflictColumns(columns...)).
 //		Exec(ctx)
-func (icc *IcingConditionCreate) OnConflictColumns(columns ...string) *IcingConditionUpsertOne {
-	icc.conflict = append(icc.conflict, sql.ConflictColumns(columns...))
+func (_c *IcingConditionCreate) OnConflictColumns(columns ...string) *IcingConditionUpsertOne {
+	_c.conflict = append(_c.conflict, sql.ConflictColumns(columns...))
 	return &IcingConditionUpsertOne{
-		create: icc,
+		create: _c,
 	}
 }
 
@@ -436,18 +436,22 @@ func (u *IcingConditionUpsertOne) IDX(ctx context.Context) uuid.UUID {
 // IcingConditionCreateBulk is the builder for creating many IcingCondition entities in bulk.
 type IcingConditionCreateBulk struct {
 	config
+	err      error
 	builders []*IcingConditionCreate
 	conflict []sql.ConflictOption
 }
 
 // Save creates the IcingCondition entities in the database.
-func (iccb *IcingConditionCreateBulk) Save(ctx context.Context) ([]*IcingCondition, error) {
-	specs := make([]*sqlgraph.CreateSpec, len(iccb.builders))
-	nodes := make([]*IcingCondition, len(iccb.builders))
-	mutators := make([]Mutator, len(iccb.builders))
-	for i := range iccb.builders {
+func (_c *IcingConditionCreateBulk) Save(ctx context.Context) ([]*IcingCondition, error) {
+	if _c.err != nil {
+		return nil, _c.err
+	}
+	specs := make([]*sqlgraph.CreateSpec, len(_c.builders))
+	nodes := make([]*IcingCondition, len(_c.builders))
+	mutators := make([]Mutator, len(_c.builders))
+	for i := range _c.builders {
 		func(i int, root context.Context) {
-			builder := iccb.builders[i]
+			builder := _c.builders[i]
 			builder.defaults()
 			var mut Mutator = MutateFunc(func(ctx context.Context, m Mutation) (Value, error) {
 				mutation, ok := m.(*IcingConditionMutation)
@@ -461,12 +465,12 @@ func (iccb *IcingConditionCreateBulk) Save(ctx context.Context) ([]*IcingConditi
 				var err error
 				nodes[i], specs[i] = builder.createSpec()
 				if i < len(mutators)-1 {
-					_, err = mutators[i+1].Mutate(root, iccb.builders[i+1].mutation)
+					_, err = mutators[i+1].Mutate(root, _c.builders[i+1].mutation)
 				} else {
 					spec := &sqlgraph.BatchCreateSpec{Nodes: specs}
-					spec.OnConflict = iccb.conflict
+					spec.OnConflict = _c.conflict
 					// Invoke the actual operation on the latest mutation in the chain.
-					if err = sqlgraph.BatchCreate(ctx, iccb.driver, spec); err != nil {
+					if err = sqlgraph.BatchCreate(ctx, _c.driver, spec); err != nil {
 						if sqlgraph.IsConstraintError(err) {
 							err = &ConstraintError{msg: err.Error(), wrap: err}
 						}
@@ -486,7 +490,7 @@ func (iccb *IcingConditionCreateBulk) Save(ctx context.Context) ([]*IcingConditi
 		}(i, ctx)
 	}
 	if len(mutators) > 0 {
-		if _, err := mutators[0].Mutate(ctx, iccb.builders[0].mutation); err != nil {
+		if _, err := mutators[0].Mutate(ctx, _c.builders[0].mutation); err != nil {
 			return nil, err
 		}
 	}
@@ -494,8 +498,8 @@ func (iccb *IcingConditionCreateBulk) Save(ctx context.Context) ([]*IcingConditi
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (iccb *IcingConditionCreateBulk) SaveX(ctx context.Context) []*IcingCondition {
-	v, err := iccb.Save(ctx)
+func (_c *IcingConditionCreateBulk) SaveX(ctx context.Context) []*IcingCondition {
+	v, err := _c.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -503,14 +507,14 @@ func (iccb *IcingConditionCreateBulk) SaveX(ctx context.Context) []*IcingConditi
 }
 
 // Exec executes the query.
-func (iccb *IcingConditionCreateBulk) Exec(ctx context.Context) error {
-	_, err := iccb.Save(ctx)
+func (_c *IcingConditionCreateBulk) Exec(ctx context.Context) error {
+	_, err := _c.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (iccb *IcingConditionCreateBulk) ExecX(ctx context.Context) {
-	if err := iccb.Exec(ctx); err != nil {
+func (_c *IcingConditionCreateBulk) ExecX(ctx context.Context) {
+	if err := _c.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
@@ -530,10 +534,10 @@ func (iccb *IcingConditionCreateBulk) ExecX(ctx context.Context) {
 //			SetIntensity(v+v).
 //		}).
 //		Exec(ctx)
-func (iccb *IcingConditionCreateBulk) OnConflict(opts ...sql.ConflictOption) *IcingConditionUpsertBulk {
-	iccb.conflict = opts
+func (_c *IcingConditionCreateBulk) OnConflict(opts ...sql.ConflictOption) *IcingConditionUpsertBulk {
+	_c.conflict = opts
 	return &IcingConditionUpsertBulk{
-		create: iccb,
+		create: _c,
 	}
 }
 
@@ -543,10 +547,10 @@ func (iccb *IcingConditionCreateBulk) OnConflict(opts ...sql.ConflictOption) *Ic
 //	client.IcingCondition.Create().
 //		OnConflict(sql.ConflictColumns(columns...)).
 //		Exec(ctx)
-func (iccb *IcingConditionCreateBulk) OnConflictColumns(columns ...string) *IcingConditionUpsertBulk {
-	iccb.conflict = append(iccb.conflict, sql.ConflictColumns(columns...))
+func (_c *IcingConditionCreateBulk) OnConflictColumns(columns ...string) *IcingConditionUpsertBulk {
+	_c.conflict = append(_c.conflict, sql.ConflictColumns(columns...))
 	return &IcingConditionUpsertBulk{
-		create: iccb,
+		create: _c,
 	}
 }
 
@@ -678,6 +682,9 @@ func (u *IcingConditionUpsertBulk) ClearMaxAltitude() *IcingConditionUpsertBulk 
 
 // Exec executes the query.
 func (u *IcingConditionUpsertBulk) Exec(ctx context.Context) error {
+	if u.create.err != nil {
+		return u.create.err
+	}
 	for i, b := range u.create.builders {
 		if len(b.conflict) != 0 {
 			return fmt.Errorf("ent: OnConflict was set for builder %d. Set it on the IcingConditionCreateBulk instead", i)

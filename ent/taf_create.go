@@ -27,115 +27,115 @@ type TafCreate struct {
 }
 
 // SetRawText sets the "raw_text" field.
-func (tc *TafCreate) SetRawText(s string) *TafCreate {
-	tc.mutation.SetRawText(s)
-	return tc
+func (_c *TafCreate) SetRawText(v string) *TafCreate {
+	_c.mutation.SetRawText(v)
+	return _c
 }
 
 // SetIssueTime sets the "issue_time" field.
-func (tc *TafCreate) SetIssueTime(t time.Time) *TafCreate {
-	tc.mutation.SetIssueTime(t)
-	return tc
+func (_c *TafCreate) SetIssueTime(v time.Time) *TafCreate {
+	_c.mutation.SetIssueTime(v)
+	return _c
 }
 
 // SetImportTime sets the "import_time" field.
-func (tc *TafCreate) SetImportTime(t time.Time) *TafCreate {
-	tc.mutation.SetImportTime(t)
-	return tc
+func (_c *TafCreate) SetImportTime(v time.Time) *TafCreate {
+	_c.mutation.SetImportTime(v)
+	return _c
 }
 
 // SetNillableImportTime sets the "import_time" field if the given value is not nil.
-func (tc *TafCreate) SetNillableImportTime(t *time.Time) *TafCreate {
-	if t != nil {
-		tc.SetImportTime(*t)
+func (_c *TafCreate) SetNillableImportTime(v *time.Time) *TafCreate {
+	if v != nil {
+		_c.SetImportTime(*v)
 	}
-	return tc
+	return _c
 }
 
 // SetBulletinTime sets the "bulletin_time" field.
-func (tc *TafCreate) SetBulletinTime(t time.Time) *TafCreate {
-	tc.mutation.SetBulletinTime(t)
-	return tc
+func (_c *TafCreate) SetBulletinTime(v time.Time) *TafCreate {
+	_c.mutation.SetBulletinTime(v)
+	return _c
 }
 
 // SetValidFromTime sets the "valid_from_time" field.
-func (tc *TafCreate) SetValidFromTime(t time.Time) *TafCreate {
-	tc.mutation.SetValidFromTime(t)
-	return tc
+func (_c *TafCreate) SetValidFromTime(v time.Time) *TafCreate {
+	_c.mutation.SetValidFromTime(v)
+	return _c
 }
 
 // SetValidToTime sets the "valid_to_time" field.
-func (tc *TafCreate) SetValidToTime(t time.Time) *TafCreate {
-	tc.mutation.SetValidToTime(t)
-	return tc
+func (_c *TafCreate) SetValidToTime(v time.Time) *TafCreate {
+	_c.mutation.SetValidToTime(v)
+	return _c
 }
 
 // SetRemarks sets the "remarks" field.
-func (tc *TafCreate) SetRemarks(s string) *TafCreate {
-	tc.mutation.SetRemarks(s)
-	return tc
+func (_c *TafCreate) SetRemarks(v string) *TafCreate {
+	_c.mutation.SetRemarks(v)
+	return _c
 }
 
 // SetHash sets the "hash" field.
-func (tc *TafCreate) SetHash(s string) *TafCreate {
-	tc.mutation.SetHash(s)
-	return tc
+func (_c *TafCreate) SetHash(v string) *TafCreate {
+	_c.mutation.SetHash(v)
+	return _c
 }
 
 // SetID sets the "id" field.
-func (tc *TafCreate) SetID(u uuid.UUID) *TafCreate {
-	tc.mutation.SetID(u)
-	return tc
+func (_c *TafCreate) SetID(v uuid.UUID) *TafCreate {
+	_c.mutation.SetID(v)
+	return _c
 }
 
 // SetNillableID sets the "id" field if the given value is not nil.
-func (tc *TafCreate) SetNillableID(u *uuid.UUID) *TafCreate {
-	if u != nil {
-		tc.SetID(*u)
+func (_c *TafCreate) SetNillableID(v *uuid.UUID) *TafCreate {
+	if v != nil {
+		_c.SetID(*v)
 	}
-	return tc
+	return _c
 }
 
 // SetStationID sets the "station" edge to the WeatherStation entity by ID.
-func (tc *TafCreate) SetStationID(id uuid.UUID) *TafCreate {
-	tc.mutation.SetStationID(id)
-	return tc
+func (_c *TafCreate) SetStationID(id uuid.UUID) *TafCreate {
+	_c.mutation.SetStationID(id)
+	return _c
 }
 
 // SetStation sets the "station" edge to the WeatherStation entity.
-func (tc *TafCreate) SetStation(w *WeatherStation) *TafCreate {
-	return tc.SetStationID(w.ID)
+func (_c *TafCreate) SetStation(v *WeatherStation) *TafCreate {
+	return _c.SetStationID(v.ID)
 }
 
 // AddForecastIDs adds the "forecast" edge to the Forecast entity by IDs.
-func (tc *TafCreate) AddForecastIDs(ids ...uuid.UUID) *TafCreate {
-	tc.mutation.AddForecastIDs(ids...)
-	return tc
+func (_c *TafCreate) AddForecastIDs(ids ...uuid.UUID) *TafCreate {
+	_c.mutation.AddForecastIDs(ids...)
+	return _c
 }
 
 // AddForecast adds the "forecast" edges to the Forecast entity.
-func (tc *TafCreate) AddForecast(f ...*Forecast) *TafCreate {
-	ids := make([]uuid.UUID, len(f))
-	for i := range f {
-		ids[i] = f[i].ID
+func (_c *TafCreate) AddForecast(v ...*Forecast) *TafCreate {
+	ids := make([]uuid.UUID, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return tc.AddForecastIDs(ids...)
+	return _c.AddForecastIDs(ids...)
 }
 
 // Mutation returns the TafMutation object of the builder.
-func (tc *TafCreate) Mutation() *TafMutation {
-	return tc.mutation
+func (_c *TafCreate) Mutation() *TafMutation {
+	return _c.mutation
 }
 
 // Save creates the Taf in the database.
-func (tc *TafCreate) Save(ctx context.Context) (*Taf, error) {
-	tc.defaults()
-	return withHooks(ctx, tc.sqlSave, tc.mutation, tc.hooks)
+func (_c *TafCreate) Save(ctx context.Context) (*Taf, error) {
+	_c.defaults()
+	return withHooks(ctx, _c.sqlSave, _c.mutation, _c.hooks)
 }
 
 // SaveX calls Save and panics if Save returns an error.
-func (tc *TafCreate) SaveX(ctx context.Context) *Taf {
-	v, err := tc.Save(ctx)
+func (_c *TafCreate) SaveX(ctx context.Context) *Taf {
+	v, err := _c.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -143,68 +143,68 @@ func (tc *TafCreate) SaveX(ctx context.Context) *Taf {
 }
 
 // Exec executes the query.
-func (tc *TafCreate) Exec(ctx context.Context) error {
-	_, err := tc.Save(ctx)
+func (_c *TafCreate) Exec(ctx context.Context) error {
+	_, err := _c.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (tc *TafCreate) ExecX(ctx context.Context) {
-	if err := tc.Exec(ctx); err != nil {
+func (_c *TafCreate) ExecX(ctx context.Context) {
+	if err := _c.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // defaults sets the default values of the builder before save.
-func (tc *TafCreate) defaults() {
-	if _, ok := tc.mutation.ImportTime(); !ok {
+func (_c *TafCreate) defaults() {
+	if _, ok := _c.mutation.ImportTime(); !ok {
 		v := taf.DefaultImportTime()
-		tc.mutation.SetImportTime(v)
+		_c.mutation.SetImportTime(v)
 	}
-	if _, ok := tc.mutation.ID(); !ok {
+	if _, ok := _c.mutation.ID(); !ok {
 		v := taf.DefaultID()
-		tc.mutation.SetID(v)
+		_c.mutation.SetID(v)
 	}
 }
 
 // check runs all checks and user-defined validators on the builder.
-func (tc *TafCreate) check() error {
-	if _, ok := tc.mutation.RawText(); !ok {
+func (_c *TafCreate) check() error {
+	if _, ok := _c.mutation.RawText(); !ok {
 		return &ValidationError{Name: "raw_text", err: errors.New(`ent: missing required field "Taf.raw_text"`)}
 	}
-	if _, ok := tc.mutation.IssueTime(); !ok {
+	if _, ok := _c.mutation.IssueTime(); !ok {
 		return &ValidationError{Name: "issue_time", err: errors.New(`ent: missing required field "Taf.issue_time"`)}
 	}
-	if _, ok := tc.mutation.ImportTime(); !ok {
+	if _, ok := _c.mutation.ImportTime(); !ok {
 		return &ValidationError{Name: "import_time", err: errors.New(`ent: missing required field "Taf.import_time"`)}
 	}
-	if _, ok := tc.mutation.BulletinTime(); !ok {
+	if _, ok := _c.mutation.BulletinTime(); !ok {
 		return &ValidationError{Name: "bulletin_time", err: errors.New(`ent: missing required field "Taf.bulletin_time"`)}
 	}
-	if _, ok := tc.mutation.ValidFromTime(); !ok {
+	if _, ok := _c.mutation.ValidFromTime(); !ok {
 		return &ValidationError{Name: "valid_from_time", err: errors.New(`ent: missing required field "Taf.valid_from_time"`)}
 	}
-	if _, ok := tc.mutation.ValidToTime(); !ok {
+	if _, ok := _c.mutation.ValidToTime(); !ok {
 		return &ValidationError{Name: "valid_to_time", err: errors.New(`ent: missing required field "Taf.valid_to_time"`)}
 	}
-	if _, ok := tc.mutation.Remarks(); !ok {
+	if _, ok := _c.mutation.Remarks(); !ok {
 		return &ValidationError{Name: "remarks", err: errors.New(`ent: missing required field "Taf.remarks"`)}
 	}
-	if _, ok := tc.mutation.Hash(); !ok {
+	if _, ok := _c.mutation.Hash(); !ok {
 		return &ValidationError{Name: "hash", err: errors.New(`ent: missing required field "Taf.hash"`)}
 	}
-	if _, ok := tc.mutation.StationID(); !ok {
+	if len(_c.mutation.StationIDs()) == 0 {
 		return &ValidationError{Name: "station", err: errors.New(`ent: missing required edge "Taf.station"`)}
 	}
 	return nil
 }
 
-func (tc *TafCreate) sqlSave(ctx context.Context) (*Taf, error) {
-	if err := tc.check(); err != nil {
+func (_c *TafCreate) sqlSave(ctx context.Context) (*Taf, error) {
+	if err := _c.check(); err != nil {
 		return nil, err
 	}
-	_node, _spec := tc.createSpec()
-	if err := sqlgraph.CreateNode(ctx, tc.driver, _spec); err != nil {
+	_node, _spec := _c.createSpec()
+	if err := sqlgraph.CreateNode(ctx, _c.driver, _spec); err != nil {
 		if sqlgraph.IsConstraintError(err) {
 			err = &ConstraintError{msg: err.Error(), wrap: err}
 		}
@@ -217,54 +217,54 @@ func (tc *TafCreate) sqlSave(ctx context.Context) (*Taf, error) {
 			return nil, err
 		}
 	}
-	tc.mutation.id = &_node.ID
-	tc.mutation.done = true
+	_c.mutation.id = &_node.ID
+	_c.mutation.done = true
 	return _node, nil
 }
 
-func (tc *TafCreate) createSpec() (*Taf, *sqlgraph.CreateSpec) {
+func (_c *TafCreate) createSpec() (*Taf, *sqlgraph.CreateSpec) {
 	var (
-		_node = &Taf{config: tc.config}
+		_node = &Taf{config: _c.config}
 		_spec = sqlgraph.NewCreateSpec(taf.Table, sqlgraph.NewFieldSpec(taf.FieldID, field.TypeUUID))
 	)
-	_spec.OnConflict = tc.conflict
-	if id, ok := tc.mutation.ID(); ok {
+	_spec.OnConflict = _c.conflict
+	if id, ok := _c.mutation.ID(); ok {
 		_node.ID = id
 		_spec.ID.Value = &id
 	}
-	if value, ok := tc.mutation.RawText(); ok {
+	if value, ok := _c.mutation.RawText(); ok {
 		_spec.SetField(taf.FieldRawText, field.TypeString, value)
 		_node.RawText = value
 	}
-	if value, ok := tc.mutation.IssueTime(); ok {
+	if value, ok := _c.mutation.IssueTime(); ok {
 		_spec.SetField(taf.FieldIssueTime, field.TypeTime, value)
 		_node.IssueTime = value
 	}
-	if value, ok := tc.mutation.ImportTime(); ok {
+	if value, ok := _c.mutation.ImportTime(); ok {
 		_spec.SetField(taf.FieldImportTime, field.TypeTime, value)
 		_node.ImportTime = value
 	}
-	if value, ok := tc.mutation.BulletinTime(); ok {
+	if value, ok := _c.mutation.BulletinTime(); ok {
 		_spec.SetField(taf.FieldBulletinTime, field.TypeTime, value)
 		_node.BulletinTime = value
 	}
-	if value, ok := tc.mutation.ValidFromTime(); ok {
+	if value, ok := _c.mutation.ValidFromTime(); ok {
 		_spec.SetField(taf.FieldValidFromTime, field.TypeTime, value)
 		_node.ValidFromTime = value
 	}
-	if value, ok := tc.mutation.ValidToTime(); ok {
+	if value, ok := _c.mutation.ValidToTime(); ok {
 		_spec.SetField(taf.FieldValidToTime, field.TypeTime, value)
 		_node.ValidToTime = value
 	}
-	if value, ok := tc.mutation.Remarks(); ok {
+	if value, ok := _c.mutation.Remarks(); ok {
 		_spec.SetField(taf.FieldRemarks, field.TypeString, value)
 		_node.Remarks = value
 	}
-	if value, ok := tc.mutation.Hash(); ok {
+	if value, ok := _c.mutation.Hash(); ok {
 		_spec.SetField(taf.FieldHash, field.TypeString, value)
 		_node.Hash = value
 	}
-	if nodes := tc.mutation.StationIDs(); len(nodes) > 0 {
+	if nodes := _c.mutation.StationIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.M2O,
 			Inverse: true,
@@ -281,7 +281,7 @@ func (tc *TafCreate) createSpec() (*Taf, *sqlgraph.CreateSpec) {
 		_node.weather_station_tafs = &nodes[0]
 		_spec.Edges = append(_spec.Edges, edge)
 	}
-	if nodes := tc.mutation.ForecastIDs(); len(nodes) > 0 {
+	if nodes := _c.mutation.ForecastIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -316,10 +316,10 @@ func (tc *TafCreate) createSpec() (*Taf, *sqlgraph.CreateSpec) {
 //			SetRawText(v+v).
 //		}).
 //		Exec(ctx)
-func (tc *TafCreate) OnConflict(opts ...sql.ConflictOption) *TafUpsertOne {
-	tc.conflict = opts
+func (_c *TafCreate) OnConflict(opts ...sql.ConflictOption) *TafUpsertOne {
+	_c.conflict = opts
 	return &TafUpsertOne{
-		create: tc,
+		create: _c,
 	}
 }
 
@@ -329,10 +329,10 @@ func (tc *TafCreate) OnConflict(opts ...sql.ConflictOption) *TafUpsertOne {
 //	client.Taf.Create().
 //		OnConflict(sql.ConflictColumns(columns...)).
 //		Exec(ctx)
-func (tc *TafCreate) OnConflictColumns(columns ...string) *TafUpsertOne {
-	tc.conflict = append(tc.conflict, sql.ConflictColumns(columns...))
+func (_c *TafCreate) OnConflictColumns(columns ...string) *TafUpsertOne {
+	_c.conflict = append(_c.conflict, sql.ConflictColumns(columns...))
 	return &TafUpsertOne{
-		create: tc,
+		create: _c,
 	}
 }
 
@@ -646,18 +646,22 @@ func (u *TafUpsertOne) IDX(ctx context.Context) uuid.UUID {
 // TafCreateBulk is the builder for creating many Taf entities in bulk.
 type TafCreateBulk struct {
 	config
+	err      error
 	builders []*TafCreate
 	conflict []sql.ConflictOption
 }
 
 // Save creates the Taf entities in the database.
-func (tcb *TafCreateBulk) Save(ctx context.Context) ([]*Taf, error) {
-	specs := make([]*sqlgraph.CreateSpec, len(tcb.builders))
-	nodes := make([]*Taf, len(tcb.builders))
-	mutators := make([]Mutator, len(tcb.builders))
-	for i := range tcb.builders {
+func (_c *TafCreateBulk) Save(ctx context.Context) ([]*Taf, error) {
+	if _c.err != nil {
+		return nil, _c.err
+	}
+	specs := make([]*sqlgraph.CreateSpec, len(_c.builders))
+	nodes := make([]*Taf, len(_c.builders))
+	mutators := make([]Mutator, len(_c.builders))
+	for i := range _c.builders {
 		func(i int, root context.Context) {
-			builder := tcb.builders[i]
+			builder := _c.builders[i]
 			builder.defaults()
 			var mut Mutator = MutateFunc(func(ctx context.Context, m Mutation) (Value, error) {
 				mutation, ok := m.(*TafMutation)
@@ -671,12 +675,12 @@ func (tcb *TafCreateBulk) Save(ctx context.Context) ([]*Taf, error) {
 				var err error
 				nodes[i], specs[i] = builder.createSpec()
 				if i < len(mutators)-1 {
-					_, err = mutators[i+1].Mutate(root, tcb.builders[i+1].mutation)
+					_, err = mutators[i+1].Mutate(root, _c.builders[i+1].mutation)
 				} else {
 					spec := &sqlgraph.BatchCreateSpec{Nodes: specs}
-					spec.OnConflict = tcb.conflict
+					spec.OnConflict = _c.conflict
 					// Invoke the actual operation on the latest mutation in the chain.
-					if err = sqlgraph.BatchCreate(ctx, tcb.driver, spec); err != nil {
+					if err = sqlgraph.BatchCreate(ctx, _c.driver, spec); err != nil {
 						if sqlgraph.IsConstraintError(err) {
 							err = &ConstraintError{msg: err.Error(), wrap: err}
 						}
@@ -696,7 +700,7 @@ func (tcb *TafCreateBulk) Save(ctx context.Context) ([]*Taf, error) {
 		}(i, ctx)
 	}
 	if len(mutators) > 0 {
-		if _, err := mutators[0].Mutate(ctx, tcb.builders[0].mutation); err != nil {
+		if _, err := mutators[0].Mutate(ctx, _c.builders[0].mutation); err != nil {
 			return nil, err
 		}
 	}
@@ -704,8 +708,8 @@ func (tcb *TafCreateBulk) Save(ctx context.Context) ([]*Taf, error) {
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (tcb *TafCreateBulk) SaveX(ctx context.Context) []*Taf {
-	v, err := tcb.Save(ctx)
+func (_c *TafCreateBulk) SaveX(ctx context.Context) []*Taf {
+	v, err := _c.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -713,14 +717,14 @@ func (tcb *TafCreateBulk) SaveX(ctx context.Context) []*Taf {
 }
 
 // Exec executes the query.
-func (tcb *TafCreateBulk) Exec(ctx context.Context) error {
-	_, err := tcb.Save(ctx)
+func (_c *TafCreateBulk) Exec(ctx context.Context) error {
+	_, err := _c.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (tcb *TafCreateBulk) ExecX(ctx context.Context) {
-	if err := tcb.Exec(ctx); err != nil {
+func (_c *TafCreateBulk) ExecX(ctx context.Context) {
+	if err := _c.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
@@ -740,10 +744,10 @@ func (tcb *TafCreateBulk) ExecX(ctx context.Context) {
 //			SetRawText(v+v).
 //		}).
 //		Exec(ctx)
-func (tcb *TafCreateBulk) OnConflict(opts ...sql.ConflictOption) *TafUpsertBulk {
-	tcb.conflict = opts
+func (_c *TafCreateBulk) OnConflict(opts ...sql.ConflictOption) *TafUpsertBulk {
+	_c.conflict = opts
 	return &TafUpsertBulk{
-		create: tcb,
+		create: _c,
 	}
 }
 
@@ -753,10 +757,10 @@ func (tcb *TafCreateBulk) OnConflict(opts ...sql.ConflictOption) *TafUpsertBulk 
 //	client.Taf.Create().
 //		OnConflict(sql.ConflictColumns(columns...)).
 //		Exec(ctx)
-func (tcb *TafCreateBulk) OnConflictColumns(columns ...string) *TafUpsertBulk {
-	tcb.conflict = append(tcb.conflict, sql.ConflictColumns(columns...))
+func (_c *TafCreateBulk) OnConflictColumns(columns ...string) *TafUpsertBulk {
+	_c.conflict = append(_c.conflict, sql.ConflictColumns(columns...))
 	return &TafUpsertBulk{
-		create: tcb,
+		create: _c,
 	}
 }
 
@@ -930,6 +934,9 @@ func (u *TafUpsertBulk) UpdateHash() *TafUpsertBulk {
 
 // Exec executes the query.
 func (u *TafUpsertBulk) Exec(ctx context.Context) error {
+	if u.create.err != nil {
+		return u.create.err
+	}
 	for i, b := range u.create.builders {
 		if len(b.conflict) != 0 {
 			return fmt.Errorf("ent: OnConflict was set for builder %d. Set it on the TafCreateBulk instead", i)
