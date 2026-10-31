@@ -372,7 +372,7 @@ func (i *NoaaWeatherImporter) importTaf(x *XmlTaf, ctx context.Context) error {
 		fc := transaction.Forecast.Create().
 			SetFromTime(xmlForecast.TimeFrom).
 			SetToTime(xmlForecast.TimeTo).
-			SetNillableChangeTime(xmlForecast.TimeBecoming).
+			SetNillableChangeTime(optionalTime(xmlForecast.TimeBecoming)).
 			SetNillableChangeProbability(xmlForecast.Probability).
 			SetNillableWindSpeed(xmlForecast.WindSpeed).
 			SetNillableWindGust(xmlForecast.WindGust).
@@ -528,6 +528,15 @@ func (i *NoaaWeatherImporter) importTaf(x *XmlTaf, ctx context.Context) error {
 	i.stats.AddUpdated()
 
 	return err
+}
+
+// optionalTime drops the 1969-12-31T23:59:59Z that NOAA sends for missing times, which MySQL can't store.
+func optionalTime(t *time.Time) *time.Time {
+	if t == nil || t.Unix() <= 0 {
+		return nil
+	}
+
+	return t
 }
 
 func getSkyCoverFromString(input string) (skycondition.SkyCover, error) {
