@@ -20,56 +20,56 @@ type TemperatureDataDelete struct {
 }
 
 // Where appends a list predicates to the TemperatureDataDelete builder.
-func (tdd *TemperatureDataDelete) Where(ps ...predicate.TemperatureData) *TemperatureDataDelete {
-	tdd.mutation.Where(ps...)
-	return tdd
+func (_d *TemperatureDataDelete) Where(ps ...predicate.TemperatureData) *TemperatureDataDelete {
+	_d.mutation.Where(ps...)
+	return _d
 }
 
 // Exec executes the deletion query and returns how many vertices were deleted.
-func (tdd *TemperatureDataDelete) Exec(ctx context.Context) (int, error) {
-	return withHooks(ctx, tdd.sqlExec, tdd.mutation, tdd.hooks)
+func (_d *TemperatureDataDelete) Exec(ctx context.Context) (int, error) {
+	return withHooks(ctx, _d.sqlExec, _d.mutation, _d.hooks)
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (tdd *TemperatureDataDelete) ExecX(ctx context.Context) int {
-	n, err := tdd.Exec(ctx)
+func (_d *TemperatureDataDelete) ExecX(ctx context.Context) int {
+	n, err := _d.Exec(ctx)
 	if err != nil {
 		panic(err)
 	}
 	return n
 }
 
-func (tdd *TemperatureDataDelete) sqlExec(ctx context.Context) (int, error) {
+func (_d *TemperatureDataDelete) sqlExec(ctx context.Context) (int, error) {
 	_spec := sqlgraph.NewDeleteSpec(temperaturedata.Table, sqlgraph.NewFieldSpec(temperaturedata.FieldID, field.TypeUUID))
-	if ps := tdd.mutation.predicates; len(ps) > 0 {
+	if ps := _d.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	affected, err := sqlgraph.DeleteNodes(ctx, tdd.driver, _spec)
+	affected, err := sqlgraph.DeleteNodes(ctx, _d.driver, _spec)
 	if err != nil && sqlgraph.IsConstraintError(err) {
 		err = &ConstraintError{msg: err.Error(), wrap: err}
 	}
-	tdd.mutation.done = true
+	_d.mutation.done = true
 	return affected, err
 }
 
 // TemperatureDataDeleteOne is the builder for deleting a single TemperatureData entity.
 type TemperatureDataDeleteOne struct {
-	tdd *TemperatureDataDelete
+	_d *TemperatureDataDelete
 }
 
 // Where appends a list predicates to the TemperatureDataDelete builder.
-func (tddo *TemperatureDataDeleteOne) Where(ps ...predicate.TemperatureData) *TemperatureDataDeleteOne {
-	tddo.tdd.mutation.Where(ps...)
-	return tddo
+func (_d *TemperatureDataDeleteOne) Where(ps ...predicate.TemperatureData) *TemperatureDataDeleteOne {
+	_d._d.mutation.Where(ps...)
+	return _d
 }
 
 // Exec executes the deletion query.
-func (tddo *TemperatureDataDeleteOne) Exec(ctx context.Context) error {
-	n, err := tddo.tdd.Exec(ctx)
+func (_d *TemperatureDataDeleteOne) Exec(ctx context.Context) error {
+	n, err := _d._d.Exec(ctx)
 	switch {
 	case err != nil:
 		return err
@@ -81,8 +81,8 @@ func (tddo *TemperatureDataDeleteOne) Exec(ctx context.Context) error {
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (tddo *TemperatureDataDeleteOne) ExecX(ctx context.Context) {
-	if err := tddo.Exec(ctx); err != nil {
+func (_d *TemperatureDataDeleteOne) ExecX(ctx context.Context) {
+	if err := _d.Exec(ctx); err != nil {
 		panic(err)
 	}
 }

@@ -11,6 +11,8 @@ import (
 	"entgo.io/ent/dialect/sql"
 	"entgo.io/ent/dialect/sql/sqlgraph"
 	"entgo.io/ent/schema/field"
+	"github.com/google/uuid"
+	"metar.live/ent/forecast"
 	"metar.live/ent/predicate"
 	"metar.live/ent/temperaturedata"
 )
@@ -24,97 +26,138 @@ type TemperatureDataUpdate struct {
 }
 
 // Where appends a list predicates to the TemperatureDataUpdate builder.
-func (tdu *TemperatureDataUpdate) Where(ps ...predicate.TemperatureData) *TemperatureDataUpdate {
-	tdu.mutation.Where(ps...)
-	return tdu
+func (_u *TemperatureDataUpdate) Where(ps ...predicate.TemperatureData) *TemperatureDataUpdate {
+	_u.mutation.Where(ps...)
+	return _u
 }
 
 // SetValidTime sets the "valid_time" field.
-func (tdu *TemperatureDataUpdate) SetValidTime(t time.Time) *TemperatureDataUpdate {
-	tdu.mutation.SetValidTime(t)
-	return tdu
+func (_u *TemperatureDataUpdate) SetValidTime(v time.Time) *TemperatureDataUpdate {
+	_u.mutation.SetValidTime(v)
+	return _u
+}
+
+// SetNillableValidTime sets the "valid_time" field if the given value is not nil.
+func (_u *TemperatureDataUpdate) SetNillableValidTime(v *time.Time) *TemperatureDataUpdate {
+	if v != nil {
+		_u.SetValidTime(*v)
+	}
+	return _u
 }
 
 // SetTemperature sets the "temperature" field.
-func (tdu *TemperatureDataUpdate) SetTemperature(f float64) *TemperatureDataUpdate {
-	tdu.mutation.ResetTemperature()
-	tdu.mutation.SetTemperature(f)
-	return tdu
+func (_u *TemperatureDataUpdate) SetTemperature(v float64) *TemperatureDataUpdate {
+	_u.mutation.ResetTemperature()
+	_u.mutation.SetTemperature(v)
+	return _u
 }
 
-// AddTemperature adds f to the "temperature" field.
-func (tdu *TemperatureDataUpdate) AddTemperature(f float64) *TemperatureDataUpdate {
-	tdu.mutation.AddTemperature(f)
-	return tdu
+// SetNillableTemperature sets the "temperature" field if the given value is not nil.
+func (_u *TemperatureDataUpdate) SetNillableTemperature(v *float64) *TemperatureDataUpdate {
+	if v != nil {
+		_u.SetTemperature(*v)
+	}
+	return _u
+}
+
+// AddTemperature adds value to the "temperature" field.
+func (_u *TemperatureDataUpdate) AddTemperature(v float64) *TemperatureDataUpdate {
+	_u.mutation.AddTemperature(v)
+	return _u
 }
 
 // SetMinTemperature sets the "min_temperature" field.
-func (tdu *TemperatureDataUpdate) SetMinTemperature(f float64) *TemperatureDataUpdate {
-	tdu.mutation.ResetMinTemperature()
-	tdu.mutation.SetMinTemperature(f)
-	return tdu
+func (_u *TemperatureDataUpdate) SetMinTemperature(v float64) *TemperatureDataUpdate {
+	_u.mutation.ResetMinTemperature()
+	_u.mutation.SetMinTemperature(v)
+	return _u
 }
 
 // SetNillableMinTemperature sets the "min_temperature" field if the given value is not nil.
-func (tdu *TemperatureDataUpdate) SetNillableMinTemperature(f *float64) *TemperatureDataUpdate {
-	if f != nil {
-		tdu.SetMinTemperature(*f)
+func (_u *TemperatureDataUpdate) SetNillableMinTemperature(v *float64) *TemperatureDataUpdate {
+	if v != nil {
+		_u.SetMinTemperature(*v)
 	}
-	return tdu
+	return _u
 }
 
-// AddMinTemperature adds f to the "min_temperature" field.
-func (tdu *TemperatureDataUpdate) AddMinTemperature(f float64) *TemperatureDataUpdate {
-	tdu.mutation.AddMinTemperature(f)
-	return tdu
+// AddMinTemperature adds value to the "min_temperature" field.
+func (_u *TemperatureDataUpdate) AddMinTemperature(v float64) *TemperatureDataUpdate {
+	_u.mutation.AddMinTemperature(v)
+	return _u
 }
 
 // ClearMinTemperature clears the value of the "min_temperature" field.
-func (tdu *TemperatureDataUpdate) ClearMinTemperature() *TemperatureDataUpdate {
-	tdu.mutation.ClearMinTemperature()
-	return tdu
+func (_u *TemperatureDataUpdate) ClearMinTemperature() *TemperatureDataUpdate {
+	_u.mutation.ClearMinTemperature()
+	return _u
 }
 
 // SetMaxTemperature sets the "max_temperature" field.
-func (tdu *TemperatureDataUpdate) SetMaxTemperature(f float64) *TemperatureDataUpdate {
-	tdu.mutation.ResetMaxTemperature()
-	tdu.mutation.SetMaxTemperature(f)
-	return tdu
+func (_u *TemperatureDataUpdate) SetMaxTemperature(v float64) *TemperatureDataUpdate {
+	_u.mutation.ResetMaxTemperature()
+	_u.mutation.SetMaxTemperature(v)
+	return _u
 }
 
 // SetNillableMaxTemperature sets the "max_temperature" field if the given value is not nil.
-func (tdu *TemperatureDataUpdate) SetNillableMaxTemperature(f *float64) *TemperatureDataUpdate {
-	if f != nil {
-		tdu.SetMaxTemperature(*f)
+func (_u *TemperatureDataUpdate) SetNillableMaxTemperature(v *float64) *TemperatureDataUpdate {
+	if v != nil {
+		_u.SetMaxTemperature(*v)
 	}
-	return tdu
+	return _u
 }
 
-// AddMaxTemperature adds f to the "max_temperature" field.
-func (tdu *TemperatureDataUpdate) AddMaxTemperature(f float64) *TemperatureDataUpdate {
-	tdu.mutation.AddMaxTemperature(f)
-	return tdu
+// AddMaxTemperature adds value to the "max_temperature" field.
+func (_u *TemperatureDataUpdate) AddMaxTemperature(v float64) *TemperatureDataUpdate {
+	_u.mutation.AddMaxTemperature(v)
+	return _u
 }
 
 // ClearMaxTemperature clears the value of the "max_temperature" field.
-func (tdu *TemperatureDataUpdate) ClearMaxTemperature() *TemperatureDataUpdate {
-	tdu.mutation.ClearMaxTemperature()
-	return tdu
+func (_u *TemperatureDataUpdate) ClearMaxTemperature() *TemperatureDataUpdate {
+	_u.mutation.ClearMaxTemperature()
+	return _u
+}
+
+// SetForecastID sets the "forecast" edge to the Forecast entity by ID.
+func (_u *TemperatureDataUpdate) SetForecastID(id uuid.UUID) *TemperatureDataUpdate {
+	_u.mutation.SetForecastID(id)
+	return _u
+}
+
+// SetNillableForecastID sets the "forecast" edge to the Forecast entity by ID if the given value is not nil.
+func (_u *TemperatureDataUpdate) SetNillableForecastID(id *uuid.UUID) *TemperatureDataUpdate {
+	if id != nil {
+		_u = _u.SetForecastID(*id)
+	}
+	return _u
+}
+
+// SetForecast sets the "forecast" edge to the Forecast entity.
+func (_u *TemperatureDataUpdate) SetForecast(v *Forecast) *TemperatureDataUpdate {
+	return _u.SetForecastID(v.ID)
 }
 
 // Mutation returns the TemperatureDataMutation object of the builder.
-func (tdu *TemperatureDataUpdate) Mutation() *TemperatureDataMutation {
-	return tdu.mutation
+func (_u *TemperatureDataUpdate) Mutation() *TemperatureDataMutation {
+	return _u.mutation
+}
+
+// ClearForecast clears the "forecast" edge to the Forecast entity.
+func (_u *TemperatureDataUpdate) ClearForecast() *TemperatureDataUpdate {
+	_u.mutation.ClearForecast()
+	return _u
 }
 
 // Save executes the query and returns the number of nodes affected by the update operation.
-func (tdu *TemperatureDataUpdate) Save(ctx context.Context) (int, error) {
-	return withHooks(ctx, tdu.sqlSave, tdu.mutation, tdu.hooks)
+func (_u *TemperatureDataUpdate) Save(ctx context.Context) (int, error) {
+	return withHooks(ctx, _u.sqlSave, _u.mutation, _u.hooks)
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (tdu *TemperatureDataUpdate) SaveX(ctx context.Context) int {
-	affected, err := tdu.Save(ctx)
+func (_u *TemperatureDataUpdate) SaveX(ctx context.Context) int {
+	affected, err := _u.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -122,62 +165,91 @@ func (tdu *TemperatureDataUpdate) SaveX(ctx context.Context) int {
 }
 
 // Exec executes the query.
-func (tdu *TemperatureDataUpdate) Exec(ctx context.Context) error {
-	_, err := tdu.Save(ctx)
+func (_u *TemperatureDataUpdate) Exec(ctx context.Context) error {
+	_, err := _u.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (tdu *TemperatureDataUpdate) ExecX(ctx context.Context) {
-	if err := tdu.Exec(ctx); err != nil {
+func (_u *TemperatureDataUpdate) ExecX(ctx context.Context) {
+	if err := _u.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // Modify adds a statement modifier for attaching custom logic to the UPDATE statement.
-func (tdu *TemperatureDataUpdate) Modify(modifiers ...func(u *sql.UpdateBuilder)) *TemperatureDataUpdate {
-	tdu.modifiers = append(tdu.modifiers, modifiers...)
-	return tdu
+func (_u *TemperatureDataUpdate) Modify(modifiers ...func(u *sql.UpdateBuilder)) *TemperatureDataUpdate {
+	_u.modifiers = append(_u.modifiers, modifiers...)
+	return _u
 }
 
-func (tdu *TemperatureDataUpdate) sqlSave(ctx context.Context) (n int, err error) {
+func (_u *TemperatureDataUpdate) sqlSave(ctx context.Context) (_node int, err error) {
 	_spec := sqlgraph.NewUpdateSpec(temperaturedata.Table, temperaturedata.Columns, sqlgraph.NewFieldSpec(temperaturedata.FieldID, field.TypeUUID))
-	if ps := tdu.mutation.predicates; len(ps) > 0 {
+	if ps := _u.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if value, ok := tdu.mutation.ValidTime(); ok {
+	if value, ok := _u.mutation.ValidTime(); ok {
 		_spec.SetField(temperaturedata.FieldValidTime, field.TypeTime, value)
 	}
-	if value, ok := tdu.mutation.Temperature(); ok {
+	if value, ok := _u.mutation.Temperature(); ok {
 		_spec.SetField(temperaturedata.FieldTemperature, field.TypeFloat64, value)
 	}
-	if value, ok := tdu.mutation.AddedTemperature(); ok {
+	if value, ok := _u.mutation.AddedTemperature(); ok {
 		_spec.AddField(temperaturedata.FieldTemperature, field.TypeFloat64, value)
 	}
-	if value, ok := tdu.mutation.MinTemperature(); ok {
+	if value, ok := _u.mutation.MinTemperature(); ok {
 		_spec.SetField(temperaturedata.FieldMinTemperature, field.TypeFloat64, value)
 	}
-	if value, ok := tdu.mutation.AddedMinTemperature(); ok {
+	if value, ok := _u.mutation.AddedMinTemperature(); ok {
 		_spec.AddField(temperaturedata.FieldMinTemperature, field.TypeFloat64, value)
 	}
-	if tdu.mutation.MinTemperatureCleared() {
+	if _u.mutation.MinTemperatureCleared() {
 		_spec.ClearField(temperaturedata.FieldMinTemperature, field.TypeFloat64)
 	}
-	if value, ok := tdu.mutation.MaxTemperature(); ok {
+	if value, ok := _u.mutation.MaxTemperature(); ok {
 		_spec.SetField(temperaturedata.FieldMaxTemperature, field.TypeFloat64, value)
 	}
-	if value, ok := tdu.mutation.AddedMaxTemperature(); ok {
+	if value, ok := _u.mutation.AddedMaxTemperature(); ok {
 		_spec.AddField(temperaturedata.FieldMaxTemperature, field.TypeFloat64, value)
 	}
-	if tdu.mutation.MaxTemperatureCleared() {
+	if _u.mutation.MaxTemperatureCleared() {
 		_spec.ClearField(temperaturedata.FieldMaxTemperature, field.TypeFloat64)
 	}
-	_spec.AddModifiers(tdu.modifiers...)
-	if n, err = sqlgraph.UpdateNodes(ctx, tdu.driver, _spec); err != nil {
+	if _u.mutation.ForecastCleared() {
+		edge := &sqlgraph.EdgeSpec{
+			Rel:     sqlgraph.M2O,
+			Inverse: true,
+			Table:   temperaturedata.ForecastTable,
+			Columns: []string{temperaturedata.ForecastColumn},
+			Bidi:    false,
+			Target: &sqlgraph.EdgeTarget{
+				IDSpec: sqlgraph.NewFieldSpec(forecast.FieldID, field.TypeUUID),
+			},
+		}
+		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
+	}
+	if nodes := _u.mutation.ForecastIDs(); len(nodes) > 0 {
+		edge := &sqlgraph.EdgeSpec{
+			Rel:     sqlgraph.M2O,
+			Inverse: true,
+			Table:   temperaturedata.ForecastTable,
+			Columns: []string{temperaturedata.ForecastColumn},
+			Bidi:    false,
+			Target: &sqlgraph.EdgeTarget{
+				IDSpec: sqlgraph.NewFieldSpec(forecast.FieldID, field.TypeUUID),
+			},
+		}
+		for _, k := range nodes {
+			edge.Target.Nodes = append(edge.Target.Nodes, k)
+		}
+		_spec.Edges.Add = append(_spec.Edges.Add, edge)
+	}
+	_spec.AddModifiers(_u.modifiers...)
+	if _node, err = sqlgraph.UpdateNodes(ctx, _u.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
 			err = &NotFoundError{temperaturedata.Label}
 		} else if sqlgraph.IsConstraintError(err) {
@@ -185,8 +257,8 @@ func (tdu *TemperatureDataUpdate) sqlSave(ctx context.Context) (n int, err error
 		}
 		return 0, err
 	}
-	tdu.mutation.done = true
-	return n, nil
+	_u.mutation.done = true
+	return _node, nil
 }
 
 // TemperatureDataUpdateOne is the builder for updating a single TemperatureData entity.
@@ -199,104 +271,145 @@ type TemperatureDataUpdateOne struct {
 }
 
 // SetValidTime sets the "valid_time" field.
-func (tduo *TemperatureDataUpdateOne) SetValidTime(t time.Time) *TemperatureDataUpdateOne {
-	tduo.mutation.SetValidTime(t)
-	return tduo
+func (_u *TemperatureDataUpdateOne) SetValidTime(v time.Time) *TemperatureDataUpdateOne {
+	_u.mutation.SetValidTime(v)
+	return _u
+}
+
+// SetNillableValidTime sets the "valid_time" field if the given value is not nil.
+func (_u *TemperatureDataUpdateOne) SetNillableValidTime(v *time.Time) *TemperatureDataUpdateOne {
+	if v != nil {
+		_u.SetValidTime(*v)
+	}
+	return _u
 }
 
 // SetTemperature sets the "temperature" field.
-func (tduo *TemperatureDataUpdateOne) SetTemperature(f float64) *TemperatureDataUpdateOne {
-	tduo.mutation.ResetTemperature()
-	tduo.mutation.SetTemperature(f)
-	return tduo
+func (_u *TemperatureDataUpdateOne) SetTemperature(v float64) *TemperatureDataUpdateOne {
+	_u.mutation.ResetTemperature()
+	_u.mutation.SetTemperature(v)
+	return _u
 }
 
-// AddTemperature adds f to the "temperature" field.
-func (tduo *TemperatureDataUpdateOne) AddTemperature(f float64) *TemperatureDataUpdateOne {
-	tduo.mutation.AddTemperature(f)
-	return tduo
+// SetNillableTemperature sets the "temperature" field if the given value is not nil.
+func (_u *TemperatureDataUpdateOne) SetNillableTemperature(v *float64) *TemperatureDataUpdateOne {
+	if v != nil {
+		_u.SetTemperature(*v)
+	}
+	return _u
+}
+
+// AddTemperature adds value to the "temperature" field.
+func (_u *TemperatureDataUpdateOne) AddTemperature(v float64) *TemperatureDataUpdateOne {
+	_u.mutation.AddTemperature(v)
+	return _u
 }
 
 // SetMinTemperature sets the "min_temperature" field.
-func (tduo *TemperatureDataUpdateOne) SetMinTemperature(f float64) *TemperatureDataUpdateOne {
-	tduo.mutation.ResetMinTemperature()
-	tduo.mutation.SetMinTemperature(f)
-	return tduo
+func (_u *TemperatureDataUpdateOne) SetMinTemperature(v float64) *TemperatureDataUpdateOne {
+	_u.mutation.ResetMinTemperature()
+	_u.mutation.SetMinTemperature(v)
+	return _u
 }
 
 // SetNillableMinTemperature sets the "min_temperature" field if the given value is not nil.
-func (tduo *TemperatureDataUpdateOne) SetNillableMinTemperature(f *float64) *TemperatureDataUpdateOne {
-	if f != nil {
-		tduo.SetMinTemperature(*f)
+func (_u *TemperatureDataUpdateOne) SetNillableMinTemperature(v *float64) *TemperatureDataUpdateOne {
+	if v != nil {
+		_u.SetMinTemperature(*v)
 	}
-	return tduo
+	return _u
 }
 
-// AddMinTemperature adds f to the "min_temperature" field.
-func (tduo *TemperatureDataUpdateOne) AddMinTemperature(f float64) *TemperatureDataUpdateOne {
-	tduo.mutation.AddMinTemperature(f)
-	return tduo
+// AddMinTemperature adds value to the "min_temperature" field.
+func (_u *TemperatureDataUpdateOne) AddMinTemperature(v float64) *TemperatureDataUpdateOne {
+	_u.mutation.AddMinTemperature(v)
+	return _u
 }
 
 // ClearMinTemperature clears the value of the "min_temperature" field.
-func (tduo *TemperatureDataUpdateOne) ClearMinTemperature() *TemperatureDataUpdateOne {
-	tduo.mutation.ClearMinTemperature()
-	return tduo
+func (_u *TemperatureDataUpdateOne) ClearMinTemperature() *TemperatureDataUpdateOne {
+	_u.mutation.ClearMinTemperature()
+	return _u
 }
 
 // SetMaxTemperature sets the "max_temperature" field.
-func (tduo *TemperatureDataUpdateOne) SetMaxTemperature(f float64) *TemperatureDataUpdateOne {
-	tduo.mutation.ResetMaxTemperature()
-	tduo.mutation.SetMaxTemperature(f)
-	return tduo
+func (_u *TemperatureDataUpdateOne) SetMaxTemperature(v float64) *TemperatureDataUpdateOne {
+	_u.mutation.ResetMaxTemperature()
+	_u.mutation.SetMaxTemperature(v)
+	return _u
 }
 
 // SetNillableMaxTemperature sets the "max_temperature" field if the given value is not nil.
-func (tduo *TemperatureDataUpdateOne) SetNillableMaxTemperature(f *float64) *TemperatureDataUpdateOne {
-	if f != nil {
-		tduo.SetMaxTemperature(*f)
+func (_u *TemperatureDataUpdateOne) SetNillableMaxTemperature(v *float64) *TemperatureDataUpdateOne {
+	if v != nil {
+		_u.SetMaxTemperature(*v)
 	}
-	return tduo
+	return _u
 }
 
-// AddMaxTemperature adds f to the "max_temperature" field.
-func (tduo *TemperatureDataUpdateOne) AddMaxTemperature(f float64) *TemperatureDataUpdateOne {
-	tduo.mutation.AddMaxTemperature(f)
-	return tduo
+// AddMaxTemperature adds value to the "max_temperature" field.
+func (_u *TemperatureDataUpdateOne) AddMaxTemperature(v float64) *TemperatureDataUpdateOne {
+	_u.mutation.AddMaxTemperature(v)
+	return _u
 }
 
 // ClearMaxTemperature clears the value of the "max_temperature" field.
-func (tduo *TemperatureDataUpdateOne) ClearMaxTemperature() *TemperatureDataUpdateOne {
-	tduo.mutation.ClearMaxTemperature()
-	return tduo
+func (_u *TemperatureDataUpdateOne) ClearMaxTemperature() *TemperatureDataUpdateOne {
+	_u.mutation.ClearMaxTemperature()
+	return _u
+}
+
+// SetForecastID sets the "forecast" edge to the Forecast entity by ID.
+func (_u *TemperatureDataUpdateOne) SetForecastID(id uuid.UUID) *TemperatureDataUpdateOne {
+	_u.mutation.SetForecastID(id)
+	return _u
+}
+
+// SetNillableForecastID sets the "forecast" edge to the Forecast entity by ID if the given value is not nil.
+func (_u *TemperatureDataUpdateOne) SetNillableForecastID(id *uuid.UUID) *TemperatureDataUpdateOne {
+	if id != nil {
+		_u = _u.SetForecastID(*id)
+	}
+	return _u
+}
+
+// SetForecast sets the "forecast" edge to the Forecast entity.
+func (_u *TemperatureDataUpdateOne) SetForecast(v *Forecast) *TemperatureDataUpdateOne {
+	return _u.SetForecastID(v.ID)
 }
 
 // Mutation returns the TemperatureDataMutation object of the builder.
-func (tduo *TemperatureDataUpdateOne) Mutation() *TemperatureDataMutation {
-	return tduo.mutation
+func (_u *TemperatureDataUpdateOne) Mutation() *TemperatureDataMutation {
+	return _u.mutation
+}
+
+// ClearForecast clears the "forecast" edge to the Forecast entity.
+func (_u *TemperatureDataUpdateOne) ClearForecast() *TemperatureDataUpdateOne {
+	_u.mutation.ClearForecast()
+	return _u
 }
 
 // Where appends a list predicates to the TemperatureDataUpdate builder.
-func (tduo *TemperatureDataUpdateOne) Where(ps ...predicate.TemperatureData) *TemperatureDataUpdateOne {
-	tduo.mutation.Where(ps...)
-	return tduo
+func (_u *TemperatureDataUpdateOne) Where(ps ...predicate.TemperatureData) *TemperatureDataUpdateOne {
+	_u.mutation.Where(ps...)
+	return _u
 }
 
 // Select allows selecting one or more fields (columns) of the returned entity.
 // The default is selecting all fields defined in the entity schema.
-func (tduo *TemperatureDataUpdateOne) Select(field string, fields ...string) *TemperatureDataUpdateOne {
-	tduo.fields = append([]string{field}, fields...)
-	return tduo
+func (_u *TemperatureDataUpdateOne) Select(field string, fields ...string) *TemperatureDataUpdateOne {
+	_u.fields = append([]string{field}, fields...)
+	return _u
 }
 
 // Save executes the query and returns the updated TemperatureData entity.
-func (tduo *TemperatureDataUpdateOne) Save(ctx context.Context) (*TemperatureData, error) {
-	return withHooks(ctx, tduo.sqlSave, tduo.mutation, tduo.hooks)
+func (_u *TemperatureDataUpdateOne) Save(ctx context.Context) (*TemperatureData, error) {
+	return withHooks(ctx, _u.sqlSave, _u.mutation, _u.hooks)
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (tduo *TemperatureDataUpdateOne) SaveX(ctx context.Context) *TemperatureData {
-	node, err := tduo.Save(ctx)
+func (_u *TemperatureDataUpdateOne) SaveX(ctx context.Context) *TemperatureData {
+	node, err := _u.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -304,32 +417,32 @@ func (tduo *TemperatureDataUpdateOne) SaveX(ctx context.Context) *TemperatureDat
 }
 
 // Exec executes the query on the entity.
-func (tduo *TemperatureDataUpdateOne) Exec(ctx context.Context) error {
-	_, err := tduo.Save(ctx)
+func (_u *TemperatureDataUpdateOne) Exec(ctx context.Context) error {
+	_, err := _u.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (tduo *TemperatureDataUpdateOne) ExecX(ctx context.Context) {
-	if err := tduo.Exec(ctx); err != nil {
+func (_u *TemperatureDataUpdateOne) ExecX(ctx context.Context) {
+	if err := _u.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // Modify adds a statement modifier for attaching custom logic to the UPDATE statement.
-func (tduo *TemperatureDataUpdateOne) Modify(modifiers ...func(u *sql.UpdateBuilder)) *TemperatureDataUpdateOne {
-	tduo.modifiers = append(tduo.modifiers, modifiers...)
-	return tduo
+func (_u *TemperatureDataUpdateOne) Modify(modifiers ...func(u *sql.UpdateBuilder)) *TemperatureDataUpdateOne {
+	_u.modifiers = append(_u.modifiers, modifiers...)
+	return _u
 }
 
-func (tduo *TemperatureDataUpdateOne) sqlSave(ctx context.Context) (_node *TemperatureData, err error) {
+func (_u *TemperatureDataUpdateOne) sqlSave(ctx context.Context) (_node *TemperatureData, err error) {
 	_spec := sqlgraph.NewUpdateSpec(temperaturedata.Table, temperaturedata.Columns, sqlgraph.NewFieldSpec(temperaturedata.FieldID, field.TypeUUID))
-	id, ok := tduo.mutation.ID()
+	id, ok := _u.mutation.ID()
 	if !ok {
 		return nil, &ValidationError{Name: "id", err: errors.New(`ent: missing "TemperatureData.id" for update`)}
 	}
 	_spec.Node.ID.Value = id
-	if fields := tduo.fields; len(fields) > 0 {
+	if fields := _u.fields; len(fields) > 0 {
 		_spec.Node.Columns = make([]string, 0, len(fields))
 		_spec.Node.Columns = append(_spec.Node.Columns, temperaturedata.FieldID)
 		for _, f := range fields {
@@ -341,45 +454,74 @@ func (tduo *TemperatureDataUpdateOne) sqlSave(ctx context.Context) (_node *Tempe
 			}
 		}
 	}
-	if ps := tduo.mutation.predicates; len(ps) > 0 {
+	if ps := _u.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if value, ok := tduo.mutation.ValidTime(); ok {
+	if value, ok := _u.mutation.ValidTime(); ok {
 		_spec.SetField(temperaturedata.FieldValidTime, field.TypeTime, value)
 	}
-	if value, ok := tduo.mutation.Temperature(); ok {
+	if value, ok := _u.mutation.Temperature(); ok {
 		_spec.SetField(temperaturedata.FieldTemperature, field.TypeFloat64, value)
 	}
-	if value, ok := tduo.mutation.AddedTemperature(); ok {
+	if value, ok := _u.mutation.AddedTemperature(); ok {
 		_spec.AddField(temperaturedata.FieldTemperature, field.TypeFloat64, value)
 	}
-	if value, ok := tduo.mutation.MinTemperature(); ok {
+	if value, ok := _u.mutation.MinTemperature(); ok {
 		_spec.SetField(temperaturedata.FieldMinTemperature, field.TypeFloat64, value)
 	}
-	if value, ok := tduo.mutation.AddedMinTemperature(); ok {
+	if value, ok := _u.mutation.AddedMinTemperature(); ok {
 		_spec.AddField(temperaturedata.FieldMinTemperature, field.TypeFloat64, value)
 	}
-	if tduo.mutation.MinTemperatureCleared() {
+	if _u.mutation.MinTemperatureCleared() {
 		_spec.ClearField(temperaturedata.FieldMinTemperature, field.TypeFloat64)
 	}
-	if value, ok := tduo.mutation.MaxTemperature(); ok {
+	if value, ok := _u.mutation.MaxTemperature(); ok {
 		_spec.SetField(temperaturedata.FieldMaxTemperature, field.TypeFloat64, value)
 	}
-	if value, ok := tduo.mutation.AddedMaxTemperature(); ok {
+	if value, ok := _u.mutation.AddedMaxTemperature(); ok {
 		_spec.AddField(temperaturedata.FieldMaxTemperature, field.TypeFloat64, value)
 	}
-	if tduo.mutation.MaxTemperatureCleared() {
+	if _u.mutation.MaxTemperatureCleared() {
 		_spec.ClearField(temperaturedata.FieldMaxTemperature, field.TypeFloat64)
 	}
-	_spec.AddModifiers(tduo.modifiers...)
-	_node = &TemperatureData{config: tduo.config}
+	if _u.mutation.ForecastCleared() {
+		edge := &sqlgraph.EdgeSpec{
+			Rel:     sqlgraph.M2O,
+			Inverse: true,
+			Table:   temperaturedata.ForecastTable,
+			Columns: []string{temperaturedata.ForecastColumn},
+			Bidi:    false,
+			Target: &sqlgraph.EdgeTarget{
+				IDSpec: sqlgraph.NewFieldSpec(forecast.FieldID, field.TypeUUID),
+			},
+		}
+		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
+	}
+	if nodes := _u.mutation.ForecastIDs(); len(nodes) > 0 {
+		edge := &sqlgraph.EdgeSpec{
+			Rel:     sqlgraph.M2O,
+			Inverse: true,
+			Table:   temperaturedata.ForecastTable,
+			Columns: []string{temperaturedata.ForecastColumn},
+			Bidi:    false,
+			Target: &sqlgraph.EdgeTarget{
+				IDSpec: sqlgraph.NewFieldSpec(forecast.FieldID, field.TypeUUID),
+			},
+		}
+		for _, k := range nodes {
+			edge.Target.Nodes = append(edge.Target.Nodes, k)
+		}
+		_spec.Edges.Add = append(_spec.Edges.Add, edge)
+	}
+	_spec.AddModifiers(_u.modifiers...)
+	_node = &TemperatureData{config: _u.config}
 	_spec.Assign = _node.assignValues
 	_spec.ScanValues = _node.scanValues
-	if err = sqlgraph.UpdateNode(ctx, tduo.driver, _spec); err != nil {
+	if err = sqlgraph.UpdateNode(ctx, _u.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
 			err = &NotFoundError{temperaturedata.Label}
 		} else if sqlgraph.IsConstraintError(err) {
@@ -387,6 +529,6 @@ func (tduo *TemperatureDataUpdateOne) sqlSave(ctx context.Context) (_node *Tempe
 		}
 		return nil, err
 	}
-	tduo.mutation.done = true
+	_u.mutation.done = true
 	return _node, nil
 }

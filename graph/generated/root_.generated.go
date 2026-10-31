@@ -5,12 +5,11 @@ package generated
 import (
 	"bytes"
 	"context"
-	"errors"
+	"fmt"
 	"sync/atomic"
 
 	"entgo.io/contrib/entgql"
 	"github.com/99designs/gqlgen/graphql"
-	"github.com/99designs/gqlgen/graphql/introspection"
 	"github.com/google/uuid"
 	gqlparser "github.com/vektah/gqlparser/v2"
 	"github.com/vektah/gqlparser/v2/ast"
@@ -21,20 +20,10 @@ import (
 
 // NewExecutableSchema creates an ExecutableSchema from the ResolverRoot interface.
 func NewExecutableSchema(cfg Config) graphql.ExecutableSchema {
-	return &executableSchema{
-		schema:     cfg.Schema,
-		resolvers:  cfg.Resolvers,
-		directives: cfg.Directives,
-		complexity: cfg.Complexity,
-	}
+	return &executableSchema{SchemaData: cfg.Schema, Resolvers: cfg.Resolvers, Directives: cfg.Directives, ComplexityRoot: cfg.Complexity}
 }
 
-type Config struct {
-	Schema     *ast.Schema
-	Resolvers  ResolverRoot
-	Directives DirectiveRoot
-	Complexity ComplexityRoot
-}
+type Config = graphql.Config[ResolverRoot, DirectiveRoot, ComplexityRoot]
 
 type ResolverRoot interface {
 	Airport() AirportResolver
@@ -328,153 +317,130 @@ type ComplexityRoot struct {
 	}
 }
 
-type executableSchema struct {
-	schema     *ast.Schema
-	resolvers  ResolverRoot
-	directives DirectiveRoot
-	complexity ComplexityRoot
-}
+type executableSchema graphql.ExecutableSchemaState[ResolverRoot, DirectiveRoot, ComplexityRoot]
 
 func (e *executableSchema) Schema() *ast.Schema {
-	if e.schema != nil {
-		return e.schema
+	if e.SchemaData != nil {
+		return e.SchemaData
 	}
 	return parsedSchema
 }
 
 func (e *executableSchema) Complexity(ctx context.Context, typeName, field string, childComplexity int, rawArgs map[string]any) (int, bool) {
-	ec := executionContext{nil, e, 0, 0, nil}
+	ec := newExecutionContext(nil, e, nil)
 	_ = ec
 	switch typeName + "." + field {
 
 	case "Airport.country":
-		if e.complexity.Airport.Country == nil {
+		if e.ComplexityRoot.Airport.Country == nil {
 			break
 		}
 
-		return e.complexity.Airport.Country(childComplexity), true
-
+		return e.ComplexityRoot.Airport.Country(childComplexity), true
 	case "Airport.elevation":
-		if e.complexity.Airport.Elevation == nil {
+		if e.ComplexityRoot.Airport.Elevation == nil {
 			break
 		}
 
-		return e.complexity.Airport.Elevation(childComplexity), true
-
+		return e.ComplexityRoot.Airport.Elevation(childComplexity), true
 	case "Airport.frequencies":
-		if e.complexity.Airport.Frequencies == nil {
+		if e.ComplexityRoot.Airport.Frequencies == nil {
 			break
 		}
 
-		return e.complexity.Airport.Frequencies(childComplexity), true
-
+		return e.ComplexityRoot.Airport.Frequencies(childComplexity), true
 	case "Airport.gpsCode":
-		if e.complexity.Airport.GpsCode == nil {
+		if e.ComplexityRoot.Airport.GpsCode == nil {
 			break
 		}
 
-		return e.complexity.Airport.GpsCode(childComplexity), true
-
+		return e.ComplexityRoot.Airport.GpsCode(childComplexity), true
 	case "Airport.id":
-		if e.complexity.Airport.ID == nil {
+		if e.ComplexityRoot.Airport.ID == nil {
 			break
 		}
 
-		return e.complexity.Airport.ID(childComplexity), true
-
+		return e.ComplexityRoot.Airport.ID(childComplexity), true
 	case "Airport.iataCode":
-		if e.complexity.Airport.IataCode == nil {
+		if e.ComplexityRoot.Airport.IataCode == nil {
 			break
 		}
 
-		return e.complexity.Airport.IataCode(childComplexity), true
-
+		return e.ComplexityRoot.Airport.IataCode(childComplexity), true
 	case "Airport.icaoCode":
-		if e.complexity.Airport.IcaoCode == nil {
+		if e.ComplexityRoot.Airport.IcaoCode == nil {
 			break
 		}
 
-		return e.complexity.Airport.IcaoCode(childComplexity), true
-
+		return e.ComplexityRoot.Airport.IcaoCode(childComplexity), true
 	case "Airport.identifier":
-		if e.complexity.Airport.Identifier == nil {
+		if e.ComplexityRoot.Airport.Identifier == nil {
 			break
 		}
 
-		return e.complexity.Airport.Identifier(childComplexity), true
-
+		return e.ComplexityRoot.Airport.Identifier(childComplexity), true
 	case "Airport.importID":
-		if e.complexity.Airport.ImportID == nil {
+		if e.ComplexityRoot.Airport.ImportID == nil {
 			break
 		}
 
-		return e.complexity.Airport.ImportID(childComplexity), true
-
+		return e.ComplexityRoot.Airport.ImportID(childComplexity), true
 	case "Airport.importance":
-		if e.complexity.Airport.Importance == nil {
+		if e.ComplexityRoot.Airport.Importance == nil {
 			break
 		}
 
-		return e.complexity.Airport.Importance(childComplexity), true
-
+		return e.ComplexityRoot.Airport.Importance(childComplexity), true
 	case "Airport.keywords":
-		if e.complexity.Airport.Keywords == nil {
+		if e.ComplexityRoot.Airport.Keywords == nil {
 			break
 		}
 
-		return e.complexity.Airport.Keywords(childComplexity), true
-
+		return e.ComplexityRoot.Airport.Keywords(childComplexity), true
 	case "Airport.lastUpdated":
-		if e.complexity.Airport.LastUpdated == nil {
+		if e.ComplexityRoot.Airport.LastUpdated == nil {
 			break
 		}
 
-		return e.complexity.Airport.LastUpdated(childComplexity), true
-
+		return e.ComplexityRoot.Airport.LastUpdated(childComplexity), true
 	case "Airport.latitude":
-		if e.complexity.Airport.Latitude == nil {
+		if e.ComplexityRoot.Airport.Latitude == nil {
 			break
 		}
 
-		return e.complexity.Airport.Latitude(childComplexity), true
-
+		return e.ComplexityRoot.Airport.Latitude(childComplexity), true
 	case "Airport.localCode":
-		if e.complexity.Airport.LocalCode == nil {
+		if e.ComplexityRoot.Airport.LocalCode == nil {
 			break
 		}
 
-		return e.complexity.Airport.LocalCode(childComplexity), true
-
+		return e.ComplexityRoot.Airport.LocalCode(childComplexity), true
 	case "Airport.longitude":
-		if e.complexity.Airport.Longitude == nil {
+		if e.ComplexityRoot.Airport.Longitude == nil {
 			break
 		}
 
-		return e.complexity.Airport.Longitude(childComplexity), true
-
+		return e.ComplexityRoot.Airport.Longitude(childComplexity), true
 	case "Airport.municipality":
-		if e.complexity.Airport.Municipality == nil {
+		if e.ComplexityRoot.Airport.Municipality == nil {
 			break
 		}
 
-		return e.complexity.Airport.Municipality(childComplexity), true
-
+		return e.ComplexityRoot.Airport.Municipality(childComplexity), true
 	case "Airport.name":
-		if e.complexity.Airport.Name == nil {
+		if e.ComplexityRoot.Airport.Name == nil {
 			break
 		}
 
-		return e.complexity.Airport.Name(childComplexity), true
-
+		return e.ComplexityRoot.Airport.Name(childComplexity), true
 	case "Airport.region":
-		if e.complexity.Airport.Region == nil {
+		if e.ComplexityRoot.Airport.Region == nil {
 			break
 		}
 
-		return e.complexity.Airport.Region(childComplexity), true
-
+		return e.ComplexityRoot.Airport.Region(childComplexity), true
 	case "Airport.runways":
-		if e.complexity.Airport.Runways == nil {
+		if e.ComplexityRoot.Airport.Runways == nil {
 			break
 		}
 
@@ -483,24 +449,21 @@ func (e *executableSchema) Complexity(ctx context.Context, typeName, field strin
 			return 0, false
 		}
 
-		return e.complexity.Airport.Runways(childComplexity, args["closed"].(*bool)), true
-
+		return e.ComplexityRoot.Airport.Runways(childComplexity, args["closed"].(*bool)), true
 	case "Airport.scheduledService":
-		if e.complexity.Airport.ScheduledService == nil {
+		if e.ComplexityRoot.Airport.ScheduledService == nil {
 			break
 		}
 
-		return e.complexity.Airport.ScheduledService(childComplexity), true
-
+		return e.ComplexityRoot.Airport.ScheduledService(childComplexity), true
 	case "Airport.station":
-		if e.complexity.Airport.Station == nil {
+		if e.ComplexityRoot.Airport.Station == nil {
 			break
 		}
 
-		return e.complexity.Airport.Station(childComplexity), true
-
+		return e.ComplexityRoot.Airport.Station(childComplexity), true
 	case "Airport.stationsVicinity":
-		if e.complexity.Airport.StationsVicinity == nil {
+		if e.ComplexityRoot.Airport.StationsVicinity == nil {
 			break
 		}
 
@@ -509,129 +472,115 @@ func (e *executableSchema) Complexity(ctx context.Context, typeName, field strin
 			return 0, false
 		}
 
-		return e.complexity.Airport.StationsVicinity(childComplexity, args["first"].(*int), args["radius"].(*float64)), true
-
+		return e.ComplexityRoot.Airport.StationsVicinity(childComplexity, args["first"].(*int), args["radius"].(*float64)), true
 	case "Airport.timezone":
-		if e.complexity.Airport.Timezone == nil {
+		if e.ComplexityRoot.Airport.Timezone == nil {
 			break
 		}
 
-		return e.complexity.Airport.Timezone(childComplexity), true
-
+		return e.ComplexityRoot.Airport.Timezone(childComplexity), true
 	case "Airport.type":
-		if e.complexity.Airport.Type == nil {
+		if e.ComplexityRoot.Airport.Type == nil {
 			break
 		}
 
-		return e.complexity.Airport.Type(childComplexity), true
-
+		return e.ComplexityRoot.Airport.Type(childComplexity), true
 	case "Airport.website":
-		if e.complexity.Airport.Website == nil {
+		if e.ComplexityRoot.Airport.Website == nil {
 			break
 		}
 
-		return e.complexity.Airport.Website(childComplexity), true
-
+		return e.ComplexityRoot.Airport.Website(childComplexity), true
 	case "Airport.wikipedia":
-		if e.complexity.Airport.Wikipedia == nil {
+		if e.ComplexityRoot.Airport.Wikipedia == nil {
 			break
 		}
 
-		return e.complexity.Airport.Wikipedia(childComplexity), true
+		return e.ComplexityRoot.Airport.Wikipedia(childComplexity), true
 
 	case "AirportConnection.edges":
-		if e.complexity.AirportConnection.Edges == nil {
+		if e.ComplexityRoot.AirportConnection.Edges == nil {
 			break
 		}
 
-		return e.complexity.AirportConnection.Edges(childComplexity), true
-
+		return e.ComplexityRoot.AirportConnection.Edges(childComplexity), true
 	case "AirportConnection.pageInfo":
-		if e.complexity.AirportConnection.PageInfo == nil {
+		if e.ComplexityRoot.AirportConnection.PageInfo == nil {
 			break
 		}
 
-		return e.complexity.AirportConnection.PageInfo(childComplexity), true
-
+		return e.ComplexityRoot.AirportConnection.PageInfo(childComplexity), true
 	case "AirportConnection.totalCount":
-		if e.complexity.AirportConnection.TotalCount == nil {
+		if e.ComplexityRoot.AirportConnection.TotalCount == nil {
 			break
 		}
 
-		return e.complexity.AirportConnection.TotalCount(childComplexity), true
+		return e.ComplexityRoot.AirportConnection.TotalCount(childComplexity), true
 
 	case "AirportEdge.cursor":
-		if e.complexity.AirportEdge.Cursor == nil {
+		if e.ComplexityRoot.AirportEdge.Cursor == nil {
 			break
 		}
 
-		return e.complexity.AirportEdge.Cursor(childComplexity), true
-
+		return e.ComplexityRoot.AirportEdge.Cursor(childComplexity), true
 	case "AirportEdge.node":
-		if e.complexity.AirportEdge.Node == nil {
+		if e.ComplexityRoot.AirportEdge.Node == nil {
 			break
 		}
 
-		return e.complexity.AirportEdge.Node(childComplexity), true
+		return e.ComplexityRoot.AirportEdge.Node(childComplexity), true
 
 	case "Country.code":
-		if e.complexity.Country.Code == nil {
+		if e.ComplexityRoot.Country.Code == nil {
 			break
 		}
 
-		return e.complexity.Country.Code(childComplexity), true
-
+		return e.ComplexityRoot.Country.Code(childComplexity), true
 	case "Country.continent":
-		if e.complexity.Country.Continent == nil {
+		if e.ComplexityRoot.Country.Continent == nil {
 			break
 		}
 
-		return e.complexity.Country.Continent(childComplexity), true
-
+		return e.ComplexityRoot.Country.Continent(childComplexity), true
 	case "Country.id":
-		if e.complexity.Country.ID == nil {
+		if e.ComplexityRoot.Country.ID == nil {
 			break
 		}
 
-		return e.complexity.Country.ID(childComplexity), true
-
+		return e.ComplexityRoot.Country.ID(childComplexity), true
 	case "Country.importID":
-		if e.complexity.Country.ImportID == nil {
+		if e.ComplexityRoot.Country.ImportID == nil {
 			break
 		}
 
-		return e.complexity.Country.ImportID(childComplexity), true
-
+		return e.ComplexityRoot.Country.ImportID(childComplexity), true
 	case "Country.keywords":
-		if e.complexity.Country.Keywords == nil {
+		if e.ComplexityRoot.Country.Keywords == nil {
 			break
 		}
 
-		return e.complexity.Country.Keywords(childComplexity), true
-
+		return e.ComplexityRoot.Country.Keywords(childComplexity), true
 	case "Country.lastUpdated":
-		if e.complexity.Country.LastUpdated == nil {
+		if e.ComplexityRoot.Country.LastUpdated == nil {
 			break
 		}
 
-		return e.complexity.Country.LastUpdated(childComplexity), true
-
+		return e.ComplexityRoot.Country.LastUpdated(childComplexity), true
 	case "Country.name":
-		if e.complexity.Country.Name == nil {
+		if e.ComplexityRoot.Country.Name == nil {
 			break
 		}
 
-		return e.complexity.Country.Name(childComplexity), true
-
+		return e.ComplexityRoot.Country.Name(childComplexity), true
 	case "Country.wikipediaLink":
-		if e.complexity.Country.WikipediaLink == nil {
+		if e.ComplexityRoot.Country.WikipediaLink == nil {
 			break
 		}
 
-		return e.complexity.Country.WikipediaLink(childComplexity), true
+		return e.ComplexityRoot.Country.WikipediaLink(childComplexity), true
 
 	case "Forecast.altimeter":
-		if e.complexity.Forecast.Altimeter == nil {
+		if e.ComplexityRoot.Forecast.Altimeter == nil {
 			break
 		}
 
@@ -640,87 +589,75 @@ func (e *executableSchema) Complexity(ctx context.Context, typeName, field strin
 			return 0, false
 		}
 
-		return e.complexity.Forecast.Altimeter(childComplexity, args["unit"].(model.PressureUnit)), true
-
+		return e.ComplexityRoot.Forecast.Altimeter(childComplexity, args["unit"].(model.PressureUnit)), true
 	case "Forecast.changeIndicator":
-		if e.complexity.Forecast.ChangeIndicator == nil {
+		if e.ComplexityRoot.Forecast.ChangeIndicator == nil {
 			break
 		}
 
-		return e.complexity.Forecast.ChangeIndicator(childComplexity), true
-
+		return e.ComplexityRoot.Forecast.ChangeIndicator(childComplexity), true
 	case "Forecast.changeProbability":
-		if e.complexity.Forecast.ChangeProbability == nil {
+		if e.ComplexityRoot.Forecast.ChangeProbability == nil {
 			break
 		}
 
-		return e.complexity.Forecast.ChangeProbability(childComplexity), true
-
+		return e.ComplexityRoot.Forecast.ChangeProbability(childComplexity), true
 	case "Forecast.changeTime":
-		if e.complexity.Forecast.ChangeTime == nil {
+		if e.ComplexityRoot.Forecast.ChangeTime == nil {
 			break
 		}
 
-		return e.complexity.Forecast.ChangeTime(childComplexity), true
-
+		return e.ComplexityRoot.Forecast.ChangeTime(childComplexity), true
 	case "Forecast.fromTime":
-		if e.complexity.Forecast.FromTime == nil {
+		if e.ComplexityRoot.Forecast.FromTime == nil {
 			break
 		}
 
-		return e.complexity.Forecast.FromTime(childComplexity), true
-
+		return e.ComplexityRoot.Forecast.FromTime(childComplexity), true
 	case "Forecast.id":
-		if e.complexity.Forecast.ID == nil {
+		if e.ComplexityRoot.Forecast.ID == nil {
 			break
 		}
 
-		return e.complexity.Forecast.ID(childComplexity), true
-
+		return e.ComplexityRoot.Forecast.ID(childComplexity), true
 	case "Forecast.icingConditions":
-		if e.complexity.Forecast.IcingConditions == nil {
+		if e.ComplexityRoot.Forecast.IcingConditions == nil {
 			break
 		}
 
-		return e.complexity.Forecast.IcingConditions(childComplexity), true
-
+		return e.ComplexityRoot.Forecast.IcingConditions(childComplexity), true
 	case "Forecast.notDecoded":
-		if e.complexity.Forecast.NotDecoded == nil {
+		if e.ComplexityRoot.Forecast.NotDecoded == nil {
 			break
 		}
 
-		return e.complexity.Forecast.NotDecoded(childComplexity), true
-
+		return e.ComplexityRoot.Forecast.NotDecoded(childComplexity), true
 	case "Forecast.skyConditions":
-		if e.complexity.Forecast.SkyConditions == nil {
+		if e.ComplexityRoot.Forecast.SkyConditions == nil {
 			break
 		}
 
-		return e.complexity.Forecast.SkyConditions(childComplexity), true
-
+		return e.ComplexityRoot.Forecast.SkyConditions(childComplexity), true
 	case "Forecast.temperatureData":
-		if e.complexity.Forecast.TemperatureData == nil {
+		if e.ComplexityRoot.Forecast.TemperatureData == nil {
 			break
 		}
 
-		return e.complexity.Forecast.TemperatureData(childComplexity), true
-
+		return e.ComplexityRoot.Forecast.TemperatureData(childComplexity), true
 	case "Forecast.toTime":
-		if e.complexity.Forecast.ToTime == nil {
+		if e.ComplexityRoot.Forecast.ToTime == nil {
 			break
 		}
 
-		return e.complexity.Forecast.ToTime(childComplexity), true
-
+		return e.ComplexityRoot.Forecast.ToTime(childComplexity), true
 	case "Forecast.turbulenceConditions":
-		if e.complexity.Forecast.TurbulenceConditions == nil {
+		if e.ComplexityRoot.Forecast.TurbulenceConditions == nil {
 			break
 		}
 
-		return e.complexity.Forecast.TurbulenceConditions(childComplexity), true
-
+		return e.ComplexityRoot.Forecast.TurbulenceConditions(childComplexity), true
 	case "Forecast.visibilityHorizontal":
-		if e.complexity.Forecast.VisibilityHorizontal == nil {
+		if e.ComplexityRoot.Forecast.VisibilityHorizontal == nil {
 			break
 		}
 
@@ -729,17 +666,15 @@ func (e *executableSchema) Complexity(ctx context.Context, typeName, field strin
 			return 0, false
 		}
 
-		return e.complexity.Forecast.VisibilityHorizontal(childComplexity, args["unit"].(model.LengthUnit)), true
-
+		return e.ComplexityRoot.Forecast.VisibilityHorizontal(childComplexity, args["unit"].(model.LengthUnit)), true
 	case "Forecast.visibilityHorizontalIsMoreThan":
-		if e.complexity.Forecast.VisibilityHorizontalIsMoreThan == nil {
+		if e.ComplexityRoot.Forecast.VisibilityHorizontalIsMoreThan == nil {
 			break
 		}
 
-		return e.complexity.Forecast.VisibilityHorizontalIsMoreThan(childComplexity), true
-
+		return e.ComplexityRoot.Forecast.VisibilityHorizontalIsMoreThan(childComplexity), true
 	case "Forecast.visibilityVertical":
-		if e.complexity.Forecast.VisibilityVertical == nil {
+		if e.ComplexityRoot.Forecast.VisibilityVertical == nil {
 			break
 		}
 
@@ -748,31 +683,27 @@ func (e *executableSchema) Complexity(ctx context.Context, typeName, field strin
 			return 0, false
 		}
 
-		return e.complexity.Forecast.VisibilityVertical(childComplexity, args["unit"].(model.LengthUnit)), true
-
+		return e.ComplexityRoot.Forecast.VisibilityVertical(childComplexity, args["unit"].(model.LengthUnit)), true
 	case "Forecast.weather":
-		if e.complexity.Forecast.Weather == nil {
+		if e.ComplexityRoot.Forecast.Weather == nil {
 			break
 		}
 
-		return e.complexity.Forecast.Weather(childComplexity), true
-
+		return e.ComplexityRoot.Forecast.Weather(childComplexity), true
 	case "Forecast.windDirection":
-		if e.complexity.Forecast.WindDirection == nil {
+		if e.ComplexityRoot.Forecast.WindDirection == nil {
 			break
 		}
 
-		return e.complexity.Forecast.WindDirection(childComplexity), true
-
+		return e.ComplexityRoot.Forecast.WindDirection(childComplexity), true
 	case "Forecast.windDirectionVariable":
-		if e.complexity.Forecast.WindDirectionVariable == nil {
+		if e.ComplexityRoot.Forecast.WindDirectionVariable == nil {
 			break
 		}
 
-		return e.complexity.Forecast.WindDirectionVariable(childComplexity), true
-
+		return e.ComplexityRoot.Forecast.WindDirectionVariable(childComplexity), true
 	case "Forecast.windGust":
-		if e.complexity.Forecast.WindGust == nil {
+		if e.ComplexityRoot.Forecast.WindGust == nil {
 			break
 		}
 
@@ -781,17 +712,15 @@ func (e *executableSchema) Complexity(ctx context.Context, typeName, field strin
 			return 0, false
 		}
 
-		return e.complexity.Forecast.WindGust(childComplexity, args["unit"].(model.SpeedUnit)), true
-
+		return e.ComplexityRoot.Forecast.WindGust(childComplexity, args["unit"].(model.SpeedUnit)), true
 	case "Forecast.windShearDirection":
-		if e.complexity.Forecast.WindShearDirection == nil {
+		if e.ComplexityRoot.Forecast.WindShearDirection == nil {
 			break
 		}
 
-		return e.complexity.Forecast.WindShearDirection(childComplexity), true
-
+		return e.ComplexityRoot.Forecast.WindShearDirection(childComplexity), true
 	case "Forecast.windShearHeight":
-		if e.complexity.Forecast.WindShearHeight == nil {
+		if e.ComplexityRoot.Forecast.WindShearHeight == nil {
 			break
 		}
 
@@ -800,10 +729,9 @@ func (e *executableSchema) Complexity(ctx context.Context, typeName, field strin
 			return 0, false
 		}
 
-		return e.complexity.Forecast.WindShearHeight(childComplexity, args["unit"].(model.LengthUnit)), true
-
+		return e.ComplexityRoot.Forecast.WindShearHeight(childComplexity, args["unit"].(model.LengthUnit)), true
 	case "Forecast.windShearSpeed":
-		if e.complexity.Forecast.WindShearSpeed == nil {
+		if e.ComplexityRoot.Forecast.WindShearSpeed == nil {
 			break
 		}
 
@@ -812,10 +740,9 @@ func (e *executableSchema) Complexity(ctx context.Context, typeName, field strin
 			return 0, false
 		}
 
-		return e.complexity.Forecast.WindShearSpeed(childComplexity, args["unit"].(model.SpeedUnit)), true
-
+		return e.ComplexityRoot.Forecast.WindShearSpeed(childComplexity, args["unit"].(model.SpeedUnit)), true
 	case "Forecast.windSpeed":
-		if e.complexity.Forecast.WindSpeed == nil {
+		if e.ComplexityRoot.Forecast.WindSpeed == nil {
 			break
 		}
 
@@ -824,73 +751,65 @@ func (e *executableSchema) Complexity(ctx context.Context, typeName, field strin
 			return 0, false
 		}
 
-		return e.complexity.Forecast.WindSpeed(childComplexity, args["unit"].(model.SpeedUnit)), true
+		return e.ComplexityRoot.Forecast.WindSpeed(childComplexity, args["unit"].(model.SpeedUnit)), true
 
 	case "Frequency.airport":
-		if e.complexity.Frequency.Airport == nil {
+		if e.ComplexityRoot.Frequency.Airport == nil {
 			break
 		}
 
-		return e.complexity.Frequency.Airport(childComplexity), true
-
+		return e.ComplexityRoot.Frequency.Airport(childComplexity), true
 	case "Frequency.description":
-		if e.complexity.Frequency.Description == nil {
+		if e.ComplexityRoot.Frequency.Description == nil {
 			break
 		}
 
-		return e.complexity.Frequency.Description(childComplexity), true
-
+		return e.ComplexityRoot.Frequency.Description(childComplexity), true
 	case "Frequency.frequency":
-		if e.complexity.Frequency.Frequency == nil {
+		if e.ComplexityRoot.Frequency.Frequency == nil {
 			break
 		}
 
-		return e.complexity.Frequency.Frequency(childComplexity), true
-
+		return e.ComplexityRoot.Frequency.Frequency(childComplexity), true
 	case "Frequency.id":
-		if e.complexity.Frequency.ID == nil {
+		if e.ComplexityRoot.Frequency.ID == nil {
 			break
 		}
 
-		return e.complexity.Frequency.ID(childComplexity), true
-
+		return e.ComplexityRoot.Frequency.ID(childComplexity), true
 	case "Frequency.importID":
-		if e.complexity.Frequency.ImportID == nil {
+		if e.ComplexityRoot.Frequency.ImportID == nil {
 			break
 		}
 
-		return e.complexity.Frequency.ImportID(childComplexity), true
-
+		return e.ComplexityRoot.Frequency.ImportID(childComplexity), true
 	case "Frequency.lastUpdated":
-		if e.complexity.Frequency.LastUpdated == nil {
+		if e.ComplexityRoot.Frequency.LastUpdated == nil {
 			break
 		}
 
-		return e.complexity.Frequency.LastUpdated(childComplexity), true
-
+		return e.ComplexityRoot.Frequency.LastUpdated(childComplexity), true
 	case "Frequency.type":
-		if e.complexity.Frequency.Type == nil {
+		if e.ComplexityRoot.Frequency.Type == nil {
 			break
 		}
 
-		return e.complexity.Frequency.Type(childComplexity), true
+		return e.ComplexityRoot.Frequency.Type(childComplexity), true
 
 	case "IcingCondition.id":
-		if e.complexity.IcingCondition.ID == nil {
+		if e.ComplexityRoot.IcingCondition.ID == nil {
 			break
 		}
 
-		return e.complexity.IcingCondition.ID(childComplexity), true
-
+		return e.ComplexityRoot.IcingCondition.ID(childComplexity), true
 	case "IcingCondition.intensity":
-		if e.complexity.IcingCondition.Intensity == nil {
+		if e.ComplexityRoot.IcingCondition.Intensity == nil {
 			break
 		}
 
-		return e.complexity.IcingCondition.Intensity(childComplexity), true
-
+		return e.ComplexityRoot.IcingCondition.Intensity(childComplexity), true
 	case "IcingCondition.maxAltitude":
-		if e.complexity.IcingCondition.MaxAltitude == nil {
+		if e.ComplexityRoot.IcingCondition.MaxAltitude == nil {
 			break
 		}
 
@@ -899,10 +818,9 @@ func (e *executableSchema) Complexity(ctx context.Context, typeName, field strin
 			return 0, false
 		}
 
-		return e.complexity.IcingCondition.MaxAltitude(childComplexity, args["unit"].(model.LengthUnit)), true
-
+		return e.ComplexityRoot.IcingCondition.MaxAltitude(childComplexity, args["unit"].(model.LengthUnit)), true
 	case "IcingCondition.minAltitude":
-		if e.complexity.IcingCondition.MinAltitude == nil {
+		if e.ComplexityRoot.IcingCondition.MinAltitude == nil {
 			break
 		}
 
@@ -911,10 +829,10 @@ func (e *executableSchema) Complexity(ctx context.Context, typeName, field strin
 			return 0, false
 		}
 
-		return e.complexity.IcingCondition.MinAltitude(childComplexity, args["unit"].(model.LengthUnit)), true
+		return e.ComplexityRoot.IcingCondition.MinAltitude(childComplexity, args["unit"].(model.LengthUnit)), true
 
 	case "Metar.altimeter":
-		if e.complexity.Metar.Altimeter == nil {
+		if e.ComplexityRoot.Metar.Altimeter == nil {
 			break
 		}
 
@@ -923,10 +841,9 @@ func (e *executableSchema) Complexity(ctx context.Context, typeName, field strin
 			return 0, false
 		}
 
-		return e.complexity.Metar.Altimeter(childComplexity, args["unit"].(model.PressureUnit)), true
-
+		return e.ComplexityRoot.Metar.Altimeter(childComplexity, args["unit"].(model.PressureUnit)), true
 	case "Metar.dewpoint":
-		if e.complexity.Metar.Dewpoint == nil {
+		if e.ComplexityRoot.Metar.Dewpoint == nil {
 			break
 		}
 
@@ -935,115 +852,99 @@ func (e *executableSchema) Complexity(ctx context.Context, typeName, field strin
 			return 0, false
 		}
 
-		return e.complexity.Metar.Dewpoint(childComplexity, args["unit"].(model.TemperatureUnit)), true
-
+		return e.ComplexityRoot.Metar.Dewpoint(childComplexity, args["unit"].(model.TemperatureUnit)), true
 	case "Metar.flightCategory":
-		if e.complexity.Metar.FlightCategory == nil {
+		if e.ComplexityRoot.Metar.FlightCategory == nil {
 			break
 		}
 
-		return e.complexity.Metar.FlightCategory(childComplexity), true
-
+		return e.ComplexityRoot.Metar.FlightCategory(childComplexity), true
 	case "Metar.id":
-		if e.complexity.Metar.ID == nil {
+		if e.ComplexityRoot.Metar.ID == nil {
 			break
 		}
 
-		return e.complexity.Metar.ID(childComplexity), true
-
+		return e.ComplexityRoot.Metar.ID(childComplexity), true
 	case "Metar.importTime":
-		if e.complexity.Metar.ImportTime == nil {
+		if e.ComplexityRoot.Metar.ImportTime == nil {
 			break
 		}
 
-		return e.complexity.Metar.ImportTime(childComplexity), true
-
+		return e.ComplexityRoot.Metar.ImportTime(childComplexity), true
 	case "Metar.maxTemp24":
-		if e.complexity.Metar.MaxTemp24 == nil {
+		if e.ComplexityRoot.Metar.MaxTemp24 == nil {
 			break
 		}
 
-		return e.complexity.Metar.MaxTemp24(childComplexity), true
-
+		return e.ComplexityRoot.Metar.MaxTemp24(childComplexity), true
 	case "Metar.maxTemp6":
-		if e.complexity.Metar.MaxTemp6 == nil {
+		if e.ComplexityRoot.Metar.MaxTemp6 == nil {
 			break
 		}
 
-		return e.complexity.Metar.MaxTemp6(childComplexity), true
-
+		return e.ComplexityRoot.Metar.MaxTemp6(childComplexity), true
 	case "Metar.metarType":
-		if e.complexity.Metar.MetarType == nil {
+		if e.ComplexityRoot.Metar.MetarType == nil {
 			break
 		}
 
-		return e.complexity.Metar.MetarType(childComplexity), true
-
+		return e.ComplexityRoot.Metar.MetarType(childComplexity), true
 	case "Metar.minTemp24":
-		if e.complexity.Metar.MinTemp24 == nil {
+		if e.ComplexityRoot.Metar.MinTemp24 == nil {
 			break
 		}
 
-		return e.complexity.Metar.MinTemp24(childComplexity), true
-
+		return e.ComplexityRoot.Metar.MinTemp24(childComplexity), true
 	case "Metar.minTemp6":
-		if e.complexity.Metar.MinTemp6 == nil {
+		if e.ComplexityRoot.Metar.MinTemp6 == nil {
 			break
 		}
 
-		return e.complexity.Metar.MinTemp6(childComplexity), true
-
+		return e.ComplexityRoot.Metar.MinTemp6(childComplexity), true
 	case "Metar.nextImportTimePrediction":
-		if e.complexity.Metar.NextImportTimePrediction == nil {
+		if e.ComplexityRoot.Metar.NextImportTimePrediction == nil {
 			break
 		}
 
-		return e.complexity.Metar.NextImportTimePrediction(childComplexity), true
-
+		return e.ComplexityRoot.Metar.NextImportTimePrediction(childComplexity), true
 	case "Metar.observationTime":
-		if e.complexity.Metar.ObservationTime == nil {
+		if e.ComplexityRoot.Metar.ObservationTime == nil {
 			break
 		}
 
-		return e.complexity.Metar.ObservationTime(childComplexity), true
-
+		return e.ComplexityRoot.Metar.ObservationTime(childComplexity), true
 	case "Metar.precipitation":
-		if e.complexity.Metar.Precipitation == nil {
+		if e.ComplexityRoot.Metar.Precipitation == nil {
 			break
 		}
 
-		return e.complexity.Metar.Precipitation(childComplexity), true
-
+		return e.ComplexityRoot.Metar.Precipitation(childComplexity), true
 	case "Metar.precipitation24":
-		if e.complexity.Metar.Precipitation24 == nil {
+		if e.ComplexityRoot.Metar.Precipitation24 == nil {
 			break
 		}
 
-		return e.complexity.Metar.Precipitation24(childComplexity), true
-
+		return e.ComplexityRoot.Metar.Precipitation24(childComplexity), true
 	case "Metar.precipitation3":
-		if e.complexity.Metar.Precipitation3 == nil {
+		if e.ComplexityRoot.Metar.Precipitation3 == nil {
 			break
 		}
 
-		return e.complexity.Metar.Precipitation3(childComplexity), true
-
+		return e.ComplexityRoot.Metar.Precipitation3(childComplexity), true
 	case "Metar.precipitation6":
-		if e.complexity.Metar.Precipitation6 == nil {
+		if e.ComplexityRoot.Metar.Precipitation6 == nil {
 			break
 		}
 
-		return e.complexity.Metar.Precipitation6(childComplexity), true
-
+		return e.ComplexityRoot.Metar.Precipitation6(childComplexity), true
 	case "Metar.presentWeather":
-		if e.complexity.Metar.PresentWeather == nil {
+		if e.ComplexityRoot.Metar.PresentWeather == nil {
 			break
 		}
 
-		return e.complexity.Metar.PresentWeather(childComplexity), true
-
+		return e.ComplexityRoot.Metar.PresentWeather(childComplexity), true
 	case "Metar.pressureTendency":
-		if e.complexity.Metar.PressureTendency == nil {
+		if e.ComplexityRoot.Metar.PressureTendency == nil {
 			break
 		}
 
@@ -1052,66 +953,57 @@ func (e *executableSchema) Complexity(ctx context.Context, typeName, field strin
 			return 0, false
 		}
 
-		return e.complexity.Metar.PressureTendency(childComplexity, args["unit"].(model.PressureUnit)), true
-
+		return e.ComplexityRoot.Metar.PressureTendency(childComplexity, args["unit"].(model.PressureUnit)), true
 	case "Metar.qualityControlAutoStation":
-		if e.complexity.Metar.QualityControlAutoStation == nil {
+		if e.ComplexityRoot.Metar.QualityControlAutoStation == nil {
 			break
 		}
 
-		return e.complexity.Metar.QualityControlAutoStation(childComplexity), true
-
+		return e.ComplexityRoot.Metar.QualityControlAutoStation(childComplexity), true
 	case "Metar.qualityControlCorrected":
-		if e.complexity.Metar.QualityControlCorrected == nil {
+		if e.ComplexityRoot.Metar.QualityControlCorrected == nil {
 			break
 		}
 
-		return e.complexity.Metar.QualityControlCorrected(childComplexity), true
-
+		return e.ComplexityRoot.Metar.QualityControlCorrected(childComplexity), true
 	case "Metar.qualityControlFreezingRainSensorOff":
-		if e.complexity.Metar.QualityControlFreezingRainSensorOff == nil {
+		if e.ComplexityRoot.Metar.QualityControlFreezingRainSensorOff == nil {
 			break
 		}
 
-		return e.complexity.Metar.QualityControlFreezingRainSensorOff(childComplexity), true
-
+		return e.ComplexityRoot.Metar.QualityControlFreezingRainSensorOff(childComplexity), true
 	case "Metar.qualityControlLightningSensorOff":
-		if e.complexity.Metar.QualityControlLightningSensorOff == nil {
+		if e.ComplexityRoot.Metar.QualityControlLightningSensorOff == nil {
 			break
 		}
 
-		return e.complexity.Metar.QualityControlLightningSensorOff(childComplexity), true
-
+		return e.ComplexityRoot.Metar.QualityControlLightningSensorOff(childComplexity), true
 	case "Metar.qualityControlMaintenanceIndicatorOn":
-		if e.complexity.Metar.QualityControlMaintenanceIndicatorOn == nil {
+		if e.ComplexityRoot.Metar.QualityControlMaintenanceIndicatorOn == nil {
 			break
 		}
 
-		return e.complexity.Metar.QualityControlMaintenanceIndicatorOn(childComplexity), true
-
+		return e.ComplexityRoot.Metar.QualityControlMaintenanceIndicatorOn(childComplexity), true
 	case "Metar.qualityControlNoSignal":
-		if e.complexity.Metar.QualityControlNoSignal == nil {
+		if e.ComplexityRoot.Metar.QualityControlNoSignal == nil {
 			break
 		}
 
-		return e.complexity.Metar.QualityControlNoSignal(childComplexity), true
-
+		return e.ComplexityRoot.Metar.QualityControlNoSignal(childComplexity), true
 	case "Metar.qualityControlPresentWeatherSensorOff":
-		if e.complexity.Metar.QualityControlPresentWeatherSensorOff == nil {
+		if e.ComplexityRoot.Metar.QualityControlPresentWeatherSensorOff == nil {
 			break
 		}
 
-		return e.complexity.Metar.QualityControlPresentWeatherSensorOff(childComplexity), true
-
+		return e.ComplexityRoot.Metar.QualityControlPresentWeatherSensorOff(childComplexity), true
 	case "Metar.rawText":
-		if e.complexity.Metar.RawText == nil {
+		if e.ComplexityRoot.Metar.RawText == nil {
 			break
 		}
 
-		return e.complexity.Metar.RawText(childComplexity), true
-
+		return e.ComplexityRoot.Metar.RawText(childComplexity), true
 	case "Metar.seaLevelPressure":
-		if e.complexity.Metar.SeaLevelPressure == nil {
+		if e.ComplexityRoot.Metar.SeaLevelPressure == nil {
 			break
 		}
 
@@ -1120,17 +1012,15 @@ func (e *executableSchema) Complexity(ctx context.Context, typeName, field strin
 			return 0, false
 		}
 
-		return e.complexity.Metar.SeaLevelPressure(childComplexity, args["unit"].(model.PressureUnit)), true
-
+		return e.ComplexityRoot.Metar.SeaLevelPressure(childComplexity, args["unit"].(model.PressureUnit)), true
 	case "Metar.skyConditions":
-		if e.complexity.Metar.SkyConditions == nil {
+		if e.ComplexityRoot.Metar.SkyConditions == nil {
 			break
 		}
 
-		return e.complexity.Metar.SkyConditions(childComplexity), true
-
+		return e.ComplexityRoot.Metar.SkyConditions(childComplexity), true
 	case "Metar.snowDepth":
-		if e.complexity.Metar.SnowDepth == nil {
+		if e.ComplexityRoot.Metar.SnowDepth == nil {
 			break
 		}
 
@@ -1139,17 +1029,15 @@ func (e *executableSchema) Complexity(ctx context.Context, typeName, field strin
 			return 0, false
 		}
 
-		return e.complexity.Metar.SnowDepth(childComplexity, args["unit"].(model.SmallLengthUnit)), true
-
+		return e.ComplexityRoot.Metar.SnowDepth(childComplexity, args["unit"].(model.SmallLengthUnit)), true
 	case "Metar.station":
-		if e.complexity.Metar.Station == nil {
+		if e.ComplexityRoot.Metar.Station == nil {
 			break
 		}
 
-		return e.complexity.Metar.Station(childComplexity), true
-
+		return e.ComplexityRoot.Metar.Station(childComplexity), true
 	case "Metar.temperature":
-		if e.complexity.Metar.Temperature == nil {
+		if e.ComplexityRoot.Metar.Temperature == nil {
 			break
 		}
 
@@ -1158,10 +1046,9 @@ func (e *executableSchema) Complexity(ctx context.Context, typeName, field strin
 			return 0, false
 		}
 
-		return e.complexity.Metar.Temperature(childComplexity, args["unit"].(model.TemperatureUnit)), true
-
+		return e.ComplexityRoot.Metar.Temperature(childComplexity, args["unit"].(model.TemperatureUnit)), true
 	case "Metar.verticalVisibility":
-		if e.complexity.Metar.VerticalVisibility == nil {
+		if e.ComplexityRoot.Metar.VerticalVisibility == nil {
 			break
 		}
 
@@ -1170,10 +1057,9 @@ func (e *executableSchema) Complexity(ctx context.Context, typeName, field strin
 			return 0, false
 		}
 
-		return e.complexity.Metar.VerticalVisibility(childComplexity, args["unit"].(model.LengthUnit)), true
-
+		return e.ComplexityRoot.Metar.VerticalVisibility(childComplexity, args["unit"].(model.LengthUnit)), true
 	case "Metar.visibility":
-		if e.complexity.Metar.Visibility == nil {
+		if e.ComplexityRoot.Metar.Visibility == nil {
 			break
 		}
 
@@ -1182,31 +1068,27 @@ func (e *executableSchema) Complexity(ctx context.Context, typeName, field strin
 			return 0, false
 		}
 
-		return e.complexity.Metar.Visibility(childComplexity, args["unit"].(model.LengthUnit)), true
-
+		return e.ComplexityRoot.Metar.Visibility(childComplexity, args["unit"].(model.LengthUnit)), true
 	case "Metar.visibilityIsMoreThan":
-		if e.complexity.Metar.VisibilityIsMoreThan == nil {
+		if e.ComplexityRoot.Metar.VisibilityIsMoreThan == nil {
 			break
 		}
 
-		return e.complexity.Metar.VisibilityIsMoreThan(childComplexity), true
-
+		return e.ComplexityRoot.Metar.VisibilityIsMoreThan(childComplexity), true
 	case "Metar.windDirection":
-		if e.complexity.Metar.WindDirection == nil {
+		if e.ComplexityRoot.Metar.WindDirection == nil {
 			break
 		}
 
-		return e.complexity.Metar.WindDirection(childComplexity), true
-
+		return e.ComplexityRoot.Metar.WindDirection(childComplexity), true
 	case "Metar.windDirectionVariable":
-		if e.complexity.Metar.WindDirectionVariable == nil {
+		if e.ComplexityRoot.Metar.WindDirectionVariable == nil {
 			break
 		}
 
-		return e.complexity.Metar.WindDirectionVariable(childComplexity), true
-
+		return e.ComplexityRoot.Metar.WindDirectionVariable(childComplexity), true
 	case "Metar.windGust":
-		if e.complexity.Metar.WindGust == nil {
+		if e.ComplexityRoot.Metar.WindGust == nil {
 			break
 		}
 
@@ -1215,10 +1097,9 @@ func (e *executableSchema) Complexity(ctx context.Context, typeName, field strin
 			return 0, false
 		}
 
-		return e.complexity.Metar.WindGust(childComplexity, args["unit"].(model.SpeedUnit)), true
-
+		return e.ComplexityRoot.Metar.WindGust(childComplexity, args["unit"].(model.SpeedUnit)), true
 	case "Metar.windSpeed":
-		if e.complexity.Metar.WindSpeed == nil {
+		if e.ComplexityRoot.Metar.WindSpeed == nil {
 			break
 		}
 
@@ -1227,73 +1108,67 @@ func (e *executableSchema) Complexity(ctx context.Context, typeName, field strin
 			return 0, false
 		}
 
-		return e.complexity.Metar.WindSpeed(childComplexity, args["unit"].(model.SpeedUnit)), true
+		return e.ComplexityRoot.Metar.WindSpeed(childComplexity, args["unit"].(model.SpeedUnit)), true
 
 	case "MetarConnection.edges":
-		if e.complexity.MetarConnection.Edges == nil {
+		if e.ComplexityRoot.MetarConnection.Edges == nil {
 			break
 		}
 
-		return e.complexity.MetarConnection.Edges(childComplexity), true
-
+		return e.ComplexityRoot.MetarConnection.Edges(childComplexity), true
 	case "MetarConnection.pageInfo":
-		if e.complexity.MetarConnection.PageInfo == nil {
+		if e.ComplexityRoot.MetarConnection.PageInfo == nil {
 			break
 		}
 
-		return e.complexity.MetarConnection.PageInfo(childComplexity), true
-
+		return e.ComplexityRoot.MetarConnection.PageInfo(childComplexity), true
 	case "MetarConnection.totalCount":
-		if e.complexity.MetarConnection.TotalCount == nil {
+		if e.ComplexityRoot.MetarConnection.TotalCount == nil {
 			break
 		}
 
-		return e.complexity.MetarConnection.TotalCount(childComplexity), true
+		return e.ComplexityRoot.MetarConnection.TotalCount(childComplexity), true
 
 	case "MetarEdge.cursor":
-		if e.complexity.MetarEdge.Cursor == nil {
+		if e.ComplexityRoot.MetarEdge.Cursor == nil {
 			break
 		}
 
-		return e.complexity.MetarEdge.Cursor(childComplexity), true
-
+		return e.ComplexityRoot.MetarEdge.Cursor(childComplexity), true
 	case "MetarEdge.node":
-		if e.complexity.MetarEdge.Node == nil {
+		if e.ComplexityRoot.MetarEdge.Node == nil {
 			break
 		}
 
-		return e.complexity.MetarEdge.Node(childComplexity), true
+		return e.ComplexityRoot.MetarEdge.Node(childComplexity), true
 
 	case "PageInfo.endCursor":
-		if e.complexity.PageInfo.EndCursor == nil {
+		if e.ComplexityRoot.PageInfo.EndCursor == nil {
 			break
 		}
 
-		return e.complexity.PageInfo.EndCursor(childComplexity), true
-
+		return e.ComplexityRoot.PageInfo.EndCursor(childComplexity), true
 	case "PageInfo.hasNextPage":
-		if e.complexity.PageInfo.HasNextPage == nil {
+		if e.ComplexityRoot.PageInfo.HasNextPage == nil {
 			break
 		}
 
-		return e.complexity.PageInfo.HasNextPage(childComplexity), true
-
+		return e.ComplexityRoot.PageInfo.HasNextPage(childComplexity), true
 	case "PageInfo.hasPreviousPage":
-		if e.complexity.PageInfo.HasPreviousPage == nil {
+		if e.ComplexityRoot.PageInfo.HasPreviousPage == nil {
 			break
 		}
 
-		return e.complexity.PageInfo.HasPreviousPage(childComplexity), true
-
+		return e.ComplexityRoot.PageInfo.HasPreviousPage(childComplexity), true
 	case "PageInfo.startCursor":
-		if e.complexity.PageInfo.StartCursor == nil {
+		if e.ComplexityRoot.PageInfo.StartCursor == nil {
 			break
 		}
 
-		return e.complexity.PageInfo.StartCursor(childComplexity), true
+		return e.ComplexityRoot.PageInfo.StartCursor(childComplexity), true
 
 	case "Query.getAirport":
-		if e.complexity.Query.GetAirport == nil {
+		if e.ComplexityRoot.Query.GetAirport == nil {
 			break
 		}
 
@@ -1302,10 +1177,9 @@ func (e *executableSchema) Complexity(ctx context.Context, typeName, field strin
 			return 0, false
 		}
 
-		return e.complexity.Query.GetAirport(childComplexity, args["id"].(*string), args["identifier"].(*string), args["icao"].(*string), args["iata"].(*string)), true
-
+		return e.ComplexityRoot.Query.GetAirport(childComplexity, args["id"].(*string), args["identifier"].(*string), args["icao"].(*string), args["iata"].(*string)), true
 	case "Query.getAirports":
-		if e.complexity.Query.GetAirports == nil {
+		if e.ComplexityRoot.Query.GetAirports == nil {
 			break
 		}
 
@@ -1314,10 +1188,9 @@ func (e *executableSchema) Complexity(ctx context.Context, typeName, field strin
 			return 0, false
 		}
 
-		return e.complexity.Query.GetAirports(childComplexity, args["first"].(*int), args["after"].(*entgql.Cursor[uuid.UUID]), args["before"].(*entgql.Cursor[uuid.UUID]), args["last"].(*int), args["identifier"].(*string), args["icao"].(*string), args["iata"].(*string), args["type"].(*airport.Type), args["search"].(*string), args["hasWeather"].(*bool), args["importance"].(*int), args["order"].([]*ent.AirportOrder)), true
-
+		return e.ComplexityRoot.Query.GetAirports(childComplexity, args["first"].(*int), args["after"].(*entgql.Cursor[uuid.UUID]), args["before"].(*entgql.Cursor[uuid.UUID]), args["last"].(*int), args["identifier"].(*string), args["icao"].(*string), args["iata"].(*string), args["type"].(*airport.Type), args["search"].(*string), args["hasWeather"].(*bool), args["importance"].(*int), args["order"].([]*ent.AirportOrder)), true
 	case "Query.getAirportsByIds":
-		if e.complexity.Query.GetAirportsByIds == nil {
+		if e.ComplexityRoot.Query.GetAirportsByIds == nil {
 			break
 		}
 
@@ -1326,10 +1199,9 @@ func (e *executableSchema) Complexity(ctx context.Context, typeName, field strin
 			return 0, false
 		}
 
-		return e.complexity.Query.GetAirportsByIds(childComplexity, args["identifiers"].([]string)), true
-
+		return e.ComplexityRoot.Query.GetAirportsByIds(childComplexity, args["identifiers"].([]string)), true
 	case "Query.getStation":
-		if e.complexity.Query.GetStation == nil {
+		if e.ComplexityRoot.Query.GetStation == nil {
 			break
 		}
 
@@ -1338,10 +1210,9 @@ func (e *executableSchema) Complexity(ctx context.Context, typeName, field strin
 			return 0, false
 		}
 
-		return e.complexity.Query.GetStation(childComplexity, args["id"].(*string), args["identifier"].(*string)), true
-
+		return e.ComplexityRoot.Query.GetStation(childComplexity, args["id"].(*string), args["identifier"].(*string)), true
 	case "Query.getStations":
-		if e.complexity.Query.GetStations == nil {
+		if e.ComplexityRoot.Query.GetStations == nil {
 			break
 		}
 
@@ -1350,150 +1221,132 @@ func (e *executableSchema) Complexity(ctx context.Context, typeName, field strin
 			return 0, false
 		}
 
-		return e.complexity.Query.GetStations(childComplexity, args["first"].(*int), args["after"].(*entgql.Cursor[uuid.UUID]), args["before"].(*entgql.Cursor[uuid.UUID]), args["last"].(*int), args["identifier"].(*string)), true
+		return e.ComplexityRoot.Query.GetStations(childComplexity, args["first"].(*int), args["after"].(*entgql.Cursor[uuid.UUID]), args["before"].(*entgql.Cursor[uuid.UUID]), args["last"].(*int), args["identifier"].(*string)), true
 
 	case "Query.status":
-		if e.complexity.Query.Status == nil {
+		if e.ComplexityRoot.Query.Status == nil {
 			break
 		}
 
-		return e.complexity.Query.Status(childComplexity), true
+		return e.ComplexityRoot.Query.Status(childComplexity), true
 
 	case "Region.code":
-		if e.complexity.Region.Code == nil {
+		if e.ComplexityRoot.Region.Code == nil {
 			break
 		}
 
-		return e.complexity.Region.Code(childComplexity), true
-
+		return e.ComplexityRoot.Region.Code(childComplexity), true
 	case "Region.id":
-		if e.complexity.Region.ID == nil {
+		if e.ComplexityRoot.Region.ID == nil {
 			break
 		}
 
-		return e.complexity.Region.ID(childComplexity), true
-
+		return e.ComplexityRoot.Region.ID(childComplexity), true
 	case "Region.importID":
-		if e.complexity.Region.ImportID == nil {
+		if e.ComplexityRoot.Region.ImportID == nil {
 			break
 		}
 
-		return e.complexity.Region.ImportID(childComplexity), true
-
+		return e.ComplexityRoot.Region.ImportID(childComplexity), true
 	case "Region.keywords":
-		if e.complexity.Region.Keywords == nil {
+		if e.ComplexityRoot.Region.Keywords == nil {
 			break
 		}
 
-		return e.complexity.Region.Keywords(childComplexity), true
-
+		return e.ComplexityRoot.Region.Keywords(childComplexity), true
 	case "Region.lastUpdated":
-		if e.complexity.Region.LastUpdated == nil {
+		if e.ComplexityRoot.Region.LastUpdated == nil {
 			break
 		}
 
-		return e.complexity.Region.LastUpdated(childComplexity), true
-
+		return e.ComplexityRoot.Region.LastUpdated(childComplexity), true
 	case "Region.localCode":
-		if e.complexity.Region.LocalCode == nil {
+		if e.ComplexityRoot.Region.LocalCode == nil {
 			break
 		}
 
-		return e.complexity.Region.LocalCode(childComplexity), true
-
+		return e.ComplexityRoot.Region.LocalCode(childComplexity), true
 	case "Region.name":
-		if e.complexity.Region.Name == nil {
+		if e.ComplexityRoot.Region.Name == nil {
 			break
 		}
 
-		return e.complexity.Region.Name(childComplexity), true
-
+		return e.ComplexityRoot.Region.Name(childComplexity), true
 	case "Region.wikipediaLink":
-		if e.complexity.Region.WikipediaLink == nil {
+		if e.ComplexityRoot.Region.WikipediaLink == nil {
 			break
 		}
 
-		return e.complexity.Region.WikipediaLink(childComplexity), true
+		return e.ComplexityRoot.Region.WikipediaLink(childComplexity), true
 
 	case "Runway.airport":
-		if e.complexity.Runway.Airport == nil {
+		if e.ComplexityRoot.Runway.Airport == nil {
 			break
 		}
 
-		return e.complexity.Runway.Airport(childComplexity), true
-
+		return e.ComplexityRoot.Runway.Airport(childComplexity), true
 	case "Runway.closed":
-		if e.complexity.Runway.Closed == nil {
+		if e.ComplexityRoot.Runway.Closed == nil {
 			break
 		}
 
-		return e.complexity.Runway.Closed(childComplexity), true
-
+		return e.ComplexityRoot.Runway.Closed(childComplexity), true
 	case "Runway.highRunwayDisplacedThreshold":
-		if e.complexity.Runway.HighRunwayDisplacedThreshold == nil {
+		if e.ComplexityRoot.Runway.HighRunwayDisplacedThreshold == nil {
 			break
 		}
 
-		return e.complexity.Runway.HighRunwayDisplacedThreshold(childComplexity), true
-
+		return e.ComplexityRoot.Runway.HighRunwayDisplacedThreshold(childComplexity), true
 	case "Runway.highRunwayElevation":
-		if e.complexity.Runway.HighRunwayElevation == nil {
+		if e.ComplexityRoot.Runway.HighRunwayElevation == nil {
 			break
 		}
 
-		return e.complexity.Runway.HighRunwayElevation(childComplexity), true
-
+		return e.ComplexityRoot.Runway.HighRunwayElevation(childComplexity), true
 	case "Runway.highRunwayHeading":
-		if e.complexity.Runway.HighRunwayHeading == nil {
+		if e.ComplexityRoot.Runway.HighRunwayHeading == nil {
 			break
 		}
 
-		return e.complexity.Runway.HighRunwayHeading(childComplexity), true
-
+		return e.ComplexityRoot.Runway.HighRunwayHeading(childComplexity), true
 	case "Runway.highRunwayIdentifier":
-		if e.complexity.Runway.HighRunwayIdentifier == nil {
+		if e.ComplexityRoot.Runway.HighRunwayIdentifier == nil {
 			break
 		}
 
-		return e.complexity.Runway.HighRunwayIdentifier(childComplexity), true
-
+		return e.ComplexityRoot.Runway.HighRunwayIdentifier(childComplexity), true
 	case "Runway.highRunwayLatitude":
-		if e.complexity.Runway.HighRunwayLatitude == nil {
+		if e.ComplexityRoot.Runway.HighRunwayLatitude == nil {
 			break
 		}
 
-		return e.complexity.Runway.HighRunwayLatitude(childComplexity), true
-
+		return e.ComplexityRoot.Runway.HighRunwayLatitude(childComplexity), true
 	case "Runway.highRunwayLongitude":
-		if e.complexity.Runway.HighRunwayLongitude == nil {
+		if e.ComplexityRoot.Runway.HighRunwayLongitude == nil {
 			break
 		}
 
-		return e.complexity.Runway.HighRunwayLongitude(childComplexity), true
-
+		return e.ComplexityRoot.Runway.HighRunwayLongitude(childComplexity), true
 	case "Runway.id":
-		if e.complexity.Runway.ID == nil {
+		if e.ComplexityRoot.Runway.ID == nil {
 			break
 		}
 
-		return e.complexity.Runway.ID(childComplexity), true
-
+		return e.ComplexityRoot.Runway.ID(childComplexity), true
 	case "Runway.importID":
-		if e.complexity.Runway.ImportID == nil {
+		if e.ComplexityRoot.Runway.ImportID == nil {
 			break
 		}
 
-		return e.complexity.Runway.ImportID(childComplexity), true
-
+		return e.ComplexityRoot.Runway.ImportID(childComplexity), true
 	case "Runway.lastUpdated":
-		if e.complexity.Runway.LastUpdated == nil {
+		if e.ComplexityRoot.Runway.LastUpdated == nil {
 			break
 		}
 
-		return e.complexity.Runway.LastUpdated(childComplexity), true
-
+		return e.ComplexityRoot.Runway.LastUpdated(childComplexity), true
 	case "Runway.length":
-		if e.complexity.Runway.Length == nil {
+		if e.ComplexityRoot.Runway.Length == nil {
 			break
 		}
 
@@ -1502,66 +1355,57 @@ func (e *executableSchema) Complexity(ctx context.Context, typeName, field strin
 			return 0, false
 		}
 
-		return e.complexity.Runway.Length(childComplexity, args["unit"].(model.LengthUnit)), true
-
+		return e.ComplexityRoot.Runway.Length(childComplexity, args["unit"].(model.LengthUnit)), true
 	case "Runway.lighted":
-		if e.complexity.Runway.Lighted == nil {
+		if e.ComplexityRoot.Runway.Lighted == nil {
 			break
 		}
 
-		return e.complexity.Runway.Lighted(childComplexity), true
-
+		return e.ComplexityRoot.Runway.Lighted(childComplexity), true
 	case "Runway.lowRunwayDisplacedThreshold":
-		if e.complexity.Runway.LowRunwayDisplacedThreshold == nil {
+		if e.ComplexityRoot.Runway.LowRunwayDisplacedThreshold == nil {
 			break
 		}
 
-		return e.complexity.Runway.LowRunwayDisplacedThreshold(childComplexity), true
-
+		return e.ComplexityRoot.Runway.LowRunwayDisplacedThreshold(childComplexity), true
 	case "Runway.lowRunwayElevation":
-		if e.complexity.Runway.LowRunwayElevation == nil {
+		if e.ComplexityRoot.Runway.LowRunwayElevation == nil {
 			break
 		}
 
-		return e.complexity.Runway.LowRunwayElevation(childComplexity), true
-
+		return e.ComplexityRoot.Runway.LowRunwayElevation(childComplexity), true
 	case "Runway.lowRunwayHeading":
-		if e.complexity.Runway.LowRunwayHeading == nil {
+		if e.ComplexityRoot.Runway.LowRunwayHeading == nil {
 			break
 		}
 
-		return e.complexity.Runway.LowRunwayHeading(childComplexity), true
-
+		return e.ComplexityRoot.Runway.LowRunwayHeading(childComplexity), true
 	case "Runway.lowRunwayIdentifier":
-		if e.complexity.Runway.LowRunwayIdentifier == nil {
+		if e.ComplexityRoot.Runway.LowRunwayIdentifier == nil {
 			break
 		}
 
-		return e.complexity.Runway.LowRunwayIdentifier(childComplexity), true
-
+		return e.ComplexityRoot.Runway.LowRunwayIdentifier(childComplexity), true
 	case "Runway.lowRunwayLatitude":
-		if e.complexity.Runway.LowRunwayLatitude == nil {
+		if e.ComplexityRoot.Runway.LowRunwayLatitude == nil {
 			break
 		}
 
-		return e.complexity.Runway.LowRunwayLatitude(childComplexity), true
-
+		return e.ComplexityRoot.Runway.LowRunwayLatitude(childComplexity), true
 	case "Runway.lowRunwayLongitude":
-		if e.complexity.Runway.LowRunwayLongitude == nil {
+		if e.ComplexityRoot.Runway.LowRunwayLongitude == nil {
 			break
 		}
 
-		return e.complexity.Runway.LowRunwayLongitude(childComplexity), true
-
+		return e.ComplexityRoot.Runway.LowRunwayLongitude(childComplexity), true
 	case "Runway.surface":
-		if e.complexity.Runway.Surface == nil {
+		if e.ComplexityRoot.Runway.Surface == nil {
 			break
 		}
 
-		return e.complexity.Runway.Surface(childComplexity), true
-
+		return e.ComplexityRoot.Runway.Surface(childComplexity), true
 	case "Runway.width":
-		if e.complexity.Runway.Width == nil {
+		if e.ComplexityRoot.Runway.Width == nil {
 			break
 		}
 
@@ -1570,10 +1414,10 @@ func (e *executableSchema) Complexity(ctx context.Context, typeName, field strin
 			return 0, false
 		}
 
-		return e.complexity.Runway.Width(childComplexity, args["unit"].(model.LengthUnit)), true
+		return e.ComplexityRoot.Runway.Width(childComplexity, args["unit"].(model.LengthUnit)), true
 
 	case "SkyCondition.cloudBase":
-		if e.complexity.SkyCondition.CloudBase == nil {
+		if e.ComplexityRoot.SkyCondition.CloudBase == nil {
 			break
 		}
 
@@ -1582,164 +1426,147 @@ func (e *executableSchema) Complexity(ctx context.Context, typeName, field strin
 			return 0, false
 		}
 
-		return e.complexity.SkyCondition.CloudBase(childComplexity, args["unit"].(model.LengthUnit)), true
-
+		return e.ComplexityRoot.SkyCondition.CloudBase(childComplexity, args["unit"].(model.LengthUnit)), true
 	case "SkyCondition.cloudType":
-		if e.complexity.SkyCondition.CloudType == nil {
+		if e.ComplexityRoot.SkyCondition.CloudType == nil {
 			break
 		}
 
-		return e.complexity.SkyCondition.CloudType(childComplexity), true
-
+		return e.ComplexityRoot.SkyCondition.CloudType(childComplexity), true
 	case "SkyCondition.id":
-		if e.complexity.SkyCondition.ID == nil {
+		if e.ComplexityRoot.SkyCondition.ID == nil {
 			break
 		}
 
-		return e.complexity.SkyCondition.ID(childComplexity), true
-
+		return e.ComplexityRoot.SkyCondition.ID(childComplexity), true
 	case "SkyCondition.skyCover":
-		if e.complexity.SkyCondition.SkyCover == nil {
+		if e.ComplexityRoot.SkyCondition.SkyCover == nil {
 			break
 		}
 
-		return e.complexity.SkyCondition.SkyCover(childComplexity), true
+		return e.ComplexityRoot.SkyCondition.SkyCover(childComplexity), true
 
 	case "StationWithDistance.distance":
-		if e.complexity.StationWithDistance.Distance == nil {
+		if e.ComplexityRoot.StationWithDistance.Distance == nil {
 			break
 		}
 
-		return e.complexity.StationWithDistance.Distance(childComplexity), true
-
+		return e.ComplexityRoot.StationWithDistance.Distance(childComplexity), true
 	case "StationWithDistance.station":
-		if e.complexity.StationWithDistance.Station == nil {
+		if e.ComplexityRoot.StationWithDistance.Station == nil {
 			break
 		}
 
-		return e.complexity.StationWithDistance.Station(childComplexity), true
+		return e.ComplexityRoot.StationWithDistance.Station(childComplexity), true
 
 	case "Status.lastWeatherSync":
-		if e.complexity.Status.LastWeatherSync == nil {
+		if e.ComplexityRoot.Status.LastWeatherSync == nil {
 			break
 		}
 
-		return e.complexity.Status.LastWeatherSync(childComplexity), true
+		return e.ComplexityRoot.Status.LastWeatherSync(childComplexity), true
 
 	case "Taf.bulletinTime":
-		if e.complexity.Taf.BulletinTime == nil {
+		if e.ComplexityRoot.Taf.BulletinTime == nil {
 			break
 		}
 
-		return e.complexity.Taf.BulletinTime(childComplexity), true
-
+		return e.ComplexityRoot.Taf.BulletinTime(childComplexity), true
 	case "Taf.forecast":
-		if e.complexity.Taf.Forecast == nil {
+		if e.ComplexityRoot.Taf.Forecast == nil {
 			break
 		}
 
-		return e.complexity.Taf.Forecast(childComplexity), true
-
+		return e.ComplexityRoot.Taf.Forecast(childComplexity), true
 	case "Taf.id":
-		if e.complexity.Taf.ID == nil {
+		if e.ComplexityRoot.Taf.ID == nil {
 			break
 		}
 
-		return e.complexity.Taf.ID(childComplexity), true
-
+		return e.ComplexityRoot.Taf.ID(childComplexity), true
 	case "Taf.importTime":
-		if e.complexity.Taf.ImportTime == nil {
+		if e.ComplexityRoot.Taf.ImportTime == nil {
 			break
 		}
 
-		return e.complexity.Taf.ImportTime(childComplexity), true
-
+		return e.ComplexityRoot.Taf.ImportTime(childComplexity), true
 	case "Taf.issueTime":
-		if e.complexity.Taf.IssueTime == nil {
+		if e.ComplexityRoot.Taf.IssueTime == nil {
 			break
 		}
 
-		return e.complexity.Taf.IssueTime(childComplexity), true
-
+		return e.ComplexityRoot.Taf.IssueTime(childComplexity), true
 	case "Taf.rawText":
-		if e.complexity.Taf.RawText == nil {
+		if e.ComplexityRoot.Taf.RawText == nil {
 			break
 		}
 
-		return e.complexity.Taf.RawText(childComplexity), true
-
+		return e.ComplexityRoot.Taf.RawText(childComplexity), true
 	case "Taf.remarks":
-		if e.complexity.Taf.Remarks == nil {
+		if e.ComplexityRoot.Taf.Remarks == nil {
 			break
 		}
 
-		return e.complexity.Taf.Remarks(childComplexity), true
-
+		return e.ComplexityRoot.Taf.Remarks(childComplexity), true
 	case "Taf.station":
-		if e.complexity.Taf.Station == nil {
+		if e.ComplexityRoot.Taf.Station == nil {
 			break
 		}
 
-		return e.complexity.Taf.Station(childComplexity), true
-
+		return e.ComplexityRoot.Taf.Station(childComplexity), true
 	case "Taf.validFromTime":
-		if e.complexity.Taf.ValidFromTime == nil {
+		if e.ComplexityRoot.Taf.ValidFromTime == nil {
 			break
 		}
 
-		return e.complexity.Taf.ValidFromTime(childComplexity), true
-
+		return e.ComplexityRoot.Taf.ValidFromTime(childComplexity), true
 	case "Taf.validToTime":
-		if e.complexity.Taf.ValidToTime == nil {
+		if e.ComplexityRoot.Taf.ValidToTime == nil {
 			break
 		}
 
-		return e.complexity.Taf.ValidToTime(childComplexity), true
+		return e.ComplexityRoot.Taf.ValidToTime(childComplexity), true
 
 	case "TafConnection.edges":
-		if e.complexity.TafConnection.Edges == nil {
+		if e.ComplexityRoot.TafConnection.Edges == nil {
 			break
 		}
 
-		return e.complexity.TafConnection.Edges(childComplexity), true
-
+		return e.ComplexityRoot.TafConnection.Edges(childComplexity), true
 	case "TafConnection.pageInfo":
-		if e.complexity.TafConnection.PageInfo == nil {
+		if e.ComplexityRoot.TafConnection.PageInfo == nil {
 			break
 		}
 
-		return e.complexity.TafConnection.PageInfo(childComplexity), true
-
+		return e.ComplexityRoot.TafConnection.PageInfo(childComplexity), true
 	case "TafConnection.totalCount":
-		if e.complexity.TafConnection.TotalCount == nil {
+		if e.ComplexityRoot.TafConnection.TotalCount == nil {
 			break
 		}
 
-		return e.complexity.TafConnection.TotalCount(childComplexity), true
+		return e.ComplexityRoot.TafConnection.TotalCount(childComplexity), true
 
 	case "TafEdge.cursor":
-		if e.complexity.TafEdge.Cursor == nil {
+		if e.ComplexityRoot.TafEdge.Cursor == nil {
 			break
 		}
 
-		return e.complexity.TafEdge.Cursor(childComplexity), true
-
+		return e.ComplexityRoot.TafEdge.Cursor(childComplexity), true
 	case "TafEdge.node":
-		if e.complexity.TafEdge.Node == nil {
+		if e.ComplexityRoot.TafEdge.Node == nil {
 			break
 		}
 
-		return e.complexity.TafEdge.Node(childComplexity), true
+		return e.ComplexityRoot.TafEdge.Node(childComplexity), true
 
 	case "TemperatureData.id":
-		if e.complexity.TemperatureData.ID == nil {
+		if e.ComplexityRoot.TemperatureData.ID == nil {
 			break
 		}
 
-		return e.complexity.TemperatureData.ID(childComplexity), true
-
+		return e.ComplexityRoot.TemperatureData.ID(childComplexity), true
 	case "TemperatureData.maxTemperature":
-		if e.complexity.TemperatureData.MaxTemperature == nil {
+		if e.ComplexityRoot.TemperatureData.MaxTemperature == nil {
 			break
 		}
 
@@ -1748,10 +1575,9 @@ func (e *executableSchema) Complexity(ctx context.Context, typeName, field strin
 			return 0, false
 		}
 
-		return e.complexity.TemperatureData.MaxTemperature(childComplexity, args["unit"].(model.TemperatureUnit)), true
-
+		return e.ComplexityRoot.TemperatureData.MaxTemperature(childComplexity, args["unit"].(model.TemperatureUnit)), true
 	case "TemperatureData.minTemperature":
-		if e.complexity.TemperatureData.MinTemperature == nil {
+		if e.ComplexityRoot.TemperatureData.MinTemperature == nil {
 			break
 		}
 
@@ -1760,10 +1586,9 @@ func (e *executableSchema) Complexity(ctx context.Context, typeName, field strin
 			return 0, false
 		}
 
-		return e.complexity.TemperatureData.MinTemperature(childComplexity, args["unit"].(model.TemperatureUnit)), true
-
+		return e.ComplexityRoot.TemperatureData.MinTemperature(childComplexity, args["unit"].(model.TemperatureUnit)), true
 	case "TemperatureData.temperature":
-		if e.complexity.TemperatureData.Temperature == nil {
+		if e.ComplexityRoot.TemperatureData.Temperature == nil {
 			break
 		}
 
@@ -1772,31 +1597,28 @@ func (e *executableSchema) Complexity(ctx context.Context, typeName, field strin
 			return 0, false
 		}
 
-		return e.complexity.TemperatureData.Temperature(childComplexity, args["unit"].(model.TemperatureUnit)), true
-
+		return e.ComplexityRoot.TemperatureData.Temperature(childComplexity, args["unit"].(model.TemperatureUnit)), true
 	case "TemperatureData.validTime":
-		if e.complexity.TemperatureData.ValidTime == nil {
+		if e.ComplexityRoot.TemperatureData.ValidTime == nil {
 			break
 		}
 
-		return e.complexity.TemperatureData.ValidTime(childComplexity), true
+		return e.ComplexityRoot.TemperatureData.ValidTime(childComplexity), true
 
 	case "TurbulenceCondition.id":
-		if e.complexity.TurbulenceCondition.ID == nil {
+		if e.ComplexityRoot.TurbulenceCondition.ID == nil {
 			break
 		}
 
-		return e.complexity.TurbulenceCondition.ID(childComplexity), true
-
+		return e.ComplexityRoot.TurbulenceCondition.ID(childComplexity), true
 	case "TurbulenceCondition.intensity":
-		if e.complexity.TurbulenceCondition.Intensity == nil {
+		if e.ComplexityRoot.TurbulenceCondition.Intensity == nil {
 			break
 		}
 
-		return e.complexity.TurbulenceCondition.Intensity(childComplexity), true
-
+		return e.ComplexityRoot.TurbulenceCondition.Intensity(childComplexity), true
 	case "TurbulenceCondition.maxAltitude":
-		if e.complexity.TurbulenceCondition.MaxAltitude == nil {
+		if e.ComplexityRoot.TurbulenceCondition.MaxAltitude == nil {
 			break
 		}
 
@@ -1805,10 +1627,9 @@ func (e *executableSchema) Complexity(ctx context.Context, typeName, field strin
 			return 0, false
 		}
 
-		return e.complexity.TurbulenceCondition.MaxAltitude(childComplexity, args["unit"].(model.LengthUnit)), true
-
+		return e.ComplexityRoot.TurbulenceCondition.MaxAltitude(childComplexity, args["unit"].(model.LengthUnit)), true
 	case "TurbulenceCondition.minAltitude":
-		if e.complexity.TurbulenceCondition.MinAltitude == nil {
+		if e.ComplexityRoot.TurbulenceCondition.MinAltitude == nil {
 			break
 		}
 
@@ -1817,45 +1638,40 @@ func (e *executableSchema) Complexity(ctx context.Context, typeName, field strin
 			return 0, false
 		}
 
-		return e.complexity.TurbulenceCondition.MinAltitude(childComplexity, args["unit"].(model.LengthUnit)), true
+		return e.ComplexityRoot.TurbulenceCondition.MinAltitude(childComplexity, args["unit"].(model.LengthUnit)), true
 
 	case "WeatherStation.airport":
-		if e.complexity.WeatherStation.Airport == nil {
+		if e.ComplexityRoot.WeatherStation.Airport == nil {
 			break
 		}
 
-		return e.complexity.WeatherStation.Airport(childComplexity), true
-
+		return e.ComplexityRoot.WeatherStation.Airport(childComplexity), true
 	case "WeatherStation.elevation":
-		if e.complexity.WeatherStation.Elevation == nil {
+		if e.ComplexityRoot.WeatherStation.Elevation == nil {
 			break
 		}
 
-		return e.complexity.WeatherStation.Elevation(childComplexity), true
-
+		return e.ComplexityRoot.WeatherStation.Elevation(childComplexity), true
 	case "WeatherStation.id":
-		if e.complexity.WeatherStation.ID == nil {
+		if e.ComplexityRoot.WeatherStation.ID == nil {
 			break
 		}
 
-		return e.complexity.WeatherStation.ID(childComplexity), true
-
+		return e.ComplexityRoot.WeatherStation.ID(childComplexity), true
 	case "WeatherStation.latitude":
-		if e.complexity.WeatherStation.Latitude == nil {
+		if e.ComplexityRoot.WeatherStation.Latitude == nil {
 			break
 		}
 
-		return e.complexity.WeatherStation.Latitude(childComplexity), true
-
+		return e.ComplexityRoot.WeatherStation.Latitude(childComplexity), true
 	case "WeatherStation.longitude":
-		if e.complexity.WeatherStation.Longitude == nil {
+		if e.ComplexityRoot.WeatherStation.Longitude == nil {
 			break
 		}
 
-		return e.complexity.WeatherStation.Longitude(childComplexity), true
-
+		return e.ComplexityRoot.WeatherStation.Longitude(childComplexity), true
 	case "WeatherStation.metars":
-		if e.complexity.WeatherStation.Metars == nil {
+		if e.ComplexityRoot.WeatherStation.Metars == nil {
 			break
 		}
 
@@ -1864,17 +1680,15 @@ func (e *executableSchema) Complexity(ctx context.Context, typeName, field strin
 			return 0, false
 		}
 
-		return e.complexity.WeatherStation.Metars(childComplexity, args["after"].(*entgql.Cursor[uuid.UUID]), args["first"].(*int), args["before"].(*entgql.Cursor[uuid.UUID]), args["last"].(*int)), true
-
+		return e.ComplexityRoot.WeatherStation.Metars(childComplexity, args["after"].(*entgql.Cursor[uuid.UUID]), args["first"].(*int), args["before"].(*entgql.Cursor[uuid.UUID]), args["last"].(*int)), true
 	case "WeatherStation.stationID":
-		if e.complexity.WeatherStation.StationID == nil {
+		if e.ComplexityRoot.WeatherStation.StationID == nil {
 			break
 		}
 
-		return e.complexity.WeatherStation.StationID(childComplexity), true
-
+		return e.ComplexityRoot.WeatherStation.StationID(childComplexity), true
 	case "WeatherStation.tafs":
-		if e.complexity.WeatherStation.Tafs == nil {
+		if e.ComplexityRoot.WeatherStation.Tafs == nil {
 			break
 		}
 
@@ -1883,42 +1697,39 @@ func (e *executableSchema) Complexity(ctx context.Context, typeName, field strin
 			return 0, false
 		}
 
-		return e.complexity.WeatherStation.Tafs(childComplexity, args["after"].(*entgql.Cursor[uuid.UUID]), args["first"].(*int), args["before"].(*entgql.Cursor[uuid.UUID]), args["last"].(*int)), true
+		return e.ComplexityRoot.WeatherStation.Tafs(childComplexity, args["after"].(*entgql.Cursor[uuid.UUID]), args["first"].(*int), args["before"].(*entgql.Cursor[uuid.UUID]), args["last"].(*int)), true
 
 	case "WeatherStationConnection.edges":
-		if e.complexity.WeatherStationConnection.Edges == nil {
+		if e.ComplexityRoot.WeatherStationConnection.Edges == nil {
 			break
 		}
 
-		return e.complexity.WeatherStationConnection.Edges(childComplexity), true
-
+		return e.ComplexityRoot.WeatherStationConnection.Edges(childComplexity), true
 	case "WeatherStationConnection.pageInfo":
-		if e.complexity.WeatherStationConnection.PageInfo == nil {
+		if e.ComplexityRoot.WeatherStationConnection.PageInfo == nil {
 			break
 		}
 
-		return e.complexity.WeatherStationConnection.PageInfo(childComplexity), true
-
+		return e.ComplexityRoot.WeatherStationConnection.PageInfo(childComplexity), true
 	case "WeatherStationConnection.totalCount":
-		if e.complexity.WeatherStationConnection.TotalCount == nil {
+		if e.ComplexityRoot.WeatherStationConnection.TotalCount == nil {
 			break
 		}
 
-		return e.complexity.WeatherStationConnection.TotalCount(childComplexity), true
+		return e.ComplexityRoot.WeatherStationConnection.TotalCount(childComplexity), true
 
 	case "WeatherStationEdge.cursor":
-		if e.complexity.WeatherStationEdge.Cursor == nil {
+		if e.ComplexityRoot.WeatherStationEdge.Cursor == nil {
 			break
 		}
 
-		return e.complexity.WeatherStationEdge.Cursor(childComplexity), true
-
+		return e.ComplexityRoot.WeatherStationEdge.Cursor(childComplexity), true
 	case "WeatherStationEdge.node":
-		if e.complexity.WeatherStationEdge.Node == nil {
+		if e.ComplexityRoot.WeatherStationEdge.Node == nil {
 			break
 		}
 
-		return e.complexity.WeatherStationEdge.Node(childComplexity), true
+		return e.ComplexityRoot.WeatherStationEdge.Node(childComplexity), true
 
 	}
 	return 0, false
@@ -1926,12 +1737,14 @@ func (e *executableSchema) Complexity(ctx context.Context, typeName, field strin
 
 func (e *executableSchema) Exec(ctx context.Context) graphql.ResponseHandler {
 	opCtx := graphql.GetOperationContext(ctx)
-	ec := executionContext{opCtx, e, 0, 0, make(chan graphql.DeferredResult)}
-	inputUnmarshalMap := graphql.BuildUnmarshalerMap(
-		ec.unmarshalInputAirportOrder,
-		ec.unmarshalInputMetarOrder,
-		ec.unmarshalInputTafOrder,
-	)
+	ec := newExecutionContext(opCtx, e, make(chan graphql.DeferredResult))
+	inputUnmarshalers := func() *graphql.InputUnmarshalerIndex {
+		return graphql.NewInputUnmarshalerIndex(
+			graphql.NewInputUnmarshaler("AirportOrder", ec.unmarshalInputAirportOrder),
+			graphql.NewInputUnmarshaler("MetarOrder", ec.unmarshalInputMetarOrder),
+			graphql.NewInputUnmarshaler("TafOrder", ec.unmarshalInputTafOrder),
+		)
+	}
 	first := true
 
 	switch opCtx.Operation.Operation {
@@ -1941,12 +1754,12 @@ func (e *executableSchema) Exec(ctx context.Context) graphql.ResponseHandler {
 			var data graphql.Marshaler
 			if first {
 				first = false
-				ctx = graphql.WithUnmarshalerMap(ctx, inputUnmarshalMap)
+				ctx = graphql.WithLazyInputUnmarshalerIndex(ctx, inputUnmarshalers)
 				data = ec._Query(ctx, opCtx.Operation.SelectionSet)
 			} else {
-				if atomic.LoadInt32(&ec.pendingDeferred) > 0 {
-					result := <-ec.deferredResults
-					atomic.AddInt32(&ec.pendingDeferred, -1)
+				if atomic.LoadInt32(&ec.PendingDeferred) > 0 {
+					result := <-ec.DeferredResults
+					atomic.AddInt32(&ec.PendingDeferred, -1)
 					data = result.Result
 					response.Path = result.Path
 					response.Label = result.Label
@@ -1958,8 +1771,8 @@ func (e *executableSchema) Exec(ctx context.Context) graphql.ResponseHandler {
 			var buf bytes.Buffer
 			data.MarshalGQL(&buf)
 			response.Data = buf.Bytes()
-			if atomic.LoadInt32(&ec.deferred) > 0 {
-				hasNext := atomic.LoadInt32(&ec.pendingDeferred) > 0
+			if atomic.LoadInt32(&ec.Deferred) > 0 {
+				hasNext := atomic.LoadInt32(&ec.PendingDeferred) > 0
 				response.HasNext = &hasNext
 			}
 
@@ -1972,49 +1785,27 @@ func (e *executableSchema) Exec(ctx context.Context) graphql.ResponseHandler {
 }
 
 type executionContext struct {
-	*graphql.OperationContext
-	*executableSchema
-	deferred        int32
-	pendingDeferred int32
-	deferredResults chan graphql.DeferredResult
+	*graphql.ExecutionContextState[ResolverRoot, DirectiveRoot, ComplexityRoot]
 }
 
-func (ec *executionContext) processDeferredGroup(dg graphql.DeferredGroup) {
-	atomic.AddInt32(&ec.pendingDeferred, 1)
-	go func() {
-		ctx := graphql.WithFreshResponseContext(dg.Context)
-		dg.FieldSet.Dispatch(ctx)
-		ds := graphql.DeferredResult{
-			Path:   dg.Path,
-			Label:  dg.Label,
-			Result: dg.FieldSet,
-			Errors: graphql.GetErrors(ctx),
-		}
-		// null fields should bubble up
-		if dg.FieldSet.Invalids > 0 {
-			ds.Result = graphql.Null
-		}
-		ec.deferredResults <- ds
-	}()
-}
-
-func (ec *executionContext) introspectSchema() (*introspection.Schema, error) {
-	if ec.DisableIntrospection {
-		return nil, errors.New("introspection disabled")
+func newExecutionContext(
+	opCtx *graphql.OperationContext,
+	execSchema *executableSchema,
+	deferredResults chan graphql.DeferredResult,
+) *executionContext {
+	return &executionContext{
+		ExecutionContextState: graphql.NewExecutionContextState[ResolverRoot, DirectiveRoot, ComplexityRoot](
+			opCtx,
+			(*graphql.ExecutableSchemaState[ResolverRoot, DirectiveRoot, ComplexityRoot])(execSchema),
+			parsedSchema,
+			deferredResults,
+		),
 	}
-	return introspection.WrapSchema(ec.Schema()), nil
-}
-
-func (ec *executionContext) introspectType(name string) (*introspection.Type, error) {
-	if ec.DisableIntrospection {
-		return nil, errors.New("introspection disabled")
-	}
-	return introspection.WrapTypeFromDef(ec.Schema(), ec.Schema().Types[name]), nil
 }
 
 var sources = []*ast.Source{
-	{Name: "../../ent.graphql", Input: `directive @goField(forceResolver: Boolean, name: String) on FIELD_DEFINITION | INPUT_FIELD_DEFINITION
-directive @goModel(model: String, models: [String!]) on OBJECT | INPUT_OBJECT | SCALAR | ENUM | INTERFACE | UNION
+	{Name: "../../ent.graphql", Input: `directive @goField(forceResolver: Boolean, name: String, omittable: Boolean) on FIELD_DEFINITION | INPUT_FIELD_DEFINITION
+directive @goModel(model: String, models: [String!], forceGenerate: Boolean) on OBJECT | INPUT_OBJECT | SCALAR | ENUM | INTERFACE | UNION
 type Airport {
   """
   The unique identifier of the record.
@@ -3023,3 +2814,649 @@ extend type Runway {
 }`, BuiltIn: false},
 }
 var parsedSchema = gqlparser.MustLoadSchema(sources...)
+
+// childFields_* functions provide shared child field context lookups.
+// Each function is generated once per unique object type, deduplicating the
+// switch statements that were previously inlined in every fieldContext_* function.
+
+func (ec *executionContext) childFields_Airport(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+	switch field.Name {
+	case "id":
+		return ec.fieldContext_Airport_id(ctx, field)
+	case "importID":
+		return ec.fieldContext_Airport_importID(ctx, field)
+	case "lastUpdated":
+		return ec.fieldContext_Airport_lastUpdated(ctx, field)
+	case "icaoCode":
+		return ec.fieldContext_Airport_icaoCode(ctx, field)
+	case "iataCode":
+		return ec.fieldContext_Airport_iataCode(ctx, field)
+	case "identifier":
+		return ec.fieldContext_Airport_identifier(ctx, field)
+	case "type":
+		return ec.fieldContext_Airport_type(ctx, field)
+	case "importance":
+		return ec.fieldContext_Airport_importance(ctx, field)
+	case "name":
+		return ec.fieldContext_Airport_name(ctx, field)
+	case "latitude":
+		return ec.fieldContext_Airport_latitude(ctx, field)
+	case "longitude":
+		return ec.fieldContext_Airport_longitude(ctx, field)
+	case "timezone":
+		return ec.fieldContext_Airport_timezone(ctx, field)
+	case "elevation":
+		return ec.fieldContext_Airport_elevation(ctx, field)
+	case "municipality":
+		return ec.fieldContext_Airport_municipality(ctx, field)
+	case "scheduledService":
+		return ec.fieldContext_Airport_scheduledService(ctx, field)
+	case "gpsCode":
+		return ec.fieldContext_Airport_gpsCode(ctx, field)
+	case "localCode":
+		return ec.fieldContext_Airport_localCode(ctx, field)
+	case "website":
+		return ec.fieldContext_Airport_website(ctx, field)
+	case "wikipedia":
+		return ec.fieldContext_Airport_wikipedia(ctx, field)
+	case "keywords":
+		return ec.fieldContext_Airport_keywords(ctx, field)
+	case "region":
+		return ec.fieldContext_Airport_region(ctx, field)
+	case "country":
+		return ec.fieldContext_Airport_country(ctx, field)
+	case "frequencies":
+		return ec.fieldContext_Airport_frequencies(ctx, field)
+	case "station":
+		return ec.fieldContext_Airport_station(ctx, field)
+	case "runways":
+		return ec.fieldContext_Airport_runways(ctx, field)
+	case "stationsVicinity":
+		return ec.fieldContext_Airport_stationsVicinity(ctx, field)
+	}
+	return nil, fmt.Errorf("no field named %q was found under type Airport", field.Name)
+}
+
+func (ec *executionContext) childFields_AirportConnection(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+	switch field.Name {
+	case "totalCount":
+		return ec.fieldContext_AirportConnection_totalCount(ctx, field)
+	case "pageInfo":
+		return ec.fieldContext_AirportConnection_pageInfo(ctx, field)
+	case "edges":
+		return ec.fieldContext_AirportConnection_edges(ctx, field)
+	}
+	return nil, fmt.Errorf("no field named %q was found under type AirportConnection", field.Name)
+}
+
+func (ec *executionContext) childFields_AirportEdge(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+	switch field.Name {
+	case "node":
+		return ec.fieldContext_AirportEdge_node(ctx, field)
+	case "cursor":
+		return ec.fieldContext_AirportEdge_cursor(ctx, field)
+	}
+	return nil, fmt.Errorf("no field named %q was found under type AirportEdge", field.Name)
+}
+
+func (ec *executionContext) childFields_Country(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+	switch field.Name {
+	case "id":
+		return ec.fieldContext_Country_id(ctx, field)
+	case "importID":
+		return ec.fieldContext_Country_importID(ctx, field)
+	case "lastUpdated":
+		return ec.fieldContext_Country_lastUpdated(ctx, field)
+	case "code":
+		return ec.fieldContext_Country_code(ctx, field)
+	case "name":
+		return ec.fieldContext_Country_name(ctx, field)
+	case "continent":
+		return ec.fieldContext_Country_continent(ctx, field)
+	case "wikipediaLink":
+		return ec.fieldContext_Country_wikipediaLink(ctx, field)
+	case "keywords":
+		return ec.fieldContext_Country_keywords(ctx, field)
+	}
+	return nil, fmt.Errorf("no field named %q was found under type Country", field.Name)
+}
+
+func (ec *executionContext) childFields_Forecast(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+	switch field.Name {
+	case "id":
+		return ec.fieldContext_Forecast_id(ctx, field)
+	case "fromTime":
+		return ec.fieldContext_Forecast_fromTime(ctx, field)
+	case "toTime":
+		return ec.fieldContext_Forecast_toTime(ctx, field)
+	case "changeIndicator":
+		return ec.fieldContext_Forecast_changeIndicator(ctx, field)
+	case "changeTime":
+		return ec.fieldContext_Forecast_changeTime(ctx, field)
+	case "changeProbability":
+		return ec.fieldContext_Forecast_changeProbability(ctx, field)
+	case "windDirection":
+		return ec.fieldContext_Forecast_windDirection(ctx, field)
+	case "windDirectionVariable":
+		return ec.fieldContext_Forecast_windDirectionVariable(ctx, field)
+	case "windShearDirection":
+		return ec.fieldContext_Forecast_windShearDirection(ctx, field)
+	case "visibilityHorizontalIsMoreThan":
+		return ec.fieldContext_Forecast_visibilityHorizontalIsMoreThan(ctx, field)
+	case "weather":
+		return ec.fieldContext_Forecast_weather(ctx, field)
+	case "notDecoded":
+		return ec.fieldContext_Forecast_notDecoded(ctx, field)
+	case "skyConditions":
+		return ec.fieldContext_Forecast_skyConditions(ctx, field)
+	case "turbulenceConditions":
+		return ec.fieldContext_Forecast_turbulenceConditions(ctx, field)
+	case "icingConditions":
+		return ec.fieldContext_Forecast_icingConditions(ctx, field)
+	case "temperatureData":
+		return ec.fieldContext_Forecast_temperatureData(ctx, field)
+	case "altimeter":
+		return ec.fieldContext_Forecast_altimeter(ctx, field)
+	case "windSpeed":
+		return ec.fieldContext_Forecast_windSpeed(ctx, field)
+	case "windGust":
+		return ec.fieldContext_Forecast_windGust(ctx, field)
+	case "visibilityHorizontal":
+		return ec.fieldContext_Forecast_visibilityHorizontal(ctx, field)
+	case "visibilityVertical":
+		return ec.fieldContext_Forecast_visibilityVertical(ctx, field)
+	case "windShearHeight":
+		return ec.fieldContext_Forecast_windShearHeight(ctx, field)
+	case "windShearSpeed":
+		return ec.fieldContext_Forecast_windShearSpeed(ctx, field)
+	}
+	return nil, fmt.Errorf("no field named %q was found under type Forecast", field.Name)
+}
+
+func (ec *executionContext) childFields_Frequency(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+	switch field.Name {
+	case "id":
+		return ec.fieldContext_Frequency_id(ctx, field)
+	case "importID":
+		return ec.fieldContext_Frequency_importID(ctx, field)
+	case "lastUpdated":
+		return ec.fieldContext_Frequency_lastUpdated(ctx, field)
+	case "type":
+		return ec.fieldContext_Frequency_type(ctx, field)
+	case "description":
+		return ec.fieldContext_Frequency_description(ctx, field)
+	case "frequency":
+		return ec.fieldContext_Frequency_frequency(ctx, field)
+	case "airport":
+		return ec.fieldContext_Frequency_airport(ctx, field)
+	}
+	return nil, fmt.Errorf("no field named %q was found under type Frequency", field.Name)
+}
+
+func (ec *executionContext) childFields_IcingCondition(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+	switch field.Name {
+	case "id":
+		return ec.fieldContext_IcingCondition_id(ctx, field)
+	case "intensity":
+		return ec.fieldContext_IcingCondition_intensity(ctx, field)
+	case "minAltitude":
+		return ec.fieldContext_IcingCondition_minAltitude(ctx, field)
+	case "maxAltitude":
+		return ec.fieldContext_IcingCondition_maxAltitude(ctx, field)
+	}
+	return nil, fmt.Errorf("no field named %q was found under type IcingCondition", field.Name)
+}
+
+func (ec *executionContext) childFields_Metar(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+	switch field.Name {
+	case "id":
+		return ec.fieldContext_Metar_id(ctx, field)
+	case "rawText":
+		return ec.fieldContext_Metar_rawText(ctx, field)
+	case "observationTime":
+		return ec.fieldContext_Metar_observationTime(ctx, field)
+	case "importTime":
+		return ec.fieldContext_Metar_importTime(ctx, field)
+	case "nextImportTimePrediction":
+		return ec.fieldContext_Metar_nextImportTimePrediction(ctx, field)
+	case "windDirection":
+		return ec.fieldContext_Metar_windDirection(ctx, field)
+	case "windDirectionVariable":
+		return ec.fieldContext_Metar_windDirectionVariable(ctx, field)
+	case "visibilityIsMoreThan":
+		return ec.fieldContext_Metar_visibilityIsMoreThan(ctx, field)
+	case "presentWeather":
+		return ec.fieldContext_Metar_presentWeather(ctx, field)
+	case "flightCategory":
+		return ec.fieldContext_Metar_flightCategory(ctx, field)
+	case "qualityControlCorrected":
+		return ec.fieldContext_Metar_qualityControlCorrected(ctx, field)
+	case "qualityControlAutoStation":
+		return ec.fieldContext_Metar_qualityControlAutoStation(ctx, field)
+	case "qualityControlMaintenanceIndicatorOn":
+		return ec.fieldContext_Metar_qualityControlMaintenanceIndicatorOn(ctx, field)
+	case "qualityControlNoSignal":
+		return ec.fieldContext_Metar_qualityControlNoSignal(ctx, field)
+	case "qualityControlLightningSensorOff":
+		return ec.fieldContext_Metar_qualityControlLightningSensorOff(ctx, field)
+	case "qualityControlFreezingRainSensorOff":
+		return ec.fieldContext_Metar_qualityControlFreezingRainSensorOff(ctx, field)
+	case "qualityControlPresentWeatherSensorOff":
+		return ec.fieldContext_Metar_qualityControlPresentWeatherSensorOff(ctx, field)
+	case "maxTemp6":
+		return ec.fieldContext_Metar_maxTemp6(ctx, field)
+	case "minTemp6":
+		return ec.fieldContext_Metar_minTemp6(ctx, field)
+	case "maxTemp24":
+		return ec.fieldContext_Metar_maxTemp24(ctx, field)
+	case "minTemp24":
+		return ec.fieldContext_Metar_minTemp24(ctx, field)
+	case "precipitation":
+		return ec.fieldContext_Metar_precipitation(ctx, field)
+	case "precipitation3":
+		return ec.fieldContext_Metar_precipitation3(ctx, field)
+	case "precipitation6":
+		return ec.fieldContext_Metar_precipitation6(ctx, field)
+	case "precipitation24":
+		return ec.fieldContext_Metar_precipitation24(ctx, field)
+	case "metarType":
+		return ec.fieldContext_Metar_metarType(ctx, field)
+	case "station":
+		return ec.fieldContext_Metar_station(ctx, field)
+	case "skyConditions":
+		return ec.fieldContext_Metar_skyConditions(ctx, field)
+	case "altimeter":
+		return ec.fieldContext_Metar_altimeter(ctx, field)
+	case "temperature":
+		return ec.fieldContext_Metar_temperature(ctx, field)
+	case "dewpoint":
+		return ec.fieldContext_Metar_dewpoint(ctx, field)
+	case "windSpeed":
+		return ec.fieldContext_Metar_windSpeed(ctx, field)
+	case "windGust":
+		return ec.fieldContext_Metar_windGust(ctx, field)
+	case "visibility":
+		return ec.fieldContext_Metar_visibility(ctx, field)
+	case "verticalVisibility":
+		return ec.fieldContext_Metar_verticalVisibility(ctx, field)
+	case "snowDepth":
+		return ec.fieldContext_Metar_snowDepth(ctx, field)
+	case "seaLevelPressure":
+		return ec.fieldContext_Metar_seaLevelPressure(ctx, field)
+	case "pressureTendency":
+		return ec.fieldContext_Metar_pressureTendency(ctx, field)
+	}
+	return nil, fmt.Errorf("no field named %q was found under type Metar", field.Name)
+}
+
+func (ec *executionContext) childFields_MetarConnection(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+	switch field.Name {
+	case "totalCount":
+		return ec.fieldContext_MetarConnection_totalCount(ctx, field)
+	case "pageInfo":
+		return ec.fieldContext_MetarConnection_pageInfo(ctx, field)
+	case "edges":
+		return ec.fieldContext_MetarConnection_edges(ctx, field)
+	}
+	return nil, fmt.Errorf("no field named %q was found under type MetarConnection", field.Name)
+}
+
+func (ec *executionContext) childFields_MetarEdge(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+	switch field.Name {
+	case "node":
+		return ec.fieldContext_MetarEdge_node(ctx, field)
+	case "cursor":
+		return ec.fieldContext_MetarEdge_cursor(ctx, field)
+	}
+	return nil, fmt.Errorf("no field named %q was found under type MetarEdge", field.Name)
+}
+
+func (ec *executionContext) childFields_PageInfo(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+	switch field.Name {
+	case "hasNextPage":
+		return ec.fieldContext_PageInfo_hasNextPage(ctx, field)
+	case "hasPreviousPage":
+		return ec.fieldContext_PageInfo_hasPreviousPage(ctx, field)
+	case "startCursor":
+		return ec.fieldContext_PageInfo_startCursor(ctx, field)
+	case "endCursor":
+		return ec.fieldContext_PageInfo_endCursor(ctx, field)
+	}
+	return nil, fmt.Errorf("no field named %q was found under type PageInfo", field.Name)
+}
+
+func (ec *executionContext) childFields_Region(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+	switch field.Name {
+	case "id":
+		return ec.fieldContext_Region_id(ctx, field)
+	case "importID":
+		return ec.fieldContext_Region_importID(ctx, field)
+	case "lastUpdated":
+		return ec.fieldContext_Region_lastUpdated(ctx, field)
+	case "code":
+		return ec.fieldContext_Region_code(ctx, field)
+	case "localCode":
+		return ec.fieldContext_Region_localCode(ctx, field)
+	case "name":
+		return ec.fieldContext_Region_name(ctx, field)
+	case "wikipediaLink":
+		return ec.fieldContext_Region_wikipediaLink(ctx, field)
+	case "keywords":
+		return ec.fieldContext_Region_keywords(ctx, field)
+	}
+	return nil, fmt.Errorf("no field named %q was found under type Region", field.Name)
+}
+
+func (ec *executionContext) childFields_Runway(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+	switch field.Name {
+	case "id":
+		return ec.fieldContext_Runway_id(ctx, field)
+	case "importID":
+		return ec.fieldContext_Runway_importID(ctx, field)
+	case "lastUpdated":
+		return ec.fieldContext_Runway_lastUpdated(ctx, field)
+	case "surface":
+		return ec.fieldContext_Runway_surface(ctx, field)
+	case "lighted":
+		return ec.fieldContext_Runway_lighted(ctx, field)
+	case "closed":
+		return ec.fieldContext_Runway_closed(ctx, field)
+	case "lowRunwayIdentifier":
+		return ec.fieldContext_Runway_lowRunwayIdentifier(ctx, field)
+	case "lowRunwayLatitude":
+		return ec.fieldContext_Runway_lowRunwayLatitude(ctx, field)
+	case "lowRunwayLongitude":
+		return ec.fieldContext_Runway_lowRunwayLongitude(ctx, field)
+	case "lowRunwayElevation":
+		return ec.fieldContext_Runway_lowRunwayElevation(ctx, field)
+	case "lowRunwayHeading":
+		return ec.fieldContext_Runway_lowRunwayHeading(ctx, field)
+	case "lowRunwayDisplacedThreshold":
+		return ec.fieldContext_Runway_lowRunwayDisplacedThreshold(ctx, field)
+	case "highRunwayIdentifier":
+		return ec.fieldContext_Runway_highRunwayIdentifier(ctx, field)
+	case "highRunwayLatitude":
+		return ec.fieldContext_Runway_highRunwayLatitude(ctx, field)
+	case "highRunwayLongitude":
+		return ec.fieldContext_Runway_highRunwayLongitude(ctx, field)
+	case "highRunwayElevation":
+		return ec.fieldContext_Runway_highRunwayElevation(ctx, field)
+	case "highRunwayHeading":
+		return ec.fieldContext_Runway_highRunwayHeading(ctx, field)
+	case "highRunwayDisplacedThreshold":
+		return ec.fieldContext_Runway_highRunwayDisplacedThreshold(ctx, field)
+	case "airport":
+		return ec.fieldContext_Runway_airport(ctx, field)
+	case "length":
+		return ec.fieldContext_Runway_length(ctx, field)
+	case "width":
+		return ec.fieldContext_Runway_width(ctx, field)
+	}
+	return nil, fmt.Errorf("no field named %q was found under type Runway", field.Name)
+}
+
+func (ec *executionContext) childFields_SkyCondition(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+	switch field.Name {
+	case "id":
+		return ec.fieldContext_SkyCondition_id(ctx, field)
+	case "skyCover":
+		return ec.fieldContext_SkyCondition_skyCover(ctx, field)
+	case "cloudType":
+		return ec.fieldContext_SkyCondition_cloudType(ctx, field)
+	case "cloudBase":
+		return ec.fieldContext_SkyCondition_cloudBase(ctx, field)
+	}
+	return nil, fmt.Errorf("no field named %q was found under type SkyCondition", field.Name)
+}
+
+func (ec *executionContext) childFields_StationWithDistance(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+	switch field.Name {
+	case "distance":
+		return ec.fieldContext_StationWithDistance_distance(ctx, field)
+	case "station":
+		return ec.fieldContext_StationWithDistance_station(ctx, field)
+	}
+	return nil, fmt.Errorf("no field named %q was found under type StationWithDistance", field.Name)
+}
+
+func (ec *executionContext) childFields_Status(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+	switch field.Name {
+	case "lastWeatherSync":
+		return ec.fieldContext_Status_lastWeatherSync(ctx, field)
+	}
+	return nil, fmt.Errorf("no field named %q was found under type Status", field.Name)
+}
+
+func (ec *executionContext) childFields_Taf(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+	switch field.Name {
+	case "id":
+		return ec.fieldContext_Taf_id(ctx, field)
+	case "rawText":
+		return ec.fieldContext_Taf_rawText(ctx, field)
+	case "issueTime":
+		return ec.fieldContext_Taf_issueTime(ctx, field)
+	case "importTime":
+		return ec.fieldContext_Taf_importTime(ctx, field)
+	case "bulletinTime":
+		return ec.fieldContext_Taf_bulletinTime(ctx, field)
+	case "validFromTime":
+		return ec.fieldContext_Taf_validFromTime(ctx, field)
+	case "validToTime":
+		return ec.fieldContext_Taf_validToTime(ctx, field)
+	case "remarks":
+		return ec.fieldContext_Taf_remarks(ctx, field)
+	case "station":
+		return ec.fieldContext_Taf_station(ctx, field)
+	case "forecast":
+		return ec.fieldContext_Taf_forecast(ctx, field)
+	}
+	return nil, fmt.Errorf("no field named %q was found under type Taf", field.Name)
+}
+
+func (ec *executionContext) childFields_TafConnection(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+	switch field.Name {
+	case "totalCount":
+		return ec.fieldContext_TafConnection_totalCount(ctx, field)
+	case "pageInfo":
+		return ec.fieldContext_TafConnection_pageInfo(ctx, field)
+	case "edges":
+		return ec.fieldContext_TafConnection_edges(ctx, field)
+	}
+	return nil, fmt.Errorf("no field named %q was found under type TafConnection", field.Name)
+}
+
+func (ec *executionContext) childFields_TafEdge(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+	switch field.Name {
+	case "node":
+		return ec.fieldContext_TafEdge_node(ctx, field)
+	case "cursor":
+		return ec.fieldContext_TafEdge_cursor(ctx, field)
+	}
+	return nil, fmt.Errorf("no field named %q was found under type TafEdge", field.Name)
+}
+
+func (ec *executionContext) childFields_TemperatureData(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+	switch field.Name {
+	case "id":
+		return ec.fieldContext_TemperatureData_id(ctx, field)
+	case "validTime":
+		return ec.fieldContext_TemperatureData_validTime(ctx, field)
+	case "temperature":
+		return ec.fieldContext_TemperatureData_temperature(ctx, field)
+	case "minTemperature":
+		return ec.fieldContext_TemperatureData_minTemperature(ctx, field)
+	case "maxTemperature":
+		return ec.fieldContext_TemperatureData_maxTemperature(ctx, field)
+	}
+	return nil, fmt.Errorf("no field named %q was found under type TemperatureData", field.Name)
+}
+
+func (ec *executionContext) childFields_TurbulenceCondition(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+	switch field.Name {
+	case "id":
+		return ec.fieldContext_TurbulenceCondition_id(ctx, field)
+	case "intensity":
+		return ec.fieldContext_TurbulenceCondition_intensity(ctx, field)
+	case "minAltitude":
+		return ec.fieldContext_TurbulenceCondition_minAltitude(ctx, field)
+	case "maxAltitude":
+		return ec.fieldContext_TurbulenceCondition_maxAltitude(ctx, field)
+	}
+	return nil, fmt.Errorf("no field named %q was found under type TurbulenceCondition", field.Name)
+}
+
+func (ec *executionContext) childFields_WeatherStation(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+	switch field.Name {
+	case "id":
+		return ec.fieldContext_WeatherStation_id(ctx, field)
+	case "stationID":
+		return ec.fieldContext_WeatherStation_stationID(ctx, field)
+	case "latitude":
+		return ec.fieldContext_WeatherStation_latitude(ctx, field)
+	case "longitude":
+		return ec.fieldContext_WeatherStation_longitude(ctx, field)
+	case "elevation":
+		return ec.fieldContext_WeatherStation_elevation(ctx, field)
+	case "airport":
+		return ec.fieldContext_WeatherStation_airport(ctx, field)
+	case "metars":
+		return ec.fieldContext_WeatherStation_metars(ctx, field)
+	case "tafs":
+		return ec.fieldContext_WeatherStation_tafs(ctx, field)
+	}
+	return nil, fmt.Errorf("no field named %q was found under type WeatherStation", field.Name)
+}
+
+func (ec *executionContext) childFields_WeatherStationConnection(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+	switch field.Name {
+	case "totalCount":
+		return ec.fieldContext_WeatherStationConnection_totalCount(ctx, field)
+	case "pageInfo":
+		return ec.fieldContext_WeatherStationConnection_pageInfo(ctx, field)
+	case "edges":
+		return ec.fieldContext_WeatherStationConnection_edges(ctx, field)
+	}
+	return nil, fmt.Errorf("no field named %q was found under type WeatherStationConnection", field.Name)
+}
+
+func (ec *executionContext) childFields_WeatherStationEdge(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+	switch field.Name {
+	case "node":
+		return ec.fieldContext_WeatherStationEdge_node(ctx, field)
+	case "cursor":
+		return ec.fieldContext_WeatherStationEdge_cursor(ctx, field)
+	}
+	return nil, fmt.Errorf("no field named %q was found under type WeatherStationEdge", field.Name)
+}
+
+func (ec *executionContext) childFields___Directive(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+	switch field.Name {
+	case "name":
+		return ec.fieldContext___Directive_name(ctx, field)
+	case "description":
+		return ec.fieldContext___Directive_description(ctx, field)
+	case "isRepeatable":
+		return ec.fieldContext___Directive_isRepeatable(ctx, field)
+	case "locations":
+		return ec.fieldContext___Directive_locations(ctx, field)
+	case "args":
+		return ec.fieldContext___Directive_args(ctx, field)
+	}
+	return nil, fmt.Errorf("no field named %q was found under type __Directive", field.Name)
+}
+
+func (ec *executionContext) childFields___EnumValue(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+	switch field.Name {
+	case "name":
+		return ec.fieldContext___EnumValue_name(ctx, field)
+	case "description":
+		return ec.fieldContext___EnumValue_description(ctx, field)
+	case "isDeprecated":
+		return ec.fieldContext___EnumValue_isDeprecated(ctx, field)
+	case "deprecationReason":
+		return ec.fieldContext___EnumValue_deprecationReason(ctx, field)
+	}
+	return nil, fmt.Errorf("no field named %q was found under type __EnumValue", field.Name)
+}
+
+func (ec *executionContext) childFields___Field(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+	switch field.Name {
+	case "name":
+		return ec.fieldContext___Field_name(ctx, field)
+	case "description":
+		return ec.fieldContext___Field_description(ctx, field)
+	case "args":
+		return ec.fieldContext___Field_args(ctx, field)
+	case "type":
+		return ec.fieldContext___Field_type(ctx, field)
+	case "isDeprecated":
+		return ec.fieldContext___Field_isDeprecated(ctx, field)
+	case "deprecationReason":
+		return ec.fieldContext___Field_deprecationReason(ctx, field)
+	}
+	return nil, fmt.Errorf("no field named %q was found under type __Field", field.Name)
+}
+
+func (ec *executionContext) childFields___InputValue(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+	switch field.Name {
+	case "name":
+		return ec.fieldContext___InputValue_name(ctx, field)
+	case "description":
+		return ec.fieldContext___InputValue_description(ctx, field)
+	case "type":
+		return ec.fieldContext___InputValue_type(ctx, field)
+	case "defaultValue":
+		return ec.fieldContext___InputValue_defaultValue(ctx, field)
+	case "isDeprecated":
+		return ec.fieldContext___InputValue_isDeprecated(ctx, field)
+	case "deprecationReason":
+		return ec.fieldContext___InputValue_deprecationReason(ctx, field)
+	}
+	return nil, fmt.Errorf("no field named %q was found under type __InputValue", field.Name)
+}
+
+func (ec *executionContext) childFields___Schema(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+	switch field.Name {
+	case "description":
+		return ec.fieldContext___Schema_description(ctx, field)
+	case "types":
+		return ec.fieldContext___Schema_types(ctx, field)
+	case "queryType":
+		return ec.fieldContext___Schema_queryType(ctx, field)
+	case "mutationType":
+		return ec.fieldContext___Schema_mutationType(ctx, field)
+	case "subscriptionType":
+		return ec.fieldContext___Schema_subscriptionType(ctx, field)
+	case "directives":
+		return ec.fieldContext___Schema_directives(ctx, field)
+	}
+	return nil, fmt.Errorf("no field named %q was found under type __Schema", field.Name)
+}
+
+func (ec *executionContext) childFields___Type(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+	switch field.Name {
+	case "kind":
+		return ec.fieldContext___Type_kind(ctx, field)
+	case "name":
+		return ec.fieldContext___Type_name(ctx, field)
+	case "description":
+		return ec.fieldContext___Type_description(ctx, field)
+	case "specifiedByURL":
+		return ec.fieldContext___Type_specifiedByURL(ctx, field)
+	case "fields":
+		return ec.fieldContext___Type_fields(ctx, field)
+	case "interfaces":
+		return ec.fieldContext___Type_interfaces(ctx, field)
+	case "possibleTypes":
+		return ec.fieldContext___Type_possibleTypes(ctx, field)
+	case "enumValues":
+		return ec.fieldContext___Type_enumValues(ctx, field)
+	case "inputFields":
+		return ec.fieldContext___Type_inputFields(ctx, field)
+	case "ofType":
+		return ec.fieldContext___Type_ofType(ctx, field)
+	case "isOneOf":
+		return ec.fieldContext___Type_isOneOf(ctx, field)
+	}
+	return nil, fmt.Errorf("no field named %q was found under type __Type", field.Name)
+}

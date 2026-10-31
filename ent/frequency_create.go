@@ -26,110 +26,110 @@ type FrequencyCreate struct {
 }
 
 // SetImportID sets the "import_id" field.
-func (fc *FrequencyCreate) SetImportID(i int) *FrequencyCreate {
-	fc.mutation.SetImportID(i)
-	return fc
+func (_c *FrequencyCreate) SetImportID(v int) *FrequencyCreate {
+	_c.mutation.SetImportID(v)
+	return _c
 }
 
 // SetHash sets the "hash" field.
-func (fc *FrequencyCreate) SetHash(s string) *FrequencyCreate {
-	fc.mutation.SetHash(s)
-	return fc
+func (_c *FrequencyCreate) SetHash(v string) *FrequencyCreate {
+	_c.mutation.SetHash(v)
+	return _c
 }
 
 // SetImportFlag sets the "import_flag" field.
-func (fc *FrequencyCreate) SetImportFlag(b bool) *FrequencyCreate {
-	fc.mutation.SetImportFlag(b)
-	return fc
+func (_c *FrequencyCreate) SetImportFlag(v bool) *FrequencyCreate {
+	_c.mutation.SetImportFlag(v)
+	return _c
 }
 
 // SetNillableImportFlag sets the "import_flag" field if the given value is not nil.
-func (fc *FrequencyCreate) SetNillableImportFlag(b *bool) *FrequencyCreate {
-	if b != nil {
-		fc.SetImportFlag(*b)
+func (_c *FrequencyCreate) SetNillableImportFlag(v *bool) *FrequencyCreate {
+	if v != nil {
+		_c.SetImportFlag(*v)
 	}
-	return fc
+	return _c
 }
 
 // SetLastUpdated sets the "last_updated" field.
-func (fc *FrequencyCreate) SetLastUpdated(t time.Time) *FrequencyCreate {
-	fc.mutation.SetLastUpdated(t)
-	return fc
+func (_c *FrequencyCreate) SetLastUpdated(v time.Time) *FrequencyCreate {
+	_c.mutation.SetLastUpdated(v)
+	return _c
 }
 
 // SetNillableLastUpdated sets the "last_updated" field if the given value is not nil.
-func (fc *FrequencyCreate) SetNillableLastUpdated(t *time.Time) *FrequencyCreate {
-	if t != nil {
-		fc.SetLastUpdated(*t)
+func (_c *FrequencyCreate) SetNillableLastUpdated(v *time.Time) *FrequencyCreate {
+	if v != nil {
+		_c.SetLastUpdated(*v)
 	}
-	return fc
+	return _c
 }
 
 // SetType sets the "type" field.
-func (fc *FrequencyCreate) SetType(s string) *FrequencyCreate {
-	fc.mutation.SetType(s)
-	return fc
+func (_c *FrequencyCreate) SetType(v string) *FrequencyCreate {
+	_c.mutation.SetType(v)
+	return _c
 }
 
 // SetDescription sets the "description" field.
-func (fc *FrequencyCreate) SetDescription(s string) *FrequencyCreate {
-	fc.mutation.SetDescription(s)
-	return fc
+func (_c *FrequencyCreate) SetDescription(v string) *FrequencyCreate {
+	_c.mutation.SetDescription(v)
+	return _c
 }
 
 // SetFrequency sets the "frequency" field.
-func (fc *FrequencyCreate) SetFrequency(f float64) *FrequencyCreate {
-	fc.mutation.SetFrequency(f)
-	return fc
+func (_c *FrequencyCreate) SetFrequency(v float64) *FrequencyCreate {
+	_c.mutation.SetFrequency(v)
+	return _c
 }
 
 // SetID sets the "id" field.
-func (fc *FrequencyCreate) SetID(u uuid.UUID) *FrequencyCreate {
-	fc.mutation.SetID(u)
-	return fc
+func (_c *FrequencyCreate) SetID(v uuid.UUID) *FrequencyCreate {
+	_c.mutation.SetID(v)
+	return _c
 }
 
 // SetNillableID sets the "id" field if the given value is not nil.
-func (fc *FrequencyCreate) SetNillableID(u *uuid.UUID) *FrequencyCreate {
-	if u != nil {
-		fc.SetID(*u)
+func (_c *FrequencyCreate) SetNillableID(v *uuid.UUID) *FrequencyCreate {
+	if v != nil {
+		_c.SetID(*v)
 	}
-	return fc
+	return _c
 }
 
 // SetAirportID sets the "airport" edge to the Airport entity by ID.
-func (fc *FrequencyCreate) SetAirportID(id uuid.UUID) *FrequencyCreate {
-	fc.mutation.SetAirportID(id)
-	return fc
+func (_c *FrequencyCreate) SetAirportID(id uuid.UUID) *FrequencyCreate {
+	_c.mutation.SetAirportID(id)
+	return _c
 }
 
 // SetNillableAirportID sets the "airport" edge to the Airport entity by ID if the given value is not nil.
-func (fc *FrequencyCreate) SetNillableAirportID(id *uuid.UUID) *FrequencyCreate {
+func (_c *FrequencyCreate) SetNillableAirportID(id *uuid.UUID) *FrequencyCreate {
 	if id != nil {
-		fc = fc.SetAirportID(*id)
+		_c = _c.SetAirportID(*id)
 	}
-	return fc
+	return _c
 }
 
 // SetAirport sets the "airport" edge to the Airport entity.
-func (fc *FrequencyCreate) SetAirport(a *Airport) *FrequencyCreate {
-	return fc.SetAirportID(a.ID)
+func (_c *FrequencyCreate) SetAirport(v *Airport) *FrequencyCreate {
+	return _c.SetAirportID(v.ID)
 }
 
 // Mutation returns the FrequencyMutation object of the builder.
-func (fc *FrequencyCreate) Mutation() *FrequencyMutation {
-	return fc.mutation
+func (_c *FrequencyCreate) Mutation() *FrequencyMutation {
+	return _c.mutation
 }
 
 // Save creates the Frequency in the database.
-func (fc *FrequencyCreate) Save(ctx context.Context) (*Frequency, error) {
-	fc.defaults()
-	return withHooks(ctx, fc.sqlSave, fc.mutation, fc.hooks)
+func (_c *FrequencyCreate) Save(ctx context.Context) (*Frequency, error) {
+	_c.defaults()
+	return withHooks(ctx, _c.sqlSave, _c.mutation, _c.hooks)
 }
 
 // SaveX calls Save and panics if Save returns an error.
-func (fc *FrequencyCreate) SaveX(ctx context.Context) *Frequency {
-	v, err := fc.Save(ctx)
+func (_c *FrequencyCreate) SaveX(ctx context.Context) *Frequency {
+	v, err := _c.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -137,66 +137,66 @@ func (fc *FrequencyCreate) SaveX(ctx context.Context) *Frequency {
 }
 
 // Exec executes the query.
-func (fc *FrequencyCreate) Exec(ctx context.Context) error {
-	_, err := fc.Save(ctx)
+func (_c *FrequencyCreate) Exec(ctx context.Context) error {
+	_, err := _c.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (fc *FrequencyCreate) ExecX(ctx context.Context) {
-	if err := fc.Exec(ctx); err != nil {
+func (_c *FrequencyCreate) ExecX(ctx context.Context) {
+	if err := _c.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // defaults sets the default values of the builder before save.
-func (fc *FrequencyCreate) defaults() {
-	if _, ok := fc.mutation.ImportFlag(); !ok {
+func (_c *FrequencyCreate) defaults() {
+	if _, ok := _c.mutation.ImportFlag(); !ok {
 		v := frequency.DefaultImportFlag
-		fc.mutation.SetImportFlag(v)
+		_c.mutation.SetImportFlag(v)
 	}
-	if _, ok := fc.mutation.LastUpdated(); !ok {
+	if _, ok := _c.mutation.LastUpdated(); !ok {
 		v := frequency.DefaultLastUpdated()
-		fc.mutation.SetLastUpdated(v)
+		_c.mutation.SetLastUpdated(v)
 	}
-	if _, ok := fc.mutation.ID(); !ok {
+	if _, ok := _c.mutation.ID(); !ok {
 		v := frequency.DefaultID()
-		fc.mutation.SetID(v)
+		_c.mutation.SetID(v)
 	}
 }
 
 // check runs all checks and user-defined validators on the builder.
-func (fc *FrequencyCreate) check() error {
-	if _, ok := fc.mutation.ImportID(); !ok {
+func (_c *FrequencyCreate) check() error {
+	if _, ok := _c.mutation.ImportID(); !ok {
 		return &ValidationError{Name: "import_id", err: errors.New(`ent: missing required field "Frequency.import_id"`)}
 	}
-	if _, ok := fc.mutation.Hash(); !ok {
+	if _, ok := _c.mutation.Hash(); !ok {
 		return &ValidationError{Name: "hash", err: errors.New(`ent: missing required field "Frequency.hash"`)}
 	}
-	if _, ok := fc.mutation.ImportFlag(); !ok {
+	if _, ok := _c.mutation.ImportFlag(); !ok {
 		return &ValidationError{Name: "import_flag", err: errors.New(`ent: missing required field "Frequency.import_flag"`)}
 	}
-	if _, ok := fc.mutation.LastUpdated(); !ok {
+	if _, ok := _c.mutation.LastUpdated(); !ok {
 		return &ValidationError{Name: "last_updated", err: errors.New(`ent: missing required field "Frequency.last_updated"`)}
 	}
-	if _, ok := fc.mutation.GetType(); !ok {
+	if _, ok := _c.mutation.GetType(); !ok {
 		return &ValidationError{Name: "type", err: errors.New(`ent: missing required field "Frequency.type"`)}
 	}
-	if _, ok := fc.mutation.Description(); !ok {
+	if _, ok := _c.mutation.Description(); !ok {
 		return &ValidationError{Name: "description", err: errors.New(`ent: missing required field "Frequency.description"`)}
 	}
-	if _, ok := fc.mutation.Frequency(); !ok {
+	if _, ok := _c.mutation.Frequency(); !ok {
 		return &ValidationError{Name: "frequency", err: errors.New(`ent: missing required field "Frequency.frequency"`)}
 	}
 	return nil
 }
 
-func (fc *FrequencyCreate) sqlSave(ctx context.Context) (*Frequency, error) {
-	if err := fc.check(); err != nil {
+func (_c *FrequencyCreate) sqlSave(ctx context.Context) (*Frequency, error) {
+	if err := _c.check(); err != nil {
 		return nil, err
 	}
-	_node, _spec := fc.createSpec()
-	if err := sqlgraph.CreateNode(ctx, fc.driver, _spec); err != nil {
+	_node, _spec := _c.createSpec()
+	if err := sqlgraph.CreateNode(ctx, _c.driver, _spec); err != nil {
 		if sqlgraph.IsConstraintError(err) {
 			err = &ConstraintError{msg: err.Error(), wrap: err}
 		}
@@ -209,50 +209,50 @@ func (fc *FrequencyCreate) sqlSave(ctx context.Context) (*Frequency, error) {
 			return nil, err
 		}
 	}
-	fc.mutation.id = &_node.ID
-	fc.mutation.done = true
+	_c.mutation.id = &_node.ID
+	_c.mutation.done = true
 	return _node, nil
 }
 
-func (fc *FrequencyCreate) createSpec() (*Frequency, *sqlgraph.CreateSpec) {
+func (_c *FrequencyCreate) createSpec() (*Frequency, *sqlgraph.CreateSpec) {
 	var (
-		_node = &Frequency{config: fc.config}
+		_node = &Frequency{config: _c.config}
 		_spec = sqlgraph.NewCreateSpec(frequency.Table, sqlgraph.NewFieldSpec(frequency.FieldID, field.TypeUUID))
 	)
-	_spec.OnConflict = fc.conflict
-	if id, ok := fc.mutation.ID(); ok {
+	_spec.OnConflict = _c.conflict
+	if id, ok := _c.mutation.ID(); ok {
 		_node.ID = id
 		_spec.ID.Value = &id
 	}
-	if value, ok := fc.mutation.ImportID(); ok {
+	if value, ok := _c.mutation.ImportID(); ok {
 		_spec.SetField(frequency.FieldImportID, field.TypeInt, value)
 		_node.ImportID = value
 	}
-	if value, ok := fc.mutation.Hash(); ok {
+	if value, ok := _c.mutation.Hash(); ok {
 		_spec.SetField(frequency.FieldHash, field.TypeString, value)
 		_node.Hash = value
 	}
-	if value, ok := fc.mutation.ImportFlag(); ok {
+	if value, ok := _c.mutation.ImportFlag(); ok {
 		_spec.SetField(frequency.FieldImportFlag, field.TypeBool, value)
 		_node.ImportFlag = value
 	}
-	if value, ok := fc.mutation.LastUpdated(); ok {
+	if value, ok := _c.mutation.LastUpdated(); ok {
 		_spec.SetField(frequency.FieldLastUpdated, field.TypeTime, value)
 		_node.LastUpdated = value
 	}
-	if value, ok := fc.mutation.GetType(); ok {
+	if value, ok := _c.mutation.GetType(); ok {
 		_spec.SetField(frequency.FieldType, field.TypeString, value)
 		_node.Type = value
 	}
-	if value, ok := fc.mutation.Description(); ok {
+	if value, ok := _c.mutation.Description(); ok {
 		_spec.SetField(frequency.FieldDescription, field.TypeString, value)
 		_node.Description = value
 	}
-	if value, ok := fc.mutation.Frequency(); ok {
+	if value, ok := _c.mutation.Frequency(); ok {
 		_spec.SetField(frequency.FieldFrequency, field.TypeFloat64, value)
 		_node.Frequency = value
 	}
-	if nodes := fc.mutation.AirportIDs(); len(nodes) > 0 {
+	if nodes := _c.mutation.AirportIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.M2O,
 			Inverse: true,
@@ -288,10 +288,10 @@ func (fc *FrequencyCreate) createSpec() (*Frequency, *sqlgraph.CreateSpec) {
 //			SetImportID(v+v).
 //		}).
 //		Exec(ctx)
-func (fc *FrequencyCreate) OnConflict(opts ...sql.ConflictOption) *FrequencyUpsertOne {
-	fc.conflict = opts
+func (_c *FrequencyCreate) OnConflict(opts ...sql.ConflictOption) *FrequencyUpsertOne {
+	_c.conflict = opts
 	return &FrequencyUpsertOne{
-		create: fc,
+		create: _c,
 	}
 }
 
@@ -301,10 +301,10 @@ func (fc *FrequencyCreate) OnConflict(opts ...sql.ConflictOption) *FrequencyUpse
 //	client.Frequency.Create().
 //		OnConflict(sql.ConflictColumns(columns...)).
 //		Exec(ctx)
-func (fc *FrequencyCreate) OnConflictColumns(columns ...string) *FrequencyUpsertOne {
-	fc.conflict = append(fc.conflict, sql.ConflictColumns(columns...))
+func (_c *FrequencyCreate) OnConflictColumns(columns ...string) *FrequencyUpsertOne {
+	_c.conflict = append(_c.conflict, sql.ConflictColumns(columns...))
 	return &FrequencyUpsertOne{
-		create: fc,
+		create: _c,
 	}
 }
 
@@ -618,18 +618,22 @@ func (u *FrequencyUpsertOne) IDX(ctx context.Context) uuid.UUID {
 // FrequencyCreateBulk is the builder for creating many Frequency entities in bulk.
 type FrequencyCreateBulk struct {
 	config
+	err      error
 	builders []*FrequencyCreate
 	conflict []sql.ConflictOption
 }
 
 // Save creates the Frequency entities in the database.
-func (fcb *FrequencyCreateBulk) Save(ctx context.Context) ([]*Frequency, error) {
-	specs := make([]*sqlgraph.CreateSpec, len(fcb.builders))
-	nodes := make([]*Frequency, len(fcb.builders))
-	mutators := make([]Mutator, len(fcb.builders))
-	for i := range fcb.builders {
+func (_c *FrequencyCreateBulk) Save(ctx context.Context) ([]*Frequency, error) {
+	if _c.err != nil {
+		return nil, _c.err
+	}
+	specs := make([]*sqlgraph.CreateSpec, len(_c.builders))
+	nodes := make([]*Frequency, len(_c.builders))
+	mutators := make([]Mutator, len(_c.builders))
+	for i := range _c.builders {
 		func(i int, root context.Context) {
-			builder := fcb.builders[i]
+			builder := _c.builders[i]
 			builder.defaults()
 			var mut Mutator = MutateFunc(func(ctx context.Context, m Mutation) (Value, error) {
 				mutation, ok := m.(*FrequencyMutation)
@@ -643,12 +647,12 @@ func (fcb *FrequencyCreateBulk) Save(ctx context.Context) ([]*Frequency, error) 
 				var err error
 				nodes[i], specs[i] = builder.createSpec()
 				if i < len(mutators)-1 {
-					_, err = mutators[i+1].Mutate(root, fcb.builders[i+1].mutation)
+					_, err = mutators[i+1].Mutate(root, _c.builders[i+1].mutation)
 				} else {
 					spec := &sqlgraph.BatchCreateSpec{Nodes: specs}
-					spec.OnConflict = fcb.conflict
+					spec.OnConflict = _c.conflict
 					// Invoke the actual operation on the latest mutation in the chain.
-					if err = sqlgraph.BatchCreate(ctx, fcb.driver, spec); err != nil {
+					if err = sqlgraph.BatchCreate(ctx, _c.driver, spec); err != nil {
 						if sqlgraph.IsConstraintError(err) {
 							err = &ConstraintError{msg: err.Error(), wrap: err}
 						}
@@ -668,7 +672,7 @@ func (fcb *FrequencyCreateBulk) Save(ctx context.Context) ([]*Frequency, error) 
 		}(i, ctx)
 	}
 	if len(mutators) > 0 {
-		if _, err := mutators[0].Mutate(ctx, fcb.builders[0].mutation); err != nil {
+		if _, err := mutators[0].Mutate(ctx, _c.builders[0].mutation); err != nil {
 			return nil, err
 		}
 	}
@@ -676,8 +680,8 @@ func (fcb *FrequencyCreateBulk) Save(ctx context.Context) ([]*Frequency, error) 
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (fcb *FrequencyCreateBulk) SaveX(ctx context.Context) []*Frequency {
-	v, err := fcb.Save(ctx)
+func (_c *FrequencyCreateBulk) SaveX(ctx context.Context) []*Frequency {
+	v, err := _c.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -685,14 +689,14 @@ func (fcb *FrequencyCreateBulk) SaveX(ctx context.Context) []*Frequency {
 }
 
 // Exec executes the query.
-func (fcb *FrequencyCreateBulk) Exec(ctx context.Context) error {
-	_, err := fcb.Save(ctx)
+func (_c *FrequencyCreateBulk) Exec(ctx context.Context) error {
+	_, err := _c.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (fcb *FrequencyCreateBulk) ExecX(ctx context.Context) {
-	if err := fcb.Exec(ctx); err != nil {
+func (_c *FrequencyCreateBulk) ExecX(ctx context.Context) {
+	if err := _c.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
@@ -712,10 +716,10 @@ func (fcb *FrequencyCreateBulk) ExecX(ctx context.Context) {
 //			SetImportID(v+v).
 //		}).
 //		Exec(ctx)
-func (fcb *FrequencyCreateBulk) OnConflict(opts ...sql.ConflictOption) *FrequencyUpsertBulk {
-	fcb.conflict = opts
+func (_c *FrequencyCreateBulk) OnConflict(opts ...sql.ConflictOption) *FrequencyUpsertBulk {
+	_c.conflict = opts
 	return &FrequencyUpsertBulk{
-		create: fcb,
+		create: _c,
 	}
 }
 
@@ -725,10 +729,10 @@ func (fcb *FrequencyCreateBulk) OnConflict(opts ...sql.ConflictOption) *Frequenc
 //	client.Frequency.Create().
 //		OnConflict(sql.ConflictColumns(columns...)).
 //		Exec(ctx)
-func (fcb *FrequencyCreateBulk) OnConflictColumns(columns ...string) *FrequencyUpsertBulk {
-	fcb.conflict = append(fcb.conflict, sql.ConflictColumns(columns...))
+func (_c *FrequencyCreateBulk) OnConflictColumns(columns ...string) *FrequencyUpsertBulk {
+	_c.conflict = append(_c.conflict, sql.ConflictColumns(columns...))
 	return &FrequencyUpsertBulk{
-		create: fcb,
+		create: _c,
 	}
 }
 
@@ -902,6 +906,9 @@ func (u *FrequencyUpsertBulk) UpdateFrequency() *FrequencyUpsertBulk {
 
 // Exec executes the query.
 func (u *FrequencyUpsertBulk) Exec(ctx context.Context) error {
+	if u.create.err != nil {
+		return u.create.err
+	}
 	for i, b := range u.create.builders {
 		if len(b.conflict) != 0 {
 			return fmt.Errorf("ent: OnConflict was set for builder %d. Set it on the FrequencyCreateBulk instead", i)

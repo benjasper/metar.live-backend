@@ -7,10 +7,12 @@ import (
 	"fmt"
 	"math"
 
+	"entgo.io/ent"
 	"entgo.io/ent/dialect/sql"
 	"entgo.io/ent/dialect/sql/sqlgraph"
 	"entgo.io/ent/schema/field"
 	"github.com/google/uuid"
+	"metar.live/ent/forecast"
 	"metar.live/ent/predicate"
 	"metar.live/ent/turbulencecondition"
 )
@@ -18,53 +20,76 @@ import (
 // TurbulenceConditionQuery is the builder for querying TurbulenceCondition entities.
 type TurbulenceConditionQuery struct {
 	config
-	ctx        *QueryContext
-	order      []turbulencecondition.OrderOption
-	inters     []Interceptor
-	predicates []predicate.TurbulenceCondition
-	withFKs    bool
-	loadTotal  []func(context.Context, []*TurbulenceCondition) error
-	modifiers  []func(*sql.Selector)
+	ctx          *QueryContext
+	order        []turbulencecondition.OrderOption
+	inters       []Interceptor
+	predicates   []predicate.TurbulenceCondition
+	withForecast *ForecastQuery
+	withFKs      bool
+	loadTotal    []func(context.Context, []*TurbulenceCondition) error
+	modifiers    []func(*sql.Selector)
 	// intermediate query (i.e. traversal path).
 	sql  *sql.Selector
 	path func(context.Context) (*sql.Selector, error)
 }
 
 // Where adds a new predicate for the TurbulenceConditionQuery builder.
-func (tcq *TurbulenceConditionQuery) Where(ps ...predicate.TurbulenceCondition) *TurbulenceConditionQuery {
-	tcq.predicates = append(tcq.predicates, ps...)
-	return tcq
+func (_q *TurbulenceConditionQuery) Where(ps ...predicate.TurbulenceCondition) *TurbulenceConditionQuery {
+	_q.predicates = append(_q.predicates, ps...)
+	return _q
 }
 
 // Limit the number of records to be returned by this query.
-func (tcq *TurbulenceConditionQuery) Limit(limit int) *TurbulenceConditionQuery {
-	tcq.ctx.Limit = &limit
-	return tcq
+func (_q *TurbulenceConditionQuery) Limit(limit int) *TurbulenceConditionQuery {
+	_q.ctx.Limit = &limit
+	return _q
 }
 
 // Offset to start from.
-func (tcq *TurbulenceConditionQuery) Offset(offset int) *TurbulenceConditionQuery {
-	tcq.ctx.Offset = &offset
-	return tcq
+func (_q *TurbulenceConditionQuery) Offset(offset int) *TurbulenceConditionQuery {
+	_q.ctx.Offset = &offset
+	return _q
 }
 
 // Unique configures the query builder to filter duplicate records on query.
 // By default, unique is set to true, and can be disabled using this method.
-func (tcq *TurbulenceConditionQuery) Unique(unique bool) *TurbulenceConditionQuery {
-	tcq.ctx.Unique = &unique
-	return tcq
+func (_q *TurbulenceConditionQuery) Unique(unique bool) *TurbulenceConditionQuery {
+	_q.ctx.Unique = &unique
+	return _q
 }
 
 // Order specifies how the records should be ordered.
-func (tcq *TurbulenceConditionQuery) Order(o ...turbulencecondition.OrderOption) *TurbulenceConditionQuery {
-	tcq.order = append(tcq.order, o...)
-	return tcq
+func (_q *TurbulenceConditionQuery) Order(o ...turbulencecondition.OrderOption) *TurbulenceConditionQuery {
+	_q.order = append(_q.order, o...)
+	return _q
+}
+
+// QueryForecast chains the current query on the "forecast" edge.
+func (_q *TurbulenceConditionQuery) QueryForecast() *ForecastQuery {
+	query := (&ForecastClient{config: _q.config}).Query()
+	query.path = func(ctx context.Context) (fromU *sql.Selector, err error) {
+		if err := _q.prepareQuery(ctx); err != nil {
+			return nil, err
+		}
+		selector := _q.sqlQuery(ctx)
+		if err := selector.Err(); err != nil {
+			return nil, err
+		}
+		step := sqlgraph.NewStep(
+			sqlgraph.From(turbulencecondition.Table, turbulencecondition.FieldID, selector),
+			sqlgraph.To(forecast.Table, forecast.FieldID),
+			sqlgraph.Edge(sqlgraph.M2O, true, turbulencecondition.ForecastTable, turbulencecondition.ForecastColumn),
+		)
+		fromU = sqlgraph.SetNeighbors(_q.driver.Dialect(), step)
+		return fromU, nil
+	}
+	return query
 }
 
 // First returns the first TurbulenceCondition entity from the query.
 // Returns a *NotFoundError when no TurbulenceCondition was found.
-func (tcq *TurbulenceConditionQuery) First(ctx context.Context) (*TurbulenceCondition, error) {
-	nodes, err := tcq.Limit(1).All(setContextOp(ctx, tcq.ctx, "First"))
+func (_q *TurbulenceConditionQuery) First(ctx context.Context) (*TurbulenceCondition, error) {
+	nodes, err := _q.Limit(1).All(setContextOp(ctx, _q.ctx, ent.OpQueryFirst))
 	if err != nil {
 		return nil, err
 	}
@@ -75,8 +100,8 @@ func (tcq *TurbulenceConditionQuery) First(ctx context.Context) (*TurbulenceCond
 }
 
 // FirstX is like First, but panics if an error occurs.
-func (tcq *TurbulenceConditionQuery) FirstX(ctx context.Context) *TurbulenceCondition {
-	node, err := tcq.First(ctx)
+func (_q *TurbulenceConditionQuery) FirstX(ctx context.Context) *TurbulenceCondition {
+	node, err := _q.First(ctx)
 	if err != nil && !IsNotFound(err) {
 		panic(err)
 	}
@@ -85,9 +110,9 @@ func (tcq *TurbulenceConditionQuery) FirstX(ctx context.Context) *TurbulenceCond
 
 // FirstID returns the first TurbulenceCondition ID from the query.
 // Returns a *NotFoundError when no TurbulenceCondition ID was found.
-func (tcq *TurbulenceConditionQuery) FirstID(ctx context.Context) (id uuid.UUID, err error) {
+func (_q *TurbulenceConditionQuery) FirstID(ctx context.Context) (id uuid.UUID, err error) {
 	var ids []uuid.UUID
-	if ids, err = tcq.Limit(1).IDs(setContextOp(ctx, tcq.ctx, "FirstID")); err != nil {
+	if ids, err = _q.Limit(1).IDs(setContextOp(ctx, _q.ctx, ent.OpQueryFirstID)); err != nil {
 		return
 	}
 	if len(ids) == 0 {
@@ -98,8 +123,8 @@ func (tcq *TurbulenceConditionQuery) FirstID(ctx context.Context) (id uuid.UUID,
 }
 
 // FirstIDX is like FirstID, but panics if an error occurs.
-func (tcq *TurbulenceConditionQuery) FirstIDX(ctx context.Context) uuid.UUID {
-	id, err := tcq.FirstID(ctx)
+func (_q *TurbulenceConditionQuery) FirstIDX(ctx context.Context) uuid.UUID {
+	id, err := _q.FirstID(ctx)
 	if err != nil && !IsNotFound(err) {
 		panic(err)
 	}
@@ -109,8 +134,8 @@ func (tcq *TurbulenceConditionQuery) FirstIDX(ctx context.Context) uuid.UUID {
 // Only returns a single TurbulenceCondition entity found by the query, ensuring it only returns one.
 // Returns a *NotSingularError when more than one TurbulenceCondition entity is found.
 // Returns a *NotFoundError when no TurbulenceCondition entities are found.
-func (tcq *TurbulenceConditionQuery) Only(ctx context.Context) (*TurbulenceCondition, error) {
-	nodes, err := tcq.Limit(2).All(setContextOp(ctx, tcq.ctx, "Only"))
+func (_q *TurbulenceConditionQuery) Only(ctx context.Context) (*TurbulenceCondition, error) {
+	nodes, err := _q.Limit(2).All(setContextOp(ctx, _q.ctx, ent.OpQueryOnly))
 	if err != nil {
 		return nil, err
 	}
@@ -125,8 +150,8 @@ func (tcq *TurbulenceConditionQuery) Only(ctx context.Context) (*TurbulenceCondi
 }
 
 // OnlyX is like Only, but panics if an error occurs.
-func (tcq *TurbulenceConditionQuery) OnlyX(ctx context.Context) *TurbulenceCondition {
-	node, err := tcq.Only(ctx)
+func (_q *TurbulenceConditionQuery) OnlyX(ctx context.Context) *TurbulenceCondition {
+	node, err := _q.Only(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -136,9 +161,9 @@ func (tcq *TurbulenceConditionQuery) OnlyX(ctx context.Context) *TurbulenceCondi
 // OnlyID is like Only, but returns the only TurbulenceCondition ID in the query.
 // Returns a *NotSingularError when more than one TurbulenceCondition ID is found.
 // Returns a *NotFoundError when no entities are found.
-func (tcq *TurbulenceConditionQuery) OnlyID(ctx context.Context) (id uuid.UUID, err error) {
+func (_q *TurbulenceConditionQuery) OnlyID(ctx context.Context) (id uuid.UUID, err error) {
 	var ids []uuid.UUID
-	if ids, err = tcq.Limit(2).IDs(setContextOp(ctx, tcq.ctx, "OnlyID")); err != nil {
+	if ids, err = _q.Limit(2).IDs(setContextOp(ctx, _q.ctx, ent.OpQueryOnlyID)); err != nil {
 		return
 	}
 	switch len(ids) {
@@ -153,8 +178,8 @@ func (tcq *TurbulenceConditionQuery) OnlyID(ctx context.Context) (id uuid.UUID, 
 }
 
 // OnlyIDX is like OnlyID, but panics if an error occurs.
-func (tcq *TurbulenceConditionQuery) OnlyIDX(ctx context.Context) uuid.UUID {
-	id, err := tcq.OnlyID(ctx)
+func (_q *TurbulenceConditionQuery) OnlyIDX(ctx context.Context) uuid.UUID {
+	id, err := _q.OnlyID(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -162,18 +187,18 @@ func (tcq *TurbulenceConditionQuery) OnlyIDX(ctx context.Context) uuid.UUID {
 }
 
 // All executes the query and returns a list of TurbulenceConditions.
-func (tcq *TurbulenceConditionQuery) All(ctx context.Context) ([]*TurbulenceCondition, error) {
-	ctx = setContextOp(ctx, tcq.ctx, "All")
-	if err := tcq.prepareQuery(ctx); err != nil {
+func (_q *TurbulenceConditionQuery) All(ctx context.Context) ([]*TurbulenceCondition, error) {
+	ctx = setContextOp(ctx, _q.ctx, ent.OpQueryAll)
+	if err := _q.prepareQuery(ctx); err != nil {
 		return nil, err
 	}
 	qr := querierAll[[]*TurbulenceCondition, *TurbulenceConditionQuery]()
-	return withInterceptors[[]*TurbulenceCondition](ctx, tcq, qr, tcq.inters)
+	return withInterceptors[[]*TurbulenceCondition](ctx, _q, qr, _q.inters)
 }
 
 // AllX is like All, but panics if an error occurs.
-func (tcq *TurbulenceConditionQuery) AllX(ctx context.Context) []*TurbulenceCondition {
-	nodes, err := tcq.All(ctx)
+func (_q *TurbulenceConditionQuery) AllX(ctx context.Context) []*TurbulenceCondition {
+	nodes, err := _q.All(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -181,20 +206,20 @@ func (tcq *TurbulenceConditionQuery) AllX(ctx context.Context) []*TurbulenceCond
 }
 
 // IDs executes the query and returns a list of TurbulenceCondition IDs.
-func (tcq *TurbulenceConditionQuery) IDs(ctx context.Context) (ids []uuid.UUID, err error) {
-	if tcq.ctx.Unique == nil && tcq.path != nil {
-		tcq.Unique(true)
+func (_q *TurbulenceConditionQuery) IDs(ctx context.Context) (ids []uuid.UUID, err error) {
+	if _q.ctx.Unique == nil && _q.path != nil {
+		_q.Unique(true)
 	}
-	ctx = setContextOp(ctx, tcq.ctx, "IDs")
-	if err = tcq.Select(turbulencecondition.FieldID).Scan(ctx, &ids); err != nil {
+	ctx = setContextOp(ctx, _q.ctx, ent.OpQueryIDs)
+	if err = _q.Select(turbulencecondition.FieldID).Scan(ctx, &ids); err != nil {
 		return nil, err
 	}
 	return ids, nil
 }
 
 // IDsX is like IDs, but panics if an error occurs.
-func (tcq *TurbulenceConditionQuery) IDsX(ctx context.Context) []uuid.UUID {
-	ids, err := tcq.IDs(ctx)
+func (_q *TurbulenceConditionQuery) IDsX(ctx context.Context) []uuid.UUID {
+	ids, err := _q.IDs(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -202,17 +227,17 @@ func (tcq *TurbulenceConditionQuery) IDsX(ctx context.Context) []uuid.UUID {
 }
 
 // Count returns the count of the given query.
-func (tcq *TurbulenceConditionQuery) Count(ctx context.Context) (int, error) {
-	ctx = setContextOp(ctx, tcq.ctx, "Count")
-	if err := tcq.prepareQuery(ctx); err != nil {
+func (_q *TurbulenceConditionQuery) Count(ctx context.Context) (int, error) {
+	ctx = setContextOp(ctx, _q.ctx, ent.OpQueryCount)
+	if err := _q.prepareQuery(ctx); err != nil {
 		return 0, err
 	}
-	return withInterceptors[int](ctx, tcq, querierCount[*TurbulenceConditionQuery](), tcq.inters)
+	return withInterceptors[int](ctx, _q, querierCount[*TurbulenceConditionQuery](), _q.inters)
 }
 
 // CountX is like Count, but panics if an error occurs.
-func (tcq *TurbulenceConditionQuery) CountX(ctx context.Context) int {
-	count, err := tcq.Count(ctx)
+func (_q *TurbulenceConditionQuery) CountX(ctx context.Context) int {
+	count, err := _q.Count(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -220,9 +245,9 @@ func (tcq *TurbulenceConditionQuery) CountX(ctx context.Context) int {
 }
 
 // Exist returns true if the query has elements in the graph.
-func (tcq *TurbulenceConditionQuery) Exist(ctx context.Context) (bool, error) {
-	ctx = setContextOp(ctx, tcq.ctx, "Exist")
-	switch _, err := tcq.FirstID(ctx); {
+func (_q *TurbulenceConditionQuery) Exist(ctx context.Context) (bool, error) {
+	ctx = setContextOp(ctx, _q.ctx, ent.OpQueryExist)
+	switch _, err := _q.FirstID(ctx); {
 	case IsNotFound(err):
 		return false, nil
 	case err != nil:
@@ -233,8 +258,8 @@ func (tcq *TurbulenceConditionQuery) Exist(ctx context.Context) (bool, error) {
 }
 
 // ExistX is like Exist, but panics if an error occurs.
-func (tcq *TurbulenceConditionQuery) ExistX(ctx context.Context) bool {
-	exist, err := tcq.Exist(ctx)
+func (_q *TurbulenceConditionQuery) ExistX(ctx context.Context) bool {
+	exist, err := _q.Exist(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -243,20 +268,33 @@ func (tcq *TurbulenceConditionQuery) ExistX(ctx context.Context) bool {
 
 // Clone returns a duplicate of the TurbulenceConditionQuery builder, including all associated steps. It can be
 // used to prepare common query builders and use them differently after the clone is made.
-func (tcq *TurbulenceConditionQuery) Clone() *TurbulenceConditionQuery {
-	if tcq == nil {
+func (_q *TurbulenceConditionQuery) Clone() *TurbulenceConditionQuery {
+	if _q == nil {
 		return nil
 	}
 	return &TurbulenceConditionQuery{
-		config:     tcq.config,
-		ctx:        tcq.ctx.Clone(),
-		order:      append([]turbulencecondition.OrderOption{}, tcq.order...),
-		inters:     append([]Interceptor{}, tcq.inters...),
-		predicates: append([]predicate.TurbulenceCondition{}, tcq.predicates...),
+		config:       _q.config,
+		ctx:          _q.ctx.Clone(),
+		order:        append([]turbulencecondition.OrderOption{}, _q.order...),
+		inters:       append([]Interceptor{}, _q.inters...),
+		predicates:   append([]predicate.TurbulenceCondition{}, _q.predicates...),
+		withForecast: _q.withForecast.Clone(),
 		// clone intermediate query.
-		sql:  tcq.sql.Clone(),
-		path: tcq.path,
+		sql:       _q.sql.Clone(),
+		path:      _q.path,
+		modifiers: append([]func(*sql.Selector){}, _q.modifiers...),
 	}
+}
+
+// WithForecast tells the query-builder to eager-load the nodes that are connected to
+// the "forecast" edge. The optional arguments are used to configure the query builder of the edge.
+func (_q *TurbulenceConditionQuery) WithForecast(opts ...func(*ForecastQuery)) *TurbulenceConditionQuery {
+	query := (&ForecastClient{config: _q.config}).Query()
+	for _, opt := range opts {
+		opt(query)
+	}
+	_q.withForecast = query
+	return _q
 }
 
 // GroupBy is used to group vertices by one or more fields/columns.
@@ -273,10 +311,10 @@ func (tcq *TurbulenceConditionQuery) Clone() *TurbulenceConditionQuery {
 //		GroupBy(turbulencecondition.FieldIntensity).
 //		Aggregate(ent.Count()).
 //		Scan(ctx, &v)
-func (tcq *TurbulenceConditionQuery) GroupBy(field string, fields ...string) *TurbulenceConditionGroupBy {
-	tcq.ctx.Fields = append([]string{field}, fields...)
-	grbuild := &TurbulenceConditionGroupBy{build: tcq}
-	grbuild.flds = &tcq.ctx.Fields
+func (_q *TurbulenceConditionQuery) GroupBy(field string, fields ...string) *TurbulenceConditionGroupBy {
+	_q.ctx.Fields = append([]string{field}, fields...)
+	grbuild := &TurbulenceConditionGroupBy{build: _q}
+	grbuild.flds = &_q.ctx.Fields
 	grbuild.label = turbulencecondition.Label
 	grbuild.scan = grbuild.Scan
 	return grbuild
@@ -294,51 +332,57 @@ func (tcq *TurbulenceConditionQuery) GroupBy(field string, fields ...string) *Tu
 //	client.TurbulenceCondition.Query().
 //		Select(turbulencecondition.FieldIntensity).
 //		Scan(ctx, &v)
-func (tcq *TurbulenceConditionQuery) Select(fields ...string) *TurbulenceConditionSelect {
-	tcq.ctx.Fields = append(tcq.ctx.Fields, fields...)
-	sbuild := &TurbulenceConditionSelect{TurbulenceConditionQuery: tcq}
+func (_q *TurbulenceConditionQuery) Select(fields ...string) *TurbulenceConditionSelect {
+	_q.ctx.Fields = append(_q.ctx.Fields, fields...)
+	sbuild := &TurbulenceConditionSelect{TurbulenceConditionQuery: _q}
 	sbuild.label = turbulencecondition.Label
-	sbuild.flds, sbuild.scan = &tcq.ctx.Fields, sbuild.Scan
+	sbuild.flds, sbuild.scan = &_q.ctx.Fields, sbuild.Scan
 	return sbuild
 }
 
 // Aggregate returns a TurbulenceConditionSelect configured with the given aggregations.
-func (tcq *TurbulenceConditionQuery) Aggregate(fns ...AggregateFunc) *TurbulenceConditionSelect {
-	return tcq.Select().Aggregate(fns...)
+func (_q *TurbulenceConditionQuery) Aggregate(fns ...AggregateFunc) *TurbulenceConditionSelect {
+	return _q.Select().Aggregate(fns...)
 }
 
-func (tcq *TurbulenceConditionQuery) prepareQuery(ctx context.Context) error {
-	for _, inter := range tcq.inters {
+func (_q *TurbulenceConditionQuery) prepareQuery(ctx context.Context) error {
+	for _, inter := range _q.inters {
 		if inter == nil {
 			return fmt.Errorf("ent: uninitialized interceptor (forgotten import ent/runtime?)")
 		}
 		if trv, ok := inter.(Traverser); ok {
-			if err := trv.Traverse(ctx, tcq); err != nil {
+			if err := trv.Traverse(ctx, _q); err != nil {
 				return err
 			}
 		}
 	}
-	for _, f := range tcq.ctx.Fields {
+	for _, f := range _q.ctx.Fields {
 		if !turbulencecondition.ValidColumn(f) {
 			return &ValidationError{Name: f, err: fmt.Errorf("ent: invalid field %q for query", f)}
 		}
 	}
-	if tcq.path != nil {
-		prev, err := tcq.path(ctx)
+	if _q.path != nil {
+		prev, err := _q.path(ctx)
 		if err != nil {
 			return err
 		}
-		tcq.sql = prev
+		_q.sql = prev
 	}
 	return nil
 }
 
-func (tcq *TurbulenceConditionQuery) sqlAll(ctx context.Context, hooks ...queryHook) ([]*TurbulenceCondition, error) {
+func (_q *TurbulenceConditionQuery) sqlAll(ctx context.Context, hooks ...queryHook) ([]*TurbulenceCondition, error) {
 	var (
-		nodes   = []*TurbulenceCondition{}
-		withFKs = tcq.withFKs
-		_spec   = tcq.querySpec()
+		nodes       = []*TurbulenceCondition{}
+		withFKs     = _q.withFKs
+		_spec       = _q.querySpec()
+		loadedTypes = [1]bool{
+			_q.withForecast != nil,
+		}
 	)
+	if _q.withForecast != nil {
+		withFKs = true
+	}
 	if withFKs {
 		_spec.Node.Columns = append(_spec.Node.Columns, turbulencecondition.ForeignKeys...)
 	}
@@ -346,51 +390,91 @@ func (tcq *TurbulenceConditionQuery) sqlAll(ctx context.Context, hooks ...queryH
 		return (*TurbulenceCondition).scanValues(nil, columns)
 	}
 	_spec.Assign = func(columns []string, values []any) error {
-		node := &TurbulenceCondition{config: tcq.config}
+		node := &TurbulenceCondition{config: _q.config}
 		nodes = append(nodes, node)
+		node.Edges.loadedTypes = loadedTypes
 		return node.assignValues(columns, values)
 	}
-	if len(tcq.modifiers) > 0 {
-		_spec.Modifiers = tcq.modifiers
+	if len(_q.modifiers) > 0 {
+		_spec.Modifiers = _q.modifiers
 	}
 	for i := range hooks {
 		hooks[i](ctx, _spec)
 	}
-	if err := sqlgraph.QueryNodes(ctx, tcq.driver, _spec); err != nil {
+	if err := sqlgraph.QueryNodes(ctx, _q.driver, _spec); err != nil {
 		return nil, err
 	}
 	if len(nodes) == 0 {
 		return nodes, nil
 	}
-	for i := range tcq.loadTotal {
-		if err := tcq.loadTotal[i](ctx, nodes); err != nil {
+	if query := _q.withForecast; query != nil {
+		if err := _q.loadForecast(ctx, query, nodes, nil,
+			func(n *TurbulenceCondition, e *Forecast) { n.Edges.Forecast = e }); err != nil {
+			return nil, err
+		}
+	}
+	for i := range _q.loadTotal {
+		if err := _q.loadTotal[i](ctx, nodes); err != nil {
 			return nil, err
 		}
 	}
 	return nodes, nil
 }
 
-func (tcq *TurbulenceConditionQuery) sqlCount(ctx context.Context) (int, error) {
-	_spec := tcq.querySpec()
-	if len(tcq.modifiers) > 0 {
-		_spec.Modifiers = tcq.modifiers
+func (_q *TurbulenceConditionQuery) loadForecast(ctx context.Context, query *ForecastQuery, nodes []*TurbulenceCondition, init func(*TurbulenceCondition), assign func(*TurbulenceCondition, *Forecast)) error {
+	ids := make([]uuid.UUID, 0, len(nodes))
+	nodeids := make(map[uuid.UUID][]*TurbulenceCondition)
+	for i := range nodes {
+		if nodes[i].forecast_turbulence_conditions == nil {
+			continue
+		}
+		fk := *nodes[i].forecast_turbulence_conditions
+		if _, ok := nodeids[fk]; !ok {
+			ids = append(ids, fk)
+		}
+		nodeids[fk] = append(nodeids[fk], nodes[i])
 	}
-	_spec.Node.Columns = tcq.ctx.Fields
-	if len(tcq.ctx.Fields) > 0 {
-		_spec.Unique = tcq.ctx.Unique != nil && *tcq.ctx.Unique
+	if len(ids) == 0 {
+		return nil
 	}
-	return sqlgraph.CountNodes(ctx, tcq.driver, _spec)
+	query.Where(forecast.IDIn(ids...))
+	neighbors, err := query.All(ctx)
+	if err != nil {
+		return err
+	}
+	for _, n := range neighbors {
+		nodes, ok := nodeids[n.ID]
+		if !ok {
+			return fmt.Errorf(`unexpected foreign-key "forecast_turbulence_conditions" returned %v`, n.ID)
+		}
+		for i := range nodes {
+			assign(nodes[i], n)
+		}
+	}
+	return nil
 }
 
-func (tcq *TurbulenceConditionQuery) querySpec() *sqlgraph.QuerySpec {
+func (_q *TurbulenceConditionQuery) sqlCount(ctx context.Context) (int, error) {
+	_spec := _q.querySpec()
+	if len(_q.modifiers) > 0 {
+		_spec.Modifiers = _q.modifiers
+	}
+	_spec.Node.Columns = _q.ctx.Fields
+	if len(_q.ctx.Fields) > 0 {
+		_spec.Unique = _q.ctx.Unique != nil && *_q.ctx.Unique
+	}
+	return sqlgraph.CountNodes(ctx, _q.driver, _spec)
+}
+
+func (_q *TurbulenceConditionQuery) querySpec() *sqlgraph.QuerySpec {
 	_spec := sqlgraph.NewQuerySpec(turbulencecondition.Table, turbulencecondition.Columns, sqlgraph.NewFieldSpec(turbulencecondition.FieldID, field.TypeUUID))
-	_spec.From = tcq.sql
-	if unique := tcq.ctx.Unique; unique != nil {
+	_spec.From = _q.sql
+	if unique := _q.ctx.Unique; unique != nil {
 		_spec.Unique = *unique
-	} else if tcq.path != nil {
+	} else if _q.path != nil {
 		_spec.Unique = true
 	}
-	if fields := tcq.ctx.Fields; len(fields) > 0 {
+	if fields := _q.ctx.Fields; len(fields) > 0 {
 		_spec.Node.Columns = make([]string, 0, len(fields))
 		_spec.Node.Columns = append(_spec.Node.Columns, turbulencecondition.FieldID)
 		for i := range fields {
@@ -399,20 +483,20 @@ func (tcq *TurbulenceConditionQuery) querySpec() *sqlgraph.QuerySpec {
 			}
 		}
 	}
-	if ps := tcq.predicates; len(ps) > 0 {
+	if ps := _q.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if limit := tcq.ctx.Limit; limit != nil {
+	if limit := _q.ctx.Limit; limit != nil {
 		_spec.Limit = *limit
 	}
-	if offset := tcq.ctx.Offset; offset != nil {
+	if offset := _q.ctx.Offset; offset != nil {
 		_spec.Offset = *offset
 	}
-	if ps := tcq.order; len(ps) > 0 {
+	if ps := _q.order; len(ps) > 0 {
 		_spec.Order = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
@@ -422,45 +506,45 @@ func (tcq *TurbulenceConditionQuery) querySpec() *sqlgraph.QuerySpec {
 	return _spec
 }
 
-func (tcq *TurbulenceConditionQuery) sqlQuery(ctx context.Context) *sql.Selector {
-	builder := sql.Dialect(tcq.driver.Dialect())
+func (_q *TurbulenceConditionQuery) sqlQuery(ctx context.Context) *sql.Selector {
+	builder := sql.Dialect(_q.driver.Dialect())
 	t1 := builder.Table(turbulencecondition.Table)
-	columns := tcq.ctx.Fields
+	columns := _q.ctx.Fields
 	if len(columns) == 0 {
 		columns = turbulencecondition.Columns
 	}
 	selector := builder.Select(t1.Columns(columns...)...).From(t1)
-	if tcq.sql != nil {
-		selector = tcq.sql
+	if _q.sql != nil {
+		selector = _q.sql
 		selector.Select(selector.Columns(columns...)...)
 	}
-	if tcq.ctx.Unique != nil && *tcq.ctx.Unique {
+	if _q.ctx.Unique != nil && *_q.ctx.Unique {
 		selector.Distinct()
 	}
-	for _, m := range tcq.modifiers {
+	for _, m := range _q.modifiers {
 		m(selector)
 	}
-	for _, p := range tcq.predicates {
+	for _, p := range _q.predicates {
 		p(selector)
 	}
-	for _, p := range tcq.order {
+	for _, p := range _q.order {
 		p(selector)
 	}
-	if offset := tcq.ctx.Offset; offset != nil {
+	if offset := _q.ctx.Offset; offset != nil {
 		// limit is mandatory for offset clause. We start
 		// with default value, and override it below if needed.
 		selector.Offset(*offset).Limit(math.MaxInt32)
 	}
-	if limit := tcq.ctx.Limit; limit != nil {
+	if limit := _q.ctx.Limit; limit != nil {
 		selector.Limit(*limit)
 	}
 	return selector
 }
 
 // Modify adds a query modifier for attaching custom logic to queries.
-func (tcq *TurbulenceConditionQuery) Modify(modifiers ...func(s *sql.Selector)) *TurbulenceConditionSelect {
-	tcq.modifiers = append(tcq.modifiers, modifiers...)
-	return tcq.Select()
+func (_q *TurbulenceConditionQuery) Modify(modifiers ...func(s *sql.Selector)) *TurbulenceConditionSelect {
+	_q.modifiers = append(_q.modifiers, modifiers...)
+	return _q.Select()
 }
 
 // TurbulenceConditionGroupBy is the group-by builder for TurbulenceCondition entities.
@@ -470,41 +554,41 @@ type TurbulenceConditionGroupBy struct {
 }
 
 // Aggregate adds the given aggregation functions to the group-by query.
-func (tcgb *TurbulenceConditionGroupBy) Aggregate(fns ...AggregateFunc) *TurbulenceConditionGroupBy {
-	tcgb.fns = append(tcgb.fns, fns...)
-	return tcgb
+func (_g *TurbulenceConditionGroupBy) Aggregate(fns ...AggregateFunc) *TurbulenceConditionGroupBy {
+	_g.fns = append(_g.fns, fns...)
+	return _g
 }
 
 // Scan applies the selector query and scans the result into the given value.
-func (tcgb *TurbulenceConditionGroupBy) Scan(ctx context.Context, v any) error {
-	ctx = setContextOp(ctx, tcgb.build.ctx, "GroupBy")
-	if err := tcgb.build.prepareQuery(ctx); err != nil {
+func (_g *TurbulenceConditionGroupBy) Scan(ctx context.Context, v any) error {
+	ctx = setContextOp(ctx, _g.build.ctx, ent.OpQueryGroupBy)
+	if err := _g.build.prepareQuery(ctx); err != nil {
 		return err
 	}
-	return scanWithInterceptors[*TurbulenceConditionQuery, *TurbulenceConditionGroupBy](ctx, tcgb.build, tcgb, tcgb.build.inters, v)
+	return scanWithInterceptors[*TurbulenceConditionQuery, *TurbulenceConditionGroupBy](ctx, _g.build, _g, _g.build.inters, v)
 }
 
-func (tcgb *TurbulenceConditionGroupBy) sqlScan(ctx context.Context, root *TurbulenceConditionQuery, v any) error {
+func (_g *TurbulenceConditionGroupBy) sqlScan(ctx context.Context, root *TurbulenceConditionQuery, v any) error {
 	selector := root.sqlQuery(ctx).Select()
-	aggregation := make([]string, 0, len(tcgb.fns))
-	for _, fn := range tcgb.fns {
+	aggregation := make([]string, 0, len(_g.fns))
+	for _, fn := range _g.fns {
 		aggregation = append(aggregation, fn(selector))
 	}
 	if len(selector.SelectedColumns()) == 0 {
-		columns := make([]string, 0, len(*tcgb.flds)+len(tcgb.fns))
-		for _, f := range *tcgb.flds {
+		columns := make([]string, 0, len(*_g.flds)+len(_g.fns))
+		for _, f := range *_g.flds {
 			columns = append(columns, selector.C(f))
 		}
 		columns = append(columns, aggregation...)
 		selector.Select(columns...)
 	}
-	selector.GroupBy(selector.Columns(*tcgb.flds...)...)
+	selector.GroupBy(selector.Columns(*_g.flds...)...)
 	if err := selector.Err(); err != nil {
 		return err
 	}
 	rows := &sql.Rows{}
 	query, args := selector.Query()
-	if err := tcgb.build.driver.Query(ctx, query, args, rows); err != nil {
+	if err := _g.build.driver.Query(ctx, query, args, rows); err != nil {
 		return err
 	}
 	defer rows.Close()
@@ -518,27 +602,27 @@ type TurbulenceConditionSelect struct {
 }
 
 // Aggregate adds the given aggregation functions to the selector query.
-func (tcs *TurbulenceConditionSelect) Aggregate(fns ...AggregateFunc) *TurbulenceConditionSelect {
-	tcs.fns = append(tcs.fns, fns...)
-	return tcs
+func (_s *TurbulenceConditionSelect) Aggregate(fns ...AggregateFunc) *TurbulenceConditionSelect {
+	_s.fns = append(_s.fns, fns...)
+	return _s
 }
 
 // Scan applies the selector query and scans the result into the given value.
-func (tcs *TurbulenceConditionSelect) Scan(ctx context.Context, v any) error {
-	ctx = setContextOp(ctx, tcs.ctx, "Select")
-	if err := tcs.prepareQuery(ctx); err != nil {
+func (_s *TurbulenceConditionSelect) Scan(ctx context.Context, v any) error {
+	ctx = setContextOp(ctx, _s.ctx, ent.OpQuerySelect)
+	if err := _s.prepareQuery(ctx); err != nil {
 		return err
 	}
-	return scanWithInterceptors[*TurbulenceConditionQuery, *TurbulenceConditionSelect](ctx, tcs.TurbulenceConditionQuery, tcs, tcs.inters, v)
+	return scanWithInterceptors[*TurbulenceConditionQuery, *TurbulenceConditionSelect](ctx, _s.TurbulenceConditionQuery, _s, _s.inters, v)
 }
 
-func (tcs *TurbulenceConditionSelect) sqlScan(ctx context.Context, root *TurbulenceConditionQuery, v any) error {
+func (_s *TurbulenceConditionSelect) sqlScan(ctx context.Context, root *TurbulenceConditionQuery, v any) error {
 	selector := root.sqlQuery(ctx)
-	aggregation := make([]string, 0, len(tcs.fns))
-	for _, fn := range tcs.fns {
+	aggregation := make([]string, 0, len(_s.fns))
+	for _, fn := range _s.fns {
 		aggregation = append(aggregation, fn(selector))
 	}
-	switch n := len(*tcs.selector.flds); {
+	switch n := len(*_s.selector.flds); {
 	case n == 0 && len(aggregation) > 0:
 		selector.Select(aggregation...)
 	case n != 0 && len(aggregation) > 0:
@@ -546,7 +630,7 @@ func (tcs *TurbulenceConditionSelect) sqlScan(ctx context.Context, root *Turbule
 	}
 	rows := &sql.Rows{}
 	query, args := selector.Query()
-	if err := tcs.driver.Query(ctx, query, args, rows); err != nil {
+	if err := _s.driver.Query(ctx, query, args, rows); err != nil {
 		return err
 	}
 	defer rows.Close()
@@ -554,7 +638,7 @@ func (tcs *TurbulenceConditionSelect) sqlScan(ctx context.Context, root *Turbule
 }
 
 // Modify adds a query modifier for attaching custom logic to queries.
-func (tcs *TurbulenceConditionSelect) Modify(modifiers ...func(s *sql.Selector)) *TurbulenceConditionSelect {
-	tcs.modifiers = append(tcs.modifiers, modifiers...)
-	return tcs
+func (_s *TurbulenceConditionSelect) Modify(modifiers ...func(s *sql.Selector)) *TurbulenceConditionSelect {
+	_s.modifiers = append(_s.modifiers, modifiers...)
+	return _s
 }

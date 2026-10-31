@@ -9,6 +9,7 @@ import (
 	"entgo.io/ent"
 	"entgo.io/ent/dialect/sql"
 	"github.com/google/uuid"
+	"metar.live/ent/forecast"
 	"metar.live/ent/icingcondition"
 )
 
@@ -23,9 +24,32 @@ type IcingCondition struct {
 	// The minimum altitude in feet that the icing is present.
 	MinAltitude *int `json:"min_altitude,omitempty"`
 	// The maximum altitude in feet that the icing is present.
-	MaxAltitude               *int `json:"max_altitude,omitempty"`
+	MaxAltitude *int `json:"max_altitude,omitempty"`
+	// Edges holds the relations/edges for other nodes in the graph.
+	// The values are being populated by the IcingConditionQuery when eager-loading is set.
+	Edges                     IcingConditionEdges `json:"edges"`
 	forecast_icing_conditions *uuid.UUID
 	selectValues              sql.SelectValues
+}
+
+// IcingConditionEdges holds the relations/edges for other nodes in the graph.
+type IcingConditionEdges struct {
+	// Forecast holds the value of the forecast edge.
+	Forecast *Forecast `json:"forecast,omitempty"`
+	// loadedTypes holds the information for reporting if a
+	// type was loaded (or requested) in eager-loading or not.
+	loadedTypes [1]bool
+}
+
+// ForecastOrErr returns the Forecast value or an error if the edge
+// was not loaded in eager-loading, or loaded but was not found.
+func (e IcingConditionEdges) ForecastOrErr() (*Forecast, error) {
+	if e.Forecast != nil {
+		return e.Forecast, nil
+	} else if e.loadedTypes[0] {
+		return nil, &NotFoundError{label: forecast.Label}
+	}
+	return nil, &NotLoadedError{edge: "forecast"}
 }
 
 // scanValues returns the types for scanning values from sql.Rows.
@@ -50,7 +74,7 @@ func (*IcingCondition) scanValues(columns []string) ([]any, error) {
 
 // assignValues assigns the values that were returned from sql.Rows (after scanning)
 // to the IcingCondition fields.
-func (ic *IcingCondition) assignValues(columns []string, values []any) error {
+func (_m *IcingCondition) assignValues(columns []string, values []any) error {
 	if m, n := len(values), len(columns); m < n {
 		return fmt.Errorf("mismatch number of scan values: %d != %d", m, n)
 	}
@@ -60,37 +84,37 @@ func (ic *IcingCondition) assignValues(columns []string, values []any) error {
 			if value, ok := values[i].(*uuid.UUID); !ok {
 				return fmt.Errorf("unexpected type %T for field id", values[i])
 			} else if value != nil {
-				ic.ID = *value
+				_m.ID = *value
 			}
 		case icingcondition.FieldIntensity:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field intensity", values[i])
 			} else if value.Valid {
-				ic.Intensity = value.String
+				_m.Intensity = value.String
 			}
 		case icingcondition.FieldMinAltitude:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field min_altitude", values[i])
 			} else if value.Valid {
-				ic.MinAltitude = new(int)
-				*ic.MinAltitude = int(value.Int64)
+				_m.MinAltitude = new(int)
+				*_m.MinAltitude = int(value.Int64)
 			}
 		case icingcondition.FieldMaxAltitude:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field max_altitude", values[i])
 			} else if value.Valid {
-				ic.MaxAltitude = new(int)
-				*ic.MaxAltitude = int(value.Int64)
+				_m.MaxAltitude = new(int)
+				*_m.MaxAltitude = int(value.Int64)
 			}
 		case icingcondition.ForeignKeys[0]:
 			if value, ok := values[i].(*sql.NullScanner); !ok {
 				return fmt.Errorf("unexpected type %T for field forecast_icing_conditions", values[i])
 			} else if value.Valid {
-				ic.forecast_icing_conditions = new(uuid.UUID)
-				*ic.forecast_icing_conditions = *value.S.(*uuid.UUID)
+				_m.forecast_icing_conditions = new(uuid.UUID)
+				*_m.forecast_icing_conditions = *value.S.(*uuid.UUID)
 			}
 		default:
-			ic.selectValues.Set(columns[i], values[i])
+			_m.selectValues.Set(columns[i], values[i])
 		}
 	}
 	return nil
@@ -98,42 +122,47 @@ func (ic *IcingCondition) assignValues(columns []string, values []any) error {
 
 // Value returns the ent.Value that was dynamically selected and assigned to the IcingCondition.
 // This includes values selected through modifiers, order, etc.
-func (ic *IcingCondition) Value(name string) (ent.Value, error) {
-	return ic.selectValues.Get(name)
+func (_m *IcingCondition) Value(name string) (ent.Value, error) {
+	return _m.selectValues.Get(name)
+}
+
+// QueryForecast queries the "forecast" edge of the IcingCondition entity.
+func (_m *IcingCondition) QueryForecast() *ForecastQuery {
+	return NewIcingConditionClient(_m.config).QueryForecast(_m)
 }
 
 // Update returns a builder for updating this IcingCondition.
 // Note that you need to call IcingCondition.Unwrap() before calling this method if this IcingCondition
 // was returned from a transaction, and the transaction was committed or rolled back.
-func (ic *IcingCondition) Update() *IcingConditionUpdateOne {
-	return NewIcingConditionClient(ic.config).UpdateOne(ic)
+func (_m *IcingCondition) Update() *IcingConditionUpdateOne {
+	return NewIcingConditionClient(_m.config).UpdateOne(_m)
 }
 
 // Unwrap unwraps the IcingCondition entity that was returned from a transaction after it was closed,
 // so that all future queries will be executed through the driver which created the transaction.
-func (ic *IcingCondition) Unwrap() *IcingCondition {
-	_tx, ok := ic.config.driver.(*txDriver)
+func (_m *IcingCondition) Unwrap() *IcingCondition {
+	_tx, ok := _m.config.driver.(*txDriver)
 	if !ok {
 		panic("ent: IcingCondition is not a transactional entity")
 	}
-	ic.config.driver = _tx.drv
-	return ic
+	_m.config.driver = _tx.drv
+	return _m
 }
 
 // String implements the fmt.Stringer.
-func (ic *IcingCondition) String() string {
+func (_m *IcingCondition) String() string {
 	var builder strings.Builder
 	builder.WriteString("IcingCondition(")
-	builder.WriteString(fmt.Sprintf("id=%v, ", ic.ID))
+	builder.WriteString(fmt.Sprintf("id=%v, ", _m.ID))
 	builder.WriteString("intensity=")
-	builder.WriteString(ic.Intensity)
+	builder.WriteString(_m.Intensity)
 	builder.WriteString(", ")
-	if v := ic.MinAltitude; v != nil {
+	if v := _m.MinAltitude; v != nil {
 		builder.WriteString("min_altitude=")
 		builder.WriteString(fmt.Sprintf("%v", *v))
 	}
 	builder.WriteString(", ")
-	if v := ic.MaxAltitude; v != nil {
+	if v := _m.MaxAltitude; v != nil {
 		builder.WriteString("max_altitude=")
 		builder.WriteString(fmt.Sprintf("%v", *v))
 	}

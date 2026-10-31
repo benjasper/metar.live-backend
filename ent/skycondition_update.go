@@ -10,6 +10,9 @@ import (
 	"entgo.io/ent/dialect/sql"
 	"entgo.io/ent/dialect/sql/sqlgraph"
 	"entgo.io/ent/schema/field"
+	"github.com/google/uuid"
+	"metar.live/ent/forecast"
+	"metar.live/ent/metar"
 	"metar.live/ent/predicate"
 	"metar.live/ent/skycondition"
 )
@@ -23,77 +26,135 @@ type SkyConditionUpdate struct {
 }
 
 // Where appends a list predicates to the SkyConditionUpdate builder.
-func (scu *SkyConditionUpdate) Where(ps ...predicate.SkyCondition) *SkyConditionUpdate {
-	scu.mutation.Where(ps...)
-	return scu
+func (_u *SkyConditionUpdate) Where(ps ...predicate.SkyCondition) *SkyConditionUpdate {
+	_u.mutation.Where(ps...)
+	return _u
 }
 
 // SetSkyCover sets the "sky_cover" field.
-func (scu *SkyConditionUpdate) SetSkyCover(sc skycondition.SkyCover) *SkyConditionUpdate {
-	scu.mutation.SetSkyCover(sc)
-	return scu
+func (_u *SkyConditionUpdate) SetSkyCover(v skycondition.SkyCover) *SkyConditionUpdate {
+	_u.mutation.SetSkyCover(v)
+	return _u
+}
+
+// SetNillableSkyCover sets the "sky_cover" field if the given value is not nil.
+func (_u *SkyConditionUpdate) SetNillableSkyCover(v *skycondition.SkyCover) *SkyConditionUpdate {
+	if v != nil {
+		_u.SetSkyCover(*v)
+	}
+	return _u
 }
 
 // SetCloudBase sets the "cloud_base" field.
-func (scu *SkyConditionUpdate) SetCloudBase(i int) *SkyConditionUpdate {
-	scu.mutation.ResetCloudBase()
-	scu.mutation.SetCloudBase(i)
-	return scu
+func (_u *SkyConditionUpdate) SetCloudBase(v int) *SkyConditionUpdate {
+	_u.mutation.ResetCloudBase()
+	_u.mutation.SetCloudBase(v)
+	return _u
 }
 
 // SetNillableCloudBase sets the "cloud_base" field if the given value is not nil.
-func (scu *SkyConditionUpdate) SetNillableCloudBase(i *int) *SkyConditionUpdate {
-	if i != nil {
-		scu.SetCloudBase(*i)
+func (_u *SkyConditionUpdate) SetNillableCloudBase(v *int) *SkyConditionUpdate {
+	if v != nil {
+		_u.SetCloudBase(*v)
 	}
-	return scu
+	return _u
 }
 
-// AddCloudBase adds i to the "cloud_base" field.
-func (scu *SkyConditionUpdate) AddCloudBase(i int) *SkyConditionUpdate {
-	scu.mutation.AddCloudBase(i)
-	return scu
+// AddCloudBase adds value to the "cloud_base" field.
+func (_u *SkyConditionUpdate) AddCloudBase(v int) *SkyConditionUpdate {
+	_u.mutation.AddCloudBase(v)
+	return _u
 }
 
 // ClearCloudBase clears the value of the "cloud_base" field.
-func (scu *SkyConditionUpdate) ClearCloudBase() *SkyConditionUpdate {
-	scu.mutation.ClearCloudBase()
-	return scu
+func (_u *SkyConditionUpdate) ClearCloudBase() *SkyConditionUpdate {
+	_u.mutation.ClearCloudBase()
+	return _u
 }
 
 // SetCloudType sets the "cloud_type" field.
-func (scu *SkyConditionUpdate) SetCloudType(st skycondition.CloudType) *SkyConditionUpdate {
-	scu.mutation.SetCloudType(st)
-	return scu
+func (_u *SkyConditionUpdate) SetCloudType(v skycondition.CloudType) *SkyConditionUpdate {
+	_u.mutation.SetCloudType(v)
+	return _u
 }
 
 // SetNillableCloudType sets the "cloud_type" field if the given value is not nil.
-func (scu *SkyConditionUpdate) SetNillableCloudType(st *skycondition.CloudType) *SkyConditionUpdate {
-	if st != nil {
-		scu.SetCloudType(*st)
+func (_u *SkyConditionUpdate) SetNillableCloudType(v *skycondition.CloudType) *SkyConditionUpdate {
+	if v != nil {
+		_u.SetCloudType(*v)
 	}
-	return scu
+	return _u
 }
 
 // ClearCloudType clears the value of the "cloud_type" field.
-func (scu *SkyConditionUpdate) ClearCloudType() *SkyConditionUpdate {
-	scu.mutation.ClearCloudType()
-	return scu
+func (_u *SkyConditionUpdate) ClearCloudType() *SkyConditionUpdate {
+	_u.mutation.ClearCloudType()
+	return _u
+}
+
+// SetMetarID sets the "metar" edge to the Metar entity by ID.
+func (_u *SkyConditionUpdate) SetMetarID(id uuid.UUID) *SkyConditionUpdate {
+	_u.mutation.SetMetarID(id)
+	return _u
+}
+
+// SetNillableMetarID sets the "metar" edge to the Metar entity by ID if the given value is not nil.
+func (_u *SkyConditionUpdate) SetNillableMetarID(id *uuid.UUID) *SkyConditionUpdate {
+	if id != nil {
+		_u = _u.SetMetarID(*id)
+	}
+	return _u
+}
+
+// SetMetar sets the "metar" edge to the Metar entity.
+func (_u *SkyConditionUpdate) SetMetar(v *Metar) *SkyConditionUpdate {
+	return _u.SetMetarID(v.ID)
+}
+
+// SetForecastID sets the "forecast" edge to the Forecast entity by ID.
+func (_u *SkyConditionUpdate) SetForecastID(id uuid.UUID) *SkyConditionUpdate {
+	_u.mutation.SetForecastID(id)
+	return _u
+}
+
+// SetNillableForecastID sets the "forecast" edge to the Forecast entity by ID if the given value is not nil.
+func (_u *SkyConditionUpdate) SetNillableForecastID(id *uuid.UUID) *SkyConditionUpdate {
+	if id != nil {
+		_u = _u.SetForecastID(*id)
+	}
+	return _u
+}
+
+// SetForecast sets the "forecast" edge to the Forecast entity.
+func (_u *SkyConditionUpdate) SetForecast(v *Forecast) *SkyConditionUpdate {
+	return _u.SetForecastID(v.ID)
 }
 
 // Mutation returns the SkyConditionMutation object of the builder.
-func (scu *SkyConditionUpdate) Mutation() *SkyConditionMutation {
-	return scu.mutation
+func (_u *SkyConditionUpdate) Mutation() *SkyConditionMutation {
+	return _u.mutation
+}
+
+// ClearMetar clears the "metar" edge to the Metar entity.
+func (_u *SkyConditionUpdate) ClearMetar() *SkyConditionUpdate {
+	_u.mutation.ClearMetar()
+	return _u
+}
+
+// ClearForecast clears the "forecast" edge to the Forecast entity.
+func (_u *SkyConditionUpdate) ClearForecast() *SkyConditionUpdate {
+	_u.mutation.ClearForecast()
+	return _u
 }
 
 // Save executes the query and returns the number of nodes affected by the update operation.
-func (scu *SkyConditionUpdate) Save(ctx context.Context) (int, error) {
-	return withHooks(ctx, scu.sqlSave, scu.mutation, scu.hooks)
+func (_u *SkyConditionUpdate) Save(ctx context.Context) (int, error) {
+	return withHooks(ctx, _u.sqlSave, _u.mutation, _u.hooks)
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (scu *SkyConditionUpdate) SaveX(ctx context.Context) int {
-	affected, err := scu.Save(ctx)
+func (_u *SkyConditionUpdate) SaveX(ctx context.Context) int {
+	affected, err := _u.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -101,26 +162,26 @@ func (scu *SkyConditionUpdate) SaveX(ctx context.Context) int {
 }
 
 // Exec executes the query.
-func (scu *SkyConditionUpdate) Exec(ctx context.Context) error {
-	_, err := scu.Save(ctx)
+func (_u *SkyConditionUpdate) Exec(ctx context.Context) error {
+	_, err := _u.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (scu *SkyConditionUpdate) ExecX(ctx context.Context) {
-	if err := scu.Exec(ctx); err != nil {
+func (_u *SkyConditionUpdate) ExecX(ctx context.Context) {
+	if err := _u.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // check runs all checks and user-defined validators on the builder.
-func (scu *SkyConditionUpdate) check() error {
-	if v, ok := scu.mutation.SkyCover(); ok {
+func (_u *SkyConditionUpdate) check() error {
+	if v, ok := _u.mutation.SkyCover(); ok {
 		if err := skycondition.SkyCoverValidator(v); err != nil {
 			return &ValidationError{Name: "sky_cover", err: fmt.Errorf(`ent: validator failed for field "SkyCondition.sky_cover": %w`, err)}
 		}
 	}
-	if v, ok := scu.mutation.CloudType(); ok {
+	if v, ok := _u.mutation.CloudType(); ok {
 		if err := skycondition.CloudTypeValidator(v); err != nil {
 			return &ValidationError{Name: "cloud_type", err: fmt.Errorf(`ent: validator failed for field "SkyCondition.cloud_type": %w`, err)}
 		}
@@ -129,43 +190,101 @@ func (scu *SkyConditionUpdate) check() error {
 }
 
 // Modify adds a statement modifier for attaching custom logic to the UPDATE statement.
-func (scu *SkyConditionUpdate) Modify(modifiers ...func(u *sql.UpdateBuilder)) *SkyConditionUpdate {
-	scu.modifiers = append(scu.modifiers, modifiers...)
-	return scu
+func (_u *SkyConditionUpdate) Modify(modifiers ...func(u *sql.UpdateBuilder)) *SkyConditionUpdate {
+	_u.modifiers = append(_u.modifiers, modifiers...)
+	return _u
 }
 
-func (scu *SkyConditionUpdate) sqlSave(ctx context.Context) (n int, err error) {
-	if err := scu.check(); err != nil {
-		return n, err
+func (_u *SkyConditionUpdate) sqlSave(ctx context.Context) (_node int, err error) {
+	if err := _u.check(); err != nil {
+		return _node, err
 	}
 	_spec := sqlgraph.NewUpdateSpec(skycondition.Table, skycondition.Columns, sqlgraph.NewFieldSpec(skycondition.FieldID, field.TypeUUID))
-	if ps := scu.mutation.predicates; len(ps) > 0 {
+	if ps := _u.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if value, ok := scu.mutation.SkyCover(); ok {
+	if value, ok := _u.mutation.SkyCover(); ok {
 		_spec.SetField(skycondition.FieldSkyCover, field.TypeEnum, value)
 	}
-	if value, ok := scu.mutation.CloudBase(); ok {
+	if value, ok := _u.mutation.CloudBase(); ok {
 		_spec.SetField(skycondition.FieldCloudBase, field.TypeInt, value)
 	}
-	if value, ok := scu.mutation.AddedCloudBase(); ok {
+	if value, ok := _u.mutation.AddedCloudBase(); ok {
 		_spec.AddField(skycondition.FieldCloudBase, field.TypeInt, value)
 	}
-	if scu.mutation.CloudBaseCleared() {
+	if _u.mutation.CloudBaseCleared() {
 		_spec.ClearField(skycondition.FieldCloudBase, field.TypeInt)
 	}
-	if value, ok := scu.mutation.CloudType(); ok {
+	if value, ok := _u.mutation.CloudType(); ok {
 		_spec.SetField(skycondition.FieldCloudType, field.TypeEnum, value)
 	}
-	if scu.mutation.CloudTypeCleared() {
+	if _u.mutation.CloudTypeCleared() {
 		_spec.ClearField(skycondition.FieldCloudType, field.TypeEnum)
 	}
-	_spec.AddModifiers(scu.modifiers...)
-	if n, err = sqlgraph.UpdateNodes(ctx, scu.driver, _spec); err != nil {
+	if _u.mutation.MetarCleared() {
+		edge := &sqlgraph.EdgeSpec{
+			Rel:     sqlgraph.M2O,
+			Inverse: true,
+			Table:   skycondition.MetarTable,
+			Columns: []string{skycondition.MetarColumn},
+			Bidi:    false,
+			Target: &sqlgraph.EdgeTarget{
+				IDSpec: sqlgraph.NewFieldSpec(metar.FieldID, field.TypeUUID),
+			},
+		}
+		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
+	}
+	if nodes := _u.mutation.MetarIDs(); len(nodes) > 0 {
+		edge := &sqlgraph.EdgeSpec{
+			Rel:     sqlgraph.M2O,
+			Inverse: true,
+			Table:   skycondition.MetarTable,
+			Columns: []string{skycondition.MetarColumn},
+			Bidi:    false,
+			Target: &sqlgraph.EdgeTarget{
+				IDSpec: sqlgraph.NewFieldSpec(metar.FieldID, field.TypeUUID),
+			},
+		}
+		for _, k := range nodes {
+			edge.Target.Nodes = append(edge.Target.Nodes, k)
+		}
+		_spec.Edges.Add = append(_spec.Edges.Add, edge)
+	}
+	if _u.mutation.ForecastCleared() {
+		edge := &sqlgraph.EdgeSpec{
+			Rel:     sqlgraph.M2O,
+			Inverse: true,
+			Table:   skycondition.ForecastTable,
+			Columns: []string{skycondition.ForecastColumn},
+			Bidi:    false,
+			Target: &sqlgraph.EdgeTarget{
+				IDSpec: sqlgraph.NewFieldSpec(forecast.FieldID, field.TypeUUID),
+			},
+		}
+		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
+	}
+	if nodes := _u.mutation.ForecastIDs(); len(nodes) > 0 {
+		edge := &sqlgraph.EdgeSpec{
+			Rel:     sqlgraph.M2O,
+			Inverse: true,
+			Table:   skycondition.ForecastTable,
+			Columns: []string{skycondition.ForecastColumn},
+			Bidi:    false,
+			Target: &sqlgraph.EdgeTarget{
+				IDSpec: sqlgraph.NewFieldSpec(forecast.FieldID, field.TypeUUID),
+			},
+		}
+		for _, k := range nodes {
+			edge.Target.Nodes = append(edge.Target.Nodes, k)
+		}
+		_spec.Edges.Add = append(_spec.Edges.Add, edge)
+	}
+	_spec.AddModifiers(_u.modifiers...)
+	if _node, err = sqlgraph.UpdateNodes(ctx, _u.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
 			err = &NotFoundError{skycondition.Label}
 		} else if sqlgraph.IsConstraintError(err) {
@@ -173,8 +292,8 @@ func (scu *SkyConditionUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		return 0, err
 	}
-	scu.mutation.done = true
-	return n, nil
+	_u.mutation.done = true
+	return _node, nil
 }
 
 // SkyConditionUpdateOne is the builder for updating a single SkyCondition entity.
@@ -187,84 +306,142 @@ type SkyConditionUpdateOne struct {
 }
 
 // SetSkyCover sets the "sky_cover" field.
-func (scuo *SkyConditionUpdateOne) SetSkyCover(sc skycondition.SkyCover) *SkyConditionUpdateOne {
-	scuo.mutation.SetSkyCover(sc)
-	return scuo
+func (_u *SkyConditionUpdateOne) SetSkyCover(v skycondition.SkyCover) *SkyConditionUpdateOne {
+	_u.mutation.SetSkyCover(v)
+	return _u
+}
+
+// SetNillableSkyCover sets the "sky_cover" field if the given value is not nil.
+func (_u *SkyConditionUpdateOne) SetNillableSkyCover(v *skycondition.SkyCover) *SkyConditionUpdateOne {
+	if v != nil {
+		_u.SetSkyCover(*v)
+	}
+	return _u
 }
 
 // SetCloudBase sets the "cloud_base" field.
-func (scuo *SkyConditionUpdateOne) SetCloudBase(i int) *SkyConditionUpdateOne {
-	scuo.mutation.ResetCloudBase()
-	scuo.mutation.SetCloudBase(i)
-	return scuo
+func (_u *SkyConditionUpdateOne) SetCloudBase(v int) *SkyConditionUpdateOne {
+	_u.mutation.ResetCloudBase()
+	_u.mutation.SetCloudBase(v)
+	return _u
 }
 
 // SetNillableCloudBase sets the "cloud_base" field if the given value is not nil.
-func (scuo *SkyConditionUpdateOne) SetNillableCloudBase(i *int) *SkyConditionUpdateOne {
-	if i != nil {
-		scuo.SetCloudBase(*i)
+func (_u *SkyConditionUpdateOne) SetNillableCloudBase(v *int) *SkyConditionUpdateOne {
+	if v != nil {
+		_u.SetCloudBase(*v)
 	}
-	return scuo
+	return _u
 }
 
-// AddCloudBase adds i to the "cloud_base" field.
-func (scuo *SkyConditionUpdateOne) AddCloudBase(i int) *SkyConditionUpdateOne {
-	scuo.mutation.AddCloudBase(i)
-	return scuo
+// AddCloudBase adds value to the "cloud_base" field.
+func (_u *SkyConditionUpdateOne) AddCloudBase(v int) *SkyConditionUpdateOne {
+	_u.mutation.AddCloudBase(v)
+	return _u
 }
 
 // ClearCloudBase clears the value of the "cloud_base" field.
-func (scuo *SkyConditionUpdateOne) ClearCloudBase() *SkyConditionUpdateOne {
-	scuo.mutation.ClearCloudBase()
-	return scuo
+func (_u *SkyConditionUpdateOne) ClearCloudBase() *SkyConditionUpdateOne {
+	_u.mutation.ClearCloudBase()
+	return _u
 }
 
 // SetCloudType sets the "cloud_type" field.
-func (scuo *SkyConditionUpdateOne) SetCloudType(st skycondition.CloudType) *SkyConditionUpdateOne {
-	scuo.mutation.SetCloudType(st)
-	return scuo
+func (_u *SkyConditionUpdateOne) SetCloudType(v skycondition.CloudType) *SkyConditionUpdateOne {
+	_u.mutation.SetCloudType(v)
+	return _u
 }
 
 // SetNillableCloudType sets the "cloud_type" field if the given value is not nil.
-func (scuo *SkyConditionUpdateOne) SetNillableCloudType(st *skycondition.CloudType) *SkyConditionUpdateOne {
-	if st != nil {
-		scuo.SetCloudType(*st)
+func (_u *SkyConditionUpdateOne) SetNillableCloudType(v *skycondition.CloudType) *SkyConditionUpdateOne {
+	if v != nil {
+		_u.SetCloudType(*v)
 	}
-	return scuo
+	return _u
 }
 
 // ClearCloudType clears the value of the "cloud_type" field.
-func (scuo *SkyConditionUpdateOne) ClearCloudType() *SkyConditionUpdateOne {
-	scuo.mutation.ClearCloudType()
-	return scuo
+func (_u *SkyConditionUpdateOne) ClearCloudType() *SkyConditionUpdateOne {
+	_u.mutation.ClearCloudType()
+	return _u
+}
+
+// SetMetarID sets the "metar" edge to the Metar entity by ID.
+func (_u *SkyConditionUpdateOne) SetMetarID(id uuid.UUID) *SkyConditionUpdateOne {
+	_u.mutation.SetMetarID(id)
+	return _u
+}
+
+// SetNillableMetarID sets the "metar" edge to the Metar entity by ID if the given value is not nil.
+func (_u *SkyConditionUpdateOne) SetNillableMetarID(id *uuid.UUID) *SkyConditionUpdateOne {
+	if id != nil {
+		_u = _u.SetMetarID(*id)
+	}
+	return _u
+}
+
+// SetMetar sets the "metar" edge to the Metar entity.
+func (_u *SkyConditionUpdateOne) SetMetar(v *Metar) *SkyConditionUpdateOne {
+	return _u.SetMetarID(v.ID)
+}
+
+// SetForecastID sets the "forecast" edge to the Forecast entity by ID.
+func (_u *SkyConditionUpdateOne) SetForecastID(id uuid.UUID) *SkyConditionUpdateOne {
+	_u.mutation.SetForecastID(id)
+	return _u
+}
+
+// SetNillableForecastID sets the "forecast" edge to the Forecast entity by ID if the given value is not nil.
+func (_u *SkyConditionUpdateOne) SetNillableForecastID(id *uuid.UUID) *SkyConditionUpdateOne {
+	if id != nil {
+		_u = _u.SetForecastID(*id)
+	}
+	return _u
+}
+
+// SetForecast sets the "forecast" edge to the Forecast entity.
+func (_u *SkyConditionUpdateOne) SetForecast(v *Forecast) *SkyConditionUpdateOne {
+	return _u.SetForecastID(v.ID)
 }
 
 // Mutation returns the SkyConditionMutation object of the builder.
-func (scuo *SkyConditionUpdateOne) Mutation() *SkyConditionMutation {
-	return scuo.mutation
+func (_u *SkyConditionUpdateOne) Mutation() *SkyConditionMutation {
+	return _u.mutation
+}
+
+// ClearMetar clears the "metar" edge to the Metar entity.
+func (_u *SkyConditionUpdateOne) ClearMetar() *SkyConditionUpdateOne {
+	_u.mutation.ClearMetar()
+	return _u
+}
+
+// ClearForecast clears the "forecast" edge to the Forecast entity.
+func (_u *SkyConditionUpdateOne) ClearForecast() *SkyConditionUpdateOne {
+	_u.mutation.ClearForecast()
+	return _u
 }
 
 // Where appends a list predicates to the SkyConditionUpdate builder.
-func (scuo *SkyConditionUpdateOne) Where(ps ...predicate.SkyCondition) *SkyConditionUpdateOne {
-	scuo.mutation.Where(ps...)
-	return scuo
+func (_u *SkyConditionUpdateOne) Where(ps ...predicate.SkyCondition) *SkyConditionUpdateOne {
+	_u.mutation.Where(ps...)
+	return _u
 }
 
 // Select allows selecting one or more fields (columns) of the returned entity.
 // The default is selecting all fields defined in the entity schema.
-func (scuo *SkyConditionUpdateOne) Select(field string, fields ...string) *SkyConditionUpdateOne {
-	scuo.fields = append([]string{field}, fields...)
-	return scuo
+func (_u *SkyConditionUpdateOne) Select(field string, fields ...string) *SkyConditionUpdateOne {
+	_u.fields = append([]string{field}, fields...)
+	return _u
 }
 
 // Save executes the query and returns the updated SkyCondition entity.
-func (scuo *SkyConditionUpdateOne) Save(ctx context.Context) (*SkyCondition, error) {
-	return withHooks(ctx, scuo.sqlSave, scuo.mutation, scuo.hooks)
+func (_u *SkyConditionUpdateOne) Save(ctx context.Context) (*SkyCondition, error) {
+	return withHooks(ctx, _u.sqlSave, _u.mutation, _u.hooks)
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (scuo *SkyConditionUpdateOne) SaveX(ctx context.Context) *SkyCondition {
-	node, err := scuo.Save(ctx)
+func (_u *SkyConditionUpdateOne) SaveX(ctx context.Context) *SkyCondition {
+	node, err := _u.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -272,26 +449,26 @@ func (scuo *SkyConditionUpdateOne) SaveX(ctx context.Context) *SkyCondition {
 }
 
 // Exec executes the query on the entity.
-func (scuo *SkyConditionUpdateOne) Exec(ctx context.Context) error {
-	_, err := scuo.Save(ctx)
+func (_u *SkyConditionUpdateOne) Exec(ctx context.Context) error {
+	_, err := _u.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (scuo *SkyConditionUpdateOne) ExecX(ctx context.Context) {
-	if err := scuo.Exec(ctx); err != nil {
+func (_u *SkyConditionUpdateOne) ExecX(ctx context.Context) {
+	if err := _u.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // check runs all checks and user-defined validators on the builder.
-func (scuo *SkyConditionUpdateOne) check() error {
-	if v, ok := scuo.mutation.SkyCover(); ok {
+func (_u *SkyConditionUpdateOne) check() error {
+	if v, ok := _u.mutation.SkyCover(); ok {
 		if err := skycondition.SkyCoverValidator(v); err != nil {
 			return &ValidationError{Name: "sky_cover", err: fmt.Errorf(`ent: validator failed for field "SkyCondition.sky_cover": %w`, err)}
 		}
 	}
-	if v, ok := scuo.mutation.CloudType(); ok {
+	if v, ok := _u.mutation.CloudType(); ok {
 		if err := skycondition.CloudTypeValidator(v); err != nil {
 			return &ValidationError{Name: "cloud_type", err: fmt.Errorf(`ent: validator failed for field "SkyCondition.cloud_type": %w`, err)}
 		}
@@ -300,22 +477,22 @@ func (scuo *SkyConditionUpdateOne) check() error {
 }
 
 // Modify adds a statement modifier for attaching custom logic to the UPDATE statement.
-func (scuo *SkyConditionUpdateOne) Modify(modifiers ...func(u *sql.UpdateBuilder)) *SkyConditionUpdateOne {
-	scuo.modifiers = append(scuo.modifiers, modifiers...)
-	return scuo
+func (_u *SkyConditionUpdateOne) Modify(modifiers ...func(u *sql.UpdateBuilder)) *SkyConditionUpdateOne {
+	_u.modifiers = append(_u.modifiers, modifiers...)
+	return _u
 }
 
-func (scuo *SkyConditionUpdateOne) sqlSave(ctx context.Context) (_node *SkyCondition, err error) {
-	if err := scuo.check(); err != nil {
+func (_u *SkyConditionUpdateOne) sqlSave(ctx context.Context) (_node *SkyCondition, err error) {
+	if err := _u.check(); err != nil {
 		return _node, err
 	}
 	_spec := sqlgraph.NewUpdateSpec(skycondition.Table, skycondition.Columns, sqlgraph.NewFieldSpec(skycondition.FieldID, field.TypeUUID))
-	id, ok := scuo.mutation.ID()
+	id, ok := _u.mutation.ID()
 	if !ok {
 		return nil, &ValidationError{Name: "id", err: errors.New(`ent: missing "SkyCondition.id" for update`)}
 	}
 	_spec.Node.ID.Value = id
-	if fields := scuo.fields; len(fields) > 0 {
+	if fields := _u.fields; len(fields) > 0 {
 		_spec.Node.Columns = make([]string, 0, len(fields))
 		_spec.Node.Columns = append(_spec.Node.Columns, skycondition.FieldID)
 		for _, f := range fields {
@@ -327,36 +504,94 @@ func (scuo *SkyConditionUpdateOne) sqlSave(ctx context.Context) (_node *SkyCondi
 			}
 		}
 	}
-	if ps := scuo.mutation.predicates; len(ps) > 0 {
+	if ps := _u.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if value, ok := scuo.mutation.SkyCover(); ok {
+	if value, ok := _u.mutation.SkyCover(); ok {
 		_spec.SetField(skycondition.FieldSkyCover, field.TypeEnum, value)
 	}
-	if value, ok := scuo.mutation.CloudBase(); ok {
+	if value, ok := _u.mutation.CloudBase(); ok {
 		_spec.SetField(skycondition.FieldCloudBase, field.TypeInt, value)
 	}
-	if value, ok := scuo.mutation.AddedCloudBase(); ok {
+	if value, ok := _u.mutation.AddedCloudBase(); ok {
 		_spec.AddField(skycondition.FieldCloudBase, field.TypeInt, value)
 	}
-	if scuo.mutation.CloudBaseCleared() {
+	if _u.mutation.CloudBaseCleared() {
 		_spec.ClearField(skycondition.FieldCloudBase, field.TypeInt)
 	}
-	if value, ok := scuo.mutation.CloudType(); ok {
+	if value, ok := _u.mutation.CloudType(); ok {
 		_spec.SetField(skycondition.FieldCloudType, field.TypeEnum, value)
 	}
-	if scuo.mutation.CloudTypeCleared() {
+	if _u.mutation.CloudTypeCleared() {
 		_spec.ClearField(skycondition.FieldCloudType, field.TypeEnum)
 	}
-	_spec.AddModifiers(scuo.modifiers...)
-	_node = &SkyCondition{config: scuo.config}
+	if _u.mutation.MetarCleared() {
+		edge := &sqlgraph.EdgeSpec{
+			Rel:     sqlgraph.M2O,
+			Inverse: true,
+			Table:   skycondition.MetarTable,
+			Columns: []string{skycondition.MetarColumn},
+			Bidi:    false,
+			Target: &sqlgraph.EdgeTarget{
+				IDSpec: sqlgraph.NewFieldSpec(metar.FieldID, field.TypeUUID),
+			},
+		}
+		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
+	}
+	if nodes := _u.mutation.MetarIDs(); len(nodes) > 0 {
+		edge := &sqlgraph.EdgeSpec{
+			Rel:     sqlgraph.M2O,
+			Inverse: true,
+			Table:   skycondition.MetarTable,
+			Columns: []string{skycondition.MetarColumn},
+			Bidi:    false,
+			Target: &sqlgraph.EdgeTarget{
+				IDSpec: sqlgraph.NewFieldSpec(metar.FieldID, field.TypeUUID),
+			},
+		}
+		for _, k := range nodes {
+			edge.Target.Nodes = append(edge.Target.Nodes, k)
+		}
+		_spec.Edges.Add = append(_spec.Edges.Add, edge)
+	}
+	if _u.mutation.ForecastCleared() {
+		edge := &sqlgraph.EdgeSpec{
+			Rel:     sqlgraph.M2O,
+			Inverse: true,
+			Table:   skycondition.ForecastTable,
+			Columns: []string{skycondition.ForecastColumn},
+			Bidi:    false,
+			Target: &sqlgraph.EdgeTarget{
+				IDSpec: sqlgraph.NewFieldSpec(forecast.FieldID, field.TypeUUID),
+			},
+		}
+		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
+	}
+	if nodes := _u.mutation.ForecastIDs(); len(nodes) > 0 {
+		edge := &sqlgraph.EdgeSpec{
+			Rel:     sqlgraph.M2O,
+			Inverse: true,
+			Table:   skycondition.ForecastTable,
+			Columns: []string{skycondition.ForecastColumn},
+			Bidi:    false,
+			Target: &sqlgraph.EdgeTarget{
+				IDSpec: sqlgraph.NewFieldSpec(forecast.FieldID, field.TypeUUID),
+			},
+		}
+		for _, k := range nodes {
+			edge.Target.Nodes = append(edge.Target.Nodes, k)
+		}
+		_spec.Edges.Add = append(_spec.Edges.Add, edge)
+	}
+	_spec.AddModifiers(_u.modifiers...)
+	_node = &SkyCondition{config: _u.config}
 	_spec.Assign = _node.assignValues
 	_spec.ScanValues = _node.scanValues
-	if err = sqlgraph.UpdateNode(ctx, scuo.driver, _spec); err != nil {
+	if err = sqlgraph.UpdateNode(ctx, _u.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
 			err = &NotFoundError{skycondition.Label}
 		} else if sqlgraph.IsConstraintError(err) {
@@ -364,6 +599,6 @@ func (scuo *SkyConditionUpdateOne) sqlSave(ctx context.Context) (_node *SkyCondi
 		}
 		return nil, err
 	}
-	scuo.mutation.done = true
+	_u.mutation.done = true
 	return _node, nil
 }

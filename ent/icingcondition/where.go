@@ -4,6 +4,7 @@ package icingcondition
 
 import (
 	"entgo.io/ent/dialect/sql"
+	"entgo.io/ent/dialect/sql/sqlgraph"
 	"github.com/google/uuid"
 	"metar.live/ent/predicate"
 )
@@ -233,34 +234,40 @@ func MaxAltitudeNotNil() predicate.IcingCondition {
 	return predicate.IcingCondition(sql.FieldNotNull(FieldMaxAltitude))
 }
 
+// HasForecast applies the HasEdge predicate on the "forecast" edge.
+func HasForecast() predicate.IcingCondition {
+	return predicate.IcingCondition(func(s *sql.Selector) {
+		step := sqlgraph.NewStep(
+			sqlgraph.From(Table, FieldID),
+			sqlgraph.Edge(sqlgraph.M2O, true, ForecastTable, ForecastColumn),
+		)
+		sqlgraph.HasNeighbors(s, step)
+	})
+}
+
+// HasForecastWith applies the HasEdge predicate on the "forecast" edge with a given conditions (other predicates).
+func HasForecastWith(preds ...predicate.Forecast) predicate.IcingCondition {
+	return predicate.IcingCondition(func(s *sql.Selector) {
+		step := newForecastStep()
+		sqlgraph.HasNeighborsWith(s, step, func(s *sql.Selector) {
+			for _, p := range preds {
+				p(s)
+			}
+		})
+	})
+}
+
 // And groups predicates with the AND operator between them.
 func And(predicates ...predicate.IcingCondition) predicate.IcingCondition {
-	return predicate.IcingCondition(func(s *sql.Selector) {
-		s1 := s.Clone().SetP(nil)
-		for _, p := range predicates {
-			p(s1)
-		}
-		s.Where(s1.P())
-	})
+	return predicate.IcingCondition(sql.AndPredicates(predicates...))
 }
 
 // Or groups predicates with the OR operator between them.
 func Or(predicates ...predicate.IcingCondition) predicate.IcingCondition {
-	return predicate.IcingCondition(func(s *sql.Selector) {
-		s1 := s.Clone().SetP(nil)
-		for i, p := range predicates {
-			if i > 0 {
-				s1.Or()
-			}
-			p(s1)
-		}
-		s.Where(s1.P())
-	})
+	return predicate.IcingCondition(sql.OrPredicates(predicates...))
 }
 
 // Not applies the not operator on the given predicate.
 func Not(p predicate.IcingCondition) predicate.IcingCondition {
-	return predicate.IcingCondition(func(s *sql.Selector) {
-		p(s.Not())
-	})
+	return predicate.IcingCondition(sql.NotPredicates(p))
 }

@@ -10,6 +10,7 @@ import (
 	"entgo.io/ent"
 	"entgo.io/ent/dialect/sql"
 	"github.com/google/uuid"
+	"metar.live/ent/forecast"
 	"metar.live/ent/temperaturedata"
 )
 
@@ -26,9 +27,32 @@ type TemperatureData struct {
 	// The minimum temperature in degrees Celsius.
 	MinTemperature *float64 `json:"min_temperature,omitempty"`
 	// The maximum temperature in degrees Celsius.
-	MaxTemperature            *float64 `json:"max_temperature,omitempty"`
+	MaxTemperature *float64 `json:"max_temperature,omitempty"`
+	// Edges holds the relations/edges for other nodes in the graph.
+	// The values are being populated by the TemperatureDataQuery when eager-loading is set.
+	Edges                     TemperatureDataEdges `json:"edges"`
 	forecast_temperature_data *uuid.UUID
 	selectValues              sql.SelectValues
+}
+
+// TemperatureDataEdges holds the relations/edges for other nodes in the graph.
+type TemperatureDataEdges struct {
+	// Forecast holds the value of the forecast edge.
+	Forecast *Forecast `json:"forecast,omitempty"`
+	// loadedTypes holds the information for reporting if a
+	// type was loaded (or requested) in eager-loading or not.
+	loadedTypes [1]bool
+}
+
+// ForecastOrErr returns the Forecast value or an error if the edge
+// was not loaded in eager-loading, or loaded but was not found.
+func (e TemperatureDataEdges) ForecastOrErr() (*Forecast, error) {
+	if e.Forecast != nil {
+		return e.Forecast, nil
+	} else if e.loadedTypes[0] {
+		return nil, &NotFoundError{label: forecast.Label}
+	}
+	return nil, &NotLoadedError{edge: "forecast"}
 }
 
 // scanValues returns the types for scanning values from sql.Rows.
@@ -53,7 +77,7 @@ func (*TemperatureData) scanValues(columns []string) ([]any, error) {
 
 // assignValues assigns the values that were returned from sql.Rows (after scanning)
 // to the TemperatureData fields.
-func (td *TemperatureData) assignValues(columns []string, values []any) error {
+func (_m *TemperatureData) assignValues(columns []string, values []any) error {
 	if m, n := len(values), len(columns); m < n {
 		return fmt.Errorf("mismatch number of scan values: %d != %d", m, n)
 	}
@@ -63,43 +87,43 @@ func (td *TemperatureData) assignValues(columns []string, values []any) error {
 			if value, ok := values[i].(*uuid.UUID); !ok {
 				return fmt.Errorf("unexpected type %T for field id", values[i])
 			} else if value != nil {
-				td.ID = *value
+				_m.ID = *value
 			}
 		case temperaturedata.FieldValidTime:
 			if value, ok := values[i].(*sql.NullTime); !ok {
 				return fmt.Errorf("unexpected type %T for field valid_time", values[i])
 			} else if value.Valid {
-				td.ValidTime = value.Time
+				_m.ValidTime = value.Time
 			}
 		case temperaturedata.FieldTemperature:
 			if value, ok := values[i].(*sql.NullFloat64); !ok {
 				return fmt.Errorf("unexpected type %T for field temperature", values[i])
 			} else if value.Valid {
-				td.Temperature = value.Float64
+				_m.Temperature = value.Float64
 			}
 		case temperaturedata.FieldMinTemperature:
 			if value, ok := values[i].(*sql.NullFloat64); !ok {
 				return fmt.Errorf("unexpected type %T for field min_temperature", values[i])
 			} else if value.Valid {
-				td.MinTemperature = new(float64)
-				*td.MinTemperature = value.Float64
+				_m.MinTemperature = new(float64)
+				*_m.MinTemperature = value.Float64
 			}
 		case temperaturedata.FieldMaxTemperature:
 			if value, ok := values[i].(*sql.NullFloat64); !ok {
 				return fmt.Errorf("unexpected type %T for field max_temperature", values[i])
 			} else if value.Valid {
-				td.MaxTemperature = new(float64)
-				*td.MaxTemperature = value.Float64
+				_m.MaxTemperature = new(float64)
+				*_m.MaxTemperature = value.Float64
 			}
 		case temperaturedata.ForeignKeys[0]:
 			if value, ok := values[i].(*sql.NullScanner); !ok {
 				return fmt.Errorf("unexpected type %T for field forecast_temperature_data", values[i])
 			} else if value.Valid {
-				td.forecast_temperature_data = new(uuid.UUID)
-				*td.forecast_temperature_data = *value.S.(*uuid.UUID)
+				_m.forecast_temperature_data = new(uuid.UUID)
+				*_m.forecast_temperature_data = *value.S.(*uuid.UUID)
 			}
 		default:
-			td.selectValues.Set(columns[i], values[i])
+			_m.selectValues.Set(columns[i], values[i])
 		}
 	}
 	return nil
@@ -107,45 +131,50 @@ func (td *TemperatureData) assignValues(columns []string, values []any) error {
 
 // Value returns the ent.Value that was dynamically selected and assigned to the TemperatureData.
 // This includes values selected through modifiers, order, etc.
-func (td *TemperatureData) Value(name string) (ent.Value, error) {
-	return td.selectValues.Get(name)
+func (_m *TemperatureData) Value(name string) (ent.Value, error) {
+	return _m.selectValues.Get(name)
+}
+
+// QueryForecast queries the "forecast" edge of the TemperatureData entity.
+func (_m *TemperatureData) QueryForecast() *ForecastQuery {
+	return NewTemperatureDataClient(_m.config).QueryForecast(_m)
 }
 
 // Update returns a builder for updating this TemperatureData.
 // Note that you need to call TemperatureData.Unwrap() before calling this method if this TemperatureData
 // was returned from a transaction, and the transaction was committed or rolled back.
-func (td *TemperatureData) Update() *TemperatureDataUpdateOne {
-	return NewTemperatureDataClient(td.config).UpdateOne(td)
+func (_m *TemperatureData) Update() *TemperatureDataUpdateOne {
+	return NewTemperatureDataClient(_m.config).UpdateOne(_m)
 }
 
 // Unwrap unwraps the TemperatureData entity that was returned from a transaction after it was closed,
 // so that all future queries will be executed through the driver which created the transaction.
-func (td *TemperatureData) Unwrap() *TemperatureData {
-	_tx, ok := td.config.driver.(*txDriver)
+func (_m *TemperatureData) Unwrap() *TemperatureData {
+	_tx, ok := _m.config.driver.(*txDriver)
 	if !ok {
 		panic("ent: TemperatureData is not a transactional entity")
 	}
-	td.config.driver = _tx.drv
-	return td
+	_m.config.driver = _tx.drv
+	return _m
 }
 
 // String implements the fmt.Stringer.
-func (td *TemperatureData) String() string {
+func (_m *TemperatureData) String() string {
 	var builder strings.Builder
 	builder.WriteString("TemperatureData(")
-	builder.WriteString(fmt.Sprintf("id=%v, ", td.ID))
+	builder.WriteString(fmt.Sprintf("id=%v, ", _m.ID))
 	builder.WriteString("valid_time=")
-	builder.WriteString(td.ValidTime.Format(time.ANSIC))
+	builder.WriteString(_m.ValidTime.Format(time.ANSIC))
 	builder.WriteString(", ")
 	builder.WriteString("temperature=")
-	builder.WriteString(fmt.Sprintf("%v", td.Temperature))
+	builder.WriteString(fmt.Sprintf("%v", _m.Temperature))
 	builder.WriteString(", ")
-	if v := td.MinTemperature; v != nil {
+	if v := _m.MinTemperature; v != nil {
 		builder.WriteString("min_temperature=")
 		builder.WriteString(fmt.Sprintf("%v", *v))
 	}
 	builder.WriteString(", ")
-	if v := td.MaxTemperature; v != nil {
+	if v := _m.MaxTemperature; v != nil {
 		builder.WriteString("max_temperature=")
 		builder.WriteString(fmt.Sprintf("%v", *v))
 	}

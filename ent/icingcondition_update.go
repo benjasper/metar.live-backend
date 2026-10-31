@@ -10,6 +10,8 @@ import (
 	"entgo.io/ent/dialect/sql"
 	"entgo.io/ent/dialect/sql/sqlgraph"
 	"entgo.io/ent/schema/field"
+	"github.com/google/uuid"
+	"metar.live/ent/forecast"
 	"metar.live/ent/icingcondition"
 	"metar.live/ent/predicate"
 )
@@ -23,84 +25,117 @@ type IcingConditionUpdate struct {
 }
 
 // Where appends a list predicates to the IcingConditionUpdate builder.
-func (icu *IcingConditionUpdate) Where(ps ...predicate.IcingCondition) *IcingConditionUpdate {
-	icu.mutation.Where(ps...)
-	return icu
+func (_u *IcingConditionUpdate) Where(ps ...predicate.IcingCondition) *IcingConditionUpdate {
+	_u.mutation.Where(ps...)
+	return _u
 }
 
 // SetIntensity sets the "intensity" field.
-func (icu *IcingConditionUpdate) SetIntensity(s string) *IcingConditionUpdate {
-	icu.mutation.SetIntensity(s)
-	return icu
+func (_u *IcingConditionUpdate) SetIntensity(v string) *IcingConditionUpdate {
+	_u.mutation.SetIntensity(v)
+	return _u
+}
+
+// SetNillableIntensity sets the "intensity" field if the given value is not nil.
+func (_u *IcingConditionUpdate) SetNillableIntensity(v *string) *IcingConditionUpdate {
+	if v != nil {
+		_u.SetIntensity(*v)
+	}
+	return _u
 }
 
 // SetMinAltitude sets the "min_altitude" field.
-func (icu *IcingConditionUpdate) SetMinAltitude(i int) *IcingConditionUpdate {
-	icu.mutation.ResetMinAltitude()
-	icu.mutation.SetMinAltitude(i)
-	return icu
+func (_u *IcingConditionUpdate) SetMinAltitude(v int) *IcingConditionUpdate {
+	_u.mutation.ResetMinAltitude()
+	_u.mutation.SetMinAltitude(v)
+	return _u
 }
 
 // SetNillableMinAltitude sets the "min_altitude" field if the given value is not nil.
-func (icu *IcingConditionUpdate) SetNillableMinAltitude(i *int) *IcingConditionUpdate {
-	if i != nil {
-		icu.SetMinAltitude(*i)
+func (_u *IcingConditionUpdate) SetNillableMinAltitude(v *int) *IcingConditionUpdate {
+	if v != nil {
+		_u.SetMinAltitude(*v)
 	}
-	return icu
+	return _u
 }
 
-// AddMinAltitude adds i to the "min_altitude" field.
-func (icu *IcingConditionUpdate) AddMinAltitude(i int) *IcingConditionUpdate {
-	icu.mutation.AddMinAltitude(i)
-	return icu
+// AddMinAltitude adds value to the "min_altitude" field.
+func (_u *IcingConditionUpdate) AddMinAltitude(v int) *IcingConditionUpdate {
+	_u.mutation.AddMinAltitude(v)
+	return _u
 }
 
 // ClearMinAltitude clears the value of the "min_altitude" field.
-func (icu *IcingConditionUpdate) ClearMinAltitude() *IcingConditionUpdate {
-	icu.mutation.ClearMinAltitude()
-	return icu
+func (_u *IcingConditionUpdate) ClearMinAltitude() *IcingConditionUpdate {
+	_u.mutation.ClearMinAltitude()
+	return _u
 }
 
 // SetMaxAltitude sets the "max_altitude" field.
-func (icu *IcingConditionUpdate) SetMaxAltitude(i int) *IcingConditionUpdate {
-	icu.mutation.ResetMaxAltitude()
-	icu.mutation.SetMaxAltitude(i)
-	return icu
+func (_u *IcingConditionUpdate) SetMaxAltitude(v int) *IcingConditionUpdate {
+	_u.mutation.ResetMaxAltitude()
+	_u.mutation.SetMaxAltitude(v)
+	return _u
 }
 
 // SetNillableMaxAltitude sets the "max_altitude" field if the given value is not nil.
-func (icu *IcingConditionUpdate) SetNillableMaxAltitude(i *int) *IcingConditionUpdate {
-	if i != nil {
-		icu.SetMaxAltitude(*i)
+func (_u *IcingConditionUpdate) SetNillableMaxAltitude(v *int) *IcingConditionUpdate {
+	if v != nil {
+		_u.SetMaxAltitude(*v)
 	}
-	return icu
+	return _u
 }
 
-// AddMaxAltitude adds i to the "max_altitude" field.
-func (icu *IcingConditionUpdate) AddMaxAltitude(i int) *IcingConditionUpdate {
-	icu.mutation.AddMaxAltitude(i)
-	return icu
+// AddMaxAltitude adds value to the "max_altitude" field.
+func (_u *IcingConditionUpdate) AddMaxAltitude(v int) *IcingConditionUpdate {
+	_u.mutation.AddMaxAltitude(v)
+	return _u
 }
 
 // ClearMaxAltitude clears the value of the "max_altitude" field.
-func (icu *IcingConditionUpdate) ClearMaxAltitude() *IcingConditionUpdate {
-	icu.mutation.ClearMaxAltitude()
-	return icu
+func (_u *IcingConditionUpdate) ClearMaxAltitude() *IcingConditionUpdate {
+	_u.mutation.ClearMaxAltitude()
+	return _u
+}
+
+// SetForecastID sets the "forecast" edge to the Forecast entity by ID.
+func (_u *IcingConditionUpdate) SetForecastID(id uuid.UUID) *IcingConditionUpdate {
+	_u.mutation.SetForecastID(id)
+	return _u
+}
+
+// SetNillableForecastID sets the "forecast" edge to the Forecast entity by ID if the given value is not nil.
+func (_u *IcingConditionUpdate) SetNillableForecastID(id *uuid.UUID) *IcingConditionUpdate {
+	if id != nil {
+		_u = _u.SetForecastID(*id)
+	}
+	return _u
+}
+
+// SetForecast sets the "forecast" edge to the Forecast entity.
+func (_u *IcingConditionUpdate) SetForecast(v *Forecast) *IcingConditionUpdate {
+	return _u.SetForecastID(v.ID)
 }
 
 // Mutation returns the IcingConditionMutation object of the builder.
-func (icu *IcingConditionUpdate) Mutation() *IcingConditionMutation {
-	return icu.mutation
+func (_u *IcingConditionUpdate) Mutation() *IcingConditionMutation {
+	return _u.mutation
+}
+
+// ClearForecast clears the "forecast" edge to the Forecast entity.
+func (_u *IcingConditionUpdate) ClearForecast() *IcingConditionUpdate {
+	_u.mutation.ClearForecast()
+	return _u
 }
 
 // Save executes the query and returns the number of nodes affected by the update operation.
-func (icu *IcingConditionUpdate) Save(ctx context.Context) (int, error) {
-	return withHooks(ctx, icu.sqlSave, icu.mutation, icu.hooks)
+func (_u *IcingConditionUpdate) Save(ctx context.Context) (int, error) {
+	return withHooks(ctx, _u.sqlSave, _u.mutation, _u.hooks)
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (icu *IcingConditionUpdate) SaveX(ctx context.Context) int {
-	affected, err := icu.Save(ctx)
+func (_u *IcingConditionUpdate) SaveX(ctx context.Context) int {
+	affected, err := _u.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -108,56 +143,85 @@ func (icu *IcingConditionUpdate) SaveX(ctx context.Context) int {
 }
 
 // Exec executes the query.
-func (icu *IcingConditionUpdate) Exec(ctx context.Context) error {
-	_, err := icu.Save(ctx)
+func (_u *IcingConditionUpdate) Exec(ctx context.Context) error {
+	_, err := _u.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (icu *IcingConditionUpdate) ExecX(ctx context.Context) {
-	if err := icu.Exec(ctx); err != nil {
+func (_u *IcingConditionUpdate) ExecX(ctx context.Context) {
+	if err := _u.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // Modify adds a statement modifier for attaching custom logic to the UPDATE statement.
-func (icu *IcingConditionUpdate) Modify(modifiers ...func(u *sql.UpdateBuilder)) *IcingConditionUpdate {
-	icu.modifiers = append(icu.modifiers, modifiers...)
-	return icu
+func (_u *IcingConditionUpdate) Modify(modifiers ...func(u *sql.UpdateBuilder)) *IcingConditionUpdate {
+	_u.modifiers = append(_u.modifiers, modifiers...)
+	return _u
 }
 
-func (icu *IcingConditionUpdate) sqlSave(ctx context.Context) (n int, err error) {
+func (_u *IcingConditionUpdate) sqlSave(ctx context.Context) (_node int, err error) {
 	_spec := sqlgraph.NewUpdateSpec(icingcondition.Table, icingcondition.Columns, sqlgraph.NewFieldSpec(icingcondition.FieldID, field.TypeUUID))
-	if ps := icu.mutation.predicates; len(ps) > 0 {
+	if ps := _u.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if value, ok := icu.mutation.Intensity(); ok {
+	if value, ok := _u.mutation.Intensity(); ok {
 		_spec.SetField(icingcondition.FieldIntensity, field.TypeString, value)
 	}
-	if value, ok := icu.mutation.MinAltitude(); ok {
+	if value, ok := _u.mutation.MinAltitude(); ok {
 		_spec.SetField(icingcondition.FieldMinAltitude, field.TypeInt, value)
 	}
-	if value, ok := icu.mutation.AddedMinAltitude(); ok {
+	if value, ok := _u.mutation.AddedMinAltitude(); ok {
 		_spec.AddField(icingcondition.FieldMinAltitude, field.TypeInt, value)
 	}
-	if icu.mutation.MinAltitudeCleared() {
+	if _u.mutation.MinAltitudeCleared() {
 		_spec.ClearField(icingcondition.FieldMinAltitude, field.TypeInt)
 	}
-	if value, ok := icu.mutation.MaxAltitude(); ok {
+	if value, ok := _u.mutation.MaxAltitude(); ok {
 		_spec.SetField(icingcondition.FieldMaxAltitude, field.TypeInt, value)
 	}
-	if value, ok := icu.mutation.AddedMaxAltitude(); ok {
+	if value, ok := _u.mutation.AddedMaxAltitude(); ok {
 		_spec.AddField(icingcondition.FieldMaxAltitude, field.TypeInt, value)
 	}
-	if icu.mutation.MaxAltitudeCleared() {
+	if _u.mutation.MaxAltitudeCleared() {
 		_spec.ClearField(icingcondition.FieldMaxAltitude, field.TypeInt)
 	}
-	_spec.AddModifiers(icu.modifiers...)
-	if n, err = sqlgraph.UpdateNodes(ctx, icu.driver, _spec); err != nil {
+	if _u.mutation.ForecastCleared() {
+		edge := &sqlgraph.EdgeSpec{
+			Rel:     sqlgraph.M2O,
+			Inverse: true,
+			Table:   icingcondition.ForecastTable,
+			Columns: []string{icingcondition.ForecastColumn},
+			Bidi:    false,
+			Target: &sqlgraph.EdgeTarget{
+				IDSpec: sqlgraph.NewFieldSpec(forecast.FieldID, field.TypeUUID),
+			},
+		}
+		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
+	}
+	if nodes := _u.mutation.ForecastIDs(); len(nodes) > 0 {
+		edge := &sqlgraph.EdgeSpec{
+			Rel:     sqlgraph.M2O,
+			Inverse: true,
+			Table:   icingcondition.ForecastTable,
+			Columns: []string{icingcondition.ForecastColumn},
+			Bidi:    false,
+			Target: &sqlgraph.EdgeTarget{
+				IDSpec: sqlgraph.NewFieldSpec(forecast.FieldID, field.TypeUUID),
+			},
+		}
+		for _, k := range nodes {
+			edge.Target.Nodes = append(edge.Target.Nodes, k)
+		}
+		_spec.Edges.Add = append(_spec.Edges.Add, edge)
+	}
+	_spec.AddModifiers(_u.modifiers...)
+	if _node, err = sqlgraph.UpdateNodes(ctx, _u.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
 			err = &NotFoundError{icingcondition.Label}
 		} else if sqlgraph.IsConstraintError(err) {
@@ -165,8 +229,8 @@ func (icu *IcingConditionUpdate) sqlSave(ctx context.Context) (n int, err error)
 		}
 		return 0, err
 	}
-	icu.mutation.done = true
-	return n, nil
+	_u.mutation.done = true
+	return _node, nil
 }
 
 // IcingConditionUpdateOne is the builder for updating a single IcingCondition entity.
@@ -179,91 +243,124 @@ type IcingConditionUpdateOne struct {
 }
 
 // SetIntensity sets the "intensity" field.
-func (icuo *IcingConditionUpdateOne) SetIntensity(s string) *IcingConditionUpdateOne {
-	icuo.mutation.SetIntensity(s)
-	return icuo
+func (_u *IcingConditionUpdateOne) SetIntensity(v string) *IcingConditionUpdateOne {
+	_u.mutation.SetIntensity(v)
+	return _u
+}
+
+// SetNillableIntensity sets the "intensity" field if the given value is not nil.
+func (_u *IcingConditionUpdateOne) SetNillableIntensity(v *string) *IcingConditionUpdateOne {
+	if v != nil {
+		_u.SetIntensity(*v)
+	}
+	return _u
 }
 
 // SetMinAltitude sets the "min_altitude" field.
-func (icuo *IcingConditionUpdateOne) SetMinAltitude(i int) *IcingConditionUpdateOne {
-	icuo.mutation.ResetMinAltitude()
-	icuo.mutation.SetMinAltitude(i)
-	return icuo
+func (_u *IcingConditionUpdateOne) SetMinAltitude(v int) *IcingConditionUpdateOne {
+	_u.mutation.ResetMinAltitude()
+	_u.mutation.SetMinAltitude(v)
+	return _u
 }
 
 // SetNillableMinAltitude sets the "min_altitude" field if the given value is not nil.
-func (icuo *IcingConditionUpdateOne) SetNillableMinAltitude(i *int) *IcingConditionUpdateOne {
-	if i != nil {
-		icuo.SetMinAltitude(*i)
+func (_u *IcingConditionUpdateOne) SetNillableMinAltitude(v *int) *IcingConditionUpdateOne {
+	if v != nil {
+		_u.SetMinAltitude(*v)
 	}
-	return icuo
+	return _u
 }
 
-// AddMinAltitude adds i to the "min_altitude" field.
-func (icuo *IcingConditionUpdateOne) AddMinAltitude(i int) *IcingConditionUpdateOne {
-	icuo.mutation.AddMinAltitude(i)
-	return icuo
+// AddMinAltitude adds value to the "min_altitude" field.
+func (_u *IcingConditionUpdateOne) AddMinAltitude(v int) *IcingConditionUpdateOne {
+	_u.mutation.AddMinAltitude(v)
+	return _u
 }
 
 // ClearMinAltitude clears the value of the "min_altitude" field.
-func (icuo *IcingConditionUpdateOne) ClearMinAltitude() *IcingConditionUpdateOne {
-	icuo.mutation.ClearMinAltitude()
-	return icuo
+func (_u *IcingConditionUpdateOne) ClearMinAltitude() *IcingConditionUpdateOne {
+	_u.mutation.ClearMinAltitude()
+	return _u
 }
 
 // SetMaxAltitude sets the "max_altitude" field.
-func (icuo *IcingConditionUpdateOne) SetMaxAltitude(i int) *IcingConditionUpdateOne {
-	icuo.mutation.ResetMaxAltitude()
-	icuo.mutation.SetMaxAltitude(i)
-	return icuo
+func (_u *IcingConditionUpdateOne) SetMaxAltitude(v int) *IcingConditionUpdateOne {
+	_u.mutation.ResetMaxAltitude()
+	_u.mutation.SetMaxAltitude(v)
+	return _u
 }
 
 // SetNillableMaxAltitude sets the "max_altitude" field if the given value is not nil.
-func (icuo *IcingConditionUpdateOne) SetNillableMaxAltitude(i *int) *IcingConditionUpdateOne {
-	if i != nil {
-		icuo.SetMaxAltitude(*i)
+func (_u *IcingConditionUpdateOne) SetNillableMaxAltitude(v *int) *IcingConditionUpdateOne {
+	if v != nil {
+		_u.SetMaxAltitude(*v)
 	}
-	return icuo
+	return _u
 }
 
-// AddMaxAltitude adds i to the "max_altitude" field.
-func (icuo *IcingConditionUpdateOne) AddMaxAltitude(i int) *IcingConditionUpdateOne {
-	icuo.mutation.AddMaxAltitude(i)
-	return icuo
+// AddMaxAltitude adds value to the "max_altitude" field.
+func (_u *IcingConditionUpdateOne) AddMaxAltitude(v int) *IcingConditionUpdateOne {
+	_u.mutation.AddMaxAltitude(v)
+	return _u
 }
 
 // ClearMaxAltitude clears the value of the "max_altitude" field.
-func (icuo *IcingConditionUpdateOne) ClearMaxAltitude() *IcingConditionUpdateOne {
-	icuo.mutation.ClearMaxAltitude()
-	return icuo
+func (_u *IcingConditionUpdateOne) ClearMaxAltitude() *IcingConditionUpdateOne {
+	_u.mutation.ClearMaxAltitude()
+	return _u
+}
+
+// SetForecastID sets the "forecast" edge to the Forecast entity by ID.
+func (_u *IcingConditionUpdateOne) SetForecastID(id uuid.UUID) *IcingConditionUpdateOne {
+	_u.mutation.SetForecastID(id)
+	return _u
+}
+
+// SetNillableForecastID sets the "forecast" edge to the Forecast entity by ID if the given value is not nil.
+func (_u *IcingConditionUpdateOne) SetNillableForecastID(id *uuid.UUID) *IcingConditionUpdateOne {
+	if id != nil {
+		_u = _u.SetForecastID(*id)
+	}
+	return _u
+}
+
+// SetForecast sets the "forecast" edge to the Forecast entity.
+func (_u *IcingConditionUpdateOne) SetForecast(v *Forecast) *IcingConditionUpdateOne {
+	return _u.SetForecastID(v.ID)
 }
 
 // Mutation returns the IcingConditionMutation object of the builder.
-func (icuo *IcingConditionUpdateOne) Mutation() *IcingConditionMutation {
-	return icuo.mutation
+func (_u *IcingConditionUpdateOne) Mutation() *IcingConditionMutation {
+	return _u.mutation
+}
+
+// ClearForecast clears the "forecast" edge to the Forecast entity.
+func (_u *IcingConditionUpdateOne) ClearForecast() *IcingConditionUpdateOne {
+	_u.mutation.ClearForecast()
+	return _u
 }
 
 // Where appends a list predicates to the IcingConditionUpdate builder.
-func (icuo *IcingConditionUpdateOne) Where(ps ...predicate.IcingCondition) *IcingConditionUpdateOne {
-	icuo.mutation.Where(ps...)
-	return icuo
+func (_u *IcingConditionUpdateOne) Where(ps ...predicate.IcingCondition) *IcingConditionUpdateOne {
+	_u.mutation.Where(ps...)
+	return _u
 }
 
 // Select allows selecting one or more fields (columns) of the returned entity.
 // The default is selecting all fields defined in the entity schema.
-func (icuo *IcingConditionUpdateOne) Select(field string, fields ...string) *IcingConditionUpdateOne {
-	icuo.fields = append([]string{field}, fields...)
-	return icuo
+func (_u *IcingConditionUpdateOne) Select(field string, fields ...string) *IcingConditionUpdateOne {
+	_u.fields = append([]string{field}, fields...)
+	return _u
 }
 
 // Save executes the query and returns the updated IcingCondition entity.
-func (icuo *IcingConditionUpdateOne) Save(ctx context.Context) (*IcingCondition, error) {
-	return withHooks(ctx, icuo.sqlSave, icuo.mutation, icuo.hooks)
+func (_u *IcingConditionUpdateOne) Save(ctx context.Context) (*IcingCondition, error) {
+	return withHooks(ctx, _u.sqlSave, _u.mutation, _u.hooks)
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (icuo *IcingConditionUpdateOne) SaveX(ctx context.Context) *IcingCondition {
-	node, err := icuo.Save(ctx)
+func (_u *IcingConditionUpdateOne) SaveX(ctx context.Context) *IcingCondition {
+	node, err := _u.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -271,32 +368,32 @@ func (icuo *IcingConditionUpdateOne) SaveX(ctx context.Context) *IcingCondition 
 }
 
 // Exec executes the query on the entity.
-func (icuo *IcingConditionUpdateOne) Exec(ctx context.Context) error {
-	_, err := icuo.Save(ctx)
+func (_u *IcingConditionUpdateOne) Exec(ctx context.Context) error {
+	_, err := _u.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (icuo *IcingConditionUpdateOne) ExecX(ctx context.Context) {
-	if err := icuo.Exec(ctx); err != nil {
+func (_u *IcingConditionUpdateOne) ExecX(ctx context.Context) {
+	if err := _u.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // Modify adds a statement modifier for attaching custom logic to the UPDATE statement.
-func (icuo *IcingConditionUpdateOne) Modify(modifiers ...func(u *sql.UpdateBuilder)) *IcingConditionUpdateOne {
-	icuo.modifiers = append(icuo.modifiers, modifiers...)
-	return icuo
+func (_u *IcingConditionUpdateOne) Modify(modifiers ...func(u *sql.UpdateBuilder)) *IcingConditionUpdateOne {
+	_u.modifiers = append(_u.modifiers, modifiers...)
+	return _u
 }
 
-func (icuo *IcingConditionUpdateOne) sqlSave(ctx context.Context) (_node *IcingCondition, err error) {
+func (_u *IcingConditionUpdateOne) sqlSave(ctx context.Context) (_node *IcingCondition, err error) {
 	_spec := sqlgraph.NewUpdateSpec(icingcondition.Table, icingcondition.Columns, sqlgraph.NewFieldSpec(icingcondition.FieldID, field.TypeUUID))
-	id, ok := icuo.mutation.ID()
+	id, ok := _u.mutation.ID()
 	if !ok {
 		return nil, &ValidationError{Name: "id", err: errors.New(`ent: missing "IcingCondition.id" for update`)}
 	}
 	_spec.Node.ID.Value = id
-	if fields := icuo.fields; len(fields) > 0 {
+	if fields := _u.fields; len(fields) > 0 {
 		_spec.Node.Columns = make([]string, 0, len(fields))
 		_spec.Node.Columns = append(_spec.Node.Columns, icingcondition.FieldID)
 		for _, f := range fields {
@@ -308,39 +405,68 @@ func (icuo *IcingConditionUpdateOne) sqlSave(ctx context.Context) (_node *IcingC
 			}
 		}
 	}
-	if ps := icuo.mutation.predicates; len(ps) > 0 {
+	if ps := _u.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if value, ok := icuo.mutation.Intensity(); ok {
+	if value, ok := _u.mutation.Intensity(); ok {
 		_spec.SetField(icingcondition.FieldIntensity, field.TypeString, value)
 	}
-	if value, ok := icuo.mutation.MinAltitude(); ok {
+	if value, ok := _u.mutation.MinAltitude(); ok {
 		_spec.SetField(icingcondition.FieldMinAltitude, field.TypeInt, value)
 	}
-	if value, ok := icuo.mutation.AddedMinAltitude(); ok {
+	if value, ok := _u.mutation.AddedMinAltitude(); ok {
 		_spec.AddField(icingcondition.FieldMinAltitude, field.TypeInt, value)
 	}
-	if icuo.mutation.MinAltitudeCleared() {
+	if _u.mutation.MinAltitudeCleared() {
 		_spec.ClearField(icingcondition.FieldMinAltitude, field.TypeInt)
 	}
-	if value, ok := icuo.mutation.MaxAltitude(); ok {
+	if value, ok := _u.mutation.MaxAltitude(); ok {
 		_spec.SetField(icingcondition.FieldMaxAltitude, field.TypeInt, value)
 	}
-	if value, ok := icuo.mutation.AddedMaxAltitude(); ok {
+	if value, ok := _u.mutation.AddedMaxAltitude(); ok {
 		_spec.AddField(icingcondition.FieldMaxAltitude, field.TypeInt, value)
 	}
-	if icuo.mutation.MaxAltitudeCleared() {
+	if _u.mutation.MaxAltitudeCleared() {
 		_spec.ClearField(icingcondition.FieldMaxAltitude, field.TypeInt)
 	}
-	_spec.AddModifiers(icuo.modifiers...)
-	_node = &IcingCondition{config: icuo.config}
+	if _u.mutation.ForecastCleared() {
+		edge := &sqlgraph.EdgeSpec{
+			Rel:     sqlgraph.M2O,
+			Inverse: true,
+			Table:   icingcondition.ForecastTable,
+			Columns: []string{icingcondition.ForecastColumn},
+			Bidi:    false,
+			Target: &sqlgraph.EdgeTarget{
+				IDSpec: sqlgraph.NewFieldSpec(forecast.FieldID, field.TypeUUID),
+			},
+		}
+		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
+	}
+	if nodes := _u.mutation.ForecastIDs(); len(nodes) > 0 {
+		edge := &sqlgraph.EdgeSpec{
+			Rel:     sqlgraph.M2O,
+			Inverse: true,
+			Table:   icingcondition.ForecastTable,
+			Columns: []string{icingcondition.ForecastColumn},
+			Bidi:    false,
+			Target: &sqlgraph.EdgeTarget{
+				IDSpec: sqlgraph.NewFieldSpec(forecast.FieldID, field.TypeUUID),
+			},
+		}
+		for _, k := range nodes {
+			edge.Target.Nodes = append(edge.Target.Nodes, k)
+		}
+		_spec.Edges.Add = append(_spec.Edges.Add, edge)
+	}
+	_spec.AddModifiers(_u.modifiers...)
+	_node = &IcingCondition{config: _u.config}
 	_spec.Assign = _node.assignValues
 	_spec.ScanValues = _node.scanValues
-	if err = sqlgraph.UpdateNode(ctx, icuo.driver, _spec); err != nil {
+	if err = sqlgraph.UpdateNode(ctx, _u.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
 			err = &NotFoundError{icingcondition.Label}
 		} else if sqlgraph.IsConstraintError(err) {
@@ -348,6 +474,6 @@ func (icuo *IcingConditionUpdateOne) sqlSave(ctx context.Context) (_node *IcingC
 		}
 		return nil, err
 	}
-	icuo.mutation.done = true
+	_u.mutation.done = true
 	return _node, nil
 }

@@ -3,6 +3,7 @@ package schema
 import (
 	"entgo.io/contrib/entgql"
 	"entgo.io/ent"
+	"entgo.io/ent/schema/edge"
 	"entgo.io/ent/schema/field"
 )
 
@@ -22,7 +23,9 @@ func (TurbulenceCondition) Fields() []ent.Field {
 
 // Edges of the TurbulenceCondition.
 func (TurbulenceCondition) Edges() []ent.Edge {
-	return nil
+	return []ent.Edge{
+		edge.From("forecast", Forecast.Type).Ref("turbulence_conditions").Unique().Annotations(entgql.Skip()),
+	}
 }
 
 // Mixin of the TurbulenceCondition.

@@ -27,467 +27,467 @@ type MetarCreate struct {
 }
 
 // SetRawText sets the "raw_text" field.
-func (mc *MetarCreate) SetRawText(s string) *MetarCreate {
-	mc.mutation.SetRawText(s)
-	return mc
+func (_c *MetarCreate) SetRawText(v string) *MetarCreate {
+	_c.mutation.SetRawText(v)
+	return _c
 }
 
 // SetObservationTime sets the "observation_time" field.
-func (mc *MetarCreate) SetObservationTime(t time.Time) *MetarCreate {
-	mc.mutation.SetObservationTime(t)
-	return mc
+func (_c *MetarCreate) SetObservationTime(v time.Time) *MetarCreate {
+	_c.mutation.SetObservationTime(v)
+	return _c
 }
 
 // SetImportTime sets the "import_time" field.
-func (mc *MetarCreate) SetImportTime(t time.Time) *MetarCreate {
-	mc.mutation.SetImportTime(t)
-	return mc
+func (_c *MetarCreate) SetImportTime(v time.Time) *MetarCreate {
+	_c.mutation.SetImportTime(v)
+	return _c
 }
 
 // SetNillableImportTime sets the "import_time" field if the given value is not nil.
-func (mc *MetarCreate) SetNillableImportTime(t *time.Time) *MetarCreate {
-	if t != nil {
-		mc.SetImportTime(*t)
+func (_c *MetarCreate) SetNillableImportTime(v *time.Time) *MetarCreate {
+	if v != nil {
+		_c.SetImportTime(*v)
 	}
-	return mc
+	return _c
 }
 
 // SetNextImportTimePrediction sets the "next_import_time_prediction" field.
-func (mc *MetarCreate) SetNextImportTimePrediction(t time.Time) *MetarCreate {
-	mc.mutation.SetNextImportTimePrediction(t)
-	return mc
+func (_c *MetarCreate) SetNextImportTimePrediction(v time.Time) *MetarCreate {
+	_c.mutation.SetNextImportTimePrediction(v)
+	return _c
 }
 
 // SetNillableNextImportTimePrediction sets the "next_import_time_prediction" field if the given value is not nil.
-func (mc *MetarCreate) SetNillableNextImportTimePrediction(t *time.Time) *MetarCreate {
-	if t != nil {
-		mc.SetNextImportTimePrediction(*t)
+func (_c *MetarCreate) SetNillableNextImportTimePrediction(v *time.Time) *MetarCreate {
+	if v != nil {
+		_c.SetNextImportTimePrediction(*v)
 	}
-	return mc
+	return _c
 }
 
 // SetTemperature sets the "temperature" field.
-func (mc *MetarCreate) SetTemperature(f float64) *MetarCreate {
-	mc.mutation.SetTemperature(f)
-	return mc
+func (_c *MetarCreate) SetTemperature(v float64) *MetarCreate {
+	_c.mutation.SetTemperature(v)
+	return _c
 }
 
 // SetNillableTemperature sets the "temperature" field if the given value is not nil.
-func (mc *MetarCreate) SetNillableTemperature(f *float64) *MetarCreate {
-	if f != nil {
-		mc.SetTemperature(*f)
+func (_c *MetarCreate) SetNillableTemperature(v *float64) *MetarCreate {
+	if v != nil {
+		_c.SetTemperature(*v)
 	}
-	return mc
+	return _c
 }
 
 // SetDewpoint sets the "dewpoint" field.
-func (mc *MetarCreate) SetDewpoint(f float64) *MetarCreate {
-	mc.mutation.SetDewpoint(f)
-	return mc
+func (_c *MetarCreate) SetDewpoint(v float64) *MetarCreate {
+	_c.mutation.SetDewpoint(v)
+	return _c
 }
 
 // SetNillableDewpoint sets the "dewpoint" field if the given value is not nil.
-func (mc *MetarCreate) SetNillableDewpoint(f *float64) *MetarCreate {
-	if f != nil {
-		mc.SetDewpoint(*f)
+func (_c *MetarCreate) SetNillableDewpoint(v *float64) *MetarCreate {
+	if v != nil {
+		_c.SetDewpoint(*v)
 	}
-	return mc
+	return _c
 }
 
 // SetWindSpeed sets the "wind_speed" field.
-func (mc *MetarCreate) SetWindSpeed(i int) *MetarCreate {
-	mc.mutation.SetWindSpeed(i)
-	return mc
+func (_c *MetarCreate) SetWindSpeed(v int) *MetarCreate {
+	_c.mutation.SetWindSpeed(v)
+	return _c
 }
 
 // SetNillableWindSpeed sets the "wind_speed" field if the given value is not nil.
-func (mc *MetarCreate) SetNillableWindSpeed(i *int) *MetarCreate {
-	if i != nil {
-		mc.SetWindSpeed(*i)
+func (_c *MetarCreate) SetNillableWindSpeed(v *int) *MetarCreate {
+	if v != nil {
+		_c.SetWindSpeed(*v)
 	}
-	return mc
+	return _c
 }
 
 // SetWindGust sets the "wind_gust" field.
-func (mc *MetarCreate) SetWindGust(i int) *MetarCreate {
-	mc.mutation.SetWindGust(i)
-	return mc
+func (_c *MetarCreate) SetWindGust(v int) *MetarCreate {
+	_c.mutation.SetWindGust(v)
+	return _c
 }
 
 // SetNillableWindGust sets the "wind_gust" field if the given value is not nil.
-func (mc *MetarCreate) SetNillableWindGust(i *int) *MetarCreate {
-	if i != nil {
-		mc.SetWindGust(*i)
+func (_c *MetarCreate) SetNillableWindGust(v *int) *MetarCreate {
+	if v != nil {
+		_c.SetWindGust(*v)
 	}
-	return mc
+	return _c
 }
 
 // SetWindDirection sets the "wind_direction" field.
-func (mc *MetarCreate) SetWindDirection(i int) *MetarCreate {
-	mc.mutation.SetWindDirection(i)
-	return mc
+func (_c *MetarCreate) SetWindDirection(v int) *MetarCreate {
+	_c.mutation.SetWindDirection(v)
+	return _c
 }
 
 // SetNillableWindDirection sets the "wind_direction" field if the given value is not nil.
-func (mc *MetarCreate) SetNillableWindDirection(i *int) *MetarCreate {
-	if i != nil {
-		mc.SetWindDirection(*i)
+func (_c *MetarCreate) SetNillableWindDirection(v *int) *MetarCreate {
+	if v != nil {
+		_c.SetWindDirection(*v)
 	}
-	return mc
+	return _c
 }
 
 // SetWindDirectionVariable sets the "wind_direction_variable" field.
-func (mc *MetarCreate) SetWindDirectionVariable(b bool) *MetarCreate {
-	mc.mutation.SetWindDirectionVariable(b)
-	return mc
+func (_c *MetarCreate) SetWindDirectionVariable(v bool) *MetarCreate {
+	_c.mutation.SetWindDirectionVariable(v)
+	return _c
 }
 
 // SetVisibility sets the "visibility" field.
-func (mc *MetarCreate) SetVisibility(f float64) *MetarCreate {
-	mc.mutation.SetVisibility(f)
-	return mc
+func (_c *MetarCreate) SetVisibility(v float64) *MetarCreate {
+	_c.mutation.SetVisibility(v)
+	return _c
 }
 
 // SetNillableVisibility sets the "visibility" field if the given value is not nil.
-func (mc *MetarCreate) SetNillableVisibility(f *float64) *MetarCreate {
-	if f != nil {
-		mc.SetVisibility(*f)
+func (_c *MetarCreate) SetNillableVisibility(v *float64) *MetarCreate {
+	if v != nil {
+		_c.SetVisibility(*v)
 	}
-	return mc
+	return _c
 }
 
 // SetVisibilityIsMoreThan sets the "visibility_is_more_than" field.
-func (mc *MetarCreate) SetVisibilityIsMoreThan(b bool) *MetarCreate {
-	mc.mutation.SetVisibilityIsMoreThan(b)
-	return mc
+func (_c *MetarCreate) SetVisibilityIsMoreThan(v bool) *MetarCreate {
+	_c.mutation.SetVisibilityIsMoreThan(v)
+	return _c
 }
 
 // SetAltimeter sets the "altimeter" field.
-func (mc *MetarCreate) SetAltimeter(f float64) *MetarCreate {
-	mc.mutation.SetAltimeter(f)
-	return mc
+func (_c *MetarCreate) SetAltimeter(v float64) *MetarCreate {
+	_c.mutation.SetAltimeter(v)
+	return _c
 }
 
 // SetNillableAltimeter sets the "altimeter" field if the given value is not nil.
-func (mc *MetarCreate) SetNillableAltimeter(f *float64) *MetarCreate {
-	if f != nil {
-		mc.SetAltimeter(*f)
+func (_c *MetarCreate) SetNillableAltimeter(v *float64) *MetarCreate {
+	if v != nil {
+		_c.SetAltimeter(*v)
 	}
-	return mc
+	return _c
 }
 
 // SetPresentWeather sets the "present_weather" field.
-func (mc *MetarCreate) SetPresentWeather(s string) *MetarCreate {
-	mc.mutation.SetPresentWeather(s)
-	return mc
+func (_c *MetarCreate) SetPresentWeather(v string) *MetarCreate {
+	_c.mutation.SetPresentWeather(v)
+	return _c
 }
 
 // SetNillablePresentWeather sets the "present_weather" field if the given value is not nil.
-func (mc *MetarCreate) SetNillablePresentWeather(s *string) *MetarCreate {
-	if s != nil {
-		mc.SetPresentWeather(*s)
+func (_c *MetarCreate) SetNillablePresentWeather(v *string) *MetarCreate {
+	if v != nil {
+		_c.SetPresentWeather(*v)
 	}
-	return mc
+	return _c
 }
 
 // SetFlightCategory sets the "flight_category" field.
-func (mc *MetarCreate) SetFlightCategory(value metar.FlightCategory) *MetarCreate {
-	mc.mutation.SetFlightCategory(value)
-	return mc
+func (_c *MetarCreate) SetFlightCategory(v metar.FlightCategory) *MetarCreate {
+	_c.mutation.SetFlightCategory(v)
+	return _c
 }
 
 // SetNillableFlightCategory sets the "flight_category" field if the given value is not nil.
-func (mc *MetarCreate) SetNillableFlightCategory(value *metar.FlightCategory) *MetarCreate {
-	if value != nil {
-		mc.SetFlightCategory(*value)
+func (_c *MetarCreate) SetNillableFlightCategory(v *metar.FlightCategory) *MetarCreate {
+	if v != nil {
+		_c.SetFlightCategory(*v)
 	}
-	return mc
+	return _c
 }
 
 // SetQualityControlCorrected sets the "quality_control_corrected" field.
-func (mc *MetarCreate) SetQualityControlCorrected(b bool) *MetarCreate {
-	mc.mutation.SetQualityControlCorrected(b)
-	return mc
+func (_c *MetarCreate) SetQualityControlCorrected(v bool) *MetarCreate {
+	_c.mutation.SetQualityControlCorrected(v)
+	return _c
 }
 
 // SetNillableQualityControlCorrected sets the "quality_control_corrected" field if the given value is not nil.
-func (mc *MetarCreate) SetNillableQualityControlCorrected(b *bool) *MetarCreate {
-	if b != nil {
-		mc.SetQualityControlCorrected(*b)
+func (_c *MetarCreate) SetNillableQualityControlCorrected(v *bool) *MetarCreate {
+	if v != nil {
+		_c.SetQualityControlCorrected(*v)
 	}
-	return mc
+	return _c
 }
 
 // SetQualityControlAutoStation sets the "quality_control_auto_station" field.
-func (mc *MetarCreate) SetQualityControlAutoStation(b bool) *MetarCreate {
-	mc.mutation.SetQualityControlAutoStation(b)
-	return mc
+func (_c *MetarCreate) SetQualityControlAutoStation(v bool) *MetarCreate {
+	_c.mutation.SetQualityControlAutoStation(v)
+	return _c
 }
 
 // SetQualityControlMaintenanceIndicatorOn sets the "quality_control_maintenance_indicator_on" field.
-func (mc *MetarCreate) SetQualityControlMaintenanceIndicatorOn(b bool) *MetarCreate {
-	mc.mutation.SetQualityControlMaintenanceIndicatorOn(b)
-	return mc
+func (_c *MetarCreate) SetQualityControlMaintenanceIndicatorOn(v bool) *MetarCreate {
+	_c.mutation.SetQualityControlMaintenanceIndicatorOn(v)
+	return _c
 }
 
 // SetQualityControlNoSignal sets the "quality_control_no_signal" field.
-func (mc *MetarCreate) SetQualityControlNoSignal(b bool) *MetarCreate {
-	mc.mutation.SetQualityControlNoSignal(b)
-	return mc
+func (_c *MetarCreate) SetQualityControlNoSignal(v bool) *MetarCreate {
+	_c.mutation.SetQualityControlNoSignal(v)
+	return _c
 }
 
 // SetQualityControlLightningSensorOff sets the "quality_control_lightning_sensor_off" field.
-func (mc *MetarCreate) SetQualityControlLightningSensorOff(b bool) *MetarCreate {
-	mc.mutation.SetQualityControlLightningSensorOff(b)
-	return mc
+func (_c *MetarCreate) SetQualityControlLightningSensorOff(v bool) *MetarCreate {
+	_c.mutation.SetQualityControlLightningSensorOff(v)
+	return _c
 }
 
 // SetQualityControlFreezingRainSensorOff sets the "quality_control_freezing_rain_sensor_off" field.
-func (mc *MetarCreate) SetQualityControlFreezingRainSensorOff(b bool) *MetarCreate {
-	mc.mutation.SetQualityControlFreezingRainSensorOff(b)
-	return mc
+func (_c *MetarCreate) SetQualityControlFreezingRainSensorOff(v bool) *MetarCreate {
+	_c.mutation.SetQualityControlFreezingRainSensorOff(v)
+	return _c
 }
 
 // SetQualityControlPresentWeatherSensorOff sets the "quality_control_present_weather_sensor_off" field.
-func (mc *MetarCreate) SetQualityControlPresentWeatherSensorOff(b bool) *MetarCreate {
-	mc.mutation.SetQualityControlPresentWeatherSensorOff(b)
-	return mc
+func (_c *MetarCreate) SetQualityControlPresentWeatherSensorOff(v bool) *MetarCreate {
+	_c.mutation.SetQualityControlPresentWeatherSensorOff(v)
+	return _c
 }
 
 // SetSeaLevelPressure sets the "sea_level_pressure" field.
-func (mc *MetarCreate) SetSeaLevelPressure(f float64) *MetarCreate {
-	mc.mutation.SetSeaLevelPressure(f)
-	return mc
+func (_c *MetarCreate) SetSeaLevelPressure(v float64) *MetarCreate {
+	_c.mutation.SetSeaLevelPressure(v)
+	return _c
 }
 
 // SetNillableSeaLevelPressure sets the "sea_level_pressure" field if the given value is not nil.
-func (mc *MetarCreate) SetNillableSeaLevelPressure(f *float64) *MetarCreate {
-	if f != nil {
-		mc.SetSeaLevelPressure(*f)
+func (_c *MetarCreate) SetNillableSeaLevelPressure(v *float64) *MetarCreate {
+	if v != nil {
+		_c.SetSeaLevelPressure(*v)
 	}
-	return mc
+	return _c
 }
 
 // SetPressureTendency sets the "pressure_tendency" field.
-func (mc *MetarCreate) SetPressureTendency(f float64) *MetarCreate {
-	mc.mutation.SetPressureTendency(f)
-	return mc
+func (_c *MetarCreate) SetPressureTendency(v float64) *MetarCreate {
+	_c.mutation.SetPressureTendency(v)
+	return _c
 }
 
 // SetNillablePressureTendency sets the "pressure_tendency" field if the given value is not nil.
-func (mc *MetarCreate) SetNillablePressureTendency(f *float64) *MetarCreate {
-	if f != nil {
-		mc.SetPressureTendency(*f)
+func (_c *MetarCreate) SetNillablePressureTendency(v *float64) *MetarCreate {
+	if v != nil {
+		_c.SetPressureTendency(*v)
 	}
-	return mc
+	return _c
 }
 
 // SetMaxTemp6 sets the "max_temp_6" field.
-func (mc *MetarCreate) SetMaxTemp6(f float64) *MetarCreate {
-	mc.mutation.SetMaxTemp6(f)
-	return mc
+func (_c *MetarCreate) SetMaxTemp6(v float64) *MetarCreate {
+	_c.mutation.SetMaxTemp6(v)
+	return _c
 }
 
 // SetNillableMaxTemp6 sets the "max_temp_6" field if the given value is not nil.
-func (mc *MetarCreate) SetNillableMaxTemp6(f *float64) *MetarCreate {
-	if f != nil {
-		mc.SetMaxTemp6(*f)
+func (_c *MetarCreate) SetNillableMaxTemp6(v *float64) *MetarCreate {
+	if v != nil {
+		_c.SetMaxTemp6(*v)
 	}
-	return mc
+	return _c
 }
 
 // SetMinTemp6 sets the "min_temp_6" field.
-func (mc *MetarCreate) SetMinTemp6(f float64) *MetarCreate {
-	mc.mutation.SetMinTemp6(f)
-	return mc
+func (_c *MetarCreate) SetMinTemp6(v float64) *MetarCreate {
+	_c.mutation.SetMinTemp6(v)
+	return _c
 }
 
 // SetNillableMinTemp6 sets the "min_temp_6" field if the given value is not nil.
-func (mc *MetarCreate) SetNillableMinTemp6(f *float64) *MetarCreate {
-	if f != nil {
-		mc.SetMinTemp6(*f)
+func (_c *MetarCreate) SetNillableMinTemp6(v *float64) *MetarCreate {
+	if v != nil {
+		_c.SetMinTemp6(*v)
 	}
-	return mc
+	return _c
 }
 
 // SetMaxTemp24 sets the "max_temp_24" field.
-func (mc *MetarCreate) SetMaxTemp24(f float64) *MetarCreate {
-	mc.mutation.SetMaxTemp24(f)
-	return mc
+func (_c *MetarCreate) SetMaxTemp24(v float64) *MetarCreate {
+	_c.mutation.SetMaxTemp24(v)
+	return _c
 }
 
 // SetNillableMaxTemp24 sets the "max_temp_24" field if the given value is not nil.
-func (mc *MetarCreate) SetNillableMaxTemp24(f *float64) *MetarCreate {
-	if f != nil {
-		mc.SetMaxTemp24(*f)
+func (_c *MetarCreate) SetNillableMaxTemp24(v *float64) *MetarCreate {
+	if v != nil {
+		_c.SetMaxTemp24(*v)
 	}
-	return mc
+	return _c
 }
 
 // SetMinTemp24 sets the "min_temp_24" field.
-func (mc *MetarCreate) SetMinTemp24(f float64) *MetarCreate {
-	mc.mutation.SetMinTemp24(f)
-	return mc
+func (_c *MetarCreate) SetMinTemp24(v float64) *MetarCreate {
+	_c.mutation.SetMinTemp24(v)
+	return _c
 }
 
 // SetNillableMinTemp24 sets the "min_temp_24" field if the given value is not nil.
-func (mc *MetarCreate) SetNillableMinTemp24(f *float64) *MetarCreate {
-	if f != nil {
-		mc.SetMinTemp24(*f)
+func (_c *MetarCreate) SetNillableMinTemp24(v *float64) *MetarCreate {
+	if v != nil {
+		_c.SetMinTemp24(*v)
 	}
-	return mc
+	return _c
 }
 
 // SetPrecipitation sets the "precipitation" field.
-func (mc *MetarCreate) SetPrecipitation(f float64) *MetarCreate {
-	mc.mutation.SetPrecipitation(f)
-	return mc
+func (_c *MetarCreate) SetPrecipitation(v float64) *MetarCreate {
+	_c.mutation.SetPrecipitation(v)
+	return _c
 }
 
 // SetNillablePrecipitation sets the "precipitation" field if the given value is not nil.
-func (mc *MetarCreate) SetNillablePrecipitation(f *float64) *MetarCreate {
-	if f != nil {
-		mc.SetPrecipitation(*f)
+func (_c *MetarCreate) SetNillablePrecipitation(v *float64) *MetarCreate {
+	if v != nil {
+		_c.SetPrecipitation(*v)
 	}
-	return mc
+	return _c
 }
 
 // SetPrecipitation3 sets the "precipitation_3" field.
-func (mc *MetarCreate) SetPrecipitation3(f float64) *MetarCreate {
-	mc.mutation.SetPrecipitation3(f)
-	return mc
+func (_c *MetarCreate) SetPrecipitation3(v float64) *MetarCreate {
+	_c.mutation.SetPrecipitation3(v)
+	return _c
 }
 
 // SetNillablePrecipitation3 sets the "precipitation_3" field if the given value is not nil.
-func (mc *MetarCreate) SetNillablePrecipitation3(f *float64) *MetarCreate {
-	if f != nil {
-		mc.SetPrecipitation3(*f)
+func (_c *MetarCreate) SetNillablePrecipitation3(v *float64) *MetarCreate {
+	if v != nil {
+		_c.SetPrecipitation3(*v)
 	}
-	return mc
+	return _c
 }
 
 // SetPrecipitation6 sets the "precipitation_6" field.
-func (mc *MetarCreate) SetPrecipitation6(f float64) *MetarCreate {
-	mc.mutation.SetPrecipitation6(f)
-	return mc
+func (_c *MetarCreate) SetPrecipitation6(v float64) *MetarCreate {
+	_c.mutation.SetPrecipitation6(v)
+	return _c
 }
 
 // SetNillablePrecipitation6 sets the "precipitation_6" field if the given value is not nil.
-func (mc *MetarCreate) SetNillablePrecipitation6(f *float64) *MetarCreate {
-	if f != nil {
-		mc.SetPrecipitation6(*f)
+func (_c *MetarCreate) SetNillablePrecipitation6(v *float64) *MetarCreate {
+	if v != nil {
+		_c.SetPrecipitation6(*v)
 	}
-	return mc
+	return _c
 }
 
 // SetPrecipitation24 sets the "precipitation_24" field.
-func (mc *MetarCreate) SetPrecipitation24(f float64) *MetarCreate {
-	mc.mutation.SetPrecipitation24(f)
-	return mc
+func (_c *MetarCreate) SetPrecipitation24(v float64) *MetarCreate {
+	_c.mutation.SetPrecipitation24(v)
+	return _c
 }
 
 // SetNillablePrecipitation24 sets the "precipitation_24" field if the given value is not nil.
-func (mc *MetarCreate) SetNillablePrecipitation24(f *float64) *MetarCreate {
-	if f != nil {
-		mc.SetPrecipitation24(*f)
+func (_c *MetarCreate) SetNillablePrecipitation24(v *float64) *MetarCreate {
+	if v != nil {
+		_c.SetPrecipitation24(*v)
 	}
-	return mc
+	return _c
 }
 
 // SetSnowDepth sets the "snow_depth" field.
-func (mc *MetarCreate) SetSnowDepth(f float64) *MetarCreate {
-	mc.mutation.SetSnowDepth(f)
-	return mc
+func (_c *MetarCreate) SetSnowDepth(v float64) *MetarCreate {
+	_c.mutation.SetSnowDepth(v)
+	return _c
 }
 
 // SetNillableSnowDepth sets the "snow_depth" field if the given value is not nil.
-func (mc *MetarCreate) SetNillableSnowDepth(f *float64) *MetarCreate {
-	if f != nil {
-		mc.SetSnowDepth(*f)
+func (_c *MetarCreate) SetNillableSnowDepth(v *float64) *MetarCreate {
+	if v != nil {
+		_c.SetSnowDepth(*v)
 	}
-	return mc
+	return _c
 }
 
 // SetVertVis sets the "vert_vis" field.
-func (mc *MetarCreate) SetVertVis(f float64) *MetarCreate {
-	mc.mutation.SetVertVis(f)
-	return mc
+func (_c *MetarCreate) SetVertVis(v float64) *MetarCreate {
+	_c.mutation.SetVertVis(v)
+	return _c
 }
 
 // SetNillableVertVis sets the "vert_vis" field if the given value is not nil.
-func (mc *MetarCreate) SetNillableVertVis(f *float64) *MetarCreate {
-	if f != nil {
-		mc.SetVertVis(*f)
+func (_c *MetarCreate) SetNillableVertVis(v *float64) *MetarCreate {
+	if v != nil {
+		_c.SetVertVis(*v)
 	}
-	return mc
+	return _c
 }
 
 // SetMetarType sets the "metar_type" field.
-func (mc *MetarCreate) SetMetarType(mt metar.MetarType) *MetarCreate {
-	mc.mutation.SetMetarType(mt)
-	return mc
+func (_c *MetarCreate) SetMetarType(v metar.MetarType) *MetarCreate {
+	_c.mutation.SetMetarType(v)
+	return _c
 }
 
 // SetHash sets the "hash" field.
-func (mc *MetarCreate) SetHash(s string) *MetarCreate {
-	mc.mutation.SetHash(s)
-	return mc
+func (_c *MetarCreate) SetHash(v string) *MetarCreate {
+	_c.mutation.SetHash(v)
+	return _c
 }
 
 // SetID sets the "id" field.
-func (mc *MetarCreate) SetID(u uuid.UUID) *MetarCreate {
-	mc.mutation.SetID(u)
-	return mc
+func (_c *MetarCreate) SetID(v uuid.UUID) *MetarCreate {
+	_c.mutation.SetID(v)
+	return _c
 }
 
 // SetNillableID sets the "id" field if the given value is not nil.
-func (mc *MetarCreate) SetNillableID(u *uuid.UUID) *MetarCreate {
-	if u != nil {
-		mc.SetID(*u)
+func (_c *MetarCreate) SetNillableID(v *uuid.UUID) *MetarCreate {
+	if v != nil {
+		_c.SetID(*v)
 	}
-	return mc
+	return _c
 }
 
 // SetStationID sets the "station" edge to the WeatherStation entity by ID.
-func (mc *MetarCreate) SetStationID(id uuid.UUID) *MetarCreate {
-	mc.mutation.SetStationID(id)
-	return mc
+func (_c *MetarCreate) SetStationID(id uuid.UUID) *MetarCreate {
+	_c.mutation.SetStationID(id)
+	return _c
 }
 
 // SetStation sets the "station" edge to the WeatherStation entity.
-func (mc *MetarCreate) SetStation(w *WeatherStation) *MetarCreate {
-	return mc.SetStationID(w.ID)
+func (_c *MetarCreate) SetStation(v *WeatherStation) *MetarCreate {
+	return _c.SetStationID(v.ID)
 }
 
 // AddSkyConditionIDs adds the "sky_conditions" edge to the SkyCondition entity by IDs.
-func (mc *MetarCreate) AddSkyConditionIDs(ids ...uuid.UUID) *MetarCreate {
-	mc.mutation.AddSkyConditionIDs(ids...)
-	return mc
+func (_c *MetarCreate) AddSkyConditionIDs(ids ...uuid.UUID) *MetarCreate {
+	_c.mutation.AddSkyConditionIDs(ids...)
+	return _c
 }
 
 // AddSkyConditions adds the "sky_conditions" edges to the SkyCondition entity.
-func (mc *MetarCreate) AddSkyConditions(s ...*SkyCondition) *MetarCreate {
-	ids := make([]uuid.UUID, len(s))
-	for i := range s {
-		ids[i] = s[i].ID
+func (_c *MetarCreate) AddSkyConditions(v ...*SkyCondition) *MetarCreate {
+	ids := make([]uuid.UUID, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return mc.AddSkyConditionIDs(ids...)
+	return _c.AddSkyConditionIDs(ids...)
 }
 
 // Mutation returns the MetarMutation object of the builder.
-func (mc *MetarCreate) Mutation() *MetarMutation {
-	return mc.mutation
+func (_c *MetarCreate) Mutation() *MetarMutation {
+	return _c.mutation
 }
 
 // Save creates the Metar in the database.
-func (mc *MetarCreate) Save(ctx context.Context) (*Metar, error) {
-	mc.defaults()
-	return withHooks(ctx, mc.sqlSave, mc.mutation, mc.hooks)
+func (_c *MetarCreate) Save(ctx context.Context) (*Metar, error) {
+	_c.defaults()
+	return withHooks(ctx, _c.sqlSave, _c.mutation, _c.hooks)
 }
 
 // SaveX calls Save and panics if Save returns an error.
-func (mc *MetarCreate) SaveX(ctx context.Context) *Metar {
-	v, err := mc.Save(ctx)
+func (_c *MetarCreate) SaveX(ctx context.Context) *Metar {
+	v, err := _c.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -495,93 +495,93 @@ func (mc *MetarCreate) SaveX(ctx context.Context) *Metar {
 }
 
 // Exec executes the query.
-func (mc *MetarCreate) Exec(ctx context.Context) error {
-	_, err := mc.Save(ctx)
+func (_c *MetarCreate) Exec(ctx context.Context) error {
+	_, err := _c.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (mc *MetarCreate) ExecX(ctx context.Context) {
-	if err := mc.Exec(ctx); err != nil {
+func (_c *MetarCreate) ExecX(ctx context.Context) {
+	if err := _c.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // defaults sets the default values of the builder before save.
-func (mc *MetarCreate) defaults() {
-	if _, ok := mc.mutation.ImportTime(); !ok {
+func (_c *MetarCreate) defaults() {
+	if _, ok := _c.mutation.ImportTime(); !ok {
 		v := metar.DefaultImportTime()
-		mc.mutation.SetImportTime(v)
+		_c.mutation.SetImportTime(v)
 	}
-	if _, ok := mc.mutation.ID(); !ok {
+	if _, ok := _c.mutation.ID(); !ok {
 		v := metar.DefaultID()
-		mc.mutation.SetID(v)
+		_c.mutation.SetID(v)
 	}
 }
 
 // check runs all checks and user-defined validators on the builder.
-func (mc *MetarCreate) check() error {
-	if _, ok := mc.mutation.RawText(); !ok {
+func (_c *MetarCreate) check() error {
+	if _, ok := _c.mutation.RawText(); !ok {
 		return &ValidationError{Name: "raw_text", err: errors.New(`ent: missing required field "Metar.raw_text"`)}
 	}
-	if _, ok := mc.mutation.ObservationTime(); !ok {
+	if _, ok := _c.mutation.ObservationTime(); !ok {
 		return &ValidationError{Name: "observation_time", err: errors.New(`ent: missing required field "Metar.observation_time"`)}
 	}
-	if _, ok := mc.mutation.ImportTime(); !ok {
+	if _, ok := _c.mutation.ImportTime(); !ok {
 		return &ValidationError{Name: "import_time", err: errors.New(`ent: missing required field "Metar.import_time"`)}
 	}
-	if _, ok := mc.mutation.WindDirectionVariable(); !ok {
+	if _, ok := _c.mutation.WindDirectionVariable(); !ok {
 		return &ValidationError{Name: "wind_direction_variable", err: errors.New(`ent: missing required field "Metar.wind_direction_variable"`)}
 	}
-	if _, ok := mc.mutation.VisibilityIsMoreThan(); !ok {
+	if _, ok := _c.mutation.VisibilityIsMoreThan(); !ok {
 		return &ValidationError{Name: "visibility_is_more_than", err: errors.New(`ent: missing required field "Metar.visibility_is_more_than"`)}
 	}
-	if v, ok := mc.mutation.FlightCategory(); ok {
+	if v, ok := _c.mutation.FlightCategory(); ok {
 		if err := metar.FlightCategoryValidator(v); err != nil {
 			return &ValidationError{Name: "flight_category", err: fmt.Errorf(`ent: validator failed for field "Metar.flight_category": %w`, err)}
 		}
 	}
-	if _, ok := mc.mutation.QualityControlAutoStation(); !ok {
+	if _, ok := _c.mutation.QualityControlAutoStation(); !ok {
 		return &ValidationError{Name: "quality_control_auto_station", err: errors.New(`ent: missing required field "Metar.quality_control_auto_station"`)}
 	}
-	if _, ok := mc.mutation.QualityControlMaintenanceIndicatorOn(); !ok {
+	if _, ok := _c.mutation.QualityControlMaintenanceIndicatorOn(); !ok {
 		return &ValidationError{Name: "quality_control_maintenance_indicator_on", err: errors.New(`ent: missing required field "Metar.quality_control_maintenance_indicator_on"`)}
 	}
-	if _, ok := mc.mutation.QualityControlNoSignal(); !ok {
+	if _, ok := _c.mutation.QualityControlNoSignal(); !ok {
 		return &ValidationError{Name: "quality_control_no_signal", err: errors.New(`ent: missing required field "Metar.quality_control_no_signal"`)}
 	}
-	if _, ok := mc.mutation.QualityControlLightningSensorOff(); !ok {
+	if _, ok := _c.mutation.QualityControlLightningSensorOff(); !ok {
 		return &ValidationError{Name: "quality_control_lightning_sensor_off", err: errors.New(`ent: missing required field "Metar.quality_control_lightning_sensor_off"`)}
 	}
-	if _, ok := mc.mutation.QualityControlFreezingRainSensorOff(); !ok {
+	if _, ok := _c.mutation.QualityControlFreezingRainSensorOff(); !ok {
 		return &ValidationError{Name: "quality_control_freezing_rain_sensor_off", err: errors.New(`ent: missing required field "Metar.quality_control_freezing_rain_sensor_off"`)}
 	}
-	if _, ok := mc.mutation.QualityControlPresentWeatherSensorOff(); !ok {
+	if _, ok := _c.mutation.QualityControlPresentWeatherSensorOff(); !ok {
 		return &ValidationError{Name: "quality_control_present_weather_sensor_off", err: errors.New(`ent: missing required field "Metar.quality_control_present_weather_sensor_off"`)}
 	}
-	if _, ok := mc.mutation.MetarType(); !ok {
+	if _, ok := _c.mutation.MetarType(); !ok {
 		return &ValidationError{Name: "metar_type", err: errors.New(`ent: missing required field "Metar.metar_type"`)}
 	}
-	if v, ok := mc.mutation.MetarType(); ok {
+	if v, ok := _c.mutation.MetarType(); ok {
 		if err := metar.MetarTypeValidator(v); err != nil {
 			return &ValidationError{Name: "metar_type", err: fmt.Errorf(`ent: validator failed for field "Metar.metar_type": %w`, err)}
 		}
 	}
-	if _, ok := mc.mutation.Hash(); !ok {
+	if _, ok := _c.mutation.Hash(); !ok {
 		return &ValidationError{Name: "hash", err: errors.New(`ent: missing required field "Metar.hash"`)}
 	}
-	if _, ok := mc.mutation.StationID(); !ok {
+	if len(_c.mutation.StationIDs()) == 0 {
 		return &ValidationError{Name: "station", err: errors.New(`ent: missing required edge "Metar.station"`)}
 	}
 	return nil
 }
 
-func (mc *MetarCreate) sqlSave(ctx context.Context) (*Metar, error) {
-	if err := mc.check(); err != nil {
+func (_c *MetarCreate) sqlSave(ctx context.Context) (*Metar, error) {
+	if err := _c.check(); err != nil {
 		return nil, err
 	}
-	_node, _spec := mc.createSpec()
-	if err := sqlgraph.CreateNode(ctx, mc.driver, _spec); err != nil {
+	_node, _spec := _c.createSpec()
+	if err := sqlgraph.CreateNode(ctx, _c.driver, _spec); err != nil {
 		if sqlgraph.IsConstraintError(err) {
 			err = &ConstraintError{msg: err.Error(), wrap: err}
 		}
@@ -594,166 +594,166 @@ func (mc *MetarCreate) sqlSave(ctx context.Context) (*Metar, error) {
 			return nil, err
 		}
 	}
-	mc.mutation.id = &_node.ID
-	mc.mutation.done = true
+	_c.mutation.id = &_node.ID
+	_c.mutation.done = true
 	return _node, nil
 }
 
-func (mc *MetarCreate) createSpec() (*Metar, *sqlgraph.CreateSpec) {
+func (_c *MetarCreate) createSpec() (*Metar, *sqlgraph.CreateSpec) {
 	var (
-		_node = &Metar{config: mc.config}
+		_node = &Metar{config: _c.config}
 		_spec = sqlgraph.NewCreateSpec(metar.Table, sqlgraph.NewFieldSpec(metar.FieldID, field.TypeUUID))
 	)
-	_spec.OnConflict = mc.conflict
-	if id, ok := mc.mutation.ID(); ok {
+	_spec.OnConflict = _c.conflict
+	if id, ok := _c.mutation.ID(); ok {
 		_node.ID = id
 		_spec.ID.Value = &id
 	}
-	if value, ok := mc.mutation.RawText(); ok {
+	if value, ok := _c.mutation.RawText(); ok {
 		_spec.SetField(metar.FieldRawText, field.TypeString, value)
 		_node.RawText = value
 	}
-	if value, ok := mc.mutation.ObservationTime(); ok {
+	if value, ok := _c.mutation.ObservationTime(); ok {
 		_spec.SetField(metar.FieldObservationTime, field.TypeTime, value)
 		_node.ObservationTime = value
 	}
-	if value, ok := mc.mutation.ImportTime(); ok {
+	if value, ok := _c.mutation.ImportTime(); ok {
 		_spec.SetField(metar.FieldImportTime, field.TypeTime, value)
 		_node.ImportTime = value
 	}
-	if value, ok := mc.mutation.NextImportTimePrediction(); ok {
+	if value, ok := _c.mutation.NextImportTimePrediction(); ok {
 		_spec.SetField(metar.FieldNextImportTimePrediction, field.TypeTime, value)
 		_node.NextImportTimePrediction = &value
 	}
-	if value, ok := mc.mutation.Temperature(); ok {
+	if value, ok := _c.mutation.Temperature(); ok {
 		_spec.SetField(metar.FieldTemperature, field.TypeFloat64, value)
 		_node.Temperature = &value
 	}
-	if value, ok := mc.mutation.Dewpoint(); ok {
+	if value, ok := _c.mutation.Dewpoint(); ok {
 		_spec.SetField(metar.FieldDewpoint, field.TypeFloat64, value)
 		_node.Dewpoint = &value
 	}
-	if value, ok := mc.mutation.WindSpeed(); ok {
+	if value, ok := _c.mutation.WindSpeed(); ok {
 		_spec.SetField(metar.FieldWindSpeed, field.TypeInt, value)
 		_node.WindSpeed = &value
 	}
-	if value, ok := mc.mutation.WindGust(); ok {
+	if value, ok := _c.mutation.WindGust(); ok {
 		_spec.SetField(metar.FieldWindGust, field.TypeInt, value)
 		_node.WindGust = &value
 	}
-	if value, ok := mc.mutation.WindDirection(); ok {
+	if value, ok := _c.mutation.WindDirection(); ok {
 		_spec.SetField(metar.FieldWindDirection, field.TypeInt, value)
 		_node.WindDirection = &value
 	}
-	if value, ok := mc.mutation.WindDirectionVariable(); ok {
+	if value, ok := _c.mutation.WindDirectionVariable(); ok {
 		_spec.SetField(metar.FieldWindDirectionVariable, field.TypeBool, value)
 		_node.WindDirectionVariable = value
 	}
-	if value, ok := mc.mutation.Visibility(); ok {
+	if value, ok := _c.mutation.Visibility(); ok {
 		_spec.SetField(metar.FieldVisibility, field.TypeFloat64, value)
 		_node.Visibility = &value
 	}
-	if value, ok := mc.mutation.VisibilityIsMoreThan(); ok {
+	if value, ok := _c.mutation.VisibilityIsMoreThan(); ok {
 		_spec.SetField(metar.FieldVisibilityIsMoreThan, field.TypeBool, value)
 		_node.VisibilityIsMoreThan = value
 	}
-	if value, ok := mc.mutation.Altimeter(); ok {
+	if value, ok := _c.mutation.Altimeter(); ok {
 		_spec.SetField(metar.FieldAltimeter, field.TypeFloat64, value)
 		_node.Altimeter = &value
 	}
-	if value, ok := mc.mutation.PresentWeather(); ok {
+	if value, ok := _c.mutation.PresentWeather(); ok {
 		_spec.SetField(metar.FieldPresentWeather, field.TypeString, value)
 		_node.PresentWeather = &value
 	}
-	if value, ok := mc.mutation.FlightCategory(); ok {
+	if value, ok := _c.mutation.FlightCategory(); ok {
 		_spec.SetField(metar.FieldFlightCategory, field.TypeEnum, value)
 		_node.FlightCategory = &value
 	}
-	if value, ok := mc.mutation.QualityControlCorrected(); ok {
+	if value, ok := _c.mutation.QualityControlCorrected(); ok {
 		_spec.SetField(metar.FieldQualityControlCorrected, field.TypeBool, value)
 		_node.QualityControlCorrected = &value
 	}
-	if value, ok := mc.mutation.QualityControlAutoStation(); ok {
+	if value, ok := _c.mutation.QualityControlAutoStation(); ok {
 		_spec.SetField(metar.FieldQualityControlAutoStation, field.TypeBool, value)
 		_node.QualityControlAutoStation = value
 	}
-	if value, ok := mc.mutation.QualityControlMaintenanceIndicatorOn(); ok {
+	if value, ok := _c.mutation.QualityControlMaintenanceIndicatorOn(); ok {
 		_spec.SetField(metar.FieldQualityControlMaintenanceIndicatorOn, field.TypeBool, value)
 		_node.QualityControlMaintenanceIndicatorOn = value
 	}
-	if value, ok := mc.mutation.QualityControlNoSignal(); ok {
+	if value, ok := _c.mutation.QualityControlNoSignal(); ok {
 		_spec.SetField(metar.FieldQualityControlNoSignal, field.TypeBool, value)
 		_node.QualityControlNoSignal = value
 	}
-	if value, ok := mc.mutation.QualityControlLightningSensorOff(); ok {
+	if value, ok := _c.mutation.QualityControlLightningSensorOff(); ok {
 		_spec.SetField(metar.FieldQualityControlLightningSensorOff, field.TypeBool, value)
 		_node.QualityControlLightningSensorOff = value
 	}
-	if value, ok := mc.mutation.QualityControlFreezingRainSensorOff(); ok {
+	if value, ok := _c.mutation.QualityControlFreezingRainSensorOff(); ok {
 		_spec.SetField(metar.FieldQualityControlFreezingRainSensorOff, field.TypeBool, value)
 		_node.QualityControlFreezingRainSensorOff = value
 	}
-	if value, ok := mc.mutation.QualityControlPresentWeatherSensorOff(); ok {
+	if value, ok := _c.mutation.QualityControlPresentWeatherSensorOff(); ok {
 		_spec.SetField(metar.FieldQualityControlPresentWeatherSensorOff, field.TypeBool, value)
 		_node.QualityControlPresentWeatherSensorOff = value
 	}
-	if value, ok := mc.mutation.SeaLevelPressure(); ok {
+	if value, ok := _c.mutation.SeaLevelPressure(); ok {
 		_spec.SetField(metar.FieldSeaLevelPressure, field.TypeFloat64, value)
 		_node.SeaLevelPressure = &value
 	}
-	if value, ok := mc.mutation.PressureTendency(); ok {
+	if value, ok := _c.mutation.PressureTendency(); ok {
 		_spec.SetField(metar.FieldPressureTendency, field.TypeFloat64, value)
 		_node.PressureTendency = &value
 	}
-	if value, ok := mc.mutation.MaxTemp6(); ok {
+	if value, ok := _c.mutation.MaxTemp6(); ok {
 		_spec.SetField(metar.FieldMaxTemp6, field.TypeFloat64, value)
 		_node.MaxTemp6 = &value
 	}
-	if value, ok := mc.mutation.MinTemp6(); ok {
+	if value, ok := _c.mutation.MinTemp6(); ok {
 		_spec.SetField(metar.FieldMinTemp6, field.TypeFloat64, value)
 		_node.MinTemp6 = &value
 	}
-	if value, ok := mc.mutation.MaxTemp24(); ok {
+	if value, ok := _c.mutation.MaxTemp24(); ok {
 		_spec.SetField(metar.FieldMaxTemp24, field.TypeFloat64, value)
 		_node.MaxTemp24 = &value
 	}
-	if value, ok := mc.mutation.MinTemp24(); ok {
+	if value, ok := _c.mutation.MinTemp24(); ok {
 		_spec.SetField(metar.FieldMinTemp24, field.TypeFloat64, value)
 		_node.MinTemp24 = &value
 	}
-	if value, ok := mc.mutation.Precipitation(); ok {
+	if value, ok := _c.mutation.Precipitation(); ok {
 		_spec.SetField(metar.FieldPrecipitation, field.TypeFloat64, value)
 		_node.Precipitation = &value
 	}
-	if value, ok := mc.mutation.Precipitation3(); ok {
+	if value, ok := _c.mutation.Precipitation3(); ok {
 		_spec.SetField(metar.FieldPrecipitation3, field.TypeFloat64, value)
 		_node.Precipitation3 = &value
 	}
-	if value, ok := mc.mutation.Precipitation6(); ok {
+	if value, ok := _c.mutation.Precipitation6(); ok {
 		_spec.SetField(metar.FieldPrecipitation6, field.TypeFloat64, value)
 		_node.Precipitation6 = &value
 	}
-	if value, ok := mc.mutation.Precipitation24(); ok {
+	if value, ok := _c.mutation.Precipitation24(); ok {
 		_spec.SetField(metar.FieldPrecipitation24, field.TypeFloat64, value)
 		_node.Precipitation24 = &value
 	}
-	if value, ok := mc.mutation.SnowDepth(); ok {
+	if value, ok := _c.mutation.SnowDepth(); ok {
 		_spec.SetField(metar.FieldSnowDepth, field.TypeFloat64, value)
 		_node.SnowDepth = &value
 	}
-	if value, ok := mc.mutation.VertVis(); ok {
+	if value, ok := _c.mutation.VertVis(); ok {
 		_spec.SetField(metar.FieldVertVis, field.TypeFloat64, value)
 		_node.VertVis = &value
 	}
-	if value, ok := mc.mutation.MetarType(); ok {
+	if value, ok := _c.mutation.MetarType(); ok {
 		_spec.SetField(metar.FieldMetarType, field.TypeEnum, value)
 		_node.MetarType = value
 	}
-	if value, ok := mc.mutation.Hash(); ok {
+	if value, ok := _c.mutation.Hash(); ok {
 		_spec.SetField(metar.FieldHash, field.TypeString, value)
 		_node.Hash = value
 	}
-	if nodes := mc.mutation.StationIDs(); len(nodes) > 0 {
+	if nodes := _c.mutation.StationIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.M2O,
 			Inverse: true,
@@ -770,7 +770,7 @@ func (mc *MetarCreate) createSpec() (*Metar, *sqlgraph.CreateSpec) {
 		_node.weather_station_metars = &nodes[0]
 		_spec.Edges = append(_spec.Edges, edge)
 	}
-	if nodes := mc.mutation.SkyConditionsIDs(); len(nodes) > 0 {
+	if nodes := _c.mutation.SkyConditionsIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -805,10 +805,10 @@ func (mc *MetarCreate) createSpec() (*Metar, *sqlgraph.CreateSpec) {
 //			SetRawText(v+v).
 //		}).
 //		Exec(ctx)
-func (mc *MetarCreate) OnConflict(opts ...sql.ConflictOption) *MetarUpsertOne {
-	mc.conflict = opts
+func (_c *MetarCreate) OnConflict(opts ...sql.ConflictOption) *MetarUpsertOne {
+	_c.conflict = opts
 	return &MetarUpsertOne{
-		create: mc,
+		create: _c,
 	}
 }
 
@@ -818,10 +818,10 @@ func (mc *MetarCreate) OnConflict(opts ...sql.ConflictOption) *MetarUpsertOne {
 //	client.Metar.Create().
 //		OnConflict(sql.ConflictColumns(columns...)).
 //		Exec(ctx)
-func (mc *MetarCreate) OnConflictColumns(columns ...string) *MetarUpsertOne {
-	mc.conflict = append(mc.conflict, sql.ConflictColumns(columns...))
+func (_c *MetarCreate) OnConflictColumns(columns ...string) *MetarUpsertOne {
+	_c.conflict = append(_c.conflict, sql.ConflictColumns(columns...))
 	return &MetarUpsertOne{
-		create: mc,
+		create: _c,
 	}
 }
 
@@ -2409,18 +2409,22 @@ func (u *MetarUpsertOne) IDX(ctx context.Context) uuid.UUID {
 // MetarCreateBulk is the builder for creating many Metar entities in bulk.
 type MetarCreateBulk struct {
 	config
+	err      error
 	builders []*MetarCreate
 	conflict []sql.ConflictOption
 }
 
 // Save creates the Metar entities in the database.
-func (mcb *MetarCreateBulk) Save(ctx context.Context) ([]*Metar, error) {
-	specs := make([]*sqlgraph.CreateSpec, len(mcb.builders))
-	nodes := make([]*Metar, len(mcb.builders))
-	mutators := make([]Mutator, len(mcb.builders))
-	for i := range mcb.builders {
+func (_c *MetarCreateBulk) Save(ctx context.Context) ([]*Metar, error) {
+	if _c.err != nil {
+		return nil, _c.err
+	}
+	specs := make([]*sqlgraph.CreateSpec, len(_c.builders))
+	nodes := make([]*Metar, len(_c.builders))
+	mutators := make([]Mutator, len(_c.builders))
+	for i := range _c.builders {
 		func(i int, root context.Context) {
-			builder := mcb.builders[i]
+			builder := _c.builders[i]
 			builder.defaults()
 			var mut Mutator = MutateFunc(func(ctx context.Context, m Mutation) (Value, error) {
 				mutation, ok := m.(*MetarMutation)
@@ -2434,12 +2438,12 @@ func (mcb *MetarCreateBulk) Save(ctx context.Context) ([]*Metar, error) {
 				var err error
 				nodes[i], specs[i] = builder.createSpec()
 				if i < len(mutators)-1 {
-					_, err = mutators[i+1].Mutate(root, mcb.builders[i+1].mutation)
+					_, err = mutators[i+1].Mutate(root, _c.builders[i+1].mutation)
 				} else {
 					spec := &sqlgraph.BatchCreateSpec{Nodes: specs}
-					spec.OnConflict = mcb.conflict
+					spec.OnConflict = _c.conflict
 					// Invoke the actual operation on the latest mutation in the chain.
-					if err = sqlgraph.BatchCreate(ctx, mcb.driver, spec); err != nil {
+					if err = sqlgraph.BatchCreate(ctx, _c.driver, spec); err != nil {
 						if sqlgraph.IsConstraintError(err) {
 							err = &ConstraintError{msg: err.Error(), wrap: err}
 						}
@@ -2459,7 +2463,7 @@ func (mcb *MetarCreateBulk) Save(ctx context.Context) ([]*Metar, error) {
 		}(i, ctx)
 	}
 	if len(mutators) > 0 {
-		if _, err := mutators[0].Mutate(ctx, mcb.builders[0].mutation); err != nil {
+		if _, err := mutators[0].Mutate(ctx, _c.builders[0].mutation); err != nil {
 			return nil, err
 		}
 	}
@@ -2467,8 +2471,8 @@ func (mcb *MetarCreateBulk) Save(ctx context.Context) ([]*Metar, error) {
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (mcb *MetarCreateBulk) SaveX(ctx context.Context) []*Metar {
-	v, err := mcb.Save(ctx)
+func (_c *MetarCreateBulk) SaveX(ctx context.Context) []*Metar {
+	v, err := _c.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -2476,14 +2480,14 @@ func (mcb *MetarCreateBulk) SaveX(ctx context.Context) []*Metar {
 }
 
 // Exec executes the query.
-func (mcb *MetarCreateBulk) Exec(ctx context.Context) error {
-	_, err := mcb.Save(ctx)
+func (_c *MetarCreateBulk) Exec(ctx context.Context) error {
+	_, err := _c.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (mcb *MetarCreateBulk) ExecX(ctx context.Context) {
-	if err := mcb.Exec(ctx); err != nil {
+func (_c *MetarCreateBulk) ExecX(ctx context.Context) {
+	if err := _c.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
@@ -2503,10 +2507,10 @@ func (mcb *MetarCreateBulk) ExecX(ctx context.Context) {
 //			SetRawText(v+v).
 //		}).
 //		Exec(ctx)
-func (mcb *MetarCreateBulk) OnConflict(opts ...sql.ConflictOption) *MetarUpsertBulk {
-	mcb.conflict = opts
+func (_c *MetarCreateBulk) OnConflict(opts ...sql.ConflictOption) *MetarUpsertBulk {
+	_c.conflict = opts
 	return &MetarUpsertBulk{
-		create: mcb,
+		create: _c,
 	}
 }
 
@@ -2516,10 +2520,10 @@ func (mcb *MetarCreateBulk) OnConflict(opts ...sql.ConflictOption) *MetarUpsertB
 //	client.Metar.Create().
 //		OnConflict(sql.ConflictColumns(columns...)).
 //		Exec(ctx)
-func (mcb *MetarCreateBulk) OnConflictColumns(columns ...string) *MetarUpsertBulk {
-	mcb.conflict = append(mcb.conflict, sql.ConflictColumns(columns...))
+func (_c *MetarCreateBulk) OnConflictColumns(columns ...string) *MetarUpsertBulk {
+	_c.conflict = append(_c.conflict, sql.ConflictColumns(columns...))
 	return &MetarUpsertBulk{
-		create: mcb,
+		create: _c,
 	}
 }
 
@@ -3379,6 +3383,9 @@ func (u *MetarUpsertBulk) UpdateHash() *MetarUpsertBulk {
 
 // Exec executes the query.
 func (u *MetarUpsertBulk) Exec(ctx context.Context) error {
+	if u.create.err != nil {
+		return u.create.err
+	}
 	for i, b := range u.create.builders {
 		if len(b.conflict) != 0 {
 			return fmt.Errorf("ent: OnConflict was set for builder %d. Set it on the MetarCreateBulk instead", i)

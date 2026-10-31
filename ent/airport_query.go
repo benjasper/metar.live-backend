@@ -8,6 +8,7 @@ import (
 	"fmt"
 	"math"
 
+	"entgo.io/ent"
 	"entgo.io/ent/dialect/sql"
 	"entgo.io/ent/dialect/sql/sqlgraph"
 	"entgo.io/ent/schema/field"
@@ -44,44 +45,44 @@ type AirportQuery struct {
 }
 
 // Where adds a new predicate for the AirportQuery builder.
-func (aq *AirportQuery) Where(ps ...predicate.Airport) *AirportQuery {
-	aq.predicates = append(aq.predicates, ps...)
-	return aq
+func (_q *AirportQuery) Where(ps ...predicate.Airport) *AirportQuery {
+	_q.predicates = append(_q.predicates, ps...)
+	return _q
 }
 
 // Limit the number of records to be returned by this query.
-func (aq *AirportQuery) Limit(limit int) *AirportQuery {
-	aq.ctx.Limit = &limit
-	return aq
+func (_q *AirportQuery) Limit(limit int) *AirportQuery {
+	_q.ctx.Limit = &limit
+	return _q
 }
 
 // Offset to start from.
-func (aq *AirportQuery) Offset(offset int) *AirportQuery {
-	aq.ctx.Offset = &offset
-	return aq
+func (_q *AirportQuery) Offset(offset int) *AirportQuery {
+	_q.ctx.Offset = &offset
+	return _q
 }
 
 // Unique configures the query builder to filter duplicate records on query.
 // By default, unique is set to true, and can be disabled using this method.
-func (aq *AirportQuery) Unique(unique bool) *AirportQuery {
-	aq.ctx.Unique = &unique
-	return aq
+func (_q *AirportQuery) Unique(unique bool) *AirportQuery {
+	_q.ctx.Unique = &unique
+	return _q
 }
 
 // Order specifies how the records should be ordered.
-func (aq *AirportQuery) Order(o ...airport.OrderOption) *AirportQuery {
-	aq.order = append(aq.order, o...)
-	return aq
+func (_q *AirportQuery) Order(o ...airport.OrderOption) *AirportQuery {
+	_q.order = append(_q.order, o...)
+	return _q
 }
 
 // QueryRegion chains the current query on the "region" edge.
-func (aq *AirportQuery) QueryRegion() *RegionQuery {
-	query := (&RegionClient{config: aq.config}).Query()
+func (_q *AirportQuery) QueryRegion() *RegionQuery {
+	query := (&RegionClient{config: _q.config}).Query()
 	query.path = func(ctx context.Context) (fromU *sql.Selector, err error) {
-		if err := aq.prepareQuery(ctx); err != nil {
+		if err := _q.prepareQuery(ctx); err != nil {
 			return nil, err
 		}
-		selector := aq.sqlQuery(ctx)
+		selector := _q.sqlQuery(ctx)
 		if err := selector.Err(); err != nil {
 			return nil, err
 		}
@@ -90,20 +91,20 @@ func (aq *AirportQuery) QueryRegion() *RegionQuery {
 			sqlgraph.To(region.Table, region.FieldID),
 			sqlgraph.Edge(sqlgraph.M2O, true, airport.RegionTable, airport.RegionColumn),
 		)
-		fromU = sqlgraph.SetNeighbors(aq.driver.Dialect(), step)
+		fromU = sqlgraph.SetNeighbors(_q.driver.Dialect(), step)
 		return fromU, nil
 	}
 	return query
 }
 
 // QueryCountry chains the current query on the "country" edge.
-func (aq *AirportQuery) QueryCountry() *CountryQuery {
-	query := (&CountryClient{config: aq.config}).Query()
+func (_q *AirportQuery) QueryCountry() *CountryQuery {
+	query := (&CountryClient{config: _q.config}).Query()
 	query.path = func(ctx context.Context) (fromU *sql.Selector, err error) {
-		if err := aq.prepareQuery(ctx); err != nil {
+		if err := _q.prepareQuery(ctx); err != nil {
 			return nil, err
 		}
-		selector := aq.sqlQuery(ctx)
+		selector := _q.sqlQuery(ctx)
 		if err := selector.Err(); err != nil {
 			return nil, err
 		}
@@ -112,20 +113,20 @@ func (aq *AirportQuery) QueryCountry() *CountryQuery {
 			sqlgraph.To(country.Table, country.FieldID),
 			sqlgraph.Edge(sqlgraph.M2O, true, airport.CountryTable, airport.CountryColumn),
 		)
-		fromU = sqlgraph.SetNeighbors(aq.driver.Dialect(), step)
+		fromU = sqlgraph.SetNeighbors(_q.driver.Dialect(), step)
 		return fromU, nil
 	}
 	return query
 }
 
 // QueryRunways chains the current query on the "runways" edge.
-func (aq *AirportQuery) QueryRunways() *RunwayQuery {
-	query := (&RunwayClient{config: aq.config}).Query()
+func (_q *AirportQuery) QueryRunways() *RunwayQuery {
+	query := (&RunwayClient{config: _q.config}).Query()
 	query.path = func(ctx context.Context) (fromU *sql.Selector, err error) {
-		if err := aq.prepareQuery(ctx); err != nil {
+		if err := _q.prepareQuery(ctx); err != nil {
 			return nil, err
 		}
-		selector := aq.sqlQuery(ctx)
+		selector := _q.sqlQuery(ctx)
 		if err := selector.Err(); err != nil {
 			return nil, err
 		}
@@ -134,20 +135,20 @@ func (aq *AirportQuery) QueryRunways() *RunwayQuery {
 			sqlgraph.To(runway.Table, runway.FieldID),
 			sqlgraph.Edge(sqlgraph.O2M, false, airport.RunwaysTable, airport.RunwaysColumn),
 		)
-		fromU = sqlgraph.SetNeighbors(aq.driver.Dialect(), step)
+		fromU = sqlgraph.SetNeighbors(_q.driver.Dialect(), step)
 		return fromU, nil
 	}
 	return query
 }
 
 // QueryFrequencies chains the current query on the "frequencies" edge.
-func (aq *AirportQuery) QueryFrequencies() *FrequencyQuery {
-	query := (&FrequencyClient{config: aq.config}).Query()
+func (_q *AirportQuery) QueryFrequencies() *FrequencyQuery {
+	query := (&FrequencyClient{config: _q.config}).Query()
 	query.path = func(ctx context.Context) (fromU *sql.Selector, err error) {
-		if err := aq.prepareQuery(ctx); err != nil {
+		if err := _q.prepareQuery(ctx); err != nil {
 			return nil, err
 		}
-		selector := aq.sqlQuery(ctx)
+		selector := _q.sqlQuery(ctx)
 		if err := selector.Err(); err != nil {
 			return nil, err
 		}
@@ -156,20 +157,20 @@ func (aq *AirportQuery) QueryFrequencies() *FrequencyQuery {
 			sqlgraph.To(frequency.Table, frequency.FieldID),
 			sqlgraph.Edge(sqlgraph.O2M, false, airport.FrequenciesTable, airport.FrequenciesColumn),
 		)
-		fromU = sqlgraph.SetNeighbors(aq.driver.Dialect(), step)
+		fromU = sqlgraph.SetNeighbors(_q.driver.Dialect(), step)
 		return fromU, nil
 	}
 	return query
 }
 
 // QueryStation chains the current query on the "station" edge.
-func (aq *AirportQuery) QueryStation() *WeatherStationQuery {
-	query := (&WeatherStationClient{config: aq.config}).Query()
+func (_q *AirportQuery) QueryStation() *WeatherStationQuery {
+	query := (&WeatherStationClient{config: _q.config}).Query()
 	query.path = func(ctx context.Context) (fromU *sql.Selector, err error) {
-		if err := aq.prepareQuery(ctx); err != nil {
+		if err := _q.prepareQuery(ctx); err != nil {
 			return nil, err
 		}
-		selector := aq.sqlQuery(ctx)
+		selector := _q.sqlQuery(ctx)
 		if err := selector.Err(); err != nil {
 			return nil, err
 		}
@@ -178,7 +179,7 @@ func (aq *AirportQuery) QueryStation() *WeatherStationQuery {
 			sqlgraph.To(weatherstation.Table, weatherstation.FieldID),
 			sqlgraph.Edge(sqlgraph.O2O, false, airport.StationTable, airport.StationColumn),
 		)
-		fromU = sqlgraph.SetNeighbors(aq.driver.Dialect(), step)
+		fromU = sqlgraph.SetNeighbors(_q.driver.Dialect(), step)
 		return fromU, nil
 	}
 	return query
@@ -186,8 +187,8 @@ func (aq *AirportQuery) QueryStation() *WeatherStationQuery {
 
 // First returns the first Airport entity from the query.
 // Returns a *NotFoundError when no Airport was found.
-func (aq *AirportQuery) First(ctx context.Context) (*Airport, error) {
-	nodes, err := aq.Limit(1).All(setContextOp(ctx, aq.ctx, "First"))
+func (_q *AirportQuery) First(ctx context.Context) (*Airport, error) {
+	nodes, err := _q.Limit(1).All(setContextOp(ctx, _q.ctx, ent.OpQueryFirst))
 	if err != nil {
 		return nil, err
 	}
@@ -198,8 +199,8 @@ func (aq *AirportQuery) First(ctx context.Context) (*Airport, error) {
 }
 
 // FirstX is like First, but panics if an error occurs.
-func (aq *AirportQuery) FirstX(ctx context.Context) *Airport {
-	node, err := aq.First(ctx)
+func (_q *AirportQuery) FirstX(ctx context.Context) *Airport {
+	node, err := _q.First(ctx)
 	if err != nil && !IsNotFound(err) {
 		panic(err)
 	}
@@ -208,9 +209,9 @@ func (aq *AirportQuery) FirstX(ctx context.Context) *Airport {
 
 // FirstID returns the first Airport ID from the query.
 // Returns a *NotFoundError when no Airport ID was found.
-func (aq *AirportQuery) FirstID(ctx context.Context) (id uuid.UUID, err error) {
+func (_q *AirportQuery) FirstID(ctx context.Context) (id uuid.UUID, err error) {
 	var ids []uuid.UUID
-	if ids, err = aq.Limit(1).IDs(setContextOp(ctx, aq.ctx, "FirstID")); err != nil {
+	if ids, err = _q.Limit(1).IDs(setContextOp(ctx, _q.ctx, ent.OpQueryFirstID)); err != nil {
 		return
 	}
 	if len(ids) == 0 {
@@ -221,8 +222,8 @@ func (aq *AirportQuery) FirstID(ctx context.Context) (id uuid.UUID, err error) {
 }
 
 // FirstIDX is like FirstID, but panics if an error occurs.
-func (aq *AirportQuery) FirstIDX(ctx context.Context) uuid.UUID {
-	id, err := aq.FirstID(ctx)
+func (_q *AirportQuery) FirstIDX(ctx context.Context) uuid.UUID {
+	id, err := _q.FirstID(ctx)
 	if err != nil && !IsNotFound(err) {
 		panic(err)
 	}
@@ -232,8 +233,8 @@ func (aq *AirportQuery) FirstIDX(ctx context.Context) uuid.UUID {
 // Only returns a single Airport entity found by the query, ensuring it only returns one.
 // Returns a *NotSingularError when more than one Airport entity is found.
 // Returns a *NotFoundError when no Airport entities are found.
-func (aq *AirportQuery) Only(ctx context.Context) (*Airport, error) {
-	nodes, err := aq.Limit(2).All(setContextOp(ctx, aq.ctx, "Only"))
+func (_q *AirportQuery) Only(ctx context.Context) (*Airport, error) {
+	nodes, err := _q.Limit(2).All(setContextOp(ctx, _q.ctx, ent.OpQueryOnly))
 	if err != nil {
 		return nil, err
 	}
@@ -248,8 +249,8 @@ func (aq *AirportQuery) Only(ctx context.Context) (*Airport, error) {
 }
 
 // OnlyX is like Only, but panics if an error occurs.
-func (aq *AirportQuery) OnlyX(ctx context.Context) *Airport {
-	node, err := aq.Only(ctx)
+func (_q *AirportQuery) OnlyX(ctx context.Context) *Airport {
+	node, err := _q.Only(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -259,9 +260,9 @@ func (aq *AirportQuery) OnlyX(ctx context.Context) *Airport {
 // OnlyID is like Only, but returns the only Airport ID in the query.
 // Returns a *NotSingularError when more than one Airport ID is found.
 // Returns a *NotFoundError when no entities are found.
-func (aq *AirportQuery) OnlyID(ctx context.Context) (id uuid.UUID, err error) {
+func (_q *AirportQuery) OnlyID(ctx context.Context) (id uuid.UUID, err error) {
 	var ids []uuid.UUID
-	if ids, err = aq.Limit(2).IDs(setContextOp(ctx, aq.ctx, "OnlyID")); err != nil {
+	if ids, err = _q.Limit(2).IDs(setContextOp(ctx, _q.ctx, ent.OpQueryOnlyID)); err != nil {
 		return
 	}
 	switch len(ids) {
@@ -276,8 +277,8 @@ func (aq *AirportQuery) OnlyID(ctx context.Context) (id uuid.UUID, err error) {
 }
 
 // OnlyIDX is like OnlyID, but panics if an error occurs.
-func (aq *AirportQuery) OnlyIDX(ctx context.Context) uuid.UUID {
-	id, err := aq.OnlyID(ctx)
+func (_q *AirportQuery) OnlyIDX(ctx context.Context) uuid.UUID {
+	id, err := _q.OnlyID(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -285,18 +286,18 @@ func (aq *AirportQuery) OnlyIDX(ctx context.Context) uuid.UUID {
 }
 
 // All executes the query and returns a list of Airports.
-func (aq *AirportQuery) All(ctx context.Context) ([]*Airport, error) {
-	ctx = setContextOp(ctx, aq.ctx, "All")
-	if err := aq.prepareQuery(ctx); err != nil {
+func (_q *AirportQuery) All(ctx context.Context) ([]*Airport, error) {
+	ctx = setContextOp(ctx, _q.ctx, ent.OpQueryAll)
+	if err := _q.prepareQuery(ctx); err != nil {
 		return nil, err
 	}
 	qr := querierAll[[]*Airport, *AirportQuery]()
-	return withInterceptors[[]*Airport](ctx, aq, qr, aq.inters)
+	return withInterceptors[[]*Airport](ctx, _q, qr, _q.inters)
 }
 
 // AllX is like All, but panics if an error occurs.
-func (aq *AirportQuery) AllX(ctx context.Context) []*Airport {
-	nodes, err := aq.All(ctx)
+func (_q *AirportQuery) AllX(ctx context.Context) []*Airport {
+	nodes, err := _q.All(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -304,20 +305,20 @@ func (aq *AirportQuery) AllX(ctx context.Context) []*Airport {
 }
 
 // IDs executes the query and returns a list of Airport IDs.
-func (aq *AirportQuery) IDs(ctx context.Context) (ids []uuid.UUID, err error) {
-	if aq.ctx.Unique == nil && aq.path != nil {
-		aq.Unique(true)
+func (_q *AirportQuery) IDs(ctx context.Context) (ids []uuid.UUID, err error) {
+	if _q.ctx.Unique == nil && _q.path != nil {
+		_q.Unique(true)
 	}
-	ctx = setContextOp(ctx, aq.ctx, "IDs")
-	if err = aq.Select(airport.FieldID).Scan(ctx, &ids); err != nil {
+	ctx = setContextOp(ctx, _q.ctx, ent.OpQueryIDs)
+	if err = _q.Select(airport.FieldID).Scan(ctx, &ids); err != nil {
 		return nil, err
 	}
 	return ids, nil
 }
 
 // IDsX is like IDs, but panics if an error occurs.
-func (aq *AirportQuery) IDsX(ctx context.Context) []uuid.UUID {
-	ids, err := aq.IDs(ctx)
+func (_q *AirportQuery) IDsX(ctx context.Context) []uuid.UUID {
+	ids, err := _q.IDs(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -325,17 +326,17 @@ func (aq *AirportQuery) IDsX(ctx context.Context) []uuid.UUID {
 }
 
 // Count returns the count of the given query.
-func (aq *AirportQuery) Count(ctx context.Context) (int, error) {
-	ctx = setContextOp(ctx, aq.ctx, "Count")
-	if err := aq.prepareQuery(ctx); err != nil {
+func (_q *AirportQuery) Count(ctx context.Context) (int, error) {
+	ctx = setContextOp(ctx, _q.ctx, ent.OpQueryCount)
+	if err := _q.prepareQuery(ctx); err != nil {
 		return 0, err
 	}
-	return withInterceptors[int](ctx, aq, querierCount[*AirportQuery](), aq.inters)
+	return withInterceptors[int](ctx, _q, querierCount[*AirportQuery](), _q.inters)
 }
 
 // CountX is like Count, but panics if an error occurs.
-func (aq *AirportQuery) CountX(ctx context.Context) int {
-	count, err := aq.Count(ctx)
+func (_q *AirportQuery) CountX(ctx context.Context) int {
+	count, err := _q.Count(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -343,9 +344,9 @@ func (aq *AirportQuery) CountX(ctx context.Context) int {
 }
 
 // Exist returns true if the query has elements in the graph.
-func (aq *AirportQuery) Exist(ctx context.Context) (bool, error) {
-	ctx = setContextOp(ctx, aq.ctx, "Exist")
-	switch _, err := aq.FirstID(ctx); {
+func (_q *AirportQuery) Exist(ctx context.Context) (bool, error) {
+	ctx = setContextOp(ctx, _q.ctx, ent.OpQueryExist)
+	switch _, err := _q.FirstID(ctx); {
 	case IsNotFound(err):
 		return false, nil
 	case err != nil:
@@ -356,8 +357,8 @@ func (aq *AirportQuery) Exist(ctx context.Context) (bool, error) {
 }
 
 // ExistX is like Exist, but panics if an error occurs.
-func (aq *AirportQuery) ExistX(ctx context.Context) bool {
-	exist, err := aq.Exist(ctx)
+func (_q *AirportQuery) ExistX(ctx context.Context) bool {
+	exist, err := _q.Exist(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -366,80 +367,81 @@ func (aq *AirportQuery) ExistX(ctx context.Context) bool {
 
 // Clone returns a duplicate of the AirportQuery builder, including all associated steps. It can be
 // used to prepare common query builders and use them differently after the clone is made.
-func (aq *AirportQuery) Clone() *AirportQuery {
-	if aq == nil {
+func (_q *AirportQuery) Clone() *AirportQuery {
+	if _q == nil {
 		return nil
 	}
 	return &AirportQuery{
-		config:          aq.config,
-		ctx:             aq.ctx.Clone(),
-		order:           append([]airport.OrderOption{}, aq.order...),
-		inters:          append([]Interceptor{}, aq.inters...),
-		predicates:      append([]predicate.Airport{}, aq.predicates...),
-		withRegion:      aq.withRegion.Clone(),
-		withCountry:     aq.withCountry.Clone(),
-		withRunways:     aq.withRunways.Clone(),
-		withFrequencies: aq.withFrequencies.Clone(),
-		withStation:     aq.withStation.Clone(),
+		config:          _q.config,
+		ctx:             _q.ctx.Clone(),
+		order:           append([]airport.OrderOption{}, _q.order...),
+		inters:          append([]Interceptor{}, _q.inters...),
+		predicates:      append([]predicate.Airport{}, _q.predicates...),
+		withRegion:      _q.withRegion.Clone(),
+		withCountry:     _q.withCountry.Clone(),
+		withRunways:     _q.withRunways.Clone(),
+		withFrequencies: _q.withFrequencies.Clone(),
+		withStation:     _q.withStation.Clone(),
 		// clone intermediate query.
-		sql:  aq.sql.Clone(),
-		path: aq.path,
+		sql:       _q.sql.Clone(),
+		path:      _q.path,
+		modifiers: append([]func(*sql.Selector){}, _q.modifiers...),
 	}
 }
 
 // WithRegion tells the query-builder to eager-load the nodes that are connected to
 // the "region" edge. The optional arguments are used to configure the query builder of the edge.
-func (aq *AirportQuery) WithRegion(opts ...func(*RegionQuery)) *AirportQuery {
-	query := (&RegionClient{config: aq.config}).Query()
+func (_q *AirportQuery) WithRegion(opts ...func(*RegionQuery)) *AirportQuery {
+	query := (&RegionClient{config: _q.config}).Query()
 	for _, opt := range opts {
 		opt(query)
 	}
-	aq.withRegion = query
-	return aq
+	_q.withRegion = query
+	return _q
 }
 
 // WithCountry tells the query-builder to eager-load the nodes that are connected to
 // the "country" edge. The optional arguments are used to configure the query builder of the edge.
-func (aq *AirportQuery) WithCountry(opts ...func(*CountryQuery)) *AirportQuery {
-	query := (&CountryClient{config: aq.config}).Query()
+func (_q *AirportQuery) WithCountry(opts ...func(*CountryQuery)) *AirportQuery {
+	query := (&CountryClient{config: _q.config}).Query()
 	for _, opt := range opts {
 		opt(query)
 	}
-	aq.withCountry = query
-	return aq
+	_q.withCountry = query
+	return _q
 }
 
 // WithRunways tells the query-builder to eager-load the nodes that are connected to
 // the "runways" edge. The optional arguments are used to configure the query builder of the edge.
-func (aq *AirportQuery) WithRunways(opts ...func(*RunwayQuery)) *AirportQuery {
-	query := (&RunwayClient{config: aq.config}).Query()
+func (_q *AirportQuery) WithRunways(opts ...func(*RunwayQuery)) *AirportQuery {
+	query := (&RunwayClient{config: _q.config}).Query()
 	for _, opt := range opts {
 		opt(query)
 	}
-	aq.withRunways = query
-	return aq
+	_q.withRunways = query
+	return _q
 }
 
 // WithFrequencies tells the query-builder to eager-load the nodes that are connected to
 // the "frequencies" edge. The optional arguments are used to configure the query builder of the edge.
-func (aq *AirportQuery) WithFrequencies(opts ...func(*FrequencyQuery)) *AirportQuery {
-	query := (&FrequencyClient{config: aq.config}).Query()
+func (_q *AirportQuery) WithFrequencies(opts ...func(*FrequencyQuery)) *AirportQuery {
+	query := (&FrequencyClient{config: _q.config}).Query()
 	for _, opt := range opts {
 		opt(query)
 	}
-	aq.withFrequencies = query
-	return aq
+	_q.withFrequencies = query
+	return _q
 }
 
 // WithStation tells the query-builder to eager-load the nodes that are connected to
 // the "station" edge. The optional arguments are used to configure the query builder of the edge.
-func (aq *AirportQuery) WithStation(opts ...func(*WeatherStationQuery)) *AirportQuery {
-	query := (&WeatherStationClient{config: aq.config}).Query()
+func (_q *AirportQuery) WithStation(opts ...func(*WeatherStationQuery)) *AirportQuery {
+	query := (&WeatherStationClient{config: _q.config}).Query()
 	for _, opt := range opts {
 		opt(query)
 	}
-	aq.withStation = query
-	return aq
+	_q.withStation = query
+	return _q
 }
 
 // GroupBy is used to group vertices by one or more fields/columns.
@@ -456,10 +458,10 @@ func (aq *AirportQuery) WithStation(opts ...func(*WeatherStationQuery)) *Airport
 //		GroupBy(airport.FieldImportID).
 //		Aggregate(ent.Count()).
 //		Scan(ctx, &v)
-func (aq *AirportQuery) GroupBy(field string, fields ...string) *AirportGroupBy {
-	aq.ctx.Fields = append([]string{field}, fields...)
-	grbuild := &AirportGroupBy{build: aq}
-	grbuild.flds = &aq.ctx.Fields
+func (_q *AirportQuery) GroupBy(field string, fields ...string) *AirportGroupBy {
+	_q.ctx.Fields = append([]string{field}, fields...)
+	grbuild := &AirportGroupBy{build: _q}
+	grbuild.flds = &_q.ctx.Fields
 	grbuild.label = airport.Label
 	grbuild.scan = grbuild.Scan
 	return grbuild
@@ -477,59 +479,59 @@ func (aq *AirportQuery) GroupBy(field string, fields ...string) *AirportGroupBy 
 //	client.Airport.Query().
 //		Select(airport.FieldImportID).
 //		Scan(ctx, &v)
-func (aq *AirportQuery) Select(fields ...string) *AirportSelect {
-	aq.ctx.Fields = append(aq.ctx.Fields, fields...)
-	sbuild := &AirportSelect{AirportQuery: aq}
+func (_q *AirportQuery) Select(fields ...string) *AirportSelect {
+	_q.ctx.Fields = append(_q.ctx.Fields, fields...)
+	sbuild := &AirportSelect{AirportQuery: _q}
 	sbuild.label = airport.Label
-	sbuild.flds, sbuild.scan = &aq.ctx.Fields, sbuild.Scan
+	sbuild.flds, sbuild.scan = &_q.ctx.Fields, sbuild.Scan
 	return sbuild
 }
 
 // Aggregate returns a AirportSelect configured with the given aggregations.
-func (aq *AirportQuery) Aggregate(fns ...AggregateFunc) *AirportSelect {
-	return aq.Select().Aggregate(fns...)
+func (_q *AirportQuery) Aggregate(fns ...AggregateFunc) *AirportSelect {
+	return _q.Select().Aggregate(fns...)
 }
 
-func (aq *AirportQuery) prepareQuery(ctx context.Context) error {
-	for _, inter := range aq.inters {
+func (_q *AirportQuery) prepareQuery(ctx context.Context) error {
+	for _, inter := range _q.inters {
 		if inter == nil {
 			return fmt.Errorf("ent: uninitialized interceptor (forgotten import ent/runtime?)")
 		}
 		if trv, ok := inter.(Traverser); ok {
-			if err := trv.Traverse(ctx, aq); err != nil {
+			if err := trv.Traverse(ctx, _q); err != nil {
 				return err
 			}
 		}
 	}
-	for _, f := range aq.ctx.Fields {
+	for _, f := range _q.ctx.Fields {
 		if !airport.ValidColumn(f) {
 			return &ValidationError{Name: f, err: fmt.Errorf("ent: invalid field %q for query", f)}
 		}
 	}
-	if aq.path != nil {
-		prev, err := aq.path(ctx)
+	if _q.path != nil {
+		prev, err := _q.path(ctx)
 		if err != nil {
 			return err
 		}
-		aq.sql = prev
+		_q.sql = prev
 	}
 	return nil
 }
 
-func (aq *AirportQuery) sqlAll(ctx context.Context, hooks ...queryHook) ([]*Airport, error) {
+func (_q *AirportQuery) sqlAll(ctx context.Context, hooks ...queryHook) ([]*Airport, error) {
 	var (
 		nodes       = []*Airport{}
-		withFKs     = aq.withFKs
-		_spec       = aq.querySpec()
+		withFKs     = _q.withFKs
+		_spec       = _q.querySpec()
 		loadedTypes = [5]bool{
-			aq.withRegion != nil,
-			aq.withCountry != nil,
-			aq.withRunways != nil,
-			aq.withFrequencies != nil,
-			aq.withStation != nil,
+			_q.withRegion != nil,
+			_q.withCountry != nil,
+			_q.withRunways != nil,
+			_q.withFrequencies != nil,
+			_q.withStation != nil,
 		}
 	)
-	if aq.withRegion != nil || aq.withCountry != nil {
+	if _q.withRegion != nil || _q.withCountry != nil {
 		withFKs = true
 	}
 	if withFKs {
@@ -539,78 +541,78 @@ func (aq *AirportQuery) sqlAll(ctx context.Context, hooks ...queryHook) ([]*Airp
 		return (*Airport).scanValues(nil, columns)
 	}
 	_spec.Assign = func(columns []string, values []any) error {
-		node := &Airport{config: aq.config}
+		node := &Airport{config: _q.config}
 		nodes = append(nodes, node)
 		node.Edges.loadedTypes = loadedTypes
 		return node.assignValues(columns, values)
 	}
-	if len(aq.modifiers) > 0 {
-		_spec.Modifiers = aq.modifiers
+	if len(_q.modifiers) > 0 {
+		_spec.Modifiers = _q.modifiers
 	}
 	for i := range hooks {
 		hooks[i](ctx, _spec)
 	}
-	if err := sqlgraph.QueryNodes(ctx, aq.driver, _spec); err != nil {
+	if err := sqlgraph.QueryNodes(ctx, _q.driver, _spec); err != nil {
 		return nil, err
 	}
 	if len(nodes) == 0 {
 		return nodes, nil
 	}
-	if query := aq.withRegion; query != nil {
-		if err := aq.loadRegion(ctx, query, nodes, nil,
+	if query := _q.withRegion; query != nil {
+		if err := _q.loadRegion(ctx, query, nodes, nil,
 			func(n *Airport, e *Region) { n.Edges.Region = e }); err != nil {
 			return nil, err
 		}
 	}
-	if query := aq.withCountry; query != nil {
-		if err := aq.loadCountry(ctx, query, nodes, nil,
+	if query := _q.withCountry; query != nil {
+		if err := _q.loadCountry(ctx, query, nodes, nil,
 			func(n *Airport, e *Country) { n.Edges.Country = e }); err != nil {
 			return nil, err
 		}
 	}
-	if query := aq.withRunways; query != nil {
-		if err := aq.loadRunways(ctx, query, nodes,
+	if query := _q.withRunways; query != nil {
+		if err := _q.loadRunways(ctx, query, nodes,
 			func(n *Airport) { n.Edges.Runways = []*Runway{} },
 			func(n *Airport, e *Runway) { n.Edges.Runways = append(n.Edges.Runways, e) }); err != nil {
 			return nil, err
 		}
 	}
-	if query := aq.withFrequencies; query != nil {
-		if err := aq.loadFrequencies(ctx, query, nodes,
+	if query := _q.withFrequencies; query != nil {
+		if err := _q.loadFrequencies(ctx, query, nodes,
 			func(n *Airport) { n.Edges.Frequencies = []*Frequency{} },
 			func(n *Airport, e *Frequency) { n.Edges.Frequencies = append(n.Edges.Frequencies, e) }); err != nil {
 			return nil, err
 		}
 	}
-	if query := aq.withStation; query != nil {
-		if err := aq.loadStation(ctx, query, nodes, nil,
+	if query := _q.withStation; query != nil {
+		if err := _q.loadStation(ctx, query, nodes, nil,
 			func(n *Airport, e *WeatherStation) { n.Edges.Station = e }); err != nil {
 			return nil, err
 		}
 	}
-	for name, query := range aq.withNamedRunways {
-		if err := aq.loadRunways(ctx, query, nodes,
+	for name, query := range _q.withNamedRunways {
+		if err := _q.loadRunways(ctx, query, nodes,
 			func(n *Airport) { n.appendNamedRunways(name) },
 			func(n *Airport, e *Runway) { n.appendNamedRunways(name, e) }); err != nil {
 			return nil, err
 		}
 	}
-	for name, query := range aq.withNamedFrequencies {
-		if err := aq.loadFrequencies(ctx, query, nodes,
+	for name, query := range _q.withNamedFrequencies {
+		if err := _q.loadFrequencies(ctx, query, nodes,
 			func(n *Airport) { n.appendNamedFrequencies(name) },
 			func(n *Airport, e *Frequency) { n.appendNamedFrequencies(name, e) }); err != nil {
 			return nil, err
 		}
 	}
-	for i := range aq.loadTotal {
-		if err := aq.loadTotal[i](ctx, nodes); err != nil {
+	for i := range _q.loadTotal {
+		if err := _q.loadTotal[i](ctx, nodes); err != nil {
 			return nil, err
 		}
 	}
 	return nodes, nil
 }
 
-func (aq *AirportQuery) loadRegion(ctx context.Context, query *RegionQuery, nodes []*Airport, init func(*Airport), assign func(*Airport, *Region)) error {
+func (_q *AirportQuery) loadRegion(ctx context.Context, query *RegionQuery, nodes []*Airport, init func(*Airport), assign func(*Airport, *Region)) error {
 	ids := make([]uuid.UUID, 0, len(nodes))
 	nodeids := make(map[uuid.UUID][]*Airport)
 	for i := range nodes {
@@ -642,7 +644,7 @@ func (aq *AirportQuery) loadRegion(ctx context.Context, query *RegionQuery, node
 	}
 	return nil
 }
-func (aq *AirportQuery) loadCountry(ctx context.Context, query *CountryQuery, nodes []*Airport, init func(*Airport), assign func(*Airport, *Country)) error {
+func (_q *AirportQuery) loadCountry(ctx context.Context, query *CountryQuery, nodes []*Airport, init func(*Airport), assign func(*Airport, *Country)) error {
 	ids := make([]uuid.UUID, 0, len(nodes))
 	nodeids := make(map[uuid.UUID][]*Airport)
 	for i := range nodes {
@@ -674,7 +676,7 @@ func (aq *AirportQuery) loadCountry(ctx context.Context, query *CountryQuery, no
 	}
 	return nil
 }
-func (aq *AirportQuery) loadRunways(ctx context.Context, query *RunwayQuery, nodes []*Airport, init func(*Airport), assign func(*Airport, *Runway)) error {
+func (_q *AirportQuery) loadRunways(ctx context.Context, query *RunwayQuery, nodes []*Airport, init func(*Airport), assign func(*Airport, *Runway)) error {
 	fks := make([]driver.Value, 0, len(nodes))
 	nodeids := make(map[uuid.UUID]*Airport)
 	for i := range nodes {
@@ -705,7 +707,7 @@ func (aq *AirportQuery) loadRunways(ctx context.Context, query *RunwayQuery, nod
 	}
 	return nil
 }
-func (aq *AirportQuery) loadFrequencies(ctx context.Context, query *FrequencyQuery, nodes []*Airport, init func(*Airport), assign func(*Airport, *Frequency)) error {
+func (_q *AirportQuery) loadFrequencies(ctx context.Context, query *FrequencyQuery, nodes []*Airport, init func(*Airport), assign func(*Airport, *Frequency)) error {
 	fks := make([]driver.Value, 0, len(nodes))
 	nodeids := make(map[uuid.UUID]*Airport)
 	for i := range nodes {
@@ -736,7 +738,7 @@ func (aq *AirportQuery) loadFrequencies(ctx context.Context, query *FrequencyQue
 	}
 	return nil
 }
-func (aq *AirportQuery) loadStation(ctx context.Context, query *WeatherStationQuery, nodes []*Airport, init func(*Airport), assign func(*Airport, *WeatherStation)) error {
+func (_q *AirportQuery) loadStation(ctx context.Context, query *WeatherStationQuery, nodes []*Airport, init func(*Airport), assign func(*Airport, *WeatherStation)) error {
 	fks := make([]driver.Value, 0, len(nodes))
 	nodeids := make(map[uuid.UUID]*Airport)
 	for i := range nodes {
@@ -765,27 +767,27 @@ func (aq *AirportQuery) loadStation(ctx context.Context, query *WeatherStationQu
 	return nil
 }
 
-func (aq *AirportQuery) sqlCount(ctx context.Context) (int, error) {
-	_spec := aq.querySpec()
-	if len(aq.modifiers) > 0 {
-		_spec.Modifiers = aq.modifiers
+func (_q *AirportQuery) sqlCount(ctx context.Context) (int, error) {
+	_spec := _q.querySpec()
+	if len(_q.modifiers) > 0 {
+		_spec.Modifiers = _q.modifiers
 	}
-	_spec.Node.Columns = aq.ctx.Fields
-	if len(aq.ctx.Fields) > 0 {
-		_spec.Unique = aq.ctx.Unique != nil && *aq.ctx.Unique
+	_spec.Node.Columns = _q.ctx.Fields
+	if len(_q.ctx.Fields) > 0 {
+		_spec.Unique = _q.ctx.Unique != nil && *_q.ctx.Unique
 	}
-	return sqlgraph.CountNodes(ctx, aq.driver, _spec)
+	return sqlgraph.CountNodes(ctx, _q.driver, _spec)
 }
 
-func (aq *AirportQuery) querySpec() *sqlgraph.QuerySpec {
+func (_q *AirportQuery) querySpec() *sqlgraph.QuerySpec {
 	_spec := sqlgraph.NewQuerySpec(airport.Table, airport.Columns, sqlgraph.NewFieldSpec(airport.FieldID, field.TypeUUID))
-	_spec.From = aq.sql
-	if unique := aq.ctx.Unique; unique != nil {
+	_spec.From = _q.sql
+	if unique := _q.ctx.Unique; unique != nil {
 		_spec.Unique = *unique
-	} else if aq.path != nil {
+	} else if _q.path != nil {
 		_spec.Unique = true
 	}
-	if fields := aq.ctx.Fields; len(fields) > 0 {
+	if fields := _q.ctx.Fields; len(fields) > 0 {
 		_spec.Node.Columns = make([]string, 0, len(fields))
 		_spec.Node.Columns = append(_spec.Node.Columns, airport.FieldID)
 		for i := range fields {
@@ -794,20 +796,20 @@ func (aq *AirportQuery) querySpec() *sqlgraph.QuerySpec {
 			}
 		}
 	}
-	if ps := aq.predicates; len(ps) > 0 {
+	if ps := _q.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if limit := aq.ctx.Limit; limit != nil {
+	if limit := _q.ctx.Limit; limit != nil {
 		_spec.Limit = *limit
 	}
-	if offset := aq.ctx.Offset; offset != nil {
+	if offset := _q.ctx.Offset; offset != nil {
 		_spec.Offset = *offset
 	}
-	if ps := aq.order; len(ps) > 0 {
+	if ps := _q.order; len(ps) > 0 {
 		_spec.Order = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
@@ -817,73 +819,73 @@ func (aq *AirportQuery) querySpec() *sqlgraph.QuerySpec {
 	return _spec
 }
 
-func (aq *AirportQuery) sqlQuery(ctx context.Context) *sql.Selector {
-	builder := sql.Dialect(aq.driver.Dialect())
+func (_q *AirportQuery) sqlQuery(ctx context.Context) *sql.Selector {
+	builder := sql.Dialect(_q.driver.Dialect())
 	t1 := builder.Table(airport.Table)
-	columns := aq.ctx.Fields
+	columns := _q.ctx.Fields
 	if len(columns) == 0 {
 		columns = airport.Columns
 	}
 	selector := builder.Select(t1.Columns(columns...)...).From(t1)
-	if aq.sql != nil {
-		selector = aq.sql
+	if _q.sql != nil {
+		selector = _q.sql
 		selector.Select(selector.Columns(columns...)...)
 	}
-	if aq.ctx.Unique != nil && *aq.ctx.Unique {
+	if _q.ctx.Unique != nil && *_q.ctx.Unique {
 		selector.Distinct()
 	}
-	for _, m := range aq.modifiers {
+	for _, m := range _q.modifiers {
 		m(selector)
 	}
-	for _, p := range aq.predicates {
+	for _, p := range _q.predicates {
 		p(selector)
 	}
-	for _, p := range aq.order {
+	for _, p := range _q.order {
 		p(selector)
 	}
-	if offset := aq.ctx.Offset; offset != nil {
+	if offset := _q.ctx.Offset; offset != nil {
 		// limit is mandatory for offset clause. We start
 		// with default value, and override it below if needed.
 		selector.Offset(*offset).Limit(math.MaxInt32)
 	}
-	if limit := aq.ctx.Limit; limit != nil {
+	if limit := _q.ctx.Limit; limit != nil {
 		selector.Limit(*limit)
 	}
 	return selector
 }
 
 // Modify adds a query modifier for attaching custom logic to queries.
-func (aq *AirportQuery) Modify(modifiers ...func(s *sql.Selector)) *AirportSelect {
-	aq.modifiers = append(aq.modifiers, modifiers...)
-	return aq.Select()
+func (_q *AirportQuery) Modify(modifiers ...func(s *sql.Selector)) *AirportSelect {
+	_q.modifiers = append(_q.modifiers, modifiers...)
+	return _q.Select()
 }
 
 // WithNamedRunways tells the query-builder to eager-load the nodes that are connected to the "runways"
 // edge with the given name. The optional arguments are used to configure the query builder of the edge.
-func (aq *AirportQuery) WithNamedRunways(name string, opts ...func(*RunwayQuery)) *AirportQuery {
-	query := (&RunwayClient{config: aq.config}).Query()
+func (_q *AirportQuery) WithNamedRunways(name string, opts ...func(*RunwayQuery)) *AirportQuery {
+	query := (&RunwayClient{config: _q.config}).Query()
 	for _, opt := range opts {
 		opt(query)
 	}
-	if aq.withNamedRunways == nil {
-		aq.withNamedRunways = make(map[string]*RunwayQuery)
+	if _q.withNamedRunways == nil {
+		_q.withNamedRunways = make(map[string]*RunwayQuery)
 	}
-	aq.withNamedRunways[name] = query
-	return aq
+	_q.withNamedRunways[name] = query
+	return _q
 }
 
 // WithNamedFrequencies tells the query-builder to eager-load the nodes that are connected to the "frequencies"
 // edge with the given name. The optional arguments are used to configure the query builder of the edge.
-func (aq *AirportQuery) WithNamedFrequencies(name string, opts ...func(*FrequencyQuery)) *AirportQuery {
-	query := (&FrequencyClient{config: aq.config}).Query()
+func (_q *AirportQuery) WithNamedFrequencies(name string, opts ...func(*FrequencyQuery)) *AirportQuery {
+	query := (&FrequencyClient{config: _q.config}).Query()
 	for _, opt := range opts {
 		opt(query)
 	}
-	if aq.withNamedFrequencies == nil {
-		aq.withNamedFrequencies = make(map[string]*FrequencyQuery)
+	if _q.withNamedFrequencies == nil {
+		_q.withNamedFrequencies = make(map[string]*FrequencyQuery)
 	}
-	aq.withNamedFrequencies[name] = query
-	return aq
+	_q.withNamedFrequencies[name] = query
+	return _q
 }
 
 // AirportGroupBy is the group-by builder for Airport entities.
@@ -893,41 +895,41 @@ type AirportGroupBy struct {
 }
 
 // Aggregate adds the given aggregation functions to the group-by query.
-func (agb *AirportGroupBy) Aggregate(fns ...AggregateFunc) *AirportGroupBy {
-	agb.fns = append(agb.fns, fns...)
-	return agb
+func (_g *AirportGroupBy) Aggregate(fns ...AggregateFunc) *AirportGroupBy {
+	_g.fns = append(_g.fns, fns...)
+	return _g
 }
 
 // Scan applies the selector query and scans the result into the given value.
-func (agb *AirportGroupBy) Scan(ctx context.Context, v any) error {
-	ctx = setContextOp(ctx, agb.build.ctx, "GroupBy")
-	if err := agb.build.prepareQuery(ctx); err != nil {
+func (_g *AirportGroupBy) Scan(ctx context.Context, v any) error {
+	ctx = setContextOp(ctx, _g.build.ctx, ent.OpQueryGroupBy)
+	if err := _g.build.prepareQuery(ctx); err != nil {
 		return err
 	}
-	return scanWithInterceptors[*AirportQuery, *AirportGroupBy](ctx, agb.build, agb, agb.build.inters, v)
+	return scanWithInterceptors[*AirportQuery, *AirportGroupBy](ctx, _g.build, _g, _g.build.inters, v)
 }
 
-func (agb *AirportGroupBy) sqlScan(ctx context.Context, root *AirportQuery, v any) error {
+func (_g *AirportGroupBy) sqlScan(ctx context.Context, root *AirportQuery, v any) error {
 	selector := root.sqlQuery(ctx).Select()
-	aggregation := make([]string, 0, len(agb.fns))
-	for _, fn := range agb.fns {
+	aggregation := make([]string, 0, len(_g.fns))
+	for _, fn := range _g.fns {
 		aggregation = append(aggregation, fn(selector))
 	}
 	if len(selector.SelectedColumns()) == 0 {
-		columns := make([]string, 0, len(*agb.flds)+len(agb.fns))
-		for _, f := range *agb.flds {
+		columns := make([]string, 0, len(*_g.flds)+len(_g.fns))
+		for _, f := range *_g.flds {
 			columns = append(columns, selector.C(f))
 		}
 		columns = append(columns, aggregation...)
 		selector.Select(columns...)
 	}
-	selector.GroupBy(selector.Columns(*agb.flds...)...)
+	selector.GroupBy(selector.Columns(*_g.flds...)...)
 	if err := selector.Err(); err != nil {
 		return err
 	}
 	rows := &sql.Rows{}
 	query, args := selector.Query()
-	if err := agb.build.driver.Query(ctx, query, args, rows); err != nil {
+	if err := _g.build.driver.Query(ctx, query, args, rows); err != nil {
 		return err
 	}
 	defer rows.Close()
@@ -941,27 +943,27 @@ type AirportSelect struct {
 }
 
 // Aggregate adds the given aggregation functions to the selector query.
-func (as *AirportSelect) Aggregate(fns ...AggregateFunc) *AirportSelect {
-	as.fns = append(as.fns, fns...)
-	return as
+func (_s *AirportSelect) Aggregate(fns ...AggregateFunc) *AirportSelect {
+	_s.fns = append(_s.fns, fns...)
+	return _s
 }
 
 // Scan applies the selector query and scans the result into the given value.
-func (as *AirportSelect) Scan(ctx context.Context, v any) error {
-	ctx = setContextOp(ctx, as.ctx, "Select")
-	if err := as.prepareQuery(ctx); err != nil {
+func (_s *AirportSelect) Scan(ctx context.Context, v any) error {
+	ctx = setContextOp(ctx, _s.ctx, ent.OpQuerySelect)
+	if err := _s.prepareQuery(ctx); err != nil {
 		return err
 	}
-	return scanWithInterceptors[*AirportQuery, *AirportSelect](ctx, as.AirportQuery, as, as.inters, v)
+	return scanWithInterceptors[*AirportQuery, *AirportSelect](ctx, _s.AirportQuery, _s, _s.inters, v)
 }
 
-func (as *AirportSelect) sqlScan(ctx context.Context, root *AirportQuery, v any) error {
+func (_s *AirportSelect) sqlScan(ctx context.Context, root *AirportQuery, v any) error {
 	selector := root.sqlQuery(ctx)
-	aggregation := make([]string, 0, len(as.fns))
-	for _, fn := range as.fns {
+	aggregation := make([]string, 0, len(_s.fns))
+	for _, fn := range _s.fns {
 		aggregation = append(aggregation, fn(selector))
 	}
-	switch n := len(*as.selector.flds); {
+	switch n := len(*_s.selector.flds); {
 	case n == 0 && len(aggregation) > 0:
 		selector.Select(aggregation...)
 	case n != 0 && len(aggregation) > 0:
@@ -969,7 +971,7 @@ func (as *AirportSelect) sqlScan(ctx context.Context, root *AirportQuery, v any)
 	}
 	rows := &sql.Rows{}
 	query, args := selector.Query()
-	if err := as.driver.Query(ctx, query, args, rows); err != nil {
+	if err := _s.driver.Query(ctx, query, args, rows); err != nil {
 		return err
 	}
 	defer rows.Close()
@@ -977,7 +979,7 @@ func (as *AirportSelect) sqlScan(ctx context.Context, root *AirportQuery, v any)
 }
 
 // Modify adds a query modifier for attaching custom logic to queries.
-func (as *AirportSelect) Modify(modifiers ...func(s *sql.Selector)) *AirportSelect {
-	as.modifiers = append(as.modifiers, modifiers...)
-	return as
+func (_s *AirportSelect) Modify(modifiers ...func(s *sql.Selector)) *AirportSelect {
+	_s.modifiers = append(_s.modifiers, modifiers...)
+	return _s
 }

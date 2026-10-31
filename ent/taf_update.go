@@ -27,133 +27,189 @@ type TafUpdate struct {
 }
 
 // Where appends a list predicates to the TafUpdate builder.
-func (tu *TafUpdate) Where(ps ...predicate.Taf) *TafUpdate {
-	tu.mutation.Where(ps...)
-	return tu
+func (_u *TafUpdate) Where(ps ...predicate.Taf) *TafUpdate {
+	_u.mutation.Where(ps...)
+	return _u
 }
 
 // SetRawText sets the "raw_text" field.
-func (tu *TafUpdate) SetRawText(s string) *TafUpdate {
-	tu.mutation.SetRawText(s)
-	return tu
+func (_u *TafUpdate) SetRawText(v string) *TafUpdate {
+	_u.mutation.SetRawText(v)
+	return _u
+}
+
+// SetNillableRawText sets the "raw_text" field if the given value is not nil.
+func (_u *TafUpdate) SetNillableRawText(v *string) *TafUpdate {
+	if v != nil {
+		_u.SetRawText(*v)
+	}
+	return _u
 }
 
 // SetIssueTime sets the "issue_time" field.
-func (tu *TafUpdate) SetIssueTime(t time.Time) *TafUpdate {
-	tu.mutation.SetIssueTime(t)
-	return tu
+func (_u *TafUpdate) SetIssueTime(v time.Time) *TafUpdate {
+	_u.mutation.SetIssueTime(v)
+	return _u
+}
+
+// SetNillableIssueTime sets the "issue_time" field if the given value is not nil.
+func (_u *TafUpdate) SetNillableIssueTime(v *time.Time) *TafUpdate {
+	if v != nil {
+		_u.SetIssueTime(*v)
+	}
+	return _u
 }
 
 // SetImportTime sets the "import_time" field.
-func (tu *TafUpdate) SetImportTime(t time.Time) *TafUpdate {
-	tu.mutation.SetImportTime(t)
-	return tu
+func (_u *TafUpdate) SetImportTime(v time.Time) *TafUpdate {
+	_u.mutation.SetImportTime(v)
+	return _u
 }
 
 // SetNillableImportTime sets the "import_time" field if the given value is not nil.
-func (tu *TafUpdate) SetNillableImportTime(t *time.Time) *TafUpdate {
-	if t != nil {
-		tu.SetImportTime(*t)
+func (_u *TafUpdate) SetNillableImportTime(v *time.Time) *TafUpdate {
+	if v != nil {
+		_u.SetImportTime(*v)
 	}
-	return tu
+	return _u
 }
 
 // SetBulletinTime sets the "bulletin_time" field.
-func (tu *TafUpdate) SetBulletinTime(t time.Time) *TafUpdate {
-	tu.mutation.SetBulletinTime(t)
-	return tu
+func (_u *TafUpdate) SetBulletinTime(v time.Time) *TafUpdate {
+	_u.mutation.SetBulletinTime(v)
+	return _u
+}
+
+// SetNillableBulletinTime sets the "bulletin_time" field if the given value is not nil.
+func (_u *TafUpdate) SetNillableBulletinTime(v *time.Time) *TafUpdate {
+	if v != nil {
+		_u.SetBulletinTime(*v)
+	}
+	return _u
 }
 
 // SetValidFromTime sets the "valid_from_time" field.
-func (tu *TafUpdate) SetValidFromTime(t time.Time) *TafUpdate {
-	tu.mutation.SetValidFromTime(t)
-	return tu
+func (_u *TafUpdate) SetValidFromTime(v time.Time) *TafUpdate {
+	_u.mutation.SetValidFromTime(v)
+	return _u
+}
+
+// SetNillableValidFromTime sets the "valid_from_time" field if the given value is not nil.
+func (_u *TafUpdate) SetNillableValidFromTime(v *time.Time) *TafUpdate {
+	if v != nil {
+		_u.SetValidFromTime(*v)
+	}
+	return _u
 }
 
 // SetValidToTime sets the "valid_to_time" field.
-func (tu *TafUpdate) SetValidToTime(t time.Time) *TafUpdate {
-	tu.mutation.SetValidToTime(t)
-	return tu
+func (_u *TafUpdate) SetValidToTime(v time.Time) *TafUpdate {
+	_u.mutation.SetValidToTime(v)
+	return _u
+}
+
+// SetNillableValidToTime sets the "valid_to_time" field if the given value is not nil.
+func (_u *TafUpdate) SetNillableValidToTime(v *time.Time) *TafUpdate {
+	if v != nil {
+		_u.SetValidToTime(*v)
+	}
+	return _u
 }
 
 // SetRemarks sets the "remarks" field.
-func (tu *TafUpdate) SetRemarks(s string) *TafUpdate {
-	tu.mutation.SetRemarks(s)
-	return tu
+func (_u *TafUpdate) SetRemarks(v string) *TafUpdate {
+	_u.mutation.SetRemarks(v)
+	return _u
+}
+
+// SetNillableRemarks sets the "remarks" field if the given value is not nil.
+func (_u *TafUpdate) SetNillableRemarks(v *string) *TafUpdate {
+	if v != nil {
+		_u.SetRemarks(*v)
+	}
+	return _u
 }
 
 // SetHash sets the "hash" field.
-func (tu *TafUpdate) SetHash(s string) *TafUpdate {
-	tu.mutation.SetHash(s)
-	return tu
+func (_u *TafUpdate) SetHash(v string) *TafUpdate {
+	_u.mutation.SetHash(v)
+	return _u
+}
+
+// SetNillableHash sets the "hash" field if the given value is not nil.
+func (_u *TafUpdate) SetNillableHash(v *string) *TafUpdate {
+	if v != nil {
+		_u.SetHash(*v)
+	}
+	return _u
 }
 
 // SetStationID sets the "station" edge to the WeatherStation entity by ID.
-func (tu *TafUpdate) SetStationID(id uuid.UUID) *TafUpdate {
-	tu.mutation.SetStationID(id)
-	return tu
+func (_u *TafUpdate) SetStationID(id uuid.UUID) *TafUpdate {
+	_u.mutation.SetStationID(id)
+	return _u
 }
 
 // SetStation sets the "station" edge to the WeatherStation entity.
-func (tu *TafUpdate) SetStation(w *WeatherStation) *TafUpdate {
-	return tu.SetStationID(w.ID)
+func (_u *TafUpdate) SetStation(v *WeatherStation) *TafUpdate {
+	return _u.SetStationID(v.ID)
 }
 
 // AddForecastIDs adds the "forecast" edge to the Forecast entity by IDs.
-func (tu *TafUpdate) AddForecastIDs(ids ...uuid.UUID) *TafUpdate {
-	tu.mutation.AddForecastIDs(ids...)
-	return tu
+func (_u *TafUpdate) AddForecastIDs(ids ...uuid.UUID) *TafUpdate {
+	_u.mutation.AddForecastIDs(ids...)
+	return _u
 }
 
 // AddForecast adds the "forecast" edges to the Forecast entity.
-func (tu *TafUpdate) AddForecast(f ...*Forecast) *TafUpdate {
-	ids := make([]uuid.UUID, len(f))
-	for i := range f {
-		ids[i] = f[i].ID
+func (_u *TafUpdate) AddForecast(v ...*Forecast) *TafUpdate {
+	ids := make([]uuid.UUID, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return tu.AddForecastIDs(ids...)
+	return _u.AddForecastIDs(ids...)
 }
 
 // Mutation returns the TafMutation object of the builder.
-func (tu *TafUpdate) Mutation() *TafMutation {
-	return tu.mutation
+func (_u *TafUpdate) Mutation() *TafMutation {
+	return _u.mutation
 }
 
 // ClearStation clears the "station" edge to the WeatherStation entity.
-func (tu *TafUpdate) ClearStation() *TafUpdate {
-	tu.mutation.ClearStation()
-	return tu
+func (_u *TafUpdate) ClearStation() *TafUpdate {
+	_u.mutation.ClearStation()
+	return _u
 }
 
 // ClearForecast clears all "forecast" edges to the Forecast entity.
-func (tu *TafUpdate) ClearForecast() *TafUpdate {
-	tu.mutation.ClearForecast()
-	return tu
+func (_u *TafUpdate) ClearForecast() *TafUpdate {
+	_u.mutation.ClearForecast()
+	return _u
 }
 
 // RemoveForecastIDs removes the "forecast" edge to Forecast entities by IDs.
-func (tu *TafUpdate) RemoveForecastIDs(ids ...uuid.UUID) *TafUpdate {
-	tu.mutation.RemoveForecastIDs(ids...)
-	return tu
+func (_u *TafUpdate) RemoveForecastIDs(ids ...uuid.UUID) *TafUpdate {
+	_u.mutation.RemoveForecastIDs(ids...)
+	return _u
 }
 
 // RemoveForecast removes "forecast" edges to Forecast entities.
-func (tu *TafUpdate) RemoveForecast(f ...*Forecast) *TafUpdate {
-	ids := make([]uuid.UUID, len(f))
-	for i := range f {
-		ids[i] = f[i].ID
+func (_u *TafUpdate) RemoveForecast(v ...*Forecast) *TafUpdate {
+	ids := make([]uuid.UUID, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return tu.RemoveForecastIDs(ids...)
+	return _u.RemoveForecastIDs(ids...)
 }
 
 // Save executes the query and returns the number of nodes affected by the update operation.
-func (tu *TafUpdate) Save(ctx context.Context) (int, error) {
-	return withHooks(ctx, tu.sqlSave, tu.mutation, tu.hooks)
+func (_u *TafUpdate) Save(ctx context.Context) (int, error) {
+	return withHooks(ctx, _u.sqlSave, _u.mutation, _u.hooks)
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (tu *TafUpdate) SaveX(ctx context.Context) int {
-	affected, err := tu.Save(ctx)
+func (_u *TafUpdate) SaveX(ctx context.Context) int {
+	affected, err := _u.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -161,69 +217,69 @@ func (tu *TafUpdate) SaveX(ctx context.Context) int {
 }
 
 // Exec executes the query.
-func (tu *TafUpdate) Exec(ctx context.Context) error {
-	_, err := tu.Save(ctx)
+func (_u *TafUpdate) Exec(ctx context.Context) error {
+	_, err := _u.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (tu *TafUpdate) ExecX(ctx context.Context) {
-	if err := tu.Exec(ctx); err != nil {
+func (_u *TafUpdate) ExecX(ctx context.Context) {
+	if err := _u.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // check runs all checks and user-defined validators on the builder.
-func (tu *TafUpdate) check() error {
-	if _, ok := tu.mutation.StationID(); tu.mutation.StationCleared() && !ok {
+func (_u *TafUpdate) check() error {
+	if _u.mutation.StationCleared() && len(_u.mutation.StationIDs()) > 0 {
 		return errors.New(`ent: clearing a required unique edge "Taf.station"`)
 	}
 	return nil
 }
 
 // Modify adds a statement modifier for attaching custom logic to the UPDATE statement.
-func (tu *TafUpdate) Modify(modifiers ...func(u *sql.UpdateBuilder)) *TafUpdate {
-	tu.modifiers = append(tu.modifiers, modifiers...)
-	return tu
+func (_u *TafUpdate) Modify(modifiers ...func(u *sql.UpdateBuilder)) *TafUpdate {
+	_u.modifiers = append(_u.modifiers, modifiers...)
+	return _u
 }
 
-func (tu *TafUpdate) sqlSave(ctx context.Context) (n int, err error) {
-	if err := tu.check(); err != nil {
-		return n, err
+func (_u *TafUpdate) sqlSave(ctx context.Context) (_node int, err error) {
+	if err := _u.check(); err != nil {
+		return _node, err
 	}
 	_spec := sqlgraph.NewUpdateSpec(taf.Table, taf.Columns, sqlgraph.NewFieldSpec(taf.FieldID, field.TypeUUID))
-	if ps := tu.mutation.predicates; len(ps) > 0 {
+	if ps := _u.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if value, ok := tu.mutation.RawText(); ok {
+	if value, ok := _u.mutation.RawText(); ok {
 		_spec.SetField(taf.FieldRawText, field.TypeString, value)
 	}
-	if value, ok := tu.mutation.IssueTime(); ok {
+	if value, ok := _u.mutation.IssueTime(); ok {
 		_spec.SetField(taf.FieldIssueTime, field.TypeTime, value)
 	}
-	if value, ok := tu.mutation.ImportTime(); ok {
+	if value, ok := _u.mutation.ImportTime(); ok {
 		_spec.SetField(taf.FieldImportTime, field.TypeTime, value)
 	}
-	if value, ok := tu.mutation.BulletinTime(); ok {
+	if value, ok := _u.mutation.BulletinTime(); ok {
 		_spec.SetField(taf.FieldBulletinTime, field.TypeTime, value)
 	}
-	if value, ok := tu.mutation.ValidFromTime(); ok {
+	if value, ok := _u.mutation.ValidFromTime(); ok {
 		_spec.SetField(taf.FieldValidFromTime, field.TypeTime, value)
 	}
-	if value, ok := tu.mutation.ValidToTime(); ok {
+	if value, ok := _u.mutation.ValidToTime(); ok {
 		_spec.SetField(taf.FieldValidToTime, field.TypeTime, value)
 	}
-	if value, ok := tu.mutation.Remarks(); ok {
+	if value, ok := _u.mutation.Remarks(); ok {
 		_spec.SetField(taf.FieldRemarks, field.TypeString, value)
 	}
-	if value, ok := tu.mutation.Hash(); ok {
+	if value, ok := _u.mutation.Hash(); ok {
 		_spec.SetField(taf.FieldHash, field.TypeString, value)
 	}
-	if tu.mutation.StationCleared() {
+	if _u.mutation.StationCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.M2O,
 			Inverse: true,
@@ -236,7 +292,7 @@ func (tu *TafUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := tu.mutation.StationIDs(); len(nodes) > 0 {
+	if nodes := _u.mutation.StationIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.M2O,
 			Inverse: true,
@@ -252,7 +308,7 @@ func (tu *TafUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		_spec.Edges.Add = append(_spec.Edges.Add, edge)
 	}
-	if tu.mutation.ForecastCleared() {
+	if _u.mutation.ForecastCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -265,7 +321,7 @@ func (tu *TafUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := tu.mutation.RemovedForecastIDs(); len(nodes) > 0 && !tu.mutation.ForecastCleared() {
+	if nodes := _u.mutation.RemovedForecastIDs(); len(nodes) > 0 && !_u.mutation.ForecastCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -281,7 +337,7 @@ func (tu *TafUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := tu.mutation.ForecastIDs(); len(nodes) > 0 {
+	if nodes := _u.mutation.ForecastIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -297,8 +353,8 @@ func (tu *TafUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		_spec.Edges.Add = append(_spec.Edges.Add, edge)
 	}
-	_spec.AddModifiers(tu.modifiers...)
-	if n, err = sqlgraph.UpdateNodes(ctx, tu.driver, _spec); err != nil {
+	_spec.AddModifiers(_u.modifiers...)
+	if _node, err = sqlgraph.UpdateNodes(ctx, _u.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
 			err = &NotFoundError{taf.Label}
 		} else if sqlgraph.IsConstraintError(err) {
@@ -306,8 +362,8 @@ func (tu *TafUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		return 0, err
 	}
-	tu.mutation.done = true
-	return n, nil
+	_u.mutation.done = true
+	return _node, nil
 }
 
 // TafUpdateOne is the builder for updating a single Taf entity.
@@ -320,140 +376,196 @@ type TafUpdateOne struct {
 }
 
 // SetRawText sets the "raw_text" field.
-func (tuo *TafUpdateOne) SetRawText(s string) *TafUpdateOne {
-	tuo.mutation.SetRawText(s)
-	return tuo
+func (_u *TafUpdateOne) SetRawText(v string) *TafUpdateOne {
+	_u.mutation.SetRawText(v)
+	return _u
+}
+
+// SetNillableRawText sets the "raw_text" field if the given value is not nil.
+func (_u *TafUpdateOne) SetNillableRawText(v *string) *TafUpdateOne {
+	if v != nil {
+		_u.SetRawText(*v)
+	}
+	return _u
 }
 
 // SetIssueTime sets the "issue_time" field.
-func (tuo *TafUpdateOne) SetIssueTime(t time.Time) *TafUpdateOne {
-	tuo.mutation.SetIssueTime(t)
-	return tuo
+func (_u *TafUpdateOne) SetIssueTime(v time.Time) *TafUpdateOne {
+	_u.mutation.SetIssueTime(v)
+	return _u
+}
+
+// SetNillableIssueTime sets the "issue_time" field if the given value is not nil.
+func (_u *TafUpdateOne) SetNillableIssueTime(v *time.Time) *TafUpdateOne {
+	if v != nil {
+		_u.SetIssueTime(*v)
+	}
+	return _u
 }
 
 // SetImportTime sets the "import_time" field.
-func (tuo *TafUpdateOne) SetImportTime(t time.Time) *TafUpdateOne {
-	tuo.mutation.SetImportTime(t)
-	return tuo
+func (_u *TafUpdateOne) SetImportTime(v time.Time) *TafUpdateOne {
+	_u.mutation.SetImportTime(v)
+	return _u
 }
 
 // SetNillableImportTime sets the "import_time" field if the given value is not nil.
-func (tuo *TafUpdateOne) SetNillableImportTime(t *time.Time) *TafUpdateOne {
-	if t != nil {
-		tuo.SetImportTime(*t)
+func (_u *TafUpdateOne) SetNillableImportTime(v *time.Time) *TafUpdateOne {
+	if v != nil {
+		_u.SetImportTime(*v)
 	}
-	return tuo
+	return _u
 }
 
 // SetBulletinTime sets the "bulletin_time" field.
-func (tuo *TafUpdateOne) SetBulletinTime(t time.Time) *TafUpdateOne {
-	tuo.mutation.SetBulletinTime(t)
-	return tuo
+func (_u *TafUpdateOne) SetBulletinTime(v time.Time) *TafUpdateOne {
+	_u.mutation.SetBulletinTime(v)
+	return _u
+}
+
+// SetNillableBulletinTime sets the "bulletin_time" field if the given value is not nil.
+func (_u *TafUpdateOne) SetNillableBulletinTime(v *time.Time) *TafUpdateOne {
+	if v != nil {
+		_u.SetBulletinTime(*v)
+	}
+	return _u
 }
 
 // SetValidFromTime sets the "valid_from_time" field.
-func (tuo *TafUpdateOne) SetValidFromTime(t time.Time) *TafUpdateOne {
-	tuo.mutation.SetValidFromTime(t)
-	return tuo
+func (_u *TafUpdateOne) SetValidFromTime(v time.Time) *TafUpdateOne {
+	_u.mutation.SetValidFromTime(v)
+	return _u
+}
+
+// SetNillableValidFromTime sets the "valid_from_time" field if the given value is not nil.
+func (_u *TafUpdateOne) SetNillableValidFromTime(v *time.Time) *TafUpdateOne {
+	if v != nil {
+		_u.SetValidFromTime(*v)
+	}
+	return _u
 }
 
 // SetValidToTime sets the "valid_to_time" field.
-func (tuo *TafUpdateOne) SetValidToTime(t time.Time) *TafUpdateOne {
-	tuo.mutation.SetValidToTime(t)
-	return tuo
+func (_u *TafUpdateOne) SetValidToTime(v time.Time) *TafUpdateOne {
+	_u.mutation.SetValidToTime(v)
+	return _u
+}
+
+// SetNillableValidToTime sets the "valid_to_time" field if the given value is not nil.
+func (_u *TafUpdateOne) SetNillableValidToTime(v *time.Time) *TafUpdateOne {
+	if v != nil {
+		_u.SetValidToTime(*v)
+	}
+	return _u
 }
 
 // SetRemarks sets the "remarks" field.
-func (tuo *TafUpdateOne) SetRemarks(s string) *TafUpdateOne {
-	tuo.mutation.SetRemarks(s)
-	return tuo
+func (_u *TafUpdateOne) SetRemarks(v string) *TafUpdateOne {
+	_u.mutation.SetRemarks(v)
+	return _u
+}
+
+// SetNillableRemarks sets the "remarks" field if the given value is not nil.
+func (_u *TafUpdateOne) SetNillableRemarks(v *string) *TafUpdateOne {
+	if v != nil {
+		_u.SetRemarks(*v)
+	}
+	return _u
 }
 
 // SetHash sets the "hash" field.
-func (tuo *TafUpdateOne) SetHash(s string) *TafUpdateOne {
-	tuo.mutation.SetHash(s)
-	return tuo
+func (_u *TafUpdateOne) SetHash(v string) *TafUpdateOne {
+	_u.mutation.SetHash(v)
+	return _u
+}
+
+// SetNillableHash sets the "hash" field if the given value is not nil.
+func (_u *TafUpdateOne) SetNillableHash(v *string) *TafUpdateOne {
+	if v != nil {
+		_u.SetHash(*v)
+	}
+	return _u
 }
 
 // SetStationID sets the "station" edge to the WeatherStation entity by ID.
-func (tuo *TafUpdateOne) SetStationID(id uuid.UUID) *TafUpdateOne {
-	tuo.mutation.SetStationID(id)
-	return tuo
+func (_u *TafUpdateOne) SetStationID(id uuid.UUID) *TafUpdateOne {
+	_u.mutation.SetStationID(id)
+	return _u
 }
 
 // SetStation sets the "station" edge to the WeatherStation entity.
-func (tuo *TafUpdateOne) SetStation(w *WeatherStation) *TafUpdateOne {
-	return tuo.SetStationID(w.ID)
+func (_u *TafUpdateOne) SetStation(v *WeatherStation) *TafUpdateOne {
+	return _u.SetStationID(v.ID)
 }
 
 // AddForecastIDs adds the "forecast" edge to the Forecast entity by IDs.
-func (tuo *TafUpdateOne) AddForecastIDs(ids ...uuid.UUID) *TafUpdateOne {
-	tuo.mutation.AddForecastIDs(ids...)
-	return tuo
+func (_u *TafUpdateOne) AddForecastIDs(ids ...uuid.UUID) *TafUpdateOne {
+	_u.mutation.AddForecastIDs(ids...)
+	return _u
 }
 
 // AddForecast adds the "forecast" edges to the Forecast entity.
-func (tuo *TafUpdateOne) AddForecast(f ...*Forecast) *TafUpdateOne {
-	ids := make([]uuid.UUID, len(f))
-	for i := range f {
-		ids[i] = f[i].ID
+func (_u *TafUpdateOne) AddForecast(v ...*Forecast) *TafUpdateOne {
+	ids := make([]uuid.UUID, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return tuo.AddForecastIDs(ids...)
+	return _u.AddForecastIDs(ids...)
 }
 
 // Mutation returns the TafMutation object of the builder.
-func (tuo *TafUpdateOne) Mutation() *TafMutation {
-	return tuo.mutation
+func (_u *TafUpdateOne) Mutation() *TafMutation {
+	return _u.mutation
 }
 
 // ClearStation clears the "station" edge to the WeatherStation entity.
-func (tuo *TafUpdateOne) ClearStation() *TafUpdateOne {
-	tuo.mutation.ClearStation()
-	return tuo
+func (_u *TafUpdateOne) ClearStation() *TafUpdateOne {
+	_u.mutation.ClearStation()
+	return _u
 }
 
 // ClearForecast clears all "forecast" edges to the Forecast entity.
-func (tuo *TafUpdateOne) ClearForecast() *TafUpdateOne {
-	tuo.mutation.ClearForecast()
-	return tuo
+func (_u *TafUpdateOne) ClearForecast() *TafUpdateOne {
+	_u.mutation.ClearForecast()
+	return _u
 }
 
 // RemoveForecastIDs removes the "forecast" edge to Forecast entities by IDs.
-func (tuo *TafUpdateOne) RemoveForecastIDs(ids ...uuid.UUID) *TafUpdateOne {
-	tuo.mutation.RemoveForecastIDs(ids...)
-	return tuo
+func (_u *TafUpdateOne) RemoveForecastIDs(ids ...uuid.UUID) *TafUpdateOne {
+	_u.mutation.RemoveForecastIDs(ids...)
+	return _u
 }
 
 // RemoveForecast removes "forecast" edges to Forecast entities.
-func (tuo *TafUpdateOne) RemoveForecast(f ...*Forecast) *TafUpdateOne {
-	ids := make([]uuid.UUID, len(f))
-	for i := range f {
-		ids[i] = f[i].ID
+func (_u *TafUpdateOne) RemoveForecast(v ...*Forecast) *TafUpdateOne {
+	ids := make([]uuid.UUID, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return tuo.RemoveForecastIDs(ids...)
+	return _u.RemoveForecastIDs(ids...)
 }
 
 // Where appends a list predicates to the TafUpdate builder.
-func (tuo *TafUpdateOne) Where(ps ...predicate.Taf) *TafUpdateOne {
-	tuo.mutation.Where(ps...)
-	return tuo
+func (_u *TafUpdateOne) Where(ps ...predicate.Taf) *TafUpdateOne {
+	_u.mutation.Where(ps...)
+	return _u
 }
 
 // Select allows selecting one or more fields (columns) of the returned entity.
 // The default is selecting all fields defined in the entity schema.
-func (tuo *TafUpdateOne) Select(field string, fields ...string) *TafUpdateOne {
-	tuo.fields = append([]string{field}, fields...)
-	return tuo
+func (_u *TafUpdateOne) Select(field string, fields ...string) *TafUpdateOne {
+	_u.fields = append([]string{field}, fields...)
+	return _u
 }
 
 // Save executes the query and returns the updated Taf entity.
-func (tuo *TafUpdateOne) Save(ctx context.Context) (*Taf, error) {
-	return withHooks(ctx, tuo.sqlSave, tuo.mutation, tuo.hooks)
+func (_u *TafUpdateOne) Save(ctx context.Context) (*Taf, error) {
+	return withHooks(ctx, _u.sqlSave, _u.mutation, _u.hooks)
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (tuo *TafUpdateOne) SaveX(ctx context.Context) *Taf {
-	node, err := tuo.Save(ctx)
+func (_u *TafUpdateOne) SaveX(ctx context.Context) *Taf {
+	node, err := _u.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -461,43 +573,43 @@ func (tuo *TafUpdateOne) SaveX(ctx context.Context) *Taf {
 }
 
 // Exec executes the query on the entity.
-func (tuo *TafUpdateOne) Exec(ctx context.Context) error {
-	_, err := tuo.Save(ctx)
+func (_u *TafUpdateOne) Exec(ctx context.Context) error {
+	_, err := _u.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (tuo *TafUpdateOne) ExecX(ctx context.Context) {
-	if err := tuo.Exec(ctx); err != nil {
+func (_u *TafUpdateOne) ExecX(ctx context.Context) {
+	if err := _u.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // check runs all checks and user-defined validators on the builder.
-func (tuo *TafUpdateOne) check() error {
-	if _, ok := tuo.mutation.StationID(); tuo.mutation.StationCleared() && !ok {
+func (_u *TafUpdateOne) check() error {
+	if _u.mutation.StationCleared() && len(_u.mutation.StationIDs()) > 0 {
 		return errors.New(`ent: clearing a required unique edge "Taf.station"`)
 	}
 	return nil
 }
 
 // Modify adds a statement modifier for attaching custom logic to the UPDATE statement.
-func (tuo *TafUpdateOne) Modify(modifiers ...func(u *sql.UpdateBuilder)) *TafUpdateOne {
-	tuo.modifiers = append(tuo.modifiers, modifiers...)
-	return tuo
+func (_u *TafUpdateOne) Modify(modifiers ...func(u *sql.UpdateBuilder)) *TafUpdateOne {
+	_u.modifiers = append(_u.modifiers, modifiers...)
+	return _u
 }
 
-func (tuo *TafUpdateOne) sqlSave(ctx context.Context) (_node *Taf, err error) {
-	if err := tuo.check(); err != nil {
+func (_u *TafUpdateOne) sqlSave(ctx context.Context) (_node *Taf, err error) {
+	if err := _u.check(); err != nil {
 		return _node, err
 	}
 	_spec := sqlgraph.NewUpdateSpec(taf.Table, taf.Columns, sqlgraph.NewFieldSpec(taf.FieldID, field.TypeUUID))
-	id, ok := tuo.mutation.ID()
+	id, ok := _u.mutation.ID()
 	if !ok {
 		return nil, &ValidationError{Name: "id", err: errors.New(`ent: missing "Taf.id" for update`)}
 	}
 	_spec.Node.ID.Value = id
-	if fields := tuo.fields; len(fields) > 0 {
+	if fields := _u.fields; len(fields) > 0 {
 		_spec.Node.Columns = make([]string, 0, len(fields))
 		_spec.Node.Columns = append(_spec.Node.Columns, taf.FieldID)
 		for _, f := range fields {
@@ -509,38 +621,38 @@ func (tuo *TafUpdateOne) sqlSave(ctx context.Context) (_node *Taf, err error) {
 			}
 		}
 	}
-	if ps := tuo.mutation.predicates; len(ps) > 0 {
+	if ps := _u.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if value, ok := tuo.mutation.RawText(); ok {
+	if value, ok := _u.mutation.RawText(); ok {
 		_spec.SetField(taf.FieldRawText, field.TypeString, value)
 	}
-	if value, ok := tuo.mutation.IssueTime(); ok {
+	if value, ok := _u.mutation.IssueTime(); ok {
 		_spec.SetField(taf.FieldIssueTime, field.TypeTime, value)
 	}
-	if value, ok := tuo.mutation.ImportTime(); ok {
+	if value, ok := _u.mutation.ImportTime(); ok {
 		_spec.SetField(taf.FieldImportTime, field.TypeTime, value)
 	}
-	if value, ok := tuo.mutation.BulletinTime(); ok {
+	if value, ok := _u.mutation.BulletinTime(); ok {
 		_spec.SetField(taf.FieldBulletinTime, field.TypeTime, value)
 	}
-	if value, ok := tuo.mutation.ValidFromTime(); ok {
+	if value, ok := _u.mutation.ValidFromTime(); ok {
 		_spec.SetField(taf.FieldValidFromTime, field.TypeTime, value)
 	}
-	if value, ok := tuo.mutation.ValidToTime(); ok {
+	if value, ok := _u.mutation.ValidToTime(); ok {
 		_spec.SetField(taf.FieldValidToTime, field.TypeTime, value)
 	}
-	if value, ok := tuo.mutation.Remarks(); ok {
+	if value, ok := _u.mutation.Remarks(); ok {
 		_spec.SetField(taf.FieldRemarks, field.TypeString, value)
 	}
-	if value, ok := tuo.mutation.Hash(); ok {
+	if value, ok := _u.mutation.Hash(); ok {
 		_spec.SetField(taf.FieldHash, field.TypeString, value)
 	}
-	if tuo.mutation.StationCleared() {
+	if _u.mutation.StationCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.M2O,
 			Inverse: true,
@@ -553,7 +665,7 @@ func (tuo *TafUpdateOne) sqlSave(ctx context.Context) (_node *Taf, err error) {
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := tuo.mutation.StationIDs(); len(nodes) > 0 {
+	if nodes := _u.mutation.StationIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.M2O,
 			Inverse: true,
@@ -569,7 +681,7 @@ func (tuo *TafUpdateOne) sqlSave(ctx context.Context) (_node *Taf, err error) {
 		}
 		_spec.Edges.Add = append(_spec.Edges.Add, edge)
 	}
-	if tuo.mutation.ForecastCleared() {
+	if _u.mutation.ForecastCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -582,7 +694,7 @@ func (tuo *TafUpdateOne) sqlSave(ctx context.Context) (_node *Taf, err error) {
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := tuo.mutation.RemovedForecastIDs(); len(nodes) > 0 && !tuo.mutation.ForecastCleared() {
+	if nodes := _u.mutation.RemovedForecastIDs(); len(nodes) > 0 && !_u.mutation.ForecastCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -598,7 +710,7 @@ func (tuo *TafUpdateOne) sqlSave(ctx context.Context) (_node *Taf, err error) {
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := tuo.mutation.ForecastIDs(); len(nodes) > 0 {
+	if nodes := _u.mutation.ForecastIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -614,11 +726,11 @@ func (tuo *TafUpdateOne) sqlSave(ctx context.Context) (_node *Taf, err error) {
 		}
 		_spec.Edges.Add = append(_spec.Edges.Add, edge)
 	}
-	_spec.AddModifiers(tuo.modifiers...)
-	_node = &Taf{config: tuo.config}
+	_spec.AddModifiers(_u.modifiers...)
+	_node = &Taf{config: _u.config}
 	_spec.Assign = _node.assignValues
 	_spec.ScanValues = _node.scanValues
-	if err = sqlgraph.UpdateNode(ctx, tuo.driver, _spec); err != nil {
+	if err = sqlgraph.UpdateNode(ctx, _u.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
 			err = &NotFoundError{taf.Label}
 		} else if sqlgraph.IsConstraintError(err) {
@@ -626,6 +738,6 @@ func (tuo *TafUpdateOne) sqlSave(ctx context.Context) (_node *Taf, err error) {
 		}
 		return nil, err
 	}
-	tuo.mutation.done = true
+	_u.mutation.done = true
 	return _node, nil
 }

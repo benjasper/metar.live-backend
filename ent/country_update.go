@@ -27,137 +27,177 @@ type CountryUpdate struct {
 }
 
 // Where appends a list predicates to the CountryUpdate builder.
-func (cu *CountryUpdate) Where(ps ...predicate.Country) *CountryUpdate {
-	cu.mutation.Where(ps...)
-	return cu
+func (_u *CountryUpdate) Where(ps ...predicate.Country) *CountryUpdate {
+	_u.mutation.Where(ps...)
+	return _u
 }
 
 // SetImportID sets the "import_id" field.
-func (cu *CountryUpdate) SetImportID(i int) *CountryUpdate {
-	cu.mutation.ResetImportID()
-	cu.mutation.SetImportID(i)
-	return cu
+func (_u *CountryUpdate) SetImportID(v int) *CountryUpdate {
+	_u.mutation.ResetImportID()
+	_u.mutation.SetImportID(v)
+	return _u
 }
 
-// AddImportID adds i to the "import_id" field.
-func (cu *CountryUpdate) AddImportID(i int) *CountryUpdate {
-	cu.mutation.AddImportID(i)
-	return cu
+// SetNillableImportID sets the "import_id" field if the given value is not nil.
+func (_u *CountryUpdate) SetNillableImportID(v *int) *CountryUpdate {
+	if v != nil {
+		_u.SetImportID(*v)
+	}
+	return _u
+}
+
+// AddImportID adds value to the "import_id" field.
+func (_u *CountryUpdate) AddImportID(v int) *CountryUpdate {
+	_u.mutation.AddImportID(v)
+	return _u
 }
 
 // SetHash sets the "hash" field.
-func (cu *CountryUpdate) SetHash(s string) *CountryUpdate {
-	cu.mutation.SetHash(s)
-	return cu
+func (_u *CountryUpdate) SetHash(v string) *CountryUpdate {
+	_u.mutation.SetHash(v)
+	return _u
+}
+
+// SetNillableHash sets the "hash" field if the given value is not nil.
+func (_u *CountryUpdate) SetNillableHash(v *string) *CountryUpdate {
+	if v != nil {
+		_u.SetHash(*v)
+	}
+	return _u
 }
 
 // SetImportFlag sets the "import_flag" field.
-func (cu *CountryUpdate) SetImportFlag(b bool) *CountryUpdate {
-	cu.mutation.SetImportFlag(b)
-	return cu
+func (_u *CountryUpdate) SetImportFlag(v bool) *CountryUpdate {
+	_u.mutation.SetImportFlag(v)
+	return _u
 }
 
 // SetNillableImportFlag sets the "import_flag" field if the given value is not nil.
-func (cu *CountryUpdate) SetNillableImportFlag(b *bool) *CountryUpdate {
-	if b != nil {
-		cu.SetImportFlag(*b)
+func (_u *CountryUpdate) SetNillableImportFlag(v *bool) *CountryUpdate {
+	if v != nil {
+		_u.SetImportFlag(*v)
 	}
-	return cu
+	return _u
 }
 
 // SetLastUpdated sets the "last_updated" field.
-func (cu *CountryUpdate) SetLastUpdated(t time.Time) *CountryUpdate {
-	cu.mutation.SetLastUpdated(t)
-	return cu
+func (_u *CountryUpdate) SetLastUpdated(v time.Time) *CountryUpdate {
+	_u.mutation.SetLastUpdated(v)
+	return _u
 }
 
 // SetNillableLastUpdated sets the "last_updated" field if the given value is not nil.
-func (cu *CountryUpdate) SetNillableLastUpdated(t *time.Time) *CountryUpdate {
-	if t != nil {
-		cu.SetLastUpdated(*t)
+func (_u *CountryUpdate) SetNillableLastUpdated(v *time.Time) *CountryUpdate {
+	if v != nil {
+		_u.SetLastUpdated(*v)
 	}
-	return cu
+	return _u
 }
 
 // SetName sets the "name" field.
-func (cu *CountryUpdate) SetName(s string) *CountryUpdate {
-	cu.mutation.SetName(s)
-	return cu
+func (_u *CountryUpdate) SetName(v string) *CountryUpdate {
+	_u.mutation.SetName(v)
+	return _u
+}
+
+// SetNillableName sets the "name" field if the given value is not nil.
+func (_u *CountryUpdate) SetNillableName(v *string) *CountryUpdate {
+	if v != nil {
+		_u.SetName(*v)
+	}
+	return _u
 }
 
 // SetContinent sets the "continent" field.
-func (cu *CountryUpdate) SetContinent(c country.Continent) *CountryUpdate {
-	cu.mutation.SetContinent(c)
-	return cu
+func (_u *CountryUpdate) SetContinent(v country.Continent) *CountryUpdate {
+	_u.mutation.SetContinent(v)
+	return _u
+}
+
+// SetNillableContinent sets the "continent" field if the given value is not nil.
+func (_u *CountryUpdate) SetNillableContinent(v *country.Continent) *CountryUpdate {
+	if v != nil {
+		_u.SetContinent(*v)
+	}
+	return _u
 }
 
 // SetWikipediaLink sets the "wikipedia_link" field.
-func (cu *CountryUpdate) SetWikipediaLink(s string) *CountryUpdate {
-	cu.mutation.SetWikipediaLink(s)
-	return cu
+func (_u *CountryUpdate) SetWikipediaLink(v string) *CountryUpdate {
+	_u.mutation.SetWikipediaLink(v)
+	return _u
+}
+
+// SetNillableWikipediaLink sets the "wikipedia_link" field if the given value is not nil.
+func (_u *CountryUpdate) SetNillableWikipediaLink(v *string) *CountryUpdate {
+	if v != nil {
+		_u.SetWikipediaLink(*v)
+	}
+	return _u
 }
 
 // SetKeywords sets the "keywords" field.
-func (cu *CountryUpdate) SetKeywords(s []string) *CountryUpdate {
-	cu.mutation.SetKeywords(s)
-	return cu
+func (_u *CountryUpdate) SetKeywords(v []string) *CountryUpdate {
+	_u.mutation.SetKeywords(v)
+	return _u
 }
 
-// AppendKeywords appends s to the "keywords" field.
-func (cu *CountryUpdate) AppendKeywords(s []string) *CountryUpdate {
-	cu.mutation.AppendKeywords(s)
-	return cu
+// AppendKeywords appends value to the "keywords" field.
+func (_u *CountryUpdate) AppendKeywords(v []string) *CountryUpdate {
+	_u.mutation.AppendKeywords(v)
+	return _u
 }
 
 // AddAirportIDs adds the "airports" edge to the Airport entity by IDs.
-func (cu *CountryUpdate) AddAirportIDs(ids ...uuid.UUID) *CountryUpdate {
-	cu.mutation.AddAirportIDs(ids...)
-	return cu
+func (_u *CountryUpdate) AddAirportIDs(ids ...uuid.UUID) *CountryUpdate {
+	_u.mutation.AddAirportIDs(ids...)
+	return _u
 }
 
 // AddAirports adds the "airports" edges to the Airport entity.
-func (cu *CountryUpdate) AddAirports(a ...*Airport) *CountryUpdate {
-	ids := make([]uuid.UUID, len(a))
-	for i := range a {
-		ids[i] = a[i].ID
+func (_u *CountryUpdate) AddAirports(v ...*Airport) *CountryUpdate {
+	ids := make([]uuid.UUID, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return cu.AddAirportIDs(ids...)
+	return _u.AddAirportIDs(ids...)
 }
 
 // Mutation returns the CountryMutation object of the builder.
-func (cu *CountryUpdate) Mutation() *CountryMutation {
-	return cu.mutation
+func (_u *CountryUpdate) Mutation() *CountryMutation {
+	return _u.mutation
 }
 
 // ClearAirports clears all "airports" edges to the Airport entity.
-func (cu *CountryUpdate) ClearAirports() *CountryUpdate {
-	cu.mutation.ClearAirports()
-	return cu
+func (_u *CountryUpdate) ClearAirports() *CountryUpdate {
+	_u.mutation.ClearAirports()
+	return _u
 }
 
 // RemoveAirportIDs removes the "airports" edge to Airport entities by IDs.
-func (cu *CountryUpdate) RemoveAirportIDs(ids ...uuid.UUID) *CountryUpdate {
-	cu.mutation.RemoveAirportIDs(ids...)
-	return cu
+func (_u *CountryUpdate) RemoveAirportIDs(ids ...uuid.UUID) *CountryUpdate {
+	_u.mutation.RemoveAirportIDs(ids...)
+	return _u
 }
 
 // RemoveAirports removes "airports" edges to Airport entities.
-func (cu *CountryUpdate) RemoveAirports(a ...*Airport) *CountryUpdate {
-	ids := make([]uuid.UUID, len(a))
-	for i := range a {
-		ids[i] = a[i].ID
+func (_u *CountryUpdate) RemoveAirports(v ...*Airport) *CountryUpdate {
+	ids := make([]uuid.UUID, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return cu.RemoveAirportIDs(ids...)
+	return _u.RemoveAirportIDs(ids...)
 }
 
 // Save executes the query and returns the number of nodes affected by the update operation.
-func (cu *CountryUpdate) Save(ctx context.Context) (int, error) {
-	return withHooks(ctx, cu.sqlSave, cu.mutation, cu.hooks)
+func (_u *CountryUpdate) Save(ctx context.Context) (int, error) {
+	return withHooks(ctx, _u.sqlSave, _u.mutation, _u.hooks)
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (cu *CountryUpdate) SaveX(ctx context.Context) int {
-	affected, err := cu.Save(ctx)
+func (_u *CountryUpdate) SaveX(ctx context.Context) int {
+	affected, err := _u.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -165,21 +205,21 @@ func (cu *CountryUpdate) SaveX(ctx context.Context) int {
 }
 
 // Exec executes the query.
-func (cu *CountryUpdate) Exec(ctx context.Context) error {
-	_, err := cu.Save(ctx)
+func (_u *CountryUpdate) Exec(ctx context.Context) error {
+	_, err := _u.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (cu *CountryUpdate) ExecX(ctx context.Context) {
-	if err := cu.Exec(ctx); err != nil {
+func (_u *CountryUpdate) ExecX(ctx context.Context) {
+	if err := _u.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // check runs all checks and user-defined validators on the builder.
-func (cu *CountryUpdate) check() error {
-	if v, ok := cu.mutation.Continent(); ok {
+func (_u *CountryUpdate) check() error {
+	if v, ok := _u.mutation.Continent(); ok {
 		if err := country.ContinentValidator(v); err != nil {
 			return &ValidationError{Name: "continent", err: fmt.Errorf(`ent: validator failed for field "Country.continent": %w`, err)}
 		}
@@ -188,56 +228,56 @@ func (cu *CountryUpdate) check() error {
 }
 
 // Modify adds a statement modifier for attaching custom logic to the UPDATE statement.
-func (cu *CountryUpdate) Modify(modifiers ...func(u *sql.UpdateBuilder)) *CountryUpdate {
-	cu.modifiers = append(cu.modifiers, modifiers...)
-	return cu
+func (_u *CountryUpdate) Modify(modifiers ...func(u *sql.UpdateBuilder)) *CountryUpdate {
+	_u.modifiers = append(_u.modifiers, modifiers...)
+	return _u
 }
 
-func (cu *CountryUpdate) sqlSave(ctx context.Context) (n int, err error) {
-	if err := cu.check(); err != nil {
-		return n, err
+func (_u *CountryUpdate) sqlSave(ctx context.Context) (_node int, err error) {
+	if err := _u.check(); err != nil {
+		return _node, err
 	}
 	_spec := sqlgraph.NewUpdateSpec(country.Table, country.Columns, sqlgraph.NewFieldSpec(country.FieldID, field.TypeUUID))
-	if ps := cu.mutation.predicates; len(ps) > 0 {
+	if ps := _u.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if value, ok := cu.mutation.ImportID(); ok {
+	if value, ok := _u.mutation.ImportID(); ok {
 		_spec.SetField(country.FieldImportID, field.TypeInt, value)
 	}
-	if value, ok := cu.mutation.AddedImportID(); ok {
+	if value, ok := _u.mutation.AddedImportID(); ok {
 		_spec.AddField(country.FieldImportID, field.TypeInt, value)
 	}
-	if value, ok := cu.mutation.Hash(); ok {
+	if value, ok := _u.mutation.Hash(); ok {
 		_spec.SetField(country.FieldHash, field.TypeString, value)
 	}
-	if value, ok := cu.mutation.ImportFlag(); ok {
+	if value, ok := _u.mutation.ImportFlag(); ok {
 		_spec.SetField(country.FieldImportFlag, field.TypeBool, value)
 	}
-	if value, ok := cu.mutation.LastUpdated(); ok {
+	if value, ok := _u.mutation.LastUpdated(); ok {
 		_spec.SetField(country.FieldLastUpdated, field.TypeTime, value)
 	}
-	if value, ok := cu.mutation.Name(); ok {
+	if value, ok := _u.mutation.Name(); ok {
 		_spec.SetField(country.FieldName, field.TypeString, value)
 	}
-	if value, ok := cu.mutation.Continent(); ok {
+	if value, ok := _u.mutation.Continent(); ok {
 		_spec.SetField(country.FieldContinent, field.TypeEnum, value)
 	}
-	if value, ok := cu.mutation.WikipediaLink(); ok {
+	if value, ok := _u.mutation.WikipediaLink(); ok {
 		_spec.SetField(country.FieldWikipediaLink, field.TypeString, value)
 	}
-	if value, ok := cu.mutation.Keywords(); ok {
+	if value, ok := _u.mutation.Keywords(); ok {
 		_spec.SetField(country.FieldKeywords, field.TypeJSON, value)
 	}
-	if value, ok := cu.mutation.AppendedKeywords(); ok {
+	if value, ok := _u.mutation.AppendedKeywords(); ok {
 		_spec.AddModifier(func(u *sql.UpdateBuilder) {
 			sqljson.Append(u, country.FieldKeywords, value)
 		})
 	}
-	if cu.mutation.AirportsCleared() {
+	if _u.mutation.AirportsCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -250,7 +290,7 @@ func (cu *CountryUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := cu.mutation.RemovedAirportsIDs(); len(nodes) > 0 && !cu.mutation.AirportsCleared() {
+	if nodes := _u.mutation.RemovedAirportsIDs(); len(nodes) > 0 && !_u.mutation.AirportsCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -266,7 +306,7 @@ func (cu *CountryUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := cu.mutation.AirportsIDs(); len(nodes) > 0 {
+	if nodes := _u.mutation.AirportsIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -282,8 +322,8 @@ func (cu *CountryUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		_spec.Edges.Add = append(_spec.Edges.Add, edge)
 	}
-	_spec.AddModifiers(cu.modifiers...)
-	if n, err = sqlgraph.UpdateNodes(ctx, cu.driver, _spec); err != nil {
+	_spec.AddModifiers(_u.modifiers...)
+	if _node, err = sqlgraph.UpdateNodes(ctx, _u.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
 			err = &NotFoundError{country.Label}
 		} else if sqlgraph.IsConstraintError(err) {
@@ -291,8 +331,8 @@ func (cu *CountryUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		return 0, err
 	}
-	cu.mutation.done = true
-	return n, nil
+	_u.mutation.done = true
+	return _node, nil
 }
 
 // CountryUpdateOne is the builder for updating a single Country entity.
@@ -305,144 +345,184 @@ type CountryUpdateOne struct {
 }
 
 // SetImportID sets the "import_id" field.
-func (cuo *CountryUpdateOne) SetImportID(i int) *CountryUpdateOne {
-	cuo.mutation.ResetImportID()
-	cuo.mutation.SetImportID(i)
-	return cuo
+func (_u *CountryUpdateOne) SetImportID(v int) *CountryUpdateOne {
+	_u.mutation.ResetImportID()
+	_u.mutation.SetImportID(v)
+	return _u
 }
 
-// AddImportID adds i to the "import_id" field.
-func (cuo *CountryUpdateOne) AddImportID(i int) *CountryUpdateOne {
-	cuo.mutation.AddImportID(i)
-	return cuo
+// SetNillableImportID sets the "import_id" field if the given value is not nil.
+func (_u *CountryUpdateOne) SetNillableImportID(v *int) *CountryUpdateOne {
+	if v != nil {
+		_u.SetImportID(*v)
+	}
+	return _u
+}
+
+// AddImportID adds value to the "import_id" field.
+func (_u *CountryUpdateOne) AddImportID(v int) *CountryUpdateOne {
+	_u.mutation.AddImportID(v)
+	return _u
 }
 
 // SetHash sets the "hash" field.
-func (cuo *CountryUpdateOne) SetHash(s string) *CountryUpdateOne {
-	cuo.mutation.SetHash(s)
-	return cuo
+func (_u *CountryUpdateOne) SetHash(v string) *CountryUpdateOne {
+	_u.mutation.SetHash(v)
+	return _u
+}
+
+// SetNillableHash sets the "hash" field if the given value is not nil.
+func (_u *CountryUpdateOne) SetNillableHash(v *string) *CountryUpdateOne {
+	if v != nil {
+		_u.SetHash(*v)
+	}
+	return _u
 }
 
 // SetImportFlag sets the "import_flag" field.
-func (cuo *CountryUpdateOne) SetImportFlag(b bool) *CountryUpdateOne {
-	cuo.mutation.SetImportFlag(b)
-	return cuo
+func (_u *CountryUpdateOne) SetImportFlag(v bool) *CountryUpdateOne {
+	_u.mutation.SetImportFlag(v)
+	return _u
 }
 
 // SetNillableImportFlag sets the "import_flag" field if the given value is not nil.
-func (cuo *CountryUpdateOne) SetNillableImportFlag(b *bool) *CountryUpdateOne {
-	if b != nil {
-		cuo.SetImportFlag(*b)
+func (_u *CountryUpdateOne) SetNillableImportFlag(v *bool) *CountryUpdateOne {
+	if v != nil {
+		_u.SetImportFlag(*v)
 	}
-	return cuo
+	return _u
 }
 
 // SetLastUpdated sets the "last_updated" field.
-func (cuo *CountryUpdateOne) SetLastUpdated(t time.Time) *CountryUpdateOne {
-	cuo.mutation.SetLastUpdated(t)
-	return cuo
+func (_u *CountryUpdateOne) SetLastUpdated(v time.Time) *CountryUpdateOne {
+	_u.mutation.SetLastUpdated(v)
+	return _u
 }
 
 // SetNillableLastUpdated sets the "last_updated" field if the given value is not nil.
-func (cuo *CountryUpdateOne) SetNillableLastUpdated(t *time.Time) *CountryUpdateOne {
-	if t != nil {
-		cuo.SetLastUpdated(*t)
+func (_u *CountryUpdateOne) SetNillableLastUpdated(v *time.Time) *CountryUpdateOne {
+	if v != nil {
+		_u.SetLastUpdated(*v)
 	}
-	return cuo
+	return _u
 }
 
 // SetName sets the "name" field.
-func (cuo *CountryUpdateOne) SetName(s string) *CountryUpdateOne {
-	cuo.mutation.SetName(s)
-	return cuo
+func (_u *CountryUpdateOne) SetName(v string) *CountryUpdateOne {
+	_u.mutation.SetName(v)
+	return _u
+}
+
+// SetNillableName sets the "name" field if the given value is not nil.
+func (_u *CountryUpdateOne) SetNillableName(v *string) *CountryUpdateOne {
+	if v != nil {
+		_u.SetName(*v)
+	}
+	return _u
 }
 
 // SetContinent sets the "continent" field.
-func (cuo *CountryUpdateOne) SetContinent(c country.Continent) *CountryUpdateOne {
-	cuo.mutation.SetContinent(c)
-	return cuo
+func (_u *CountryUpdateOne) SetContinent(v country.Continent) *CountryUpdateOne {
+	_u.mutation.SetContinent(v)
+	return _u
+}
+
+// SetNillableContinent sets the "continent" field if the given value is not nil.
+func (_u *CountryUpdateOne) SetNillableContinent(v *country.Continent) *CountryUpdateOne {
+	if v != nil {
+		_u.SetContinent(*v)
+	}
+	return _u
 }
 
 // SetWikipediaLink sets the "wikipedia_link" field.
-func (cuo *CountryUpdateOne) SetWikipediaLink(s string) *CountryUpdateOne {
-	cuo.mutation.SetWikipediaLink(s)
-	return cuo
+func (_u *CountryUpdateOne) SetWikipediaLink(v string) *CountryUpdateOne {
+	_u.mutation.SetWikipediaLink(v)
+	return _u
+}
+
+// SetNillableWikipediaLink sets the "wikipedia_link" field if the given value is not nil.
+func (_u *CountryUpdateOne) SetNillableWikipediaLink(v *string) *CountryUpdateOne {
+	if v != nil {
+		_u.SetWikipediaLink(*v)
+	}
+	return _u
 }
 
 // SetKeywords sets the "keywords" field.
-func (cuo *CountryUpdateOne) SetKeywords(s []string) *CountryUpdateOne {
-	cuo.mutation.SetKeywords(s)
-	return cuo
+func (_u *CountryUpdateOne) SetKeywords(v []string) *CountryUpdateOne {
+	_u.mutation.SetKeywords(v)
+	return _u
 }
 
-// AppendKeywords appends s to the "keywords" field.
-func (cuo *CountryUpdateOne) AppendKeywords(s []string) *CountryUpdateOne {
-	cuo.mutation.AppendKeywords(s)
-	return cuo
+// AppendKeywords appends value to the "keywords" field.
+func (_u *CountryUpdateOne) AppendKeywords(v []string) *CountryUpdateOne {
+	_u.mutation.AppendKeywords(v)
+	return _u
 }
 
 // AddAirportIDs adds the "airports" edge to the Airport entity by IDs.
-func (cuo *CountryUpdateOne) AddAirportIDs(ids ...uuid.UUID) *CountryUpdateOne {
-	cuo.mutation.AddAirportIDs(ids...)
-	return cuo
+func (_u *CountryUpdateOne) AddAirportIDs(ids ...uuid.UUID) *CountryUpdateOne {
+	_u.mutation.AddAirportIDs(ids...)
+	return _u
 }
 
 // AddAirports adds the "airports" edges to the Airport entity.
-func (cuo *CountryUpdateOne) AddAirports(a ...*Airport) *CountryUpdateOne {
-	ids := make([]uuid.UUID, len(a))
-	for i := range a {
-		ids[i] = a[i].ID
+func (_u *CountryUpdateOne) AddAirports(v ...*Airport) *CountryUpdateOne {
+	ids := make([]uuid.UUID, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return cuo.AddAirportIDs(ids...)
+	return _u.AddAirportIDs(ids...)
 }
 
 // Mutation returns the CountryMutation object of the builder.
-func (cuo *CountryUpdateOne) Mutation() *CountryMutation {
-	return cuo.mutation
+func (_u *CountryUpdateOne) Mutation() *CountryMutation {
+	return _u.mutation
 }
 
 // ClearAirports clears all "airports" edges to the Airport entity.
-func (cuo *CountryUpdateOne) ClearAirports() *CountryUpdateOne {
-	cuo.mutation.ClearAirports()
-	return cuo
+func (_u *CountryUpdateOne) ClearAirports() *CountryUpdateOne {
+	_u.mutation.ClearAirports()
+	return _u
 }
 
 // RemoveAirportIDs removes the "airports" edge to Airport entities by IDs.
-func (cuo *CountryUpdateOne) RemoveAirportIDs(ids ...uuid.UUID) *CountryUpdateOne {
-	cuo.mutation.RemoveAirportIDs(ids...)
-	return cuo
+func (_u *CountryUpdateOne) RemoveAirportIDs(ids ...uuid.UUID) *CountryUpdateOne {
+	_u.mutation.RemoveAirportIDs(ids...)
+	return _u
 }
 
 // RemoveAirports removes "airports" edges to Airport entities.
-func (cuo *CountryUpdateOne) RemoveAirports(a ...*Airport) *CountryUpdateOne {
-	ids := make([]uuid.UUID, len(a))
-	for i := range a {
-		ids[i] = a[i].ID
+func (_u *CountryUpdateOne) RemoveAirports(v ...*Airport) *CountryUpdateOne {
+	ids := make([]uuid.UUID, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return cuo.RemoveAirportIDs(ids...)
+	return _u.RemoveAirportIDs(ids...)
 }
 
 // Where appends a list predicates to the CountryUpdate builder.
-func (cuo *CountryUpdateOne) Where(ps ...predicate.Country) *CountryUpdateOne {
-	cuo.mutation.Where(ps...)
-	return cuo
+func (_u *CountryUpdateOne) Where(ps ...predicate.Country) *CountryUpdateOne {
+	_u.mutation.Where(ps...)
+	return _u
 }
 
 // Select allows selecting one or more fields (columns) of the returned entity.
 // The default is selecting all fields defined in the entity schema.
-func (cuo *CountryUpdateOne) Select(field string, fields ...string) *CountryUpdateOne {
-	cuo.fields = append([]string{field}, fields...)
-	return cuo
+func (_u *CountryUpdateOne) Select(field string, fields ...string) *CountryUpdateOne {
+	_u.fields = append([]string{field}, fields...)
+	return _u
 }
 
 // Save executes the query and returns the updated Country entity.
-func (cuo *CountryUpdateOne) Save(ctx context.Context) (*Country, error) {
-	return withHooks(ctx, cuo.sqlSave, cuo.mutation, cuo.hooks)
+func (_u *CountryUpdateOne) Save(ctx context.Context) (*Country, error) {
+	return withHooks(ctx, _u.sqlSave, _u.mutation, _u.hooks)
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (cuo *CountryUpdateOne) SaveX(ctx context.Context) *Country {
-	node, err := cuo.Save(ctx)
+func (_u *CountryUpdateOne) SaveX(ctx context.Context) *Country {
+	node, err := _u.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -450,21 +530,21 @@ func (cuo *CountryUpdateOne) SaveX(ctx context.Context) *Country {
 }
 
 // Exec executes the query on the entity.
-func (cuo *CountryUpdateOne) Exec(ctx context.Context) error {
-	_, err := cuo.Save(ctx)
+func (_u *CountryUpdateOne) Exec(ctx context.Context) error {
+	_, err := _u.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (cuo *CountryUpdateOne) ExecX(ctx context.Context) {
-	if err := cuo.Exec(ctx); err != nil {
+func (_u *CountryUpdateOne) ExecX(ctx context.Context) {
+	if err := _u.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // check runs all checks and user-defined validators on the builder.
-func (cuo *CountryUpdateOne) check() error {
-	if v, ok := cuo.mutation.Continent(); ok {
+func (_u *CountryUpdateOne) check() error {
+	if v, ok := _u.mutation.Continent(); ok {
 		if err := country.ContinentValidator(v); err != nil {
 			return &ValidationError{Name: "continent", err: fmt.Errorf(`ent: validator failed for field "Country.continent": %w`, err)}
 		}
@@ -473,22 +553,22 @@ func (cuo *CountryUpdateOne) check() error {
 }
 
 // Modify adds a statement modifier for attaching custom logic to the UPDATE statement.
-func (cuo *CountryUpdateOne) Modify(modifiers ...func(u *sql.UpdateBuilder)) *CountryUpdateOne {
-	cuo.modifiers = append(cuo.modifiers, modifiers...)
-	return cuo
+func (_u *CountryUpdateOne) Modify(modifiers ...func(u *sql.UpdateBuilder)) *CountryUpdateOne {
+	_u.modifiers = append(_u.modifiers, modifiers...)
+	return _u
 }
 
-func (cuo *CountryUpdateOne) sqlSave(ctx context.Context) (_node *Country, err error) {
-	if err := cuo.check(); err != nil {
+func (_u *CountryUpdateOne) sqlSave(ctx context.Context) (_node *Country, err error) {
+	if err := _u.check(); err != nil {
 		return _node, err
 	}
 	_spec := sqlgraph.NewUpdateSpec(country.Table, country.Columns, sqlgraph.NewFieldSpec(country.FieldID, field.TypeUUID))
-	id, ok := cuo.mutation.ID()
+	id, ok := _u.mutation.ID()
 	if !ok {
 		return nil, &ValidationError{Name: "id", err: errors.New(`ent: missing "Country.id" for update`)}
 	}
 	_spec.Node.ID.Value = id
-	if fields := cuo.fields; len(fields) > 0 {
+	if fields := _u.fields; len(fields) > 0 {
 		_spec.Node.Columns = make([]string, 0, len(fields))
 		_spec.Node.Columns = append(_spec.Node.Columns, country.FieldID)
 		for _, f := range fields {
@@ -500,46 +580,46 @@ func (cuo *CountryUpdateOne) sqlSave(ctx context.Context) (_node *Country, err e
 			}
 		}
 	}
-	if ps := cuo.mutation.predicates; len(ps) > 0 {
+	if ps := _u.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if value, ok := cuo.mutation.ImportID(); ok {
+	if value, ok := _u.mutation.ImportID(); ok {
 		_spec.SetField(country.FieldImportID, field.TypeInt, value)
 	}
-	if value, ok := cuo.mutation.AddedImportID(); ok {
+	if value, ok := _u.mutation.AddedImportID(); ok {
 		_spec.AddField(country.FieldImportID, field.TypeInt, value)
 	}
-	if value, ok := cuo.mutation.Hash(); ok {
+	if value, ok := _u.mutation.Hash(); ok {
 		_spec.SetField(country.FieldHash, field.TypeString, value)
 	}
-	if value, ok := cuo.mutation.ImportFlag(); ok {
+	if value, ok := _u.mutation.ImportFlag(); ok {
 		_spec.SetField(country.FieldImportFlag, field.TypeBool, value)
 	}
-	if value, ok := cuo.mutation.LastUpdated(); ok {
+	if value, ok := _u.mutation.LastUpdated(); ok {
 		_spec.SetField(country.FieldLastUpdated, field.TypeTime, value)
 	}
-	if value, ok := cuo.mutation.Name(); ok {
+	if value, ok := _u.mutation.Name(); ok {
 		_spec.SetField(country.FieldName, field.TypeString, value)
 	}
-	if value, ok := cuo.mutation.Continent(); ok {
+	if value, ok := _u.mutation.Continent(); ok {
 		_spec.SetField(country.FieldContinent, field.TypeEnum, value)
 	}
-	if value, ok := cuo.mutation.WikipediaLink(); ok {
+	if value, ok := _u.mutation.WikipediaLink(); ok {
 		_spec.SetField(country.FieldWikipediaLink, field.TypeString, value)
 	}
-	if value, ok := cuo.mutation.Keywords(); ok {
+	if value, ok := _u.mutation.Keywords(); ok {
 		_spec.SetField(country.FieldKeywords, field.TypeJSON, value)
 	}
-	if value, ok := cuo.mutation.AppendedKeywords(); ok {
+	if value, ok := _u.mutation.AppendedKeywords(); ok {
 		_spec.AddModifier(func(u *sql.UpdateBuilder) {
 			sqljson.Append(u, country.FieldKeywords, value)
 		})
 	}
-	if cuo.mutation.AirportsCleared() {
+	if _u.mutation.AirportsCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -552,7 +632,7 @@ func (cuo *CountryUpdateOne) sqlSave(ctx context.Context) (_node *Country, err e
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := cuo.mutation.RemovedAirportsIDs(); len(nodes) > 0 && !cuo.mutation.AirportsCleared() {
+	if nodes := _u.mutation.RemovedAirportsIDs(); len(nodes) > 0 && !_u.mutation.AirportsCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -568,7 +648,7 @@ func (cuo *CountryUpdateOne) sqlSave(ctx context.Context) (_node *Country, err e
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := cuo.mutation.AirportsIDs(); len(nodes) > 0 {
+	if nodes := _u.mutation.AirportsIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -584,11 +664,11 @@ func (cuo *CountryUpdateOne) sqlSave(ctx context.Context) (_node *Country, err e
 		}
 		_spec.Edges.Add = append(_spec.Edges.Add, edge)
 	}
-	_spec.AddModifiers(cuo.modifiers...)
-	_node = &Country{config: cuo.config}
+	_spec.AddModifiers(_u.modifiers...)
+	_node = &Country{config: _u.config}
 	_spec.Assign = _node.assignValues
 	_spec.ScanValues = _node.scanValues
-	if err = sqlgraph.UpdateNode(ctx, cuo.driver, _spec); err != nil {
+	if err = sqlgraph.UpdateNode(ctx, _u.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
 			err = &NotFoundError{country.Label}
 		} else if sqlgraph.IsConstraintError(err) {
@@ -596,6 +676,6 @@ func (cuo *CountryUpdateOne) sqlSave(ctx context.Context) (_node *Country, err e
 		}
 		return nil, err
 	}
-	cuo.mutation.done = true
+	_u.mutation.done = true
 	return _node, nil
 }

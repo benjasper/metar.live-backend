@@ -13,6 +13,7 @@ import (
 	"entgo.io/ent/dialect/sql/sqlgraph"
 	"entgo.io/ent/schema/field"
 	"github.com/google/uuid"
+	"metar.live/ent/forecast"
 	"metar.live/ent/temperaturedata"
 )
 
@@ -25,73 +26,92 @@ type TemperatureDataCreate struct {
 }
 
 // SetValidTime sets the "valid_time" field.
-func (tdc *TemperatureDataCreate) SetValidTime(t time.Time) *TemperatureDataCreate {
-	tdc.mutation.SetValidTime(t)
-	return tdc
+func (_c *TemperatureDataCreate) SetValidTime(v time.Time) *TemperatureDataCreate {
+	_c.mutation.SetValidTime(v)
+	return _c
 }
 
 // SetTemperature sets the "temperature" field.
-func (tdc *TemperatureDataCreate) SetTemperature(f float64) *TemperatureDataCreate {
-	tdc.mutation.SetTemperature(f)
-	return tdc
+func (_c *TemperatureDataCreate) SetTemperature(v float64) *TemperatureDataCreate {
+	_c.mutation.SetTemperature(v)
+	return _c
 }
 
 // SetMinTemperature sets the "min_temperature" field.
-func (tdc *TemperatureDataCreate) SetMinTemperature(f float64) *TemperatureDataCreate {
-	tdc.mutation.SetMinTemperature(f)
-	return tdc
+func (_c *TemperatureDataCreate) SetMinTemperature(v float64) *TemperatureDataCreate {
+	_c.mutation.SetMinTemperature(v)
+	return _c
 }
 
 // SetNillableMinTemperature sets the "min_temperature" field if the given value is not nil.
-func (tdc *TemperatureDataCreate) SetNillableMinTemperature(f *float64) *TemperatureDataCreate {
-	if f != nil {
-		tdc.SetMinTemperature(*f)
+func (_c *TemperatureDataCreate) SetNillableMinTemperature(v *float64) *TemperatureDataCreate {
+	if v != nil {
+		_c.SetMinTemperature(*v)
 	}
-	return tdc
+	return _c
 }
 
 // SetMaxTemperature sets the "max_temperature" field.
-func (tdc *TemperatureDataCreate) SetMaxTemperature(f float64) *TemperatureDataCreate {
-	tdc.mutation.SetMaxTemperature(f)
-	return tdc
+func (_c *TemperatureDataCreate) SetMaxTemperature(v float64) *TemperatureDataCreate {
+	_c.mutation.SetMaxTemperature(v)
+	return _c
 }
 
 // SetNillableMaxTemperature sets the "max_temperature" field if the given value is not nil.
-func (tdc *TemperatureDataCreate) SetNillableMaxTemperature(f *float64) *TemperatureDataCreate {
-	if f != nil {
-		tdc.SetMaxTemperature(*f)
+func (_c *TemperatureDataCreate) SetNillableMaxTemperature(v *float64) *TemperatureDataCreate {
+	if v != nil {
+		_c.SetMaxTemperature(*v)
 	}
-	return tdc
+	return _c
 }
 
 // SetID sets the "id" field.
-func (tdc *TemperatureDataCreate) SetID(u uuid.UUID) *TemperatureDataCreate {
-	tdc.mutation.SetID(u)
-	return tdc
+func (_c *TemperatureDataCreate) SetID(v uuid.UUID) *TemperatureDataCreate {
+	_c.mutation.SetID(v)
+	return _c
 }
 
 // SetNillableID sets the "id" field if the given value is not nil.
-func (tdc *TemperatureDataCreate) SetNillableID(u *uuid.UUID) *TemperatureDataCreate {
-	if u != nil {
-		tdc.SetID(*u)
+func (_c *TemperatureDataCreate) SetNillableID(v *uuid.UUID) *TemperatureDataCreate {
+	if v != nil {
+		_c.SetID(*v)
 	}
-	return tdc
+	return _c
+}
+
+// SetForecastID sets the "forecast" edge to the Forecast entity by ID.
+func (_c *TemperatureDataCreate) SetForecastID(id uuid.UUID) *TemperatureDataCreate {
+	_c.mutation.SetForecastID(id)
+	return _c
+}
+
+// SetNillableForecastID sets the "forecast" edge to the Forecast entity by ID if the given value is not nil.
+func (_c *TemperatureDataCreate) SetNillableForecastID(id *uuid.UUID) *TemperatureDataCreate {
+	if id != nil {
+		_c = _c.SetForecastID(*id)
+	}
+	return _c
+}
+
+// SetForecast sets the "forecast" edge to the Forecast entity.
+func (_c *TemperatureDataCreate) SetForecast(v *Forecast) *TemperatureDataCreate {
+	return _c.SetForecastID(v.ID)
 }
 
 // Mutation returns the TemperatureDataMutation object of the builder.
-func (tdc *TemperatureDataCreate) Mutation() *TemperatureDataMutation {
-	return tdc.mutation
+func (_c *TemperatureDataCreate) Mutation() *TemperatureDataMutation {
+	return _c.mutation
 }
 
 // Save creates the TemperatureData in the database.
-func (tdc *TemperatureDataCreate) Save(ctx context.Context) (*TemperatureData, error) {
-	tdc.defaults()
-	return withHooks(ctx, tdc.sqlSave, tdc.mutation, tdc.hooks)
+func (_c *TemperatureDataCreate) Save(ctx context.Context) (*TemperatureData, error) {
+	_c.defaults()
+	return withHooks(ctx, _c.sqlSave, _c.mutation, _c.hooks)
 }
 
 // SaveX calls Save and panics if Save returns an error.
-func (tdc *TemperatureDataCreate) SaveX(ctx context.Context) *TemperatureData {
-	v, err := tdc.Save(ctx)
+func (_c *TemperatureDataCreate) SaveX(ctx context.Context) *TemperatureData {
+	v, err := _c.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -99,43 +119,43 @@ func (tdc *TemperatureDataCreate) SaveX(ctx context.Context) *TemperatureData {
 }
 
 // Exec executes the query.
-func (tdc *TemperatureDataCreate) Exec(ctx context.Context) error {
-	_, err := tdc.Save(ctx)
+func (_c *TemperatureDataCreate) Exec(ctx context.Context) error {
+	_, err := _c.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (tdc *TemperatureDataCreate) ExecX(ctx context.Context) {
-	if err := tdc.Exec(ctx); err != nil {
+func (_c *TemperatureDataCreate) ExecX(ctx context.Context) {
+	if err := _c.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // defaults sets the default values of the builder before save.
-func (tdc *TemperatureDataCreate) defaults() {
-	if _, ok := tdc.mutation.ID(); !ok {
+func (_c *TemperatureDataCreate) defaults() {
+	if _, ok := _c.mutation.ID(); !ok {
 		v := temperaturedata.DefaultID()
-		tdc.mutation.SetID(v)
+		_c.mutation.SetID(v)
 	}
 }
 
 // check runs all checks and user-defined validators on the builder.
-func (tdc *TemperatureDataCreate) check() error {
-	if _, ok := tdc.mutation.ValidTime(); !ok {
+func (_c *TemperatureDataCreate) check() error {
+	if _, ok := _c.mutation.ValidTime(); !ok {
 		return &ValidationError{Name: "valid_time", err: errors.New(`ent: missing required field "TemperatureData.valid_time"`)}
 	}
-	if _, ok := tdc.mutation.Temperature(); !ok {
+	if _, ok := _c.mutation.Temperature(); !ok {
 		return &ValidationError{Name: "temperature", err: errors.New(`ent: missing required field "TemperatureData.temperature"`)}
 	}
 	return nil
 }
 
-func (tdc *TemperatureDataCreate) sqlSave(ctx context.Context) (*TemperatureData, error) {
-	if err := tdc.check(); err != nil {
+func (_c *TemperatureDataCreate) sqlSave(ctx context.Context) (*TemperatureData, error) {
+	if err := _c.check(); err != nil {
 		return nil, err
 	}
-	_node, _spec := tdc.createSpec()
-	if err := sqlgraph.CreateNode(ctx, tdc.driver, _spec); err != nil {
+	_node, _spec := _c.createSpec()
+	if err := sqlgraph.CreateNode(ctx, _c.driver, _spec); err != nil {
 		if sqlgraph.IsConstraintError(err) {
 			err = &ConstraintError{msg: err.Error(), wrap: err}
 		}
@@ -148,36 +168,53 @@ func (tdc *TemperatureDataCreate) sqlSave(ctx context.Context) (*TemperatureData
 			return nil, err
 		}
 	}
-	tdc.mutation.id = &_node.ID
-	tdc.mutation.done = true
+	_c.mutation.id = &_node.ID
+	_c.mutation.done = true
 	return _node, nil
 }
 
-func (tdc *TemperatureDataCreate) createSpec() (*TemperatureData, *sqlgraph.CreateSpec) {
+func (_c *TemperatureDataCreate) createSpec() (*TemperatureData, *sqlgraph.CreateSpec) {
 	var (
-		_node = &TemperatureData{config: tdc.config}
+		_node = &TemperatureData{config: _c.config}
 		_spec = sqlgraph.NewCreateSpec(temperaturedata.Table, sqlgraph.NewFieldSpec(temperaturedata.FieldID, field.TypeUUID))
 	)
-	_spec.OnConflict = tdc.conflict
-	if id, ok := tdc.mutation.ID(); ok {
+	_spec.OnConflict = _c.conflict
+	if id, ok := _c.mutation.ID(); ok {
 		_node.ID = id
 		_spec.ID.Value = &id
 	}
-	if value, ok := tdc.mutation.ValidTime(); ok {
+	if value, ok := _c.mutation.ValidTime(); ok {
 		_spec.SetField(temperaturedata.FieldValidTime, field.TypeTime, value)
 		_node.ValidTime = value
 	}
-	if value, ok := tdc.mutation.Temperature(); ok {
+	if value, ok := _c.mutation.Temperature(); ok {
 		_spec.SetField(temperaturedata.FieldTemperature, field.TypeFloat64, value)
 		_node.Temperature = value
 	}
-	if value, ok := tdc.mutation.MinTemperature(); ok {
+	if value, ok := _c.mutation.MinTemperature(); ok {
 		_spec.SetField(temperaturedata.FieldMinTemperature, field.TypeFloat64, value)
 		_node.MinTemperature = &value
 	}
-	if value, ok := tdc.mutation.MaxTemperature(); ok {
+	if value, ok := _c.mutation.MaxTemperature(); ok {
 		_spec.SetField(temperaturedata.FieldMaxTemperature, field.TypeFloat64, value)
 		_node.MaxTemperature = &value
+	}
+	if nodes := _c.mutation.ForecastIDs(); len(nodes) > 0 {
+		edge := &sqlgraph.EdgeSpec{
+			Rel:     sqlgraph.M2O,
+			Inverse: true,
+			Table:   temperaturedata.ForecastTable,
+			Columns: []string{temperaturedata.ForecastColumn},
+			Bidi:    false,
+			Target: &sqlgraph.EdgeTarget{
+				IDSpec: sqlgraph.NewFieldSpec(forecast.FieldID, field.TypeUUID),
+			},
+		}
+		for _, k := range nodes {
+			edge.Target.Nodes = append(edge.Target.Nodes, k)
+		}
+		_node.forecast_temperature_data = &nodes[0]
+		_spec.Edges = append(_spec.Edges, edge)
 	}
 	return _node, _spec
 }
@@ -198,10 +235,10 @@ func (tdc *TemperatureDataCreate) createSpec() (*TemperatureData, *sqlgraph.Crea
 //			SetValidTime(v+v).
 //		}).
 //		Exec(ctx)
-func (tdc *TemperatureDataCreate) OnConflict(opts ...sql.ConflictOption) *TemperatureDataUpsertOne {
-	tdc.conflict = opts
+func (_c *TemperatureDataCreate) OnConflict(opts ...sql.ConflictOption) *TemperatureDataUpsertOne {
+	_c.conflict = opts
 	return &TemperatureDataUpsertOne{
-		create: tdc,
+		create: _c,
 	}
 }
 
@@ -211,10 +248,10 @@ func (tdc *TemperatureDataCreate) OnConflict(opts ...sql.ConflictOption) *Temper
 //	client.TemperatureData.Create().
 //		OnConflict(sql.ConflictColumns(columns...)).
 //		Exec(ctx)
-func (tdc *TemperatureDataCreate) OnConflictColumns(columns ...string) *TemperatureDataUpsertOne {
-	tdc.conflict = append(tdc.conflict, sql.ConflictColumns(columns...))
+func (_c *TemperatureDataCreate) OnConflictColumns(columns ...string) *TemperatureDataUpsertOne {
+	_c.conflict = append(_c.conflict, sql.ConflictColumns(columns...))
 	return &TemperatureDataUpsertOne{
-		create: tdc,
+		create: _c,
 	}
 }
 
@@ -489,18 +526,22 @@ func (u *TemperatureDataUpsertOne) IDX(ctx context.Context) uuid.UUID {
 // TemperatureDataCreateBulk is the builder for creating many TemperatureData entities in bulk.
 type TemperatureDataCreateBulk struct {
 	config
+	err      error
 	builders []*TemperatureDataCreate
 	conflict []sql.ConflictOption
 }
 
 // Save creates the TemperatureData entities in the database.
-func (tdcb *TemperatureDataCreateBulk) Save(ctx context.Context) ([]*TemperatureData, error) {
-	specs := make([]*sqlgraph.CreateSpec, len(tdcb.builders))
-	nodes := make([]*TemperatureData, len(tdcb.builders))
-	mutators := make([]Mutator, len(tdcb.builders))
-	for i := range tdcb.builders {
+func (_c *TemperatureDataCreateBulk) Save(ctx context.Context) ([]*TemperatureData, error) {
+	if _c.err != nil {
+		return nil, _c.err
+	}
+	specs := make([]*sqlgraph.CreateSpec, len(_c.builders))
+	nodes := make([]*TemperatureData, len(_c.builders))
+	mutators := make([]Mutator, len(_c.builders))
+	for i := range _c.builders {
 		func(i int, root context.Context) {
-			builder := tdcb.builders[i]
+			builder := _c.builders[i]
 			builder.defaults()
 			var mut Mutator = MutateFunc(func(ctx context.Context, m Mutation) (Value, error) {
 				mutation, ok := m.(*TemperatureDataMutation)
@@ -514,12 +555,12 @@ func (tdcb *TemperatureDataCreateBulk) Save(ctx context.Context) ([]*Temperature
 				var err error
 				nodes[i], specs[i] = builder.createSpec()
 				if i < len(mutators)-1 {
-					_, err = mutators[i+1].Mutate(root, tdcb.builders[i+1].mutation)
+					_, err = mutators[i+1].Mutate(root, _c.builders[i+1].mutation)
 				} else {
 					spec := &sqlgraph.BatchCreateSpec{Nodes: specs}
-					spec.OnConflict = tdcb.conflict
+					spec.OnConflict = _c.conflict
 					// Invoke the actual operation on the latest mutation in the chain.
-					if err = sqlgraph.BatchCreate(ctx, tdcb.driver, spec); err != nil {
+					if err = sqlgraph.BatchCreate(ctx, _c.driver, spec); err != nil {
 						if sqlgraph.IsConstraintError(err) {
 							err = &ConstraintError{msg: err.Error(), wrap: err}
 						}
@@ -539,7 +580,7 @@ func (tdcb *TemperatureDataCreateBulk) Save(ctx context.Context) ([]*Temperature
 		}(i, ctx)
 	}
 	if len(mutators) > 0 {
-		if _, err := mutators[0].Mutate(ctx, tdcb.builders[0].mutation); err != nil {
+		if _, err := mutators[0].Mutate(ctx, _c.builders[0].mutation); err != nil {
 			return nil, err
 		}
 	}
@@ -547,8 +588,8 @@ func (tdcb *TemperatureDataCreateBulk) Save(ctx context.Context) ([]*Temperature
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (tdcb *TemperatureDataCreateBulk) SaveX(ctx context.Context) []*TemperatureData {
-	v, err := tdcb.Save(ctx)
+func (_c *TemperatureDataCreateBulk) SaveX(ctx context.Context) []*TemperatureData {
+	v, err := _c.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -556,14 +597,14 @@ func (tdcb *TemperatureDataCreateBulk) SaveX(ctx context.Context) []*Temperature
 }
 
 // Exec executes the query.
-func (tdcb *TemperatureDataCreateBulk) Exec(ctx context.Context) error {
-	_, err := tdcb.Save(ctx)
+func (_c *TemperatureDataCreateBulk) Exec(ctx context.Context) error {
+	_, err := _c.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (tdcb *TemperatureDataCreateBulk) ExecX(ctx context.Context) {
-	if err := tdcb.Exec(ctx); err != nil {
+func (_c *TemperatureDataCreateBulk) ExecX(ctx context.Context) {
+	if err := _c.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
@@ -583,10 +624,10 @@ func (tdcb *TemperatureDataCreateBulk) ExecX(ctx context.Context) {
 //			SetValidTime(v+v).
 //		}).
 //		Exec(ctx)
-func (tdcb *TemperatureDataCreateBulk) OnConflict(opts ...sql.ConflictOption) *TemperatureDataUpsertBulk {
-	tdcb.conflict = opts
+func (_c *TemperatureDataCreateBulk) OnConflict(opts ...sql.ConflictOption) *TemperatureDataUpsertBulk {
+	_c.conflict = opts
 	return &TemperatureDataUpsertBulk{
-		create: tdcb,
+		create: _c,
 	}
 }
 
@@ -596,10 +637,10 @@ func (tdcb *TemperatureDataCreateBulk) OnConflict(opts ...sql.ConflictOption) *T
 //	client.TemperatureData.Create().
 //		OnConflict(sql.ConflictColumns(columns...)).
 //		Exec(ctx)
-func (tdcb *TemperatureDataCreateBulk) OnConflictColumns(columns ...string) *TemperatureDataUpsertBulk {
-	tdcb.conflict = append(tdcb.conflict, sql.ConflictColumns(columns...))
+func (_c *TemperatureDataCreateBulk) OnConflictColumns(columns ...string) *TemperatureDataUpsertBulk {
+	_c.conflict = append(_c.conflict, sql.ConflictColumns(columns...))
 	return &TemperatureDataUpsertBulk{
-		create: tdcb,
+		create: _c,
 	}
 }
 
@@ -752,6 +793,9 @@ func (u *TemperatureDataUpsertBulk) ClearMaxTemperature() *TemperatureDataUpsert
 
 // Exec executes the query.
 func (u *TemperatureDataUpsertBulk) Exec(ctx context.Context) error {
+	if u.create.err != nil {
+		return u.create.err
+	}
 	for i, b := range u.create.builders {
 		if len(b.conflict) != 0 {
 			return fmt.Errorf("ent: OnConflict was set for builder %d. Set it on the TemperatureDataCreateBulk instead", i)

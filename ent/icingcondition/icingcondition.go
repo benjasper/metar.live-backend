@@ -4,6 +4,7 @@ package icingcondition
 
 import (
 	"entgo.io/ent/dialect/sql"
+	"entgo.io/ent/dialect/sql/sqlgraph"
 	"github.com/google/uuid"
 )
 
@@ -18,8 +19,17 @@ const (
 	FieldMinAltitude = "min_altitude"
 	// FieldMaxAltitude holds the string denoting the max_altitude field in the database.
 	FieldMaxAltitude = "max_altitude"
+	// EdgeForecast holds the string denoting the forecast edge name in mutations.
+	EdgeForecast = "forecast"
 	// Table holds the table name of the icingcondition in the database.
 	Table = "icing_conditions"
+	// ForecastTable is the table that holds the forecast relation/edge.
+	ForecastTable = "icing_conditions"
+	// ForecastInverseTable is the table name for the Forecast entity.
+	// It exists in this package in order to avoid circular dependency with the "forecast" package.
+	ForecastInverseTable = "forecasts"
+	// ForecastColumn is the table column denoting the forecast relation/edge.
+	ForecastColumn = "forecast_icing_conditions"
 )
 
 // Columns holds all SQL columns for icingcondition fields.
@@ -77,4 +87,18 @@ func ByMinAltitude(opts ...sql.OrderTermOption) OrderOption {
 // ByMaxAltitude orders the results by the max_altitude field.
 func ByMaxAltitude(opts ...sql.OrderTermOption) OrderOption {
 	return sql.OrderByField(FieldMaxAltitude, opts...).ToFunc()
+}
+
+// ByForecastField orders the results by forecast field.
+func ByForecastField(field string, opts ...sql.OrderTermOption) OrderOption {
+	return func(s *sql.Selector) {
+		sqlgraph.OrderByNeighborTerms(s, newForecastStep(), sql.OrderByField(field, opts...))
+	}
+}
+func newForecastStep() *sqlgraph.Step {
+	return sqlgraph.NewStep(
+		sqlgraph.From(Table, FieldID),
+		sqlgraph.To(ForecastInverseTable, FieldID),
+		sqlgraph.Edge(sqlgraph.M2O, true, ForecastTable, ForecastColumn),
+	)
 }

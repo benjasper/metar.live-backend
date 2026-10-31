@@ -90,7 +90,7 @@ func (*Country) scanValues(columns []string) ([]any, error) {
 
 // assignValues assigns the values that were returned from sql.Rows (after scanning)
 // to the Country fields.
-func (c *Country) assignValues(columns []string, values []any) error {
+func (_m *Country) assignValues(columns []string, values []any) error {
 	if m, n := len(values), len(columns); m < n {
 		return fmt.Errorf("mismatch number of scan values: %d != %d", m, n)
 	}
@@ -100,66 +100,66 @@ func (c *Country) assignValues(columns []string, values []any) error {
 			if value, ok := values[i].(*uuid.UUID); !ok {
 				return fmt.Errorf("unexpected type %T for field id", values[i])
 			} else if value != nil {
-				c.ID = *value
+				_m.ID = *value
 			}
 		case country.FieldImportID:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field import_id", values[i])
 			} else if value.Valid {
-				c.ImportID = int(value.Int64)
+				_m.ImportID = int(value.Int64)
 			}
 		case country.FieldHash:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field hash", values[i])
 			} else if value.Valid {
-				c.Hash = value.String
+				_m.Hash = value.String
 			}
 		case country.FieldImportFlag:
 			if value, ok := values[i].(*sql.NullBool); !ok {
 				return fmt.Errorf("unexpected type %T for field import_flag", values[i])
 			} else if value.Valid {
-				c.ImportFlag = value.Bool
+				_m.ImportFlag = value.Bool
 			}
 		case country.FieldLastUpdated:
 			if value, ok := values[i].(*sql.NullTime); !ok {
 				return fmt.Errorf("unexpected type %T for field last_updated", values[i])
 			} else if value.Valid {
-				c.LastUpdated = value.Time
+				_m.LastUpdated = value.Time
 			}
 		case country.FieldCode:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field code", values[i])
 			} else if value.Valid {
-				c.Code = value.String
+				_m.Code = value.String
 			}
 		case country.FieldName:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field name", values[i])
 			} else if value.Valid {
-				c.Name = value.String
+				_m.Name = value.String
 			}
 		case country.FieldContinent:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field continent", values[i])
 			} else if value.Valid {
-				c.Continent = country.Continent(value.String)
+				_m.Continent = country.Continent(value.String)
 			}
 		case country.FieldWikipediaLink:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field wikipedia_link", values[i])
 			} else if value.Valid {
-				c.WikipediaLink = value.String
+				_m.WikipediaLink = value.String
 			}
 		case country.FieldKeywords:
 			if value, ok := values[i].(*[]byte); !ok {
 				return fmt.Errorf("unexpected type %T for field keywords", values[i])
 			} else if value != nil && len(*value) > 0 {
-				if err := json.Unmarshal(*value, &c.Keywords); err != nil {
+				if err := json.Unmarshal(*value, &_m.Keywords); err != nil {
 					return fmt.Errorf("unmarshal field keywords: %w", err)
 				}
 			}
 		default:
-			c.selectValues.Set(columns[i], values[i])
+			_m.selectValues.Set(columns[i], values[i])
 		}
 	}
 	return nil
@@ -167,89 +167,89 @@ func (c *Country) assignValues(columns []string, values []any) error {
 
 // Value returns the ent.Value that was dynamically selected and assigned to the Country.
 // This includes values selected through modifiers, order, etc.
-func (c *Country) Value(name string) (ent.Value, error) {
-	return c.selectValues.Get(name)
+func (_m *Country) Value(name string) (ent.Value, error) {
+	return _m.selectValues.Get(name)
 }
 
 // QueryAirports queries the "airports" edge of the Country entity.
-func (c *Country) QueryAirports() *AirportQuery {
-	return NewCountryClient(c.config).QueryAirports(c)
+func (_m *Country) QueryAirports() *AirportQuery {
+	return NewCountryClient(_m.config).QueryAirports(_m)
 }
 
 // Update returns a builder for updating this Country.
 // Note that you need to call Country.Unwrap() before calling this method if this Country
 // was returned from a transaction, and the transaction was committed or rolled back.
-func (c *Country) Update() *CountryUpdateOne {
-	return NewCountryClient(c.config).UpdateOne(c)
+func (_m *Country) Update() *CountryUpdateOne {
+	return NewCountryClient(_m.config).UpdateOne(_m)
 }
 
 // Unwrap unwraps the Country entity that was returned from a transaction after it was closed,
 // so that all future queries will be executed through the driver which created the transaction.
-func (c *Country) Unwrap() *Country {
-	_tx, ok := c.config.driver.(*txDriver)
+func (_m *Country) Unwrap() *Country {
+	_tx, ok := _m.config.driver.(*txDriver)
 	if !ok {
 		panic("ent: Country is not a transactional entity")
 	}
-	c.config.driver = _tx.drv
-	return c
+	_m.config.driver = _tx.drv
+	return _m
 }
 
 // String implements the fmt.Stringer.
-func (c *Country) String() string {
+func (_m *Country) String() string {
 	var builder strings.Builder
 	builder.WriteString("Country(")
-	builder.WriteString(fmt.Sprintf("id=%v, ", c.ID))
+	builder.WriteString(fmt.Sprintf("id=%v, ", _m.ID))
 	builder.WriteString("import_id=")
-	builder.WriteString(fmt.Sprintf("%v", c.ImportID))
+	builder.WriteString(fmt.Sprintf("%v", _m.ImportID))
 	builder.WriteString(", ")
 	builder.WriteString("hash=")
-	builder.WriteString(c.Hash)
+	builder.WriteString(_m.Hash)
 	builder.WriteString(", ")
 	builder.WriteString("import_flag=")
-	builder.WriteString(fmt.Sprintf("%v", c.ImportFlag))
+	builder.WriteString(fmt.Sprintf("%v", _m.ImportFlag))
 	builder.WriteString(", ")
 	builder.WriteString("last_updated=")
-	builder.WriteString(c.LastUpdated.Format(time.ANSIC))
+	builder.WriteString(_m.LastUpdated.Format(time.ANSIC))
 	builder.WriteString(", ")
 	builder.WriteString("code=")
-	builder.WriteString(c.Code)
+	builder.WriteString(_m.Code)
 	builder.WriteString(", ")
 	builder.WriteString("name=")
-	builder.WriteString(c.Name)
+	builder.WriteString(_m.Name)
 	builder.WriteString(", ")
 	builder.WriteString("continent=")
-	builder.WriteString(fmt.Sprintf("%v", c.Continent))
+	builder.WriteString(fmt.Sprintf("%v", _m.Continent))
 	builder.WriteString(", ")
 	builder.WriteString("wikipedia_link=")
-	builder.WriteString(c.WikipediaLink)
+	builder.WriteString(_m.WikipediaLink)
 	builder.WriteString(", ")
 	builder.WriteString("keywords=")
-	builder.WriteString(fmt.Sprintf("%v", c.Keywords))
+	builder.WriteString(fmt.Sprintf("%v", _m.Keywords))
 	builder.WriteByte(')')
 	return builder.String()
 }
 
 // NamedAirports returns the Airports named value or an error if the edge was not
 // loaded in eager-loading with this name.
-func (c *Country) NamedAirports(name string) ([]*Airport, error) {
-	if c.Edges.namedAirports == nil {
+func (_m *Country) NamedAirports(name string) ([]*Airport, error) {
+	if _m.Edges.namedAirports == nil {
 		return nil, &NotLoadedError{edge: name}
 	}
-	nodes, ok := c.Edges.namedAirports[name]
+	nodes, ok := _m.Edges.namedAirports[name]
 	if !ok {
 		return nil, &NotLoadedError{edge: name}
 	}
 	return nodes, nil
 }
 
-func (c *Country) appendNamedAirports(name string, edges ...*Airport) {
-	if c.Edges.namedAirports == nil {
-		c.Edges.namedAirports = make(map[string][]*Airport)
+func (_m *Country) appendNamedAirports(name string, edges ...*Airport) {
+	if _m.Edges.namedAirports == nil {
+		_m.Edges.namedAirports = make(map[string][]*Airport)
 	}
 	if len(edges) == 0 {
-		c.Edges.namedAirports[name] = []*Airport{}
+		_m.Edges.namedAirports[name] = []*Airport{}
 	} else {
-		c.Edges.namedAirports[name] = append(c.Edges.namedAirports[name], edges...)
+		_m.Edges.namedAirports[name] = append(_m.Edges.namedAirports[name], edges...)
 	}
 }
 

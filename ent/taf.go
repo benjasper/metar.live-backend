@@ -61,12 +61,10 @@ type TafEdges struct {
 // StationOrErr returns the Station value or an error if the edge
 // was not loaded in eager-loading, or loaded but was not found.
 func (e TafEdges) StationOrErr() (*WeatherStation, error) {
-	if e.loadedTypes[0] {
-		if e.Station == nil {
-			// Edge was loaded but was not found.
-			return nil, &NotFoundError{label: weatherstation.Label}
-		}
+	if e.Station != nil {
 		return e.Station, nil
+	} else if e.loadedTypes[0] {
+		return nil, &NotFoundError{label: weatherstation.Label}
 	}
 	return nil, &NotLoadedError{edge: "station"}
 }
@@ -102,7 +100,7 @@ func (*Taf) scanValues(columns []string) ([]any, error) {
 
 // assignValues assigns the values that were returned from sql.Rows (after scanning)
 // to the Taf fields.
-func (t *Taf) assignValues(columns []string, values []any) error {
+func (_m *Taf) assignValues(columns []string, values []any) error {
 	if m, n := len(values), len(columns); m < n {
 		return fmt.Errorf("mismatch number of scan values: %d != %d", m, n)
 	}
@@ -112,65 +110,65 @@ func (t *Taf) assignValues(columns []string, values []any) error {
 			if value, ok := values[i].(*uuid.UUID); !ok {
 				return fmt.Errorf("unexpected type %T for field id", values[i])
 			} else if value != nil {
-				t.ID = *value
+				_m.ID = *value
 			}
 		case taf.FieldRawText:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field raw_text", values[i])
 			} else if value.Valid {
-				t.RawText = value.String
+				_m.RawText = value.String
 			}
 		case taf.FieldIssueTime:
 			if value, ok := values[i].(*sql.NullTime); !ok {
 				return fmt.Errorf("unexpected type %T for field issue_time", values[i])
 			} else if value.Valid {
-				t.IssueTime = value.Time
+				_m.IssueTime = value.Time
 			}
 		case taf.FieldImportTime:
 			if value, ok := values[i].(*sql.NullTime); !ok {
 				return fmt.Errorf("unexpected type %T for field import_time", values[i])
 			} else if value.Valid {
-				t.ImportTime = value.Time
+				_m.ImportTime = value.Time
 			}
 		case taf.FieldBulletinTime:
 			if value, ok := values[i].(*sql.NullTime); !ok {
 				return fmt.Errorf("unexpected type %T for field bulletin_time", values[i])
 			} else if value.Valid {
-				t.BulletinTime = value.Time
+				_m.BulletinTime = value.Time
 			}
 		case taf.FieldValidFromTime:
 			if value, ok := values[i].(*sql.NullTime); !ok {
 				return fmt.Errorf("unexpected type %T for field valid_from_time", values[i])
 			} else if value.Valid {
-				t.ValidFromTime = value.Time
+				_m.ValidFromTime = value.Time
 			}
 		case taf.FieldValidToTime:
 			if value, ok := values[i].(*sql.NullTime); !ok {
 				return fmt.Errorf("unexpected type %T for field valid_to_time", values[i])
 			} else if value.Valid {
-				t.ValidToTime = value.Time
+				_m.ValidToTime = value.Time
 			}
 		case taf.FieldRemarks:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field remarks", values[i])
 			} else if value.Valid {
-				t.Remarks = value.String
+				_m.Remarks = value.String
 			}
 		case taf.FieldHash:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field hash", values[i])
 			} else if value.Valid {
-				t.Hash = value.String
+				_m.Hash = value.String
 			}
 		case taf.ForeignKeys[0]:
 			if value, ok := values[i].(*sql.NullScanner); !ok {
 				return fmt.Errorf("unexpected type %T for field weather_station_tafs", values[i])
 			} else if value.Valid {
-				t.weather_station_tafs = new(uuid.UUID)
-				*t.weather_station_tafs = *value.S.(*uuid.UUID)
+				_m.weather_station_tafs = new(uuid.UUID)
+				*_m.weather_station_tafs = *value.S.(*uuid.UUID)
 			}
 		default:
-			t.selectValues.Set(columns[i], values[i])
+			_m.selectValues.Set(columns[i], values[i])
 		}
 	}
 	return nil
@@ -178,91 +176,91 @@ func (t *Taf) assignValues(columns []string, values []any) error {
 
 // Value returns the ent.Value that was dynamically selected and assigned to the Taf.
 // This includes values selected through modifiers, order, etc.
-func (t *Taf) Value(name string) (ent.Value, error) {
-	return t.selectValues.Get(name)
+func (_m *Taf) Value(name string) (ent.Value, error) {
+	return _m.selectValues.Get(name)
 }
 
 // QueryStation queries the "station" edge of the Taf entity.
-func (t *Taf) QueryStation() *WeatherStationQuery {
-	return NewTafClient(t.config).QueryStation(t)
+func (_m *Taf) QueryStation() *WeatherStationQuery {
+	return NewTafClient(_m.config).QueryStation(_m)
 }
 
 // QueryForecast queries the "forecast" edge of the Taf entity.
-func (t *Taf) QueryForecast() *ForecastQuery {
-	return NewTafClient(t.config).QueryForecast(t)
+func (_m *Taf) QueryForecast() *ForecastQuery {
+	return NewTafClient(_m.config).QueryForecast(_m)
 }
 
 // Update returns a builder for updating this Taf.
 // Note that you need to call Taf.Unwrap() before calling this method if this Taf
 // was returned from a transaction, and the transaction was committed or rolled back.
-func (t *Taf) Update() *TafUpdateOne {
-	return NewTafClient(t.config).UpdateOne(t)
+func (_m *Taf) Update() *TafUpdateOne {
+	return NewTafClient(_m.config).UpdateOne(_m)
 }
 
 // Unwrap unwraps the Taf entity that was returned from a transaction after it was closed,
 // so that all future queries will be executed through the driver which created the transaction.
-func (t *Taf) Unwrap() *Taf {
-	_tx, ok := t.config.driver.(*txDriver)
+func (_m *Taf) Unwrap() *Taf {
+	_tx, ok := _m.config.driver.(*txDriver)
 	if !ok {
 		panic("ent: Taf is not a transactional entity")
 	}
-	t.config.driver = _tx.drv
-	return t
+	_m.config.driver = _tx.drv
+	return _m
 }
 
 // String implements the fmt.Stringer.
-func (t *Taf) String() string {
+func (_m *Taf) String() string {
 	var builder strings.Builder
 	builder.WriteString("Taf(")
-	builder.WriteString(fmt.Sprintf("id=%v, ", t.ID))
+	builder.WriteString(fmt.Sprintf("id=%v, ", _m.ID))
 	builder.WriteString("raw_text=")
-	builder.WriteString(t.RawText)
+	builder.WriteString(_m.RawText)
 	builder.WriteString(", ")
 	builder.WriteString("issue_time=")
-	builder.WriteString(t.IssueTime.Format(time.ANSIC))
+	builder.WriteString(_m.IssueTime.Format(time.ANSIC))
 	builder.WriteString(", ")
 	builder.WriteString("import_time=")
-	builder.WriteString(t.ImportTime.Format(time.ANSIC))
+	builder.WriteString(_m.ImportTime.Format(time.ANSIC))
 	builder.WriteString(", ")
 	builder.WriteString("bulletin_time=")
-	builder.WriteString(t.BulletinTime.Format(time.ANSIC))
+	builder.WriteString(_m.BulletinTime.Format(time.ANSIC))
 	builder.WriteString(", ")
 	builder.WriteString("valid_from_time=")
-	builder.WriteString(t.ValidFromTime.Format(time.ANSIC))
+	builder.WriteString(_m.ValidFromTime.Format(time.ANSIC))
 	builder.WriteString(", ")
 	builder.WriteString("valid_to_time=")
-	builder.WriteString(t.ValidToTime.Format(time.ANSIC))
+	builder.WriteString(_m.ValidToTime.Format(time.ANSIC))
 	builder.WriteString(", ")
 	builder.WriteString("remarks=")
-	builder.WriteString(t.Remarks)
+	builder.WriteString(_m.Remarks)
 	builder.WriteString(", ")
 	builder.WriteString("hash=")
-	builder.WriteString(t.Hash)
+	builder.WriteString(_m.Hash)
 	builder.WriteByte(')')
 	return builder.String()
 }
 
 // NamedForecast returns the Forecast named value or an error if the edge was not
 // loaded in eager-loading with this name.
-func (t *Taf) NamedForecast(name string) ([]*Forecast, error) {
-	if t.Edges.namedForecast == nil {
+func (_m *Taf) NamedForecast(name string) ([]*Forecast, error) {
+	if _m.Edges.namedForecast == nil {
 		return nil, &NotLoadedError{edge: name}
 	}
-	nodes, ok := t.Edges.namedForecast[name]
+	nodes, ok := _m.Edges.namedForecast[name]
 	if !ok {
 		return nil, &NotLoadedError{edge: name}
 	}
 	return nodes, nil
 }
 
-func (t *Taf) appendNamedForecast(name string, edges ...*Forecast) {
-	if t.Edges.namedForecast == nil {
-		t.Edges.namedForecast = make(map[string][]*Forecast)
+func (_m *Taf) appendNamedForecast(name string, edges ...*Forecast) {
+	if _m.Edges.namedForecast == nil {
+		_m.Edges.namedForecast = make(map[string][]*Forecast)
 	}
 	if len(edges) == 0 {
-		t.Edges.namedForecast[name] = []*Forecast{}
+		_m.Edges.namedForecast[name] = []*Forecast{}
 	} else {
-		t.Edges.namedForecast[name] = append(t.Edges.namedForecast[name], edges...)
+		_m.Edges.namedForecast[name] = append(_m.Edges.namedForecast[name], edges...)
 	}
 }
 

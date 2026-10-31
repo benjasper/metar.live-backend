@@ -9,6 +9,7 @@ import (
 	"entgo.io/ent"
 	"entgo.io/ent/dialect/sql"
 	"github.com/google/uuid"
+	"metar.live/ent/forecast"
 	"metar.live/ent/turbulencecondition"
 )
 
@@ -23,9 +24,32 @@ type TurbulenceCondition struct {
 	// The minimum altitude in feet that the turbulence is present.
 	MinAltitude int `json:"min_altitude,omitempty"`
 	// The maximum altitude in feet that the turbulence is present.
-	MaxAltitude                    int `json:"max_altitude,omitempty"`
+	MaxAltitude int `json:"max_altitude,omitempty"`
+	// Edges holds the relations/edges for other nodes in the graph.
+	// The values are being populated by the TurbulenceConditionQuery when eager-loading is set.
+	Edges                          TurbulenceConditionEdges `json:"edges"`
 	forecast_turbulence_conditions *uuid.UUID
 	selectValues                   sql.SelectValues
+}
+
+// TurbulenceConditionEdges holds the relations/edges for other nodes in the graph.
+type TurbulenceConditionEdges struct {
+	// Forecast holds the value of the forecast edge.
+	Forecast *Forecast `json:"forecast,omitempty"`
+	// loadedTypes holds the information for reporting if a
+	// type was loaded (or requested) in eager-loading or not.
+	loadedTypes [1]bool
+}
+
+// ForecastOrErr returns the Forecast value or an error if the edge
+// was not loaded in eager-loading, or loaded but was not found.
+func (e TurbulenceConditionEdges) ForecastOrErr() (*Forecast, error) {
+	if e.Forecast != nil {
+		return e.Forecast, nil
+	} else if e.loadedTypes[0] {
+		return nil, &NotFoundError{label: forecast.Label}
+	}
+	return nil, &NotLoadedError{edge: "forecast"}
 }
 
 // scanValues returns the types for scanning values from sql.Rows.
@@ -50,7 +74,7 @@ func (*TurbulenceCondition) scanValues(columns []string) ([]any, error) {
 
 // assignValues assigns the values that were returned from sql.Rows (after scanning)
 // to the TurbulenceCondition fields.
-func (tc *TurbulenceCondition) assignValues(columns []string, values []any) error {
+func (_m *TurbulenceCondition) assignValues(columns []string, values []any) error {
 	if m, n := len(values), len(columns); m < n {
 		return fmt.Errorf("mismatch number of scan values: %d != %d", m, n)
 	}
@@ -60,35 +84,35 @@ func (tc *TurbulenceCondition) assignValues(columns []string, values []any) erro
 			if value, ok := values[i].(*uuid.UUID); !ok {
 				return fmt.Errorf("unexpected type %T for field id", values[i])
 			} else if value != nil {
-				tc.ID = *value
+				_m.ID = *value
 			}
 		case turbulencecondition.FieldIntensity:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field intensity", values[i])
 			} else if value.Valid {
-				tc.Intensity = value.String
+				_m.Intensity = value.String
 			}
 		case turbulencecondition.FieldMinAltitude:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field min_altitude", values[i])
 			} else if value.Valid {
-				tc.MinAltitude = int(value.Int64)
+				_m.MinAltitude = int(value.Int64)
 			}
 		case turbulencecondition.FieldMaxAltitude:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field max_altitude", values[i])
 			} else if value.Valid {
-				tc.MaxAltitude = int(value.Int64)
+				_m.MaxAltitude = int(value.Int64)
 			}
 		case turbulencecondition.ForeignKeys[0]:
 			if value, ok := values[i].(*sql.NullScanner); !ok {
 				return fmt.Errorf("unexpected type %T for field forecast_turbulence_conditions", values[i])
 			} else if value.Valid {
-				tc.forecast_turbulence_conditions = new(uuid.UUID)
-				*tc.forecast_turbulence_conditions = *value.S.(*uuid.UUID)
+				_m.forecast_turbulence_conditions = new(uuid.UUID)
+				*_m.forecast_turbulence_conditions = *value.S.(*uuid.UUID)
 			}
 		default:
-			tc.selectValues.Set(columns[i], values[i])
+			_m.selectValues.Set(columns[i], values[i])
 		}
 	}
 	return nil
@@ -96,41 +120,46 @@ func (tc *TurbulenceCondition) assignValues(columns []string, values []any) erro
 
 // Value returns the ent.Value that was dynamically selected and assigned to the TurbulenceCondition.
 // This includes values selected through modifiers, order, etc.
-func (tc *TurbulenceCondition) Value(name string) (ent.Value, error) {
-	return tc.selectValues.Get(name)
+func (_m *TurbulenceCondition) Value(name string) (ent.Value, error) {
+	return _m.selectValues.Get(name)
+}
+
+// QueryForecast queries the "forecast" edge of the TurbulenceCondition entity.
+func (_m *TurbulenceCondition) QueryForecast() *ForecastQuery {
+	return NewTurbulenceConditionClient(_m.config).QueryForecast(_m)
 }
 
 // Update returns a builder for updating this TurbulenceCondition.
 // Note that you need to call TurbulenceCondition.Unwrap() before calling this method if this TurbulenceCondition
 // was returned from a transaction, and the transaction was committed or rolled back.
-func (tc *TurbulenceCondition) Update() *TurbulenceConditionUpdateOne {
-	return NewTurbulenceConditionClient(tc.config).UpdateOne(tc)
+func (_m *TurbulenceCondition) Update() *TurbulenceConditionUpdateOne {
+	return NewTurbulenceConditionClient(_m.config).UpdateOne(_m)
 }
 
 // Unwrap unwraps the TurbulenceCondition entity that was returned from a transaction after it was closed,
 // so that all future queries will be executed through the driver which created the transaction.
-func (tc *TurbulenceCondition) Unwrap() *TurbulenceCondition {
-	_tx, ok := tc.config.driver.(*txDriver)
+func (_m *TurbulenceCondition) Unwrap() *TurbulenceCondition {
+	_tx, ok := _m.config.driver.(*txDriver)
 	if !ok {
 		panic("ent: TurbulenceCondition is not a transactional entity")
 	}
-	tc.config.driver = _tx.drv
-	return tc
+	_m.config.driver = _tx.drv
+	return _m
 }
 
 // String implements the fmt.Stringer.
-func (tc *TurbulenceCondition) String() string {
+func (_m *TurbulenceCondition) String() string {
 	var builder strings.Builder
 	builder.WriteString("TurbulenceCondition(")
-	builder.WriteString(fmt.Sprintf("id=%v, ", tc.ID))
+	builder.WriteString(fmt.Sprintf("id=%v, ", _m.ID))
 	builder.WriteString("intensity=")
-	builder.WriteString(tc.Intensity)
+	builder.WriteString(_m.Intensity)
 	builder.WriteString(", ")
 	builder.WriteString("min_altitude=")
-	builder.WriteString(fmt.Sprintf("%v", tc.MinAltitude))
+	builder.WriteString(fmt.Sprintf("%v", _m.MinAltitude))
 	builder.WriteString(", ")
 	builder.WriteString("max_altitude=")
-	builder.WriteString(fmt.Sprintf("%v", tc.MaxAltitude))
+	builder.WriteString(fmt.Sprintf("%v", _m.MaxAltitude))
 	builder.WriteByte(')')
 	return builder.String()
 }

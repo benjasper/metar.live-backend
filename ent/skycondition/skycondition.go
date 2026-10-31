@@ -8,6 +8,7 @@ import (
 	"strconv"
 
 	"entgo.io/ent/dialect/sql"
+	"entgo.io/ent/dialect/sql/sqlgraph"
 	"github.com/google/uuid"
 )
 
@@ -22,8 +23,26 @@ const (
 	FieldCloudBase = "cloud_base"
 	// FieldCloudType holds the string denoting the cloud_type field in the database.
 	FieldCloudType = "cloud_type"
+	// EdgeMetar holds the string denoting the metar edge name in mutations.
+	EdgeMetar = "metar"
+	// EdgeForecast holds the string denoting the forecast edge name in mutations.
+	EdgeForecast = "forecast"
 	// Table holds the table name of the skycondition in the database.
 	Table = "sky_conditions"
+	// MetarTable is the table that holds the metar relation/edge.
+	MetarTable = "sky_conditions"
+	// MetarInverseTable is the table name for the Metar entity.
+	// It exists in this package in order to avoid circular dependency with the "metar" package.
+	MetarInverseTable = "metars"
+	// MetarColumn is the table column denoting the metar relation/edge.
+	MetarColumn = "metar_sky_conditions"
+	// ForecastTable is the table that holds the forecast relation/edge.
+	ForecastTable = "sky_conditions"
+	// ForecastInverseTable is the table name for the Forecast entity.
+	// It exists in this package in order to avoid circular dependency with the "forecast" package.
+	ForecastInverseTable = "forecasts"
+	// ForecastColumn is the table column denoting the forecast relation/edge.
+	ForecastColumn = "forecast_sky_conditions"
 )
 
 // Columns holds all SQL columns for skycondition fields.
@@ -137,6 +156,34 @@ func ByCloudBase(opts ...sql.OrderTermOption) OrderOption {
 // ByCloudType orders the results by the cloud_type field.
 func ByCloudType(opts ...sql.OrderTermOption) OrderOption {
 	return sql.OrderByField(FieldCloudType, opts...).ToFunc()
+}
+
+// ByMetarField orders the results by metar field.
+func ByMetarField(field string, opts ...sql.OrderTermOption) OrderOption {
+	return func(s *sql.Selector) {
+		sqlgraph.OrderByNeighborTerms(s, newMetarStep(), sql.OrderByField(field, opts...))
+	}
+}
+
+// ByForecastField orders the results by forecast field.
+func ByForecastField(field string, opts ...sql.OrderTermOption) OrderOption {
+	return func(s *sql.Selector) {
+		sqlgraph.OrderByNeighborTerms(s, newForecastStep(), sql.OrderByField(field, opts...))
+	}
+}
+func newMetarStep() *sqlgraph.Step {
+	return sqlgraph.NewStep(
+		sqlgraph.From(Table, FieldID),
+		sqlgraph.To(MetarInverseTable, FieldID),
+		sqlgraph.Edge(sqlgraph.M2O, true, MetarTable, MetarColumn),
+	)
+}
+func newForecastStep() *sqlgraph.Step {
+	return sqlgraph.NewStep(
+		sqlgraph.From(Table, FieldID),
+		sqlgraph.To(ForecastInverseTable, FieldID),
+		sqlgraph.Edge(sqlgraph.M2O, true, ForecastTable, ForecastColumn),
+	)
 }
 
 // MarshalGQL implements graphql.Marshaler interface.

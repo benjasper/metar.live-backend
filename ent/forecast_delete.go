@@ -20,56 +20,56 @@ type ForecastDelete struct {
 }
 
 // Where appends a list predicates to the ForecastDelete builder.
-func (fd *ForecastDelete) Where(ps ...predicate.Forecast) *ForecastDelete {
-	fd.mutation.Where(ps...)
-	return fd
+func (_d *ForecastDelete) Where(ps ...predicate.Forecast) *ForecastDelete {
+	_d.mutation.Where(ps...)
+	return _d
 }
 
 // Exec executes the deletion query and returns how many vertices were deleted.
-func (fd *ForecastDelete) Exec(ctx context.Context) (int, error) {
-	return withHooks(ctx, fd.sqlExec, fd.mutation, fd.hooks)
+func (_d *ForecastDelete) Exec(ctx context.Context) (int, error) {
+	return withHooks(ctx, _d.sqlExec, _d.mutation, _d.hooks)
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (fd *ForecastDelete) ExecX(ctx context.Context) int {
-	n, err := fd.Exec(ctx)
+func (_d *ForecastDelete) ExecX(ctx context.Context) int {
+	n, err := _d.Exec(ctx)
 	if err != nil {
 		panic(err)
 	}
 	return n
 }
 
-func (fd *ForecastDelete) sqlExec(ctx context.Context) (int, error) {
+func (_d *ForecastDelete) sqlExec(ctx context.Context) (int, error) {
 	_spec := sqlgraph.NewDeleteSpec(forecast.Table, sqlgraph.NewFieldSpec(forecast.FieldID, field.TypeUUID))
-	if ps := fd.mutation.predicates; len(ps) > 0 {
+	if ps := _d.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	affected, err := sqlgraph.DeleteNodes(ctx, fd.driver, _spec)
+	affected, err := sqlgraph.DeleteNodes(ctx, _d.driver, _spec)
 	if err != nil && sqlgraph.IsConstraintError(err) {
 		err = &ConstraintError{msg: err.Error(), wrap: err}
 	}
-	fd.mutation.done = true
+	_d.mutation.done = true
 	return affected, err
 }
 
 // ForecastDeleteOne is the builder for deleting a single Forecast entity.
 type ForecastDeleteOne struct {
-	fd *ForecastDelete
+	_d *ForecastDelete
 }
 
 // Where appends a list predicates to the ForecastDelete builder.
-func (fdo *ForecastDeleteOne) Where(ps ...predicate.Forecast) *ForecastDeleteOne {
-	fdo.fd.mutation.Where(ps...)
-	return fdo
+func (_d *ForecastDeleteOne) Where(ps ...predicate.Forecast) *ForecastDeleteOne {
+	_d._d.mutation.Where(ps...)
+	return _d
 }
 
 // Exec executes the deletion query.
-func (fdo *ForecastDeleteOne) Exec(ctx context.Context) error {
-	n, err := fdo.fd.Exec(ctx)
+func (_d *ForecastDeleteOne) Exec(ctx context.Context) error {
+	n, err := _d._d.Exec(ctx)
 	switch {
 	case err != nil:
 		return err
@@ -81,8 +81,8 @@ func (fdo *ForecastDeleteOne) Exec(ctx context.Context) error {
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (fdo *ForecastDeleteOne) ExecX(ctx context.Context) {
-	if err := fdo.Exec(ctx); err != nil {
+func (_d *ForecastDeleteOne) ExecX(ctx context.Context) {
+	if err := _d.Exec(ctx); err != nil {
 		panic(err)
 	}
 }

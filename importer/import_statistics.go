@@ -40,6 +40,20 @@ func (i *ImportStatistics) AddTotal() {
 	i.total++
 }
 
+func (i *ImportStatistics) AddMultipleTotal(total int) {
+	i.totalMutex.Lock()
+	defer i.totalMutex.Unlock()
+
+	i.total += total
+}
+
+func (i *ImportStatistics) AddMultipleUpdated(updated int) {
+	i.updatedMutex.Lock()
+	defer i.updatedMutex.Unlock()
+
+	i.updated += updated
+}
+
 func (i *ImportStatistics) AddUpdated() {
 	i.updatedMutex.Lock()
 	defer i.updatedMutex.Unlock()

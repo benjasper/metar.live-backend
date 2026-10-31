@@ -1,7 +1,6 @@
 package utils
 
 import (
-	"compress/gzip"
 	"context"
 	"fmt"
 	"io"
@@ -39,7 +38,7 @@ func NillableString(input string) *string {
 }
 
 // DownloadFile downloads a file and saves it to disk using the provided context.
-func DownloadFile(ctx context.Context, url string, filepath string, useGzip bool) error {
+func DownloadFile(ctx context.Context, url string, filepath string) error {
 	out, err := os.Create(filepath)
 	if err != nil {
 		return err
@@ -47,44 +46,49 @@ func DownloadFile(ctx context.Context, url string, filepath string, useGzip bool
 	defer func(out *os.File) {
 		_ = out.Close()
 	}(out)
-	req, err := http.NewRequestWithContext(ctx, http.MethodGet, url, nil)
+
+	body, err := get(ctx, url)
 	if err != nil {
 		return err
+	}
+	defer func(body io.ReadCloser) {
+		_ = body.Close()
+	}(body)
+
+	_, err = io.Copy(out, body)
+	return err
+}
+
+// Download downloads a file into memory using the provided context.
+func Download(ctx context.Context, url string) ([]byte, error) {
+	body, err := get(ctx, url)
+	if err != nil {
+		return nil, err
+	}
+	defer func(body io.ReadCloser) {
+		_ = body.Close()
+	}(body)
+
+	return io.ReadAll(body)
+}
+
+func get(ctx context.Context, url string) (io.ReadCloser, error) {
+	req, err := http.NewRequestWithContext(ctx, http.MethodGet, url, nil)
+	if err != nil {
+		return nil, err
 	}
 
 	resp, err := http.DefaultClient.Do(req)
 	if err != nil {
-		return err
+		return nil, err
 	}
-	defer func(Body io.ReadCloser) {
-		_ = Body.Close()
-	}(resp.Body)
 
-	// Check server response
 	if resp.StatusCode != http.StatusOK {
-		return fmt.Errorf("could not download file from %s: %s", url, resp.Status)
+		_ = resp.Body.Close()
+		return nil, fmt.Errorf("could not download file from %s: %s", url, resp.Status)
 	}
 
-	var content io.Reader = resp.Body
-	if useGzip {
-		gzreader, err := gzip.NewReader(resp.Body)
-		if err != nil {
-			return err
-		}
-
-		content = gzreader
-		defer func() {
-			_ = gzreader.Close()
-		}()
-	}
-
-	// Writer the body to file
-	_, err = io.Copy(out, content)
-	if err != nil {
-		return err
-	}
-
-	return nil
+	return resp.Body, nil
 }
 
 // RadiansToDegrees Converts Radians to Degrees

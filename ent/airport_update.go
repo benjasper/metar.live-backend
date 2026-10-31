@@ -31,488 +31,552 @@ type AirportUpdate struct {
 }
 
 // Where appends a list predicates to the AirportUpdate builder.
-func (au *AirportUpdate) Where(ps ...predicate.Airport) *AirportUpdate {
-	au.mutation.Where(ps...)
-	return au
+func (_u *AirportUpdate) Where(ps ...predicate.Airport) *AirportUpdate {
+	_u.mutation.Where(ps...)
+	return _u
 }
 
 // SetImportID sets the "import_id" field.
-func (au *AirportUpdate) SetImportID(i int) *AirportUpdate {
-	au.mutation.ResetImportID()
-	au.mutation.SetImportID(i)
-	return au
+func (_u *AirportUpdate) SetImportID(v int) *AirportUpdate {
+	_u.mutation.ResetImportID()
+	_u.mutation.SetImportID(v)
+	return _u
 }
 
-// AddImportID adds i to the "import_id" field.
-func (au *AirportUpdate) AddImportID(i int) *AirportUpdate {
-	au.mutation.AddImportID(i)
-	return au
+// SetNillableImportID sets the "import_id" field if the given value is not nil.
+func (_u *AirportUpdate) SetNillableImportID(v *int) *AirportUpdate {
+	if v != nil {
+		_u.SetImportID(*v)
+	}
+	return _u
+}
+
+// AddImportID adds value to the "import_id" field.
+func (_u *AirportUpdate) AddImportID(v int) *AirportUpdate {
+	_u.mutation.AddImportID(v)
+	return _u
 }
 
 // SetHash sets the "hash" field.
-func (au *AirportUpdate) SetHash(s string) *AirportUpdate {
-	au.mutation.SetHash(s)
-	return au
+func (_u *AirportUpdate) SetHash(v string) *AirportUpdate {
+	_u.mutation.SetHash(v)
+	return _u
+}
+
+// SetNillableHash sets the "hash" field if the given value is not nil.
+func (_u *AirportUpdate) SetNillableHash(v *string) *AirportUpdate {
+	if v != nil {
+		_u.SetHash(*v)
+	}
+	return _u
 }
 
 // SetImportFlag sets the "import_flag" field.
-func (au *AirportUpdate) SetImportFlag(b bool) *AirportUpdate {
-	au.mutation.SetImportFlag(b)
-	return au
+func (_u *AirportUpdate) SetImportFlag(v bool) *AirportUpdate {
+	_u.mutation.SetImportFlag(v)
+	return _u
 }
 
 // SetNillableImportFlag sets the "import_flag" field if the given value is not nil.
-func (au *AirportUpdate) SetNillableImportFlag(b *bool) *AirportUpdate {
-	if b != nil {
-		au.SetImportFlag(*b)
+func (_u *AirportUpdate) SetNillableImportFlag(v *bool) *AirportUpdate {
+	if v != nil {
+		_u.SetImportFlag(*v)
 	}
-	return au
+	return _u
 }
 
 // SetLastUpdated sets the "last_updated" field.
-func (au *AirportUpdate) SetLastUpdated(t time.Time) *AirportUpdate {
-	au.mutation.SetLastUpdated(t)
-	return au
+func (_u *AirportUpdate) SetLastUpdated(v time.Time) *AirportUpdate {
+	_u.mutation.SetLastUpdated(v)
+	return _u
 }
 
 // SetNillableLastUpdated sets the "last_updated" field if the given value is not nil.
-func (au *AirportUpdate) SetNillableLastUpdated(t *time.Time) *AirportUpdate {
-	if t != nil {
-		au.SetLastUpdated(*t)
+func (_u *AirportUpdate) SetNillableLastUpdated(v *time.Time) *AirportUpdate {
+	if v != nil {
+		_u.SetLastUpdated(*v)
 	}
-	return au
+	return _u
 }
 
 // SetIcaoCode sets the "icao_code" field.
-func (au *AirportUpdate) SetIcaoCode(s string) *AirportUpdate {
-	au.mutation.SetIcaoCode(s)
-	return au
+func (_u *AirportUpdate) SetIcaoCode(v string) *AirportUpdate {
+	_u.mutation.SetIcaoCode(v)
+	return _u
 }
 
 // SetNillableIcaoCode sets the "icao_code" field if the given value is not nil.
-func (au *AirportUpdate) SetNillableIcaoCode(s *string) *AirportUpdate {
-	if s != nil {
-		au.SetIcaoCode(*s)
+func (_u *AirportUpdate) SetNillableIcaoCode(v *string) *AirportUpdate {
+	if v != nil {
+		_u.SetIcaoCode(*v)
 	}
-	return au
+	return _u
 }
 
 // ClearIcaoCode clears the value of the "icao_code" field.
-func (au *AirportUpdate) ClearIcaoCode() *AirportUpdate {
-	au.mutation.ClearIcaoCode()
-	return au
+func (_u *AirportUpdate) ClearIcaoCode() *AirportUpdate {
+	_u.mutation.ClearIcaoCode()
+	return _u
 }
 
 // SetIataCode sets the "iata_code" field.
-func (au *AirportUpdate) SetIataCode(s string) *AirportUpdate {
-	au.mutation.SetIataCode(s)
-	return au
+func (_u *AirportUpdate) SetIataCode(v string) *AirportUpdate {
+	_u.mutation.SetIataCode(v)
+	return _u
 }
 
 // SetNillableIataCode sets the "iata_code" field if the given value is not nil.
-func (au *AirportUpdate) SetNillableIataCode(s *string) *AirportUpdate {
-	if s != nil {
-		au.SetIataCode(*s)
+func (_u *AirportUpdate) SetNillableIataCode(v *string) *AirportUpdate {
+	if v != nil {
+		_u.SetIataCode(*v)
 	}
-	return au
+	return _u
 }
 
 // ClearIataCode clears the value of the "iata_code" field.
-func (au *AirportUpdate) ClearIataCode() *AirportUpdate {
-	au.mutation.ClearIataCode()
-	return au
+func (_u *AirportUpdate) ClearIataCode() *AirportUpdate {
+	_u.mutation.ClearIataCode()
+	return _u
 }
 
 // SetIdentifier sets the "identifier" field.
-func (au *AirportUpdate) SetIdentifier(s string) *AirportUpdate {
-	au.mutation.SetIdentifier(s)
-	return au
+func (_u *AirportUpdate) SetIdentifier(v string) *AirportUpdate {
+	_u.mutation.SetIdentifier(v)
+	return _u
+}
+
+// SetNillableIdentifier sets the "identifier" field if the given value is not nil.
+func (_u *AirportUpdate) SetNillableIdentifier(v *string) *AirportUpdate {
+	if v != nil {
+		_u.SetIdentifier(*v)
+	}
+	return _u
 }
 
 // SetType sets the "type" field.
-func (au *AirportUpdate) SetType(a airport.Type) *AirportUpdate {
-	au.mutation.SetType(a)
-	return au
+func (_u *AirportUpdate) SetType(v airport.Type) *AirportUpdate {
+	_u.mutation.SetType(v)
+	return _u
+}
+
+// SetNillableType sets the "type" field if the given value is not nil.
+func (_u *AirportUpdate) SetNillableType(v *airport.Type) *AirportUpdate {
+	if v != nil {
+		_u.SetType(*v)
+	}
+	return _u
 }
 
 // SetImportance sets the "importance" field.
-func (au *AirportUpdate) SetImportance(i int) *AirportUpdate {
-	au.mutation.ResetImportance()
-	au.mutation.SetImportance(i)
-	return au
+func (_u *AirportUpdate) SetImportance(v int) *AirportUpdate {
+	_u.mutation.ResetImportance()
+	_u.mutation.SetImportance(v)
+	return _u
 }
 
 // SetNillableImportance sets the "importance" field if the given value is not nil.
-func (au *AirportUpdate) SetNillableImportance(i *int) *AirportUpdate {
-	if i != nil {
-		au.SetImportance(*i)
+func (_u *AirportUpdate) SetNillableImportance(v *int) *AirportUpdate {
+	if v != nil {
+		_u.SetImportance(*v)
 	}
-	return au
+	return _u
 }
 
-// AddImportance adds i to the "importance" field.
-func (au *AirportUpdate) AddImportance(i int) *AirportUpdate {
-	au.mutation.AddImportance(i)
-	return au
+// AddImportance adds value to the "importance" field.
+func (_u *AirportUpdate) AddImportance(v int) *AirportUpdate {
+	_u.mutation.AddImportance(v)
+	return _u
 }
 
 // SetName sets the "name" field.
-func (au *AirportUpdate) SetName(s string) *AirportUpdate {
-	au.mutation.SetName(s)
-	return au
+func (_u *AirportUpdate) SetName(v string) *AirportUpdate {
+	_u.mutation.SetName(v)
+	return _u
+}
+
+// SetNillableName sets the "name" field if the given value is not nil.
+func (_u *AirportUpdate) SetNillableName(v *string) *AirportUpdate {
+	if v != nil {
+		_u.SetName(*v)
+	}
+	return _u
 }
 
 // SetLatitude sets the "latitude" field.
-func (au *AirportUpdate) SetLatitude(f float64) *AirportUpdate {
-	au.mutation.ResetLatitude()
-	au.mutation.SetLatitude(f)
-	return au
+func (_u *AirportUpdate) SetLatitude(v float64) *AirportUpdate {
+	_u.mutation.ResetLatitude()
+	_u.mutation.SetLatitude(v)
+	return _u
 }
 
-// AddLatitude adds f to the "latitude" field.
-func (au *AirportUpdate) AddLatitude(f float64) *AirportUpdate {
-	au.mutation.AddLatitude(f)
-	return au
+// SetNillableLatitude sets the "latitude" field if the given value is not nil.
+func (_u *AirportUpdate) SetNillableLatitude(v *float64) *AirportUpdate {
+	if v != nil {
+		_u.SetLatitude(*v)
+	}
+	return _u
+}
+
+// AddLatitude adds value to the "latitude" field.
+func (_u *AirportUpdate) AddLatitude(v float64) *AirportUpdate {
+	_u.mutation.AddLatitude(v)
+	return _u
 }
 
 // SetLongitude sets the "longitude" field.
-func (au *AirportUpdate) SetLongitude(f float64) *AirportUpdate {
-	au.mutation.ResetLongitude()
-	au.mutation.SetLongitude(f)
-	return au
+func (_u *AirportUpdate) SetLongitude(v float64) *AirportUpdate {
+	_u.mutation.ResetLongitude()
+	_u.mutation.SetLongitude(v)
+	return _u
 }
 
-// AddLongitude adds f to the "longitude" field.
-func (au *AirportUpdate) AddLongitude(f float64) *AirportUpdate {
-	au.mutation.AddLongitude(f)
-	return au
+// SetNillableLongitude sets the "longitude" field if the given value is not nil.
+func (_u *AirportUpdate) SetNillableLongitude(v *float64) *AirportUpdate {
+	if v != nil {
+		_u.SetLongitude(*v)
+	}
+	return _u
+}
+
+// AddLongitude adds value to the "longitude" field.
+func (_u *AirportUpdate) AddLongitude(v float64) *AirportUpdate {
+	_u.mutation.AddLongitude(v)
+	return _u
 }
 
 // SetTimezone sets the "timezone" field.
-func (au *AirportUpdate) SetTimezone(s string) *AirportUpdate {
-	au.mutation.SetTimezone(s)
-	return au
+func (_u *AirportUpdate) SetTimezone(v string) *AirportUpdate {
+	_u.mutation.SetTimezone(v)
+	return _u
 }
 
 // SetNillableTimezone sets the "timezone" field if the given value is not nil.
-func (au *AirportUpdate) SetNillableTimezone(s *string) *AirportUpdate {
-	if s != nil {
-		au.SetTimezone(*s)
+func (_u *AirportUpdate) SetNillableTimezone(v *string) *AirportUpdate {
+	if v != nil {
+		_u.SetTimezone(*v)
 	}
-	return au
+	return _u
 }
 
 // ClearTimezone clears the value of the "timezone" field.
-func (au *AirportUpdate) ClearTimezone() *AirportUpdate {
-	au.mutation.ClearTimezone()
-	return au
+func (_u *AirportUpdate) ClearTimezone() *AirportUpdate {
+	_u.mutation.ClearTimezone()
+	return _u
 }
 
 // SetElevation sets the "elevation" field.
-func (au *AirportUpdate) SetElevation(i int) *AirportUpdate {
-	au.mutation.ResetElevation()
-	au.mutation.SetElevation(i)
-	return au
+func (_u *AirportUpdate) SetElevation(v int) *AirportUpdate {
+	_u.mutation.ResetElevation()
+	_u.mutation.SetElevation(v)
+	return _u
 }
 
 // SetNillableElevation sets the "elevation" field if the given value is not nil.
-func (au *AirportUpdate) SetNillableElevation(i *int) *AirportUpdate {
-	if i != nil {
-		au.SetElevation(*i)
+func (_u *AirportUpdate) SetNillableElevation(v *int) *AirportUpdate {
+	if v != nil {
+		_u.SetElevation(*v)
 	}
-	return au
+	return _u
 }
 
-// AddElevation adds i to the "elevation" field.
-func (au *AirportUpdate) AddElevation(i int) *AirportUpdate {
-	au.mutation.AddElevation(i)
-	return au
+// AddElevation adds value to the "elevation" field.
+func (_u *AirportUpdate) AddElevation(v int) *AirportUpdate {
+	_u.mutation.AddElevation(v)
+	return _u
 }
 
 // ClearElevation clears the value of the "elevation" field.
-func (au *AirportUpdate) ClearElevation() *AirportUpdate {
-	au.mutation.ClearElevation()
-	return au
+func (_u *AirportUpdate) ClearElevation() *AirportUpdate {
+	_u.mutation.ClearElevation()
+	return _u
 }
 
 // SetMunicipality sets the "municipality" field.
-func (au *AirportUpdate) SetMunicipality(s string) *AirportUpdate {
-	au.mutation.SetMunicipality(s)
-	return au
+func (_u *AirportUpdate) SetMunicipality(v string) *AirportUpdate {
+	_u.mutation.SetMunicipality(v)
+	return _u
 }
 
 // SetNillableMunicipality sets the "municipality" field if the given value is not nil.
-func (au *AirportUpdate) SetNillableMunicipality(s *string) *AirportUpdate {
-	if s != nil {
-		au.SetMunicipality(*s)
+func (_u *AirportUpdate) SetNillableMunicipality(v *string) *AirportUpdate {
+	if v != nil {
+		_u.SetMunicipality(*v)
 	}
-	return au
+	return _u
 }
 
 // ClearMunicipality clears the value of the "municipality" field.
-func (au *AirportUpdate) ClearMunicipality() *AirportUpdate {
-	au.mutation.ClearMunicipality()
-	return au
+func (_u *AirportUpdate) ClearMunicipality() *AirportUpdate {
+	_u.mutation.ClearMunicipality()
+	return _u
 }
 
 // SetScheduledService sets the "scheduled_service" field.
-func (au *AirportUpdate) SetScheduledService(b bool) *AirportUpdate {
-	au.mutation.SetScheduledService(b)
-	return au
+func (_u *AirportUpdate) SetScheduledService(v bool) *AirportUpdate {
+	_u.mutation.SetScheduledService(v)
+	return _u
+}
+
+// SetNillableScheduledService sets the "scheduled_service" field if the given value is not nil.
+func (_u *AirportUpdate) SetNillableScheduledService(v *bool) *AirportUpdate {
+	if v != nil {
+		_u.SetScheduledService(*v)
+	}
+	return _u
 }
 
 // SetGpsCode sets the "gps_code" field.
-func (au *AirportUpdate) SetGpsCode(s string) *AirportUpdate {
-	au.mutation.SetGpsCode(s)
-	return au
+func (_u *AirportUpdate) SetGpsCode(v string) *AirportUpdate {
+	_u.mutation.SetGpsCode(v)
+	return _u
 }
 
 // SetNillableGpsCode sets the "gps_code" field if the given value is not nil.
-func (au *AirportUpdate) SetNillableGpsCode(s *string) *AirportUpdate {
-	if s != nil {
-		au.SetGpsCode(*s)
+func (_u *AirportUpdate) SetNillableGpsCode(v *string) *AirportUpdate {
+	if v != nil {
+		_u.SetGpsCode(*v)
 	}
-	return au
+	return _u
 }
 
 // ClearGpsCode clears the value of the "gps_code" field.
-func (au *AirportUpdate) ClearGpsCode() *AirportUpdate {
-	au.mutation.ClearGpsCode()
-	return au
+func (_u *AirportUpdate) ClearGpsCode() *AirportUpdate {
+	_u.mutation.ClearGpsCode()
+	return _u
 }
 
 // SetLocalCode sets the "local_code" field.
-func (au *AirportUpdate) SetLocalCode(s string) *AirportUpdate {
-	au.mutation.SetLocalCode(s)
-	return au
+func (_u *AirportUpdate) SetLocalCode(v string) *AirportUpdate {
+	_u.mutation.SetLocalCode(v)
+	return _u
 }
 
 // SetNillableLocalCode sets the "local_code" field if the given value is not nil.
-func (au *AirportUpdate) SetNillableLocalCode(s *string) *AirportUpdate {
-	if s != nil {
-		au.SetLocalCode(*s)
+func (_u *AirportUpdate) SetNillableLocalCode(v *string) *AirportUpdate {
+	if v != nil {
+		_u.SetLocalCode(*v)
 	}
-	return au
+	return _u
 }
 
 // ClearLocalCode clears the value of the "local_code" field.
-func (au *AirportUpdate) ClearLocalCode() *AirportUpdate {
-	au.mutation.ClearLocalCode()
-	return au
+func (_u *AirportUpdate) ClearLocalCode() *AirportUpdate {
+	_u.mutation.ClearLocalCode()
+	return _u
 }
 
 // SetWebsite sets the "website" field.
-func (au *AirportUpdate) SetWebsite(s string) *AirportUpdate {
-	au.mutation.SetWebsite(s)
-	return au
+func (_u *AirportUpdate) SetWebsite(v string) *AirportUpdate {
+	_u.mutation.SetWebsite(v)
+	return _u
 }
 
 // SetNillableWebsite sets the "website" field if the given value is not nil.
-func (au *AirportUpdate) SetNillableWebsite(s *string) *AirportUpdate {
-	if s != nil {
-		au.SetWebsite(*s)
+func (_u *AirportUpdate) SetNillableWebsite(v *string) *AirportUpdate {
+	if v != nil {
+		_u.SetWebsite(*v)
 	}
-	return au
+	return _u
 }
 
 // ClearWebsite clears the value of the "website" field.
-func (au *AirportUpdate) ClearWebsite() *AirportUpdate {
-	au.mutation.ClearWebsite()
-	return au
+func (_u *AirportUpdate) ClearWebsite() *AirportUpdate {
+	_u.mutation.ClearWebsite()
+	return _u
 }
 
 // SetWikipedia sets the "wikipedia" field.
-func (au *AirportUpdate) SetWikipedia(s string) *AirportUpdate {
-	au.mutation.SetWikipedia(s)
-	return au
+func (_u *AirportUpdate) SetWikipedia(v string) *AirportUpdate {
+	_u.mutation.SetWikipedia(v)
+	return _u
 }
 
 // SetNillableWikipedia sets the "wikipedia" field if the given value is not nil.
-func (au *AirportUpdate) SetNillableWikipedia(s *string) *AirportUpdate {
-	if s != nil {
-		au.SetWikipedia(*s)
+func (_u *AirportUpdate) SetNillableWikipedia(v *string) *AirportUpdate {
+	if v != nil {
+		_u.SetWikipedia(*v)
 	}
-	return au
+	return _u
 }
 
 // ClearWikipedia clears the value of the "wikipedia" field.
-func (au *AirportUpdate) ClearWikipedia() *AirportUpdate {
-	au.mutation.ClearWikipedia()
-	return au
+func (_u *AirportUpdate) ClearWikipedia() *AirportUpdate {
+	_u.mutation.ClearWikipedia()
+	return _u
 }
 
 // SetKeywords sets the "keywords" field.
-func (au *AirportUpdate) SetKeywords(s []string) *AirportUpdate {
-	au.mutation.SetKeywords(s)
-	return au
+func (_u *AirportUpdate) SetKeywords(v []string) *AirportUpdate {
+	_u.mutation.SetKeywords(v)
+	return _u
 }
 
-// AppendKeywords appends s to the "keywords" field.
-func (au *AirportUpdate) AppendKeywords(s []string) *AirportUpdate {
-	au.mutation.AppendKeywords(s)
-	return au
+// AppendKeywords appends value to the "keywords" field.
+func (_u *AirportUpdate) AppendKeywords(v []string) *AirportUpdate {
+	_u.mutation.AppendKeywords(v)
+	return _u
 }
 
 // SetRegionID sets the "region" edge to the Region entity by ID.
-func (au *AirportUpdate) SetRegionID(id uuid.UUID) *AirportUpdate {
-	au.mutation.SetRegionID(id)
-	return au
+func (_u *AirportUpdate) SetRegionID(id uuid.UUID) *AirportUpdate {
+	_u.mutation.SetRegionID(id)
+	return _u
 }
 
 // SetNillableRegionID sets the "region" edge to the Region entity by ID if the given value is not nil.
-func (au *AirportUpdate) SetNillableRegionID(id *uuid.UUID) *AirportUpdate {
+func (_u *AirportUpdate) SetNillableRegionID(id *uuid.UUID) *AirportUpdate {
 	if id != nil {
-		au = au.SetRegionID(*id)
+		_u = _u.SetRegionID(*id)
 	}
-	return au
+	return _u
 }
 
 // SetRegion sets the "region" edge to the Region entity.
-func (au *AirportUpdate) SetRegion(r *Region) *AirportUpdate {
-	return au.SetRegionID(r.ID)
+func (_u *AirportUpdate) SetRegion(v *Region) *AirportUpdate {
+	return _u.SetRegionID(v.ID)
 }
 
 // SetCountryID sets the "country" edge to the Country entity by ID.
-func (au *AirportUpdate) SetCountryID(id uuid.UUID) *AirportUpdate {
-	au.mutation.SetCountryID(id)
-	return au
+func (_u *AirportUpdate) SetCountryID(id uuid.UUID) *AirportUpdate {
+	_u.mutation.SetCountryID(id)
+	return _u
 }
 
 // SetNillableCountryID sets the "country" edge to the Country entity by ID if the given value is not nil.
-func (au *AirportUpdate) SetNillableCountryID(id *uuid.UUID) *AirportUpdate {
+func (_u *AirportUpdate) SetNillableCountryID(id *uuid.UUID) *AirportUpdate {
 	if id != nil {
-		au = au.SetCountryID(*id)
+		_u = _u.SetCountryID(*id)
 	}
-	return au
+	return _u
 }
 
 // SetCountry sets the "country" edge to the Country entity.
-func (au *AirportUpdate) SetCountry(c *Country) *AirportUpdate {
-	return au.SetCountryID(c.ID)
+func (_u *AirportUpdate) SetCountry(v *Country) *AirportUpdate {
+	return _u.SetCountryID(v.ID)
 }
 
 // AddRunwayIDs adds the "runways" edge to the Runway entity by IDs.
-func (au *AirportUpdate) AddRunwayIDs(ids ...uuid.UUID) *AirportUpdate {
-	au.mutation.AddRunwayIDs(ids...)
-	return au
+func (_u *AirportUpdate) AddRunwayIDs(ids ...uuid.UUID) *AirportUpdate {
+	_u.mutation.AddRunwayIDs(ids...)
+	return _u
 }
 
 // AddRunways adds the "runways" edges to the Runway entity.
-func (au *AirportUpdate) AddRunways(r ...*Runway) *AirportUpdate {
-	ids := make([]uuid.UUID, len(r))
-	for i := range r {
-		ids[i] = r[i].ID
+func (_u *AirportUpdate) AddRunways(v ...*Runway) *AirportUpdate {
+	ids := make([]uuid.UUID, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return au.AddRunwayIDs(ids...)
+	return _u.AddRunwayIDs(ids...)
 }
 
 // AddFrequencyIDs adds the "frequencies" edge to the Frequency entity by IDs.
-func (au *AirportUpdate) AddFrequencyIDs(ids ...uuid.UUID) *AirportUpdate {
-	au.mutation.AddFrequencyIDs(ids...)
-	return au
+func (_u *AirportUpdate) AddFrequencyIDs(ids ...uuid.UUID) *AirportUpdate {
+	_u.mutation.AddFrequencyIDs(ids...)
+	return _u
 }
 
 // AddFrequencies adds the "frequencies" edges to the Frequency entity.
-func (au *AirportUpdate) AddFrequencies(f ...*Frequency) *AirportUpdate {
-	ids := make([]uuid.UUID, len(f))
-	for i := range f {
-		ids[i] = f[i].ID
+func (_u *AirportUpdate) AddFrequencies(v ...*Frequency) *AirportUpdate {
+	ids := make([]uuid.UUID, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return au.AddFrequencyIDs(ids...)
+	return _u.AddFrequencyIDs(ids...)
 }
 
 // SetStationID sets the "station" edge to the WeatherStation entity by ID.
-func (au *AirportUpdate) SetStationID(id uuid.UUID) *AirportUpdate {
-	au.mutation.SetStationID(id)
-	return au
+func (_u *AirportUpdate) SetStationID(id uuid.UUID) *AirportUpdate {
+	_u.mutation.SetStationID(id)
+	return _u
 }
 
 // SetNillableStationID sets the "station" edge to the WeatherStation entity by ID if the given value is not nil.
-func (au *AirportUpdate) SetNillableStationID(id *uuid.UUID) *AirportUpdate {
+func (_u *AirportUpdate) SetNillableStationID(id *uuid.UUID) *AirportUpdate {
 	if id != nil {
-		au = au.SetStationID(*id)
+		_u = _u.SetStationID(*id)
 	}
-	return au
+	return _u
 }
 
 // SetStation sets the "station" edge to the WeatherStation entity.
-func (au *AirportUpdate) SetStation(w *WeatherStation) *AirportUpdate {
-	return au.SetStationID(w.ID)
+func (_u *AirportUpdate) SetStation(v *WeatherStation) *AirportUpdate {
+	return _u.SetStationID(v.ID)
 }
 
 // Mutation returns the AirportMutation object of the builder.
-func (au *AirportUpdate) Mutation() *AirportMutation {
-	return au.mutation
+func (_u *AirportUpdate) Mutation() *AirportMutation {
+	return _u.mutation
 }
 
 // ClearRegion clears the "region" edge to the Region entity.
-func (au *AirportUpdate) ClearRegion() *AirportUpdate {
-	au.mutation.ClearRegion()
-	return au
+func (_u *AirportUpdate) ClearRegion() *AirportUpdate {
+	_u.mutation.ClearRegion()
+	return _u
 }
 
 // ClearCountry clears the "country" edge to the Country entity.
-func (au *AirportUpdate) ClearCountry() *AirportUpdate {
-	au.mutation.ClearCountry()
-	return au
+func (_u *AirportUpdate) ClearCountry() *AirportUpdate {
+	_u.mutation.ClearCountry()
+	return _u
 }
 
 // ClearRunways clears all "runways" edges to the Runway entity.
-func (au *AirportUpdate) ClearRunways() *AirportUpdate {
-	au.mutation.ClearRunways()
-	return au
+func (_u *AirportUpdate) ClearRunways() *AirportUpdate {
+	_u.mutation.ClearRunways()
+	return _u
 }
 
 // RemoveRunwayIDs removes the "runways" edge to Runway entities by IDs.
-func (au *AirportUpdate) RemoveRunwayIDs(ids ...uuid.UUID) *AirportUpdate {
-	au.mutation.RemoveRunwayIDs(ids...)
-	return au
+func (_u *AirportUpdate) RemoveRunwayIDs(ids ...uuid.UUID) *AirportUpdate {
+	_u.mutation.RemoveRunwayIDs(ids...)
+	return _u
 }
 
 // RemoveRunways removes "runways" edges to Runway entities.
-func (au *AirportUpdate) RemoveRunways(r ...*Runway) *AirportUpdate {
-	ids := make([]uuid.UUID, len(r))
-	for i := range r {
-		ids[i] = r[i].ID
+func (_u *AirportUpdate) RemoveRunways(v ...*Runway) *AirportUpdate {
+	ids := make([]uuid.UUID, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return au.RemoveRunwayIDs(ids...)
+	return _u.RemoveRunwayIDs(ids...)
 }
 
 // ClearFrequencies clears all "frequencies" edges to the Frequency entity.
-func (au *AirportUpdate) ClearFrequencies() *AirportUpdate {
-	au.mutation.ClearFrequencies()
-	return au
+func (_u *AirportUpdate) ClearFrequencies() *AirportUpdate {
+	_u.mutation.ClearFrequencies()
+	return _u
 }
 
 // RemoveFrequencyIDs removes the "frequencies" edge to Frequency entities by IDs.
-func (au *AirportUpdate) RemoveFrequencyIDs(ids ...uuid.UUID) *AirportUpdate {
-	au.mutation.RemoveFrequencyIDs(ids...)
-	return au
+func (_u *AirportUpdate) RemoveFrequencyIDs(ids ...uuid.UUID) *AirportUpdate {
+	_u.mutation.RemoveFrequencyIDs(ids...)
+	return _u
 }
 
 // RemoveFrequencies removes "frequencies" edges to Frequency entities.
-func (au *AirportUpdate) RemoveFrequencies(f ...*Frequency) *AirportUpdate {
-	ids := make([]uuid.UUID, len(f))
-	for i := range f {
-		ids[i] = f[i].ID
+func (_u *AirportUpdate) RemoveFrequencies(v ...*Frequency) *AirportUpdate {
+	ids := make([]uuid.UUID, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return au.RemoveFrequencyIDs(ids...)
+	return _u.RemoveFrequencyIDs(ids...)
 }
 
 // ClearStation clears the "station" edge to the WeatherStation entity.
-func (au *AirportUpdate) ClearStation() *AirportUpdate {
-	au.mutation.ClearStation()
-	return au
+func (_u *AirportUpdate) ClearStation() *AirportUpdate {
+	_u.mutation.ClearStation()
+	return _u
 }
 
 // Save executes the query and returns the number of nodes affected by the update operation.
-func (au *AirportUpdate) Save(ctx context.Context) (int, error) {
-	return withHooks(ctx, au.sqlSave, au.mutation, au.hooks)
+func (_u *AirportUpdate) Save(ctx context.Context) (int, error) {
+	return withHooks(ctx, _u.sqlSave, _u.mutation, _u.hooks)
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (au *AirportUpdate) SaveX(ctx context.Context) int {
-	affected, err := au.Save(ctx)
+func (_u *AirportUpdate) SaveX(ctx context.Context) int {
+	affected, err := _u.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -520,26 +584,26 @@ func (au *AirportUpdate) SaveX(ctx context.Context) int {
 }
 
 // Exec executes the query.
-func (au *AirportUpdate) Exec(ctx context.Context) error {
-	_, err := au.Save(ctx)
+func (_u *AirportUpdate) Exec(ctx context.Context) error {
+	_, err := _u.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (au *AirportUpdate) ExecX(ctx context.Context) {
-	if err := au.Exec(ctx); err != nil {
+func (_u *AirportUpdate) ExecX(ctx context.Context) {
+	if err := _u.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // check runs all checks and user-defined validators on the builder.
-func (au *AirportUpdate) check() error {
-	if v, ok := au.mutation.IcaoCode(); ok {
+func (_u *AirportUpdate) check() error {
+	if v, ok := _u.mutation.IcaoCode(); ok {
 		if err := airport.IcaoCodeValidator(v); err != nil {
 			return &ValidationError{Name: "icao_code", err: fmt.Errorf(`ent: validator failed for field "Airport.icao_code": %w`, err)}
 		}
 	}
-	if v, ok := au.mutation.GetType(); ok {
+	if v, ok := _u.mutation.GetType(); ok {
 		if err := airport.TypeValidator(v); err != nil {
 			return &ValidationError{Name: "type", err: fmt.Errorf(`ent: validator failed for field "Airport.type": %w`, err)}
 		}
@@ -548,134 +612,134 @@ func (au *AirportUpdate) check() error {
 }
 
 // Modify adds a statement modifier for attaching custom logic to the UPDATE statement.
-func (au *AirportUpdate) Modify(modifiers ...func(u *sql.UpdateBuilder)) *AirportUpdate {
-	au.modifiers = append(au.modifiers, modifiers...)
-	return au
+func (_u *AirportUpdate) Modify(modifiers ...func(u *sql.UpdateBuilder)) *AirportUpdate {
+	_u.modifiers = append(_u.modifiers, modifiers...)
+	return _u
 }
 
-func (au *AirportUpdate) sqlSave(ctx context.Context) (n int, err error) {
-	if err := au.check(); err != nil {
-		return n, err
+func (_u *AirportUpdate) sqlSave(ctx context.Context) (_node int, err error) {
+	if err := _u.check(); err != nil {
+		return _node, err
 	}
 	_spec := sqlgraph.NewUpdateSpec(airport.Table, airport.Columns, sqlgraph.NewFieldSpec(airport.FieldID, field.TypeUUID))
-	if ps := au.mutation.predicates; len(ps) > 0 {
+	if ps := _u.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if value, ok := au.mutation.ImportID(); ok {
+	if value, ok := _u.mutation.ImportID(); ok {
 		_spec.SetField(airport.FieldImportID, field.TypeInt, value)
 	}
-	if value, ok := au.mutation.AddedImportID(); ok {
+	if value, ok := _u.mutation.AddedImportID(); ok {
 		_spec.AddField(airport.FieldImportID, field.TypeInt, value)
 	}
-	if value, ok := au.mutation.Hash(); ok {
+	if value, ok := _u.mutation.Hash(); ok {
 		_spec.SetField(airport.FieldHash, field.TypeString, value)
 	}
-	if value, ok := au.mutation.ImportFlag(); ok {
+	if value, ok := _u.mutation.ImportFlag(); ok {
 		_spec.SetField(airport.FieldImportFlag, field.TypeBool, value)
 	}
-	if value, ok := au.mutation.LastUpdated(); ok {
+	if value, ok := _u.mutation.LastUpdated(); ok {
 		_spec.SetField(airport.FieldLastUpdated, field.TypeTime, value)
 	}
-	if value, ok := au.mutation.IcaoCode(); ok {
+	if value, ok := _u.mutation.IcaoCode(); ok {
 		_spec.SetField(airport.FieldIcaoCode, field.TypeString, value)
 	}
-	if au.mutation.IcaoCodeCleared() {
+	if _u.mutation.IcaoCodeCleared() {
 		_spec.ClearField(airport.FieldIcaoCode, field.TypeString)
 	}
-	if value, ok := au.mutation.IataCode(); ok {
+	if value, ok := _u.mutation.IataCode(); ok {
 		_spec.SetField(airport.FieldIataCode, field.TypeString, value)
 	}
-	if au.mutation.IataCodeCleared() {
+	if _u.mutation.IataCodeCleared() {
 		_spec.ClearField(airport.FieldIataCode, field.TypeString)
 	}
-	if value, ok := au.mutation.Identifier(); ok {
+	if value, ok := _u.mutation.Identifier(); ok {
 		_spec.SetField(airport.FieldIdentifier, field.TypeString, value)
 	}
-	if value, ok := au.mutation.GetType(); ok {
+	if value, ok := _u.mutation.GetType(); ok {
 		_spec.SetField(airport.FieldType, field.TypeEnum, value)
 	}
-	if value, ok := au.mutation.Importance(); ok {
+	if value, ok := _u.mutation.Importance(); ok {
 		_spec.SetField(airport.FieldImportance, field.TypeInt, value)
 	}
-	if value, ok := au.mutation.AddedImportance(); ok {
+	if value, ok := _u.mutation.AddedImportance(); ok {
 		_spec.AddField(airport.FieldImportance, field.TypeInt, value)
 	}
-	if value, ok := au.mutation.Name(); ok {
+	if value, ok := _u.mutation.Name(); ok {
 		_spec.SetField(airport.FieldName, field.TypeString, value)
 	}
-	if value, ok := au.mutation.Latitude(); ok {
+	if value, ok := _u.mutation.Latitude(); ok {
 		_spec.SetField(airport.FieldLatitude, field.TypeFloat64, value)
 	}
-	if value, ok := au.mutation.AddedLatitude(); ok {
+	if value, ok := _u.mutation.AddedLatitude(); ok {
 		_spec.AddField(airport.FieldLatitude, field.TypeFloat64, value)
 	}
-	if value, ok := au.mutation.Longitude(); ok {
+	if value, ok := _u.mutation.Longitude(); ok {
 		_spec.SetField(airport.FieldLongitude, field.TypeFloat64, value)
 	}
-	if value, ok := au.mutation.AddedLongitude(); ok {
+	if value, ok := _u.mutation.AddedLongitude(); ok {
 		_spec.AddField(airport.FieldLongitude, field.TypeFloat64, value)
 	}
-	if value, ok := au.mutation.Timezone(); ok {
+	if value, ok := _u.mutation.Timezone(); ok {
 		_spec.SetField(airport.FieldTimezone, field.TypeString, value)
 	}
-	if au.mutation.TimezoneCleared() {
+	if _u.mutation.TimezoneCleared() {
 		_spec.ClearField(airport.FieldTimezone, field.TypeString)
 	}
-	if value, ok := au.mutation.Elevation(); ok {
+	if value, ok := _u.mutation.Elevation(); ok {
 		_spec.SetField(airport.FieldElevation, field.TypeInt, value)
 	}
-	if value, ok := au.mutation.AddedElevation(); ok {
+	if value, ok := _u.mutation.AddedElevation(); ok {
 		_spec.AddField(airport.FieldElevation, field.TypeInt, value)
 	}
-	if au.mutation.ElevationCleared() {
+	if _u.mutation.ElevationCleared() {
 		_spec.ClearField(airport.FieldElevation, field.TypeInt)
 	}
-	if value, ok := au.mutation.Municipality(); ok {
+	if value, ok := _u.mutation.Municipality(); ok {
 		_spec.SetField(airport.FieldMunicipality, field.TypeString, value)
 	}
-	if au.mutation.MunicipalityCleared() {
+	if _u.mutation.MunicipalityCleared() {
 		_spec.ClearField(airport.FieldMunicipality, field.TypeString)
 	}
-	if value, ok := au.mutation.ScheduledService(); ok {
+	if value, ok := _u.mutation.ScheduledService(); ok {
 		_spec.SetField(airport.FieldScheduledService, field.TypeBool, value)
 	}
-	if value, ok := au.mutation.GpsCode(); ok {
+	if value, ok := _u.mutation.GpsCode(); ok {
 		_spec.SetField(airport.FieldGpsCode, field.TypeString, value)
 	}
-	if au.mutation.GpsCodeCleared() {
+	if _u.mutation.GpsCodeCleared() {
 		_spec.ClearField(airport.FieldGpsCode, field.TypeString)
 	}
-	if value, ok := au.mutation.LocalCode(); ok {
+	if value, ok := _u.mutation.LocalCode(); ok {
 		_spec.SetField(airport.FieldLocalCode, field.TypeString, value)
 	}
-	if au.mutation.LocalCodeCleared() {
+	if _u.mutation.LocalCodeCleared() {
 		_spec.ClearField(airport.FieldLocalCode, field.TypeString)
 	}
-	if value, ok := au.mutation.Website(); ok {
+	if value, ok := _u.mutation.Website(); ok {
 		_spec.SetField(airport.FieldWebsite, field.TypeString, value)
 	}
-	if au.mutation.WebsiteCleared() {
+	if _u.mutation.WebsiteCleared() {
 		_spec.ClearField(airport.FieldWebsite, field.TypeString)
 	}
-	if value, ok := au.mutation.Wikipedia(); ok {
+	if value, ok := _u.mutation.Wikipedia(); ok {
 		_spec.SetField(airport.FieldWikipedia, field.TypeString, value)
 	}
-	if au.mutation.WikipediaCleared() {
+	if _u.mutation.WikipediaCleared() {
 		_spec.ClearField(airport.FieldWikipedia, field.TypeString)
 	}
-	if value, ok := au.mutation.Keywords(); ok {
+	if value, ok := _u.mutation.Keywords(); ok {
 		_spec.SetField(airport.FieldKeywords, field.TypeJSON, value)
 	}
-	if value, ok := au.mutation.AppendedKeywords(); ok {
+	if value, ok := _u.mutation.AppendedKeywords(); ok {
 		_spec.AddModifier(func(u *sql.UpdateBuilder) {
 			sqljson.Append(u, airport.FieldKeywords, value)
 		})
 	}
-	if au.mutation.RegionCleared() {
+	if _u.mutation.RegionCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.M2O,
 			Inverse: true,
@@ -688,7 +752,7 @@ func (au *AirportUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := au.mutation.RegionIDs(); len(nodes) > 0 {
+	if nodes := _u.mutation.RegionIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.M2O,
 			Inverse: true,
@@ -704,7 +768,7 @@ func (au *AirportUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		_spec.Edges.Add = append(_spec.Edges.Add, edge)
 	}
-	if au.mutation.CountryCleared() {
+	if _u.mutation.CountryCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.M2O,
 			Inverse: true,
@@ -717,7 +781,7 @@ func (au *AirportUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := au.mutation.CountryIDs(); len(nodes) > 0 {
+	if nodes := _u.mutation.CountryIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.M2O,
 			Inverse: true,
@@ -733,7 +797,7 @@ func (au *AirportUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		_spec.Edges.Add = append(_spec.Edges.Add, edge)
 	}
-	if au.mutation.RunwaysCleared() {
+	if _u.mutation.RunwaysCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -746,7 +810,7 @@ func (au *AirportUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := au.mutation.RemovedRunwaysIDs(); len(nodes) > 0 && !au.mutation.RunwaysCleared() {
+	if nodes := _u.mutation.RemovedRunwaysIDs(); len(nodes) > 0 && !_u.mutation.RunwaysCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -762,7 +826,7 @@ func (au *AirportUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := au.mutation.RunwaysIDs(); len(nodes) > 0 {
+	if nodes := _u.mutation.RunwaysIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -778,7 +842,7 @@ func (au *AirportUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		_spec.Edges.Add = append(_spec.Edges.Add, edge)
 	}
-	if au.mutation.FrequenciesCleared() {
+	if _u.mutation.FrequenciesCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -791,7 +855,7 @@ func (au *AirportUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := au.mutation.RemovedFrequenciesIDs(); len(nodes) > 0 && !au.mutation.FrequenciesCleared() {
+	if nodes := _u.mutation.RemovedFrequenciesIDs(); len(nodes) > 0 && !_u.mutation.FrequenciesCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -807,7 +871,7 @@ func (au *AirportUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := au.mutation.FrequenciesIDs(); len(nodes) > 0 {
+	if nodes := _u.mutation.FrequenciesIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -823,7 +887,7 @@ func (au *AirportUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		_spec.Edges.Add = append(_spec.Edges.Add, edge)
 	}
-	if au.mutation.StationCleared() {
+	if _u.mutation.StationCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2O,
 			Inverse: false,
@@ -836,7 +900,7 @@ func (au *AirportUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := au.mutation.StationIDs(); len(nodes) > 0 {
+	if nodes := _u.mutation.StationIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2O,
 			Inverse: false,
@@ -852,8 +916,8 @@ func (au *AirportUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		_spec.Edges.Add = append(_spec.Edges.Add, edge)
 	}
-	_spec.AddModifiers(au.modifiers...)
-	if n, err = sqlgraph.UpdateNodes(ctx, au.driver, _spec); err != nil {
+	_spec.AddModifiers(_u.modifiers...)
+	if _node, err = sqlgraph.UpdateNodes(ctx, _u.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
 			err = &NotFoundError{airport.Label}
 		} else if sqlgraph.IsConstraintError(err) {
@@ -861,8 +925,8 @@ func (au *AirportUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		return 0, err
 	}
-	au.mutation.done = true
-	return n, nil
+	_u.mutation.done = true
+	return _node, nil
 }
 
 // AirportUpdateOne is the builder for updating a single Airport entity.
@@ -875,495 +939,559 @@ type AirportUpdateOne struct {
 }
 
 // SetImportID sets the "import_id" field.
-func (auo *AirportUpdateOne) SetImportID(i int) *AirportUpdateOne {
-	auo.mutation.ResetImportID()
-	auo.mutation.SetImportID(i)
-	return auo
+func (_u *AirportUpdateOne) SetImportID(v int) *AirportUpdateOne {
+	_u.mutation.ResetImportID()
+	_u.mutation.SetImportID(v)
+	return _u
 }
 
-// AddImportID adds i to the "import_id" field.
-func (auo *AirportUpdateOne) AddImportID(i int) *AirportUpdateOne {
-	auo.mutation.AddImportID(i)
-	return auo
+// SetNillableImportID sets the "import_id" field if the given value is not nil.
+func (_u *AirportUpdateOne) SetNillableImportID(v *int) *AirportUpdateOne {
+	if v != nil {
+		_u.SetImportID(*v)
+	}
+	return _u
+}
+
+// AddImportID adds value to the "import_id" field.
+func (_u *AirportUpdateOne) AddImportID(v int) *AirportUpdateOne {
+	_u.mutation.AddImportID(v)
+	return _u
 }
 
 // SetHash sets the "hash" field.
-func (auo *AirportUpdateOne) SetHash(s string) *AirportUpdateOne {
-	auo.mutation.SetHash(s)
-	return auo
+func (_u *AirportUpdateOne) SetHash(v string) *AirportUpdateOne {
+	_u.mutation.SetHash(v)
+	return _u
+}
+
+// SetNillableHash sets the "hash" field if the given value is not nil.
+func (_u *AirportUpdateOne) SetNillableHash(v *string) *AirportUpdateOne {
+	if v != nil {
+		_u.SetHash(*v)
+	}
+	return _u
 }
 
 // SetImportFlag sets the "import_flag" field.
-func (auo *AirportUpdateOne) SetImportFlag(b bool) *AirportUpdateOne {
-	auo.mutation.SetImportFlag(b)
-	return auo
+func (_u *AirportUpdateOne) SetImportFlag(v bool) *AirportUpdateOne {
+	_u.mutation.SetImportFlag(v)
+	return _u
 }
 
 // SetNillableImportFlag sets the "import_flag" field if the given value is not nil.
-func (auo *AirportUpdateOne) SetNillableImportFlag(b *bool) *AirportUpdateOne {
-	if b != nil {
-		auo.SetImportFlag(*b)
+func (_u *AirportUpdateOne) SetNillableImportFlag(v *bool) *AirportUpdateOne {
+	if v != nil {
+		_u.SetImportFlag(*v)
 	}
-	return auo
+	return _u
 }
 
 // SetLastUpdated sets the "last_updated" field.
-func (auo *AirportUpdateOne) SetLastUpdated(t time.Time) *AirportUpdateOne {
-	auo.mutation.SetLastUpdated(t)
-	return auo
+func (_u *AirportUpdateOne) SetLastUpdated(v time.Time) *AirportUpdateOne {
+	_u.mutation.SetLastUpdated(v)
+	return _u
 }
 
 // SetNillableLastUpdated sets the "last_updated" field if the given value is not nil.
-func (auo *AirportUpdateOne) SetNillableLastUpdated(t *time.Time) *AirportUpdateOne {
-	if t != nil {
-		auo.SetLastUpdated(*t)
+func (_u *AirportUpdateOne) SetNillableLastUpdated(v *time.Time) *AirportUpdateOne {
+	if v != nil {
+		_u.SetLastUpdated(*v)
 	}
-	return auo
+	return _u
 }
 
 // SetIcaoCode sets the "icao_code" field.
-func (auo *AirportUpdateOne) SetIcaoCode(s string) *AirportUpdateOne {
-	auo.mutation.SetIcaoCode(s)
-	return auo
+func (_u *AirportUpdateOne) SetIcaoCode(v string) *AirportUpdateOne {
+	_u.mutation.SetIcaoCode(v)
+	return _u
 }
 
 // SetNillableIcaoCode sets the "icao_code" field if the given value is not nil.
-func (auo *AirportUpdateOne) SetNillableIcaoCode(s *string) *AirportUpdateOne {
-	if s != nil {
-		auo.SetIcaoCode(*s)
+func (_u *AirportUpdateOne) SetNillableIcaoCode(v *string) *AirportUpdateOne {
+	if v != nil {
+		_u.SetIcaoCode(*v)
 	}
-	return auo
+	return _u
 }
 
 // ClearIcaoCode clears the value of the "icao_code" field.
-func (auo *AirportUpdateOne) ClearIcaoCode() *AirportUpdateOne {
-	auo.mutation.ClearIcaoCode()
-	return auo
+func (_u *AirportUpdateOne) ClearIcaoCode() *AirportUpdateOne {
+	_u.mutation.ClearIcaoCode()
+	return _u
 }
 
 // SetIataCode sets the "iata_code" field.
-func (auo *AirportUpdateOne) SetIataCode(s string) *AirportUpdateOne {
-	auo.mutation.SetIataCode(s)
-	return auo
+func (_u *AirportUpdateOne) SetIataCode(v string) *AirportUpdateOne {
+	_u.mutation.SetIataCode(v)
+	return _u
 }
 
 // SetNillableIataCode sets the "iata_code" field if the given value is not nil.
-func (auo *AirportUpdateOne) SetNillableIataCode(s *string) *AirportUpdateOne {
-	if s != nil {
-		auo.SetIataCode(*s)
+func (_u *AirportUpdateOne) SetNillableIataCode(v *string) *AirportUpdateOne {
+	if v != nil {
+		_u.SetIataCode(*v)
 	}
-	return auo
+	return _u
 }
 
 // ClearIataCode clears the value of the "iata_code" field.
-func (auo *AirportUpdateOne) ClearIataCode() *AirportUpdateOne {
-	auo.mutation.ClearIataCode()
-	return auo
+func (_u *AirportUpdateOne) ClearIataCode() *AirportUpdateOne {
+	_u.mutation.ClearIataCode()
+	return _u
 }
 
 // SetIdentifier sets the "identifier" field.
-func (auo *AirportUpdateOne) SetIdentifier(s string) *AirportUpdateOne {
-	auo.mutation.SetIdentifier(s)
-	return auo
+func (_u *AirportUpdateOne) SetIdentifier(v string) *AirportUpdateOne {
+	_u.mutation.SetIdentifier(v)
+	return _u
+}
+
+// SetNillableIdentifier sets the "identifier" field if the given value is not nil.
+func (_u *AirportUpdateOne) SetNillableIdentifier(v *string) *AirportUpdateOne {
+	if v != nil {
+		_u.SetIdentifier(*v)
+	}
+	return _u
 }
 
 // SetType sets the "type" field.
-func (auo *AirportUpdateOne) SetType(a airport.Type) *AirportUpdateOne {
-	auo.mutation.SetType(a)
-	return auo
+func (_u *AirportUpdateOne) SetType(v airport.Type) *AirportUpdateOne {
+	_u.mutation.SetType(v)
+	return _u
+}
+
+// SetNillableType sets the "type" field if the given value is not nil.
+func (_u *AirportUpdateOne) SetNillableType(v *airport.Type) *AirportUpdateOne {
+	if v != nil {
+		_u.SetType(*v)
+	}
+	return _u
 }
 
 // SetImportance sets the "importance" field.
-func (auo *AirportUpdateOne) SetImportance(i int) *AirportUpdateOne {
-	auo.mutation.ResetImportance()
-	auo.mutation.SetImportance(i)
-	return auo
+func (_u *AirportUpdateOne) SetImportance(v int) *AirportUpdateOne {
+	_u.mutation.ResetImportance()
+	_u.mutation.SetImportance(v)
+	return _u
 }
 
 // SetNillableImportance sets the "importance" field if the given value is not nil.
-func (auo *AirportUpdateOne) SetNillableImportance(i *int) *AirportUpdateOne {
-	if i != nil {
-		auo.SetImportance(*i)
+func (_u *AirportUpdateOne) SetNillableImportance(v *int) *AirportUpdateOne {
+	if v != nil {
+		_u.SetImportance(*v)
 	}
-	return auo
+	return _u
 }
 
-// AddImportance adds i to the "importance" field.
-func (auo *AirportUpdateOne) AddImportance(i int) *AirportUpdateOne {
-	auo.mutation.AddImportance(i)
-	return auo
+// AddImportance adds value to the "importance" field.
+func (_u *AirportUpdateOne) AddImportance(v int) *AirportUpdateOne {
+	_u.mutation.AddImportance(v)
+	return _u
 }
 
 // SetName sets the "name" field.
-func (auo *AirportUpdateOne) SetName(s string) *AirportUpdateOne {
-	auo.mutation.SetName(s)
-	return auo
+func (_u *AirportUpdateOne) SetName(v string) *AirportUpdateOne {
+	_u.mutation.SetName(v)
+	return _u
+}
+
+// SetNillableName sets the "name" field if the given value is not nil.
+func (_u *AirportUpdateOne) SetNillableName(v *string) *AirportUpdateOne {
+	if v != nil {
+		_u.SetName(*v)
+	}
+	return _u
 }
 
 // SetLatitude sets the "latitude" field.
-func (auo *AirportUpdateOne) SetLatitude(f float64) *AirportUpdateOne {
-	auo.mutation.ResetLatitude()
-	auo.mutation.SetLatitude(f)
-	return auo
+func (_u *AirportUpdateOne) SetLatitude(v float64) *AirportUpdateOne {
+	_u.mutation.ResetLatitude()
+	_u.mutation.SetLatitude(v)
+	return _u
 }
 
-// AddLatitude adds f to the "latitude" field.
-func (auo *AirportUpdateOne) AddLatitude(f float64) *AirportUpdateOne {
-	auo.mutation.AddLatitude(f)
-	return auo
+// SetNillableLatitude sets the "latitude" field if the given value is not nil.
+func (_u *AirportUpdateOne) SetNillableLatitude(v *float64) *AirportUpdateOne {
+	if v != nil {
+		_u.SetLatitude(*v)
+	}
+	return _u
+}
+
+// AddLatitude adds value to the "latitude" field.
+func (_u *AirportUpdateOne) AddLatitude(v float64) *AirportUpdateOne {
+	_u.mutation.AddLatitude(v)
+	return _u
 }
 
 // SetLongitude sets the "longitude" field.
-func (auo *AirportUpdateOne) SetLongitude(f float64) *AirportUpdateOne {
-	auo.mutation.ResetLongitude()
-	auo.mutation.SetLongitude(f)
-	return auo
+func (_u *AirportUpdateOne) SetLongitude(v float64) *AirportUpdateOne {
+	_u.mutation.ResetLongitude()
+	_u.mutation.SetLongitude(v)
+	return _u
 }
 
-// AddLongitude adds f to the "longitude" field.
-func (auo *AirportUpdateOne) AddLongitude(f float64) *AirportUpdateOne {
-	auo.mutation.AddLongitude(f)
-	return auo
+// SetNillableLongitude sets the "longitude" field if the given value is not nil.
+func (_u *AirportUpdateOne) SetNillableLongitude(v *float64) *AirportUpdateOne {
+	if v != nil {
+		_u.SetLongitude(*v)
+	}
+	return _u
+}
+
+// AddLongitude adds value to the "longitude" field.
+func (_u *AirportUpdateOne) AddLongitude(v float64) *AirportUpdateOne {
+	_u.mutation.AddLongitude(v)
+	return _u
 }
 
 // SetTimezone sets the "timezone" field.
-func (auo *AirportUpdateOne) SetTimezone(s string) *AirportUpdateOne {
-	auo.mutation.SetTimezone(s)
-	return auo
+func (_u *AirportUpdateOne) SetTimezone(v string) *AirportUpdateOne {
+	_u.mutation.SetTimezone(v)
+	return _u
 }
 
 // SetNillableTimezone sets the "timezone" field if the given value is not nil.
-func (auo *AirportUpdateOne) SetNillableTimezone(s *string) *AirportUpdateOne {
-	if s != nil {
-		auo.SetTimezone(*s)
+func (_u *AirportUpdateOne) SetNillableTimezone(v *string) *AirportUpdateOne {
+	if v != nil {
+		_u.SetTimezone(*v)
 	}
-	return auo
+	return _u
 }
 
 // ClearTimezone clears the value of the "timezone" field.
-func (auo *AirportUpdateOne) ClearTimezone() *AirportUpdateOne {
-	auo.mutation.ClearTimezone()
-	return auo
+func (_u *AirportUpdateOne) ClearTimezone() *AirportUpdateOne {
+	_u.mutation.ClearTimezone()
+	return _u
 }
 
 // SetElevation sets the "elevation" field.
-func (auo *AirportUpdateOne) SetElevation(i int) *AirportUpdateOne {
-	auo.mutation.ResetElevation()
-	auo.mutation.SetElevation(i)
-	return auo
+func (_u *AirportUpdateOne) SetElevation(v int) *AirportUpdateOne {
+	_u.mutation.ResetElevation()
+	_u.mutation.SetElevation(v)
+	return _u
 }
 
 // SetNillableElevation sets the "elevation" field if the given value is not nil.
-func (auo *AirportUpdateOne) SetNillableElevation(i *int) *AirportUpdateOne {
-	if i != nil {
-		auo.SetElevation(*i)
+func (_u *AirportUpdateOne) SetNillableElevation(v *int) *AirportUpdateOne {
+	if v != nil {
+		_u.SetElevation(*v)
 	}
-	return auo
+	return _u
 }
 
-// AddElevation adds i to the "elevation" field.
-func (auo *AirportUpdateOne) AddElevation(i int) *AirportUpdateOne {
-	auo.mutation.AddElevation(i)
-	return auo
+// AddElevation adds value to the "elevation" field.
+func (_u *AirportUpdateOne) AddElevation(v int) *AirportUpdateOne {
+	_u.mutation.AddElevation(v)
+	return _u
 }
 
 // ClearElevation clears the value of the "elevation" field.
-func (auo *AirportUpdateOne) ClearElevation() *AirportUpdateOne {
-	auo.mutation.ClearElevation()
-	return auo
+func (_u *AirportUpdateOne) ClearElevation() *AirportUpdateOne {
+	_u.mutation.ClearElevation()
+	return _u
 }
 
 // SetMunicipality sets the "municipality" field.
-func (auo *AirportUpdateOne) SetMunicipality(s string) *AirportUpdateOne {
-	auo.mutation.SetMunicipality(s)
-	return auo
+func (_u *AirportUpdateOne) SetMunicipality(v string) *AirportUpdateOne {
+	_u.mutation.SetMunicipality(v)
+	return _u
 }
 
 // SetNillableMunicipality sets the "municipality" field if the given value is not nil.
-func (auo *AirportUpdateOne) SetNillableMunicipality(s *string) *AirportUpdateOne {
-	if s != nil {
-		auo.SetMunicipality(*s)
+func (_u *AirportUpdateOne) SetNillableMunicipality(v *string) *AirportUpdateOne {
+	if v != nil {
+		_u.SetMunicipality(*v)
 	}
-	return auo
+	return _u
 }
 
 // ClearMunicipality clears the value of the "municipality" field.
-func (auo *AirportUpdateOne) ClearMunicipality() *AirportUpdateOne {
-	auo.mutation.ClearMunicipality()
-	return auo
+func (_u *AirportUpdateOne) ClearMunicipality() *AirportUpdateOne {
+	_u.mutation.ClearMunicipality()
+	return _u
 }
 
 // SetScheduledService sets the "scheduled_service" field.
-func (auo *AirportUpdateOne) SetScheduledService(b bool) *AirportUpdateOne {
-	auo.mutation.SetScheduledService(b)
-	return auo
+func (_u *AirportUpdateOne) SetScheduledService(v bool) *AirportUpdateOne {
+	_u.mutation.SetScheduledService(v)
+	return _u
+}
+
+// SetNillableScheduledService sets the "scheduled_service" field if the given value is not nil.
+func (_u *AirportUpdateOne) SetNillableScheduledService(v *bool) *AirportUpdateOne {
+	if v != nil {
+		_u.SetScheduledService(*v)
+	}
+	return _u
 }
 
 // SetGpsCode sets the "gps_code" field.
-func (auo *AirportUpdateOne) SetGpsCode(s string) *AirportUpdateOne {
-	auo.mutation.SetGpsCode(s)
-	return auo
+func (_u *AirportUpdateOne) SetGpsCode(v string) *AirportUpdateOne {
+	_u.mutation.SetGpsCode(v)
+	return _u
 }
 
 // SetNillableGpsCode sets the "gps_code" field if the given value is not nil.
-func (auo *AirportUpdateOne) SetNillableGpsCode(s *string) *AirportUpdateOne {
-	if s != nil {
-		auo.SetGpsCode(*s)
+func (_u *AirportUpdateOne) SetNillableGpsCode(v *string) *AirportUpdateOne {
+	if v != nil {
+		_u.SetGpsCode(*v)
 	}
-	return auo
+	return _u
 }
 
 // ClearGpsCode clears the value of the "gps_code" field.
-func (auo *AirportUpdateOne) ClearGpsCode() *AirportUpdateOne {
-	auo.mutation.ClearGpsCode()
-	return auo
+func (_u *AirportUpdateOne) ClearGpsCode() *AirportUpdateOne {
+	_u.mutation.ClearGpsCode()
+	return _u
 }
 
 // SetLocalCode sets the "local_code" field.
-func (auo *AirportUpdateOne) SetLocalCode(s string) *AirportUpdateOne {
-	auo.mutation.SetLocalCode(s)
-	return auo
+func (_u *AirportUpdateOne) SetLocalCode(v string) *AirportUpdateOne {
+	_u.mutation.SetLocalCode(v)
+	return _u
 }
 
 // SetNillableLocalCode sets the "local_code" field if the given value is not nil.
-func (auo *AirportUpdateOne) SetNillableLocalCode(s *string) *AirportUpdateOne {
-	if s != nil {
-		auo.SetLocalCode(*s)
+func (_u *AirportUpdateOne) SetNillableLocalCode(v *string) *AirportUpdateOne {
+	if v != nil {
+		_u.SetLocalCode(*v)
 	}
-	return auo
+	return _u
 }
 
 // ClearLocalCode clears the value of the "local_code" field.
-func (auo *AirportUpdateOne) ClearLocalCode() *AirportUpdateOne {
-	auo.mutation.ClearLocalCode()
-	return auo
+func (_u *AirportUpdateOne) ClearLocalCode() *AirportUpdateOne {
+	_u.mutation.ClearLocalCode()
+	return _u
 }
 
 // SetWebsite sets the "website" field.
-func (auo *AirportUpdateOne) SetWebsite(s string) *AirportUpdateOne {
-	auo.mutation.SetWebsite(s)
-	return auo
+func (_u *AirportUpdateOne) SetWebsite(v string) *AirportUpdateOne {
+	_u.mutation.SetWebsite(v)
+	return _u
 }
 
 // SetNillableWebsite sets the "website" field if the given value is not nil.
-func (auo *AirportUpdateOne) SetNillableWebsite(s *string) *AirportUpdateOne {
-	if s != nil {
-		auo.SetWebsite(*s)
+func (_u *AirportUpdateOne) SetNillableWebsite(v *string) *AirportUpdateOne {
+	if v != nil {
+		_u.SetWebsite(*v)
 	}
-	return auo
+	return _u
 }
 
 // ClearWebsite clears the value of the "website" field.
-func (auo *AirportUpdateOne) ClearWebsite() *AirportUpdateOne {
-	auo.mutation.ClearWebsite()
-	return auo
+func (_u *AirportUpdateOne) ClearWebsite() *AirportUpdateOne {
+	_u.mutation.ClearWebsite()
+	return _u
 }
 
 // SetWikipedia sets the "wikipedia" field.
-func (auo *AirportUpdateOne) SetWikipedia(s string) *AirportUpdateOne {
-	auo.mutation.SetWikipedia(s)
-	return auo
+func (_u *AirportUpdateOne) SetWikipedia(v string) *AirportUpdateOne {
+	_u.mutation.SetWikipedia(v)
+	return _u
 }
 
 // SetNillableWikipedia sets the "wikipedia" field if the given value is not nil.
-func (auo *AirportUpdateOne) SetNillableWikipedia(s *string) *AirportUpdateOne {
-	if s != nil {
-		auo.SetWikipedia(*s)
+func (_u *AirportUpdateOne) SetNillableWikipedia(v *string) *AirportUpdateOne {
+	if v != nil {
+		_u.SetWikipedia(*v)
 	}
-	return auo
+	return _u
 }
 
 // ClearWikipedia clears the value of the "wikipedia" field.
-func (auo *AirportUpdateOne) ClearWikipedia() *AirportUpdateOne {
-	auo.mutation.ClearWikipedia()
-	return auo
+func (_u *AirportUpdateOne) ClearWikipedia() *AirportUpdateOne {
+	_u.mutation.ClearWikipedia()
+	return _u
 }
 
 // SetKeywords sets the "keywords" field.
-func (auo *AirportUpdateOne) SetKeywords(s []string) *AirportUpdateOne {
-	auo.mutation.SetKeywords(s)
-	return auo
+func (_u *AirportUpdateOne) SetKeywords(v []string) *AirportUpdateOne {
+	_u.mutation.SetKeywords(v)
+	return _u
 }
 
-// AppendKeywords appends s to the "keywords" field.
-func (auo *AirportUpdateOne) AppendKeywords(s []string) *AirportUpdateOne {
-	auo.mutation.AppendKeywords(s)
-	return auo
+// AppendKeywords appends value to the "keywords" field.
+func (_u *AirportUpdateOne) AppendKeywords(v []string) *AirportUpdateOne {
+	_u.mutation.AppendKeywords(v)
+	return _u
 }
 
 // SetRegionID sets the "region" edge to the Region entity by ID.
-func (auo *AirportUpdateOne) SetRegionID(id uuid.UUID) *AirportUpdateOne {
-	auo.mutation.SetRegionID(id)
-	return auo
+func (_u *AirportUpdateOne) SetRegionID(id uuid.UUID) *AirportUpdateOne {
+	_u.mutation.SetRegionID(id)
+	return _u
 }
 
 // SetNillableRegionID sets the "region" edge to the Region entity by ID if the given value is not nil.
-func (auo *AirportUpdateOne) SetNillableRegionID(id *uuid.UUID) *AirportUpdateOne {
+func (_u *AirportUpdateOne) SetNillableRegionID(id *uuid.UUID) *AirportUpdateOne {
 	if id != nil {
-		auo = auo.SetRegionID(*id)
+		_u = _u.SetRegionID(*id)
 	}
-	return auo
+	return _u
 }
 
 // SetRegion sets the "region" edge to the Region entity.
-func (auo *AirportUpdateOne) SetRegion(r *Region) *AirportUpdateOne {
-	return auo.SetRegionID(r.ID)
+func (_u *AirportUpdateOne) SetRegion(v *Region) *AirportUpdateOne {
+	return _u.SetRegionID(v.ID)
 }
 
 // SetCountryID sets the "country" edge to the Country entity by ID.
-func (auo *AirportUpdateOne) SetCountryID(id uuid.UUID) *AirportUpdateOne {
-	auo.mutation.SetCountryID(id)
-	return auo
+func (_u *AirportUpdateOne) SetCountryID(id uuid.UUID) *AirportUpdateOne {
+	_u.mutation.SetCountryID(id)
+	return _u
 }
 
 // SetNillableCountryID sets the "country" edge to the Country entity by ID if the given value is not nil.
-func (auo *AirportUpdateOne) SetNillableCountryID(id *uuid.UUID) *AirportUpdateOne {
+func (_u *AirportUpdateOne) SetNillableCountryID(id *uuid.UUID) *AirportUpdateOne {
 	if id != nil {
-		auo = auo.SetCountryID(*id)
+		_u = _u.SetCountryID(*id)
 	}
-	return auo
+	return _u
 }
 
 // SetCountry sets the "country" edge to the Country entity.
-func (auo *AirportUpdateOne) SetCountry(c *Country) *AirportUpdateOne {
-	return auo.SetCountryID(c.ID)
+func (_u *AirportUpdateOne) SetCountry(v *Country) *AirportUpdateOne {
+	return _u.SetCountryID(v.ID)
 }
 
 // AddRunwayIDs adds the "runways" edge to the Runway entity by IDs.
-func (auo *AirportUpdateOne) AddRunwayIDs(ids ...uuid.UUID) *AirportUpdateOne {
-	auo.mutation.AddRunwayIDs(ids...)
-	return auo
+func (_u *AirportUpdateOne) AddRunwayIDs(ids ...uuid.UUID) *AirportUpdateOne {
+	_u.mutation.AddRunwayIDs(ids...)
+	return _u
 }
 
 // AddRunways adds the "runways" edges to the Runway entity.
-func (auo *AirportUpdateOne) AddRunways(r ...*Runway) *AirportUpdateOne {
-	ids := make([]uuid.UUID, len(r))
-	for i := range r {
-		ids[i] = r[i].ID
+func (_u *AirportUpdateOne) AddRunways(v ...*Runway) *AirportUpdateOne {
+	ids := make([]uuid.UUID, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return auo.AddRunwayIDs(ids...)
+	return _u.AddRunwayIDs(ids...)
 }
 
 // AddFrequencyIDs adds the "frequencies" edge to the Frequency entity by IDs.
-func (auo *AirportUpdateOne) AddFrequencyIDs(ids ...uuid.UUID) *AirportUpdateOne {
-	auo.mutation.AddFrequencyIDs(ids...)
-	return auo
+func (_u *AirportUpdateOne) AddFrequencyIDs(ids ...uuid.UUID) *AirportUpdateOne {
+	_u.mutation.AddFrequencyIDs(ids...)
+	return _u
 }
 
 // AddFrequencies adds the "frequencies" edges to the Frequency entity.
-func (auo *AirportUpdateOne) AddFrequencies(f ...*Frequency) *AirportUpdateOne {
-	ids := make([]uuid.UUID, len(f))
-	for i := range f {
-		ids[i] = f[i].ID
+func (_u *AirportUpdateOne) AddFrequencies(v ...*Frequency) *AirportUpdateOne {
+	ids := make([]uuid.UUID, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return auo.AddFrequencyIDs(ids...)
+	return _u.AddFrequencyIDs(ids...)
 }
 
 // SetStationID sets the "station" edge to the WeatherStation entity by ID.
-func (auo *AirportUpdateOne) SetStationID(id uuid.UUID) *AirportUpdateOne {
-	auo.mutation.SetStationID(id)
-	return auo
+func (_u *AirportUpdateOne) SetStationID(id uuid.UUID) *AirportUpdateOne {
+	_u.mutation.SetStationID(id)
+	return _u
 }
 
 // SetNillableStationID sets the "station" edge to the WeatherStation entity by ID if the given value is not nil.
-func (auo *AirportUpdateOne) SetNillableStationID(id *uuid.UUID) *AirportUpdateOne {
+func (_u *AirportUpdateOne) SetNillableStationID(id *uuid.UUID) *AirportUpdateOne {
 	if id != nil {
-		auo = auo.SetStationID(*id)
+		_u = _u.SetStationID(*id)
 	}
-	return auo
+	return _u
 }
 
 // SetStation sets the "station" edge to the WeatherStation entity.
-func (auo *AirportUpdateOne) SetStation(w *WeatherStation) *AirportUpdateOne {
-	return auo.SetStationID(w.ID)
+func (_u *AirportUpdateOne) SetStation(v *WeatherStation) *AirportUpdateOne {
+	return _u.SetStationID(v.ID)
 }
 
 // Mutation returns the AirportMutation object of the builder.
-func (auo *AirportUpdateOne) Mutation() *AirportMutation {
-	return auo.mutation
+func (_u *AirportUpdateOne) Mutation() *AirportMutation {
+	return _u.mutation
 }
 
 // ClearRegion clears the "region" edge to the Region entity.
-func (auo *AirportUpdateOne) ClearRegion() *AirportUpdateOne {
-	auo.mutation.ClearRegion()
-	return auo
+func (_u *AirportUpdateOne) ClearRegion() *AirportUpdateOne {
+	_u.mutation.ClearRegion()
+	return _u
 }
 
 // ClearCountry clears the "country" edge to the Country entity.
-func (auo *AirportUpdateOne) ClearCountry() *AirportUpdateOne {
-	auo.mutation.ClearCountry()
-	return auo
+func (_u *AirportUpdateOne) ClearCountry() *AirportUpdateOne {
+	_u.mutation.ClearCountry()
+	return _u
 }
 
 // ClearRunways clears all "runways" edges to the Runway entity.
-func (auo *AirportUpdateOne) ClearRunways() *AirportUpdateOne {
-	auo.mutation.ClearRunways()
-	return auo
+func (_u *AirportUpdateOne) ClearRunways() *AirportUpdateOne {
+	_u.mutation.ClearRunways()
+	return _u
 }
 
 // RemoveRunwayIDs removes the "runways" edge to Runway entities by IDs.
-func (auo *AirportUpdateOne) RemoveRunwayIDs(ids ...uuid.UUID) *AirportUpdateOne {
-	auo.mutation.RemoveRunwayIDs(ids...)
-	return auo
+func (_u *AirportUpdateOne) RemoveRunwayIDs(ids ...uuid.UUID) *AirportUpdateOne {
+	_u.mutation.RemoveRunwayIDs(ids...)
+	return _u
 }
 
 // RemoveRunways removes "runways" edges to Runway entities.
-func (auo *AirportUpdateOne) RemoveRunways(r ...*Runway) *AirportUpdateOne {
-	ids := make([]uuid.UUID, len(r))
-	for i := range r {
-		ids[i] = r[i].ID
+func (_u *AirportUpdateOne) RemoveRunways(v ...*Runway) *AirportUpdateOne {
+	ids := make([]uuid.UUID, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return auo.RemoveRunwayIDs(ids...)
+	return _u.RemoveRunwayIDs(ids...)
 }
 
 // ClearFrequencies clears all "frequencies" edges to the Frequency entity.
-func (auo *AirportUpdateOne) ClearFrequencies() *AirportUpdateOne {
-	auo.mutation.ClearFrequencies()
-	return auo
+func (_u *AirportUpdateOne) ClearFrequencies() *AirportUpdateOne {
+	_u.mutation.ClearFrequencies()
+	return _u
 }
 
 // RemoveFrequencyIDs removes the "frequencies" edge to Frequency entities by IDs.
-func (auo *AirportUpdateOne) RemoveFrequencyIDs(ids ...uuid.UUID) *AirportUpdateOne {
-	auo.mutation.RemoveFrequencyIDs(ids...)
-	return auo
+func (_u *AirportUpdateOne) RemoveFrequencyIDs(ids ...uuid.UUID) *AirportUpdateOne {
+	_u.mutation.RemoveFrequencyIDs(ids...)
+	return _u
 }
 
 // RemoveFrequencies removes "frequencies" edges to Frequency entities.
-func (auo *AirportUpdateOne) RemoveFrequencies(f ...*Frequency) *AirportUpdateOne {
-	ids := make([]uuid.UUID, len(f))
-	for i := range f {
-		ids[i] = f[i].ID
+func (_u *AirportUpdateOne) RemoveFrequencies(v ...*Frequency) *AirportUpdateOne {
+	ids := make([]uuid.UUID, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return auo.RemoveFrequencyIDs(ids...)
+	return _u.RemoveFrequencyIDs(ids...)
 }
 
 // ClearStation clears the "station" edge to the WeatherStation entity.
-func (auo *AirportUpdateOne) ClearStation() *AirportUpdateOne {
-	auo.mutation.ClearStation()
-	return auo
+func (_u *AirportUpdateOne) ClearStation() *AirportUpdateOne {
+	_u.mutation.ClearStation()
+	return _u
 }
 
 // Where appends a list predicates to the AirportUpdate builder.
-func (auo *AirportUpdateOne) Where(ps ...predicate.Airport) *AirportUpdateOne {
-	auo.mutation.Where(ps...)
-	return auo
+func (_u *AirportUpdateOne) Where(ps ...predicate.Airport) *AirportUpdateOne {
+	_u.mutation.Where(ps...)
+	return _u
 }
 
 // Select allows selecting one or more fields (columns) of the returned entity.
 // The default is selecting all fields defined in the entity schema.
-func (auo *AirportUpdateOne) Select(field string, fields ...string) *AirportUpdateOne {
-	auo.fields = append([]string{field}, fields...)
-	return auo
+func (_u *AirportUpdateOne) Select(field string, fields ...string) *AirportUpdateOne {
+	_u.fields = append([]string{field}, fields...)
+	return _u
 }
 
 // Save executes the query and returns the updated Airport entity.
-func (auo *AirportUpdateOne) Save(ctx context.Context) (*Airport, error) {
-	return withHooks(ctx, auo.sqlSave, auo.mutation, auo.hooks)
+func (_u *AirportUpdateOne) Save(ctx context.Context) (*Airport, error) {
+	return withHooks(ctx, _u.sqlSave, _u.mutation, _u.hooks)
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (auo *AirportUpdateOne) SaveX(ctx context.Context) *Airport {
-	node, err := auo.Save(ctx)
+func (_u *AirportUpdateOne) SaveX(ctx context.Context) *Airport {
+	node, err := _u.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -1371,26 +1499,26 @@ func (auo *AirportUpdateOne) SaveX(ctx context.Context) *Airport {
 }
 
 // Exec executes the query on the entity.
-func (auo *AirportUpdateOne) Exec(ctx context.Context) error {
-	_, err := auo.Save(ctx)
+func (_u *AirportUpdateOne) Exec(ctx context.Context) error {
+	_, err := _u.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (auo *AirportUpdateOne) ExecX(ctx context.Context) {
-	if err := auo.Exec(ctx); err != nil {
+func (_u *AirportUpdateOne) ExecX(ctx context.Context) {
+	if err := _u.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // check runs all checks and user-defined validators on the builder.
-func (auo *AirportUpdateOne) check() error {
-	if v, ok := auo.mutation.IcaoCode(); ok {
+func (_u *AirportUpdateOne) check() error {
+	if v, ok := _u.mutation.IcaoCode(); ok {
 		if err := airport.IcaoCodeValidator(v); err != nil {
 			return &ValidationError{Name: "icao_code", err: fmt.Errorf(`ent: validator failed for field "Airport.icao_code": %w`, err)}
 		}
 	}
-	if v, ok := auo.mutation.GetType(); ok {
+	if v, ok := _u.mutation.GetType(); ok {
 		if err := airport.TypeValidator(v); err != nil {
 			return &ValidationError{Name: "type", err: fmt.Errorf(`ent: validator failed for field "Airport.type": %w`, err)}
 		}
@@ -1399,22 +1527,22 @@ func (auo *AirportUpdateOne) check() error {
 }
 
 // Modify adds a statement modifier for attaching custom logic to the UPDATE statement.
-func (auo *AirportUpdateOne) Modify(modifiers ...func(u *sql.UpdateBuilder)) *AirportUpdateOne {
-	auo.modifiers = append(auo.modifiers, modifiers...)
-	return auo
+func (_u *AirportUpdateOne) Modify(modifiers ...func(u *sql.UpdateBuilder)) *AirportUpdateOne {
+	_u.modifiers = append(_u.modifiers, modifiers...)
+	return _u
 }
 
-func (auo *AirportUpdateOne) sqlSave(ctx context.Context) (_node *Airport, err error) {
-	if err := auo.check(); err != nil {
+func (_u *AirportUpdateOne) sqlSave(ctx context.Context) (_node *Airport, err error) {
+	if err := _u.check(); err != nil {
 		return _node, err
 	}
 	_spec := sqlgraph.NewUpdateSpec(airport.Table, airport.Columns, sqlgraph.NewFieldSpec(airport.FieldID, field.TypeUUID))
-	id, ok := auo.mutation.ID()
+	id, ok := _u.mutation.ID()
 	if !ok {
 		return nil, &ValidationError{Name: "id", err: errors.New(`ent: missing "Airport.id" for update`)}
 	}
 	_spec.Node.ID.Value = id
-	if fields := auo.fields; len(fields) > 0 {
+	if fields := _u.fields; len(fields) > 0 {
 		_spec.Node.Columns = make([]string, 0, len(fields))
 		_spec.Node.Columns = append(_spec.Node.Columns, airport.FieldID)
 		for _, f := range fields {
@@ -1426,124 +1554,124 @@ func (auo *AirportUpdateOne) sqlSave(ctx context.Context) (_node *Airport, err e
 			}
 		}
 	}
-	if ps := auo.mutation.predicates; len(ps) > 0 {
+	if ps := _u.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if value, ok := auo.mutation.ImportID(); ok {
+	if value, ok := _u.mutation.ImportID(); ok {
 		_spec.SetField(airport.FieldImportID, field.TypeInt, value)
 	}
-	if value, ok := auo.mutation.AddedImportID(); ok {
+	if value, ok := _u.mutation.AddedImportID(); ok {
 		_spec.AddField(airport.FieldImportID, field.TypeInt, value)
 	}
-	if value, ok := auo.mutation.Hash(); ok {
+	if value, ok := _u.mutation.Hash(); ok {
 		_spec.SetField(airport.FieldHash, field.TypeString, value)
 	}
-	if value, ok := auo.mutation.ImportFlag(); ok {
+	if value, ok := _u.mutation.ImportFlag(); ok {
 		_spec.SetField(airport.FieldImportFlag, field.TypeBool, value)
 	}
-	if value, ok := auo.mutation.LastUpdated(); ok {
+	if value, ok := _u.mutation.LastUpdated(); ok {
 		_spec.SetField(airport.FieldLastUpdated, field.TypeTime, value)
 	}
-	if value, ok := auo.mutation.IcaoCode(); ok {
+	if value, ok := _u.mutation.IcaoCode(); ok {
 		_spec.SetField(airport.FieldIcaoCode, field.TypeString, value)
 	}
-	if auo.mutation.IcaoCodeCleared() {
+	if _u.mutation.IcaoCodeCleared() {
 		_spec.ClearField(airport.FieldIcaoCode, field.TypeString)
 	}
-	if value, ok := auo.mutation.IataCode(); ok {
+	if value, ok := _u.mutation.IataCode(); ok {
 		_spec.SetField(airport.FieldIataCode, field.TypeString, value)
 	}
-	if auo.mutation.IataCodeCleared() {
+	if _u.mutation.IataCodeCleared() {
 		_spec.ClearField(airport.FieldIataCode, field.TypeString)
 	}
-	if value, ok := auo.mutation.Identifier(); ok {
+	if value, ok := _u.mutation.Identifier(); ok {
 		_spec.SetField(airport.FieldIdentifier, field.TypeString, value)
 	}
-	if value, ok := auo.mutation.GetType(); ok {
+	if value, ok := _u.mutation.GetType(); ok {
 		_spec.SetField(airport.FieldType, field.TypeEnum, value)
 	}
-	if value, ok := auo.mutation.Importance(); ok {
+	if value, ok := _u.mutation.Importance(); ok {
 		_spec.SetField(airport.FieldImportance, field.TypeInt, value)
 	}
-	if value, ok := auo.mutation.AddedImportance(); ok {
+	if value, ok := _u.mutation.AddedImportance(); ok {
 		_spec.AddField(airport.FieldImportance, field.TypeInt, value)
 	}
-	if value, ok := auo.mutation.Name(); ok {
+	if value, ok := _u.mutation.Name(); ok {
 		_spec.SetField(airport.FieldName, field.TypeString, value)
 	}
-	if value, ok := auo.mutation.Latitude(); ok {
+	if value, ok := _u.mutation.Latitude(); ok {
 		_spec.SetField(airport.FieldLatitude, field.TypeFloat64, value)
 	}
-	if value, ok := auo.mutation.AddedLatitude(); ok {
+	if value, ok := _u.mutation.AddedLatitude(); ok {
 		_spec.AddField(airport.FieldLatitude, field.TypeFloat64, value)
 	}
-	if value, ok := auo.mutation.Longitude(); ok {
+	if value, ok := _u.mutation.Longitude(); ok {
 		_spec.SetField(airport.FieldLongitude, field.TypeFloat64, value)
 	}
-	if value, ok := auo.mutation.AddedLongitude(); ok {
+	if value, ok := _u.mutation.AddedLongitude(); ok {
 		_spec.AddField(airport.FieldLongitude, field.TypeFloat64, value)
 	}
-	if value, ok := auo.mutation.Timezone(); ok {
+	if value, ok := _u.mutation.Timezone(); ok {
 		_spec.SetField(airport.FieldTimezone, field.TypeString, value)
 	}
-	if auo.mutation.TimezoneCleared() {
+	if _u.mutation.TimezoneCleared() {
 		_spec.ClearField(airport.FieldTimezone, field.TypeString)
 	}
-	if value, ok := auo.mutation.Elevation(); ok {
+	if value, ok := _u.mutation.Elevation(); ok {
 		_spec.SetField(airport.FieldElevation, field.TypeInt, value)
 	}
-	if value, ok := auo.mutation.AddedElevation(); ok {
+	if value, ok := _u.mutation.AddedElevation(); ok {
 		_spec.AddField(airport.FieldElevation, field.TypeInt, value)
 	}
-	if auo.mutation.ElevationCleared() {
+	if _u.mutation.ElevationCleared() {
 		_spec.ClearField(airport.FieldElevation, field.TypeInt)
 	}
-	if value, ok := auo.mutation.Municipality(); ok {
+	if value, ok := _u.mutation.Municipality(); ok {
 		_spec.SetField(airport.FieldMunicipality, field.TypeString, value)
 	}
-	if auo.mutation.MunicipalityCleared() {
+	if _u.mutation.MunicipalityCleared() {
 		_spec.ClearField(airport.FieldMunicipality, field.TypeString)
 	}
-	if value, ok := auo.mutation.ScheduledService(); ok {
+	if value, ok := _u.mutation.ScheduledService(); ok {
 		_spec.SetField(airport.FieldScheduledService, field.TypeBool, value)
 	}
-	if value, ok := auo.mutation.GpsCode(); ok {
+	if value, ok := _u.mutation.GpsCode(); ok {
 		_spec.SetField(airport.FieldGpsCode, field.TypeString, value)
 	}
-	if auo.mutation.GpsCodeCleared() {
+	if _u.mutation.GpsCodeCleared() {
 		_spec.ClearField(airport.FieldGpsCode, field.TypeString)
 	}
-	if value, ok := auo.mutation.LocalCode(); ok {
+	if value, ok := _u.mutation.LocalCode(); ok {
 		_spec.SetField(airport.FieldLocalCode, field.TypeString, value)
 	}
-	if auo.mutation.LocalCodeCleared() {
+	if _u.mutation.LocalCodeCleared() {
 		_spec.ClearField(airport.FieldLocalCode, field.TypeString)
 	}
-	if value, ok := auo.mutation.Website(); ok {
+	if value, ok := _u.mutation.Website(); ok {
 		_spec.SetField(airport.FieldWebsite, field.TypeString, value)
 	}
-	if auo.mutation.WebsiteCleared() {
+	if _u.mutation.WebsiteCleared() {
 		_spec.ClearField(airport.FieldWebsite, field.TypeString)
 	}
-	if value, ok := auo.mutation.Wikipedia(); ok {
+	if value, ok := _u.mutation.Wikipedia(); ok {
 		_spec.SetField(airport.FieldWikipedia, field.TypeString, value)
 	}
-	if auo.mutation.WikipediaCleared() {
+	if _u.mutation.WikipediaCleared() {
 		_spec.ClearField(airport.FieldWikipedia, field.TypeString)
 	}
-	if value, ok := auo.mutation.Keywords(); ok {
+	if value, ok := _u.mutation.Keywords(); ok {
 		_spec.SetField(airport.FieldKeywords, field.TypeJSON, value)
 	}
-	if value, ok := auo.mutation.AppendedKeywords(); ok {
+	if value, ok := _u.mutation.AppendedKeywords(); ok {
 		_spec.AddModifier(func(u *sql.UpdateBuilder) {
 			sqljson.Append(u, airport.FieldKeywords, value)
 		})
 	}
-	if auo.mutation.RegionCleared() {
+	if _u.mutation.RegionCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.M2O,
 			Inverse: true,
@@ -1556,7 +1684,7 @@ func (auo *AirportUpdateOne) sqlSave(ctx context.Context) (_node *Airport, err e
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := auo.mutation.RegionIDs(); len(nodes) > 0 {
+	if nodes := _u.mutation.RegionIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.M2O,
 			Inverse: true,
@@ -1572,7 +1700,7 @@ func (auo *AirportUpdateOne) sqlSave(ctx context.Context) (_node *Airport, err e
 		}
 		_spec.Edges.Add = append(_spec.Edges.Add, edge)
 	}
-	if auo.mutation.CountryCleared() {
+	if _u.mutation.CountryCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.M2O,
 			Inverse: true,
@@ -1585,7 +1713,7 @@ func (auo *AirportUpdateOne) sqlSave(ctx context.Context) (_node *Airport, err e
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := auo.mutation.CountryIDs(); len(nodes) > 0 {
+	if nodes := _u.mutation.CountryIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.M2O,
 			Inverse: true,
@@ -1601,7 +1729,7 @@ func (auo *AirportUpdateOne) sqlSave(ctx context.Context) (_node *Airport, err e
 		}
 		_spec.Edges.Add = append(_spec.Edges.Add, edge)
 	}
-	if auo.mutation.RunwaysCleared() {
+	if _u.mutation.RunwaysCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -1614,7 +1742,7 @@ func (auo *AirportUpdateOne) sqlSave(ctx context.Context) (_node *Airport, err e
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := auo.mutation.RemovedRunwaysIDs(); len(nodes) > 0 && !auo.mutation.RunwaysCleared() {
+	if nodes := _u.mutation.RemovedRunwaysIDs(); len(nodes) > 0 && !_u.mutation.RunwaysCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -1630,7 +1758,7 @@ func (auo *AirportUpdateOne) sqlSave(ctx context.Context) (_node *Airport, err e
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := auo.mutation.RunwaysIDs(); len(nodes) > 0 {
+	if nodes := _u.mutation.RunwaysIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -1646,7 +1774,7 @@ func (auo *AirportUpdateOne) sqlSave(ctx context.Context) (_node *Airport, err e
 		}
 		_spec.Edges.Add = append(_spec.Edges.Add, edge)
 	}
-	if auo.mutation.FrequenciesCleared() {
+	if _u.mutation.FrequenciesCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -1659,7 +1787,7 @@ func (auo *AirportUpdateOne) sqlSave(ctx context.Context) (_node *Airport, err e
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := auo.mutation.RemovedFrequenciesIDs(); len(nodes) > 0 && !auo.mutation.FrequenciesCleared() {
+	if nodes := _u.mutation.RemovedFrequenciesIDs(); len(nodes) > 0 && !_u.mutation.FrequenciesCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -1675,7 +1803,7 @@ func (auo *AirportUpdateOne) sqlSave(ctx context.Context) (_node *Airport, err e
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := auo.mutation.FrequenciesIDs(); len(nodes) > 0 {
+	if nodes := _u.mutation.FrequenciesIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -1691,7 +1819,7 @@ func (auo *AirportUpdateOne) sqlSave(ctx context.Context) (_node *Airport, err e
 		}
 		_spec.Edges.Add = append(_spec.Edges.Add, edge)
 	}
-	if auo.mutation.StationCleared() {
+	if _u.mutation.StationCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2O,
 			Inverse: false,
@@ -1704,7 +1832,7 @@ func (auo *AirportUpdateOne) sqlSave(ctx context.Context) (_node *Airport, err e
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := auo.mutation.StationIDs(); len(nodes) > 0 {
+	if nodes := _u.mutation.StationIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2O,
 			Inverse: false,
@@ -1720,11 +1848,11 @@ func (auo *AirportUpdateOne) sqlSave(ctx context.Context) (_node *Airport, err e
 		}
 		_spec.Edges.Add = append(_spec.Edges.Add, edge)
 	}
-	_spec.AddModifiers(auo.modifiers...)
-	_node = &Airport{config: auo.config}
+	_spec.AddModifiers(_u.modifiers...)
+	_node = &Airport{config: _u.config}
 	_spec.Assign = _node.assignValues
 	_spec.ScanValues = _node.scanValues
-	if err = sqlgraph.UpdateNode(ctx, auo.driver, _spec); err != nil {
+	if err = sqlgraph.UpdateNode(ctx, _u.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
 			err = &NotFoundError{airport.Label}
 		} else if sqlgraph.IsConstraintError(err) {
@@ -1732,6 +1860,6 @@ func (auo *AirportUpdateOne) sqlSave(ctx context.Context) (_node *Airport, err e
 		}
 		return nil, err
 	}
-	auo.mutation.done = true
+	_u.mutation.done = true
 	return _node, nil
 }

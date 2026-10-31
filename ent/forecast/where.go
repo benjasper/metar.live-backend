@@ -971,6 +971,29 @@ func NotDecodedContainsFold(v string) predicate.Forecast {
 	return predicate.Forecast(sql.FieldContainsFold(FieldNotDecoded, v))
 }
 
+// HasTaf applies the HasEdge predicate on the "taf" edge.
+func HasTaf() predicate.Forecast {
+	return predicate.Forecast(func(s *sql.Selector) {
+		step := sqlgraph.NewStep(
+			sqlgraph.From(Table, FieldID),
+			sqlgraph.Edge(sqlgraph.M2O, true, TafTable, TafColumn),
+		)
+		sqlgraph.HasNeighbors(s, step)
+	})
+}
+
+// HasTafWith applies the HasEdge predicate on the "taf" edge with a given conditions (other predicates).
+func HasTafWith(preds ...predicate.Taf) predicate.Forecast {
+	return predicate.Forecast(func(s *sql.Selector) {
+		step := newTafStep()
+		sqlgraph.HasNeighborsWith(s, step, func(s *sql.Selector) {
+			for _, p := range preds {
+				p(s)
+			}
+		})
+	})
+}
+
 // HasSkyConditions applies the HasEdge predicate on the "sky_conditions" edge.
 func HasSkyConditions() predicate.Forecast {
 	return predicate.Forecast(func(s *sql.Selector) {
@@ -1065,32 +1088,15 @@ func HasTemperatureDataWith(preds ...predicate.TemperatureData) predicate.Foreca
 
 // And groups predicates with the AND operator between them.
 func And(predicates ...predicate.Forecast) predicate.Forecast {
-	return predicate.Forecast(func(s *sql.Selector) {
-		s1 := s.Clone().SetP(nil)
-		for _, p := range predicates {
-			p(s1)
-		}
-		s.Where(s1.P())
-	})
+	return predicate.Forecast(sql.AndPredicates(predicates...))
 }
 
 // Or groups predicates with the OR operator between them.
 func Or(predicates ...predicate.Forecast) predicate.Forecast {
-	return predicate.Forecast(func(s *sql.Selector) {
-		s1 := s.Clone().SetP(nil)
-		for i, p := range predicates {
-			if i > 0 {
-				s1.Or()
-			}
-			p(s1)
-		}
-		s.Where(s1.P())
-	})
+	return predicate.Forecast(sql.OrPredicates(predicates...))
 }
 
 // Not applies the not operator on the given predicate.
 func Not(p predicate.Forecast) predicate.Forecast {
-	return predicate.Forecast(func(s *sql.Selector) {
-		p(s.Not())
-	})
+	return predicate.Forecast(sql.NotPredicates(p))
 }

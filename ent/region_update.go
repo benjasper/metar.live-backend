@@ -27,143 +27,191 @@ type RegionUpdate struct {
 }
 
 // Where appends a list predicates to the RegionUpdate builder.
-func (ru *RegionUpdate) Where(ps ...predicate.Region) *RegionUpdate {
-	ru.mutation.Where(ps...)
-	return ru
+func (_u *RegionUpdate) Where(ps ...predicate.Region) *RegionUpdate {
+	_u.mutation.Where(ps...)
+	return _u
 }
 
 // SetImportID sets the "import_id" field.
-func (ru *RegionUpdate) SetImportID(i int) *RegionUpdate {
-	ru.mutation.ResetImportID()
-	ru.mutation.SetImportID(i)
-	return ru
+func (_u *RegionUpdate) SetImportID(v int) *RegionUpdate {
+	_u.mutation.ResetImportID()
+	_u.mutation.SetImportID(v)
+	return _u
 }
 
-// AddImportID adds i to the "import_id" field.
-func (ru *RegionUpdate) AddImportID(i int) *RegionUpdate {
-	ru.mutation.AddImportID(i)
-	return ru
+// SetNillableImportID sets the "import_id" field if the given value is not nil.
+func (_u *RegionUpdate) SetNillableImportID(v *int) *RegionUpdate {
+	if v != nil {
+		_u.SetImportID(*v)
+	}
+	return _u
+}
+
+// AddImportID adds value to the "import_id" field.
+func (_u *RegionUpdate) AddImportID(v int) *RegionUpdate {
+	_u.mutation.AddImportID(v)
+	return _u
 }
 
 // SetHash sets the "hash" field.
-func (ru *RegionUpdate) SetHash(s string) *RegionUpdate {
-	ru.mutation.SetHash(s)
-	return ru
+func (_u *RegionUpdate) SetHash(v string) *RegionUpdate {
+	_u.mutation.SetHash(v)
+	return _u
+}
+
+// SetNillableHash sets the "hash" field if the given value is not nil.
+func (_u *RegionUpdate) SetNillableHash(v *string) *RegionUpdate {
+	if v != nil {
+		_u.SetHash(*v)
+	}
+	return _u
 }
 
 // SetImportFlag sets the "import_flag" field.
-func (ru *RegionUpdate) SetImportFlag(b bool) *RegionUpdate {
-	ru.mutation.SetImportFlag(b)
-	return ru
+func (_u *RegionUpdate) SetImportFlag(v bool) *RegionUpdate {
+	_u.mutation.SetImportFlag(v)
+	return _u
 }
 
 // SetNillableImportFlag sets the "import_flag" field if the given value is not nil.
-func (ru *RegionUpdate) SetNillableImportFlag(b *bool) *RegionUpdate {
-	if b != nil {
-		ru.SetImportFlag(*b)
+func (_u *RegionUpdate) SetNillableImportFlag(v *bool) *RegionUpdate {
+	if v != nil {
+		_u.SetImportFlag(*v)
 	}
-	return ru
+	return _u
 }
 
 // SetLastUpdated sets the "last_updated" field.
-func (ru *RegionUpdate) SetLastUpdated(t time.Time) *RegionUpdate {
-	ru.mutation.SetLastUpdated(t)
-	return ru
+func (_u *RegionUpdate) SetLastUpdated(v time.Time) *RegionUpdate {
+	_u.mutation.SetLastUpdated(v)
+	return _u
 }
 
 // SetNillableLastUpdated sets the "last_updated" field if the given value is not nil.
-func (ru *RegionUpdate) SetNillableLastUpdated(t *time.Time) *RegionUpdate {
-	if t != nil {
-		ru.SetLastUpdated(*t)
+func (_u *RegionUpdate) SetNillableLastUpdated(v *time.Time) *RegionUpdate {
+	if v != nil {
+		_u.SetLastUpdated(*v)
 	}
-	return ru
+	return _u
 }
 
 // SetCode sets the "code" field.
-func (ru *RegionUpdate) SetCode(s string) *RegionUpdate {
-	ru.mutation.SetCode(s)
-	return ru
+func (_u *RegionUpdate) SetCode(v string) *RegionUpdate {
+	_u.mutation.SetCode(v)
+	return _u
+}
+
+// SetNillableCode sets the "code" field if the given value is not nil.
+func (_u *RegionUpdate) SetNillableCode(v *string) *RegionUpdate {
+	if v != nil {
+		_u.SetCode(*v)
+	}
+	return _u
 }
 
 // SetLocalCode sets the "local_code" field.
-func (ru *RegionUpdate) SetLocalCode(s string) *RegionUpdate {
-	ru.mutation.SetLocalCode(s)
-	return ru
+func (_u *RegionUpdate) SetLocalCode(v string) *RegionUpdate {
+	_u.mutation.SetLocalCode(v)
+	return _u
+}
+
+// SetNillableLocalCode sets the "local_code" field if the given value is not nil.
+func (_u *RegionUpdate) SetNillableLocalCode(v *string) *RegionUpdate {
+	if v != nil {
+		_u.SetLocalCode(*v)
+	}
+	return _u
 }
 
 // SetName sets the "name" field.
-func (ru *RegionUpdate) SetName(s string) *RegionUpdate {
-	ru.mutation.SetName(s)
-	return ru
+func (_u *RegionUpdate) SetName(v string) *RegionUpdate {
+	_u.mutation.SetName(v)
+	return _u
+}
+
+// SetNillableName sets the "name" field if the given value is not nil.
+func (_u *RegionUpdate) SetNillableName(v *string) *RegionUpdate {
+	if v != nil {
+		_u.SetName(*v)
+	}
+	return _u
 }
 
 // SetWikipediaLink sets the "wikipedia_link" field.
-func (ru *RegionUpdate) SetWikipediaLink(s string) *RegionUpdate {
-	ru.mutation.SetWikipediaLink(s)
-	return ru
+func (_u *RegionUpdate) SetWikipediaLink(v string) *RegionUpdate {
+	_u.mutation.SetWikipediaLink(v)
+	return _u
+}
+
+// SetNillableWikipediaLink sets the "wikipedia_link" field if the given value is not nil.
+func (_u *RegionUpdate) SetNillableWikipediaLink(v *string) *RegionUpdate {
+	if v != nil {
+		_u.SetWikipediaLink(*v)
+	}
+	return _u
 }
 
 // SetKeywords sets the "keywords" field.
-func (ru *RegionUpdate) SetKeywords(s []string) *RegionUpdate {
-	ru.mutation.SetKeywords(s)
-	return ru
+func (_u *RegionUpdate) SetKeywords(v []string) *RegionUpdate {
+	_u.mutation.SetKeywords(v)
+	return _u
 }
 
-// AppendKeywords appends s to the "keywords" field.
-func (ru *RegionUpdate) AppendKeywords(s []string) *RegionUpdate {
-	ru.mutation.AppendKeywords(s)
-	return ru
+// AppendKeywords appends value to the "keywords" field.
+func (_u *RegionUpdate) AppendKeywords(v []string) *RegionUpdate {
+	_u.mutation.AppendKeywords(v)
+	return _u
 }
 
 // AddAirportIDs adds the "airports" edge to the Airport entity by IDs.
-func (ru *RegionUpdate) AddAirportIDs(ids ...uuid.UUID) *RegionUpdate {
-	ru.mutation.AddAirportIDs(ids...)
-	return ru
+func (_u *RegionUpdate) AddAirportIDs(ids ...uuid.UUID) *RegionUpdate {
+	_u.mutation.AddAirportIDs(ids...)
+	return _u
 }
 
 // AddAirports adds the "airports" edges to the Airport entity.
-func (ru *RegionUpdate) AddAirports(a ...*Airport) *RegionUpdate {
-	ids := make([]uuid.UUID, len(a))
-	for i := range a {
-		ids[i] = a[i].ID
+func (_u *RegionUpdate) AddAirports(v ...*Airport) *RegionUpdate {
+	ids := make([]uuid.UUID, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return ru.AddAirportIDs(ids...)
+	return _u.AddAirportIDs(ids...)
 }
 
 // Mutation returns the RegionMutation object of the builder.
-func (ru *RegionUpdate) Mutation() *RegionMutation {
-	return ru.mutation
+func (_u *RegionUpdate) Mutation() *RegionMutation {
+	return _u.mutation
 }
 
 // ClearAirports clears all "airports" edges to the Airport entity.
-func (ru *RegionUpdate) ClearAirports() *RegionUpdate {
-	ru.mutation.ClearAirports()
-	return ru
+func (_u *RegionUpdate) ClearAirports() *RegionUpdate {
+	_u.mutation.ClearAirports()
+	return _u
 }
 
 // RemoveAirportIDs removes the "airports" edge to Airport entities by IDs.
-func (ru *RegionUpdate) RemoveAirportIDs(ids ...uuid.UUID) *RegionUpdate {
-	ru.mutation.RemoveAirportIDs(ids...)
-	return ru
+func (_u *RegionUpdate) RemoveAirportIDs(ids ...uuid.UUID) *RegionUpdate {
+	_u.mutation.RemoveAirportIDs(ids...)
+	return _u
 }
 
 // RemoveAirports removes "airports" edges to Airport entities.
-func (ru *RegionUpdate) RemoveAirports(a ...*Airport) *RegionUpdate {
-	ids := make([]uuid.UUID, len(a))
-	for i := range a {
-		ids[i] = a[i].ID
+func (_u *RegionUpdate) RemoveAirports(v ...*Airport) *RegionUpdate {
+	ids := make([]uuid.UUID, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return ru.RemoveAirportIDs(ids...)
+	return _u.RemoveAirportIDs(ids...)
 }
 
 // Save executes the query and returns the number of nodes affected by the update operation.
-func (ru *RegionUpdate) Save(ctx context.Context) (int, error) {
-	return withHooks(ctx, ru.sqlSave, ru.mutation, ru.hooks)
+func (_u *RegionUpdate) Save(ctx context.Context) (int, error) {
+	return withHooks(ctx, _u.sqlSave, _u.mutation, _u.hooks)
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (ru *RegionUpdate) SaveX(ctx context.Context) int {
-	affected, err := ru.Save(ctx)
+func (_u *RegionUpdate) SaveX(ctx context.Context) int {
+	affected, err := _u.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -171,69 +219,69 @@ func (ru *RegionUpdate) SaveX(ctx context.Context) int {
 }
 
 // Exec executes the query.
-func (ru *RegionUpdate) Exec(ctx context.Context) error {
-	_, err := ru.Save(ctx)
+func (_u *RegionUpdate) Exec(ctx context.Context) error {
+	_, err := _u.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (ru *RegionUpdate) ExecX(ctx context.Context) {
-	if err := ru.Exec(ctx); err != nil {
+func (_u *RegionUpdate) ExecX(ctx context.Context) {
+	if err := _u.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // Modify adds a statement modifier for attaching custom logic to the UPDATE statement.
-func (ru *RegionUpdate) Modify(modifiers ...func(u *sql.UpdateBuilder)) *RegionUpdate {
-	ru.modifiers = append(ru.modifiers, modifiers...)
-	return ru
+func (_u *RegionUpdate) Modify(modifiers ...func(u *sql.UpdateBuilder)) *RegionUpdate {
+	_u.modifiers = append(_u.modifiers, modifiers...)
+	return _u
 }
 
-func (ru *RegionUpdate) sqlSave(ctx context.Context) (n int, err error) {
+func (_u *RegionUpdate) sqlSave(ctx context.Context) (_node int, err error) {
 	_spec := sqlgraph.NewUpdateSpec(region.Table, region.Columns, sqlgraph.NewFieldSpec(region.FieldID, field.TypeUUID))
-	if ps := ru.mutation.predicates; len(ps) > 0 {
+	if ps := _u.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if value, ok := ru.mutation.ImportID(); ok {
+	if value, ok := _u.mutation.ImportID(); ok {
 		_spec.SetField(region.FieldImportID, field.TypeInt, value)
 	}
-	if value, ok := ru.mutation.AddedImportID(); ok {
+	if value, ok := _u.mutation.AddedImportID(); ok {
 		_spec.AddField(region.FieldImportID, field.TypeInt, value)
 	}
-	if value, ok := ru.mutation.Hash(); ok {
+	if value, ok := _u.mutation.Hash(); ok {
 		_spec.SetField(region.FieldHash, field.TypeString, value)
 	}
-	if value, ok := ru.mutation.ImportFlag(); ok {
+	if value, ok := _u.mutation.ImportFlag(); ok {
 		_spec.SetField(region.FieldImportFlag, field.TypeBool, value)
 	}
-	if value, ok := ru.mutation.LastUpdated(); ok {
+	if value, ok := _u.mutation.LastUpdated(); ok {
 		_spec.SetField(region.FieldLastUpdated, field.TypeTime, value)
 	}
-	if value, ok := ru.mutation.Code(); ok {
+	if value, ok := _u.mutation.Code(); ok {
 		_spec.SetField(region.FieldCode, field.TypeString, value)
 	}
-	if value, ok := ru.mutation.LocalCode(); ok {
+	if value, ok := _u.mutation.LocalCode(); ok {
 		_spec.SetField(region.FieldLocalCode, field.TypeString, value)
 	}
-	if value, ok := ru.mutation.Name(); ok {
+	if value, ok := _u.mutation.Name(); ok {
 		_spec.SetField(region.FieldName, field.TypeString, value)
 	}
-	if value, ok := ru.mutation.WikipediaLink(); ok {
+	if value, ok := _u.mutation.WikipediaLink(); ok {
 		_spec.SetField(region.FieldWikipediaLink, field.TypeString, value)
 	}
-	if value, ok := ru.mutation.Keywords(); ok {
+	if value, ok := _u.mutation.Keywords(); ok {
 		_spec.SetField(region.FieldKeywords, field.TypeJSON, value)
 	}
-	if value, ok := ru.mutation.AppendedKeywords(); ok {
+	if value, ok := _u.mutation.AppendedKeywords(); ok {
 		_spec.AddModifier(func(u *sql.UpdateBuilder) {
 			sqljson.Append(u, region.FieldKeywords, value)
 		})
 	}
-	if ru.mutation.AirportsCleared() {
+	if _u.mutation.AirportsCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -246,7 +294,7 @@ func (ru *RegionUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := ru.mutation.RemovedAirportsIDs(); len(nodes) > 0 && !ru.mutation.AirportsCleared() {
+	if nodes := _u.mutation.RemovedAirportsIDs(); len(nodes) > 0 && !_u.mutation.AirportsCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -262,7 +310,7 @@ func (ru *RegionUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := ru.mutation.AirportsIDs(); len(nodes) > 0 {
+	if nodes := _u.mutation.AirportsIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -278,8 +326,8 @@ func (ru *RegionUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		_spec.Edges.Add = append(_spec.Edges.Add, edge)
 	}
-	_spec.AddModifiers(ru.modifiers...)
-	if n, err = sqlgraph.UpdateNodes(ctx, ru.driver, _spec); err != nil {
+	_spec.AddModifiers(_u.modifiers...)
+	if _node, err = sqlgraph.UpdateNodes(ctx, _u.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
 			err = &NotFoundError{region.Label}
 		} else if sqlgraph.IsConstraintError(err) {
@@ -287,8 +335,8 @@ func (ru *RegionUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		return 0, err
 	}
-	ru.mutation.done = true
-	return n, nil
+	_u.mutation.done = true
+	return _node, nil
 }
 
 // RegionUpdateOne is the builder for updating a single Region entity.
@@ -301,150 +349,198 @@ type RegionUpdateOne struct {
 }
 
 // SetImportID sets the "import_id" field.
-func (ruo *RegionUpdateOne) SetImportID(i int) *RegionUpdateOne {
-	ruo.mutation.ResetImportID()
-	ruo.mutation.SetImportID(i)
-	return ruo
+func (_u *RegionUpdateOne) SetImportID(v int) *RegionUpdateOne {
+	_u.mutation.ResetImportID()
+	_u.mutation.SetImportID(v)
+	return _u
 }
 
-// AddImportID adds i to the "import_id" field.
-func (ruo *RegionUpdateOne) AddImportID(i int) *RegionUpdateOne {
-	ruo.mutation.AddImportID(i)
-	return ruo
+// SetNillableImportID sets the "import_id" field if the given value is not nil.
+func (_u *RegionUpdateOne) SetNillableImportID(v *int) *RegionUpdateOne {
+	if v != nil {
+		_u.SetImportID(*v)
+	}
+	return _u
+}
+
+// AddImportID adds value to the "import_id" field.
+func (_u *RegionUpdateOne) AddImportID(v int) *RegionUpdateOne {
+	_u.mutation.AddImportID(v)
+	return _u
 }
 
 // SetHash sets the "hash" field.
-func (ruo *RegionUpdateOne) SetHash(s string) *RegionUpdateOne {
-	ruo.mutation.SetHash(s)
-	return ruo
+func (_u *RegionUpdateOne) SetHash(v string) *RegionUpdateOne {
+	_u.mutation.SetHash(v)
+	return _u
+}
+
+// SetNillableHash sets the "hash" field if the given value is not nil.
+func (_u *RegionUpdateOne) SetNillableHash(v *string) *RegionUpdateOne {
+	if v != nil {
+		_u.SetHash(*v)
+	}
+	return _u
 }
 
 // SetImportFlag sets the "import_flag" field.
-func (ruo *RegionUpdateOne) SetImportFlag(b bool) *RegionUpdateOne {
-	ruo.mutation.SetImportFlag(b)
-	return ruo
+func (_u *RegionUpdateOne) SetImportFlag(v bool) *RegionUpdateOne {
+	_u.mutation.SetImportFlag(v)
+	return _u
 }
 
 // SetNillableImportFlag sets the "import_flag" field if the given value is not nil.
-func (ruo *RegionUpdateOne) SetNillableImportFlag(b *bool) *RegionUpdateOne {
-	if b != nil {
-		ruo.SetImportFlag(*b)
+func (_u *RegionUpdateOne) SetNillableImportFlag(v *bool) *RegionUpdateOne {
+	if v != nil {
+		_u.SetImportFlag(*v)
 	}
-	return ruo
+	return _u
 }
 
 // SetLastUpdated sets the "last_updated" field.
-func (ruo *RegionUpdateOne) SetLastUpdated(t time.Time) *RegionUpdateOne {
-	ruo.mutation.SetLastUpdated(t)
-	return ruo
+func (_u *RegionUpdateOne) SetLastUpdated(v time.Time) *RegionUpdateOne {
+	_u.mutation.SetLastUpdated(v)
+	return _u
 }
 
 // SetNillableLastUpdated sets the "last_updated" field if the given value is not nil.
-func (ruo *RegionUpdateOne) SetNillableLastUpdated(t *time.Time) *RegionUpdateOne {
-	if t != nil {
-		ruo.SetLastUpdated(*t)
+func (_u *RegionUpdateOne) SetNillableLastUpdated(v *time.Time) *RegionUpdateOne {
+	if v != nil {
+		_u.SetLastUpdated(*v)
 	}
-	return ruo
+	return _u
 }
 
 // SetCode sets the "code" field.
-func (ruo *RegionUpdateOne) SetCode(s string) *RegionUpdateOne {
-	ruo.mutation.SetCode(s)
-	return ruo
+func (_u *RegionUpdateOne) SetCode(v string) *RegionUpdateOne {
+	_u.mutation.SetCode(v)
+	return _u
+}
+
+// SetNillableCode sets the "code" field if the given value is not nil.
+func (_u *RegionUpdateOne) SetNillableCode(v *string) *RegionUpdateOne {
+	if v != nil {
+		_u.SetCode(*v)
+	}
+	return _u
 }
 
 // SetLocalCode sets the "local_code" field.
-func (ruo *RegionUpdateOne) SetLocalCode(s string) *RegionUpdateOne {
-	ruo.mutation.SetLocalCode(s)
-	return ruo
+func (_u *RegionUpdateOne) SetLocalCode(v string) *RegionUpdateOne {
+	_u.mutation.SetLocalCode(v)
+	return _u
+}
+
+// SetNillableLocalCode sets the "local_code" field if the given value is not nil.
+func (_u *RegionUpdateOne) SetNillableLocalCode(v *string) *RegionUpdateOne {
+	if v != nil {
+		_u.SetLocalCode(*v)
+	}
+	return _u
 }
 
 // SetName sets the "name" field.
-func (ruo *RegionUpdateOne) SetName(s string) *RegionUpdateOne {
-	ruo.mutation.SetName(s)
-	return ruo
+func (_u *RegionUpdateOne) SetName(v string) *RegionUpdateOne {
+	_u.mutation.SetName(v)
+	return _u
+}
+
+// SetNillableName sets the "name" field if the given value is not nil.
+func (_u *RegionUpdateOne) SetNillableName(v *string) *RegionUpdateOne {
+	if v != nil {
+		_u.SetName(*v)
+	}
+	return _u
 }
 
 // SetWikipediaLink sets the "wikipedia_link" field.
-func (ruo *RegionUpdateOne) SetWikipediaLink(s string) *RegionUpdateOne {
-	ruo.mutation.SetWikipediaLink(s)
-	return ruo
+func (_u *RegionUpdateOne) SetWikipediaLink(v string) *RegionUpdateOne {
+	_u.mutation.SetWikipediaLink(v)
+	return _u
+}
+
+// SetNillableWikipediaLink sets the "wikipedia_link" field if the given value is not nil.
+func (_u *RegionUpdateOne) SetNillableWikipediaLink(v *string) *RegionUpdateOne {
+	if v != nil {
+		_u.SetWikipediaLink(*v)
+	}
+	return _u
 }
 
 // SetKeywords sets the "keywords" field.
-func (ruo *RegionUpdateOne) SetKeywords(s []string) *RegionUpdateOne {
-	ruo.mutation.SetKeywords(s)
-	return ruo
+func (_u *RegionUpdateOne) SetKeywords(v []string) *RegionUpdateOne {
+	_u.mutation.SetKeywords(v)
+	return _u
 }
 
-// AppendKeywords appends s to the "keywords" field.
-func (ruo *RegionUpdateOne) AppendKeywords(s []string) *RegionUpdateOne {
-	ruo.mutation.AppendKeywords(s)
-	return ruo
+// AppendKeywords appends value to the "keywords" field.
+func (_u *RegionUpdateOne) AppendKeywords(v []string) *RegionUpdateOne {
+	_u.mutation.AppendKeywords(v)
+	return _u
 }
 
 // AddAirportIDs adds the "airports" edge to the Airport entity by IDs.
-func (ruo *RegionUpdateOne) AddAirportIDs(ids ...uuid.UUID) *RegionUpdateOne {
-	ruo.mutation.AddAirportIDs(ids...)
-	return ruo
+func (_u *RegionUpdateOne) AddAirportIDs(ids ...uuid.UUID) *RegionUpdateOne {
+	_u.mutation.AddAirportIDs(ids...)
+	return _u
 }
 
 // AddAirports adds the "airports" edges to the Airport entity.
-func (ruo *RegionUpdateOne) AddAirports(a ...*Airport) *RegionUpdateOne {
-	ids := make([]uuid.UUID, len(a))
-	for i := range a {
-		ids[i] = a[i].ID
+func (_u *RegionUpdateOne) AddAirports(v ...*Airport) *RegionUpdateOne {
+	ids := make([]uuid.UUID, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return ruo.AddAirportIDs(ids...)
+	return _u.AddAirportIDs(ids...)
 }
 
 // Mutation returns the RegionMutation object of the builder.
-func (ruo *RegionUpdateOne) Mutation() *RegionMutation {
-	return ruo.mutation
+func (_u *RegionUpdateOne) Mutation() *RegionMutation {
+	return _u.mutation
 }
 
 // ClearAirports clears all "airports" edges to the Airport entity.
-func (ruo *RegionUpdateOne) ClearAirports() *RegionUpdateOne {
-	ruo.mutation.ClearAirports()
-	return ruo
+func (_u *RegionUpdateOne) ClearAirports() *RegionUpdateOne {
+	_u.mutation.ClearAirports()
+	return _u
 }
 
 // RemoveAirportIDs removes the "airports" edge to Airport entities by IDs.
-func (ruo *RegionUpdateOne) RemoveAirportIDs(ids ...uuid.UUID) *RegionUpdateOne {
-	ruo.mutation.RemoveAirportIDs(ids...)
-	return ruo
+func (_u *RegionUpdateOne) RemoveAirportIDs(ids ...uuid.UUID) *RegionUpdateOne {
+	_u.mutation.RemoveAirportIDs(ids...)
+	return _u
 }
 
 // RemoveAirports removes "airports" edges to Airport entities.
-func (ruo *RegionUpdateOne) RemoveAirports(a ...*Airport) *RegionUpdateOne {
-	ids := make([]uuid.UUID, len(a))
-	for i := range a {
-		ids[i] = a[i].ID
+func (_u *RegionUpdateOne) RemoveAirports(v ...*Airport) *RegionUpdateOne {
+	ids := make([]uuid.UUID, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return ruo.RemoveAirportIDs(ids...)
+	return _u.RemoveAirportIDs(ids...)
 }
 
 // Where appends a list predicates to the RegionUpdate builder.
-func (ruo *RegionUpdateOne) Where(ps ...predicate.Region) *RegionUpdateOne {
-	ruo.mutation.Where(ps...)
-	return ruo
+func (_u *RegionUpdateOne) Where(ps ...predicate.Region) *RegionUpdateOne {
+	_u.mutation.Where(ps...)
+	return _u
 }
 
 // Select allows selecting one or more fields (columns) of the returned entity.
 // The default is selecting all fields defined in the entity schema.
-func (ruo *RegionUpdateOne) Select(field string, fields ...string) *RegionUpdateOne {
-	ruo.fields = append([]string{field}, fields...)
-	return ruo
+func (_u *RegionUpdateOne) Select(field string, fields ...string) *RegionUpdateOne {
+	_u.fields = append([]string{field}, fields...)
+	return _u
 }
 
 // Save executes the query and returns the updated Region entity.
-func (ruo *RegionUpdateOne) Save(ctx context.Context) (*Region, error) {
-	return withHooks(ctx, ruo.sqlSave, ruo.mutation, ruo.hooks)
+func (_u *RegionUpdateOne) Save(ctx context.Context) (*Region, error) {
+	return withHooks(ctx, _u.sqlSave, _u.mutation, _u.hooks)
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (ruo *RegionUpdateOne) SaveX(ctx context.Context) *Region {
-	node, err := ruo.Save(ctx)
+func (_u *RegionUpdateOne) SaveX(ctx context.Context) *Region {
+	node, err := _u.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -452,32 +548,32 @@ func (ruo *RegionUpdateOne) SaveX(ctx context.Context) *Region {
 }
 
 // Exec executes the query on the entity.
-func (ruo *RegionUpdateOne) Exec(ctx context.Context) error {
-	_, err := ruo.Save(ctx)
+func (_u *RegionUpdateOne) Exec(ctx context.Context) error {
+	_, err := _u.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (ruo *RegionUpdateOne) ExecX(ctx context.Context) {
-	if err := ruo.Exec(ctx); err != nil {
+func (_u *RegionUpdateOne) ExecX(ctx context.Context) {
+	if err := _u.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // Modify adds a statement modifier for attaching custom logic to the UPDATE statement.
-func (ruo *RegionUpdateOne) Modify(modifiers ...func(u *sql.UpdateBuilder)) *RegionUpdateOne {
-	ruo.modifiers = append(ruo.modifiers, modifiers...)
-	return ruo
+func (_u *RegionUpdateOne) Modify(modifiers ...func(u *sql.UpdateBuilder)) *RegionUpdateOne {
+	_u.modifiers = append(_u.modifiers, modifiers...)
+	return _u
 }
 
-func (ruo *RegionUpdateOne) sqlSave(ctx context.Context) (_node *Region, err error) {
+func (_u *RegionUpdateOne) sqlSave(ctx context.Context) (_node *Region, err error) {
 	_spec := sqlgraph.NewUpdateSpec(region.Table, region.Columns, sqlgraph.NewFieldSpec(region.FieldID, field.TypeUUID))
-	id, ok := ruo.mutation.ID()
+	id, ok := _u.mutation.ID()
 	if !ok {
 		return nil, &ValidationError{Name: "id", err: errors.New(`ent: missing "Region.id" for update`)}
 	}
 	_spec.Node.ID.Value = id
-	if fields := ruo.fields; len(fields) > 0 {
+	if fields := _u.fields; len(fields) > 0 {
 		_spec.Node.Columns = make([]string, 0, len(fields))
 		_spec.Node.Columns = append(_spec.Node.Columns, region.FieldID)
 		for _, f := range fields {
@@ -489,49 +585,49 @@ func (ruo *RegionUpdateOne) sqlSave(ctx context.Context) (_node *Region, err err
 			}
 		}
 	}
-	if ps := ruo.mutation.predicates; len(ps) > 0 {
+	if ps := _u.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if value, ok := ruo.mutation.ImportID(); ok {
+	if value, ok := _u.mutation.ImportID(); ok {
 		_spec.SetField(region.FieldImportID, field.TypeInt, value)
 	}
-	if value, ok := ruo.mutation.AddedImportID(); ok {
+	if value, ok := _u.mutation.AddedImportID(); ok {
 		_spec.AddField(region.FieldImportID, field.TypeInt, value)
 	}
-	if value, ok := ruo.mutation.Hash(); ok {
+	if value, ok := _u.mutation.Hash(); ok {
 		_spec.SetField(region.FieldHash, field.TypeString, value)
 	}
-	if value, ok := ruo.mutation.ImportFlag(); ok {
+	if value, ok := _u.mutation.ImportFlag(); ok {
 		_spec.SetField(region.FieldImportFlag, field.TypeBool, value)
 	}
-	if value, ok := ruo.mutation.LastUpdated(); ok {
+	if value, ok := _u.mutation.LastUpdated(); ok {
 		_spec.SetField(region.FieldLastUpdated, field.TypeTime, value)
 	}
-	if value, ok := ruo.mutation.Code(); ok {
+	if value, ok := _u.mutation.Code(); ok {
 		_spec.SetField(region.FieldCode, field.TypeString, value)
 	}
-	if value, ok := ruo.mutation.LocalCode(); ok {
+	if value, ok := _u.mutation.LocalCode(); ok {
 		_spec.SetField(region.FieldLocalCode, field.TypeString, value)
 	}
-	if value, ok := ruo.mutation.Name(); ok {
+	if value, ok := _u.mutation.Name(); ok {
 		_spec.SetField(region.FieldName, field.TypeString, value)
 	}
-	if value, ok := ruo.mutation.WikipediaLink(); ok {
+	if value, ok := _u.mutation.WikipediaLink(); ok {
 		_spec.SetField(region.FieldWikipediaLink, field.TypeString, value)
 	}
-	if value, ok := ruo.mutation.Keywords(); ok {
+	if value, ok := _u.mutation.Keywords(); ok {
 		_spec.SetField(region.FieldKeywords, field.TypeJSON, value)
 	}
-	if value, ok := ruo.mutation.AppendedKeywords(); ok {
+	if value, ok := _u.mutation.AppendedKeywords(); ok {
 		_spec.AddModifier(func(u *sql.UpdateBuilder) {
 			sqljson.Append(u, region.FieldKeywords, value)
 		})
 	}
-	if ruo.mutation.AirportsCleared() {
+	if _u.mutation.AirportsCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -544,7 +640,7 @@ func (ruo *RegionUpdateOne) sqlSave(ctx context.Context) (_node *Region, err err
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := ruo.mutation.RemovedAirportsIDs(); len(nodes) > 0 && !ruo.mutation.AirportsCleared() {
+	if nodes := _u.mutation.RemovedAirportsIDs(); len(nodes) > 0 && !_u.mutation.AirportsCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -560,7 +656,7 @@ func (ruo *RegionUpdateOne) sqlSave(ctx context.Context) (_node *Region, err err
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := ruo.mutation.AirportsIDs(); len(nodes) > 0 {
+	if nodes := _u.mutation.AirportsIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -576,11 +672,11 @@ func (ruo *RegionUpdateOne) sqlSave(ctx context.Context) (_node *Region, err err
 		}
 		_spec.Edges.Add = append(_spec.Edges.Add, edge)
 	}
-	_spec.AddModifiers(ruo.modifiers...)
-	_node = &Region{config: ruo.config}
+	_spec.AddModifiers(_u.modifiers...)
+	_node = &Region{config: _u.config}
 	_spec.Assign = _node.assignValues
 	_spec.ScanValues = _node.scanValues
-	if err = sqlgraph.UpdateNode(ctx, ruo.driver, _spec); err != nil {
+	if err = sqlgraph.UpdateNode(ctx, _u.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
 			err = &NotFoundError{region.Label}
 		} else if sqlgraph.IsConstraintError(err) {
@@ -588,6 +684,6 @@ func (ruo *RegionUpdateOne) sqlSave(ctx context.Context) (_node *Region, err err
 		}
 		return nil, err
 	}
-	ruo.mutation.done = true
+	_u.mutation.done = true
 	return _node, nil
 }

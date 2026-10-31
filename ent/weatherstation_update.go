@@ -27,208 +27,216 @@ type WeatherStationUpdate struct {
 }
 
 // Where appends a list predicates to the WeatherStationUpdate builder.
-func (wsu *WeatherStationUpdate) Where(ps ...predicate.WeatherStation) *WeatherStationUpdate {
-	wsu.mutation.Where(ps...)
-	return wsu
+func (_u *WeatherStationUpdate) Where(ps ...predicate.WeatherStation) *WeatherStationUpdate {
+	_u.mutation.Where(ps...)
+	return _u
 }
 
 // SetLatitude sets the "latitude" field.
-func (wsu *WeatherStationUpdate) SetLatitude(f float64) *WeatherStationUpdate {
-	wsu.mutation.ResetLatitude()
-	wsu.mutation.SetLatitude(f)
-	return wsu
+func (_u *WeatherStationUpdate) SetLatitude(v float64) *WeatherStationUpdate {
+	_u.mutation.ResetLatitude()
+	_u.mutation.SetLatitude(v)
+	return _u
 }
 
 // SetNillableLatitude sets the "latitude" field if the given value is not nil.
-func (wsu *WeatherStationUpdate) SetNillableLatitude(f *float64) *WeatherStationUpdate {
-	if f != nil {
-		wsu.SetLatitude(*f)
+func (_u *WeatherStationUpdate) SetNillableLatitude(v *float64) *WeatherStationUpdate {
+	if v != nil {
+		_u.SetLatitude(*v)
 	}
-	return wsu
+	return _u
 }
 
-// AddLatitude adds f to the "latitude" field.
-func (wsu *WeatherStationUpdate) AddLatitude(f float64) *WeatherStationUpdate {
-	wsu.mutation.AddLatitude(f)
-	return wsu
+// AddLatitude adds value to the "latitude" field.
+func (_u *WeatherStationUpdate) AddLatitude(v float64) *WeatherStationUpdate {
+	_u.mutation.AddLatitude(v)
+	return _u
 }
 
 // ClearLatitude clears the value of the "latitude" field.
-func (wsu *WeatherStationUpdate) ClearLatitude() *WeatherStationUpdate {
-	wsu.mutation.ClearLatitude()
-	return wsu
+func (_u *WeatherStationUpdate) ClearLatitude() *WeatherStationUpdate {
+	_u.mutation.ClearLatitude()
+	return _u
 }
 
 // SetLongitude sets the "longitude" field.
-func (wsu *WeatherStationUpdate) SetLongitude(f float64) *WeatherStationUpdate {
-	wsu.mutation.ResetLongitude()
-	wsu.mutation.SetLongitude(f)
-	return wsu
+func (_u *WeatherStationUpdate) SetLongitude(v float64) *WeatherStationUpdate {
+	_u.mutation.ResetLongitude()
+	_u.mutation.SetLongitude(v)
+	return _u
 }
 
 // SetNillableLongitude sets the "longitude" field if the given value is not nil.
-func (wsu *WeatherStationUpdate) SetNillableLongitude(f *float64) *WeatherStationUpdate {
-	if f != nil {
-		wsu.SetLongitude(*f)
+func (_u *WeatherStationUpdate) SetNillableLongitude(v *float64) *WeatherStationUpdate {
+	if v != nil {
+		_u.SetLongitude(*v)
 	}
-	return wsu
+	return _u
 }
 
-// AddLongitude adds f to the "longitude" field.
-func (wsu *WeatherStationUpdate) AddLongitude(f float64) *WeatherStationUpdate {
-	wsu.mutation.AddLongitude(f)
-	return wsu
+// AddLongitude adds value to the "longitude" field.
+func (_u *WeatherStationUpdate) AddLongitude(v float64) *WeatherStationUpdate {
+	_u.mutation.AddLongitude(v)
+	return _u
 }
 
 // ClearLongitude clears the value of the "longitude" field.
-func (wsu *WeatherStationUpdate) ClearLongitude() *WeatherStationUpdate {
-	wsu.mutation.ClearLongitude()
-	return wsu
+func (_u *WeatherStationUpdate) ClearLongitude() *WeatherStationUpdate {
+	_u.mutation.ClearLongitude()
+	return _u
 }
 
 // SetElevation sets the "elevation" field.
-func (wsu *WeatherStationUpdate) SetElevation(f float64) *WeatherStationUpdate {
-	wsu.mutation.ResetElevation()
-	wsu.mutation.SetElevation(f)
-	return wsu
+func (_u *WeatherStationUpdate) SetElevation(v float64) *WeatherStationUpdate {
+	_u.mutation.ResetElevation()
+	_u.mutation.SetElevation(v)
+	return _u
 }
 
 // SetNillableElevation sets the "elevation" field if the given value is not nil.
-func (wsu *WeatherStationUpdate) SetNillableElevation(f *float64) *WeatherStationUpdate {
-	if f != nil {
-		wsu.SetElevation(*f)
+func (_u *WeatherStationUpdate) SetNillableElevation(v *float64) *WeatherStationUpdate {
+	if v != nil {
+		_u.SetElevation(*v)
 	}
-	return wsu
+	return _u
 }
 
-// AddElevation adds f to the "elevation" field.
-func (wsu *WeatherStationUpdate) AddElevation(f float64) *WeatherStationUpdate {
-	wsu.mutation.AddElevation(f)
-	return wsu
+// AddElevation adds value to the "elevation" field.
+func (_u *WeatherStationUpdate) AddElevation(v float64) *WeatherStationUpdate {
+	_u.mutation.AddElevation(v)
+	return _u
 }
 
 // ClearElevation clears the value of the "elevation" field.
-func (wsu *WeatherStationUpdate) ClearElevation() *WeatherStationUpdate {
-	wsu.mutation.ClearElevation()
-	return wsu
+func (_u *WeatherStationUpdate) ClearElevation() *WeatherStationUpdate {
+	_u.mutation.ClearElevation()
+	return _u
 }
 
 // SetHash sets the "hash" field.
-func (wsu *WeatherStationUpdate) SetHash(s string) *WeatherStationUpdate {
-	wsu.mutation.SetHash(s)
-	return wsu
+func (_u *WeatherStationUpdate) SetHash(v string) *WeatherStationUpdate {
+	_u.mutation.SetHash(v)
+	return _u
+}
+
+// SetNillableHash sets the "hash" field if the given value is not nil.
+func (_u *WeatherStationUpdate) SetNillableHash(v *string) *WeatherStationUpdate {
+	if v != nil {
+		_u.SetHash(*v)
+	}
+	return _u
 }
 
 // SetAirportID sets the "airport" edge to the Airport entity by ID.
-func (wsu *WeatherStationUpdate) SetAirportID(id uuid.UUID) *WeatherStationUpdate {
-	wsu.mutation.SetAirportID(id)
-	return wsu
+func (_u *WeatherStationUpdate) SetAirportID(id uuid.UUID) *WeatherStationUpdate {
+	_u.mutation.SetAirportID(id)
+	return _u
 }
 
 // SetNillableAirportID sets the "airport" edge to the Airport entity by ID if the given value is not nil.
-func (wsu *WeatherStationUpdate) SetNillableAirportID(id *uuid.UUID) *WeatherStationUpdate {
+func (_u *WeatherStationUpdate) SetNillableAirportID(id *uuid.UUID) *WeatherStationUpdate {
 	if id != nil {
-		wsu = wsu.SetAirportID(*id)
+		_u = _u.SetAirportID(*id)
 	}
-	return wsu
+	return _u
 }
 
 // SetAirport sets the "airport" edge to the Airport entity.
-func (wsu *WeatherStationUpdate) SetAirport(a *Airport) *WeatherStationUpdate {
-	return wsu.SetAirportID(a.ID)
+func (_u *WeatherStationUpdate) SetAirport(v *Airport) *WeatherStationUpdate {
+	return _u.SetAirportID(v.ID)
 }
 
 // AddMetarIDs adds the "metars" edge to the Metar entity by IDs.
-func (wsu *WeatherStationUpdate) AddMetarIDs(ids ...uuid.UUID) *WeatherStationUpdate {
-	wsu.mutation.AddMetarIDs(ids...)
-	return wsu
+func (_u *WeatherStationUpdate) AddMetarIDs(ids ...uuid.UUID) *WeatherStationUpdate {
+	_u.mutation.AddMetarIDs(ids...)
+	return _u
 }
 
 // AddMetars adds the "metars" edges to the Metar entity.
-func (wsu *WeatherStationUpdate) AddMetars(m ...*Metar) *WeatherStationUpdate {
-	ids := make([]uuid.UUID, len(m))
-	for i := range m {
-		ids[i] = m[i].ID
+func (_u *WeatherStationUpdate) AddMetars(v ...*Metar) *WeatherStationUpdate {
+	ids := make([]uuid.UUID, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return wsu.AddMetarIDs(ids...)
+	return _u.AddMetarIDs(ids...)
 }
 
 // AddTafIDs adds the "tafs" edge to the Taf entity by IDs.
-func (wsu *WeatherStationUpdate) AddTafIDs(ids ...uuid.UUID) *WeatherStationUpdate {
-	wsu.mutation.AddTafIDs(ids...)
-	return wsu
+func (_u *WeatherStationUpdate) AddTafIDs(ids ...uuid.UUID) *WeatherStationUpdate {
+	_u.mutation.AddTafIDs(ids...)
+	return _u
 }
 
 // AddTafs adds the "tafs" edges to the Taf entity.
-func (wsu *WeatherStationUpdate) AddTafs(t ...*Taf) *WeatherStationUpdate {
-	ids := make([]uuid.UUID, len(t))
-	for i := range t {
-		ids[i] = t[i].ID
+func (_u *WeatherStationUpdate) AddTafs(v ...*Taf) *WeatherStationUpdate {
+	ids := make([]uuid.UUID, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return wsu.AddTafIDs(ids...)
+	return _u.AddTafIDs(ids...)
 }
 
 // Mutation returns the WeatherStationMutation object of the builder.
-func (wsu *WeatherStationUpdate) Mutation() *WeatherStationMutation {
-	return wsu.mutation
+func (_u *WeatherStationUpdate) Mutation() *WeatherStationMutation {
+	return _u.mutation
 }
 
 // ClearAirport clears the "airport" edge to the Airport entity.
-func (wsu *WeatherStationUpdate) ClearAirport() *WeatherStationUpdate {
-	wsu.mutation.ClearAirport()
-	return wsu
+func (_u *WeatherStationUpdate) ClearAirport() *WeatherStationUpdate {
+	_u.mutation.ClearAirport()
+	return _u
 }
 
 // ClearMetars clears all "metars" edges to the Metar entity.
-func (wsu *WeatherStationUpdate) ClearMetars() *WeatherStationUpdate {
-	wsu.mutation.ClearMetars()
-	return wsu
+func (_u *WeatherStationUpdate) ClearMetars() *WeatherStationUpdate {
+	_u.mutation.ClearMetars()
+	return _u
 }
 
 // RemoveMetarIDs removes the "metars" edge to Metar entities by IDs.
-func (wsu *WeatherStationUpdate) RemoveMetarIDs(ids ...uuid.UUID) *WeatherStationUpdate {
-	wsu.mutation.RemoveMetarIDs(ids...)
-	return wsu
+func (_u *WeatherStationUpdate) RemoveMetarIDs(ids ...uuid.UUID) *WeatherStationUpdate {
+	_u.mutation.RemoveMetarIDs(ids...)
+	return _u
 }
 
 // RemoveMetars removes "metars" edges to Metar entities.
-func (wsu *WeatherStationUpdate) RemoveMetars(m ...*Metar) *WeatherStationUpdate {
-	ids := make([]uuid.UUID, len(m))
-	for i := range m {
-		ids[i] = m[i].ID
+func (_u *WeatherStationUpdate) RemoveMetars(v ...*Metar) *WeatherStationUpdate {
+	ids := make([]uuid.UUID, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return wsu.RemoveMetarIDs(ids...)
+	return _u.RemoveMetarIDs(ids...)
 }
 
 // ClearTafs clears all "tafs" edges to the Taf entity.
-func (wsu *WeatherStationUpdate) ClearTafs() *WeatherStationUpdate {
-	wsu.mutation.ClearTafs()
-	return wsu
+func (_u *WeatherStationUpdate) ClearTafs() *WeatherStationUpdate {
+	_u.mutation.ClearTafs()
+	return _u
 }
 
 // RemoveTafIDs removes the "tafs" edge to Taf entities by IDs.
-func (wsu *WeatherStationUpdate) RemoveTafIDs(ids ...uuid.UUID) *WeatherStationUpdate {
-	wsu.mutation.RemoveTafIDs(ids...)
-	return wsu
+func (_u *WeatherStationUpdate) RemoveTafIDs(ids ...uuid.UUID) *WeatherStationUpdate {
+	_u.mutation.RemoveTafIDs(ids...)
+	return _u
 }
 
 // RemoveTafs removes "tafs" edges to Taf entities.
-func (wsu *WeatherStationUpdate) RemoveTafs(t ...*Taf) *WeatherStationUpdate {
-	ids := make([]uuid.UUID, len(t))
-	for i := range t {
-		ids[i] = t[i].ID
+func (_u *WeatherStationUpdate) RemoveTafs(v ...*Taf) *WeatherStationUpdate {
+	ids := make([]uuid.UUID, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return wsu.RemoveTafIDs(ids...)
+	return _u.RemoveTafIDs(ids...)
 }
 
 // Save executes the query and returns the number of nodes affected by the update operation.
-func (wsu *WeatherStationUpdate) Save(ctx context.Context) (int, error) {
-	return withHooks(ctx, wsu.sqlSave, wsu.mutation, wsu.hooks)
+func (_u *WeatherStationUpdate) Save(ctx context.Context) (int, error) {
+	return withHooks(ctx, _u.sqlSave, _u.mutation, _u.hooks)
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (wsu *WeatherStationUpdate) SaveX(ctx context.Context) int {
-	affected, err := wsu.Save(ctx)
+func (_u *WeatherStationUpdate) SaveX(ctx context.Context) int {
+	affected, err := _u.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -236,64 +244,64 @@ func (wsu *WeatherStationUpdate) SaveX(ctx context.Context) int {
 }
 
 // Exec executes the query.
-func (wsu *WeatherStationUpdate) Exec(ctx context.Context) error {
-	_, err := wsu.Save(ctx)
+func (_u *WeatherStationUpdate) Exec(ctx context.Context) error {
+	_, err := _u.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (wsu *WeatherStationUpdate) ExecX(ctx context.Context) {
-	if err := wsu.Exec(ctx); err != nil {
+func (_u *WeatherStationUpdate) ExecX(ctx context.Context) {
+	if err := _u.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // Modify adds a statement modifier for attaching custom logic to the UPDATE statement.
-func (wsu *WeatherStationUpdate) Modify(modifiers ...func(u *sql.UpdateBuilder)) *WeatherStationUpdate {
-	wsu.modifiers = append(wsu.modifiers, modifiers...)
-	return wsu
+func (_u *WeatherStationUpdate) Modify(modifiers ...func(u *sql.UpdateBuilder)) *WeatherStationUpdate {
+	_u.modifiers = append(_u.modifiers, modifiers...)
+	return _u
 }
 
-func (wsu *WeatherStationUpdate) sqlSave(ctx context.Context) (n int, err error) {
+func (_u *WeatherStationUpdate) sqlSave(ctx context.Context) (_node int, err error) {
 	_spec := sqlgraph.NewUpdateSpec(weatherstation.Table, weatherstation.Columns, sqlgraph.NewFieldSpec(weatherstation.FieldID, field.TypeUUID))
-	if ps := wsu.mutation.predicates; len(ps) > 0 {
+	if ps := _u.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if value, ok := wsu.mutation.Latitude(); ok {
+	if value, ok := _u.mutation.Latitude(); ok {
 		_spec.SetField(weatherstation.FieldLatitude, field.TypeFloat64, value)
 	}
-	if value, ok := wsu.mutation.AddedLatitude(); ok {
+	if value, ok := _u.mutation.AddedLatitude(); ok {
 		_spec.AddField(weatherstation.FieldLatitude, field.TypeFloat64, value)
 	}
-	if wsu.mutation.LatitudeCleared() {
+	if _u.mutation.LatitudeCleared() {
 		_spec.ClearField(weatherstation.FieldLatitude, field.TypeFloat64)
 	}
-	if value, ok := wsu.mutation.Longitude(); ok {
+	if value, ok := _u.mutation.Longitude(); ok {
 		_spec.SetField(weatherstation.FieldLongitude, field.TypeFloat64, value)
 	}
-	if value, ok := wsu.mutation.AddedLongitude(); ok {
+	if value, ok := _u.mutation.AddedLongitude(); ok {
 		_spec.AddField(weatherstation.FieldLongitude, field.TypeFloat64, value)
 	}
-	if wsu.mutation.LongitudeCleared() {
+	if _u.mutation.LongitudeCleared() {
 		_spec.ClearField(weatherstation.FieldLongitude, field.TypeFloat64)
 	}
-	if value, ok := wsu.mutation.Elevation(); ok {
+	if value, ok := _u.mutation.Elevation(); ok {
 		_spec.SetField(weatherstation.FieldElevation, field.TypeFloat64, value)
 	}
-	if value, ok := wsu.mutation.AddedElevation(); ok {
+	if value, ok := _u.mutation.AddedElevation(); ok {
 		_spec.AddField(weatherstation.FieldElevation, field.TypeFloat64, value)
 	}
-	if wsu.mutation.ElevationCleared() {
+	if _u.mutation.ElevationCleared() {
 		_spec.ClearField(weatherstation.FieldElevation, field.TypeFloat64)
 	}
-	if value, ok := wsu.mutation.Hash(); ok {
+	if value, ok := _u.mutation.Hash(); ok {
 		_spec.SetField(weatherstation.FieldHash, field.TypeString, value)
 	}
-	if wsu.mutation.AirportCleared() {
+	if _u.mutation.AirportCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2O,
 			Inverse: true,
@@ -306,7 +314,7 @@ func (wsu *WeatherStationUpdate) sqlSave(ctx context.Context) (n int, err error)
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := wsu.mutation.AirportIDs(); len(nodes) > 0 {
+	if nodes := _u.mutation.AirportIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2O,
 			Inverse: true,
@@ -322,7 +330,7 @@ func (wsu *WeatherStationUpdate) sqlSave(ctx context.Context) (n int, err error)
 		}
 		_spec.Edges.Add = append(_spec.Edges.Add, edge)
 	}
-	if wsu.mutation.MetarsCleared() {
+	if _u.mutation.MetarsCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -335,7 +343,7 @@ func (wsu *WeatherStationUpdate) sqlSave(ctx context.Context) (n int, err error)
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := wsu.mutation.RemovedMetarsIDs(); len(nodes) > 0 && !wsu.mutation.MetarsCleared() {
+	if nodes := _u.mutation.RemovedMetarsIDs(); len(nodes) > 0 && !_u.mutation.MetarsCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -351,7 +359,7 @@ func (wsu *WeatherStationUpdate) sqlSave(ctx context.Context) (n int, err error)
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := wsu.mutation.MetarsIDs(); len(nodes) > 0 {
+	if nodes := _u.mutation.MetarsIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -367,7 +375,7 @@ func (wsu *WeatherStationUpdate) sqlSave(ctx context.Context) (n int, err error)
 		}
 		_spec.Edges.Add = append(_spec.Edges.Add, edge)
 	}
-	if wsu.mutation.TafsCleared() {
+	if _u.mutation.TafsCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -380,7 +388,7 @@ func (wsu *WeatherStationUpdate) sqlSave(ctx context.Context) (n int, err error)
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := wsu.mutation.RemovedTafsIDs(); len(nodes) > 0 && !wsu.mutation.TafsCleared() {
+	if nodes := _u.mutation.RemovedTafsIDs(); len(nodes) > 0 && !_u.mutation.TafsCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -396,7 +404,7 @@ func (wsu *WeatherStationUpdate) sqlSave(ctx context.Context) (n int, err error)
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := wsu.mutation.TafsIDs(); len(nodes) > 0 {
+	if nodes := _u.mutation.TafsIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -412,8 +420,8 @@ func (wsu *WeatherStationUpdate) sqlSave(ctx context.Context) (n int, err error)
 		}
 		_spec.Edges.Add = append(_spec.Edges.Add, edge)
 	}
-	_spec.AddModifiers(wsu.modifiers...)
-	if n, err = sqlgraph.UpdateNodes(ctx, wsu.driver, _spec); err != nil {
+	_spec.AddModifiers(_u.modifiers...)
+	if _node, err = sqlgraph.UpdateNodes(ctx, _u.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
 			err = &NotFoundError{weatherstation.Label}
 		} else if sqlgraph.IsConstraintError(err) {
@@ -421,8 +429,8 @@ func (wsu *WeatherStationUpdate) sqlSave(ctx context.Context) (n int, err error)
 		}
 		return 0, err
 	}
-	wsu.mutation.done = true
-	return n, nil
+	_u.mutation.done = true
+	return _node, nil
 }
 
 // WeatherStationUpdateOne is the builder for updating a single WeatherStation entity.
@@ -435,215 +443,223 @@ type WeatherStationUpdateOne struct {
 }
 
 // SetLatitude sets the "latitude" field.
-func (wsuo *WeatherStationUpdateOne) SetLatitude(f float64) *WeatherStationUpdateOne {
-	wsuo.mutation.ResetLatitude()
-	wsuo.mutation.SetLatitude(f)
-	return wsuo
+func (_u *WeatherStationUpdateOne) SetLatitude(v float64) *WeatherStationUpdateOne {
+	_u.mutation.ResetLatitude()
+	_u.mutation.SetLatitude(v)
+	return _u
 }
 
 // SetNillableLatitude sets the "latitude" field if the given value is not nil.
-func (wsuo *WeatherStationUpdateOne) SetNillableLatitude(f *float64) *WeatherStationUpdateOne {
-	if f != nil {
-		wsuo.SetLatitude(*f)
+func (_u *WeatherStationUpdateOne) SetNillableLatitude(v *float64) *WeatherStationUpdateOne {
+	if v != nil {
+		_u.SetLatitude(*v)
 	}
-	return wsuo
+	return _u
 }
 
-// AddLatitude adds f to the "latitude" field.
-func (wsuo *WeatherStationUpdateOne) AddLatitude(f float64) *WeatherStationUpdateOne {
-	wsuo.mutation.AddLatitude(f)
-	return wsuo
+// AddLatitude adds value to the "latitude" field.
+func (_u *WeatherStationUpdateOne) AddLatitude(v float64) *WeatherStationUpdateOne {
+	_u.mutation.AddLatitude(v)
+	return _u
 }
 
 // ClearLatitude clears the value of the "latitude" field.
-func (wsuo *WeatherStationUpdateOne) ClearLatitude() *WeatherStationUpdateOne {
-	wsuo.mutation.ClearLatitude()
-	return wsuo
+func (_u *WeatherStationUpdateOne) ClearLatitude() *WeatherStationUpdateOne {
+	_u.mutation.ClearLatitude()
+	return _u
 }
 
 // SetLongitude sets the "longitude" field.
-func (wsuo *WeatherStationUpdateOne) SetLongitude(f float64) *WeatherStationUpdateOne {
-	wsuo.mutation.ResetLongitude()
-	wsuo.mutation.SetLongitude(f)
-	return wsuo
+func (_u *WeatherStationUpdateOne) SetLongitude(v float64) *WeatherStationUpdateOne {
+	_u.mutation.ResetLongitude()
+	_u.mutation.SetLongitude(v)
+	return _u
 }
 
 // SetNillableLongitude sets the "longitude" field if the given value is not nil.
-func (wsuo *WeatherStationUpdateOne) SetNillableLongitude(f *float64) *WeatherStationUpdateOne {
-	if f != nil {
-		wsuo.SetLongitude(*f)
+func (_u *WeatherStationUpdateOne) SetNillableLongitude(v *float64) *WeatherStationUpdateOne {
+	if v != nil {
+		_u.SetLongitude(*v)
 	}
-	return wsuo
+	return _u
 }
 
-// AddLongitude adds f to the "longitude" field.
-func (wsuo *WeatherStationUpdateOne) AddLongitude(f float64) *WeatherStationUpdateOne {
-	wsuo.mutation.AddLongitude(f)
-	return wsuo
+// AddLongitude adds value to the "longitude" field.
+func (_u *WeatherStationUpdateOne) AddLongitude(v float64) *WeatherStationUpdateOne {
+	_u.mutation.AddLongitude(v)
+	return _u
 }
 
 // ClearLongitude clears the value of the "longitude" field.
-func (wsuo *WeatherStationUpdateOne) ClearLongitude() *WeatherStationUpdateOne {
-	wsuo.mutation.ClearLongitude()
-	return wsuo
+func (_u *WeatherStationUpdateOne) ClearLongitude() *WeatherStationUpdateOne {
+	_u.mutation.ClearLongitude()
+	return _u
 }
 
 // SetElevation sets the "elevation" field.
-func (wsuo *WeatherStationUpdateOne) SetElevation(f float64) *WeatherStationUpdateOne {
-	wsuo.mutation.ResetElevation()
-	wsuo.mutation.SetElevation(f)
-	return wsuo
+func (_u *WeatherStationUpdateOne) SetElevation(v float64) *WeatherStationUpdateOne {
+	_u.mutation.ResetElevation()
+	_u.mutation.SetElevation(v)
+	return _u
 }
 
 // SetNillableElevation sets the "elevation" field if the given value is not nil.
-func (wsuo *WeatherStationUpdateOne) SetNillableElevation(f *float64) *WeatherStationUpdateOne {
-	if f != nil {
-		wsuo.SetElevation(*f)
+func (_u *WeatherStationUpdateOne) SetNillableElevation(v *float64) *WeatherStationUpdateOne {
+	if v != nil {
+		_u.SetElevation(*v)
 	}
-	return wsuo
+	return _u
 }
 
-// AddElevation adds f to the "elevation" field.
-func (wsuo *WeatherStationUpdateOne) AddElevation(f float64) *WeatherStationUpdateOne {
-	wsuo.mutation.AddElevation(f)
-	return wsuo
+// AddElevation adds value to the "elevation" field.
+func (_u *WeatherStationUpdateOne) AddElevation(v float64) *WeatherStationUpdateOne {
+	_u.mutation.AddElevation(v)
+	return _u
 }
 
 // ClearElevation clears the value of the "elevation" field.
-func (wsuo *WeatherStationUpdateOne) ClearElevation() *WeatherStationUpdateOne {
-	wsuo.mutation.ClearElevation()
-	return wsuo
+func (_u *WeatherStationUpdateOne) ClearElevation() *WeatherStationUpdateOne {
+	_u.mutation.ClearElevation()
+	return _u
 }
 
 // SetHash sets the "hash" field.
-func (wsuo *WeatherStationUpdateOne) SetHash(s string) *WeatherStationUpdateOne {
-	wsuo.mutation.SetHash(s)
-	return wsuo
+func (_u *WeatherStationUpdateOne) SetHash(v string) *WeatherStationUpdateOne {
+	_u.mutation.SetHash(v)
+	return _u
+}
+
+// SetNillableHash sets the "hash" field if the given value is not nil.
+func (_u *WeatherStationUpdateOne) SetNillableHash(v *string) *WeatherStationUpdateOne {
+	if v != nil {
+		_u.SetHash(*v)
+	}
+	return _u
 }
 
 // SetAirportID sets the "airport" edge to the Airport entity by ID.
-func (wsuo *WeatherStationUpdateOne) SetAirportID(id uuid.UUID) *WeatherStationUpdateOne {
-	wsuo.mutation.SetAirportID(id)
-	return wsuo
+func (_u *WeatherStationUpdateOne) SetAirportID(id uuid.UUID) *WeatherStationUpdateOne {
+	_u.mutation.SetAirportID(id)
+	return _u
 }
 
 // SetNillableAirportID sets the "airport" edge to the Airport entity by ID if the given value is not nil.
-func (wsuo *WeatherStationUpdateOne) SetNillableAirportID(id *uuid.UUID) *WeatherStationUpdateOne {
+func (_u *WeatherStationUpdateOne) SetNillableAirportID(id *uuid.UUID) *WeatherStationUpdateOne {
 	if id != nil {
-		wsuo = wsuo.SetAirportID(*id)
+		_u = _u.SetAirportID(*id)
 	}
-	return wsuo
+	return _u
 }
 
 // SetAirport sets the "airport" edge to the Airport entity.
-func (wsuo *WeatherStationUpdateOne) SetAirport(a *Airport) *WeatherStationUpdateOne {
-	return wsuo.SetAirportID(a.ID)
+func (_u *WeatherStationUpdateOne) SetAirport(v *Airport) *WeatherStationUpdateOne {
+	return _u.SetAirportID(v.ID)
 }
 
 // AddMetarIDs adds the "metars" edge to the Metar entity by IDs.
-func (wsuo *WeatherStationUpdateOne) AddMetarIDs(ids ...uuid.UUID) *WeatherStationUpdateOne {
-	wsuo.mutation.AddMetarIDs(ids...)
-	return wsuo
+func (_u *WeatherStationUpdateOne) AddMetarIDs(ids ...uuid.UUID) *WeatherStationUpdateOne {
+	_u.mutation.AddMetarIDs(ids...)
+	return _u
 }
 
 // AddMetars adds the "metars" edges to the Metar entity.
-func (wsuo *WeatherStationUpdateOne) AddMetars(m ...*Metar) *WeatherStationUpdateOne {
-	ids := make([]uuid.UUID, len(m))
-	for i := range m {
-		ids[i] = m[i].ID
+func (_u *WeatherStationUpdateOne) AddMetars(v ...*Metar) *WeatherStationUpdateOne {
+	ids := make([]uuid.UUID, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return wsuo.AddMetarIDs(ids...)
+	return _u.AddMetarIDs(ids...)
 }
 
 // AddTafIDs adds the "tafs" edge to the Taf entity by IDs.
-func (wsuo *WeatherStationUpdateOne) AddTafIDs(ids ...uuid.UUID) *WeatherStationUpdateOne {
-	wsuo.mutation.AddTafIDs(ids...)
-	return wsuo
+func (_u *WeatherStationUpdateOne) AddTafIDs(ids ...uuid.UUID) *WeatherStationUpdateOne {
+	_u.mutation.AddTafIDs(ids...)
+	return _u
 }
 
 // AddTafs adds the "tafs" edges to the Taf entity.
-func (wsuo *WeatherStationUpdateOne) AddTafs(t ...*Taf) *WeatherStationUpdateOne {
-	ids := make([]uuid.UUID, len(t))
-	for i := range t {
-		ids[i] = t[i].ID
+func (_u *WeatherStationUpdateOne) AddTafs(v ...*Taf) *WeatherStationUpdateOne {
+	ids := make([]uuid.UUID, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return wsuo.AddTafIDs(ids...)
+	return _u.AddTafIDs(ids...)
 }
 
 // Mutation returns the WeatherStationMutation object of the builder.
-func (wsuo *WeatherStationUpdateOne) Mutation() *WeatherStationMutation {
-	return wsuo.mutation
+func (_u *WeatherStationUpdateOne) Mutation() *WeatherStationMutation {
+	return _u.mutation
 }
 
 // ClearAirport clears the "airport" edge to the Airport entity.
-func (wsuo *WeatherStationUpdateOne) ClearAirport() *WeatherStationUpdateOne {
-	wsuo.mutation.ClearAirport()
-	return wsuo
+func (_u *WeatherStationUpdateOne) ClearAirport() *WeatherStationUpdateOne {
+	_u.mutation.ClearAirport()
+	return _u
 }
 
 // ClearMetars clears all "metars" edges to the Metar entity.
-func (wsuo *WeatherStationUpdateOne) ClearMetars() *WeatherStationUpdateOne {
-	wsuo.mutation.ClearMetars()
-	return wsuo
+func (_u *WeatherStationUpdateOne) ClearMetars() *WeatherStationUpdateOne {
+	_u.mutation.ClearMetars()
+	return _u
 }
 
 // RemoveMetarIDs removes the "metars" edge to Metar entities by IDs.
-func (wsuo *WeatherStationUpdateOne) RemoveMetarIDs(ids ...uuid.UUID) *WeatherStationUpdateOne {
-	wsuo.mutation.RemoveMetarIDs(ids...)
-	return wsuo
+func (_u *WeatherStationUpdateOne) RemoveMetarIDs(ids ...uuid.UUID) *WeatherStationUpdateOne {
+	_u.mutation.RemoveMetarIDs(ids...)
+	return _u
 }
 
 // RemoveMetars removes "metars" edges to Metar entities.
-func (wsuo *WeatherStationUpdateOne) RemoveMetars(m ...*Metar) *WeatherStationUpdateOne {
-	ids := make([]uuid.UUID, len(m))
-	for i := range m {
-		ids[i] = m[i].ID
+func (_u *WeatherStationUpdateOne) RemoveMetars(v ...*Metar) *WeatherStationUpdateOne {
+	ids := make([]uuid.UUID, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return wsuo.RemoveMetarIDs(ids...)
+	return _u.RemoveMetarIDs(ids...)
 }
 
 // ClearTafs clears all "tafs" edges to the Taf entity.
-func (wsuo *WeatherStationUpdateOne) ClearTafs() *WeatherStationUpdateOne {
-	wsuo.mutation.ClearTafs()
-	return wsuo
+func (_u *WeatherStationUpdateOne) ClearTafs() *WeatherStationUpdateOne {
+	_u.mutation.ClearTafs()
+	return _u
 }
 
 // RemoveTafIDs removes the "tafs" edge to Taf entities by IDs.
-func (wsuo *WeatherStationUpdateOne) RemoveTafIDs(ids ...uuid.UUID) *WeatherStationUpdateOne {
-	wsuo.mutation.RemoveTafIDs(ids...)
-	return wsuo
+func (_u *WeatherStationUpdateOne) RemoveTafIDs(ids ...uuid.UUID) *WeatherStationUpdateOne {
+	_u.mutation.RemoveTafIDs(ids...)
+	return _u
 }
 
 // RemoveTafs removes "tafs" edges to Taf entities.
-func (wsuo *WeatherStationUpdateOne) RemoveTafs(t ...*Taf) *WeatherStationUpdateOne {
-	ids := make([]uuid.UUID, len(t))
-	for i := range t {
-		ids[i] = t[i].ID
+func (_u *WeatherStationUpdateOne) RemoveTafs(v ...*Taf) *WeatherStationUpdateOne {
+	ids := make([]uuid.UUID, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return wsuo.RemoveTafIDs(ids...)
+	return _u.RemoveTafIDs(ids...)
 }
 
 // Where appends a list predicates to the WeatherStationUpdate builder.
-func (wsuo *WeatherStationUpdateOne) Where(ps ...predicate.WeatherStation) *WeatherStationUpdateOne {
-	wsuo.mutation.Where(ps...)
-	return wsuo
+func (_u *WeatherStationUpdateOne) Where(ps ...predicate.WeatherStation) *WeatherStationUpdateOne {
+	_u.mutation.Where(ps...)
+	return _u
 }
 
 // Select allows selecting one or more fields (columns) of the returned entity.
 // The default is selecting all fields defined in the entity schema.
-func (wsuo *WeatherStationUpdateOne) Select(field string, fields ...string) *WeatherStationUpdateOne {
-	wsuo.fields = append([]string{field}, fields...)
-	return wsuo
+func (_u *WeatherStationUpdateOne) Select(field string, fields ...string) *WeatherStationUpdateOne {
+	_u.fields = append([]string{field}, fields...)
+	return _u
 }
 
 // Save executes the query and returns the updated WeatherStation entity.
-func (wsuo *WeatherStationUpdateOne) Save(ctx context.Context) (*WeatherStation, error) {
-	return withHooks(ctx, wsuo.sqlSave, wsuo.mutation, wsuo.hooks)
+func (_u *WeatherStationUpdateOne) Save(ctx context.Context) (*WeatherStation, error) {
+	return withHooks(ctx, _u.sqlSave, _u.mutation, _u.hooks)
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (wsuo *WeatherStationUpdateOne) SaveX(ctx context.Context) *WeatherStation {
-	node, err := wsuo.Save(ctx)
+func (_u *WeatherStationUpdateOne) SaveX(ctx context.Context) *WeatherStation {
+	node, err := _u.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -651,32 +667,32 @@ func (wsuo *WeatherStationUpdateOne) SaveX(ctx context.Context) *WeatherStation 
 }
 
 // Exec executes the query on the entity.
-func (wsuo *WeatherStationUpdateOne) Exec(ctx context.Context) error {
-	_, err := wsuo.Save(ctx)
+func (_u *WeatherStationUpdateOne) Exec(ctx context.Context) error {
+	_, err := _u.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (wsuo *WeatherStationUpdateOne) ExecX(ctx context.Context) {
-	if err := wsuo.Exec(ctx); err != nil {
+func (_u *WeatherStationUpdateOne) ExecX(ctx context.Context) {
+	if err := _u.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // Modify adds a statement modifier for attaching custom logic to the UPDATE statement.
-func (wsuo *WeatherStationUpdateOne) Modify(modifiers ...func(u *sql.UpdateBuilder)) *WeatherStationUpdateOne {
-	wsuo.modifiers = append(wsuo.modifiers, modifiers...)
-	return wsuo
+func (_u *WeatherStationUpdateOne) Modify(modifiers ...func(u *sql.UpdateBuilder)) *WeatherStationUpdateOne {
+	_u.modifiers = append(_u.modifiers, modifiers...)
+	return _u
 }
 
-func (wsuo *WeatherStationUpdateOne) sqlSave(ctx context.Context) (_node *WeatherStation, err error) {
+func (_u *WeatherStationUpdateOne) sqlSave(ctx context.Context) (_node *WeatherStation, err error) {
 	_spec := sqlgraph.NewUpdateSpec(weatherstation.Table, weatherstation.Columns, sqlgraph.NewFieldSpec(weatherstation.FieldID, field.TypeUUID))
-	id, ok := wsuo.mutation.ID()
+	id, ok := _u.mutation.ID()
 	if !ok {
 		return nil, &ValidationError{Name: "id", err: errors.New(`ent: missing "WeatherStation.id" for update`)}
 	}
 	_spec.Node.ID.Value = id
-	if fields := wsuo.fields; len(fields) > 0 {
+	if fields := _u.fields; len(fields) > 0 {
 		_spec.Node.Columns = make([]string, 0, len(fields))
 		_spec.Node.Columns = append(_spec.Node.Columns, weatherstation.FieldID)
 		for _, f := range fields {
@@ -688,44 +704,44 @@ func (wsuo *WeatherStationUpdateOne) sqlSave(ctx context.Context) (_node *Weathe
 			}
 		}
 	}
-	if ps := wsuo.mutation.predicates; len(ps) > 0 {
+	if ps := _u.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if value, ok := wsuo.mutation.Latitude(); ok {
+	if value, ok := _u.mutation.Latitude(); ok {
 		_spec.SetField(weatherstation.FieldLatitude, field.TypeFloat64, value)
 	}
-	if value, ok := wsuo.mutation.AddedLatitude(); ok {
+	if value, ok := _u.mutation.AddedLatitude(); ok {
 		_spec.AddField(weatherstation.FieldLatitude, field.TypeFloat64, value)
 	}
-	if wsuo.mutation.LatitudeCleared() {
+	if _u.mutation.LatitudeCleared() {
 		_spec.ClearField(weatherstation.FieldLatitude, field.TypeFloat64)
 	}
-	if value, ok := wsuo.mutation.Longitude(); ok {
+	if value, ok := _u.mutation.Longitude(); ok {
 		_spec.SetField(weatherstation.FieldLongitude, field.TypeFloat64, value)
 	}
-	if value, ok := wsuo.mutation.AddedLongitude(); ok {
+	if value, ok := _u.mutation.AddedLongitude(); ok {
 		_spec.AddField(weatherstation.FieldLongitude, field.TypeFloat64, value)
 	}
-	if wsuo.mutation.LongitudeCleared() {
+	if _u.mutation.LongitudeCleared() {
 		_spec.ClearField(weatherstation.FieldLongitude, field.TypeFloat64)
 	}
-	if value, ok := wsuo.mutation.Elevation(); ok {
+	if value, ok := _u.mutation.Elevation(); ok {
 		_spec.SetField(weatherstation.FieldElevation, field.TypeFloat64, value)
 	}
-	if value, ok := wsuo.mutation.AddedElevation(); ok {
+	if value, ok := _u.mutation.AddedElevation(); ok {
 		_spec.AddField(weatherstation.FieldElevation, field.TypeFloat64, value)
 	}
-	if wsuo.mutation.ElevationCleared() {
+	if _u.mutation.ElevationCleared() {
 		_spec.ClearField(weatherstation.FieldElevation, field.TypeFloat64)
 	}
-	if value, ok := wsuo.mutation.Hash(); ok {
+	if value, ok := _u.mutation.Hash(); ok {
 		_spec.SetField(weatherstation.FieldHash, field.TypeString, value)
 	}
-	if wsuo.mutation.AirportCleared() {
+	if _u.mutation.AirportCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2O,
 			Inverse: true,
@@ -738,7 +754,7 @@ func (wsuo *WeatherStationUpdateOne) sqlSave(ctx context.Context) (_node *Weathe
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := wsuo.mutation.AirportIDs(); len(nodes) > 0 {
+	if nodes := _u.mutation.AirportIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2O,
 			Inverse: true,
@@ -754,7 +770,7 @@ func (wsuo *WeatherStationUpdateOne) sqlSave(ctx context.Context) (_node *Weathe
 		}
 		_spec.Edges.Add = append(_spec.Edges.Add, edge)
 	}
-	if wsuo.mutation.MetarsCleared() {
+	if _u.mutation.MetarsCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -767,7 +783,7 @@ func (wsuo *WeatherStationUpdateOne) sqlSave(ctx context.Context) (_node *Weathe
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := wsuo.mutation.RemovedMetarsIDs(); len(nodes) > 0 && !wsuo.mutation.MetarsCleared() {
+	if nodes := _u.mutation.RemovedMetarsIDs(); len(nodes) > 0 && !_u.mutation.MetarsCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -783,7 +799,7 @@ func (wsuo *WeatherStationUpdateOne) sqlSave(ctx context.Context) (_node *Weathe
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := wsuo.mutation.MetarsIDs(); len(nodes) > 0 {
+	if nodes := _u.mutation.MetarsIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -799,7 +815,7 @@ func (wsuo *WeatherStationUpdateOne) sqlSave(ctx context.Context) (_node *Weathe
 		}
 		_spec.Edges.Add = append(_spec.Edges.Add, edge)
 	}
-	if wsuo.mutation.TafsCleared() {
+	if _u.mutation.TafsCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -812,7 +828,7 @@ func (wsuo *WeatherStationUpdateOne) sqlSave(ctx context.Context) (_node *Weathe
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := wsuo.mutation.RemovedTafsIDs(); len(nodes) > 0 && !wsuo.mutation.TafsCleared() {
+	if nodes := _u.mutation.RemovedTafsIDs(); len(nodes) > 0 && !_u.mutation.TafsCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -828,7 +844,7 @@ func (wsuo *WeatherStationUpdateOne) sqlSave(ctx context.Context) (_node *Weathe
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := wsuo.mutation.TafsIDs(); len(nodes) > 0 {
+	if nodes := _u.mutation.TafsIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -844,11 +860,11 @@ func (wsuo *WeatherStationUpdateOne) sqlSave(ctx context.Context) (_node *Weathe
 		}
 		_spec.Edges.Add = append(_spec.Edges.Add, edge)
 	}
-	_spec.AddModifiers(wsuo.modifiers...)
-	_node = &WeatherStation{config: wsuo.config}
+	_spec.AddModifiers(_u.modifiers...)
+	_node = &WeatherStation{config: _u.config}
 	_spec.Assign = _node.assignValues
 	_spec.ScanValues = _node.scanValues
-	if err = sqlgraph.UpdateNode(ctx, wsuo.driver, _spec); err != nil {
+	if err = sqlgraph.UpdateNode(ctx, _u.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
 			err = &NotFoundError{weatherstation.Label}
 		} else if sqlgraph.IsConstraintError(err) {
@@ -856,6 +872,6 @@ func (wsuo *WeatherStationUpdateOne) sqlSave(ctx context.Context) (_node *Weathe
 		}
 		return nil, err
 	}
-	wsuo.mutation.done = true
+	_u.mutation.done = true
 	return _node, nil
 }

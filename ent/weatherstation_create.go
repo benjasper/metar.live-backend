@@ -27,136 +27,136 @@ type WeatherStationCreate struct {
 }
 
 // SetStationID sets the "station_id" field.
-func (wsc *WeatherStationCreate) SetStationID(s string) *WeatherStationCreate {
-	wsc.mutation.SetStationID(s)
-	return wsc
+func (_c *WeatherStationCreate) SetStationID(v string) *WeatherStationCreate {
+	_c.mutation.SetStationID(v)
+	return _c
 }
 
 // SetLatitude sets the "latitude" field.
-func (wsc *WeatherStationCreate) SetLatitude(f float64) *WeatherStationCreate {
-	wsc.mutation.SetLatitude(f)
-	return wsc
+func (_c *WeatherStationCreate) SetLatitude(v float64) *WeatherStationCreate {
+	_c.mutation.SetLatitude(v)
+	return _c
 }
 
 // SetNillableLatitude sets the "latitude" field if the given value is not nil.
-func (wsc *WeatherStationCreate) SetNillableLatitude(f *float64) *WeatherStationCreate {
-	if f != nil {
-		wsc.SetLatitude(*f)
+func (_c *WeatherStationCreate) SetNillableLatitude(v *float64) *WeatherStationCreate {
+	if v != nil {
+		_c.SetLatitude(*v)
 	}
-	return wsc
+	return _c
 }
 
 // SetLongitude sets the "longitude" field.
-func (wsc *WeatherStationCreate) SetLongitude(f float64) *WeatherStationCreate {
-	wsc.mutation.SetLongitude(f)
-	return wsc
+func (_c *WeatherStationCreate) SetLongitude(v float64) *WeatherStationCreate {
+	_c.mutation.SetLongitude(v)
+	return _c
 }
 
 // SetNillableLongitude sets the "longitude" field if the given value is not nil.
-func (wsc *WeatherStationCreate) SetNillableLongitude(f *float64) *WeatherStationCreate {
-	if f != nil {
-		wsc.SetLongitude(*f)
+func (_c *WeatherStationCreate) SetNillableLongitude(v *float64) *WeatherStationCreate {
+	if v != nil {
+		_c.SetLongitude(*v)
 	}
-	return wsc
+	return _c
 }
 
 // SetElevation sets the "elevation" field.
-func (wsc *WeatherStationCreate) SetElevation(f float64) *WeatherStationCreate {
-	wsc.mutation.SetElevation(f)
-	return wsc
+func (_c *WeatherStationCreate) SetElevation(v float64) *WeatherStationCreate {
+	_c.mutation.SetElevation(v)
+	return _c
 }
 
 // SetNillableElevation sets the "elevation" field if the given value is not nil.
-func (wsc *WeatherStationCreate) SetNillableElevation(f *float64) *WeatherStationCreate {
-	if f != nil {
-		wsc.SetElevation(*f)
+func (_c *WeatherStationCreate) SetNillableElevation(v *float64) *WeatherStationCreate {
+	if v != nil {
+		_c.SetElevation(*v)
 	}
-	return wsc
+	return _c
 }
 
 // SetHash sets the "hash" field.
-func (wsc *WeatherStationCreate) SetHash(s string) *WeatherStationCreate {
-	wsc.mutation.SetHash(s)
-	return wsc
+func (_c *WeatherStationCreate) SetHash(v string) *WeatherStationCreate {
+	_c.mutation.SetHash(v)
+	return _c
 }
 
 // SetID sets the "id" field.
-func (wsc *WeatherStationCreate) SetID(u uuid.UUID) *WeatherStationCreate {
-	wsc.mutation.SetID(u)
-	return wsc
+func (_c *WeatherStationCreate) SetID(v uuid.UUID) *WeatherStationCreate {
+	_c.mutation.SetID(v)
+	return _c
 }
 
 // SetNillableID sets the "id" field if the given value is not nil.
-func (wsc *WeatherStationCreate) SetNillableID(u *uuid.UUID) *WeatherStationCreate {
-	if u != nil {
-		wsc.SetID(*u)
+func (_c *WeatherStationCreate) SetNillableID(v *uuid.UUID) *WeatherStationCreate {
+	if v != nil {
+		_c.SetID(*v)
 	}
-	return wsc
+	return _c
 }
 
 // SetAirportID sets the "airport" edge to the Airport entity by ID.
-func (wsc *WeatherStationCreate) SetAirportID(id uuid.UUID) *WeatherStationCreate {
-	wsc.mutation.SetAirportID(id)
-	return wsc
+func (_c *WeatherStationCreate) SetAirportID(id uuid.UUID) *WeatherStationCreate {
+	_c.mutation.SetAirportID(id)
+	return _c
 }
 
 // SetNillableAirportID sets the "airport" edge to the Airport entity by ID if the given value is not nil.
-func (wsc *WeatherStationCreate) SetNillableAirportID(id *uuid.UUID) *WeatherStationCreate {
+func (_c *WeatherStationCreate) SetNillableAirportID(id *uuid.UUID) *WeatherStationCreate {
 	if id != nil {
-		wsc = wsc.SetAirportID(*id)
+		_c = _c.SetAirportID(*id)
 	}
-	return wsc
+	return _c
 }
 
 // SetAirport sets the "airport" edge to the Airport entity.
-func (wsc *WeatherStationCreate) SetAirport(a *Airport) *WeatherStationCreate {
-	return wsc.SetAirportID(a.ID)
+func (_c *WeatherStationCreate) SetAirport(v *Airport) *WeatherStationCreate {
+	return _c.SetAirportID(v.ID)
 }
 
 // AddMetarIDs adds the "metars" edge to the Metar entity by IDs.
-func (wsc *WeatherStationCreate) AddMetarIDs(ids ...uuid.UUID) *WeatherStationCreate {
-	wsc.mutation.AddMetarIDs(ids...)
-	return wsc
+func (_c *WeatherStationCreate) AddMetarIDs(ids ...uuid.UUID) *WeatherStationCreate {
+	_c.mutation.AddMetarIDs(ids...)
+	return _c
 }
 
 // AddMetars adds the "metars" edges to the Metar entity.
-func (wsc *WeatherStationCreate) AddMetars(m ...*Metar) *WeatherStationCreate {
-	ids := make([]uuid.UUID, len(m))
-	for i := range m {
-		ids[i] = m[i].ID
+func (_c *WeatherStationCreate) AddMetars(v ...*Metar) *WeatherStationCreate {
+	ids := make([]uuid.UUID, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return wsc.AddMetarIDs(ids...)
+	return _c.AddMetarIDs(ids...)
 }
 
 // AddTafIDs adds the "tafs" edge to the Taf entity by IDs.
-func (wsc *WeatherStationCreate) AddTafIDs(ids ...uuid.UUID) *WeatherStationCreate {
-	wsc.mutation.AddTafIDs(ids...)
-	return wsc
+func (_c *WeatherStationCreate) AddTafIDs(ids ...uuid.UUID) *WeatherStationCreate {
+	_c.mutation.AddTafIDs(ids...)
+	return _c
 }
 
 // AddTafs adds the "tafs" edges to the Taf entity.
-func (wsc *WeatherStationCreate) AddTafs(t ...*Taf) *WeatherStationCreate {
-	ids := make([]uuid.UUID, len(t))
-	for i := range t {
-		ids[i] = t[i].ID
+func (_c *WeatherStationCreate) AddTafs(v ...*Taf) *WeatherStationCreate {
+	ids := make([]uuid.UUID, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return wsc.AddTafIDs(ids...)
+	return _c.AddTafIDs(ids...)
 }
 
 // Mutation returns the WeatherStationMutation object of the builder.
-func (wsc *WeatherStationCreate) Mutation() *WeatherStationMutation {
-	return wsc.mutation
+func (_c *WeatherStationCreate) Mutation() *WeatherStationMutation {
+	return _c.mutation
 }
 
 // Save creates the WeatherStation in the database.
-func (wsc *WeatherStationCreate) Save(ctx context.Context) (*WeatherStation, error) {
-	wsc.defaults()
-	return withHooks(ctx, wsc.sqlSave, wsc.mutation, wsc.hooks)
+func (_c *WeatherStationCreate) Save(ctx context.Context) (*WeatherStation, error) {
+	_c.defaults()
+	return withHooks(ctx, _c.sqlSave, _c.mutation, _c.hooks)
 }
 
 // SaveX calls Save and panics if Save returns an error.
-func (wsc *WeatherStationCreate) SaveX(ctx context.Context) *WeatherStation {
-	v, err := wsc.Save(ctx)
+func (_c *WeatherStationCreate) SaveX(ctx context.Context) *WeatherStation {
+	v, err := _c.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -164,43 +164,43 @@ func (wsc *WeatherStationCreate) SaveX(ctx context.Context) *WeatherStation {
 }
 
 // Exec executes the query.
-func (wsc *WeatherStationCreate) Exec(ctx context.Context) error {
-	_, err := wsc.Save(ctx)
+func (_c *WeatherStationCreate) Exec(ctx context.Context) error {
+	_, err := _c.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (wsc *WeatherStationCreate) ExecX(ctx context.Context) {
-	if err := wsc.Exec(ctx); err != nil {
+func (_c *WeatherStationCreate) ExecX(ctx context.Context) {
+	if err := _c.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // defaults sets the default values of the builder before save.
-func (wsc *WeatherStationCreate) defaults() {
-	if _, ok := wsc.mutation.ID(); !ok {
+func (_c *WeatherStationCreate) defaults() {
+	if _, ok := _c.mutation.ID(); !ok {
 		v := weatherstation.DefaultID()
-		wsc.mutation.SetID(v)
+		_c.mutation.SetID(v)
 	}
 }
 
 // check runs all checks and user-defined validators on the builder.
-func (wsc *WeatherStationCreate) check() error {
-	if _, ok := wsc.mutation.StationID(); !ok {
+func (_c *WeatherStationCreate) check() error {
+	if _, ok := _c.mutation.StationID(); !ok {
 		return &ValidationError{Name: "station_id", err: errors.New(`ent: missing required field "WeatherStation.station_id"`)}
 	}
-	if _, ok := wsc.mutation.Hash(); !ok {
+	if _, ok := _c.mutation.Hash(); !ok {
 		return &ValidationError{Name: "hash", err: errors.New(`ent: missing required field "WeatherStation.hash"`)}
 	}
 	return nil
 }
 
-func (wsc *WeatherStationCreate) sqlSave(ctx context.Context) (*WeatherStation, error) {
-	if err := wsc.check(); err != nil {
+func (_c *WeatherStationCreate) sqlSave(ctx context.Context) (*WeatherStation, error) {
+	if err := _c.check(); err != nil {
 		return nil, err
 	}
-	_node, _spec := wsc.createSpec()
-	if err := sqlgraph.CreateNode(ctx, wsc.driver, _spec); err != nil {
+	_node, _spec := _c.createSpec()
+	if err := sqlgraph.CreateNode(ctx, _c.driver, _spec); err != nil {
 		if sqlgraph.IsConstraintError(err) {
 			err = &ConstraintError{msg: err.Error(), wrap: err}
 		}
@@ -213,42 +213,42 @@ func (wsc *WeatherStationCreate) sqlSave(ctx context.Context) (*WeatherStation, 
 			return nil, err
 		}
 	}
-	wsc.mutation.id = &_node.ID
-	wsc.mutation.done = true
+	_c.mutation.id = &_node.ID
+	_c.mutation.done = true
 	return _node, nil
 }
 
-func (wsc *WeatherStationCreate) createSpec() (*WeatherStation, *sqlgraph.CreateSpec) {
+func (_c *WeatherStationCreate) createSpec() (*WeatherStation, *sqlgraph.CreateSpec) {
 	var (
-		_node = &WeatherStation{config: wsc.config}
+		_node = &WeatherStation{config: _c.config}
 		_spec = sqlgraph.NewCreateSpec(weatherstation.Table, sqlgraph.NewFieldSpec(weatherstation.FieldID, field.TypeUUID))
 	)
-	_spec.OnConflict = wsc.conflict
-	if id, ok := wsc.mutation.ID(); ok {
+	_spec.OnConflict = _c.conflict
+	if id, ok := _c.mutation.ID(); ok {
 		_node.ID = id
 		_spec.ID.Value = &id
 	}
-	if value, ok := wsc.mutation.StationID(); ok {
+	if value, ok := _c.mutation.StationID(); ok {
 		_spec.SetField(weatherstation.FieldStationID, field.TypeString, value)
 		_node.StationID = value
 	}
-	if value, ok := wsc.mutation.Latitude(); ok {
+	if value, ok := _c.mutation.Latitude(); ok {
 		_spec.SetField(weatherstation.FieldLatitude, field.TypeFloat64, value)
 		_node.Latitude = &value
 	}
-	if value, ok := wsc.mutation.Longitude(); ok {
+	if value, ok := _c.mutation.Longitude(); ok {
 		_spec.SetField(weatherstation.FieldLongitude, field.TypeFloat64, value)
 		_node.Longitude = &value
 	}
-	if value, ok := wsc.mutation.Elevation(); ok {
+	if value, ok := _c.mutation.Elevation(); ok {
 		_spec.SetField(weatherstation.FieldElevation, field.TypeFloat64, value)
 		_node.Elevation = &value
 	}
-	if value, ok := wsc.mutation.Hash(); ok {
+	if value, ok := _c.mutation.Hash(); ok {
 		_spec.SetField(weatherstation.FieldHash, field.TypeString, value)
 		_node.Hash = value
 	}
-	if nodes := wsc.mutation.AirportIDs(); len(nodes) > 0 {
+	if nodes := _c.mutation.AirportIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2O,
 			Inverse: true,
@@ -265,7 +265,7 @@ func (wsc *WeatherStationCreate) createSpec() (*WeatherStation, *sqlgraph.Create
 		_node.airport_station = &nodes[0]
 		_spec.Edges = append(_spec.Edges, edge)
 	}
-	if nodes := wsc.mutation.MetarsIDs(); len(nodes) > 0 {
+	if nodes := _c.mutation.MetarsIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -281,7 +281,7 @@ func (wsc *WeatherStationCreate) createSpec() (*WeatherStation, *sqlgraph.Create
 		}
 		_spec.Edges = append(_spec.Edges, edge)
 	}
-	if nodes := wsc.mutation.TafsIDs(); len(nodes) > 0 {
+	if nodes := _c.mutation.TafsIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -316,10 +316,10 @@ func (wsc *WeatherStationCreate) createSpec() (*WeatherStation, *sqlgraph.Create
 //			SetStationID(v+v).
 //		}).
 //		Exec(ctx)
-func (wsc *WeatherStationCreate) OnConflict(opts ...sql.ConflictOption) *WeatherStationUpsertOne {
-	wsc.conflict = opts
+func (_c *WeatherStationCreate) OnConflict(opts ...sql.ConflictOption) *WeatherStationUpsertOne {
+	_c.conflict = opts
 	return &WeatherStationUpsertOne{
-		create: wsc,
+		create: _c,
 	}
 }
 
@@ -329,10 +329,10 @@ func (wsc *WeatherStationCreate) OnConflict(opts ...sql.ConflictOption) *Weather
 //	client.WeatherStation.Create().
 //		OnConflict(sql.ConflictColumns(columns...)).
 //		Exec(ctx)
-func (wsc *WeatherStationCreate) OnConflictColumns(columns ...string) *WeatherStationUpsertOne {
-	wsc.conflict = append(wsc.conflict, sql.ConflictColumns(columns...))
+func (_c *WeatherStationCreate) OnConflictColumns(columns ...string) *WeatherStationUpsertOne {
+	_c.conflict = append(_c.conflict, sql.ConflictColumns(columns...))
 	return &WeatherStationUpsertOne{
-		create: wsc,
+		create: _c,
 	}
 }
 
@@ -623,18 +623,22 @@ func (u *WeatherStationUpsertOne) IDX(ctx context.Context) uuid.UUID {
 // WeatherStationCreateBulk is the builder for creating many WeatherStation entities in bulk.
 type WeatherStationCreateBulk struct {
 	config
+	err      error
 	builders []*WeatherStationCreate
 	conflict []sql.ConflictOption
 }
 
 // Save creates the WeatherStation entities in the database.
-func (wscb *WeatherStationCreateBulk) Save(ctx context.Context) ([]*WeatherStation, error) {
-	specs := make([]*sqlgraph.CreateSpec, len(wscb.builders))
-	nodes := make([]*WeatherStation, len(wscb.builders))
-	mutators := make([]Mutator, len(wscb.builders))
-	for i := range wscb.builders {
+func (_c *WeatherStationCreateBulk) Save(ctx context.Context) ([]*WeatherStation, error) {
+	if _c.err != nil {
+		return nil, _c.err
+	}
+	specs := make([]*sqlgraph.CreateSpec, len(_c.builders))
+	nodes := make([]*WeatherStation, len(_c.builders))
+	mutators := make([]Mutator, len(_c.builders))
+	for i := range _c.builders {
 		func(i int, root context.Context) {
-			builder := wscb.builders[i]
+			builder := _c.builders[i]
 			builder.defaults()
 			var mut Mutator = MutateFunc(func(ctx context.Context, m Mutation) (Value, error) {
 				mutation, ok := m.(*WeatherStationMutation)
@@ -648,12 +652,12 @@ func (wscb *WeatherStationCreateBulk) Save(ctx context.Context) ([]*WeatherStati
 				var err error
 				nodes[i], specs[i] = builder.createSpec()
 				if i < len(mutators)-1 {
-					_, err = mutators[i+1].Mutate(root, wscb.builders[i+1].mutation)
+					_, err = mutators[i+1].Mutate(root, _c.builders[i+1].mutation)
 				} else {
 					spec := &sqlgraph.BatchCreateSpec{Nodes: specs}
-					spec.OnConflict = wscb.conflict
+					spec.OnConflict = _c.conflict
 					// Invoke the actual operation on the latest mutation in the chain.
-					if err = sqlgraph.BatchCreate(ctx, wscb.driver, spec); err != nil {
+					if err = sqlgraph.BatchCreate(ctx, _c.driver, spec); err != nil {
 						if sqlgraph.IsConstraintError(err) {
 							err = &ConstraintError{msg: err.Error(), wrap: err}
 						}
@@ -673,7 +677,7 @@ func (wscb *WeatherStationCreateBulk) Save(ctx context.Context) ([]*WeatherStati
 		}(i, ctx)
 	}
 	if len(mutators) > 0 {
-		if _, err := mutators[0].Mutate(ctx, wscb.builders[0].mutation); err != nil {
+		if _, err := mutators[0].Mutate(ctx, _c.builders[0].mutation); err != nil {
 			return nil, err
 		}
 	}
@@ -681,8 +685,8 @@ func (wscb *WeatherStationCreateBulk) Save(ctx context.Context) ([]*WeatherStati
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (wscb *WeatherStationCreateBulk) SaveX(ctx context.Context) []*WeatherStation {
-	v, err := wscb.Save(ctx)
+func (_c *WeatherStationCreateBulk) SaveX(ctx context.Context) []*WeatherStation {
+	v, err := _c.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -690,14 +694,14 @@ func (wscb *WeatherStationCreateBulk) SaveX(ctx context.Context) []*WeatherStati
 }
 
 // Exec executes the query.
-func (wscb *WeatherStationCreateBulk) Exec(ctx context.Context) error {
-	_, err := wscb.Save(ctx)
+func (_c *WeatherStationCreateBulk) Exec(ctx context.Context) error {
+	_, err := _c.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (wscb *WeatherStationCreateBulk) ExecX(ctx context.Context) {
-	if err := wscb.Exec(ctx); err != nil {
+func (_c *WeatherStationCreateBulk) ExecX(ctx context.Context) {
+	if err := _c.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
@@ -717,10 +721,10 @@ func (wscb *WeatherStationCreateBulk) ExecX(ctx context.Context) {
 //			SetStationID(v+v).
 //		}).
 //		Exec(ctx)
-func (wscb *WeatherStationCreateBulk) OnConflict(opts ...sql.ConflictOption) *WeatherStationUpsertBulk {
-	wscb.conflict = opts
+func (_c *WeatherStationCreateBulk) OnConflict(opts ...sql.ConflictOption) *WeatherStationUpsertBulk {
+	_c.conflict = opts
 	return &WeatherStationUpsertBulk{
-		create: wscb,
+		create: _c,
 	}
 }
 
@@ -730,10 +734,10 @@ func (wscb *WeatherStationCreateBulk) OnConflict(opts ...sql.ConflictOption) *We
 //	client.WeatherStation.Create().
 //		OnConflict(sql.ConflictColumns(columns...)).
 //		Exec(ctx)
-func (wscb *WeatherStationCreateBulk) OnConflictColumns(columns ...string) *WeatherStationUpsertBulk {
-	wscb.conflict = append(wscb.conflict, sql.ConflictColumns(columns...))
+func (_c *WeatherStationCreateBulk) OnConflictColumns(columns ...string) *WeatherStationUpsertBulk {
+	_c.conflict = append(_c.conflict, sql.ConflictColumns(columns...))
 	return &WeatherStationUpsertBulk{
-		create: wscb,
+		create: _c,
 	}
 }
 
@@ -896,6 +900,9 @@ func (u *WeatherStationUpsertBulk) UpdateHash() *WeatherStationUpsertBulk {
 
 // Exec executes the query.
 func (u *WeatherStationUpsertBulk) Exec(ctx context.Context) error {
+	if u.create.err != nil {
+		return u.create.err
+	}
 	for i, b := range u.create.builders {
 		if len(b.conflict) != 0 {
 			return fmt.Errorf("ent: OnConflict was set for builder %d. Set it on the WeatherStationCreateBulk instead", i)

@@ -27,756 +27,852 @@ type MetarUpdate struct {
 }
 
 // Where appends a list predicates to the MetarUpdate builder.
-func (mu *MetarUpdate) Where(ps ...predicate.Metar) *MetarUpdate {
-	mu.mutation.Where(ps...)
-	return mu
+func (_u *MetarUpdate) Where(ps ...predicate.Metar) *MetarUpdate {
+	_u.mutation.Where(ps...)
+	return _u
 }
 
 // SetRawText sets the "raw_text" field.
-func (mu *MetarUpdate) SetRawText(s string) *MetarUpdate {
-	mu.mutation.SetRawText(s)
-	return mu
+func (_u *MetarUpdate) SetRawText(v string) *MetarUpdate {
+	_u.mutation.SetRawText(v)
+	return _u
+}
+
+// SetNillableRawText sets the "raw_text" field if the given value is not nil.
+func (_u *MetarUpdate) SetNillableRawText(v *string) *MetarUpdate {
+	if v != nil {
+		_u.SetRawText(*v)
+	}
+	return _u
 }
 
 // SetObservationTime sets the "observation_time" field.
-func (mu *MetarUpdate) SetObservationTime(t time.Time) *MetarUpdate {
-	mu.mutation.SetObservationTime(t)
-	return mu
+func (_u *MetarUpdate) SetObservationTime(v time.Time) *MetarUpdate {
+	_u.mutation.SetObservationTime(v)
+	return _u
+}
+
+// SetNillableObservationTime sets the "observation_time" field if the given value is not nil.
+func (_u *MetarUpdate) SetNillableObservationTime(v *time.Time) *MetarUpdate {
+	if v != nil {
+		_u.SetObservationTime(*v)
+	}
+	return _u
 }
 
 // SetImportTime sets the "import_time" field.
-func (mu *MetarUpdate) SetImportTime(t time.Time) *MetarUpdate {
-	mu.mutation.SetImportTime(t)
-	return mu
+func (_u *MetarUpdate) SetImportTime(v time.Time) *MetarUpdate {
+	_u.mutation.SetImportTime(v)
+	return _u
 }
 
 // SetNillableImportTime sets the "import_time" field if the given value is not nil.
-func (mu *MetarUpdate) SetNillableImportTime(t *time.Time) *MetarUpdate {
-	if t != nil {
-		mu.SetImportTime(*t)
+func (_u *MetarUpdate) SetNillableImportTime(v *time.Time) *MetarUpdate {
+	if v != nil {
+		_u.SetImportTime(*v)
 	}
-	return mu
+	return _u
 }
 
 // SetNextImportTimePrediction sets the "next_import_time_prediction" field.
-func (mu *MetarUpdate) SetNextImportTimePrediction(t time.Time) *MetarUpdate {
-	mu.mutation.SetNextImportTimePrediction(t)
-	return mu
+func (_u *MetarUpdate) SetNextImportTimePrediction(v time.Time) *MetarUpdate {
+	_u.mutation.SetNextImportTimePrediction(v)
+	return _u
 }
 
 // SetNillableNextImportTimePrediction sets the "next_import_time_prediction" field if the given value is not nil.
-func (mu *MetarUpdate) SetNillableNextImportTimePrediction(t *time.Time) *MetarUpdate {
-	if t != nil {
-		mu.SetNextImportTimePrediction(*t)
+func (_u *MetarUpdate) SetNillableNextImportTimePrediction(v *time.Time) *MetarUpdate {
+	if v != nil {
+		_u.SetNextImportTimePrediction(*v)
 	}
-	return mu
+	return _u
 }
 
 // ClearNextImportTimePrediction clears the value of the "next_import_time_prediction" field.
-func (mu *MetarUpdate) ClearNextImportTimePrediction() *MetarUpdate {
-	mu.mutation.ClearNextImportTimePrediction()
-	return mu
+func (_u *MetarUpdate) ClearNextImportTimePrediction() *MetarUpdate {
+	_u.mutation.ClearNextImportTimePrediction()
+	return _u
 }
 
 // SetTemperature sets the "temperature" field.
-func (mu *MetarUpdate) SetTemperature(f float64) *MetarUpdate {
-	mu.mutation.ResetTemperature()
-	mu.mutation.SetTemperature(f)
-	return mu
+func (_u *MetarUpdate) SetTemperature(v float64) *MetarUpdate {
+	_u.mutation.ResetTemperature()
+	_u.mutation.SetTemperature(v)
+	return _u
 }
 
 // SetNillableTemperature sets the "temperature" field if the given value is not nil.
-func (mu *MetarUpdate) SetNillableTemperature(f *float64) *MetarUpdate {
-	if f != nil {
-		mu.SetTemperature(*f)
+func (_u *MetarUpdate) SetNillableTemperature(v *float64) *MetarUpdate {
+	if v != nil {
+		_u.SetTemperature(*v)
 	}
-	return mu
+	return _u
 }
 
-// AddTemperature adds f to the "temperature" field.
-func (mu *MetarUpdate) AddTemperature(f float64) *MetarUpdate {
-	mu.mutation.AddTemperature(f)
-	return mu
+// AddTemperature adds value to the "temperature" field.
+func (_u *MetarUpdate) AddTemperature(v float64) *MetarUpdate {
+	_u.mutation.AddTemperature(v)
+	return _u
 }
 
 // ClearTemperature clears the value of the "temperature" field.
-func (mu *MetarUpdate) ClearTemperature() *MetarUpdate {
-	mu.mutation.ClearTemperature()
-	return mu
+func (_u *MetarUpdate) ClearTemperature() *MetarUpdate {
+	_u.mutation.ClearTemperature()
+	return _u
 }
 
 // SetDewpoint sets the "dewpoint" field.
-func (mu *MetarUpdate) SetDewpoint(f float64) *MetarUpdate {
-	mu.mutation.ResetDewpoint()
-	mu.mutation.SetDewpoint(f)
-	return mu
+func (_u *MetarUpdate) SetDewpoint(v float64) *MetarUpdate {
+	_u.mutation.ResetDewpoint()
+	_u.mutation.SetDewpoint(v)
+	return _u
 }
 
 // SetNillableDewpoint sets the "dewpoint" field if the given value is not nil.
-func (mu *MetarUpdate) SetNillableDewpoint(f *float64) *MetarUpdate {
-	if f != nil {
-		mu.SetDewpoint(*f)
+func (_u *MetarUpdate) SetNillableDewpoint(v *float64) *MetarUpdate {
+	if v != nil {
+		_u.SetDewpoint(*v)
 	}
-	return mu
+	return _u
 }
 
-// AddDewpoint adds f to the "dewpoint" field.
-func (mu *MetarUpdate) AddDewpoint(f float64) *MetarUpdate {
-	mu.mutation.AddDewpoint(f)
-	return mu
+// AddDewpoint adds value to the "dewpoint" field.
+func (_u *MetarUpdate) AddDewpoint(v float64) *MetarUpdate {
+	_u.mutation.AddDewpoint(v)
+	return _u
 }
 
 // ClearDewpoint clears the value of the "dewpoint" field.
-func (mu *MetarUpdate) ClearDewpoint() *MetarUpdate {
-	mu.mutation.ClearDewpoint()
-	return mu
+func (_u *MetarUpdate) ClearDewpoint() *MetarUpdate {
+	_u.mutation.ClearDewpoint()
+	return _u
 }
 
 // SetWindSpeed sets the "wind_speed" field.
-func (mu *MetarUpdate) SetWindSpeed(i int) *MetarUpdate {
-	mu.mutation.ResetWindSpeed()
-	mu.mutation.SetWindSpeed(i)
-	return mu
+func (_u *MetarUpdate) SetWindSpeed(v int) *MetarUpdate {
+	_u.mutation.ResetWindSpeed()
+	_u.mutation.SetWindSpeed(v)
+	return _u
 }
 
 // SetNillableWindSpeed sets the "wind_speed" field if the given value is not nil.
-func (mu *MetarUpdate) SetNillableWindSpeed(i *int) *MetarUpdate {
-	if i != nil {
-		mu.SetWindSpeed(*i)
+func (_u *MetarUpdate) SetNillableWindSpeed(v *int) *MetarUpdate {
+	if v != nil {
+		_u.SetWindSpeed(*v)
 	}
-	return mu
+	return _u
 }
 
-// AddWindSpeed adds i to the "wind_speed" field.
-func (mu *MetarUpdate) AddWindSpeed(i int) *MetarUpdate {
-	mu.mutation.AddWindSpeed(i)
-	return mu
+// AddWindSpeed adds value to the "wind_speed" field.
+func (_u *MetarUpdate) AddWindSpeed(v int) *MetarUpdate {
+	_u.mutation.AddWindSpeed(v)
+	return _u
 }
 
 // ClearWindSpeed clears the value of the "wind_speed" field.
-func (mu *MetarUpdate) ClearWindSpeed() *MetarUpdate {
-	mu.mutation.ClearWindSpeed()
-	return mu
+func (_u *MetarUpdate) ClearWindSpeed() *MetarUpdate {
+	_u.mutation.ClearWindSpeed()
+	return _u
 }
 
 // SetWindGust sets the "wind_gust" field.
-func (mu *MetarUpdate) SetWindGust(i int) *MetarUpdate {
-	mu.mutation.ResetWindGust()
-	mu.mutation.SetWindGust(i)
-	return mu
+func (_u *MetarUpdate) SetWindGust(v int) *MetarUpdate {
+	_u.mutation.ResetWindGust()
+	_u.mutation.SetWindGust(v)
+	return _u
 }
 
 // SetNillableWindGust sets the "wind_gust" field if the given value is not nil.
-func (mu *MetarUpdate) SetNillableWindGust(i *int) *MetarUpdate {
-	if i != nil {
-		mu.SetWindGust(*i)
+func (_u *MetarUpdate) SetNillableWindGust(v *int) *MetarUpdate {
+	if v != nil {
+		_u.SetWindGust(*v)
 	}
-	return mu
+	return _u
 }
 
-// AddWindGust adds i to the "wind_gust" field.
-func (mu *MetarUpdate) AddWindGust(i int) *MetarUpdate {
-	mu.mutation.AddWindGust(i)
-	return mu
+// AddWindGust adds value to the "wind_gust" field.
+func (_u *MetarUpdate) AddWindGust(v int) *MetarUpdate {
+	_u.mutation.AddWindGust(v)
+	return _u
 }
 
 // ClearWindGust clears the value of the "wind_gust" field.
-func (mu *MetarUpdate) ClearWindGust() *MetarUpdate {
-	mu.mutation.ClearWindGust()
-	return mu
+func (_u *MetarUpdate) ClearWindGust() *MetarUpdate {
+	_u.mutation.ClearWindGust()
+	return _u
 }
 
 // SetWindDirection sets the "wind_direction" field.
-func (mu *MetarUpdate) SetWindDirection(i int) *MetarUpdate {
-	mu.mutation.ResetWindDirection()
-	mu.mutation.SetWindDirection(i)
-	return mu
+func (_u *MetarUpdate) SetWindDirection(v int) *MetarUpdate {
+	_u.mutation.ResetWindDirection()
+	_u.mutation.SetWindDirection(v)
+	return _u
 }
 
 // SetNillableWindDirection sets the "wind_direction" field if the given value is not nil.
-func (mu *MetarUpdate) SetNillableWindDirection(i *int) *MetarUpdate {
-	if i != nil {
-		mu.SetWindDirection(*i)
+func (_u *MetarUpdate) SetNillableWindDirection(v *int) *MetarUpdate {
+	if v != nil {
+		_u.SetWindDirection(*v)
 	}
-	return mu
+	return _u
 }
 
-// AddWindDirection adds i to the "wind_direction" field.
-func (mu *MetarUpdate) AddWindDirection(i int) *MetarUpdate {
-	mu.mutation.AddWindDirection(i)
-	return mu
+// AddWindDirection adds value to the "wind_direction" field.
+func (_u *MetarUpdate) AddWindDirection(v int) *MetarUpdate {
+	_u.mutation.AddWindDirection(v)
+	return _u
 }
 
 // ClearWindDirection clears the value of the "wind_direction" field.
-func (mu *MetarUpdate) ClearWindDirection() *MetarUpdate {
-	mu.mutation.ClearWindDirection()
-	return mu
+func (_u *MetarUpdate) ClearWindDirection() *MetarUpdate {
+	_u.mutation.ClearWindDirection()
+	return _u
 }
 
 // SetWindDirectionVariable sets the "wind_direction_variable" field.
-func (mu *MetarUpdate) SetWindDirectionVariable(b bool) *MetarUpdate {
-	mu.mutation.SetWindDirectionVariable(b)
-	return mu
+func (_u *MetarUpdate) SetWindDirectionVariable(v bool) *MetarUpdate {
+	_u.mutation.SetWindDirectionVariable(v)
+	return _u
+}
+
+// SetNillableWindDirectionVariable sets the "wind_direction_variable" field if the given value is not nil.
+func (_u *MetarUpdate) SetNillableWindDirectionVariable(v *bool) *MetarUpdate {
+	if v != nil {
+		_u.SetWindDirectionVariable(*v)
+	}
+	return _u
 }
 
 // SetVisibility sets the "visibility" field.
-func (mu *MetarUpdate) SetVisibility(f float64) *MetarUpdate {
-	mu.mutation.ResetVisibility()
-	mu.mutation.SetVisibility(f)
-	return mu
+func (_u *MetarUpdate) SetVisibility(v float64) *MetarUpdate {
+	_u.mutation.ResetVisibility()
+	_u.mutation.SetVisibility(v)
+	return _u
 }
 
 // SetNillableVisibility sets the "visibility" field if the given value is not nil.
-func (mu *MetarUpdate) SetNillableVisibility(f *float64) *MetarUpdate {
-	if f != nil {
-		mu.SetVisibility(*f)
+func (_u *MetarUpdate) SetNillableVisibility(v *float64) *MetarUpdate {
+	if v != nil {
+		_u.SetVisibility(*v)
 	}
-	return mu
+	return _u
 }
 
-// AddVisibility adds f to the "visibility" field.
-func (mu *MetarUpdate) AddVisibility(f float64) *MetarUpdate {
-	mu.mutation.AddVisibility(f)
-	return mu
+// AddVisibility adds value to the "visibility" field.
+func (_u *MetarUpdate) AddVisibility(v float64) *MetarUpdate {
+	_u.mutation.AddVisibility(v)
+	return _u
 }
 
 // ClearVisibility clears the value of the "visibility" field.
-func (mu *MetarUpdate) ClearVisibility() *MetarUpdate {
-	mu.mutation.ClearVisibility()
-	return mu
+func (_u *MetarUpdate) ClearVisibility() *MetarUpdate {
+	_u.mutation.ClearVisibility()
+	return _u
 }
 
 // SetVisibilityIsMoreThan sets the "visibility_is_more_than" field.
-func (mu *MetarUpdate) SetVisibilityIsMoreThan(b bool) *MetarUpdate {
-	mu.mutation.SetVisibilityIsMoreThan(b)
-	return mu
+func (_u *MetarUpdate) SetVisibilityIsMoreThan(v bool) *MetarUpdate {
+	_u.mutation.SetVisibilityIsMoreThan(v)
+	return _u
+}
+
+// SetNillableVisibilityIsMoreThan sets the "visibility_is_more_than" field if the given value is not nil.
+func (_u *MetarUpdate) SetNillableVisibilityIsMoreThan(v *bool) *MetarUpdate {
+	if v != nil {
+		_u.SetVisibilityIsMoreThan(*v)
+	}
+	return _u
 }
 
 // SetAltimeter sets the "altimeter" field.
-func (mu *MetarUpdate) SetAltimeter(f float64) *MetarUpdate {
-	mu.mutation.ResetAltimeter()
-	mu.mutation.SetAltimeter(f)
-	return mu
+func (_u *MetarUpdate) SetAltimeter(v float64) *MetarUpdate {
+	_u.mutation.ResetAltimeter()
+	_u.mutation.SetAltimeter(v)
+	return _u
 }
 
 // SetNillableAltimeter sets the "altimeter" field if the given value is not nil.
-func (mu *MetarUpdate) SetNillableAltimeter(f *float64) *MetarUpdate {
-	if f != nil {
-		mu.SetAltimeter(*f)
+func (_u *MetarUpdate) SetNillableAltimeter(v *float64) *MetarUpdate {
+	if v != nil {
+		_u.SetAltimeter(*v)
 	}
-	return mu
+	return _u
 }
 
-// AddAltimeter adds f to the "altimeter" field.
-func (mu *MetarUpdate) AddAltimeter(f float64) *MetarUpdate {
-	mu.mutation.AddAltimeter(f)
-	return mu
+// AddAltimeter adds value to the "altimeter" field.
+func (_u *MetarUpdate) AddAltimeter(v float64) *MetarUpdate {
+	_u.mutation.AddAltimeter(v)
+	return _u
 }
 
 // ClearAltimeter clears the value of the "altimeter" field.
-func (mu *MetarUpdate) ClearAltimeter() *MetarUpdate {
-	mu.mutation.ClearAltimeter()
-	return mu
+func (_u *MetarUpdate) ClearAltimeter() *MetarUpdate {
+	_u.mutation.ClearAltimeter()
+	return _u
 }
 
 // SetPresentWeather sets the "present_weather" field.
-func (mu *MetarUpdate) SetPresentWeather(s string) *MetarUpdate {
-	mu.mutation.SetPresentWeather(s)
-	return mu
+func (_u *MetarUpdate) SetPresentWeather(v string) *MetarUpdate {
+	_u.mutation.SetPresentWeather(v)
+	return _u
 }
 
 // SetNillablePresentWeather sets the "present_weather" field if the given value is not nil.
-func (mu *MetarUpdate) SetNillablePresentWeather(s *string) *MetarUpdate {
-	if s != nil {
-		mu.SetPresentWeather(*s)
+func (_u *MetarUpdate) SetNillablePresentWeather(v *string) *MetarUpdate {
+	if v != nil {
+		_u.SetPresentWeather(*v)
 	}
-	return mu
+	return _u
 }
 
 // ClearPresentWeather clears the value of the "present_weather" field.
-func (mu *MetarUpdate) ClearPresentWeather() *MetarUpdate {
-	mu.mutation.ClearPresentWeather()
-	return mu
+func (_u *MetarUpdate) ClearPresentWeather() *MetarUpdate {
+	_u.mutation.ClearPresentWeather()
+	return _u
 }
 
 // SetFlightCategory sets the "flight_category" field.
-func (mu *MetarUpdate) SetFlightCategory(mc metar.FlightCategory) *MetarUpdate {
-	mu.mutation.SetFlightCategory(mc)
-	return mu
+func (_u *MetarUpdate) SetFlightCategory(v metar.FlightCategory) *MetarUpdate {
+	_u.mutation.SetFlightCategory(v)
+	return _u
 }
 
 // SetNillableFlightCategory sets the "flight_category" field if the given value is not nil.
-func (mu *MetarUpdate) SetNillableFlightCategory(mc *metar.FlightCategory) *MetarUpdate {
-	if mc != nil {
-		mu.SetFlightCategory(*mc)
+func (_u *MetarUpdate) SetNillableFlightCategory(v *metar.FlightCategory) *MetarUpdate {
+	if v != nil {
+		_u.SetFlightCategory(*v)
 	}
-	return mu
+	return _u
 }
 
 // ClearFlightCategory clears the value of the "flight_category" field.
-func (mu *MetarUpdate) ClearFlightCategory() *MetarUpdate {
-	mu.mutation.ClearFlightCategory()
-	return mu
+func (_u *MetarUpdate) ClearFlightCategory() *MetarUpdate {
+	_u.mutation.ClearFlightCategory()
+	return _u
 }
 
 // SetQualityControlCorrected sets the "quality_control_corrected" field.
-func (mu *MetarUpdate) SetQualityControlCorrected(b bool) *MetarUpdate {
-	mu.mutation.SetQualityControlCorrected(b)
-	return mu
+func (_u *MetarUpdate) SetQualityControlCorrected(v bool) *MetarUpdate {
+	_u.mutation.SetQualityControlCorrected(v)
+	return _u
 }
 
 // SetNillableQualityControlCorrected sets the "quality_control_corrected" field if the given value is not nil.
-func (mu *MetarUpdate) SetNillableQualityControlCorrected(b *bool) *MetarUpdate {
-	if b != nil {
-		mu.SetQualityControlCorrected(*b)
+func (_u *MetarUpdate) SetNillableQualityControlCorrected(v *bool) *MetarUpdate {
+	if v != nil {
+		_u.SetQualityControlCorrected(*v)
 	}
-	return mu
+	return _u
 }
 
 // ClearQualityControlCorrected clears the value of the "quality_control_corrected" field.
-func (mu *MetarUpdate) ClearQualityControlCorrected() *MetarUpdate {
-	mu.mutation.ClearQualityControlCorrected()
-	return mu
+func (_u *MetarUpdate) ClearQualityControlCorrected() *MetarUpdate {
+	_u.mutation.ClearQualityControlCorrected()
+	return _u
 }
 
 // SetQualityControlAutoStation sets the "quality_control_auto_station" field.
-func (mu *MetarUpdate) SetQualityControlAutoStation(b bool) *MetarUpdate {
-	mu.mutation.SetQualityControlAutoStation(b)
-	return mu
+func (_u *MetarUpdate) SetQualityControlAutoStation(v bool) *MetarUpdate {
+	_u.mutation.SetQualityControlAutoStation(v)
+	return _u
+}
+
+// SetNillableQualityControlAutoStation sets the "quality_control_auto_station" field if the given value is not nil.
+func (_u *MetarUpdate) SetNillableQualityControlAutoStation(v *bool) *MetarUpdate {
+	if v != nil {
+		_u.SetQualityControlAutoStation(*v)
+	}
+	return _u
 }
 
 // SetQualityControlMaintenanceIndicatorOn sets the "quality_control_maintenance_indicator_on" field.
-func (mu *MetarUpdate) SetQualityControlMaintenanceIndicatorOn(b bool) *MetarUpdate {
-	mu.mutation.SetQualityControlMaintenanceIndicatorOn(b)
-	return mu
+func (_u *MetarUpdate) SetQualityControlMaintenanceIndicatorOn(v bool) *MetarUpdate {
+	_u.mutation.SetQualityControlMaintenanceIndicatorOn(v)
+	return _u
+}
+
+// SetNillableQualityControlMaintenanceIndicatorOn sets the "quality_control_maintenance_indicator_on" field if the given value is not nil.
+func (_u *MetarUpdate) SetNillableQualityControlMaintenanceIndicatorOn(v *bool) *MetarUpdate {
+	if v != nil {
+		_u.SetQualityControlMaintenanceIndicatorOn(*v)
+	}
+	return _u
 }
 
 // SetQualityControlNoSignal sets the "quality_control_no_signal" field.
-func (mu *MetarUpdate) SetQualityControlNoSignal(b bool) *MetarUpdate {
-	mu.mutation.SetQualityControlNoSignal(b)
-	return mu
+func (_u *MetarUpdate) SetQualityControlNoSignal(v bool) *MetarUpdate {
+	_u.mutation.SetQualityControlNoSignal(v)
+	return _u
+}
+
+// SetNillableQualityControlNoSignal sets the "quality_control_no_signal" field if the given value is not nil.
+func (_u *MetarUpdate) SetNillableQualityControlNoSignal(v *bool) *MetarUpdate {
+	if v != nil {
+		_u.SetQualityControlNoSignal(*v)
+	}
+	return _u
 }
 
 // SetQualityControlLightningSensorOff sets the "quality_control_lightning_sensor_off" field.
-func (mu *MetarUpdate) SetQualityControlLightningSensorOff(b bool) *MetarUpdate {
-	mu.mutation.SetQualityControlLightningSensorOff(b)
-	return mu
+func (_u *MetarUpdate) SetQualityControlLightningSensorOff(v bool) *MetarUpdate {
+	_u.mutation.SetQualityControlLightningSensorOff(v)
+	return _u
+}
+
+// SetNillableQualityControlLightningSensorOff sets the "quality_control_lightning_sensor_off" field if the given value is not nil.
+func (_u *MetarUpdate) SetNillableQualityControlLightningSensorOff(v *bool) *MetarUpdate {
+	if v != nil {
+		_u.SetQualityControlLightningSensorOff(*v)
+	}
+	return _u
 }
 
 // SetQualityControlFreezingRainSensorOff sets the "quality_control_freezing_rain_sensor_off" field.
-func (mu *MetarUpdate) SetQualityControlFreezingRainSensorOff(b bool) *MetarUpdate {
-	mu.mutation.SetQualityControlFreezingRainSensorOff(b)
-	return mu
+func (_u *MetarUpdate) SetQualityControlFreezingRainSensorOff(v bool) *MetarUpdate {
+	_u.mutation.SetQualityControlFreezingRainSensorOff(v)
+	return _u
+}
+
+// SetNillableQualityControlFreezingRainSensorOff sets the "quality_control_freezing_rain_sensor_off" field if the given value is not nil.
+func (_u *MetarUpdate) SetNillableQualityControlFreezingRainSensorOff(v *bool) *MetarUpdate {
+	if v != nil {
+		_u.SetQualityControlFreezingRainSensorOff(*v)
+	}
+	return _u
 }
 
 // SetQualityControlPresentWeatherSensorOff sets the "quality_control_present_weather_sensor_off" field.
-func (mu *MetarUpdate) SetQualityControlPresentWeatherSensorOff(b bool) *MetarUpdate {
-	mu.mutation.SetQualityControlPresentWeatherSensorOff(b)
-	return mu
+func (_u *MetarUpdate) SetQualityControlPresentWeatherSensorOff(v bool) *MetarUpdate {
+	_u.mutation.SetQualityControlPresentWeatherSensorOff(v)
+	return _u
+}
+
+// SetNillableQualityControlPresentWeatherSensorOff sets the "quality_control_present_weather_sensor_off" field if the given value is not nil.
+func (_u *MetarUpdate) SetNillableQualityControlPresentWeatherSensorOff(v *bool) *MetarUpdate {
+	if v != nil {
+		_u.SetQualityControlPresentWeatherSensorOff(*v)
+	}
+	return _u
 }
 
 // SetSeaLevelPressure sets the "sea_level_pressure" field.
-func (mu *MetarUpdate) SetSeaLevelPressure(f float64) *MetarUpdate {
-	mu.mutation.ResetSeaLevelPressure()
-	mu.mutation.SetSeaLevelPressure(f)
-	return mu
+func (_u *MetarUpdate) SetSeaLevelPressure(v float64) *MetarUpdate {
+	_u.mutation.ResetSeaLevelPressure()
+	_u.mutation.SetSeaLevelPressure(v)
+	return _u
 }
 
 // SetNillableSeaLevelPressure sets the "sea_level_pressure" field if the given value is not nil.
-func (mu *MetarUpdate) SetNillableSeaLevelPressure(f *float64) *MetarUpdate {
-	if f != nil {
-		mu.SetSeaLevelPressure(*f)
+func (_u *MetarUpdate) SetNillableSeaLevelPressure(v *float64) *MetarUpdate {
+	if v != nil {
+		_u.SetSeaLevelPressure(*v)
 	}
-	return mu
+	return _u
 }
 
-// AddSeaLevelPressure adds f to the "sea_level_pressure" field.
-func (mu *MetarUpdate) AddSeaLevelPressure(f float64) *MetarUpdate {
-	mu.mutation.AddSeaLevelPressure(f)
-	return mu
+// AddSeaLevelPressure adds value to the "sea_level_pressure" field.
+func (_u *MetarUpdate) AddSeaLevelPressure(v float64) *MetarUpdate {
+	_u.mutation.AddSeaLevelPressure(v)
+	return _u
 }
 
 // ClearSeaLevelPressure clears the value of the "sea_level_pressure" field.
-func (mu *MetarUpdate) ClearSeaLevelPressure() *MetarUpdate {
-	mu.mutation.ClearSeaLevelPressure()
-	return mu
+func (_u *MetarUpdate) ClearSeaLevelPressure() *MetarUpdate {
+	_u.mutation.ClearSeaLevelPressure()
+	return _u
 }
 
 // SetPressureTendency sets the "pressure_tendency" field.
-func (mu *MetarUpdate) SetPressureTendency(f float64) *MetarUpdate {
-	mu.mutation.ResetPressureTendency()
-	mu.mutation.SetPressureTendency(f)
-	return mu
+func (_u *MetarUpdate) SetPressureTendency(v float64) *MetarUpdate {
+	_u.mutation.ResetPressureTendency()
+	_u.mutation.SetPressureTendency(v)
+	return _u
 }
 
 // SetNillablePressureTendency sets the "pressure_tendency" field if the given value is not nil.
-func (mu *MetarUpdate) SetNillablePressureTendency(f *float64) *MetarUpdate {
-	if f != nil {
-		mu.SetPressureTendency(*f)
+func (_u *MetarUpdate) SetNillablePressureTendency(v *float64) *MetarUpdate {
+	if v != nil {
+		_u.SetPressureTendency(*v)
 	}
-	return mu
+	return _u
 }
 
-// AddPressureTendency adds f to the "pressure_tendency" field.
-func (mu *MetarUpdate) AddPressureTendency(f float64) *MetarUpdate {
-	mu.mutation.AddPressureTendency(f)
-	return mu
+// AddPressureTendency adds value to the "pressure_tendency" field.
+func (_u *MetarUpdate) AddPressureTendency(v float64) *MetarUpdate {
+	_u.mutation.AddPressureTendency(v)
+	return _u
 }
 
 // ClearPressureTendency clears the value of the "pressure_tendency" field.
-func (mu *MetarUpdate) ClearPressureTendency() *MetarUpdate {
-	mu.mutation.ClearPressureTendency()
-	return mu
+func (_u *MetarUpdate) ClearPressureTendency() *MetarUpdate {
+	_u.mutation.ClearPressureTendency()
+	return _u
 }
 
 // SetMaxTemp6 sets the "max_temp_6" field.
-func (mu *MetarUpdate) SetMaxTemp6(f float64) *MetarUpdate {
-	mu.mutation.ResetMaxTemp6()
-	mu.mutation.SetMaxTemp6(f)
-	return mu
+func (_u *MetarUpdate) SetMaxTemp6(v float64) *MetarUpdate {
+	_u.mutation.ResetMaxTemp6()
+	_u.mutation.SetMaxTemp6(v)
+	return _u
 }
 
 // SetNillableMaxTemp6 sets the "max_temp_6" field if the given value is not nil.
-func (mu *MetarUpdate) SetNillableMaxTemp6(f *float64) *MetarUpdate {
-	if f != nil {
-		mu.SetMaxTemp6(*f)
+func (_u *MetarUpdate) SetNillableMaxTemp6(v *float64) *MetarUpdate {
+	if v != nil {
+		_u.SetMaxTemp6(*v)
 	}
-	return mu
+	return _u
 }
 
-// AddMaxTemp6 adds f to the "max_temp_6" field.
-func (mu *MetarUpdate) AddMaxTemp6(f float64) *MetarUpdate {
-	mu.mutation.AddMaxTemp6(f)
-	return mu
+// AddMaxTemp6 adds value to the "max_temp_6" field.
+func (_u *MetarUpdate) AddMaxTemp6(v float64) *MetarUpdate {
+	_u.mutation.AddMaxTemp6(v)
+	return _u
 }
 
 // ClearMaxTemp6 clears the value of the "max_temp_6" field.
-func (mu *MetarUpdate) ClearMaxTemp6() *MetarUpdate {
-	mu.mutation.ClearMaxTemp6()
-	return mu
+func (_u *MetarUpdate) ClearMaxTemp6() *MetarUpdate {
+	_u.mutation.ClearMaxTemp6()
+	return _u
 }
 
 // SetMinTemp6 sets the "min_temp_6" field.
-func (mu *MetarUpdate) SetMinTemp6(f float64) *MetarUpdate {
-	mu.mutation.ResetMinTemp6()
-	mu.mutation.SetMinTemp6(f)
-	return mu
+func (_u *MetarUpdate) SetMinTemp6(v float64) *MetarUpdate {
+	_u.mutation.ResetMinTemp6()
+	_u.mutation.SetMinTemp6(v)
+	return _u
 }
 
 // SetNillableMinTemp6 sets the "min_temp_6" field if the given value is not nil.
-func (mu *MetarUpdate) SetNillableMinTemp6(f *float64) *MetarUpdate {
-	if f != nil {
-		mu.SetMinTemp6(*f)
+func (_u *MetarUpdate) SetNillableMinTemp6(v *float64) *MetarUpdate {
+	if v != nil {
+		_u.SetMinTemp6(*v)
 	}
-	return mu
+	return _u
 }
 
-// AddMinTemp6 adds f to the "min_temp_6" field.
-func (mu *MetarUpdate) AddMinTemp6(f float64) *MetarUpdate {
-	mu.mutation.AddMinTemp6(f)
-	return mu
+// AddMinTemp6 adds value to the "min_temp_6" field.
+func (_u *MetarUpdate) AddMinTemp6(v float64) *MetarUpdate {
+	_u.mutation.AddMinTemp6(v)
+	return _u
 }
 
 // ClearMinTemp6 clears the value of the "min_temp_6" field.
-func (mu *MetarUpdate) ClearMinTemp6() *MetarUpdate {
-	mu.mutation.ClearMinTemp6()
-	return mu
+func (_u *MetarUpdate) ClearMinTemp6() *MetarUpdate {
+	_u.mutation.ClearMinTemp6()
+	return _u
 }
 
 // SetMaxTemp24 sets the "max_temp_24" field.
-func (mu *MetarUpdate) SetMaxTemp24(f float64) *MetarUpdate {
-	mu.mutation.ResetMaxTemp24()
-	mu.mutation.SetMaxTemp24(f)
-	return mu
+func (_u *MetarUpdate) SetMaxTemp24(v float64) *MetarUpdate {
+	_u.mutation.ResetMaxTemp24()
+	_u.mutation.SetMaxTemp24(v)
+	return _u
 }
 
 // SetNillableMaxTemp24 sets the "max_temp_24" field if the given value is not nil.
-func (mu *MetarUpdate) SetNillableMaxTemp24(f *float64) *MetarUpdate {
-	if f != nil {
-		mu.SetMaxTemp24(*f)
+func (_u *MetarUpdate) SetNillableMaxTemp24(v *float64) *MetarUpdate {
+	if v != nil {
+		_u.SetMaxTemp24(*v)
 	}
-	return mu
+	return _u
 }
 
-// AddMaxTemp24 adds f to the "max_temp_24" field.
-func (mu *MetarUpdate) AddMaxTemp24(f float64) *MetarUpdate {
-	mu.mutation.AddMaxTemp24(f)
-	return mu
+// AddMaxTemp24 adds value to the "max_temp_24" field.
+func (_u *MetarUpdate) AddMaxTemp24(v float64) *MetarUpdate {
+	_u.mutation.AddMaxTemp24(v)
+	return _u
 }
 
 // ClearMaxTemp24 clears the value of the "max_temp_24" field.
-func (mu *MetarUpdate) ClearMaxTemp24() *MetarUpdate {
-	mu.mutation.ClearMaxTemp24()
-	return mu
+func (_u *MetarUpdate) ClearMaxTemp24() *MetarUpdate {
+	_u.mutation.ClearMaxTemp24()
+	return _u
 }
 
 // SetMinTemp24 sets the "min_temp_24" field.
-func (mu *MetarUpdate) SetMinTemp24(f float64) *MetarUpdate {
-	mu.mutation.ResetMinTemp24()
-	mu.mutation.SetMinTemp24(f)
-	return mu
+func (_u *MetarUpdate) SetMinTemp24(v float64) *MetarUpdate {
+	_u.mutation.ResetMinTemp24()
+	_u.mutation.SetMinTemp24(v)
+	return _u
 }
 
 // SetNillableMinTemp24 sets the "min_temp_24" field if the given value is not nil.
-func (mu *MetarUpdate) SetNillableMinTemp24(f *float64) *MetarUpdate {
-	if f != nil {
-		mu.SetMinTemp24(*f)
+func (_u *MetarUpdate) SetNillableMinTemp24(v *float64) *MetarUpdate {
+	if v != nil {
+		_u.SetMinTemp24(*v)
 	}
-	return mu
+	return _u
 }
 
-// AddMinTemp24 adds f to the "min_temp_24" field.
-func (mu *MetarUpdate) AddMinTemp24(f float64) *MetarUpdate {
-	mu.mutation.AddMinTemp24(f)
-	return mu
+// AddMinTemp24 adds value to the "min_temp_24" field.
+func (_u *MetarUpdate) AddMinTemp24(v float64) *MetarUpdate {
+	_u.mutation.AddMinTemp24(v)
+	return _u
 }
 
 // ClearMinTemp24 clears the value of the "min_temp_24" field.
-func (mu *MetarUpdate) ClearMinTemp24() *MetarUpdate {
-	mu.mutation.ClearMinTemp24()
-	return mu
+func (_u *MetarUpdate) ClearMinTemp24() *MetarUpdate {
+	_u.mutation.ClearMinTemp24()
+	return _u
 }
 
 // SetPrecipitation sets the "precipitation" field.
-func (mu *MetarUpdate) SetPrecipitation(f float64) *MetarUpdate {
-	mu.mutation.ResetPrecipitation()
-	mu.mutation.SetPrecipitation(f)
-	return mu
+func (_u *MetarUpdate) SetPrecipitation(v float64) *MetarUpdate {
+	_u.mutation.ResetPrecipitation()
+	_u.mutation.SetPrecipitation(v)
+	return _u
 }
 
 // SetNillablePrecipitation sets the "precipitation" field if the given value is not nil.
-func (mu *MetarUpdate) SetNillablePrecipitation(f *float64) *MetarUpdate {
-	if f != nil {
-		mu.SetPrecipitation(*f)
+func (_u *MetarUpdate) SetNillablePrecipitation(v *float64) *MetarUpdate {
+	if v != nil {
+		_u.SetPrecipitation(*v)
 	}
-	return mu
+	return _u
 }
 
-// AddPrecipitation adds f to the "precipitation" field.
-func (mu *MetarUpdate) AddPrecipitation(f float64) *MetarUpdate {
-	mu.mutation.AddPrecipitation(f)
-	return mu
+// AddPrecipitation adds value to the "precipitation" field.
+func (_u *MetarUpdate) AddPrecipitation(v float64) *MetarUpdate {
+	_u.mutation.AddPrecipitation(v)
+	return _u
 }
 
 // ClearPrecipitation clears the value of the "precipitation" field.
-func (mu *MetarUpdate) ClearPrecipitation() *MetarUpdate {
-	mu.mutation.ClearPrecipitation()
-	return mu
+func (_u *MetarUpdate) ClearPrecipitation() *MetarUpdate {
+	_u.mutation.ClearPrecipitation()
+	return _u
 }
 
 // SetPrecipitation3 sets the "precipitation_3" field.
-func (mu *MetarUpdate) SetPrecipitation3(f float64) *MetarUpdate {
-	mu.mutation.ResetPrecipitation3()
-	mu.mutation.SetPrecipitation3(f)
-	return mu
+func (_u *MetarUpdate) SetPrecipitation3(v float64) *MetarUpdate {
+	_u.mutation.ResetPrecipitation3()
+	_u.mutation.SetPrecipitation3(v)
+	return _u
 }
 
 // SetNillablePrecipitation3 sets the "precipitation_3" field if the given value is not nil.
-func (mu *MetarUpdate) SetNillablePrecipitation3(f *float64) *MetarUpdate {
-	if f != nil {
-		mu.SetPrecipitation3(*f)
+func (_u *MetarUpdate) SetNillablePrecipitation3(v *float64) *MetarUpdate {
+	if v != nil {
+		_u.SetPrecipitation3(*v)
 	}
-	return mu
+	return _u
 }
 
-// AddPrecipitation3 adds f to the "precipitation_3" field.
-func (mu *MetarUpdate) AddPrecipitation3(f float64) *MetarUpdate {
-	mu.mutation.AddPrecipitation3(f)
-	return mu
+// AddPrecipitation3 adds value to the "precipitation_3" field.
+func (_u *MetarUpdate) AddPrecipitation3(v float64) *MetarUpdate {
+	_u.mutation.AddPrecipitation3(v)
+	return _u
 }
 
 // ClearPrecipitation3 clears the value of the "precipitation_3" field.
-func (mu *MetarUpdate) ClearPrecipitation3() *MetarUpdate {
-	mu.mutation.ClearPrecipitation3()
-	return mu
+func (_u *MetarUpdate) ClearPrecipitation3() *MetarUpdate {
+	_u.mutation.ClearPrecipitation3()
+	return _u
 }
 
 // SetPrecipitation6 sets the "precipitation_6" field.
-func (mu *MetarUpdate) SetPrecipitation6(f float64) *MetarUpdate {
-	mu.mutation.ResetPrecipitation6()
-	mu.mutation.SetPrecipitation6(f)
-	return mu
+func (_u *MetarUpdate) SetPrecipitation6(v float64) *MetarUpdate {
+	_u.mutation.ResetPrecipitation6()
+	_u.mutation.SetPrecipitation6(v)
+	return _u
 }
 
 // SetNillablePrecipitation6 sets the "precipitation_6" field if the given value is not nil.
-func (mu *MetarUpdate) SetNillablePrecipitation6(f *float64) *MetarUpdate {
-	if f != nil {
-		mu.SetPrecipitation6(*f)
+func (_u *MetarUpdate) SetNillablePrecipitation6(v *float64) *MetarUpdate {
+	if v != nil {
+		_u.SetPrecipitation6(*v)
 	}
-	return mu
+	return _u
 }
 
-// AddPrecipitation6 adds f to the "precipitation_6" field.
-func (mu *MetarUpdate) AddPrecipitation6(f float64) *MetarUpdate {
-	mu.mutation.AddPrecipitation6(f)
-	return mu
+// AddPrecipitation6 adds value to the "precipitation_6" field.
+func (_u *MetarUpdate) AddPrecipitation6(v float64) *MetarUpdate {
+	_u.mutation.AddPrecipitation6(v)
+	return _u
 }
 
 // ClearPrecipitation6 clears the value of the "precipitation_6" field.
-func (mu *MetarUpdate) ClearPrecipitation6() *MetarUpdate {
-	mu.mutation.ClearPrecipitation6()
-	return mu
+func (_u *MetarUpdate) ClearPrecipitation6() *MetarUpdate {
+	_u.mutation.ClearPrecipitation6()
+	return _u
 }
 
 // SetPrecipitation24 sets the "precipitation_24" field.
-func (mu *MetarUpdate) SetPrecipitation24(f float64) *MetarUpdate {
-	mu.mutation.ResetPrecipitation24()
-	mu.mutation.SetPrecipitation24(f)
-	return mu
+func (_u *MetarUpdate) SetPrecipitation24(v float64) *MetarUpdate {
+	_u.mutation.ResetPrecipitation24()
+	_u.mutation.SetPrecipitation24(v)
+	return _u
 }
 
 // SetNillablePrecipitation24 sets the "precipitation_24" field if the given value is not nil.
-func (mu *MetarUpdate) SetNillablePrecipitation24(f *float64) *MetarUpdate {
-	if f != nil {
-		mu.SetPrecipitation24(*f)
+func (_u *MetarUpdate) SetNillablePrecipitation24(v *float64) *MetarUpdate {
+	if v != nil {
+		_u.SetPrecipitation24(*v)
 	}
-	return mu
+	return _u
 }
 
-// AddPrecipitation24 adds f to the "precipitation_24" field.
-func (mu *MetarUpdate) AddPrecipitation24(f float64) *MetarUpdate {
-	mu.mutation.AddPrecipitation24(f)
-	return mu
+// AddPrecipitation24 adds value to the "precipitation_24" field.
+func (_u *MetarUpdate) AddPrecipitation24(v float64) *MetarUpdate {
+	_u.mutation.AddPrecipitation24(v)
+	return _u
 }
 
 // ClearPrecipitation24 clears the value of the "precipitation_24" field.
-func (mu *MetarUpdate) ClearPrecipitation24() *MetarUpdate {
-	mu.mutation.ClearPrecipitation24()
-	return mu
+func (_u *MetarUpdate) ClearPrecipitation24() *MetarUpdate {
+	_u.mutation.ClearPrecipitation24()
+	return _u
 }
 
 // SetSnowDepth sets the "snow_depth" field.
-func (mu *MetarUpdate) SetSnowDepth(f float64) *MetarUpdate {
-	mu.mutation.ResetSnowDepth()
-	mu.mutation.SetSnowDepth(f)
-	return mu
+func (_u *MetarUpdate) SetSnowDepth(v float64) *MetarUpdate {
+	_u.mutation.ResetSnowDepth()
+	_u.mutation.SetSnowDepth(v)
+	return _u
 }
 
 // SetNillableSnowDepth sets the "snow_depth" field if the given value is not nil.
-func (mu *MetarUpdate) SetNillableSnowDepth(f *float64) *MetarUpdate {
-	if f != nil {
-		mu.SetSnowDepth(*f)
+func (_u *MetarUpdate) SetNillableSnowDepth(v *float64) *MetarUpdate {
+	if v != nil {
+		_u.SetSnowDepth(*v)
 	}
-	return mu
+	return _u
 }
 
-// AddSnowDepth adds f to the "snow_depth" field.
-func (mu *MetarUpdate) AddSnowDepth(f float64) *MetarUpdate {
-	mu.mutation.AddSnowDepth(f)
-	return mu
+// AddSnowDepth adds value to the "snow_depth" field.
+func (_u *MetarUpdate) AddSnowDepth(v float64) *MetarUpdate {
+	_u.mutation.AddSnowDepth(v)
+	return _u
 }
 
 // ClearSnowDepth clears the value of the "snow_depth" field.
-func (mu *MetarUpdate) ClearSnowDepth() *MetarUpdate {
-	mu.mutation.ClearSnowDepth()
-	return mu
+func (_u *MetarUpdate) ClearSnowDepth() *MetarUpdate {
+	_u.mutation.ClearSnowDepth()
+	return _u
 }
 
 // SetVertVis sets the "vert_vis" field.
-func (mu *MetarUpdate) SetVertVis(f float64) *MetarUpdate {
-	mu.mutation.ResetVertVis()
-	mu.mutation.SetVertVis(f)
-	return mu
+func (_u *MetarUpdate) SetVertVis(v float64) *MetarUpdate {
+	_u.mutation.ResetVertVis()
+	_u.mutation.SetVertVis(v)
+	return _u
 }
 
 // SetNillableVertVis sets the "vert_vis" field if the given value is not nil.
-func (mu *MetarUpdate) SetNillableVertVis(f *float64) *MetarUpdate {
-	if f != nil {
-		mu.SetVertVis(*f)
+func (_u *MetarUpdate) SetNillableVertVis(v *float64) *MetarUpdate {
+	if v != nil {
+		_u.SetVertVis(*v)
 	}
-	return mu
+	return _u
 }
 
-// AddVertVis adds f to the "vert_vis" field.
-func (mu *MetarUpdate) AddVertVis(f float64) *MetarUpdate {
-	mu.mutation.AddVertVis(f)
-	return mu
+// AddVertVis adds value to the "vert_vis" field.
+func (_u *MetarUpdate) AddVertVis(v float64) *MetarUpdate {
+	_u.mutation.AddVertVis(v)
+	return _u
 }
 
 // ClearVertVis clears the value of the "vert_vis" field.
-func (mu *MetarUpdate) ClearVertVis() *MetarUpdate {
-	mu.mutation.ClearVertVis()
-	return mu
+func (_u *MetarUpdate) ClearVertVis() *MetarUpdate {
+	_u.mutation.ClearVertVis()
+	return _u
 }
 
 // SetMetarType sets the "metar_type" field.
-func (mu *MetarUpdate) SetMetarType(mt metar.MetarType) *MetarUpdate {
-	mu.mutation.SetMetarType(mt)
-	return mu
+func (_u *MetarUpdate) SetMetarType(v metar.MetarType) *MetarUpdate {
+	_u.mutation.SetMetarType(v)
+	return _u
+}
+
+// SetNillableMetarType sets the "metar_type" field if the given value is not nil.
+func (_u *MetarUpdate) SetNillableMetarType(v *metar.MetarType) *MetarUpdate {
+	if v != nil {
+		_u.SetMetarType(*v)
+	}
+	return _u
 }
 
 // SetHash sets the "hash" field.
-func (mu *MetarUpdate) SetHash(s string) *MetarUpdate {
-	mu.mutation.SetHash(s)
-	return mu
+func (_u *MetarUpdate) SetHash(v string) *MetarUpdate {
+	_u.mutation.SetHash(v)
+	return _u
+}
+
+// SetNillableHash sets the "hash" field if the given value is not nil.
+func (_u *MetarUpdate) SetNillableHash(v *string) *MetarUpdate {
+	if v != nil {
+		_u.SetHash(*v)
+	}
+	return _u
 }
 
 // SetStationID sets the "station" edge to the WeatherStation entity by ID.
-func (mu *MetarUpdate) SetStationID(id uuid.UUID) *MetarUpdate {
-	mu.mutation.SetStationID(id)
-	return mu
+func (_u *MetarUpdate) SetStationID(id uuid.UUID) *MetarUpdate {
+	_u.mutation.SetStationID(id)
+	return _u
 }
 
 // SetStation sets the "station" edge to the WeatherStation entity.
-func (mu *MetarUpdate) SetStation(w *WeatherStation) *MetarUpdate {
-	return mu.SetStationID(w.ID)
+func (_u *MetarUpdate) SetStation(v *WeatherStation) *MetarUpdate {
+	return _u.SetStationID(v.ID)
 }
 
 // AddSkyConditionIDs adds the "sky_conditions" edge to the SkyCondition entity by IDs.
-func (mu *MetarUpdate) AddSkyConditionIDs(ids ...uuid.UUID) *MetarUpdate {
-	mu.mutation.AddSkyConditionIDs(ids...)
-	return mu
+func (_u *MetarUpdate) AddSkyConditionIDs(ids ...uuid.UUID) *MetarUpdate {
+	_u.mutation.AddSkyConditionIDs(ids...)
+	return _u
 }
 
 // AddSkyConditions adds the "sky_conditions" edges to the SkyCondition entity.
-func (mu *MetarUpdate) AddSkyConditions(s ...*SkyCondition) *MetarUpdate {
-	ids := make([]uuid.UUID, len(s))
-	for i := range s {
-		ids[i] = s[i].ID
+func (_u *MetarUpdate) AddSkyConditions(v ...*SkyCondition) *MetarUpdate {
+	ids := make([]uuid.UUID, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return mu.AddSkyConditionIDs(ids...)
+	return _u.AddSkyConditionIDs(ids...)
 }
 
 // Mutation returns the MetarMutation object of the builder.
-func (mu *MetarUpdate) Mutation() *MetarMutation {
-	return mu.mutation
+func (_u *MetarUpdate) Mutation() *MetarMutation {
+	return _u.mutation
 }
 
 // ClearStation clears the "station" edge to the WeatherStation entity.
-func (mu *MetarUpdate) ClearStation() *MetarUpdate {
-	mu.mutation.ClearStation()
-	return mu
+func (_u *MetarUpdate) ClearStation() *MetarUpdate {
+	_u.mutation.ClearStation()
+	return _u
 }
 
 // ClearSkyConditions clears all "sky_conditions" edges to the SkyCondition entity.
-func (mu *MetarUpdate) ClearSkyConditions() *MetarUpdate {
-	mu.mutation.ClearSkyConditions()
-	return mu
+func (_u *MetarUpdate) ClearSkyConditions() *MetarUpdate {
+	_u.mutation.ClearSkyConditions()
+	return _u
 }
 
 // RemoveSkyConditionIDs removes the "sky_conditions" edge to SkyCondition entities by IDs.
-func (mu *MetarUpdate) RemoveSkyConditionIDs(ids ...uuid.UUID) *MetarUpdate {
-	mu.mutation.RemoveSkyConditionIDs(ids...)
-	return mu
+func (_u *MetarUpdate) RemoveSkyConditionIDs(ids ...uuid.UUID) *MetarUpdate {
+	_u.mutation.RemoveSkyConditionIDs(ids...)
+	return _u
 }
 
 // RemoveSkyConditions removes "sky_conditions" edges to SkyCondition entities.
-func (mu *MetarUpdate) RemoveSkyConditions(s ...*SkyCondition) *MetarUpdate {
-	ids := make([]uuid.UUID, len(s))
-	for i := range s {
-		ids[i] = s[i].ID
+func (_u *MetarUpdate) RemoveSkyConditions(v ...*SkyCondition) *MetarUpdate {
+	ids := make([]uuid.UUID, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return mu.RemoveSkyConditionIDs(ids...)
+	return _u.RemoveSkyConditionIDs(ids...)
 }
 
 // Save executes the query and returns the number of nodes affected by the update operation.
-func (mu *MetarUpdate) Save(ctx context.Context) (int, error) {
-	return withHooks(ctx, mu.sqlSave, mu.mutation, mu.hooks)
+func (_u *MetarUpdate) Save(ctx context.Context) (int, error) {
+	return withHooks(ctx, _u.sqlSave, _u.mutation, _u.hooks)
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (mu *MetarUpdate) SaveX(ctx context.Context) int {
-	affected, err := mu.Save(ctx)
+func (_u *MetarUpdate) SaveX(ctx context.Context) int {
+	affected, err := _u.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -784,289 +880,289 @@ func (mu *MetarUpdate) SaveX(ctx context.Context) int {
 }
 
 // Exec executes the query.
-func (mu *MetarUpdate) Exec(ctx context.Context) error {
-	_, err := mu.Save(ctx)
+func (_u *MetarUpdate) Exec(ctx context.Context) error {
+	_, err := _u.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (mu *MetarUpdate) ExecX(ctx context.Context) {
-	if err := mu.Exec(ctx); err != nil {
+func (_u *MetarUpdate) ExecX(ctx context.Context) {
+	if err := _u.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // check runs all checks and user-defined validators on the builder.
-func (mu *MetarUpdate) check() error {
-	if v, ok := mu.mutation.FlightCategory(); ok {
+func (_u *MetarUpdate) check() error {
+	if v, ok := _u.mutation.FlightCategory(); ok {
 		if err := metar.FlightCategoryValidator(v); err != nil {
 			return &ValidationError{Name: "flight_category", err: fmt.Errorf(`ent: validator failed for field "Metar.flight_category": %w`, err)}
 		}
 	}
-	if v, ok := mu.mutation.MetarType(); ok {
+	if v, ok := _u.mutation.MetarType(); ok {
 		if err := metar.MetarTypeValidator(v); err != nil {
 			return &ValidationError{Name: "metar_type", err: fmt.Errorf(`ent: validator failed for field "Metar.metar_type": %w`, err)}
 		}
 	}
-	if _, ok := mu.mutation.StationID(); mu.mutation.StationCleared() && !ok {
+	if _u.mutation.StationCleared() && len(_u.mutation.StationIDs()) > 0 {
 		return errors.New(`ent: clearing a required unique edge "Metar.station"`)
 	}
 	return nil
 }
 
 // Modify adds a statement modifier for attaching custom logic to the UPDATE statement.
-func (mu *MetarUpdate) Modify(modifiers ...func(u *sql.UpdateBuilder)) *MetarUpdate {
-	mu.modifiers = append(mu.modifiers, modifiers...)
-	return mu
+func (_u *MetarUpdate) Modify(modifiers ...func(u *sql.UpdateBuilder)) *MetarUpdate {
+	_u.modifiers = append(_u.modifiers, modifiers...)
+	return _u
 }
 
-func (mu *MetarUpdate) sqlSave(ctx context.Context) (n int, err error) {
-	if err := mu.check(); err != nil {
-		return n, err
+func (_u *MetarUpdate) sqlSave(ctx context.Context) (_node int, err error) {
+	if err := _u.check(); err != nil {
+		return _node, err
 	}
 	_spec := sqlgraph.NewUpdateSpec(metar.Table, metar.Columns, sqlgraph.NewFieldSpec(metar.FieldID, field.TypeUUID))
-	if ps := mu.mutation.predicates; len(ps) > 0 {
+	if ps := _u.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if value, ok := mu.mutation.RawText(); ok {
+	if value, ok := _u.mutation.RawText(); ok {
 		_spec.SetField(metar.FieldRawText, field.TypeString, value)
 	}
-	if value, ok := mu.mutation.ObservationTime(); ok {
+	if value, ok := _u.mutation.ObservationTime(); ok {
 		_spec.SetField(metar.FieldObservationTime, field.TypeTime, value)
 	}
-	if value, ok := mu.mutation.ImportTime(); ok {
+	if value, ok := _u.mutation.ImportTime(); ok {
 		_spec.SetField(metar.FieldImportTime, field.TypeTime, value)
 	}
-	if value, ok := mu.mutation.NextImportTimePrediction(); ok {
+	if value, ok := _u.mutation.NextImportTimePrediction(); ok {
 		_spec.SetField(metar.FieldNextImportTimePrediction, field.TypeTime, value)
 	}
-	if mu.mutation.NextImportTimePredictionCleared() {
+	if _u.mutation.NextImportTimePredictionCleared() {
 		_spec.ClearField(metar.FieldNextImportTimePrediction, field.TypeTime)
 	}
-	if value, ok := mu.mutation.Temperature(); ok {
+	if value, ok := _u.mutation.Temperature(); ok {
 		_spec.SetField(metar.FieldTemperature, field.TypeFloat64, value)
 	}
-	if value, ok := mu.mutation.AddedTemperature(); ok {
+	if value, ok := _u.mutation.AddedTemperature(); ok {
 		_spec.AddField(metar.FieldTemperature, field.TypeFloat64, value)
 	}
-	if mu.mutation.TemperatureCleared() {
+	if _u.mutation.TemperatureCleared() {
 		_spec.ClearField(metar.FieldTemperature, field.TypeFloat64)
 	}
-	if value, ok := mu.mutation.Dewpoint(); ok {
+	if value, ok := _u.mutation.Dewpoint(); ok {
 		_spec.SetField(metar.FieldDewpoint, field.TypeFloat64, value)
 	}
-	if value, ok := mu.mutation.AddedDewpoint(); ok {
+	if value, ok := _u.mutation.AddedDewpoint(); ok {
 		_spec.AddField(metar.FieldDewpoint, field.TypeFloat64, value)
 	}
-	if mu.mutation.DewpointCleared() {
+	if _u.mutation.DewpointCleared() {
 		_spec.ClearField(metar.FieldDewpoint, field.TypeFloat64)
 	}
-	if value, ok := mu.mutation.WindSpeed(); ok {
+	if value, ok := _u.mutation.WindSpeed(); ok {
 		_spec.SetField(metar.FieldWindSpeed, field.TypeInt, value)
 	}
-	if value, ok := mu.mutation.AddedWindSpeed(); ok {
+	if value, ok := _u.mutation.AddedWindSpeed(); ok {
 		_spec.AddField(metar.FieldWindSpeed, field.TypeInt, value)
 	}
-	if mu.mutation.WindSpeedCleared() {
+	if _u.mutation.WindSpeedCleared() {
 		_spec.ClearField(metar.FieldWindSpeed, field.TypeInt)
 	}
-	if value, ok := mu.mutation.WindGust(); ok {
+	if value, ok := _u.mutation.WindGust(); ok {
 		_spec.SetField(metar.FieldWindGust, field.TypeInt, value)
 	}
-	if value, ok := mu.mutation.AddedWindGust(); ok {
+	if value, ok := _u.mutation.AddedWindGust(); ok {
 		_spec.AddField(metar.FieldWindGust, field.TypeInt, value)
 	}
-	if mu.mutation.WindGustCleared() {
+	if _u.mutation.WindGustCleared() {
 		_spec.ClearField(metar.FieldWindGust, field.TypeInt)
 	}
-	if value, ok := mu.mutation.WindDirection(); ok {
+	if value, ok := _u.mutation.WindDirection(); ok {
 		_spec.SetField(metar.FieldWindDirection, field.TypeInt, value)
 	}
-	if value, ok := mu.mutation.AddedWindDirection(); ok {
+	if value, ok := _u.mutation.AddedWindDirection(); ok {
 		_spec.AddField(metar.FieldWindDirection, field.TypeInt, value)
 	}
-	if mu.mutation.WindDirectionCleared() {
+	if _u.mutation.WindDirectionCleared() {
 		_spec.ClearField(metar.FieldWindDirection, field.TypeInt)
 	}
-	if value, ok := mu.mutation.WindDirectionVariable(); ok {
+	if value, ok := _u.mutation.WindDirectionVariable(); ok {
 		_spec.SetField(metar.FieldWindDirectionVariable, field.TypeBool, value)
 	}
-	if value, ok := mu.mutation.Visibility(); ok {
+	if value, ok := _u.mutation.Visibility(); ok {
 		_spec.SetField(metar.FieldVisibility, field.TypeFloat64, value)
 	}
-	if value, ok := mu.mutation.AddedVisibility(); ok {
+	if value, ok := _u.mutation.AddedVisibility(); ok {
 		_spec.AddField(metar.FieldVisibility, field.TypeFloat64, value)
 	}
-	if mu.mutation.VisibilityCleared() {
+	if _u.mutation.VisibilityCleared() {
 		_spec.ClearField(metar.FieldVisibility, field.TypeFloat64)
 	}
-	if value, ok := mu.mutation.VisibilityIsMoreThan(); ok {
+	if value, ok := _u.mutation.VisibilityIsMoreThan(); ok {
 		_spec.SetField(metar.FieldVisibilityIsMoreThan, field.TypeBool, value)
 	}
-	if value, ok := mu.mutation.Altimeter(); ok {
+	if value, ok := _u.mutation.Altimeter(); ok {
 		_spec.SetField(metar.FieldAltimeter, field.TypeFloat64, value)
 	}
-	if value, ok := mu.mutation.AddedAltimeter(); ok {
+	if value, ok := _u.mutation.AddedAltimeter(); ok {
 		_spec.AddField(metar.FieldAltimeter, field.TypeFloat64, value)
 	}
-	if mu.mutation.AltimeterCleared() {
+	if _u.mutation.AltimeterCleared() {
 		_spec.ClearField(metar.FieldAltimeter, field.TypeFloat64)
 	}
-	if value, ok := mu.mutation.PresentWeather(); ok {
+	if value, ok := _u.mutation.PresentWeather(); ok {
 		_spec.SetField(metar.FieldPresentWeather, field.TypeString, value)
 	}
-	if mu.mutation.PresentWeatherCleared() {
+	if _u.mutation.PresentWeatherCleared() {
 		_spec.ClearField(metar.FieldPresentWeather, field.TypeString)
 	}
-	if value, ok := mu.mutation.FlightCategory(); ok {
+	if value, ok := _u.mutation.FlightCategory(); ok {
 		_spec.SetField(metar.FieldFlightCategory, field.TypeEnum, value)
 	}
-	if mu.mutation.FlightCategoryCleared() {
+	if _u.mutation.FlightCategoryCleared() {
 		_spec.ClearField(metar.FieldFlightCategory, field.TypeEnum)
 	}
-	if value, ok := mu.mutation.QualityControlCorrected(); ok {
+	if value, ok := _u.mutation.QualityControlCorrected(); ok {
 		_spec.SetField(metar.FieldQualityControlCorrected, field.TypeBool, value)
 	}
-	if mu.mutation.QualityControlCorrectedCleared() {
+	if _u.mutation.QualityControlCorrectedCleared() {
 		_spec.ClearField(metar.FieldQualityControlCorrected, field.TypeBool)
 	}
-	if value, ok := mu.mutation.QualityControlAutoStation(); ok {
+	if value, ok := _u.mutation.QualityControlAutoStation(); ok {
 		_spec.SetField(metar.FieldQualityControlAutoStation, field.TypeBool, value)
 	}
-	if value, ok := mu.mutation.QualityControlMaintenanceIndicatorOn(); ok {
+	if value, ok := _u.mutation.QualityControlMaintenanceIndicatorOn(); ok {
 		_spec.SetField(metar.FieldQualityControlMaintenanceIndicatorOn, field.TypeBool, value)
 	}
-	if value, ok := mu.mutation.QualityControlNoSignal(); ok {
+	if value, ok := _u.mutation.QualityControlNoSignal(); ok {
 		_spec.SetField(metar.FieldQualityControlNoSignal, field.TypeBool, value)
 	}
-	if value, ok := mu.mutation.QualityControlLightningSensorOff(); ok {
+	if value, ok := _u.mutation.QualityControlLightningSensorOff(); ok {
 		_spec.SetField(metar.FieldQualityControlLightningSensorOff, field.TypeBool, value)
 	}
-	if value, ok := mu.mutation.QualityControlFreezingRainSensorOff(); ok {
+	if value, ok := _u.mutation.QualityControlFreezingRainSensorOff(); ok {
 		_spec.SetField(metar.FieldQualityControlFreezingRainSensorOff, field.TypeBool, value)
 	}
-	if value, ok := mu.mutation.QualityControlPresentWeatherSensorOff(); ok {
+	if value, ok := _u.mutation.QualityControlPresentWeatherSensorOff(); ok {
 		_spec.SetField(metar.FieldQualityControlPresentWeatherSensorOff, field.TypeBool, value)
 	}
-	if value, ok := mu.mutation.SeaLevelPressure(); ok {
+	if value, ok := _u.mutation.SeaLevelPressure(); ok {
 		_spec.SetField(metar.FieldSeaLevelPressure, field.TypeFloat64, value)
 	}
-	if value, ok := mu.mutation.AddedSeaLevelPressure(); ok {
+	if value, ok := _u.mutation.AddedSeaLevelPressure(); ok {
 		_spec.AddField(metar.FieldSeaLevelPressure, field.TypeFloat64, value)
 	}
-	if mu.mutation.SeaLevelPressureCleared() {
+	if _u.mutation.SeaLevelPressureCleared() {
 		_spec.ClearField(metar.FieldSeaLevelPressure, field.TypeFloat64)
 	}
-	if value, ok := mu.mutation.PressureTendency(); ok {
+	if value, ok := _u.mutation.PressureTendency(); ok {
 		_spec.SetField(metar.FieldPressureTendency, field.TypeFloat64, value)
 	}
-	if value, ok := mu.mutation.AddedPressureTendency(); ok {
+	if value, ok := _u.mutation.AddedPressureTendency(); ok {
 		_spec.AddField(metar.FieldPressureTendency, field.TypeFloat64, value)
 	}
-	if mu.mutation.PressureTendencyCleared() {
+	if _u.mutation.PressureTendencyCleared() {
 		_spec.ClearField(metar.FieldPressureTendency, field.TypeFloat64)
 	}
-	if value, ok := mu.mutation.MaxTemp6(); ok {
+	if value, ok := _u.mutation.MaxTemp6(); ok {
 		_spec.SetField(metar.FieldMaxTemp6, field.TypeFloat64, value)
 	}
-	if value, ok := mu.mutation.AddedMaxTemp6(); ok {
+	if value, ok := _u.mutation.AddedMaxTemp6(); ok {
 		_spec.AddField(metar.FieldMaxTemp6, field.TypeFloat64, value)
 	}
-	if mu.mutation.MaxTemp6Cleared() {
+	if _u.mutation.MaxTemp6Cleared() {
 		_spec.ClearField(metar.FieldMaxTemp6, field.TypeFloat64)
 	}
-	if value, ok := mu.mutation.MinTemp6(); ok {
+	if value, ok := _u.mutation.MinTemp6(); ok {
 		_spec.SetField(metar.FieldMinTemp6, field.TypeFloat64, value)
 	}
-	if value, ok := mu.mutation.AddedMinTemp6(); ok {
+	if value, ok := _u.mutation.AddedMinTemp6(); ok {
 		_spec.AddField(metar.FieldMinTemp6, field.TypeFloat64, value)
 	}
-	if mu.mutation.MinTemp6Cleared() {
+	if _u.mutation.MinTemp6Cleared() {
 		_spec.ClearField(metar.FieldMinTemp6, field.TypeFloat64)
 	}
-	if value, ok := mu.mutation.MaxTemp24(); ok {
+	if value, ok := _u.mutation.MaxTemp24(); ok {
 		_spec.SetField(metar.FieldMaxTemp24, field.TypeFloat64, value)
 	}
-	if value, ok := mu.mutation.AddedMaxTemp24(); ok {
+	if value, ok := _u.mutation.AddedMaxTemp24(); ok {
 		_spec.AddField(metar.FieldMaxTemp24, field.TypeFloat64, value)
 	}
-	if mu.mutation.MaxTemp24Cleared() {
+	if _u.mutation.MaxTemp24Cleared() {
 		_spec.ClearField(metar.FieldMaxTemp24, field.TypeFloat64)
 	}
-	if value, ok := mu.mutation.MinTemp24(); ok {
+	if value, ok := _u.mutation.MinTemp24(); ok {
 		_spec.SetField(metar.FieldMinTemp24, field.TypeFloat64, value)
 	}
-	if value, ok := mu.mutation.AddedMinTemp24(); ok {
+	if value, ok := _u.mutation.AddedMinTemp24(); ok {
 		_spec.AddField(metar.FieldMinTemp24, field.TypeFloat64, value)
 	}
-	if mu.mutation.MinTemp24Cleared() {
+	if _u.mutation.MinTemp24Cleared() {
 		_spec.ClearField(metar.FieldMinTemp24, field.TypeFloat64)
 	}
-	if value, ok := mu.mutation.Precipitation(); ok {
+	if value, ok := _u.mutation.Precipitation(); ok {
 		_spec.SetField(metar.FieldPrecipitation, field.TypeFloat64, value)
 	}
-	if value, ok := mu.mutation.AddedPrecipitation(); ok {
+	if value, ok := _u.mutation.AddedPrecipitation(); ok {
 		_spec.AddField(metar.FieldPrecipitation, field.TypeFloat64, value)
 	}
-	if mu.mutation.PrecipitationCleared() {
+	if _u.mutation.PrecipitationCleared() {
 		_spec.ClearField(metar.FieldPrecipitation, field.TypeFloat64)
 	}
-	if value, ok := mu.mutation.Precipitation3(); ok {
+	if value, ok := _u.mutation.Precipitation3(); ok {
 		_spec.SetField(metar.FieldPrecipitation3, field.TypeFloat64, value)
 	}
-	if value, ok := mu.mutation.AddedPrecipitation3(); ok {
+	if value, ok := _u.mutation.AddedPrecipitation3(); ok {
 		_spec.AddField(metar.FieldPrecipitation3, field.TypeFloat64, value)
 	}
-	if mu.mutation.Precipitation3Cleared() {
+	if _u.mutation.Precipitation3Cleared() {
 		_spec.ClearField(metar.FieldPrecipitation3, field.TypeFloat64)
 	}
-	if value, ok := mu.mutation.Precipitation6(); ok {
+	if value, ok := _u.mutation.Precipitation6(); ok {
 		_spec.SetField(metar.FieldPrecipitation6, field.TypeFloat64, value)
 	}
-	if value, ok := mu.mutation.AddedPrecipitation6(); ok {
+	if value, ok := _u.mutation.AddedPrecipitation6(); ok {
 		_spec.AddField(metar.FieldPrecipitation6, field.TypeFloat64, value)
 	}
-	if mu.mutation.Precipitation6Cleared() {
+	if _u.mutation.Precipitation6Cleared() {
 		_spec.ClearField(metar.FieldPrecipitation6, field.TypeFloat64)
 	}
-	if value, ok := mu.mutation.Precipitation24(); ok {
+	if value, ok := _u.mutation.Precipitation24(); ok {
 		_spec.SetField(metar.FieldPrecipitation24, field.TypeFloat64, value)
 	}
-	if value, ok := mu.mutation.AddedPrecipitation24(); ok {
+	if value, ok := _u.mutation.AddedPrecipitation24(); ok {
 		_spec.AddField(metar.FieldPrecipitation24, field.TypeFloat64, value)
 	}
-	if mu.mutation.Precipitation24Cleared() {
+	if _u.mutation.Precipitation24Cleared() {
 		_spec.ClearField(metar.FieldPrecipitation24, field.TypeFloat64)
 	}
-	if value, ok := mu.mutation.SnowDepth(); ok {
+	if value, ok := _u.mutation.SnowDepth(); ok {
 		_spec.SetField(metar.FieldSnowDepth, field.TypeFloat64, value)
 	}
-	if value, ok := mu.mutation.AddedSnowDepth(); ok {
+	if value, ok := _u.mutation.AddedSnowDepth(); ok {
 		_spec.AddField(metar.FieldSnowDepth, field.TypeFloat64, value)
 	}
-	if mu.mutation.SnowDepthCleared() {
+	if _u.mutation.SnowDepthCleared() {
 		_spec.ClearField(metar.FieldSnowDepth, field.TypeFloat64)
 	}
-	if value, ok := mu.mutation.VertVis(); ok {
+	if value, ok := _u.mutation.VertVis(); ok {
 		_spec.SetField(metar.FieldVertVis, field.TypeFloat64, value)
 	}
-	if value, ok := mu.mutation.AddedVertVis(); ok {
+	if value, ok := _u.mutation.AddedVertVis(); ok {
 		_spec.AddField(metar.FieldVertVis, field.TypeFloat64, value)
 	}
-	if mu.mutation.VertVisCleared() {
+	if _u.mutation.VertVisCleared() {
 		_spec.ClearField(metar.FieldVertVis, field.TypeFloat64)
 	}
-	if value, ok := mu.mutation.MetarType(); ok {
+	if value, ok := _u.mutation.MetarType(); ok {
 		_spec.SetField(metar.FieldMetarType, field.TypeEnum, value)
 	}
-	if value, ok := mu.mutation.Hash(); ok {
+	if value, ok := _u.mutation.Hash(); ok {
 		_spec.SetField(metar.FieldHash, field.TypeString, value)
 	}
-	if mu.mutation.StationCleared() {
+	if _u.mutation.StationCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.M2O,
 			Inverse: true,
@@ -1079,7 +1175,7 @@ func (mu *MetarUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := mu.mutation.StationIDs(); len(nodes) > 0 {
+	if nodes := _u.mutation.StationIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.M2O,
 			Inverse: true,
@@ -1095,7 +1191,7 @@ func (mu *MetarUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		_spec.Edges.Add = append(_spec.Edges.Add, edge)
 	}
-	if mu.mutation.SkyConditionsCleared() {
+	if _u.mutation.SkyConditionsCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -1108,7 +1204,7 @@ func (mu *MetarUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := mu.mutation.RemovedSkyConditionsIDs(); len(nodes) > 0 && !mu.mutation.SkyConditionsCleared() {
+	if nodes := _u.mutation.RemovedSkyConditionsIDs(); len(nodes) > 0 && !_u.mutation.SkyConditionsCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -1124,7 +1220,7 @@ func (mu *MetarUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := mu.mutation.SkyConditionsIDs(); len(nodes) > 0 {
+	if nodes := _u.mutation.SkyConditionsIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -1140,8 +1236,8 @@ func (mu *MetarUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		_spec.Edges.Add = append(_spec.Edges.Add, edge)
 	}
-	_spec.AddModifiers(mu.modifiers...)
-	if n, err = sqlgraph.UpdateNodes(ctx, mu.driver, _spec); err != nil {
+	_spec.AddModifiers(_u.modifiers...)
+	if _node, err = sqlgraph.UpdateNodes(ctx, _u.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
 			err = &NotFoundError{metar.Label}
 		} else if sqlgraph.IsConstraintError(err) {
@@ -1149,8 +1245,8 @@ func (mu *MetarUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		return 0, err
 	}
-	mu.mutation.done = true
-	return n, nil
+	_u.mutation.done = true
+	return _node, nil
 }
 
 // MetarUpdateOne is the builder for updating a single Metar entity.
@@ -1163,763 +1259,859 @@ type MetarUpdateOne struct {
 }
 
 // SetRawText sets the "raw_text" field.
-func (muo *MetarUpdateOne) SetRawText(s string) *MetarUpdateOne {
-	muo.mutation.SetRawText(s)
-	return muo
+func (_u *MetarUpdateOne) SetRawText(v string) *MetarUpdateOne {
+	_u.mutation.SetRawText(v)
+	return _u
+}
+
+// SetNillableRawText sets the "raw_text" field if the given value is not nil.
+func (_u *MetarUpdateOne) SetNillableRawText(v *string) *MetarUpdateOne {
+	if v != nil {
+		_u.SetRawText(*v)
+	}
+	return _u
 }
 
 // SetObservationTime sets the "observation_time" field.
-func (muo *MetarUpdateOne) SetObservationTime(t time.Time) *MetarUpdateOne {
-	muo.mutation.SetObservationTime(t)
-	return muo
+func (_u *MetarUpdateOne) SetObservationTime(v time.Time) *MetarUpdateOne {
+	_u.mutation.SetObservationTime(v)
+	return _u
+}
+
+// SetNillableObservationTime sets the "observation_time" field if the given value is not nil.
+func (_u *MetarUpdateOne) SetNillableObservationTime(v *time.Time) *MetarUpdateOne {
+	if v != nil {
+		_u.SetObservationTime(*v)
+	}
+	return _u
 }
 
 // SetImportTime sets the "import_time" field.
-func (muo *MetarUpdateOne) SetImportTime(t time.Time) *MetarUpdateOne {
-	muo.mutation.SetImportTime(t)
-	return muo
+func (_u *MetarUpdateOne) SetImportTime(v time.Time) *MetarUpdateOne {
+	_u.mutation.SetImportTime(v)
+	return _u
 }
 
 // SetNillableImportTime sets the "import_time" field if the given value is not nil.
-func (muo *MetarUpdateOne) SetNillableImportTime(t *time.Time) *MetarUpdateOne {
-	if t != nil {
-		muo.SetImportTime(*t)
+func (_u *MetarUpdateOne) SetNillableImportTime(v *time.Time) *MetarUpdateOne {
+	if v != nil {
+		_u.SetImportTime(*v)
 	}
-	return muo
+	return _u
 }
 
 // SetNextImportTimePrediction sets the "next_import_time_prediction" field.
-func (muo *MetarUpdateOne) SetNextImportTimePrediction(t time.Time) *MetarUpdateOne {
-	muo.mutation.SetNextImportTimePrediction(t)
-	return muo
+func (_u *MetarUpdateOne) SetNextImportTimePrediction(v time.Time) *MetarUpdateOne {
+	_u.mutation.SetNextImportTimePrediction(v)
+	return _u
 }
 
 // SetNillableNextImportTimePrediction sets the "next_import_time_prediction" field if the given value is not nil.
-func (muo *MetarUpdateOne) SetNillableNextImportTimePrediction(t *time.Time) *MetarUpdateOne {
-	if t != nil {
-		muo.SetNextImportTimePrediction(*t)
+func (_u *MetarUpdateOne) SetNillableNextImportTimePrediction(v *time.Time) *MetarUpdateOne {
+	if v != nil {
+		_u.SetNextImportTimePrediction(*v)
 	}
-	return muo
+	return _u
 }
 
 // ClearNextImportTimePrediction clears the value of the "next_import_time_prediction" field.
-func (muo *MetarUpdateOne) ClearNextImportTimePrediction() *MetarUpdateOne {
-	muo.mutation.ClearNextImportTimePrediction()
-	return muo
+func (_u *MetarUpdateOne) ClearNextImportTimePrediction() *MetarUpdateOne {
+	_u.mutation.ClearNextImportTimePrediction()
+	return _u
 }
 
 // SetTemperature sets the "temperature" field.
-func (muo *MetarUpdateOne) SetTemperature(f float64) *MetarUpdateOne {
-	muo.mutation.ResetTemperature()
-	muo.mutation.SetTemperature(f)
-	return muo
+func (_u *MetarUpdateOne) SetTemperature(v float64) *MetarUpdateOne {
+	_u.mutation.ResetTemperature()
+	_u.mutation.SetTemperature(v)
+	return _u
 }
 
 // SetNillableTemperature sets the "temperature" field if the given value is not nil.
-func (muo *MetarUpdateOne) SetNillableTemperature(f *float64) *MetarUpdateOne {
-	if f != nil {
-		muo.SetTemperature(*f)
+func (_u *MetarUpdateOne) SetNillableTemperature(v *float64) *MetarUpdateOne {
+	if v != nil {
+		_u.SetTemperature(*v)
 	}
-	return muo
+	return _u
 }
 
-// AddTemperature adds f to the "temperature" field.
-func (muo *MetarUpdateOne) AddTemperature(f float64) *MetarUpdateOne {
-	muo.mutation.AddTemperature(f)
-	return muo
+// AddTemperature adds value to the "temperature" field.
+func (_u *MetarUpdateOne) AddTemperature(v float64) *MetarUpdateOne {
+	_u.mutation.AddTemperature(v)
+	return _u
 }
 
 // ClearTemperature clears the value of the "temperature" field.
-func (muo *MetarUpdateOne) ClearTemperature() *MetarUpdateOne {
-	muo.mutation.ClearTemperature()
-	return muo
+func (_u *MetarUpdateOne) ClearTemperature() *MetarUpdateOne {
+	_u.mutation.ClearTemperature()
+	return _u
 }
 
 // SetDewpoint sets the "dewpoint" field.
-func (muo *MetarUpdateOne) SetDewpoint(f float64) *MetarUpdateOne {
-	muo.mutation.ResetDewpoint()
-	muo.mutation.SetDewpoint(f)
-	return muo
+func (_u *MetarUpdateOne) SetDewpoint(v float64) *MetarUpdateOne {
+	_u.mutation.ResetDewpoint()
+	_u.mutation.SetDewpoint(v)
+	return _u
 }
 
 // SetNillableDewpoint sets the "dewpoint" field if the given value is not nil.
-func (muo *MetarUpdateOne) SetNillableDewpoint(f *float64) *MetarUpdateOne {
-	if f != nil {
-		muo.SetDewpoint(*f)
+func (_u *MetarUpdateOne) SetNillableDewpoint(v *float64) *MetarUpdateOne {
+	if v != nil {
+		_u.SetDewpoint(*v)
 	}
-	return muo
+	return _u
 }
 
-// AddDewpoint adds f to the "dewpoint" field.
-func (muo *MetarUpdateOne) AddDewpoint(f float64) *MetarUpdateOne {
-	muo.mutation.AddDewpoint(f)
-	return muo
+// AddDewpoint adds value to the "dewpoint" field.
+func (_u *MetarUpdateOne) AddDewpoint(v float64) *MetarUpdateOne {
+	_u.mutation.AddDewpoint(v)
+	return _u
 }
 
 // ClearDewpoint clears the value of the "dewpoint" field.
-func (muo *MetarUpdateOne) ClearDewpoint() *MetarUpdateOne {
-	muo.mutation.ClearDewpoint()
-	return muo
+func (_u *MetarUpdateOne) ClearDewpoint() *MetarUpdateOne {
+	_u.mutation.ClearDewpoint()
+	return _u
 }
 
 // SetWindSpeed sets the "wind_speed" field.
-func (muo *MetarUpdateOne) SetWindSpeed(i int) *MetarUpdateOne {
-	muo.mutation.ResetWindSpeed()
-	muo.mutation.SetWindSpeed(i)
-	return muo
+func (_u *MetarUpdateOne) SetWindSpeed(v int) *MetarUpdateOne {
+	_u.mutation.ResetWindSpeed()
+	_u.mutation.SetWindSpeed(v)
+	return _u
 }
 
 // SetNillableWindSpeed sets the "wind_speed" field if the given value is not nil.
-func (muo *MetarUpdateOne) SetNillableWindSpeed(i *int) *MetarUpdateOne {
-	if i != nil {
-		muo.SetWindSpeed(*i)
+func (_u *MetarUpdateOne) SetNillableWindSpeed(v *int) *MetarUpdateOne {
+	if v != nil {
+		_u.SetWindSpeed(*v)
 	}
-	return muo
+	return _u
 }
 
-// AddWindSpeed adds i to the "wind_speed" field.
-func (muo *MetarUpdateOne) AddWindSpeed(i int) *MetarUpdateOne {
-	muo.mutation.AddWindSpeed(i)
-	return muo
+// AddWindSpeed adds value to the "wind_speed" field.
+func (_u *MetarUpdateOne) AddWindSpeed(v int) *MetarUpdateOne {
+	_u.mutation.AddWindSpeed(v)
+	return _u
 }
 
 // ClearWindSpeed clears the value of the "wind_speed" field.
-func (muo *MetarUpdateOne) ClearWindSpeed() *MetarUpdateOne {
-	muo.mutation.ClearWindSpeed()
-	return muo
+func (_u *MetarUpdateOne) ClearWindSpeed() *MetarUpdateOne {
+	_u.mutation.ClearWindSpeed()
+	return _u
 }
 
 // SetWindGust sets the "wind_gust" field.
-func (muo *MetarUpdateOne) SetWindGust(i int) *MetarUpdateOne {
-	muo.mutation.ResetWindGust()
-	muo.mutation.SetWindGust(i)
-	return muo
+func (_u *MetarUpdateOne) SetWindGust(v int) *MetarUpdateOne {
+	_u.mutation.ResetWindGust()
+	_u.mutation.SetWindGust(v)
+	return _u
 }
 
 // SetNillableWindGust sets the "wind_gust" field if the given value is not nil.
-func (muo *MetarUpdateOne) SetNillableWindGust(i *int) *MetarUpdateOne {
-	if i != nil {
-		muo.SetWindGust(*i)
+func (_u *MetarUpdateOne) SetNillableWindGust(v *int) *MetarUpdateOne {
+	if v != nil {
+		_u.SetWindGust(*v)
 	}
-	return muo
+	return _u
 }
 
-// AddWindGust adds i to the "wind_gust" field.
-func (muo *MetarUpdateOne) AddWindGust(i int) *MetarUpdateOne {
-	muo.mutation.AddWindGust(i)
-	return muo
+// AddWindGust adds value to the "wind_gust" field.
+func (_u *MetarUpdateOne) AddWindGust(v int) *MetarUpdateOne {
+	_u.mutation.AddWindGust(v)
+	return _u
 }
 
 // ClearWindGust clears the value of the "wind_gust" field.
-func (muo *MetarUpdateOne) ClearWindGust() *MetarUpdateOne {
-	muo.mutation.ClearWindGust()
-	return muo
+func (_u *MetarUpdateOne) ClearWindGust() *MetarUpdateOne {
+	_u.mutation.ClearWindGust()
+	return _u
 }
 
 // SetWindDirection sets the "wind_direction" field.
-func (muo *MetarUpdateOne) SetWindDirection(i int) *MetarUpdateOne {
-	muo.mutation.ResetWindDirection()
-	muo.mutation.SetWindDirection(i)
-	return muo
+func (_u *MetarUpdateOne) SetWindDirection(v int) *MetarUpdateOne {
+	_u.mutation.ResetWindDirection()
+	_u.mutation.SetWindDirection(v)
+	return _u
 }
 
 // SetNillableWindDirection sets the "wind_direction" field if the given value is not nil.
-func (muo *MetarUpdateOne) SetNillableWindDirection(i *int) *MetarUpdateOne {
-	if i != nil {
-		muo.SetWindDirection(*i)
+func (_u *MetarUpdateOne) SetNillableWindDirection(v *int) *MetarUpdateOne {
+	if v != nil {
+		_u.SetWindDirection(*v)
 	}
-	return muo
+	return _u
 }
 
-// AddWindDirection adds i to the "wind_direction" field.
-func (muo *MetarUpdateOne) AddWindDirection(i int) *MetarUpdateOne {
-	muo.mutation.AddWindDirection(i)
-	return muo
+// AddWindDirection adds value to the "wind_direction" field.
+func (_u *MetarUpdateOne) AddWindDirection(v int) *MetarUpdateOne {
+	_u.mutation.AddWindDirection(v)
+	return _u
 }
 
 // ClearWindDirection clears the value of the "wind_direction" field.
-func (muo *MetarUpdateOne) ClearWindDirection() *MetarUpdateOne {
-	muo.mutation.ClearWindDirection()
-	return muo
+func (_u *MetarUpdateOne) ClearWindDirection() *MetarUpdateOne {
+	_u.mutation.ClearWindDirection()
+	return _u
 }
 
 // SetWindDirectionVariable sets the "wind_direction_variable" field.
-func (muo *MetarUpdateOne) SetWindDirectionVariable(b bool) *MetarUpdateOne {
-	muo.mutation.SetWindDirectionVariable(b)
-	return muo
+func (_u *MetarUpdateOne) SetWindDirectionVariable(v bool) *MetarUpdateOne {
+	_u.mutation.SetWindDirectionVariable(v)
+	return _u
+}
+
+// SetNillableWindDirectionVariable sets the "wind_direction_variable" field if the given value is not nil.
+func (_u *MetarUpdateOne) SetNillableWindDirectionVariable(v *bool) *MetarUpdateOne {
+	if v != nil {
+		_u.SetWindDirectionVariable(*v)
+	}
+	return _u
 }
 
 // SetVisibility sets the "visibility" field.
-func (muo *MetarUpdateOne) SetVisibility(f float64) *MetarUpdateOne {
-	muo.mutation.ResetVisibility()
-	muo.mutation.SetVisibility(f)
-	return muo
+func (_u *MetarUpdateOne) SetVisibility(v float64) *MetarUpdateOne {
+	_u.mutation.ResetVisibility()
+	_u.mutation.SetVisibility(v)
+	return _u
 }
 
 // SetNillableVisibility sets the "visibility" field if the given value is not nil.
-func (muo *MetarUpdateOne) SetNillableVisibility(f *float64) *MetarUpdateOne {
-	if f != nil {
-		muo.SetVisibility(*f)
+func (_u *MetarUpdateOne) SetNillableVisibility(v *float64) *MetarUpdateOne {
+	if v != nil {
+		_u.SetVisibility(*v)
 	}
-	return muo
+	return _u
 }
 
-// AddVisibility adds f to the "visibility" field.
-func (muo *MetarUpdateOne) AddVisibility(f float64) *MetarUpdateOne {
-	muo.mutation.AddVisibility(f)
-	return muo
+// AddVisibility adds value to the "visibility" field.
+func (_u *MetarUpdateOne) AddVisibility(v float64) *MetarUpdateOne {
+	_u.mutation.AddVisibility(v)
+	return _u
 }
 
 // ClearVisibility clears the value of the "visibility" field.
-func (muo *MetarUpdateOne) ClearVisibility() *MetarUpdateOne {
-	muo.mutation.ClearVisibility()
-	return muo
+func (_u *MetarUpdateOne) ClearVisibility() *MetarUpdateOne {
+	_u.mutation.ClearVisibility()
+	return _u
 }
 
 // SetVisibilityIsMoreThan sets the "visibility_is_more_than" field.
-func (muo *MetarUpdateOne) SetVisibilityIsMoreThan(b bool) *MetarUpdateOne {
-	muo.mutation.SetVisibilityIsMoreThan(b)
-	return muo
+func (_u *MetarUpdateOne) SetVisibilityIsMoreThan(v bool) *MetarUpdateOne {
+	_u.mutation.SetVisibilityIsMoreThan(v)
+	return _u
+}
+
+// SetNillableVisibilityIsMoreThan sets the "visibility_is_more_than" field if the given value is not nil.
+func (_u *MetarUpdateOne) SetNillableVisibilityIsMoreThan(v *bool) *MetarUpdateOne {
+	if v != nil {
+		_u.SetVisibilityIsMoreThan(*v)
+	}
+	return _u
 }
 
 // SetAltimeter sets the "altimeter" field.
-func (muo *MetarUpdateOne) SetAltimeter(f float64) *MetarUpdateOne {
-	muo.mutation.ResetAltimeter()
-	muo.mutation.SetAltimeter(f)
-	return muo
+func (_u *MetarUpdateOne) SetAltimeter(v float64) *MetarUpdateOne {
+	_u.mutation.ResetAltimeter()
+	_u.mutation.SetAltimeter(v)
+	return _u
 }
 
 // SetNillableAltimeter sets the "altimeter" field if the given value is not nil.
-func (muo *MetarUpdateOne) SetNillableAltimeter(f *float64) *MetarUpdateOne {
-	if f != nil {
-		muo.SetAltimeter(*f)
+func (_u *MetarUpdateOne) SetNillableAltimeter(v *float64) *MetarUpdateOne {
+	if v != nil {
+		_u.SetAltimeter(*v)
 	}
-	return muo
+	return _u
 }
 
-// AddAltimeter adds f to the "altimeter" field.
-func (muo *MetarUpdateOne) AddAltimeter(f float64) *MetarUpdateOne {
-	muo.mutation.AddAltimeter(f)
-	return muo
+// AddAltimeter adds value to the "altimeter" field.
+func (_u *MetarUpdateOne) AddAltimeter(v float64) *MetarUpdateOne {
+	_u.mutation.AddAltimeter(v)
+	return _u
 }
 
 // ClearAltimeter clears the value of the "altimeter" field.
-func (muo *MetarUpdateOne) ClearAltimeter() *MetarUpdateOne {
-	muo.mutation.ClearAltimeter()
-	return muo
+func (_u *MetarUpdateOne) ClearAltimeter() *MetarUpdateOne {
+	_u.mutation.ClearAltimeter()
+	return _u
 }
 
 // SetPresentWeather sets the "present_weather" field.
-func (muo *MetarUpdateOne) SetPresentWeather(s string) *MetarUpdateOne {
-	muo.mutation.SetPresentWeather(s)
-	return muo
+func (_u *MetarUpdateOne) SetPresentWeather(v string) *MetarUpdateOne {
+	_u.mutation.SetPresentWeather(v)
+	return _u
 }
 
 // SetNillablePresentWeather sets the "present_weather" field if the given value is not nil.
-func (muo *MetarUpdateOne) SetNillablePresentWeather(s *string) *MetarUpdateOne {
-	if s != nil {
-		muo.SetPresentWeather(*s)
+func (_u *MetarUpdateOne) SetNillablePresentWeather(v *string) *MetarUpdateOne {
+	if v != nil {
+		_u.SetPresentWeather(*v)
 	}
-	return muo
+	return _u
 }
 
 // ClearPresentWeather clears the value of the "present_weather" field.
-func (muo *MetarUpdateOne) ClearPresentWeather() *MetarUpdateOne {
-	muo.mutation.ClearPresentWeather()
-	return muo
+func (_u *MetarUpdateOne) ClearPresentWeather() *MetarUpdateOne {
+	_u.mutation.ClearPresentWeather()
+	return _u
 }
 
 // SetFlightCategory sets the "flight_category" field.
-func (muo *MetarUpdateOne) SetFlightCategory(mc metar.FlightCategory) *MetarUpdateOne {
-	muo.mutation.SetFlightCategory(mc)
-	return muo
+func (_u *MetarUpdateOne) SetFlightCategory(v metar.FlightCategory) *MetarUpdateOne {
+	_u.mutation.SetFlightCategory(v)
+	return _u
 }
 
 // SetNillableFlightCategory sets the "flight_category" field if the given value is not nil.
-func (muo *MetarUpdateOne) SetNillableFlightCategory(mc *metar.FlightCategory) *MetarUpdateOne {
-	if mc != nil {
-		muo.SetFlightCategory(*mc)
+func (_u *MetarUpdateOne) SetNillableFlightCategory(v *metar.FlightCategory) *MetarUpdateOne {
+	if v != nil {
+		_u.SetFlightCategory(*v)
 	}
-	return muo
+	return _u
 }
 
 // ClearFlightCategory clears the value of the "flight_category" field.
-func (muo *MetarUpdateOne) ClearFlightCategory() *MetarUpdateOne {
-	muo.mutation.ClearFlightCategory()
-	return muo
+func (_u *MetarUpdateOne) ClearFlightCategory() *MetarUpdateOne {
+	_u.mutation.ClearFlightCategory()
+	return _u
 }
 
 // SetQualityControlCorrected sets the "quality_control_corrected" field.
-func (muo *MetarUpdateOne) SetQualityControlCorrected(b bool) *MetarUpdateOne {
-	muo.mutation.SetQualityControlCorrected(b)
-	return muo
+func (_u *MetarUpdateOne) SetQualityControlCorrected(v bool) *MetarUpdateOne {
+	_u.mutation.SetQualityControlCorrected(v)
+	return _u
 }
 
 // SetNillableQualityControlCorrected sets the "quality_control_corrected" field if the given value is not nil.
-func (muo *MetarUpdateOne) SetNillableQualityControlCorrected(b *bool) *MetarUpdateOne {
-	if b != nil {
-		muo.SetQualityControlCorrected(*b)
+func (_u *MetarUpdateOne) SetNillableQualityControlCorrected(v *bool) *MetarUpdateOne {
+	if v != nil {
+		_u.SetQualityControlCorrected(*v)
 	}
-	return muo
+	return _u
 }
 
 // ClearQualityControlCorrected clears the value of the "quality_control_corrected" field.
-func (muo *MetarUpdateOne) ClearQualityControlCorrected() *MetarUpdateOne {
-	muo.mutation.ClearQualityControlCorrected()
-	return muo
+func (_u *MetarUpdateOne) ClearQualityControlCorrected() *MetarUpdateOne {
+	_u.mutation.ClearQualityControlCorrected()
+	return _u
 }
 
 // SetQualityControlAutoStation sets the "quality_control_auto_station" field.
-func (muo *MetarUpdateOne) SetQualityControlAutoStation(b bool) *MetarUpdateOne {
-	muo.mutation.SetQualityControlAutoStation(b)
-	return muo
+func (_u *MetarUpdateOne) SetQualityControlAutoStation(v bool) *MetarUpdateOne {
+	_u.mutation.SetQualityControlAutoStation(v)
+	return _u
+}
+
+// SetNillableQualityControlAutoStation sets the "quality_control_auto_station" field if the given value is not nil.
+func (_u *MetarUpdateOne) SetNillableQualityControlAutoStation(v *bool) *MetarUpdateOne {
+	if v != nil {
+		_u.SetQualityControlAutoStation(*v)
+	}
+	return _u
 }
 
 // SetQualityControlMaintenanceIndicatorOn sets the "quality_control_maintenance_indicator_on" field.
-func (muo *MetarUpdateOne) SetQualityControlMaintenanceIndicatorOn(b bool) *MetarUpdateOne {
-	muo.mutation.SetQualityControlMaintenanceIndicatorOn(b)
-	return muo
+func (_u *MetarUpdateOne) SetQualityControlMaintenanceIndicatorOn(v bool) *MetarUpdateOne {
+	_u.mutation.SetQualityControlMaintenanceIndicatorOn(v)
+	return _u
+}
+
+// SetNillableQualityControlMaintenanceIndicatorOn sets the "quality_control_maintenance_indicator_on" field if the given value is not nil.
+func (_u *MetarUpdateOne) SetNillableQualityControlMaintenanceIndicatorOn(v *bool) *MetarUpdateOne {
+	if v != nil {
+		_u.SetQualityControlMaintenanceIndicatorOn(*v)
+	}
+	return _u
 }
 
 // SetQualityControlNoSignal sets the "quality_control_no_signal" field.
-func (muo *MetarUpdateOne) SetQualityControlNoSignal(b bool) *MetarUpdateOne {
-	muo.mutation.SetQualityControlNoSignal(b)
-	return muo
+func (_u *MetarUpdateOne) SetQualityControlNoSignal(v bool) *MetarUpdateOne {
+	_u.mutation.SetQualityControlNoSignal(v)
+	return _u
+}
+
+// SetNillableQualityControlNoSignal sets the "quality_control_no_signal" field if the given value is not nil.
+func (_u *MetarUpdateOne) SetNillableQualityControlNoSignal(v *bool) *MetarUpdateOne {
+	if v != nil {
+		_u.SetQualityControlNoSignal(*v)
+	}
+	return _u
 }
 
 // SetQualityControlLightningSensorOff sets the "quality_control_lightning_sensor_off" field.
-func (muo *MetarUpdateOne) SetQualityControlLightningSensorOff(b bool) *MetarUpdateOne {
-	muo.mutation.SetQualityControlLightningSensorOff(b)
-	return muo
+func (_u *MetarUpdateOne) SetQualityControlLightningSensorOff(v bool) *MetarUpdateOne {
+	_u.mutation.SetQualityControlLightningSensorOff(v)
+	return _u
+}
+
+// SetNillableQualityControlLightningSensorOff sets the "quality_control_lightning_sensor_off" field if the given value is not nil.
+func (_u *MetarUpdateOne) SetNillableQualityControlLightningSensorOff(v *bool) *MetarUpdateOne {
+	if v != nil {
+		_u.SetQualityControlLightningSensorOff(*v)
+	}
+	return _u
 }
 
 // SetQualityControlFreezingRainSensorOff sets the "quality_control_freezing_rain_sensor_off" field.
-func (muo *MetarUpdateOne) SetQualityControlFreezingRainSensorOff(b bool) *MetarUpdateOne {
-	muo.mutation.SetQualityControlFreezingRainSensorOff(b)
-	return muo
+func (_u *MetarUpdateOne) SetQualityControlFreezingRainSensorOff(v bool) *MetarUpdateOne {
+	_u.mutation.SetQualityControlFreezingRainSensorOff(v)
+	return _u
+}
+
+// SetNillableQualityControlFreezingRainSensorOff sets the "quality_control_freezing_rain_sensor_off" field if the given value is not nil.
+func (_u *MetarUpdateOne) SetNillableQualityControlFreezingRainSensorOff(v *bool) *MetarUpdateOne {
+	if v != nil {
+		_u.SetQualityControlFreezingRainSensorOff(*v)
+	}
+	return _u
 }
 
 // SetQualityControlPresentWeatherSensorOff sets the "quality_control_present_weather_sensor_off" field.
-func (muo *MetarUpdateOne) SetQualityControlPresentWeatherSensorOff(b bool) *MetarUpdateOne {
-	muo.mutation.SetQualityControlPresentWeatherSensorOff(b)
-	return muo
+func (_u *MetarUpdateOne) SetQualityControlPresentWeatherSensorOff(v bool) *MetarUpdateOne {
+	_u.mutation.SetQualityControlPresentWeatherSensorOff(v)
+	return _u
+}
+
+// SetNillableQualityControlPresentWeatherSensorOff sets the "quality_control_present_weather_sensor_off" field if the given value is not nil.
+func (_u *MetarUpdateOne) SetNillableQualityControlPresentWeatherSensorOff(v *bool) *MetarUpdateOne {
+	if v != nil {
+		_u.SetQualityControlPresentWeatherSensorOff(*v)
+	}
+	return _u
 }
 
 // SetSeaLevelPressure sets the "sea_level_pressure" field.
-func (muo *MetarUpdateOne) SetSeaLevelPressure(f float64) *MetarUpdateOne {
-	muo.mutation.ResetSeaLevelPressure()
-	muo.mutation.SetSeaLevelPressure(f)
-	return muo
+func (_u *MetarUpdateOne) SetSeaLevelPressure(v float64) *MetarUpdateOne {
+	_u.mutation.ResetSeaLevelPressure()
+	_u.mutation.SetSeaLevelPressure(v)
+	return _u
 }
 
 // SetNillableSeaLevelPressure sets the "sea_level_pressure" field if the given value is not nil.
-func (muo *MetarUpdateOne) SetNillableSeaLevelPressure(f *float64) *MetarUpdateOne {
-	if f != nil {
-		muo.SetSeaLevelPressure(*f)
+func (_u *MetarUpdateOne) SetNillableSeaLevelPressure(v *float64) *MetarUpdateOne {
+	if v != nil {
+		_u.SetSeaLevelPressure(*v)
 	}
-	return muo
+	return _u
 }
 
-// AddSeaLevelPressure adds f to the "sea_level_pressure" field.
-func (muo *MetarUpdateOne) AddSeaLevelPressure(f float64) *MetarUpdateOne {
-	muo.mutation.AddSeaLevelPressure(f)
-	return muo
+// AddSeaLevelPressure adds value to the "sea_level_pressure" field.
+func (_u *MetarUpdateOne) AddSeaLevelPressure(v float64) *MetarUpdateOne {
+	_u.mutation.AddSeaLevelPressure(v)
+	return _u
 }
 
 // ClearSeaLevelPressure clears the value of the "sea_level_pressure" field.
-func (muo *MetarUpdateOne) ClearSeaLevelPressure() *MetarUpdateOne {
-	muo.mutation.ClearSeaLevelPressure()
-	return muo
+func (_u *MetarUpdateOne) ClearSeaLevelPressure() *MetarUpdateOne {
+	_u.mutation.ClearSeaLevelPressure()
+	return _u
 }
 
 // SetPressureTendency sets the "pressure_tendency" field.
-func (muo *MetarUpdateOne) SetPressureTendency(f float64) *MetarUpdateOne {
-	muo.mutation.ResetPressureTendency()
-	muo.mutation.SetPressureTendency(f)
-	return muo
+func (_u *MetarUpdateOne) SetPressureTendency(v float64) *MetarUpdateOne {
+	_u.mutation.ResetPressureTendency()
+	_u.mutation.SetPressureTendency(v)
+	return _u
 }
 
 // SetNillablePressureTendency sets the "pressure_tendency" field if the given value is not nil.
-func (muo *MetarUpdateOne) SetNillablePressureTendency(f *float64) *MetarUpdateOne {
-	if f != nil {
-		muo.SetPressureTendency(*f)
+func (_u *MetarUpdateOne) SetNillablePressureTendency(v *float64) *MetarUpdateOne {
+	if v != nil {
+		_u.SetPressureTendency(*v)
 	}
-	return muo
+	return _u
 }
 
-// AddPressureTendency adds f to the "pressure_tendency" field.
-func (muo *MetarUpdateOne) AddPressureTendency(f float64) *MetarUpdateOne {
-	muo.mutation.AddPressureTendency(f)
-	return muo
+// AddPressureTendency adds value to the "pressure_tendency" field.
+func (_u *MetarUpdateOne) AddPressureTendency(v float64) *MetarUpdateOne {
+	_u.mutation.AddPressureTendency(v)
+	return _u
 }
 
 // ClearPressureTendency clears the value of the "pressure_tendency" field.
-func (muo *MetarUpdateOne) ClearPressureTendency() *MetarUpdateOne {
-	muo.mutation.ClearPressureTendency()
-	return muo
+func (_u *MetarUpdateOne) ClearPressureTendency() *MetarUpdateOne {
+	_u.mutation.ClearPressureTendency()
+	return _u
 }
 
 // SetMaxTemp6 sets the "max_temp_6" field.
-func (muo *MetarUpdateOne) SetMaxTemp6(f float64) *MetarUpdateOne {
-	muo.mutation.ResetMaxTemp6()
-	muo.mutation.SetMaxTemp6(f)
-	return muo
+func (_u *MetarUpdateOne) SetMaxTemp6(v float64) *MetarUpdateOne {
+	_u.mutation.ResetMaxTemp6()
+	_u.mutation.SetMaxTemp6(v)
+	return _u
 }
 
 // SetNillableMaxTemp6 sets the "max_temp_6" field if the given value is not nil.
-func (muo *MetarUpdateOne) SetNillableMaxTemp6(f *float64) *MetarUpdateOne {
-	if f != nil {
-		muo.SetMaxTemp6(*f)
+func (_u *MetarUpdateOne) SetNillableMaxTemp6(v *float64) *MetarUpdateOne {
+	if v != nil {
+		_u.SetMaxTemp6(*v)
 	}
-	return muo
+	return _u
 }
 
-// AddMaxTemp6 adds f to the "max_temp_6" field.
-func (muo *MetarUpdateOne) AddMaxTemp6(f float64) *MetarUpdateOne {
-	muo.mutation.AddMaxTemp6(f)
-	return muo
+// AddMaxTemp6 adds value to the "max_temp_6" field.
+func (_u *MetarUpdateOne) AddMaxTemp6(v float64) *MetarUpdateOne {
+	_u.mutation.AddMaxTemp6(v)
+	return _u
 }
 
 // ClearMaxTemp6 clears the value of the "max_temp_6" field.
-func (muo *MetarUpdateOne) ClearMaxTemp6() *MetarUpdateOne {
-	muo.mutation.ClearMaxTemp6()
-	return muo
+func (_u *MetarUpdateOne) ClearMaxTemp6() *MetarUpdateOne {
+	_u.mutation.ClearMaxTemp6()
+	return _u
 }
 
 // SetMinTemp6 sets the "min_temp_6" field.
-func (muo *MetarUpdateOne) SetMinTemp6(f float64) *MetarUpdateOne {
-	muo.mutation.ResetMinTemp6()
-	muo.mutation.SetMinTemp6(f)
-	return muo
+func (_u *MetarUpdateOne) SetMinTemp6(v float64) *MetarUpdateOne {
+	_u.mutation.ResetMinTemp6()
+	_u.mutation.SetMinTemp6(v)
+	return _u
 }
 
 // SetNillableMinTemp6 sets the "min_temp_6" field if the given value is not nil.
-func (muo *MetarUpdateOne) SetNillableMinTemp6(f *float64) *MetarUpdateOne {
-	if f != nil {
-		muo.SetMinTemp6(*f)
+func (_u *MetarUpdateOne) SetNillableMinTemp6(v *float64) *MetarUpdateOne {
+	if v != nil {
+		_u.SetMinTemp6(*v)
 	}
-	return muo
+	return _u
 }
 
-// AddMinTemp6 adds f to the "min_temp_6" field.
-func (muo *MetarUpdateOne) AddMinTemp6(f float64) *MetarUpdateOne {
-	muo.mutation.AddMinTemp6(f)
-	return muo
+// AddMinTemp6 adds value to the "min_temp_6" field.
+func (_u *MetarUpdateOne) AddMinTemp6(v float64) *MetarUpdateOne {
+	_u.mutation.AddMinTemp6(v)
+	return _u
 }
 
 // ClearMinTemp6 clears the value of the "min_temp_6" field.
-func (muo *MetarUpdateOne) ClearMinTemp6() *MetarUpdateOne {
-	muo.mutation.ClearMinTemp6()
-	return muo
+func (_u *MetarUpdateOne) ClearMinTemp6() *MetarUpdateOne {
+	_u.mutation.ClearMinTemp6()
+	return _u
 }
 
 // SetMaxTemp24 sets the "max_temp_24" field.
-func (muo *MetarUpdateOne) SetMaxTemp24(f float64) *MetarUpdateOne {
-	muo.mutation.ResetMaxTemp24()
-	muo.mutation.SetMaxTemp24(f)
-	return muo
+func (_u *MetarUpdateOne) SetMaxTemp24(v float64) *MetarUpdateOne {
+	_u.mutation.ResetMaxTemp24()
+	_u.mutation.SetMaxTemp24(v)
+	return _u
 }
 
 // SetNillableMaxTemp24 sets the "max_temp_24" field if the given value is not nil.
-func (muo *MetarUpdateOne) SetNillableMaxTemp24(f *float64) *MetarUpdateOne {
-	if f != nil {
-		muo.SetMaxTemp24(*f)
+func (_u *MetarUpdateOne) SetNillableMaxTemp24(v *float64) *MetarUpdateOne {
+	if v != nil {
+		_u.SetMaxTemp24(*v)
 	}
-	return muo
+	return _u
 }
 
-// AddMaxTemp24 adds f to the "max_temp_24" field.
-func (muo *MetarUpdateOne) AddMaxTemp24(f float64) *MetarUpdateOne {
-	muo.mutation.AddMaxTemp24(f)
-	return muo
+// AddMaxTemp24 adds value to the "max_temp_24" field.
+func (_u *MetarUpdateOne) AddMaxTemp24(v float64) *MetarUpdateOne {
+	_u.mutation.AddMaxTemp24(v)
+	return _u
 }
 
 // ClearMaxTemp24 clears the value of the "max_temp_24" field.
-func (muo *MetarUpdateOne) ClearMaxTemp24() *MetarUpdateOne {
-	muo.mutation.ClearMaxTemp24()
-	return muo
+func (_u *MetarUpdateOne) ClearMaxTemp24() *MetarUpdateOne {
+	_u.mutation.ClearMaxTemp24()
+	return _u
 }
 
 // SetMinTemp24 sets the "min_temp_24" field.
-func (muo *MetarUpdateOne) SetMinTemp24(f float64) *MetarUpdateOne {
-	muo.mutation.ResetMinTemp24()
-	muo.mutation.SetMinTemp24(f)
-	return muo
+func (_u *MetarUpdateOne) SetMinTemp24(v float64) *MetarUpdateOne {
+	_u.mutation.ResetMinTemp24()
+	_u.mutation.SetMinTemp24(v)
+	return _u
 }
 
 // SetNillableMinTemp24 sets the "min_temp_24" field if the given value is not nil.
-func (muo *MetarUpdateOne) SetNillableMinTemp24(f *float64) *MetarUpdateOne {
-	if f != nil {
-		muo.SetMinTemp24(*f)
+func (_u *MetarUpdateOne) SetNillableMinTemp24(v *float64) *MetarUpdateOne {
+	if v != nil {
+		_u.SetMinTemp24(*v)
 	}
-	return muo
+	return _u
 }
 
-// AddMinTemp24 adds f to the "min_temp_24" field.
-func (muo *MetarUpdateOne) AddMinTemp24(f float64) *MetarUpdateOne {
-	muo.mutation.AddMinTemp24(f)
-	return muo
+// AddMinTemp24 adds value to the "min_temp_24" field.
+func (_u *MetarUpdateOne) AddMinTemp24(v float64) *MetarUpdateOne {
+	_u.mutation.AddMinTemp24(v)
+	return _u
 }
 
 // ClearMinTemp24 clears the value of the "min_temp_24" field.
-func (muo *MetarUpdateOne) ClearMinTemp24() *MetarUpdateOne {
-	muo.mutation.ClearMinTemp24()
-	return muo
+func (_u *MetarUpdateOne) ClearMinTemp24() *MetarUpdateOne {
+	_u.mutation.ClearMinTemp24()
+	return _u
 }
 
 // SetPrecipitation sets the "precipitation" field.
-func (muo *MetarUpdateOne) SetPrecipitation(f float64) *MetarUpdateOne {
-	muo.mutation.ResetPrecipitation()
-	muo.mutation.SetPrecipitation(f)
-	return muo
+func (_u *MetarUpdateOne) SetPrecipitation(v float64) *MetarUpdateOne {
+	_u.mutation.ResetPrecipitation()
+	_u.mutation.SetPrecipitation(v)
+	return _u
 }
 
 // SetNillablePrecipitation sets the "precipitation" field if the given value is not nil.
-func (muo *MetarUpdateOne) SetNillablePrecipitation(f *float64) *MetarUpdateOne {
-	if f != nil {
-		muo.SetPrecipitation(*f)
+func (_u *MetarUpdateOne) SetNillablePrecipitation(v *float64) *MetarUpdateOne {
+	if v != nil {
+		_u.SetPrecipitation(*v)
 	}
-	return muo
+	return _u
 }
 
-// AddPrecipitation adds f to the "precipitation" field.
-func (muo *MetarUpdateOne) AddPrecipitation(f float64) *MetarUpdateOne {
-	muo.mutation.AddPrecipitation(f)
-	return muo
+// AddPrecipitation adds value to the "precipitation" field.
+func (_u *MetarUpdateOne) AddPrecipitation(v float64) *MetarUpdateOne {
+	_u.mutation.AddPrecipitation(v)
+	return _u
 }
 
 // ClearPrecipitation clears the value of the "precipitation" field.
-func (muo *MetarUpdateOne) ClearPrecipitation() *MetarUpdateOne {
-	muo.mutation.ClearPrecipitation()
-	return muo
+func (_u *MetarUpdateOne) ClearPrecipitation() *MetarUpdateOne {
+	_u.mutation.ClearPrecipitation()
+	return _u
 }
 
 // SetPrecipitation3 sets the "precipitation_3" field.
-func (muo *MetarUpdateOne) SetPrecipitation3(f float64) *MetarUpdateOne {
-	muo.mutation.ResetPrecipitation3()
-	muo.mutation.SetPrecipitation3(f)
-	return muo
+func (_u *MetarUpdateOne) SetPrecipitation3(v float64) *MetarUpdateOne {
+	_u.mutation.ResetPrecipitation3()
+	_u.mutation.SetPrecipitation3(v)
+	return _u
 }
 
 // SetNillablePrecipitation3 sets the "precipitation_3" field if the given value is not nil.
-func (muo *MetarUpdateOne) SetNillablePrecipitation3(f *float64) *MetarUpdateOne {
-	if f != nil {
-		muo.SetPrecipitation3(*f)
+func (_u *MetarUpdateOne) SetNillablePrecipitation3(v *float64) *MetarUpdateOne {
+	if v != nil {
+		_u.SetPrecipitation3(*v)
 	}
-	return muo
+	return _u
 }
 
-// AddPrecipitation3 adds f to the "precipitation_3" field.
-func (muo *MetarUpdateOne) AddPrecipitation3(f float64) *MetarUpdateOne {
-	muo.mutation.AddPrecipitation3(f)
-	return muo
+// AddPrecipitation3 adds value to the "precipitation_3" field.
+func (_u *MetarUpdateOne) AddPrecipitation3(v float64) *MetarUpdateOne {
+	_u.mutation.AddPrecipitation3(v)
+	return _u
 }
 
 // ClearPrecipitation3 clears the value of the "precipitation_3" field.
-func (muo *MetarUpdateOne) ClearPrecipitation3() *MetarUpdateOne {
-	muo.mutation.ClearPrecipitation3()
-	return muo
+func (_u *MetarUpdateOne) ClearPrecipitation3() *MetarUpdateOne {
+	_u.mutation.ClearPrecipitation3()
+	return _u
 }
 
 // SetPrecipitation6 sets the "precipitation_6" field.
-func (muo *MetarUpdateOne) SetPrecipitation6(f float64) *MetarUpdateOne {
-	muo.mutation.ResetPrecipitation6()
-	muo.mutation.SetPrecipitation6(f)
-	return muo
+func (_u *MetarUpdateOne) SetPrecipitation6(v float64) *MetarUpdateOne {
+	_u.mutation.ResetPrecipitation6()
+	_u.mutation.SetPrecipitation6(v)
+	return _u
 }
 
 // SetNillablePrecipitation6 sets the "precipitation_6" field if the given value is not nil.
-func (muo *MetarUpdateOne) SetNillablePrecipitation6(f *float64) *MetarUpdateOne {
-	if f != nil {
-		muo.SetPrecipitation6(*f)
+func (_u *MetarUpdateOne) SetNillablePrecipitation6(v *float64) *MetarUpdateOne {
+	if v != nil {
+		_u.SetPrecipitation6(*v)
 	}
-	return muo
+	return _u
 }
 
-// AddPrecipitation6 adds f to the "precipitation_6" field.
-func (muo *MetarUpdateOne) AddPrecipitation6(f float64) *MetarUpdateOne {
-	muo.mutation.AddPrecipitation6(f)
-	return muo
+// AddPrecipitation6 adds value to the "precipitation_6" field.
+func (_u *MetarUpdateOne) AddPrecipitation6(v float64) *MetarUpdateOne {
+	_u.mutation.AddPrecipitation6(v)
+	return _u
 }
 
 // ClearPrecipitation6 clears the value of the "precipitation_6" field.
-func (muo *MetarUpdateOne) ClearPrecipitation6() *MetarUpdateOne {
-	muo.mutation.ClearPrecipitation6()
-	return muo
+func (_u *MetarUpdateOne) ClearPrecipitation6() *MetarUpdateOne {
+	_u.mutation.ClearPrecipitation6()
+	return _u
 }
 
 // SetPrecipitation24 sets the "precipitation_24" field.
-func (muo *MetarUpdateOne) SetPrecipitation24(f float64) *MetarUpdateOne {
-	muo.mutation.ResetPrecipitation24()
-	muo.mutation.SetPrecipitation24(f)
-	return muo
+func (_u *MetarUpdateOne) SetPrecipitation24(v float64) *MetarUpdateOne {
+	_u.mutation.ResetPrecipitation24()
+	_u.mutation.SetPrecipitation24(v)
+	return _u
 }
 
 // SetNillablePrecipitation24 sets the "precipitation_24" field if the given value is not nil.
-func (muo *MetarUpdateOne) SetNillablePrecipitation24(f *float64) *MetarUpdateOne {
-	if f != nil {
-		muo.SetPrecipitation24(*f)
+func (_u *MetarUpdateOne) SetNillablePrecipitation24(v *float64) *MetarUpdateOne {
+	if v != nil {
+		_u.SetPrecipitation24(*v)
 	}
-	return muo
+	return _u
 }
 
-// AddPrecipitation24 adds f to the "precipitation_24" field.
-func (muo *MetarUpdateOne) AddPrecipitation24(f float64) *MetarUpdateOne {
-	muo.mutation.AddPrecipitation24(f)
-	return muo
+// AddPrecipitation24 adds value to the "precipitation_24" field.
+func (_u *MetarUpdateOne) AddPrecipitation24(v float64) *MetarUpdateOne {
+	_u.mutation.AddPrecipitation24(v)
+	return _u
 }
 
 // ClearPrecipitation24 clears the value of the "precipitation_24" field.
-func (muo *MetarUpdateOne) ClearPrecipitation24() *MetarUpdateOne {
-	muo.mutation.ClearPrecipitation24()
-	return muo
+func (_u *MetarUpdateOne) ClearPrecipitation24() *MetarUpdateOne {
+	_u.mutation.ClearPrecipitation24()
+	return _u
 }
 
 // SetSnowDepth sets the "snow_depth" field.
-func (muo *MetarUpdateOne) SetSnowDepth(f float64) *MetarUpdateOne {
-	muo.mutation.ResetSnowDepth()
-	muo.mutation.SetSnowDepth(f)
-	return muo
+func (_u *MetarUpdateOne) SetSnowDepth(v float64) *MetarUpdateOne {
+	_u.mutation.ResetSnowDepth()
+	_u.mutation.SetSnowDepth(v)
+	return _u
 }
 
 // SetNillableSnowDepth sets the "snow_depth" field if the given value is not nil.
-func (muo *MetarUpdateOne) SetNillableSnowDepth(f *float64) *MetarUpdateOne {
-	if f != nil {
-		muo.SetSnowDepth(*f)
+func (_u *MetarUpdateOne) SetNillableSnowDepth(v *float64) *MetarUpdateOne {
+	if v != nil {
+		_u.SetSnowDepth(*v)
 	}
-	return muo
+	return _u
 }
 
-// AddSnowDepth adds f to the "snow_depth" field.
-func (muo *MetarUpdateOne) AddSnowDepth(f float64) *MetarUpdateOne {
-	muo.mutation.AddSnowDepth(f)
-	return muo
+// AddSnowDepth adds value to the "snow_depth" field.
+func (_u *MetarUpdateOne) AddSnowDepth(v float64) *MetarUpdateOne {
+	_u.mutation.AddSnowDepth(v)
+	return _u
 }
 
 // ClearSnowDepth clears the value of the "snow_depth" field.
-func (muo *MetarUpdateOne) ClearSnowDepth() *MetarUpdateOne {
-	muo.mutation.ClearSnowDepth()
-	return muo
+func (_u *MetarUpdateOne) ClearSnowDepth() *MetarUpdateOne {
+	_u.mutation.ClearSnowDepth()
+	return _u
 }
 
 // SetVertVis sets the "vert_vis" field.
-func (muo *MetarUpdateOne) SetVertVis(f float64) *MetarUpdateOne {
-	muo.mutation.ResetVertVis()
-	muo.mutation.SetVertVis(f)
-	return muo
+func (_u *MetarUpdateOne) SetVertVis(v float64) *MetarUpdateOne {
+	_u.mutation.ResetVertVis()
+	_u.mutation.SetVertVis(v)
+	return _u
 }
 
 // SetNillableVertVis sets the "vert_vis" field if the given value is not nil.
-func (muo *MetarUpdateOne) SetNillableVertVis(f *float64) *MetarUpdateOne {
-	if f != nil {
-		muo.SetVertVis(*f)
+func (_u *MetarUpdateOne) SetNillableVertVis(v *float64) *MetarUpdateOne {
+	if v != nil {
+		_u.SetVertVis(*v)
 	}
-	return muo
+	return _u
 }
 
-// AddVertVis adds f to the "vert_vis" field.
-func (muo *MetarUpdateOne) AddVertVis(f float64) *MetarUpdateOne {
-	muo.mutation.AddVertVis(f)
-	return muo
+// AddVertVis adds value to the "vert_vis" field.
+func (_u *MetarUpdateOne) AddVertVis(v float64) *MetarUpdateOne {
+	_u.mutation.AddVertVis(v)
+	return _u
 }
 
 // ClearVertVis clears the value of the "vert_vis" field.
-func (muo *MetarUpdateOne) ClearVertVis() *MetarUpdateOne {
-	muo.mutation.ClearVertVis()
-	return muo
+func (_u *MetarUpdateOne) ClearVertVis() *MetarUpdateOne {
+	_u.mutation.ClearVertVis()
+	return _u
 }
 
 // SetMetarType sets the "metar_type" field.
-func (muo *MetarUpdateOne) SetMetarType(mt metar.MetarType) *MetarUpdateOne {
-	muo.mutation.SetMetarType(mt)
-	return muo
+func (_u *MetarUpdateOne) SetMetarType(v metar.MetarType) *MetarUpdateOne {
+	_u.mutation.SetMetarType(v)
+	return _u
+}
+
+// SetNillableMetarType sets the "metar_type" field if the given value is not nil.
+func (_u *MetarUpdateOne) SetNillableMetarType(v *metar.MetarType) *MetarUpdateOne {
+	if v != nil {
+		_u.SetMetarType(*v)
+	}
+	return _u
 }
 
 // SetHash sets the "hash" field.
-func (muo *MetarUpdateOne) SetHash(s string) *MetarUpdateOne {
-	muo.mutation.SetHash(s)
-	return muo
+func (_u *MetarUpdateOne) SetHash(v string) *MetarUpdateOne {
+	_u.mutation.SetHash(v)
+	return _u
+}
+
+// SetNillableHash sets the "hash" field if the given value is not nil.
+func (_u *MetarUpdateOne) SetNillableHash(v *string) *MetarUpdateOne {
+	if v != nil {
+		_u.SetHash(*v)
+	}
+	return _u
 }
 
 // SetStationID sets the "station" edge to the WeatherStation entity by ID.
-func (muo *MetarUpdateOne) SetStationID(id uuid.UUID) *MetarUpdateOne {
-	muo.mutation.SetStationID(id)
-	return muo
+func (_u *MetarUpdateOne) SetStationID(id uuid.UUID) *MetarUpdateOne {
+	_u.mutation.SetStationID(id)
+	return _u
 }
 
 // SetStation sets the "station" edge to the WeatherStation entity.
-func (muo *MetarUpdateOne) SetStation(w *WeatherStation) *MetarUpdateOne {
-	return muo.SetStationID(w.ID)
+func (_u *MetarUpdateOne) SetStation(v *WeatherStation) *MetarUpdateOne {
+	return _u.SetStationID(v.ID)
 }
 
 // AddSkyConditionIDs adds the "sky_conditions" edge to the SkyCondition entity by IDs.
-func (muo *MetarUpdateOne) AddSkyConditionIDs(ids ...uuid.UUID) *MetarUpdateOne {
-	muo.mutation.AddSkyConditionIDs(ids...)
-	return muo
+func (_u *MetarUpdateOne) AddSkyConditionIDs(ids ...uuid.UUID) *MetarUpdateOne {
+	_u.mutation.AddSkyConditionIDs(ids...)
+	return _u
 }
 
 // AddSkyConditions adds the "sky_conditions" edges to the SkyCondition entity.
-func (muo *MetarUpdateOne) AddSkyConditions(s ...*SkyCondition) *MetarUpdateOne {
-	ids := make([]uuid.UUID, len(s))
-	for i := range s {
-		ids[i] = s[i].ID
+func (_u *MetarUpdateOne) AddSkyConditions(v ...*SkyCondition) *MetarUpdateOne {
+	ids := make([]uuid.UUID, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return muo.AddSkyConditionIDs(ids...)
+	return _u.AddSkyConditionIDs(ids...)
 }
 
 // Mutation returns the MetarMutation object of the builder.
-func (muo *MetarUpdateOne) Mutation() *MetarMutation {
-	return muo.mutation
+func (_u *MetarUpdateOne) Mutation() *MetarMutation {
+	return _u.mutation
 }
 
 // ClearStation clears the "station" edge to the WeatherStation entity.
-func (muo *MetarUpdateOne) ClearStation() *MetarUpdateOne {
-	muo.mutation.ClearStation()
-	return muo
+func (_u *MetarUpdateOne) ClearStation() *MetarUpdateOne {
+	_u.mutation.ClearStation()
+	return _u
 }
 
 // ClearSkyConditions clears all "sky_conditions" edges to the SkyCondition entity.
-func (muo *MetarUpdateOne) ClearSkyConditions() *MetarUpdateOne {
-	muo.mutation.ClearSkyConditions()
-	return muo
+func (_u *MetarUpdateOne) ClearSkyConditions() *MetarUpdateOne {
+	_u.mutation.ClearSkyConditions()
+	return _u
 }
 
 // RemoveSkyConditionIDs removes the "sky_conditions" edge to SkyCondition entities by IDs.
-func (muo *MetarUpdateOne) RemoveSkyConditionIDs(ids ...uuid.UUID) *MetarUpdateOne {
-	muo.mutation.RemoveSkyConditionIDs(ids...)
-	return muo
+func (_u *MetarUpdateOne) RemoveSkyConditionIDs(ids ...uuid.UUID) *MetarUpdateOne {
+	_u.mutation.RemoveSkyConditionIDs(ids...)
+	return _u
 }
 
 // RemoveSkyConditions removes "sky_conditions" edges to SkyCondition entities.
-func (muo *MetarUpdateOne) RemoveSkyConditions(s ...*SkyCondition) *MetarUpdateOne {
-	ids := make([]uuid.UUID, len(s))
-	for i := range s {
-		ids[i] = s[i].ID
+func (_u *MetarUpdateOne) RemoveSkyConditions(v ...*SkyCondition) *MetarUpdateOne {
+	ids := make([]uuid.UUID, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return muo.RemoveSkyConditionIDs(ids...)
+	return _u.RemoveSkyConditionIDs(ids...)
 }
 
 // Where appends a list predicates to the MetarUpdate builder.
-func (muo *MetarUpdateOne) Where(ps ...predicate.Metar) *MetarUpdateOne {
-	muo.mutation.Where(ps...)
-	return muo
+func (_u *MetarUpdateOne) Where(ps ...predicate.Metar) *MetarUpdateOne {
+	_u.mutation.Where(ps...)
+	return _u
 }
 
 // Select allows selecting one or more fields (columns) of the returned entity.
 // The default is selecting all fields defined in the entity schema.
-func (muo *MetarUpdateOne) Select(field string, fields ...string) *MetarUpdateOne {
-	muo.fields = append([]string{field}, fields...)
-	return muo
+func (_u *MetarUpdateOne) Select(field string, fields ...string) *MetarUpdateOne {
+	_u.fields = append([]string{field}, fields...)
+	return _u
 }
 
 // Save executes the query and returns the updated Metar entity.
-func (muo *MetarUpdateOne) Save(ctx context.Context) (*Metar, error) {
-	return withHooks(ctx, muo.sqlSave, muo.mutation, muo.hooks)
+func (_u *MetarUpdateOne) Save(ctx context.Context) (*Metar, error) {
+	return withHooks(ctx, _u.sqlSave, _u.mutation, _u.hooks)
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (muo *MetarUpdateOne) SaveX(ctx context.Context) *Metar {
-	node, err := muo.Save(ctx)
+func (_u *MetarUpdateOne) SaveX(ctx context.Context) *Metar {
+	node, err := _u.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -1927,53 +2119,53 @@ func (muo *MetarUpdateOne) SaveX(ctx context.Context) *Metar {
 }
 
 // Exec executes the query on the entity.
-func (muo *MetarUpdateOne) Exec(ctx context.Context) error {
-	_, err := muo.Save(ctx)
+func (_u *MetarUpdateOne) Exec(ctx context.Context) error {
+	_, err := _u.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (muo *MetarUpdateOne) ExecX(ctx context.Context) {
-	if err := muo.Exec(ctx); err != nil {
+func (_u *MetarUpdateOne) ExecX(ctx context.Context) {
+	if err := _u.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // check runs all checks and user-defined validators on the builder.
-func (muo *MetarUpdateOne) check() error {
-	if v, ok := muo.mutation.FlightCategory(); ok {
+func (_u *MetarUpdateOne) check() error {
+	if v, ok := _u.mutation.FlightCategory(); ok {
 		if err := metar.FlightCategoryValidator(v); err != nil {
 			return &ValidationError{Name: "flight_category", err: fmt.Errorf(`ent: validator failed for field "Metar.flight_category": %w`, err)}
 		}
 	}
-	if v, ok := muo.mutation.MetarType(); ok {
+	if v, ok := _u.mutation.MetarType(); ok {
 		if err := metar.MetarTypeValidator(v); err != nil {
 			return &ValidationError{Name: "metar_type", err: fmt.Errorf(`ent: validator failed for field "Metar.metar_type": %w`, err)}
 		}
 	}
-	if _, ok := muo.mutation.StationID(); muo.mutation.StationCleared() && !ok {
+	if _u.mutation.StationCleared() && len(_u.mutation.StationIDs()) > 0 {
 		return errors.New(`ent: clearing a required unique edge "Metar.station"`)
 	}
 	return nil
 }
 
 // Modify adds a statement modifier for attaching custom logic to the UPDATE statement.
-func (muo *MetarUpdateOne) Modify(modifiers ...func(u *sql.UpdateBuilder)) *MetarUpdateOne {
-	muo.modifiers = append(muo.modifiers, modifiers...)
-	return muo
+func (_u *MetarUpdateOne) Modify(modifiers ...func(u *sql.UpdateBuilder)) *MetarUpdateOne {
+	_u.modifiers = append(_u.modifiers, modifiers...)
+	return _u
 }
 
-func (muo *MetarUpdateOne) sqlSave(ctx context.Context) (_node *Metar, err error) {
-	if err := muo.check(); err != nil {
+func (_u *MetarUpdateOne) sqlSave(ctx context.Context) (_node *Metar, err error) {
+	if err := _u.check(); err != nil {
 		return _node, err
 	}
 	_spec := sqlgraph.NewUpdateSpec(metar.Table, metar.Columns, sqlgraph.NewFieldSpec(metar.FieldID, field.TypeUUID))
-	id, ok := muo.mutation.ID()
+	id, ok := _u.mutation.ID()
 	if !ok {
 		return nil, &ValidationError{Name: "id", err: errors.New(`ent: missing "Metar.id" for update`)}
 	}
 	_spec.Node.ID.Value = id
-	if fields := muo.fields; len(fields) > 0 {
+	if fields := _u.fields; len(fields) > 0 {
 		_spec.Node.Columns = make([]string, 0, len(fields))
 		_spec.Node.Columns = append(_spec.Node.Columns, metar.FieldID)
 		for _, f := range fields {
@@ -1985,248 +2177,248 @@ func (muo *MetarUpdateOne) sqlSave(ctx context.Context) (_node *Metar, err error
 			}
 		}
 	}
-	if ps := muo.mutation.predicates; len(ps) > 0 {
+	if ps := _u.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if value, ok := muo.mutation.RawText(); ok {
+	if value, ok := _u.mutation.RawText(); ok {
 		_spec.SetField(metar.FieldRawText, field.TypeString, value)
 	}
-	if value, ok := muo.mutation.ObservationTime(); ok {
+	if value, ok := _u.mutation.ObservationTime(); ok {
 		_spec.SetField(metar.FieldObservationTime, field.TypeTime, value)
 	}
-	if value, ok := muo.mutation.ImportTime(); ok {
+	if value, ok := _u.mutation.ImportTime(); ok {
 		_spec.SetField(metar.FieldImportTime, field.TypeTime, value)
 	}
-	if value, ok := muo.mutation.NextImportTimePrediction(); ok {
+	if value, ok := _u.mutation.NextImportTimePrediction(); ok {
 		_spec.SetField(metar.FieldNextImportTimePrediction, field.TypeTime, value)
 	}
-	if muo.mutation.NextImportTimePredictionCleared() {
+	if _u.mutation.NextImportTimePredictionCleared() {
 		_spec.ClearField(metar.FieldNextImportTimePrediction, field.TypeTime)
 	}
-	if value, ok := muo.mutation.Temperature(); ok {
+	if value, ok := _u.mutation.Temperature(); ok {
 		_spec.SetField(metar.FieldTemperature, field.TypeFloat64, value)
 	}
-	if value, ok := muo.mutation.AddedTemperature(); ok {
+	if value, ok := _u.mutation.AddedTemperature(); ok {
 		_spec.AddField(metar.FieldTemperature, field.TypeFloat64, value)
 	}
-	if muo.mutation.TemperatureCleared() {
+	if _u.mutation.TemperatureCleared() {
 		_spec.ClearField(metar.FieldTemperature, field.TypeFloat64)
 	}
-	if value, ok := muo.mutation.Dewpoint(); ok {
+	if value, ok := _u.mutation.Dewpoint(); ok {
 		_spec.SetField(metar.FieldDewpoint, field.TypeFloat64, value)
 	}
-	if value, ok := muo.mutation.AddedDewpoint(); ok {
+	if value, ok := _u.mutation.AddedDewpoint(); ok {
 		_spec.AddField(metar.FieldDewpoint, field.TypeFloat64, value)
 	}
-	if muo.mutation.DewpointCleared() {
+	if _u.mutation.DewpointCleared() {
 		_spec.ClearField(metar.FieldDewpoint, field.TypeFloat64)
 	}
-	if value, ok := muo.mutation.WindSpeed(); ok {
+	if value, ok := _u.mutation.WindSpeed(); ok {
 		_spec.SetField(metar.FieldWindSpeed, field.TypeInt, value)
 	}
-	if value, ok := muo.mutation.AddedWindSpeed(); ok {
+	if value, ok := _u.mutation.AddedWindSpeed(); ok {
 		_spec.AddField(metar.FieldWindSpeed, field.TypeInt, value)
 	}
-	if muo.mutation.WindSpeedCleared() {
+	if _u.mutation.WindSpeedCleared() {
 		_spec.ClearField(metar.FieldWindSpeed, field.TypeInt)
 	}
-	if value, ok := muo.mutation.WindGust(); ok {
+	if value, ok := _u.mutation.WindGust(); ok {
 		_spec.SetField(metar.FieldWindGust, field.TypeInt, value)
 	}
-	if value, ok := muo.mutation.AddedWindGust(); ok {
+	if value, ok := _u.mutation.AddedWindGust(); ok {
 		_spec.AddField(metar.FieldWindGust, field.TypeInt, value)
 	}
-	if muo.mutation.WindGustCleared() {
+	if _u.mutation.WindGustCleared() {
 		_spec.ClearField(metar.FieldWindGust, field.TypeInt)
 	}
-	if value, ok := muo.mutation.WindDirection(); ok {
+	if value, ok := _u.mutation.WindDirection(); ok {
 		_spec.SetField(metar.FieldWindDirection, field.TypeInt, value)
 	}
-	if value, ok := muo.mutation.AddedWindDirection(); ok {
+	if value, ok := _u.mutation.AddedWindDirection(); ok {
 		_spec.AddField(metar.FieldWindDirection, field.TypeInt, value)
 	}
-	if muo.mutation.WindDirectionCleared() {
+	if _u.mutation.WindDirectionCleared() {
 		_spec.ClearField(metar.FieldWindDirection, field.TypeInt)
 	}
-	if value, ok := muo.mutation.WindDirectionVariable(); ok {
+	if value, ok := _u.mutation.WindDirectionVariable(); ok {
 		_spec.SetField(metar.FieldWindDirectionVariable, field.TypeBool, value)
 	}
-	if value, ok := muo.mutation.Visibility(); ok {
+	if value, ok := _u.mutation.Visibility(); ok {
 		_spec.SetField(metar.FieldVisibility, field.TypeFloat64, value)
 	}
-	if value, ok := muo.mutation.AddedVisibility(); ok {
+	if value, ok := _u.mutation.AddedVisibility(); ok {
 		_spec.AddField(metar.FieldVisibility, field.TypeFloat64, value)
 	}
-	if muo.mutation.VisibilityCleared() {
+	if _u.mutation.VisibilityCleared() {
 		_spec.ClearField(metar.FieldVisibility, field.TypeFloat64)
 	}
-	if value, ok := muo.mutation.VisibilityIsMoreThan(); ok {
+	if value, ok := _u.mutation.VisibilityIsMoreThan(); ok {
 		_spec.SetField(metar.FieldVisibilityIsMoreThan, field.TypeBool, value)
 	}
-	if value, ok := muo.mutation.Altimeter(); ok {
+	if value, ok := _u.mutation.Altimeter(); ok {
 		_spec.SetField(metar.FieldAltimeter, field.TypeFloat64, value)
 	}
-	if value, ok := muo.mutation.AddedAltimeter(); ok {
+	if value, ok := _u.mutation.AddedAltimeter(); ok {
 		_spec.AddField(metar.FieldAltimeter, field.TypeFloat64, value)
 	}
-	if muo.mutation.AltimeterCleared() {
+	if _u.mutation.AltimeterCleared() {
 		_spec.ClearField(metar.FieldAltimeter, field.TypeFloat64)
 	}
-	if value, ok := muo.mutation.PresentWeather(); ok {
+	if value, ok := _u.mutation.PresentWeather(); ok {
 		_spec.SetField(metar.FieldPresentWeather, field.TypeString, value)
 	}
-	if muo.mutation.PresentWeatherCleared() {
+	if _u.mutation.PresentWeatherCleared() {
 		_spec.ClearField(metar.FieldPresentWeather, field.TypeString)
 	}
-	if value, ok := muo.mutation.FlightCategory(); ok {
+	if value, ok := _u.mutation.FlightCategory(); ok {
 		_spec.SetField(metar.FieldFlightCategory, field.TypeEnum, value)
 	}
-	if muo.mutation.FlightCategoryCleared() {
+	if _u.mutation.FlightCategoryCleared() {
 		_spec.ClearField(metar.FieldFlightCategory, field.TypeEnum)
 	}
-	if value, ok := muo.mutation.QualityControlCorrected(); ok {
+	if value, ok := _u.mutation.QualityControlCorrected(); ok {
 		_spec.SetField(metar.FieldQualityControlCorrected, field.TypeBool, value)
 	}
-	if muo.mutation.QualityControlCorrectedCleared() {
+	if _u.mutation.QualityControlCorrectedCleared() {
 		_spec.ClearField(metar.FieldQualityControlCorrected, field.TypeBool)
 	}
-	if value, ok := muo.mutation.QualityControlAutoStation(); ok {
+	if value, ok := _u.mutation.QualityControlAutoStation(); ok {
 		_spec.SetField(metar.FieldQualityControlAutoStation, field.TypeBool, value)
 	}
-	if value, ok := muo.mutation.QualityControlMaintenanceIndicatorOn(); ok {
+	if value, ok := _u.mutation.QualityControlMaintenanceIndicatorOn(); ok {
 		_spec.SetField(metar.FieldQualityControlMaintenanceIndicatorOn, field.TypeBool, value)
 	}
-	if value, ok := muo.mutation.QualityControlNoSignal(); ok {
+	if value, ok := _u.mutation.QualityControlNoSignal(); ok {
 		_spec.SetField(metar.FieldQualityControlNoSignal, field.TypeBool, value)
 	}
-	if value, ok := muo.mutation.QualityControlLightningSensorOff(); ok {
+	if value, ok := _u.mutation.QualityControlLightningSensorOff(); ok {
 		_spec.SetField(metar.FieldQualityControlLightningSensorOff, field.TypeBool, value)
 	}
-	if value, ok := muo.mutation.QualityControlFreezingRainSensorOff(); ok {
+	if value, ok := _u.mutation.QualityControlFreezingRainSensorOff(); ok {
 		_spec.SetField(metar.FieldQualityControlFreezingRainSensorOff, field.TypeBool, value)
 	}
-	if value, ok := muo.mutation.QualityControlPresentWeatherSensorOff(); ok {
+	if value, ok := _u.mutation.QualityControlPresentWeatherSensorOff(); ok {
 		_spec.SetField(metar.FieldQualityControlPresentWeatherSensorOff, field.TypeBool, value)
 	}
-	if value, ok := muo.mutation.SeaLevelPressure(); ok {
+	if value, ok := _u.mutation.SeaLevelPressure(); ok {
 		_spec.SetField(metar.FieldSeaLevelPressure, field.TypeFloat64, value)
 	}
-	if value, ok := muo.mutation.AddedSeaLevelPressure(); ok {
+	if value, ok := _u.mutation.AddedSeaLevelPressure(); ok {
 		_spec.AddField(metar.FieldSeaLevelPressure, field.TypeFloat64, value)
 	}
-	if muo.mutation.SeaLevelPressureCleared() {
+	if _u.mutation.SeaLevelPressureCleared() {
 		_spec.ClearField(metar.FieldSeaLevelPressure, field.TypeFloat64)
 	}
-	if value, ok := muo.mutation.PressureTendency(); ok {
+	if value, ok := _u.mutation.PressureTendency(); ok {
 		_spec.SetField(metar.FieldPressureTendency, field.TypeFloat64, value)
 	}
-	if value, ok := muo.mutation.AddedPressureTendency(); ok {
+	if value, ok := _u.mutation.AddedPressureTendency(); ok {
 		_spec.AddField(metar.FieldPressureTendency, field.TypeFloat64, value)
 	}
-	if muo.mutation.PressureTendencyCleared() {
+	if _u.mutation.PressureTendencyCleared() {
 		_spec.ClearField(metar.FieldPressureTendency, field.TypeFloat64)
 	}
-	if value, ok := muo.mutation.MaxTemp6(); ok {
+	if value, ok := _u.mutation.MaxTemp6(); ok {
 		_spec.SetField(metar.FieldMaxTemp6, field.TypeFloat64, value)
 	}
-	if value, ok := muo.mutation.AddedMaxTemp6(); ok {
+	if value, ok := _u.mutation.AddedMaxTemp6(); ok {
 		_spec.AddField(metar.FieldMaxTemp6, field.TypeFloat64, value)
 	}
-	if muo.mutation.MaxTemp6Cleared() {
+	if _u.mutation.MaxTemp6Cleared() {
 		_spec.ClearField(metar.FieldMaxTemp6, field.TypeFloat64)
 	}
-	if value, ok := muo.mutation.MinTemp6(); ok {
+	if value, ok := _u.mutation.MinTemp6(); ok {
 		_spec.SetField(metar.FieldMinTemp6, field.TypeFloat64, value)
 	}
-	if value, ok := muo.mutation.AddedMinTemp6(); ok {
+	if value, ok := _u.mutation.AddedMinTemp6(); ok {
 		_spec.AddField(metar.FieldMinTemp6, field.TypeFloat64, value)
 	}
-	if muo.mutation.MinTemp6Cleared() {
+	if _u.mutation.MinTemp6Cleared() {
 		_spec.ClearField(metar.FieldMinTemp6, field.TypeFloat64)
 	}
-	if value, ok := muo.mutation.MaxTemp24(); ok {
+	if value, ok := _u.mutation.MaxTemp24(); ok {
 		_spec.SetField(metar.FieldMaxTemp24, field.TypeFloat64, value)
 	}
-	if value, ok := muo.mutation.AddedMaxTemp24(); ok {
+	if value, ok := _u.mutation.AddedMaxTemp24(); ok {
 		_spec.AddField(metar.FieldMaxTemp24, field.TypeFloat64, value)
 	}
-	if muo.mutation.MaxTemp24Cleared() {
+	if _u.mutation.MaxTemp24Cleared() {
 		_spec.ClearField(metar.FieldMaxTemp24, field.TypeFloat64)
 	}
-	if value, ok := muo.mutation.MinTemp24(); ok {
+	if value, ok := _u.mutation.MinTemp24(); ok {
 		_spec.SetField(metar.FieldMinTemp24, field.TypeFloat64, value)
 	}
-	if value, ok := muo.mutation.AddedMinTemp24(); ok {
+	if value, ok := _u.mutation.AddedMinTemp24(); ok {
 		_spec.AddField(metar.FieldMinTemp24, field.TypeFloat64, value)
 	}
-	if muo.mutation.MinTemp24Cleared() {
+	if _u.mutation.MinTemp24Cleared() {
 		_spec.ClearField(metar.FieldMinTemp24, field.TypeFloat64)
 	}
-	if value, ok := muo.mutation.Precipitation(); ok {
+	if value, ok := _u.mutation.Precipitation(); ok {
 		_spec.SetField(metar.FieldPrecipitation, field.TypeFloat64, value)
 	}
-	if value, ok := muo.mutation.AddedPrecipitation(); ok {
+	if value, ok := _u.mutation.AddedPrecipitation(); ok {
 		_spec.AddField(metar.FieldPrecipitation, field.TypeFloat64, value)
 	}
-	if muo.mutation.PrecipitationCleared() {
+	if _u.mutation.PrecipitationCleared() {
 		_spec.ClearField(metar.FieldPrecipitation, field.TypeFloat64)
 	}
-	if value, ok := muo.mutation.Precipitation3(); ok {
+	if value, ok := _u.mutation.Precipitation3(); ok {
 		_spec.SetField(metar.FieldPrecipitation3, field.TypeFloat64, value)
 	}
-	if value, ok := muo.mutation.AddedPrecipitation3(); ok {
+	if value, ok := _u.mutation.AddedPrecipitation3(); ok {
 		_spec.AddField(metar.FieldPrecipitation3, field.TypeFloat64, value)
 	}
-	if muo.mutation.Precipitation3Cleared() {
+	if _u.mutation.Precipitation3Cleared() {
 		_spec.ClearField(metar.FieldPrecipitation3, field.TypeFloat64)
 	}
-	if value, ok := muo.mutation.Precipitation6(); ok {
+	if value, ok := _u.mutation.Precipitation6(); ok {
 		_spec.SetField(metar.FieldPrecipitation6, field.TypeFloat64, value)
 	}
-	if value, ok := muo.mutation.AddedPrecipitation6(); ok {
+	if value, ok := _u.mutation.AddedPrecipitation6(); ok {
 		_spec.AddField(metar.FieldPrecipitation6, field.TypeFloat64, value)
 	}
-	if muo.mutation.Precipitation6Cleared() {
+	if _u.mutation.Precipitation6Cleared() {
 		_spec.ClearField(metar.FieldPrecipitation6, field.TypeFloat64)
 	}
-	if value, ok := muo.mutation.Precipitation24(); ok {
+	if value, ok := _u.mutation.Precipitation24(); ok {
 		_spec.SetField(metar.FieldPrecipitation24, field.TypeFloat64, value)
 	}
-	if value, ok := muo.mutation.AddedPrecipitation24(); ok {
+	if value, ok := _u.mutation.AddedPrecipitation24(); ok {
 		_spec.AddField(metar.FieldPrecipitation24, field.TypeFloat64, value)
 	}
-	if muo.mutation.Precipitation24Cleared() {
+	if _u.mutation.Precipitation24Cleared() {
 		_spec.ClearField(metar.FieldPrecipitation24, field.TypeFloat64)
 	}
-	if value, ok := muo.mutation.SnowDepth(); ok {
+	if value, ok := _u.mutation.SnowDepth(); ok {
 		_spec.SetField(metar.FieldSnowDepth, field.TypeFloat64, value)
 	}
-	if value, ok := muo.mutation.AddedSnowDepth(); ok {
+	if value, ok := _u.mutation.AddedSnowDepth(); ok {
 		_spec.AddField(metar.FieldSnowDepth, field.TypeFloat64, value)
 	}
-	if muo.mutation.SnowDepthCleared() {
+	if _u.mutation.SnowDepthCleared() {
 		_spec.ClearField(metar.FieldSnowDepth, field.TypeFloat64)
 	}
-	if value, ok := muo.mutation.VertVis(); ok {
+	if value, ok := _u.mutation.VertVis(); ok {
 		_spec.SetField(metar.FieldVertVis, field.TypeFloat64, value)
 	}
-	if value, ok := muo.mutation.AddedVertVis(); ok {
+	if value, ok := _u.mutation.AddedVertVis(); ok {
 		_spec.AddField(metar.FieldVertVis, field.TypeFloat64, value)
 	}
-	if muo.mutation.VertVisCleared() {
+	if _u.mutation.VertVisCleared() {
 		_spec.ClearField(metar.FieldVertVis, field.TypeFloat64)
 	}
-	if value, ok := muo.mutation.MetarType(); ok {
+	if value, ok := _u.mutation.MetarType(); ok {
 		_spec.SetField(metar.FieldMetarType, field.TypeEnum, value)
 	}
-	if value, ok := muo.mutation.Hash(); ok {
+	if value, ok := _u.mutation.Hash(); ok {
 		_spec.SetField(metar.FieldHash, field.TypeString, value)
 	}
-	if muo.mutation.StationCleared() {
+	if _u.mutation.StationCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.M2O,
 			Inverse: true,
@@ -2239,7 +2431,7 @@ func (muo *MetarUpdateOne) sqlSave(ctx context.Context) (_node *Metar, err error
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := muo.mutation.StationIDs(); len(nodes) > 0 {
+	if nodes := _u.mutation.StationIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.M2O,
 			Inverse: true,
@@ -2255,7 +2447,7 @@ func (muo *MetarUpdateOne) sqlSave(ctx context.Context) (_node *Metar, err error
 		}
 		_spec.Edges.Add = append(_spec.Edges.Add, edge)
 	}
-	if muo.mutation.SkyConditionsCleared() {
+	if _u.mutation.SkyConditionsCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -2268,7 +2460,7 @@ func (muo *MetarUpdateOne) sqlSave(ctx context.Context) (_node *Metar, err error
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := muo.mutation.RemovedSkyConditionsIDs(); len(nodes) > 0 && !muo.mutation.SkyConditionsCleared() {
+	if nodes := _u.mutation.RemovedSkyConditionsIDs(); len(nodes) > 0 && !_u.mutation.SkyConditionsCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -2284,7 +2476,7 @@ func (muo *MetarUpdateOne) sqlSave(ctx context.Context) (_node *Metar, err error
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := muo.mutation.SkyConditionsIDs(); len(nodes) > 0 {
+	if nodes := _u.mutation.SkyConditionsIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -2300,11 +2492,11 @@ func (muo *MetarUpdateOne) sqlSave(ctx context.Context) (_node *Metar, err error
 		}
 		_spec.Edges.Add = append(_spec.Edges.Add, edge)
 	}
-	_spec.AddModifiers(muo.modifiers...)
-	_node = &Metar{config: muo.config}
+	_spec.AddModifiers(_u.modifiers...)
+	_node = &Metar{config: _u.config}
 	_spec.Assign = _node.assignValues
 	_spec.ScanValues = _node.scanValues
-	if err = sqlgraph.UpdateNode(ctx, muo.driver, _spec); err != nil {
+	if err = sqlgraph.UpdateNode(ctx, _u.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
 			err = &NotFoundError{metar.Label}
 		} else if sqlgraph.IsConstraintError(err) {
@@ -2312,6 +2504,6 @@ func (muo *MetarUpdateOne) sqlSave(ctx context.Context) (_node *Metar, err error
 		}
 		return nil, err
 	}
-	muo.mutation.done = true
+	_u.mutation.done = true
 	return _node, nil
 }

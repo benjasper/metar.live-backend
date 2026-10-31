@@ -3,6 +3,7 @@ package schema
 import (
 	"entgo.io/contrib/entgql"
 	"entgo.io/ent"
+	"entgo.io/ent/schema/edge"
 	"entgo.io/ent/schema/field"
 )
 
@@ -22,7 +23,10 @@ func (SkyCondition) Fields() []ent.Field {
 
 // Edges of the SkyCondition.
 func (SkyCondition) Edges() []ent.Edge {
-	return []ent.Edge{}
+	return []ent.Edge{
+		edge.From("metar", Metar.Type).Ref("sky_conditions").Unique().Annotations(entgql.Skip()),
+		edge.From("forecast", Forecast.Type).Ref("sky_conditions").Unique().Annotations(entgql.Skip()),
+	}
 }
 
 // Mixin of the SkyCondition.

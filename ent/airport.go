@@ -98,12 +98,10 @@ type AirportEdges struct {
 // RegionOrErr returns the Region value or an error if the edge
 // was not loaded in eager-loading, or loaded but was not found.
 func (e AirportEdges) RegionOrErr() (*Region, error) {
-	if e.loadedTypes[0] {
-		if e.Region == nil {
-			// Edge was loaded but was not found.
-			return nil, &NotFoundError{label: region.Label}
-		}
+	if e.Region != nil {
 		return e.Region, nil
+	} else if e.loadedTypes[0] {
+		return nil, &NotFoundError{label: region.Label}
 	}
 	return nil, &NotLoadedError{edge: "region"}
 }
@@ -111,12 +109,10 @@ func (e AirportEdges) RegionOrErr() (*Region, error) {
 // CountryOrErr returns the Country value or an error if the edge
 // was not loaded in eager-loading, or loaded but was not found.
 func (e AirportEdges) CountryOrErr() (*Country, error) {
-	if e.loadedTypes[1] {
-		if e.Country == nil {
-			// Edge was loaded but was not found.
-			return nil, &NotFoundError{label: country.Label}
-		}
+	if e.Country != nil {
 		return e.Country, nil
+	} else if e.loadedTypes[1] {
+		return nil, &NotFoundError{label: country.Label}
 	}
 	return nil, &NotLoadedError{edge: "country"}
 }
@@ -142,12 +138,10 @@ func (e AirportEdges) FrequenciesOrErr() ([]*Frequency, error) {
 // StationOrErr returns the Station value or an error if the edge
 // was not loaded in eager-loading, or loaded but was not found.
 func (e AirportEdges) StationOrErr() (*WeatherStation, error) {
-	if e.loadedTypes[4] {
-		if e.Station == nil {
-			// Edge was loaded but was not found.
-			return nil, &NotFoundError{label: weatherstation.Label}
-		}
+	if e.Station != nil {
 		return e.Station, nil
+	} else if e.loadedTypes[4] {
+		return nil, &NotFoundError{label: weatherstation.Label}
 	}
 	return nil, &NotLoadedError{edge: "station"}
 }
@@ -184,7 +178,7 @@ func (*Airport) scanValues(columns []string) ([]any, error) {
 
 // assignValues assigns the values that were returned from sql.Rows (after scanning)
 // to the Airport fields.
-func (a *Airport) assignValues(columns []string, values []any) error {
+func (_m *Airport) assignValues(columns []string, values []any) error {
 	if m, n := len(values), len(columns); m < n {
 		return fmt.Errorf("mismatch number of scan values: %d != %d", m, n)
 	}
@@ -194,141 +188,141 @@ func (a *Airport) assignValues(columns []string, values []any) error {
 			if value, ok := values[i].(*uuid.UUID); !ok {
 				return fmt.Errorf("unexpected type %T for field id", values[i])
 			} else if value != nil {
-				a.ID = *value
+				_m.ID = *value
 			}
 		case airport.FieldImportID:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field import_id", values[i])
 			} else if value.Valid {
-				a.ImportID = int(value.Int64)
+				_m.ImportID = int(value.Int64)
 			}
 		case airport.FieldHash:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field hash", values[i])
 			} else if value.Valid {
-				a.Hash = value.String
+				_m.Hash = value.String
 			}
 		case airport.FieldImportFlag:
 			if value, ok := values[i].(*sql.NullBool); !ok {
 				return fmt.Errorf("unexpected type %T for field import_flag", values[i])
 			} else if value.Valid {
-				a.ImportFlag = value.Bool
+				_m.ImportFlag = value.Bool
 			}
 		case airport.FieldLastUpdated:
 			if value, ok := values[i].(*sql.NullTime); !ok {
 				return fmt.Errorf("unexpected type %T for field last_updated", values[i])
 			} else if value.Valid {
-				a.LastUpdated = value.Time
+				_m.LastUpdated = value.Time
 			}
 		case airport.FieldIcaoCode:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field icao_code", values[i])
 			} else if value.Valid {
-				a.IcaoCode = value.String
+				_m.IcaoCode = value.String
 			}
 		case airport.FieldIataCode:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field iata_code", values[i])
 			} else if value.Valid {
-				a.IataCode = new(string)
-				*a.IataCode = value.String
+				_m.IataCode = new(string)
+				*_m.IataCode = value.String
 			}
 		case airport.FieldIdentifier:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field identifier", values[i])
 			} else if value.Valid {
-				a.Identifier = value.String
+				_m.Identifier = value.String
 			}
 		case airport.FieldType:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field type", values[i])
 			} else if value.Valid {
-				a.Type = airport.Type(value.String)
+				_m.Type = airport.Type(value.String)
 			}
 		case airport.FieldImportance:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field importance", values[i])
 			} else if value.Valid {
-				a.Importance = int(value.Int64)
+				_m.Importance = int(value.Int64)
 			}
 		case airport.FieldName:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field name", values[i])
 			} else if value.Valid {
-				a.Name = value.String
+				_m.Name = value.String
 			}
 		case airport.FieldLatitude:
 			if value, ok := values[i].(*sql.NullFloat64); !ok {
 				return fmt.Errorf("unexpected type %T for field latitude", values[i])
 			} else if value.Valid {
-				a.Latitude = value.Float64
+				_m.Latitude = value.Float64
 			}
 		case airport.FieldLongitude:
 			if value, ok := values[i].(*sql.NullFloat64); !ok {
 				return fmt.Errorf("unexpected type %T for field longitude", values[i])
 			} else if value.Valid {
-				a.Longitude = value.Float64
+				_m.Longitude = value.Float64
 			}
 		case airport.FieldTimezone:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field timezone", values[i])
 			} else if value.Valid {
-				a.Timezone = new(string)
-				*a.Timezone = value.String
+				_m.Timezone = new(string)
+				*_m.Timezone = value.String
 			}
 		case airport.FieldElevation:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field elevation", values[i])
 			} else if value.Valid {
-				a.Elevation = new(int)
-				*a.Elevation = int(value.Int64)
+				_m.Elevation = new(int)
+				*_m.Elevation = int(value.Int64)
 			}
 		case airport.FieldMunicipality:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field municipality", values[i])
 			} else if value.Valid {
-				a.Municipality = new(string)
-				*a.Municipality = value.String
+				_m.Municipality = new(string)
+				*_m.Municipality = value.String
 			}
 		case airport.FieldScheduledService:
 			if value, ok := values[i].(*sql.NullBool); !ok {
 				return fmt.Errorf("unexpected type %T for field scheduled_service", values[i])
 			} else if value.Valid {
-				a.ScheduledService = value.Bool
+				_m.ScheduledService = value.Bool
 			}
 		case airport.FieldGpsCode:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field gps_code", values[i])
 			} else if value.Valid {
-				a.GpsCode = new(string)
-				*a.GpsCode = value.String
+				_m.GpsCode = new(string)
+				*_m.GpsCode = value.String
 			}
 		case airport.FieldLocalCode:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field local_code", values[i])
 			} else if value.Valid {
-				a.LocalCode = new(string)
-				*a.LocalCode = value.String
+				_m.LocalCode = new(string)
+				*_m.LocalCode = value.String
 			}
 		case airport.FieldWebsite:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field website", values[i])
 			} else if value.Valid {
-				a.Website = new(string)
-				*a.Website = value.String
+				_m.Website = new(string)
+				*_m.Website = value.String
 			}
 		case airport.FieldWikipedia:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field wikipedia", values[i])
 			} else if value.Valid {
-				a.Wikipedia = new(string)
-				*a.Wikipedia = value.String
+				_m.Wikipedia = new(string)
+				*_m.Wikipedia = value.String
 			}
 		case airport.FieldKeywords:
 			if value, ok := values[i].(*[]byte); !ok {
 				return fmt.Errorf("unexpected type %T for field keywords", values[i])
 			} else if value != nil && len(*value) > 0 {
-				if err := json.Unmarshal(*value, &a.Keywords); err != nil {
+				if err := json.Unmarshal(*value, &_m.Keywords); err != nil {
 					return fmt.Errorf("unmarshal field keywords: %w", err)
 				}
 			}
@@ -336,18 +330,18 @@ func (a *Airport) assignValues(columns []string, values []any) error {
 			if value, ok := values[i].(*sql.NullScanner); !ok {
 				return fmt.Errorf("unexpected type %T for field country_airports", values[i])
 			} else if value.Valid {
-				a.country_airports = new(uuid.UUID)
-				*a.country_airports = *value.S.(*uuid.UUID)
+				_m.country_airports = new(uuid.UUID)
+				*_m.country_airports = *value.S.(*uuid.UUID)
 			}
 		case airport.ForeignKeys[1]:
 			if value, ok := values[i].(*sql.NullScanner); !ok {
 				return fmt.Errorf("unexpected type %T for field region_airports", values[i])
 			} else if value.Valid {
-				a.region_airports = new(uuid.UUID)
-				*a.region_airports = *value.S.(*uuid.UUID)
+				_m.region_airports = new(uuid.UUID)
+				*_m.region_airports = *value.S.(*uuid.UUID)
 			}
 		default:
-			a.selectValues.Set(columns[i], values[i])
+			_m.selectValues.Set(columns[i], values[i])
 		}
 	}
 	return nil
@@ -355,185 +349,185 @@ func (a *Airport) assignValues(columns []string, values []any) error {
 
 // Value returns the ent.Value that was dynamically selected and assigned to the Airport.
 // This includes values selected through modifiers, order, etc.
-func (a *Airport) Value(name string) (ent.Value, error) {
-	return a.selectValues.Get(name)
+func (_m *Airport) Value(name string) (ent.Value, error) {
+	return _m.selectValues.Get(name)
 }
 
 // QueryRegion queries the "region" edge of the Airport entity.
-func (a *Airport) QueryRegion() *RegionQuery {
-	return NewAirportClient(a.config).QueryRegion(a)
+func (_m *Airport) QueryRegion() *RegionQuery {
+	return NewAirportClient(_m.config).QueryRegion(_m)
 }
 
 // QueryCountry queries the "country" edge of the Airport entity.
-func (a *Airport) QueryCountry() *CountryQuery {
-	return NewAirportClient(a.config).QueryCountry(a)
+func (_m *Airport) QueryCountry() *CountryQuery {
+	return NewAirportClient(_m.config).QueryCountry(_m)
 }
 
 // QueryRunways queries the "runways" edge of the Airport entity.
-func (a *Airport) QueryRunways() *RunwayQuery {
-	return NewAirportClient(a.config).QueryRunways(a)
+func (_m *Airport) QueryRunways() *RunwayQuery {
+	return NewAirportClient(_m.config).QueryRunways(_m)
 }
 
 // QueryFrequencies queries the "frequencies" edge of the Airport entity.
-func (a *Airport) QueryFrequencies() *FrequencyQuery {
-	return NewAirportClient(a.config).QueryFrequencies(a)
+func (_m *Airport) QueryFrequencies() *FrequencyQuery {
+	return NewAirportClient(_m.config).QueryFrequencies(_m)
 }
 
 // QueryStation queries the "station" edge of the Airport entity.
-func (a *Airport) QueryStation() *WeatherStationQuery {
-	return NewAirportClient(a.config).QueryStation(a)
+func (_m *Airport) QueryStation() *WeatherStationQuery {
+	return NewAirportClient(_m.config).QueryStation(_m)
 }
 
 // Update returns a builder for updating this Airport.
 // Note that you need to call Airport.Unwrap() before calling this method if this Airport
 // was returned from a transaction, and the transaction was committed or rolled back.
-func (a *Airport) Update() *AirportUpdateOne {
-	return NewAirportClient(a.config).UpdateOne(a)
+func (_m *Airport) Update() *AirportUpdateOne {
+	return NewAirportClient(_m.config).UpdateOne(_m)
 }
 
 // Unwrap unwraps the Airport entity that was returned from a transaction after it was closed,
 // so that all future queries will be executed through the driver which created the transaction.
-func (a *Airport) Unwrap() *Airport {
-	_tx, ok := a.config.driver.(*txDriver)
+func (_m *Airport) Unwrap() *Airport {
+	_tx, ok := _m.config.driver.(*txDriver)
 	if !ok {
 		panic("ent: Airport is not a transactional entity")
 	}
-	a.config.driver = _tx.drv
-	return a
+	_m.config.driver = _tx.drv
+	return _m
 }
 
 // String implements the fmt.Stringer.
-func (a *Airport) String() string {
+func (_m *Airport) String() string {
 	var builder strings.Builder
 	builder.WriteString("Airport(")
-	builder.WriteString(fmt.Sprintf("id=%v, ", a.ID))
+	builder.WriteString(fmt.Sprintf("id=%v, ", _m.ID))
 	builder.WriteString("import_id=")
-	builder.WriteString(fmt.Sprintf("%v", a.ImportID))
+	builder.WriteString(fmt.Sprintf("%v", _m.ImportID))
 	builder.WriteString(", ")
 	builder.WriteString("hash=")
-	builder.WriteString(a.Hash)
+	builder.WriteString(_m.Hash)
 	builder.WriteString(", ")
 	builder.WriteString("import_flag=")
-	builder.WriteString(fmt.Sprintf("%v", a.ImportFlag))
+	builder.WriteString(fmt.Sprintf("%v", _m.ImportFlag))
 	builder.WriteString(", ")
 	builder.WriteString("last_updated=")
-	builder.WriteString(a.LastUpdated.Format(time.ANSIC))
+	builder.WriteString(_m.LastUpdated.Format(time.ANSIC))
 	builder.WriteString(", ")
 	builder.WriteString("icao_code=")
-	builder.WriteString(a.IcaoCode)
+	builder.WriteString(_m.IcaoCode)
 	builder.WriteString(", ")
-	if v := a.IataCode; v != nil {
+	if v := _m.IataCode; v != nil {
 		builder.WriteString("iata_code=")
 		builder.WriteString(*v)
 	}
 	builder.WriteString(", ")
 	builder.WriteString("identifier=")
-	builder.WriteString(a.Identifier)
+	builder.WriteString(_m.Identifier)
 	builder.WriteString(", ")
 	builder.WriteString("type=")
-	builder.WriteString(fmt.Sprintf("%v", a.Type))
+	builder.WriteString(fmt.Sprintf("%v", _m.Type))
 	builder.WriteString(", ")
 	builder.WriteString("importance=")
-	builder.WriteString(fmt.Sprintf("%v", a.Importance))
+	builder.WriteString(fmt.Sprintf("%v", _m.Importance))
 	builder.WriteString(", ")
 	builder.WriteString("name=")
-	builder.WriteString(a.Name)
+	builder.WriteString(_m.Name)
 	builder.WriteString(", ")
 	builder.WriteString("latitude=")
-	builder.WriteString(fmt.Sprintf("%v", a.Latitude))
+	builder.WriteString(fmt.Sprintf("%v", _m.Latitude))
 	builder.WriteString(", ")
 	builder.WriteString("longitude=")
-	builder.WriteString(fmt.Sprintf("%v", a.Longitude))
+	builder.WriteString(fmt.Sprintf("%v", _m.Longitude))
 	builder.WriteString(", ")
-	if v := a.Timezone; v != nil {
+	if v := _m.Timezone; v != nil {
 		builder.WriteString("timezone=")
 		builder.WriteString(*v)
 	}
 	builder.WriteString(", ")
-	if v := a.Elevation; v != nil {
+	if v := _m.Elevation; v != nil {
 		builder.WriteString("elevation=")
 		builder.WriteString(fmt.Sprintf("%v", *v))
 	}
 	builder.WriteString(", ")
-	if v := a.Municipality; v != nil {
+	if v := _m.Municipality; v != nil {
 		builder.WriteString("municipality=")
 		builder.WriteString(*v)
 	}
 	builder.WriteString(", ")
 	builder.WriteString("scheduled_service=")
-	builder.WriteString(fmt.Sprintf("%v", a.ScheduledService))
+	builder.WriteString(fmt.Sprintf("%v", _m.ScheduledService))
 	builder.WriteString(", ")
-	if v := a.GpsCode; v != nil {
+	if v := _m.GpsCode; v != nil {
 		builder.WriteString("gps_code=")
 		builder.WriteString(*v)
 	}
 	builder.WriteString(", ")
-	if v := a.LocalCode; v != nil {
+	if v := _m.LocalCode; v != nil {
 		builder.WriteString("local_code=")
 		builder.WriteString(*v)
 	}
 	builder.WriteString(", ")
-	if v := a.Website; v != nil {
+	if v := _m.Website; v != nil {
 		builder.WriteString("website=")
 		builder.WriteString(*v)
 	}
 	builder.WriteString(", ")
-	if v := a.Wikipedia; v != nil {
+	if v := _m.Wikipedia; v != nil {
 		builder.WriteString("wikipedia=")
 		builder.WriteString(*v)
 	}
 	builder.WriteString(", ")
 	builder.WriteString("keywords=")
-	builder.WriteString(fmt.Sprintf("%v", a.Keywords))
+	builder.WriteString(fmt.Sprintf("%v", _m.Keywords))
 	builder.WriteByte(')')
 	return builder.String()
 }
 
 // NamedRunways returns the Runways named value or an error if the edge was not
 // loaded in eager-loading with this name.
-func (a *Airport) NamedRunways(name string) ([]*Runway, error) {
-	if a.Edges.namedRunways == nil {
+func (_m *Airport) NamedRunways(name string) ([]*Runway, error) {
+	if _m.Edges.namedRunways == nil {
 		return nil, &NotLoadedError{edge: name}
 	}
-	nodes, ok := a.Edges.namedRunways[name]
+	nodes, ok := _m.Edges.namedRunways[name]
 	if !ok {
 		return nil, &NotLoadedError{edge: name}
 	}
 	return nodes, nil
 }
 
-func (a *Airport) appendNamedRunways(name string, edges ...*Runway) {
-	if a.Edges.namedRunways == nil {
-		a.Edges.namedRunways = make(map[string][]*Runway)
+func (_m *Airport) appendNamedRunways(name string, edges ...*Runway) {
+	if _m.Edges.namedRunways == nil {
+		_m.Edges.namedRunways = make(map[string][]*Runway)
 	}
 	if len(edges) == 0 {
-		a.Edges.namedRunways[name] = []*Runway{}
+		_m.Edges.namedRunways[name] = []*Runway{}
 	} else {
-		a.Edges.namedRunways[name] = append(a.Edges.namedRunways[name], edges...)
+		_m.Edges.namedRunways[name] = append(_m.Edges.namedRunways[name], edges...)
 	}
 }
 
 // NamedFrequencies returns the Frequencies named value or an error if the edge was not
 // loaded in eager-loading with this name.
-func (a *Airport) NamedFrequencies(name string) ([]*Frequency, error) {
-	if a.Edges.namedFrequencies == nil {
+func (_m *Airport) NamedFrequencies(name string) ([]*Frequency, error) {
+	if _m.Edges.namedFrequencies == nil {
 		return nil, &NotLoadedError{edge: name}
 	}
-	nodes, ok := a.Edges.namedFrequencies[name]
+	nodes, ok := _m.Edges.namedFrequencies[name]
 	if !ok {
 		return nil, &NotLoadedError{edge: name}
 	}
 	return nodes, nil
 }
 
-func (a *Airport) appendNamedFrequencies(name string, edges ...*Frequency) {
-	if a.Edges.namedFrequencies == nil {
-		a.Edges.namedFrequencies = make(map[string][]*Frequency)
+func (_m *Airport) appendNamedFrequencies(name string, edges ...*Frequency) {
+	if _m.Edges.namedFrequencies == nil {
+		_m.Edges.namedFrequencies = make(map[string][]*Frequency)
 	}
 	if len(edges) == 0 {
-		a.Edges.namedFrequencies[name] = []*Frequency{}
+		_m.Edges.namedFrequencies[name] = []*Frequency{}
 	} else {
-		a.Edges.namedFrequencies[name] = append(a.Edges.namedFrequencies[name], edges...)
+		_m.Edges.namedFrequencies[name] = append(_m.Edges.namedFrequencies[name], edges...)
 	}
 }
 

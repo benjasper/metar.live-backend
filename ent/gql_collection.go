@@ -6,7 +6,6 @@ import (
 	"context"
 
 	"entgo.io/contrib/entgql"
-	"entgo.io/ent/dialect/sql"
 	"github.com/99designs/gqlgen/graphql"
 	"metar.live/ent/airport"
 	"metar.live/ent/country"
@@ -24,18 +23,18 @@ import (
 )
 
 // CollectFields tells the query-builder to eagerly load connected nodes by resolver context.
-func (a *AirportQuery) CollectFields(ctx context.Context, satisfies ...string) (*AirportQuery, error) {
+func (_q *AirportQuery) CollectFields(ctx context.Context, satisfies ...string) (*AirportQuery, error) {
 	fc := graphql.GetFieldContext(ctx)
 	if fc == nil {
-		return a, nil
+		return _q, nil
 	}
-	if err := a.collectField(ctx, graphql.GetOperationContext(ctx), fc.Field, nil, satisfies...); err != nil {
+	if err := _q.collectField(ctx, false, graphql.GetOperationContext(ctx), fc.Field, nil, satisfies...); err != nil {
 		return nil, err
 	}
-	return a, nil
+	return _q, nil
 }
 
-func (a *AirportQuery) collectField(ctx context.Context, opCtx *graphql.OperationContext, collected graphql.CollectedField, path []string, satisfies ...string) error {
+func (_q *AirportQuery) collectField(ctx context.Context, oneNode bool, opCtx *graphql.OperationContext, collected graphql.CollectedField, path []string, satisfies ...string) error {
 	path = append([]string(nil), path...)
 	var (
 		unknownSeen    bool
@@ -44,48 +43,52 @@ func (a *AirportQuery) collectField(ctx context.Context, opCtx *graphql.Operatio
 	)
 	for _, field := range graphql.CollectFields(opCtx, collected.Selections, satisfies) {
 		switch field.Name {
+
 		case "region":
 			var (
 				alias = field.Alias
 				path  = append(path, alias)
-				query = (&RegionClient{config: a.config}).Query()
+				query = (&RegionClient{config: _q.config}).Query()
 			)
-			if err := query.collectField(ctx, opCtx, field, path, satisfies...); err != nil {
+			if err := query.collectField(ctx, oneNode, opCtx, field, path, mayAddCondition(satisfies, regionImplementors)...); err != nil {
 				return err
 			}
-			a.withRegion = query
+			_q.withRegion = query
+
 		case "country":
 			var (
 				alias = field.Alias
 				path  = append(path, alias)
-				query = (&CountryClient{config: a.config}).Query()
+				query = (&CountryClient{config: _q.config}).Query()
 			)
-			if err := query.collectField(ctx, opCtx, field, path, satisfies...); err != nil {
+			if err := query.collectField(ctx, oneNode, opCtx, field, path, mayAddCondition(satisfies, countryImplementors)...); err != nil {
 				return err
 			}
-			a.withCountry = query
+			_q.withCountry = query
+
 		case "frequencies":
 			var (
 				alias = field.Alias
 				path  = append(path, alias)
-				query = (&FrequencyClient{config: a.config}).Query()
+				query = (&FrequencyClient{config: _q.config}).Query()
 			)
-			if err := query.collectField(ctx, opCtx, field, path, satisfies...); err != nil {
+			if err := query.collectField(ctx, false, opCtx, field, path, mayAddCondition(satisfies, frequencyImplementors)...); err != nil {
 				return err
 			}
-			a.WithNamedFrequencies(alias, func(wq *FrequencyQuery) {
+			_q.WithNamedFrequencies(alias, func(wq *FrequencyQuery) {
 				*wq = *query
 			})
+
 		case "station":
 			var (
 				alias = field.Alias
 				path  = append(path, alias)
-				query = (&WeatherStationClient{config: a.config}).Query()
+				query = (&WeatherStationClient{config: _q.config}).Query()
 			)
-			if err := query.collectField(ctx, opCtx, field, path, satisfies...); err != nil {
+			if err := query.collectField(ctx, oneNode, opCtx, field, path, mayAddCondition(satisfies, weatherstationImplementors)...); err != nil {
 				return err
 			}
-			a.withStation = query
+			_q.withStation = query
 		case "importID":
 			if _, ok := fieldSeen[airport.FieldImportID]; !ok {
 				selectedFields = append(selectedFields, airport.FieldImportID)
@@ -188,7 +191,7 @@ func (a *AirportQuery) collectField(ctx context.Context, opCtx *graphql.Operatio
 		}
 	}
 	if !unknownSeen {
-		a.Select(selectedFields...)
+		_q.Select(selectedFields...)
 	}
 	return nil
 }
@@ -242,18 +245,18 @@ func newAirportPaginateArgs(rv map[string]any) *airportPaginateArgs {
 }
 
 // CollectFields tells the query-builder to eagerly load connected nodes by resolver context.
-func (c *CountryQuery) CollectFields(ctx context.Context, satisfies ...string) (*CountryQuery, error) {
+func (_q *CountryQuery) CollectFields(ctx context.Context, satisfies ...string) (*CountryQuery, error) {
 	fc := graphql.GetFieldContext(ctx)
 	if fc == nil {
-		return c, nil
+		return _q, nil
 	}
-	if err := c.collectField(ctx, graphql.GetOperationContext(ctx), fc.Field, nil, satisfies...); err != nil {
+	if err := _q.collectField(ctx, false, graphql.GetOperationContext(ctx), fc.Field, nil, satisfies...); err != nil {
 		return nil, err
 	}
-	return c, nil
+	return _q, nil
 }
 
-func (c *CountryQuery) collectField(ctx context.Context, opCtx *graphql.OperationContext, collected graphql.CollectedField, path []string, satisfies ...string) error {
+func (_q *CountryQuery) collectField(ctx context.Context, oneNode bool, opCtx *graphql.OperationContext, collected graphql.CollectedField, path []string, satisfies ...string) error {
 	path = append([]string(nil), path...)
 	var (
 		unknownSeen    bool
@@ -304,7 +307,7 @@ func (c *CountryQuery) collectField(ctx context.Context, opCtx *graphql.Operatio
 		}
 	}
 	if !unknownSeen {
-		c.Select(selectedFields...)
+		_q.Select(selectedFields...)
 	}
 	return nil
 }
@@ -336,18 +339,18 @@ func newCountryPaginateArgs(rv map[string]any) *countryPaginateArgs {
 }
 
 // CollectFields tells the query-builder to eagerly load connected nodes by resolver context.
-func (f *ForecastQuery) CollectFields(ctx context.Context, satisfies ...string) (*ForecastQuery, error) {
+func (_q *ForecastQuery) CollectFields(ctx context.Context, satisfies ...string) (*ForecastQuery, error) {
 	fc := graphql.GetFieldContext(ctx)
 	if fc == nil {
-		return f, nil
+		return _q, nil
 	}
-	if err := f.collectField(ctx, graphql.GetOperationContext(ctx), fc.Field, nil, satisfies...); err != nil {
+	if err := _q.collectField(ctx, false, graphql.GetOperationContext(ctx), fc.Field, nil, satisfies...); err != nil {
 		return nil, err
 	}
-	return f, nil
+	return _q, nil
 }
 
-func (f *ForecastQuery) collectField(ctx context.Context, opCtx *graphql.OperationContext, collected graphql.CollectedField, path []string, satisfies ...string) error {
+func (_q *ForecastQuery) collectField(ctx context.Context, oneNode bool, opCtx *graphql.OperationContext, collected graphql.CollectedField, path []string, satisfies ...string) error {
 	path = append([]string(nil), path...)
 	var (
 		unknownSeen    bool
@@ -356,52 +359,56 @@ func (f *ForecastQuery) collectField(ctx context.Context, opCtx *graphql.Operati
 	)
 	for _, field := range graphql.CollectFields(opCtx, collected.Selections, satisfies) {
 		switch field.Name {
+
 		case "skyConditions":
 			var (
 				alias = field.Alias
 				path  = append(path, alias)
-				query = (&SkyConditionClient{config: f.config}).Query()
+				query = (&SkyConditionClient{config: _q.config}).Query()
 			)
-			if err := query.collectField(ctx, opCtx, field, path, satisfies...); err != nil {
+			if err := query.collectField(ctx, false, opCtx, field, path, mayAddCondition(satisfies, skyconditionImplementors)...); err != nil {
 				return err
 			}
-			f.WithNamedSkyConditions(alias, func(wq *SkyConditionQuery) {
+			_q.WithNamedSkyConditions(alias, func(wq *SkyConditionQuery) {
 				*wq = *query
 			})
+
 		case "turbulenceConditions":
 			var (
 				alias = field.Alias
 				path  = append(path, alias)
-				query = (&TurbulenceConditionClient{config: f.config}).Query()
+				query = (&TurbulenceConditionClient{config: _q.config}).Query()
 			)
-			if err := query.collectField(ctx, opCtx, field, path, satisfies...); err != nil {
+			if err := query.collectField(ctx, false, opCtx, field, path, mayAddCondition(satisfies, turbulenceconditionImplementors)...); err != nil {
 				return err
 			}
-			f.WithNamedTurbulenceConditions(alias, func(wq *TurbulenceConditionQuery) {
+			_q.WithNamedTurbulenceConditions(alias, func(wq *TurbulenceConditionQuery) {
 				*wq = *query
 			})
+
 		case "icingConditions":
 			var (
 				alias = field.Alias
 				path  = append(path, alias)
-				query = (&IcingConditionClient{config: f.config}).Query()
+				query = (&IcingConditionClient{config: _q.config}).Query()
 			)
-			if err := query.collectField(ctx, opCtx, field, path, satisfies...); err != nil {
+			if err := query.collectField(ctx, false, opCtx, field, path, mayAddCondition(satisfies, icingconditionImplementors)...); err != nil {
 				return err
 			}
-			f.WithNamedIcingConditions(alias, func(wq *IcingConditionQuery) {
+			_q.WithNamedIcingConditions(alias, func(wq *IcingConditionQuery) {
 				*wq = *query
 			})
+
 		case "temperatureData":
 			var (
 				alias = field.Alias
 				path  = append(path, alias)
-				query = (&TemperatureDataClient{config: f.config}).Query()
+				query = (&TemperatureDataClient{config: _q.config}).Query()
 			)
-			if err := query.collectField(ctx, opCtx, field, path, satisfies...); err != nil {
+			if err := query.collectField(ctx, false, opCtx, field, path, mayAddCondition(satisfies, temperaturedataImplementors)...); err != nil {
 				return err
 			}
-			f.WithNamedTemperatureData(alias, func(wq *TemperatureDataQuery) {
+			_q.WithNamedTemperatureData(alias, func(wq *TemperatureDataQuery) {
 				*wq = *query
 			})
 		case "fromTime":
@@ -466,7 +473,7 @@ func (f *ForecastQuery) collectField(ctx context.Context, opCtx *graphql.Operati
 		}
 	}
 	if !unknownSeen {
-		f.Select(selectedFields...)
+		_q.Select(selectedFields...)
 	}
 	return nil
 }
@@ -498,18 +505,18 @@ func newForecastPaginateArgs(rv map[string]any) *forecastPaginateArgs {
 }
 
 // CollectFields tells the query-builder to eagerly load connected nodes by resolver context.
-func (f *FrequencyQuery) CollectFields(ctx context.Context, satisfies ...string) (*FrequencyQuery, error) {
+func (_q *FrequencyQuery) CollectFields(ctx context.Context, satisfies ...string) (*FrequencyQuery, error) {
 	fc := graphql.GetFieldContext(ctx)
 	if fc == nil {
-		return f, nil
+		return _q, nil
 	}
-	if err := f.collectField(ctx, graphql.GetOperationContext(ctx), fc.Field, nil, satisfies...); err != nil {
+	if err := _q.collectField(ctx, false, graphql.GetOperationContext(ctx), fc.Field, nil, satisfies...); err != nil {
 		return nil, err
 	}
-	return f, nil
+	return _q, nil
 }
 
-func (f *FrequencyQuery) collectField(ctx context.Context, opCtx *graphql.OperationContext, collected graphql.CollectedField, path []string, satisfies ...string) error {
+func (_q *FrequencyQuery) collectField(ctx context.Context, oneNode bool, opCtx *graphql.OperationContext, collected graphql.CollectedField, path []string, satisfies ...string) error {
 	path = append([]string(nil), path...)
 	var (
 		unknownSeen    bool
@@ -518,16 +525,17 @@ func (f *FrequencyQuery) collectField(ctx context.Context, opCtx *graphql.Operat
 	)
 	for _, field := range graphql.CollectFields(opCtx, collected.Selections, satisfies) {
 		switch field.Name {
+
 		case "airport":
 			var (
 				alias = field.Alias
 				path  = append(path, alias)
-				query = (&AirportClient{config: f.config}).Query()
+				query = (&AirportClient{config: _q.config}).Query()
 			)
-			if err := query.collectField(ctx, opCtx, field, path, satisfies...); err != nil {
+			if err := query.collectField(ctx, oneNode, opCtx, field, path, mayAddCondition(satisfies, airportImplementors)...); err != nil {
 				return err
 			}
-			f.withAirport = query
+			_q.withAirport = query
 		case "importID":
 			if _, ok := fieldSeen[frequency.FieldImportID]; !ok {
 				selectedFields = append(selectedFields, frequency.FieldImportID)
@@ -560,7 +568,7 @@ func (f *FrequencyQuery) collectField(ctx context.Context, opCtx *graphql.Operat
 		}
 	}
 	if !unknownSeen {
-		f.Select(selectedFields...)
+		_q.Select(selectedFields...)
 	}
 	return nil
 }
@@ -592,18 +600,18 @@ func newFrequencyPaginateArgs(rv map[string]any) *frequencyPaginateArgs {
 }
 
 // CollectFields tells the query-builder to eagerly load connected nodes by resolver context.
-func (ic *IcingConditionQuery) CollectFields(ctx context.Context, satisfies ...string) (*IcingConditionQuery, error) {
+func (_q *IcingConditionQuery) CollectFields(ctx context.Context, satisfies ...string) (*IcingConditionQuery, error) {
 	fc := graphql.GetFieldContext(ctx)
 	if fc == nil {
-		return ic, nil
+		return _q, nil
 	}
-	if err := ic.collectField(ctx, graphql.GetOperationContext(ctx), fc.Field, nil, satisfies...); err != nil {
+	if err := _q.collectField(ctx, false, graphql.GetOperationContext(ctx), fc.Field, nil, satisfies...); err != nil {
 		return nil, err
 	}
-	return ic, nil
+	return _q, nil
 }
 
-func (ic *IcingConditionQuery) collectField(ctx context.Context, opCtx *graphql.OperationContext, collected graphql.CollectedField, path []string, satisfies ...string) error {
+func (_q *IcingConditionQuery) collectField(ctx context.Context, oneNode bool, opCtx *graphql.OperationContext, collected graphql.CollectedField, path []string, satisfies ...string) error {
 	path = append([]string(nil), path...)
 	var (
 		unknownSeen    bool
@@ -624,7 +632,7 @@ func (ic *IcingConditionQuery) collectField(ctx context.Context, opCtx *graphql.
 		}
 	}
 	if !unknownSeen {
-		ic.Select(selectedFields...)
+		_q.Select(selectedFields...)
 	}
 	return nil
 }
@@ -656,18 +664,18 @@ func newIcingConditionPaginateArgs(rv map[string]any) *icingconditionPaginateArg
 }
 
 // CollectFields tells the query-builder to eagerly load connected nodes by resolver context.
-func (m *MetarQuery) CollectFields(ctx context.Context, satisfies ...string) (*MetarQuery, error) {
+func (_q *MetarQuery) CollectFields(ctx context.Context, satisfies ...string) (*MetarQuery, error) {
 	fc := graphql.GetFieldContext(ctx)
 	if fc == nil {
-		return m, nil
+		return _q, nil
 	}
-	if err := m.collectField(ctx, graphql.GetOperationContext(ctx), fc.Field, nil, satisfies...); err != nil {
+	if err := _q.collectField(ctx, false, graphql.GetOperationContext(ctx), fc.Field, nil, satisfies...); err != nil {
 		return nil, err
 	}
-	return m, nil
+	return _q, nil
 }
 
-func (m *MetarQuery) collectField(ctx context.Context, opCtx *graphql.OperationContext, collected graphql.CollectedField, path []string, satisfies ...string) error {
+func (_q *MetarQuery) collectField(ctx context.Context, oneNode bool, opCtx *graphql.OperationContext, collected graphql.CollectedField, path []string, satisfies ...string) error {
 	path = append([]string(nil), path...)
 	var (
 		unknownSeen    bool
@@ -676,26 +684,28 @@ func (m *MetarQuery) collectField(ctx context.Context, opCtx *graphql.OperationC
 	)
 	for _, field := range graphql.CollectFields(opCtx, collected.Selections, satisfies) {
 		switch field.Name {
+
 		case "station":
 			var (
 				alias = field.Alias
 				path  = append(path, alias)
-				query = (&WeatherStationClient{config: m.config}).Query()
+				query = (&WeatherStationClient{config: _q.config}).Query()
 			)
-			if err := query.collectField(ctx, opCtx, field, path, satisfies...); err != nil {
+			if err := query.collectField(ctx, oneNode, opCtx, field, path, mayAddCondition(satisfies, weatherstationImplementors)...); err != nil {
 				return err
 			}
-			m.withStation = query
+			_q.withStation = query
+
 		case "skyConditions":
 			var (
 				alias = field.Alias
 				path  = append(path, alias)
-				query = (&SkyConditionClient{config: m.config}).Query()
+				query = (&SkyConditionClient{config: _q.config}).Query()
 			)
-			if err := query.collectField(ctx, opCtx, field, path, satisfies...); err != nil {
+			if err := query.collectField(ctx, false, opCtx, field, path, mayAddCondition(satisfies, skyconditionImplementors)...); err != nil {
 				return err
 			}
-			m.WithNamedSkyConditions(alias, func(wq *SkyConditionQuery) {
+			_q.WithNamedSkyConditions(alias, func(wq *SkyConditionQuery) {
 				*wq = *query
 			})
 		case "rawText":
@@ -830,7 +840,7 @@ func (m *MetarQuery) collectField(ctx context.Context, opCtx *graphql.OperationC
 		}
 	}
 	if !unknownSeen {
-		m.Select(selectedFields...)
+		_q.Select(selectedFields...)
 	}
 	return nil
 }
@@ -884,18 +894,18 @@ func newMetarPaginateArgs(rv map[string]any) *metarPaginateArgs {
 }
 
 // CollectFields tells the query-builder to eagerly load connected nodes by resolver context.
-func (r *RegionQuery) CollectFields(ctx context.Context, satisfies ...string) (*RegionQuery, error) {
+func (_q *RegionQuery) CollectFields(ctx context.Context, satisfies ...string) (*RegionQuery, error) {
 	fc := graphql.GetFieldContext(ctx)
 	if fc == nil {
-		return r, nil
+		return _q, nil
 	}
-	if err := r.collectField(ctx, graphql.GetOperationContext(ctx), fc.Field, nil, satisfies...); err != nil {
+	if err := _q.collectField(ctx, false, graphql.GetOperationContext(ctx), fc.Field, nil, satisfies...); err != nil {
 		return nil, err
 	}
-	return r, nil
+	return _q, nil
 }
 
-func (r *RegionQuery) collectField(ctx context.Context, opCtx *graphql.OperationContext, collected graphql.CollectedField, path []string, satisfies ...string) error {
+func (_q *RegionQuery) collectField(ctx context.Context, oneNode bool, opCtx *graphql.OperationContext, collected graphql.CollectedField, path []string, satisfies ...string) error {
 	path = append([]string(nil), path...)
 	var (
 		unknownSeen    bool
@@ -946,7 +956,7 @@ func (r *RegionQuery) collectField(ctx context.Context, opCtx *graphql.Operation
 		}
 	}
 	if !unknownSeen {
-		r.Select(selectedFields...)
+		_q.Select(selectedFields...)
 	}
 	return nil
 }
@@ -978,18 +988,18 @@ func newRegionPaginateArgs(rv map[string]any) *regionPaginateArgs {
 }
 
 // CollectFields tells the query-builder to eagerly load connected nodes by resolver context.
-func (r *RunwayQuery) CollectFields(ctx context.Context, satisfies ...string) (*RunwayQuery, error) {
+func (_q *RunwayQuery) CollectFields(ctx context.Context, satisfies ...string) (*RunwayQuery, error) {
 	fc := graphql.GetFieldContext(ctx)
 	if fc == nil {
-		return r, nil
+		return _q, nil
 	}
-	if err := r.collectField(ctx, graphql.GetOperationContext(ctx), fc.Field, nil, satisfies...); err != nil {
+	if err := _q.collectField(ctx, false, graphql.GetOperationContext(ctx), fc.Field, nil, satisfies...); err != nil {
 		return nil, err
 	}
-	return r, nil
+	return _q, nil
 }
 
-func (r *RunwayQuery) collectField(ctx context.Context, opCtx *graphql.OperationContext, collected graphql.CollectedField, path []string, satisfies ...string) error {
+func (_q *RunwayQuery) collectField(ctx context.Context, oneNode bool, opCtx *graphql.OperationContext, collected graphql.CollectedField, path []string, satisfies ...string) error {
 	path = append([]string(nil), path...)
 	var (
 		unknownSeen    bool
@@ -998,16 +1008,17 @@ func (r *RunwayQuery) collectField(ctx context.Context, opCtx *graphql.Operation
 	)
 	for _, field := range graphql.CollectFields(opCtx, collected.Selections, satisfies) {
 		switch field.Name {
+
 		case "airport":
 			var (
 				alias = field.Alias
 				path  = append(path, alias)
-				query = (&AirportClient{config: r.config}).Query()
+				query = (&AirportClient{config: _q.config}).Query()
 			)
-			if err := query.collectField(ctx, opCtx, field, path, satisfies...); err != nil {
+			if err := query.collectField(ctx, oneNode, opCtx, field, path, mayAddCondition(satisfies, airportImplementors)...); err != nil {
 				return err
 			}
-			r.withAirport = query
+			_q.withAirport = query
 		case "importID":
 			if _, ok := fieldSeen[runway.FieldImportID]; !ok {
 				selectedFields = append(selectedFields, runway.FieldImportID)
@@ -1100,7 +1111,7 @@ func (r *RunwayQuery) collectField(ctx context.Context, opCtx *graphql.Operation
 		}
 	}
 	if !unknownSeen {
-		r.Select(selectedFields...)
+		_q.Select(selectedFields...)
 	}
 	return nil
 }
@@ -1132,18 +1143,18 @@ func newRunwayPaginateArgs(rv map[string]any) *runwayPaginateArgs {
 }
 
 // CollectFields tells the query-builder to eagerly load connected nodes by resolver context.
-func (sc *SkyConditionQuery) CollectFields(ctx context.Context, satisfies ...string) (*SkyConditionQuery, error) {
+func (_q *SkyConditionQuery) CollectFields(ctx context.Context, satisfies ...string) (*SkyConditionQuery, error) {
 	fc := graphql.GetFieldContext(ctx)
 	if fc == nil {
-		return sc, nil
+		return _q, nil
 	}
-	if err := sc.collectField(ctx, graphql.GetOperationContext(ctx), fc.Field, nil, satisfies...); err != nil {
+	if err := _q.collectField(ctx, false, graphql.GetOperationContext(ctx), fc.Field, nil, satisfies...); err != nil {
 		return nil, err
 	}
-	return sc, nil
+	return _q, nil
 }
 
-func (sc *SkyConditionQuery) collectField(ctx context.Context, opCtx *graphql.OperationContext, collected graphql.CollectedField, path []string, satisfies ...string) error {
+func (_q *SkyConditionQuery) collectField(ctx context.Context, oneNode bool, opCtx *graphql.OperationContext, collected graphql.CollectedField, path []string, satisfies ...string) error {
 	path = append([]string(nil), path...)
 	var (
 		unknownSeen    bool
@@ -1169,7 +1180,7 @@ func (sc *SkyConditionQuery) collectField(ctx context.Context, opCtx *graphql.Op
 		}
 	}
 	if !unknownSeen {
-		sc.Select(selectedFields...)
+		_q.Select(selectedFields...)
 	}
 	return nil
 }
@@ -1201,18 +1212,18 @@ func newSkyConditionPaginateArgs(rv map[string]any) *skyconditionPaginateArgs {
 }
 
 // CollectFields tells the query-builder to eagerly load connected nodes by resolver context.
-func (t *TafQuery) CollectFields(ctx context.Context, satisfies ...string) (*TafQuery, error) {
+func (_q *TafQuery) CollectFields(ctx context.Context, satisfies ...string) (*TafQuery, error) {
 	fc := graphql.GetFieldContext(ctx)
 	if fc == nil {
-		return t, nil
+		return _q, nil
 	}
-	if err := t.collectField(ctx, graphql.GetOperationContext(ctx), fc.Field, nil, satisfies...); err != nil {
+	if err := _q.collectField(ctx, false, graphql.GetOperationContext(ctx), fc.Field, nil, satisfies...); err != nil {
 		return nil, err
 	}
-	return t, nil
+	return _q, nil
 }
 
-func (t *TafQuery) collectField(ctx context.Context, opCtx *graphql.OperationContext, collected graphql.CollectedField, path []string, satisfies ...string) error {
+func (_q *TafQuery) collectField(ctx context.Context, oneNode bool, opCtx *graphql.OperationContext, collected graphql.CollectedField, path []string, satisfies ...string) error {
 	path = append([]string(nil), path...)
 	var (
 		unknownSeen    bool
@@ -1221,26 +1232,28 @@ func (t *TafQuery) collectField(ctx context.Context, opCtx *graphql.OperationCon
 	)
 	for _, field := range graphql.CollectFields(opCtx, collected.Selections, satisfies) {
 		switch field.Name {
+
 		case "station":
 			var (
 				alias = field.Alias
 				path  = append(path, alias)
-				query = (&WeatherStationClient{config: t.config}).Query()
+				query = (&WeatherStationClient{config: _q.config}).Query()
 			)
-			if err := query.collectField(ctx, opCtx, field, path, satisfies...); err != nil {
+			if err := query.collectField(ctx, oneNode, opCtx, field, path, mayAddCondition(satisfies, weatherstationImplementors)...); err != nil {
 				return err
 			}
-			t.withStation = query
+			_q.withStation = query
+
 		case "forecast":
 			var (
 				alias = field.Alias
 				path  = append(path, alias)
-				query = (&ForecastClient{config: t.config}).Query()
+				query = (&ForecastClient{config: _q.config}).Query()
 			)
-			if err := query.collectField(ctx, opCtx, field, path, satisfies...); err != nil {
+			if err := query.collectField(ctx, false, opCtx, field, path, mayAddCondition(satisfies, forecastImplementors)...); err != nil {
 				return err
 			}
-			t.WithNamedForecast(alias, func(wq *ForecastQuery) {
+			_q.WithNamedForecast(alias, func(wq *ForecastQuery) {
 				*wq = *query
 			})
 		case "rawText":
@@ -1285,7 +1298,7 @@ func (t *TafQuery) collectField(ctx context.Context, opCtx *graphql.OperationCon
 		}
 	}
 	if !unknownSeen {
-		t.Select(selectedFields...)
+		_q.Select(selectedFields...)
 	}
 	return nil
 }
@@ -1339,18 +1352,18 @@ func newTafPaginateArgs(rv map[string]any) *tafPaginateArgs {
 }
 
 // CollectFields tells the query-builder to eagerly load connected nodes by resolver context.
-func (td *TemperatureDataQuery) CollectFields(ctx context.Context, satisfies ...string) (*TemperatureDataQuery, error) {
+func (_q *TemperatureDataQuery) CollectFields(ctx context.Context, satisfies ...string) (*TemperatureDataQuery, error) {
 	fc := graphql.GetFieldContext(ctx)
 	if fc == nil {
-		return td, nil
+		return _q, nil
 	}
-	if err := td.collectField(ctx, graphql.GetOperationContext(ctx), fc.Field, nil, satisfies...); err != nil {
+	if err := _q.collectField(ctx, false, graphql.GetOperationContext(ctx), fc.Field, nil, satisfies...); err != nil {
 		return nil, err
 	}
-	return td, nil
+	return _q, nil
 }
 
-func (td *TemperatureDataQuery) collectField(ctx context.Context, opCtx *graphql.OperationContext, collected graphql.CollectedField, path []string, satisfies ...string) error {
+func (_q *TemperatureDataQuery) collectField(ctx context.Context, oneNode bool, opCtx *graphql.OperationContext, collected graphql.CollectedField, path []string, satisfies ...string) error {
 	path = append([]string(nil), path...)
 	var (
 		unknownSeen    bool
@@ -1371,7 +1384,7 @@ func (td *TemperatureDataQuery) collectField(ctx context.Context, opCtx *graphql
 		}
 	}
 	if !unknownSeen {
-		td.Select(selectedFields...)
+		_q.Select(selectedFields...)
 	}
 	return nil
 }
@@ -1403,18 +1416,18 @@ func newTemperatureDataPaginateArgs(rv map[string]any) *temperaturedataPaginateA
 }
 
 // CollectFields tells the query-builder to eagerly load connected nodes by resolver context.
-func (tc *TurbulenceConditionQuery) CollectFields(ctx context.Context, satisfies ...string) (*TurbulenceConditionQuery, error) {
+func (_q *TurbulenceConditionQuery) CollectFields(ctx context.Context, satisfies ...string) (*TurbulenceConditionQuery, error) {
 	fc := graphql.GetFieldContext(ctx)
 	if fc == nil {
-		return tc, nil
+		return _q, nil
 	}
-	if err := tc.collectField(ctx, graphql.GetOperationContext(ctx), fc.Field, nil, satisfies...); err != nil {
+	if err := _q.collectField(ctx, false, graphql.GetOperationContext(ctx), fc.Field, nil, satisfies...); err != nil {
 		return nil, err
 	}
-	return tc, nil
+	return _q, nil
 }
 
-func (tc *TurbulenceConditionQuery) collectField(ctx context.Context, opCtx *graphql.OperationContext, collected graphql.CollectedField, path []string, satisfies ...string) error {
+func (_q *TurbulenceConditionQuery) collectField(ctx context.Context, oneNode bool, opCtx *graphql.OperationContext, collected graphql.CollectedField, path []string, satisfies ...string) error {
 	path = append([]string(nil), path...)
 	var (
 		unknownSeen    bool
@@ -1435,7 +1448,7 @@ func (tc *TurbulenceConditionQuery) collectField(ctx context.Context, opCtx *gra
 		}
 	}
 	if !unknownSeen {
-		tc.Select(selectedFields...)
+		_q.Select(selectedFields...)
 	}
 	return nil
 }
@@ -1467,18 +1480,18 @@ func newTurbulenceConditionPaginateArgs(rv map[string]any) *turbulenceconditionP
 }
 
 // CollectFields tells the query-builder to eagerly load connected nodes by resolver context.
-func (ws *WeatherStationQuery) CollectFields(ctx context.Context, satisfies ...string) (*WeatherStationQuery, error) {
+func (_q *WeatherStationQuery) CollectFields(ctx context.Context, satisfies ...string) (*WeatherStationQuery, error) {
 	fc := graphql.GetFieldContext(ctx)
 	if fc == nil {
-		return ws, nil
+		return _q, nil
 	}
-	if err := ws.collectField(ctx, graphql.GetOperationContext(ctx), fc.Field, nil, satisfies...); err != nil {
+	if err := _q.collectField(ctx, false, graphql.GetOperationContext(ctx), fc.Field, nil, satisfies...); err != nil {
 		return nil, err
 	}
-	return ws, nil
+	return _q, nil
 }
 
-func (ws *WeatherStationQuery) collectField(ctx context.Context, opCtx *graphql.OperationContext, collected graphql.CollectedField, path []string, satisfies ...string) error {
+func (_q *WeatherStationQuery) collectField(ctx context.Context, oneNode bool, opCtx *graphql.OperationContext, collected graphql.CollectedField, path []string, satisfies ...string) error {
 	path = append([]string(nil), path...)
 	var (
 		unknownSeen    bool
@@ -1487,16 +1500,17 @@ func (ws *WeatherStationQuery) collectField(ctx context.Context, opCtx *graphql.
 	)
 	for _, field := range graphql.CollectFields(opCtx, collected.Selections, satisfies) {
 		switch field.Name {
+
 		case "airport":
 			var (
 				alias = field.Alias
 				path  = append(path, alias)
-				query = (&AirportClient{config: ws.config}).Query()
+				query = (&AirportClient{config: _q.config}).Query()
 			)
-			if err := query.collectField(ctx, opCtx, field, path, satisfies...); err != nil {
+			if err := query.collectField(ctx, oneNode, opCtx, field, path, mayAddCondition(satisfies, airportImplementors)...); err != nil {
 				return err
 			}
-			ws.withAirport = query
+			_q.withAirport = query
 		case "stationID":
 			if _, ok := fieldSeen[weatherstation.FieldStationID]; !ok {
 				selectedFields = append(selectedFields, weatherstation.FieldStationID)
@@ -1524,7 +1538,7 @@ func (ws *WeatherStationQuery) collectField(ctx context.Context, opCtx *graphql.
 		}
 	}
 	if !unknownSeen {
-		ws.Select(selectedFields...)
+		_q.Select(selectedFields...)
 	}
 	return nil
 }
@@ -1580,7 +1594,7 @@ func fieldArgs(ctx context.Context, whereInput any, path ...string) map[string]a
 func unmarshalArgs(ctx context.Context, whereInput any, args map[string]any) map[string]any {
 	for _, k := range []string{firstField, lastField} {
 		v, ok := args[k]
-		if !ok {
+		if !ok || v == nil {
 			continue
 		}
 		i, err := graphql.UnmarshalInt(v)
@@ -1607,39 +1621,17 @@ func unmarshalArgs(ctx context.Context, whereInput any, args map[string]any) map
 	return args
 }
 
-func limitRows(partitionBy string, limit int, orderBy ...sql.Querier) func(s *sql.Selector) {
-	return func(s *sql.Selector) {
-		d := sql.Dialect(s.Dialect())
-		s.SetDistinct(false)
-		with := d.With("src_query").
-			As(s.Clone()).
-			With("limited_query").
-			As(
-				d.Select("*").
-					AppendSelectExprAs(
-						sql.RowNumber().PartitionBy(partitionBy).OrderExpr(orderBy...),
-						"row_number",
-					).
-					From(d.Table("src_query")),
-			)
-		t := d.Table("limited_query").As(s.TableName())
-		*s = *d.Select(s.UnqualifiedColumns()...).
-			From(t).
-			Where(sql.LTE(t.C("row_number"), limit)).
-			Prefix(with)
-	}
-}
-
 // mayAddCondition appends another type condition to the satisfies list
-// if condition is enabled (Node/Nodes) and it does not exist in the list.
-func mayAddCondition(satisfies []string, typeCond string) []string {
-	if len(satisfies) == 0 {
-		return satisfies
-	}
-	for _, s := range satisfies {
-		if typeCond == s {
-			return satisfies
+// if it does not exist in the list.
+func mayAddCondition(satisfies []string, typeCond []string) []string {
+Cond:
+	for _, c := range typeCond {
+		for _, s := range satisfies {
+			if c == s {
+				continue Cond
+			}
 		}
+		satisfies = append(satisfies, c)
 	}
-	return append(satisfies, typeCond)
+	return satisfies
 }

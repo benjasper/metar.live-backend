@@ -83,12 +83,10 @@ type RunwayEdges struct {
 // AirportOrErr returns the Airport value or an error if the edge
 // was not loaded in eager-loading, or loaded but was not found.
 func (e RunwayEdges) AirportOrErr() (*Airport, error) {
-	if e.loadedTypes[0] {
-		if e.Airport == nil {
-			// Edge was loaded but was not found.
-			return nil, &NotFoundError{label: airport.Label}
-		}
+	if e.Airport != nil {
 		return e.Airport, nil
+	} else if e.loadedTypes[0] {
+		return nil, &NotFoundError{label: airport.Label}
 	}
 	return nil, &NotLoadedError{edge: "airport"}
 }
@@ -121,7 +119,7 @@ func (*Runway) scanValues(columns []string) ([]any, error) {
 
 // assignValues assigns the values that were returned from sql.Rows (after scanning)
 // to the Runway fields.
-func (r *Runway) assignValues(columns []string, values []any) error {
+func (_m *Runway) assignValues(columns []string, values []any) error {
 	if m, n := len(values), len(columns); m < n {
 		return fmt.Errorf("mismatch number of scan values: %d != %d", m, n)
 	}
@@ -131,154 +129,154 @@ func (r *Runway) assignValues(columns []string, values []any) error {
 			if value, ok := values[i].(*uuid.UUID); !ok {
 				return fmt.Errorf("unexpected type %T for field id", values[i])
 			} else if value != nil {
-				r.ID = *value
+				_m.ID = *value
 			}
 		case runway.FieldImportID:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field import_id", values[i])
 			} else if value.Valid {
-				r.ImportID = int(value.Int64)
+				_m.ImportID = int(value.Int64)
 			}
 		case runway.FieldHash:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field hash", values[i])
 			} else if value.Valid {
-				r.Hash = value.String
+				_m.Hash = value.String
 			}
 		case runway.FieldImportFlag:
 			if value, ok := values[i].(*sql.NullBool); !ok {
 				return fmt.Errorf("unexpected type %T for field import_flag", values[i])
 			} else if value.Valid {
-				r.ImportFlag = value.Bool
+				_m.ImportFlag = value.Bool
 			}
 		case runway.FieldLastUpdated:
 			if value, ok := values[i].(*sql.NullTime); !ok {
 				return fmt.Errorf("unexpected type %T for field last_updated", values[i])
 			} else if value.Valid {
-				r.LastUpdated = value.Time
+				_m.LastUpdated = value.Time
 			}
 		case runway.FieldLength:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field length", values[i])
 			} else if value.Valid {
-				r.Length = int(value.Int64)
+				_m.Length = int(value.Int64)
 			}
 		case runway.FieldWidth:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field width", values[i])
 			} else if value.Valid {
-				r.Width = int(value.Int64)
+				_m.Width = int(value.Int64)
 			}
 		case runway.FieldSurface:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field surface", values[i])
 			} else if value.Valid {
-				r.Surface = new(string)
-				*r.Surface = value.String
+				_m.Surface = new(string)
+				*_m.Surface = value.String
 			}
 		case runway.FieldLighted:
 			if value, ok := values[i].(*sql.NullBool); !ok {
 				return fmt.Errorf("unexpected type %T for field lighted", values[i])
 			} else if value.Valid {
-				r.Lighted = value.Bool
+				_m.Lighted = value.Bool
 			}
 		case runway.FieldClosed:
 			if value, ok := values[i].(*sql.NullBool); !ok {
 				return fmt.Errorf("unexpected type %T for field closed", values[i])
 			} else if value.Valid {
-				r.Closed = value.Bool
+				_m.Closed = value.Bool
 			}
 		case runway.FieldLowRunwayIdentifier:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field low_runway_identifier", values[i])
 			} else if value.Valid {
-				r.LowRunwayIdentifier = value.String
+				_m.LowRunwayIdentifier = value.String
 			}
 		case runway.FieldLowRunwayLatitude:
 			if value, ok := values[i].(*sql.NullFloat64); !ok {
 				return fmt.Errorf("unexpected type %T for field low_runway_latitude", values[i])
 			} else if value.Valid {
-				r.LowRunwayLatitude = new(float64)
-				*r.LowRunwayLatitude = value.Float64
+				_m.LowRunwayLatitude = new(float64)
+				*_m.LowRunwayLatitude = value.Float64
 			}
 		case runway.FieldLowRunwayLongitude:
 			if value, ok := values[i].(*sql.NullFloat64); !ok {
 				return fmt.Errorf("unexpected type %T for field low_runway_longitude", values[i])
 			} else if value.Valid {
-				r.LowRunwayLongitude = new(float64)
-				*r.LowRunwayLongitude = value.Float64
+				_m.LowRunwayLongitude = new(float64)
+				*_m.LowRunwayLongitude = value.Float64
 			}
 		case runway.FieldLowRunwayElevation:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field low_runway_elevation", values[i])
 			} else if value.Valid {
-				r.LowRunwayElevation = new(int)
-				*r.LowRunwayElevation = int(value.Int64)
+				_m.LowRunwayElevation = new(int)
+				*_m.LowRunwayElevation = int(value.Int64)
 			}
 		case runway.FieldLowRunwayHeading:
 			if value, ok := values[i].(*sql.NullFloat64); !ok {
 				return fmt.Errorf("unexpected type %T for field low_runway_heading", values[i])
 			} else if value.Valid {
-				r.LowRunwayHeading = new(float64)
-				*r.LowRunwayHeading = value.Float64
+				_m.LowRunwayHeading = new(float64)
+				*_m.LowRunwayHeading = value.Float64
 			}
 		case runway.FieldLowRunwayDisplacedThreshold:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field low_runway_displaced_threshold", values[i])
 			} else if value.Valid {
-				r.LowRunwayDisplacedThreshold = new(int)
-				*r.LowRunwayDisplacedThreshold = int(value.Int64)
+				_m.LowRunwayDisplacedThreshold = new(int)
+				*_m.LowRunwayDisplacedThreshold = int(value.Int64)
 			}
 		case runway.FieldHighRunwayIdentifier:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field high_runway_identifier", values[i])
 			} else if value.Valid {
-				r.HighRunwayIdentifier = value.String
+				_m.HighRunwayIdentifier = value.String
 			}
 		case runway.FieldHighRunwayLatitude:
 			if value, ok := values[i].(*sql.NullFloat64); !ok {
 				return fmt.Errorf("unexpected type %T for field high_runway_latitude", values[i])
 			} else if value.Valid {
-				r.HighRunwayLatitude = new(float64)
-				*r.HighRunwayLatitude = value.Float64
+				_m.HighRunwayLatitude = new(float64)
+				*_m.HighRunwayLatitude = value.Float64
 			}
 		case runway.FieldHighRunwayLongitude:
 			if value, ok := values[i].(*sql.NullFloat64); !ok {
 				return fmt.Errorf("unexpected type %T for field high_runway_longitude", values[i])
 			} else if value.Valid {
-				r.HighRunwayLongitude = new(float64)
-				*r.HighRunwayLongitude = value.Float64
+				_m.HighRunwayLongitude = new(float64)
+				*_m.HighRunwayLongitude = value.Float64
 			}
 		case runway.FieldHighRunwayElevation:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field high_runway_elevation", values[i])
 			} else if value.Valid {
-				r.HighRunwayElevation = new(int)
-				*r.HighRunwayElevation = int(value.Int64)
+				_m.HighRunwayElevation = new(int)
+				*_m.HighRunwayElevation = int(value.Int64)
 			}
 		case runway.FieldHighRunwayHeading:
 			if value, ok := values[i].(*sql.NullFloat64); !ok {
 				return fmt.Errorf("unexpected type %T for field high_runway_heading", values[i])
 			} else if value.Valid {
-				r.HighRunwayHeading = new(float64)
-				*r.HighRunwayHeading = value.Float64
+				_m.HighRunwayHeading = new(float64)
+				*_m.HighRunwayHeading = value.Float64
 			}
 		case runway.FieldHighRunwayDisplacedThreshold:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field high_runway_displaced_threshold", values[i])
 			} else if value.Valid {
-				r.HighRunwayDisplacedThreshold = new(int)
-				*r.HighRunwayDisplacedThreshold = int(value.Int64)
+				_m.HighRunwayDisplacedThreshold = new(int)
+				*_m.HighRunwayDisplacedThreshold = int(value.Int64)
 			}
 		case runway.ForeignKeys[0]:
 			if value, ok := values[i].(*sql.NullScanner); !ok {
 				return fmt.Errorf("unexpected type %T for field airport_runways", values[i])
 			} else if value.Valid {
-				r.airport_runways = new(uuid.UUID)
-				*r.airport_runways = *value.S.(*uuid.UUID)
+				_m.airport_runways = new(uuid.UUID)
+				*_m.airport_runways = *value.S.(*uuid.UUID)
 			}
 		default:
-			r.selectValues.Set(columns[i], values[i])
+			_m.selectValues.Set(columns[i], values[i])
 		}
 	}
 	return nil
@@ -286,119 +284,119 @@ func (r *Runway) assignValues(columns []string, values []any) error {
 
 // Value returns the ent.Value that was dynamically selected and assigned to the Runway.
 // This includes values selected through modifiers, order, etc.
-func (r *Runway) Value(name string) (ent.Value, error) {
-	return r.selectValues.Get(name)
+func (_m *Runway) Value(name string) (ent.Value, error) {
+	return _m.selectValues.Get(name)
 }
 
 // QueryAirport queries the "airport" edge of the Runway entity.
-func (r *Runway) QueryAirport() *AirportQuery {
-	return NewRunwayClient(r.config).QueryAirport(r)
+func (_m *Runway) QueryAirport() *AirportQuery {
+	return NewRunwayClient(_m.config).QueryAirport(_m)
 }
 
 // Update returns a builder for updating this Runway.
 // Note that you need to call Runway.Unwrap() before calling this method if this Runway
 // was returned from a transaction, and the transaction was committed or rolled back.
-func (r *Runway) Update() *RunwayUpdateOne {
-	return NewRunwayClient(r.config).UpdateOne(r)
+func (_m *Runway) Update() *RunwayUpdateOne {
+	return NewRunwayClient(_m.config).UpdateOne(_m)
 }
 
 // Unwrap unwraps the Runway entity that was returned from a transaction after it was closed,
 // so that all future queries will be executed through the driver which created the transaction.
-func (r *Runway) Unwrap() *Runway {
-	_tx, ok := r.config.driver.(*txDriver)
+func (_m *Runway) Unwrap() *Runway {
+	_tx, ok := _m.config.driver.(*txDriver)
 	if !ok {
 		panic("ent: Runway is not a transactional entity")
 	}
-	r.config.driver = _tx.drv
-	return r
+	_m.config.driver = _tx.drv
+	return _m
 }
 
 // String implements the fmt.Stringer.
-func (r *Runway) String() string {
+func (_m *Runway) String() string {
 	var builder strings.Builder
 	builder.WriteString("Runway(")
-	builder.WriteString(fmt.Sprintf("id=%v, ", r.ID))
+	builder.WriteString(fmt.Sprintf("id=%v, ", _m.ID))
 	builder.WriteString("import_id=")
-	builder.WriteString(fmt.Sprintf("%v", r.ImportID))
+	builder.WriteString(fmt.Sprintf("%v", _m.ImportID))
 	builder.WriteString(", ")
 	builder.WriteString("hash=")
-	builder.WriteString(r.Hash)
+	builder.WriteString(_m.Hash)
 	builder.WriteString(", ")
 	builder.WriteString("import_flag=")
-	builder.WriteString(fmt.Sprintf("%v", r.ImportFlag))
+	builder.WriteString(fmt.Sprintf("%v", _m.ImportFlag))
 	builder.WriteString(", ")
 	builder.WriteString("last_updated=")
-	builder.WriteString(r.LastUpdated.Format(time.ANSIC))
+	builder.WriteString(_m.LastUpdated.Format(time.ANSIC))
 	builder.WriteString(", ")
 	builder.WriteString("length=")
-	builder.WriteString(fmt.Sprintf("%v", r.Length))
+	builder.WriteString(fmt.Sprintf("%v", _m.Length))
 	builder.WriteString(", ")
 	builder.WriteString("width=")
-	builder.WriteString(fmt.Sprintf("%v", r.Width))
+	builder.WriteString(fmt.Sprintf("%v", _m.Width))
 	builder.WriteString(", ")
-	if v := r.Surface; v != nil {
+	if v := _m.Surface; v != nil {
 		builder.WriteString("surface=")
 		builder.WriteString(*v)
 	}
 	builder.WriteString(", ")
 	builder.WriteString("lighted=")
-	builder.WriteString(fmt.Sprintf("%v", r.Lighted))
+	builder.WriteString(fmt.Sprintf("%v", _m.Lighted))
 	builder.WriteString(", ")
 	builder.WriteString("closed=")
-	builder.WriteString(fmt.Sprintf("%v", r.Closed))
+	builder.WriteString(fmt.Sprintf("%v", _m.Closed))
 	builder.WriteString(", ")
 	builder.WriteString("low_runway_identifier=")
-	builder.WriteString(r.LowRunwayIdentifier)
+	builder.WriteString(_m.LowRunwayIdentifier)
 	builder.WriteString(", ")
-	if v := r.LowRunwayLatitude; v != nil {
+	if v := _m.LowRunwayLatitude; v != nil {
 		builder.WriteString("low_runway_latitude=")
 		builder.WriteString(fmt.Sprintf("%v", *v))
 	}
 	builder.WriteString(", ")
-	if v := r.LowRunwayLongitude; v != nil {
+	if v := _m.LowRunwayLongitude; v != nil {
 		builder.WriteString("low_runway_longitude=")
 		builder.WriteString(fmt.Sprintf("%v", *v))
 	}
 	builder.WriteString(", ")
-	if v := r.LowRunwayElevation; v != nil {
+	if v := _m.LowRunwayElevation; v != nil {
 		builder.WriteString("low_runway_elevation=")
 		builder.WriteString(fmt.Sprintf("%v", *v))
 	}
 	builder.WriteString(", ")
-	if v := r.LowRunwayHeading; v != nil {
+	if v := _m.LowRunwayHeading; v != nil {
 		builder.WriteString("low_runway_heading=")
 		builder.WriteString(fmt.Sprintf("%v", *v))
 	}
 	builder.WriteString(", ")
-	if v := r.LowRunwayDisplacedThreshold; v != nil {
+	if v := _m.LowRunwayDisplacedThreshold; v != nil {
 		builder.WriteString("low_runway_displaced_threshold=")
 		builder.WriteString(fmt.Sprintf("%v", *v))
 	}
 	builder.WriteString(", ")
 	builder.WriteString("high_runway_identifier=")
-	builder.WriteString(r.HighRunwayIdentifier)
+	builder.WriteString(_m.HighRunwayIdentifier)
 	builder.WriteString(", ")
-	if v := r.HighRunwayLatitude; v != nil {
+	if v := _m.HighRunwayLatitude; v != nil {
 		builder.WriteString("high_runway_latitude=")
 		builder.WriteString(fmt.Sprintf("%v", *v))
 	}
 	builder.WriteString(", ")
-	if v := r.HighRunwayLongitude; v != nil {
+	if v := _m.HighRunwayLongitude; v != nil {
 		builder.WriteString("high_runway_longitude=")
 		builder.WriteString(fmt.Sprintf("%v", *v))
 	}
 	builder.WriteString(", ")
-	if v := r.HighRunwayElevation; v != nil {
+	if v := _m.HighRunwayElevation; v != nil {
 		builder.WriteString("high_runway_elevation=")
 		builder.WriteString(fmt.Sprintf("%v", *v))
 	}
 	builder.WriteString(", ")
-	if v := r.HighRunwayHeading; v != nil {
+	if v := _m.HighRunwayHeading; v != nil {
 		builder.WriteString("high_runway_heading=")
 		builder.WriteString(fmt.Sprintf("%v", *v))
 	}
 	builder.WriteString(", ")
-	if v := r.HighRunwayDisplacedThreshold; v != nil {
+	if v := _m.HighRunwayDisplacedThreshold; v != nil {
 		builder.WriteString("high_runway_displaced_threshold=")
 		builder.WriteString(fmt.Sprintf("%v", *v))
 	}
